@@ -1,0 +1,51 @@
+{
+    "name": "cosmic",
+    "title": "Cancer Gene Census",
+    "description": "COSMIC Cancer Gene Census – The data was obtained from the Sanger Institute Catalogue Of Somatic Mutations In Cancer web site, http://cancer.sanger.ac.uk/cosmic Bamford et al (2004) The COSMIC (Catalogue of Somatic Mutations in Cancer) database and website. Br J Cancer, 91,355-358",
+    "styles": {
+        "height": 18 
+    },
+    "data": {
+        "url": "census_v90_hg38.tsv"
+    },
+    "transform": [
+        {
+            "type": "regexExtract",
+            "field": "Genome Location",
+            "regex": "^(X|Y|\\d+):(\\d+)-(\\d+)$",
+            "as": ["chrom", "startpos", "endpos"],
+            "skipInvalidInput": true
+        },
+        {
+            "type": "flattenDelimited",
+            "field": "Role in Cancer",
+            "separator": ", "
+        },
+        {
+            "type": "stack",
+            "groupby": ["chrom", "startpos"],
+            "sort": { "field": "Role in Cancer" },
+            "offset": "normalize"
+        }
+    ],
+    "mark": {
+        "type": "rect",
+        "tooltip": {
+            "skipFields": [ "chrom", "startpos", "endpos", "y0", "y1", "opacity" ]
+        },
+        "minWidth": 2.0,
+        "minOpacity": 0.4
+    },
+    "encoding": {
+        "x":  { "chrom": "chrom", "pos": "startpos", "type": "quantitative" },
+        "x2": { "chrom": "chrom", "pos": "endpos", "type": "quantitative", "offset": 1 },
+        "y":  { "field": "y0", "type": "quantitative", "axis": null },
+        "y2": { "field": "y1", "type": "quantitative" },
+        "color": { "field": "Role in Cancer", "type": "nominal", "scale": { "scheme": "category10" } },
+        "opacity": {
+            "expr": "datum.Tier == 2 ? 0.2 : 1",
+            "type": "quantitative",
+            "scale": { "type": "identity" }
+        }
+    }
+}
