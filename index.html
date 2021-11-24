@@ -1,5 +1,261 @@
-<html>
-  <body>
-    <h1>Hello!</h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GenomeSpy</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Special+Elite&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link rel="icon" type="image/svg+xml" href="img/genomespy-favicon.svg"/>
+
+    <meta name="description"
+        content="A visualization grammar and a GPU-accelerated rendering engine for genomic (and other) data" />
+
+    <meta property="og:title" content="GenomeSpy" />
+    <meta property="og:description"
+        content="A visualization grammar and a GPU-accelerated rendering engine for genomic (and other) data" />
+    <meta property="og:image" content="https://genomespy.app/img/genomespy-card.png" />
+    <meta property="og:url" content="https://genomespy.app/" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GenomeSpy" />
+    <meta name="twitter:description"
+        content="A visualization grammar and a GPU-accelerated rendering engine for genomic (and other) data" />
+    <meta name="twitter:image" content="https://genomespy.app/img/genomespy-card.png" />
+</head>
+
+<body>
+    <script src="https://kit.fontawesome.com/2e65d8a80b.js" crossorigin="anonymous"></script>
+    <script type="module" src="example-card.js"></script>
+
+    <section id="title" class="dark">
+        <div class="flex-figure">
+            <picture>
+                <img src="img/genomespy-bowtie.svg" alt="logo figure" />
+            </picture>
+            <div>
+                <h1>GenomeSpy</h1>
+                <p>
+                    A visualization grammar and a GPU-accelerated rendering engine for genomic (and other) data.
+                </p>
+                <p>
+                    Use GenomeSpy to make your own visualizations!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="intro">
+        <p>
+            GenomeSpy builds upon the concepts originally introduced in
+            <a href="https://www.springer.com/gp/book/9780387245447">The Grammar Of Graphics</a>.
+            The provided building blocks allow users to build bespoke, interactive genomic visualizations
+            that can be embedded on web pages or applications.
+            The carefully crafted GPU-accelerated rendering engine guarantees smoothly animated interactions
+            and a pleasant user experience. Scroll down for live <a href="#examples">examples</a>.
+        </p>
+    </section>
+
+    <section id="building-blocks">
+        <h2>The Building Blocks</h2>
+
+        <figure class="flex-figure">
+            <picture><img src="img/block-data.svg" alt="data" /></picture>
+            <figcaption><strong>Your data:</strong> Currently supported formats: CSV, TSV, JSON, and FASTA.</figcaption>
+        </figure>
+
+        <figure class="flex-figure">
+            <picture><img src="img/block-transform.svg" alt="transform" /></picture>
+            <figcaption><strong>Transformations:</strong> Filter and derive data, perform computations such as <em>pileup</em> or
+                <em>coverage</em>.
+            </figcaption>
+        </figure>
+
+        <figure class="flex-figure">
+            <picture><img src="img/block-scale.svg" alt="scale" /></picture>
+            <figcaption><strong>Scales:</strong> Make the data dimensions suitable for visual representation.</figcaption>
+        </figure>
+
+        <figure class="flex-figure">
+            <picture><img src="img/block-mark.svg" alt="mark" /></picture>
+            <figcaption>
+                <strong>Graphical marks:</strong> Use the <em>point</em> mark for a scatter plot or mutations,
+                adapt the <em>rect</em> mark for a bar chart or genomic segments.
+            </figcaption>
+        </figure>
+
+        <figure class="flex-figure">
+            <picture><img src="img/block-channel.svg" alt="channel" /></picture>
+            <figcaption>
+                <strong>Visual channels:</strong> Map the scale-transformed data to the properties of the marks.
+                For example: position, size, color, and symbol.
+            </figcaption>
+        </figure>
+
+        <figure class="flex-figure">
+            <picture><img src="img/block-view-composition.svg" alt="view composition" /></picture>
+            <figcaption>
+                <strong>View composition:</strong> Combine multiple views, optionally sharing data and scales.
+                Concatenate, layer, and facet.
+            </figcaption>
+        </figure>
+
+        <figure class="flex-figure">
+            <picture><img src="img/block-spec.svg" alt="view spec" /></picture>
+            <figcaption>
+                <strong>View specification:</strong> Put everything together using the grammar.
+                GenomeSpy's visualization grammar is <strong>heavily</strong> inspired by
+                <a href="https://vega.github.io/vega-lite/">Vega-Lite</a>, extending it with
+                functionalities often needed with genomic data.
+            </figcaption>
+        </figure>
+
+    </section>
+
+    <section id="resources">
+
+        <h2>Resources</h2>
+
+        <div class="flex-figure" id="under-construction">
+            <picture><img src="img/under-construction-barricade-1.jpg" alt="Under construction" width="80" /></picture>
+            <div>
+                <p>
+					The application is still under construction, and a stable version is yet to be released.
+					Nevertheless, feel free to try GenomeSpy out with your own data using the Playground app or an Observable notebook!
+					Please let me know if you use GenomeSpy for something serious and follow me on Twitter for updates:
+                </p>
+                <ul class="badge-list">
+                    <li><i class="fab fa-twitter fa-fw"></i> <a href="https://twitter.com/KariLavikka">@KariLavikka</a></li>
+                    <li><i class="fas fa-envelope fa-fw"></i> kari.lavikka at helsinki.fi</li>
+            </div>
+        </div>
+
+        <ul class="icon-list">
+            <li>
+                <i class="fas fa-book fa-fw"></i>
+                <a href="docs/">Documentation</a>
+            </li>
+            <li>
+                <i class="fas fa-futbol fa-fw"></i>
+                <a href="playground/">Playground</a>
+            </li>
+            <li>
+                <i class="fas fa-external-link-alt fa-fw"></i>
+                <a href="https://observablehq.com/collection/@tuner/genomespy">Observable notebooks</a>
+            </li>
+            <li>
+                <i class="fab fa-github fa-fw"></i>
+                <a href="https://github.com/tuner/genome-spy">GitHub</a>
+			</li>
+			<li>
+				<i class="fas fa-comments fa-fw"></i>
+				<a href="https://github.com/tuner/genome-spy/discussions">Questions and feedback</a>
+			</li>
+            <li>
+                <i class="fab fa-youtube fa-fw"></i>
+                A sixty-second <a href="https://youtu.be/WgXUE0comEc">lightning talk</a> presented at VIZBI 2021
+            </li>
+            <li>
+                <i class="fas fa-award fa-fw"></i>
+                The <a href="https://twitter.com/biovis_net/status/1283526382081933312">award-winning</a>
+                BioVis @ ISMB 2020 <a href="https://doi.org/10.7490/f1000research.1118237.1">poster</a> and
+                <a href="https://www.youtube.com/watch?v=7GanrFw7gJA">talk</a>
+            </li>
+            <li>
+                <i class="fas fa-graduation-cap fa-fw"></i>
+                <a href="http://urn.fi/URN:NBN:fi:hulib-202006243441">MSc thesis</a>
+            </li>
+        </ul>
+    </section>
+
+
+    <section id="examples" class="dark">
+        <!-- <h2>Examples</h2> -->
+
+        <div id="cards">
+
+            <genome-spy-example spec="simple/lollipop.json" img-src="lollipop.png">
+                Layering rule and point marks to create a lollipop plot.
+            </genome-spy-example>
+
+            <genome-spy-example spec="simple/bar.json" img-src="bar.png">
+                Using the rect mark to create a bar chart.
+            </genome-spy-example>
+
+            <genome-spy-example spec="simple/heatmap_with_text.json" img-src="heatmap_with_text.png">
+                A heatmap with labels.
+            </genome-spy-example>
+
+            <genome-spy-example spec="tSNE/tsne.json" img-src="tsne.jpg">
+                Visualizing a miserably failed t-SNE attempt. A scatter plot with one and a half
+                million points decorated with some annotations.
+            </genome-spy-example>
+
+            <genome-spy-example spec="OCAC/ocac.json" img-src="gwas.png">
+                A Manhattan plot for Genome-Wide Association Study (GWAS).
+            </genome-spy-example>
+
+            <genome-spy-example spec="MSA/msa.json" img-src="msa.png">
+                Multiple sequence alignment. Loading data from a fasta file and
+                displaying it as a scrollable heatmap and a sequence logo.
+            </genome-spy-example>
+
+            <genome-spy-example spec="SV/sv.json" img-src="sv.png">
+                An example of structural variation and segmented copy-numbers.
+            </genome-spy-example>
+
+            <genome-spy-example spec="ASCAT/ascat.json" img-src="ascat.png">
+                Displaying copy-number segmentations together with the raw
+                SNPs. The visualization replicates the plot produced by ASCAT,
+                but does it interactively.
+            </genome-spy-example>
+
+            <genome-spy-example spec="PARPiCL/parpicl.json" img-src="parpicl.png">
+                A number of cell-line samples with segmented copy numbers,
+                loss of heterozygosity, and SNPs and INDELs.
+            </genome-spy-example>
+
+            <genome-spy-example spec="TCGA_BRCA/tcga_brca.json" img-src="tcga_brca.png">
+                Copy-numbers and SNPs of 1097 TCGA breast cancer samples.
+            </genome-spy-example>
+
+            <genome-spy-example link="segmentmodel/" img-src="segmentmodel.png">
+                SegmentModel Spy. Visualize GATK's copy-number segment models together
+                with read and allelic counts. Uses GenomeSpy as a visualization library.
+            </genome-spy-example>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="flex-figure">
+            <div>
+                <p>Copyright &copy; 2019-2021 Kari Lavikka</p>
+
+                <p>GenomeSpy is developed in <a
+                        href="https://www.helsinki.fi/en/researchgroups/systems-biology-of-drug-resistance-in-cancer">The
+                        Systems Biology of Drug Resistance in
+                        Cancer</a> group at the <a href="https://www.helsinki.fi/">University of Helsinki</a>.
+
+                <p>This project has received funding from the European Union's Horizon 2020 research and innovation
+                    programme
+                    under grant agreement No 667403 for HERCULES.</p>
+            </div>
+
+            <picture>
+                <a href="https://project-hercules.eu/" id="hercules-logo">
+                    <img src="img/HERCULES.svg" width="120" alt="HERCULES" />
+                </a>
+            </picture>
+        </div>
+    </section>
+
+</body>
+
 </html>

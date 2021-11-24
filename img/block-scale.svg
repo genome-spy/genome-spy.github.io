@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 831 169" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-1167.21,-742.76)">
+        <g transform="matrix(1,0,0,1,647.684,-998.886)">
+            <text x="1185.35px" y="1874.29px" style="font-family:'Lato-Regular', 'Lato', sans-serif;font-size:50px;fill:rgb(62,140,182);">locus</text>
+        </g>
+        <g transform="matrix(1,0,0,1,385.429,-1069.11)">
+            <text x="1172.89px" y="1874.29px" style="font-family:'Lato-Regular', 'Lato', sans-serif;font-size:50px;fill:rgb(62,140,182);">thresh-</text>
+        </g>
+        <g transform="matrix(1,0,0,1,503.539,-1015.94)">
+            <text x="1172.89px" y="1874.29px" style="font-family:'Lato-Regular', 'Lato', sans-serif;font-size:50px;fill:rgb(62,140,182);">old</text>
+        </g>
+        <g transform="matrix(1,0,0,1,188.244,-1.13687e-13)">
+            <path d="M992.126,897.638C992.126,897.638 987.261,796.303 1133.86,755.906" style="fill:none;stroke:rgb(62,140,182);stroke-width:14.58px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,247.318,59.0551)">
+            <g transform="matrix(0.528771,-0.848765,0.848765,0.528771,-215.044,1229.58)">
+                <text x="999.817px" y="808.454px" style="font-family:'Lato-Regular', 'Lato', sans-serif;font-size:50px;fill:rgb(62,140,182);">l</text>
+            </g>
+            <g transform="matrix(0.713243,-0.700917,0.700917,0.713243,-270.119,933.681)">
+                <text x="1006.03px" y="796.965px" style="font-family:'Lato-Regular', 'Lato', sans-serif;font-size:50px;fill:rgb(62,140,182);">o</text>
+            </g>
+            <g transform="matrix(0.865527,-0.500861,0.500861,0.865527,-251.495,618.521)">
+                <text x="1026.14px" y="777.625px" style="font-family:'Lato-Regular', 'Lato', sans-serif;font-size:50px;fill:rgb(62,140,182);">g</text>
+            </g>
+        </g>
+        <g transform="matrix(1,0,0,1,141,0)">
+            <path d="M1228.35,897.638L1370.08,755.906" style="fill:none;stroke:rgb(62,140,182);stroke-width:14.58px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,0,23.6221)">
+            <path d="M1795.28,755.906C1937.9,755.839 1842.89,806.218 1984.25,803.15" style="fill:none;stroke:rgb(62,140,182);stroke-width:14.58px;"/>
+            <path d="M1795.28,803.15C1936.42,800.231 1843.7,755.852 1984.25,755.906" style="fill:none;stroke:rgb(62,140,182);stroke-width:14.58px;"/>
+        </g>
+        <g transform="matrix(1.25,0,0,1,-213.331,-28.3201)">
+            <path d="M1417.32,850.394L1511.81,850.394" style="fill:none;stroke:rgb(62,140,182);stroke-width:12.88px;"/>
+        </g>
+        <g transform="matrix(0.75,-3.00796e-16,-3.00796e-16,1,542.575,70.8661)">
+            <path d="M1511.81,803.15L1606.3,803.15" style="fill:none;stroke:rgb(62,140,182);stroke-width:16.5px;"/>
+        </g>
+        <g transform="matrix(0.706568,-0.707645,0.707645,0.706568,-726.384,418.697)">
+            <text x="1179.53px" y="1874.29px" style="font-family:'Lato-Regular', 'Lato', sans-serif;font-size:50px;fill:rgb(62,140,182);">linear</text>
+        </g>
+    </g>
+</svg>
