@@ -245,9 +245,6 @@
           "$ref": "#/definitions/PositionalChannel"
         },
         {
-          "$ref": "#/definitions/SecondaryPositionalChannel"
-        },
-        {
           "const": "color",
           "type": "string"
         },
@@ -288,14 +285,6 @@
           "type": "string"
         },
         {
-          "const": "size2",
-          "type": "string"
-        },
-        {
-          "const": "color2",
-          "type": "string"
-        },
-        {
           "const": "angle",
           "type": "string"
         },
@@ -329,28 +318,6 @@
         }
       ]
     },
-    "ChannelDef": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/FieldDef"
-        },
-        {
-          "$ref": "#/definitions/DatumDef"
-        },
-        {
-          "$ref": "#/definitions/ValueDef"
-        },
-        {
-          "$ref": "#/definitions/ExprDef"
-        },
-        {
-          "$ref": "#/definitions/ChromPosDef"
-        },
-        {
-          "$ref": "#/definitions/FacetFieldDef"
-        }
-      ]
-    },
     "ChromPosDef": {
       "additionalProperties": false,
       "properties": {
@@ -362,22 +329,18 @@
             {
               "type": "null"
             }
-          ]
+          ],
+          "description": "An object defining properties of axis's gridlines, ticks and labels. If `null`, the axis for the encoding channel will be removed.\n\n__Default value:__ If undefined, default [axis properties](https://vega.github.io/vega-lite/docs/axis.html) are applied.\n\n__See also:__ [`axis`](https://vega.github.io/vega-lite/docs/axis.html) documentation."
         },
         "band": {
-          "description": "Offset within a band of a band scale, [0, 1]\n\nTODO: rename to bandPosition: https://github.com/vega/vega-lite/pull/7190",
+          "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
+          "maximum": 1,
+          "minimum": 0,
           "type": "number"
         },
         "chrom": {
           "$ref": "#/definitions/FieldName",
           "description": "The field having the chromosome or contig."
-        },
-        "format": {
-          "type": "string"
-        },
-        "fp64": {
-          "description": "Use emulated 64 bit floating points to increase precision of scales computed on the GPU. By default, 32 bit floats are used.",
-          "type": "boolean"
         },
         "offset": {
           "description": "An offset or offsets that allow for adjusting the numbering base. The offset is subtracted from the positions.\n\nGenomeSpy uses internally zero-based indexing with half-open intervals. UCSC-based formats (BED, etc.) generally use this scheme. However, for example, VCF files use one-based indexing and must be adjusted by setting the offset to `1`.\n\n**Default:** `0`",
@@ -389,12 +352,21 @@
         },
         "resolutionChannel": {
           "$ref": "#/definitions/Channel",
-          "description": "Use an alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
+          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
         },
         "scale": {
-          "$ref": "#/definitions/Scale"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scale"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
         },
         "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
           "type": [
             "string",
             "null"
@@ -452,6 +424,9 @@
         "type"
       ],
       "type": "object"
+    },
+    "ColorDef<string>": {
+      "$ref": "#/definitions/MarkPropDef%3Cstring%2C(string%7Cnull)%3E"
     },
     "CompareParams": {
       "additionalProperties": false,
@@ -728,6 +703,9 @@
         },
         {
           "$ref": "#/definitions/JsonDataFormat"
+        },
+        {
+          "$ref": "#/definitions/OtherDataFormat"
         }
       ]
     },
@@ -749,57 +727,6 @@
           "$ref": "#/definitions/DynamicData"
         }
       ]
-    },
-    "DatumDef": {
-      "additionalProperties": false,
-      "properties": {
-        "axis": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Axis"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "band": {
-          "description": "Offset within a band of a band scale, [0, 1]\n\nTODO: rename to bandPosition: https://github.com/vega/vega-lite/pull/7190",
-          "type": "number"
-        },
-        "datum": {
-          "$ref": "#/definitions/Scalar",
-          "description": "A constant value on the data domain"
-        },
-        "format": {
-          "type": "string"
-        },
-        "fp64": {
-          "description": "Use emulated 64 bit floating points to increase precision of scales computed on the GPU. By default, 32 bit floats are used.",
-          "type": "boolean"
-        },
-        "resolutionChannel": {
-          "$ref": "#/definitions/Channel",
-          "description": "Use an alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
-        },
-        "scale": {
-          "$ref": "#/definitions/Scale"
-        },
-        "title": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "type": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "datum",
-        "type"
-      ],
-      "type": "object"
     },
     "DsvDataFormat": {
       "additionalProperties": false,
@@ -879,7 +806,7 @@
       "description": "DynamicOpacity specifies a zoom-dependent behavior for view opacity. The opacity is interpolated between the specified stops.",
       "properties": {
         "channel": {
-          "$ref": "#/definitions/PositionalChannel"
+          "$ref": "#/definitions/PrimaryPositionalChannel"
         },
         "unitsPerPixel": {
           "description": "Stops expressed as units (base pairs, for example) per pixel.",
@@ -903,505 +830,114 @@
       "type": "object"
     },
     "Encoding": {
-      "additionalProperties": {
-        "anyOf": [
-          {
-            "$ref": "#/definitions/ChannelDef"
-          },
-          {
-            "type": "null"
-          }
-        ]
-      },
+      "additionalProperties": false,
       "properties": {
         "angle": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/NumericMarkPropDef%3Cstring%3E",
+          "description": "Rotation angle of point and text marks."
         },
         "color": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "color2": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/ColorDef%3Cstring%3E",
+          "description": "Color of the marks – either fill or stroke color based on  the `filled` property of mark definition.\n\n_Note:_ 1) For fine-grained control over both fill and stroke colors of the marks, please use the `fill` and `stroke` channels. The `fill` or `stroke` encodings have higher precedence than `color`, thus may override the `color` encoding if conflicting encodings are specified. 2) See the scale documentation for more information about customizing [color scheme](https://vega.github.io/vega-lite/docs/scale.html#scheme)."
         },
         "dx": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/NumericMarkPropDef%3Cstring%3E"
         },
         "dy": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/NumericMarkPropDef%3Cstring%3E"
         },
         "facetIndex": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/FieldDefWithoutScale%3Cstring%3E",
+          "description": "For internal use"
         },
         "fill": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/ColorDef%3Cstring%3E",
+          "description": "Fill color of the marks.\n\n_Note:_ The `fill` encoding has higher precedence than `color`, thus may override the `color` encoding if conflicting encodings are specified."
         },
         "fillOpacity": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/NumericMarkPropDef%3Cstring%3E",
+          "description": "Fill opacity of the marks."
         },
         "opacity": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/NumericMarkPropDef%3Cstring%3E",
+          "description": "Opacity of the marks."
         },
         "sample": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/FieldDefWithoutScale%3Cstring%3E",
+          "description": "Facet identifier for interactive filtering, sorting, and grouping in the App."
         },
         "search": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/FieldDefWithoutScale%3Cstring%3E"
         },
         "semanticScore": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/FieldDefWithoutScale%3Cstring%3E"
         },
         "shape": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/ShapeDef%3Cstring%3E",
+          "description": "Shape of the mark.\n\nFor `point` marks the supported values include:\n- plotting shapes: `\"circle\"`, `\"square\"`, `\"cross\"`, `\"diamond\"`, `\"triangle-up\"`, `\"triangle-down\"`, `\"triangle-right\"`, or `\"triangle-left\"`.\n- centered directional shape `\"triangle\"`"
         },
         "size": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "size2": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/NumericMarkPropDef%3Cstring%3E",
+          "description": "Size of the mark.\n- For `\"point\"` – the symbol size, or pixel area of the mark.\n- For `\"text\"` – the text's font size."
         },
         "stroke": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/ColorDef%3Cstring%3E",
+          "description": "Stroke color of the marks.\n\n_Note:_ The `stroke` encoding has higher precedence than `color`, thus may override the `color` encoding if conflicting encodings are specified."
         },
         "strokeOpacity": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/NumericMarkPropDef%3Cstring%3E",
+          "description": "Stroke opacity of the marks."
         },
         "strokeWidth": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/NumericMarkPropDef%3Cstring%3E",
+          "description": "Stroke width of the marks."
         },
         "text": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/TextDef%3Cstring%3E",
+          "description": "Text of the `text` mark."
         },
         "uniqueId": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ChannelDef"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/FieldDefWithoutScale%3Cstring%3E",
+          "description": "For internal use"
+        },
+        "x": {
+          "$ref": "#/definitions/PositionDef%3Cstring%3E",
+          "description": "X coordinates of the marks.\n\nThe `value` of this channel can be a number between zero and one."
+        },
+        "x2": {
+          "$ref": "#/definitions/Position2Def%3Cstring%3E",
+          "description": "X2 coordinates of the marks.\n\nThe `value` of this channel can be a number between zero and one."
+        },
+        "y": {
+          "$ref": "#/definitions/PositionDef%3Cstring%3E",
+          "description": "Y coordinates of the marks.\n\nThe `value` of this channel can be a number between zero and one."
+        },
+        "y2": {
+          "$ref": "#/definitions/Position2Def%3Cstring%3E",
+          "description": "Y2 coordinates of the marks.\n\nThe `value` of this channel can be a number between zero and one."
         }
       },
-      "type": "object"
-    },
-    "ExprDef": {
-      "additionalProperties": false,
-      "properties": {
-        "axis": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Axis"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "band": {
-          "description": "Offset within a band of a band scale, [0, 1]\n\nTODO: rename to bandPosition: https://github.com/vega/vega-lite/pull/7190",
-          "type": "number"
-        },
-        "expr": {
-          "description": "An expression. Properties of the data can be accessed through the `datum` object.",
-          "type": "string"
-        },
-        "format": {
-          "type": "string"
-        },
-        "fp64": {
-          "description": "Use emulated 64 bit floating points to increase precision of scales computed on the GPU. By default, 32 bit floats are used.",
-          "type": "boolean"
-        },
-        "resolutionChannel": {
-          "$ref": "#/definitions/Channel",
-          "description": "Use an alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
-        },
-        "scale": {
-          "$ref": "#/definitions/Scale"
-        },
-        "title": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "type": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "expr",
-        "type"
-      ],
-      "type": "object"
-    },
-    "FacetFieldDef": {
-      "additionalProperties": false,
-      "properties": {
-        "field": {
-          "$ref": "#/definitions/FieldName"
-        },
-        "spacing": {
-          "type": "number"
-        },
-        "title": {
-          "type": [
-            "string",
-            "null"
-          ]
-        }
-      },
-      "required": [
-        "field"
-      ],
-      "type": "object"
-    },
-    "FacetMapping": {
-      "additionalProperties": false,
-      "properties": {
-        "column": {
-          "$ref": "#/definitions/FacetFieldDef"
-        },
-        "row": {
-          "$ref": "#/definitions/FacetFieldDef"
-        }
-      },
-      "type": "object"
-    },
-    "FacetSpec": {
-      "additionalProperties": false,
-      "properties": {
-        "baseUrl": {
-          "type": "string"
-        },
-        "columns": {
-          "type": "number"
-        },
-        "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
-        },
-        "data": {
-          "$ref": "#/definitions/Data"
-        },
-        "description": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            }
-          ],
-          "description": "A description of the view. Multiple lines can be provided as an array."
-        },
-        "encoding": {
-          "$ref": "#/definitions/Encoding"
-        },
-        "facet": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/FacetFieldDef"
-            },
-            {
-              "$ref": "#/definitions/FacetMapping"
-            }
-          ]
-        },
-        "height": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/SizeDef"
-            },
-            {
-              "type": "number"
-            },
-            {
-              "$ref": "#/definitions/Step"
-            },
-            {
-              "const": "container",
-              "type": "string"
-            }
-          ]
-        },
-        "name": {
-          "type": "string"
-        },
-        "opacity": {
-          "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
-        },
-        "padding": {
-          "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding in pixels.\n\n**Default:* `0`"
-        },
-        "resolve": {
-          "additionalProperties": false,
-          "properties": {
-            "axis": {
-              "additionalProperties": {
-                "$ref": "#/definitions/ResolutionBehavior"
-              },
-              "properties": {
-                "default": {
-                  "$ref": "#/definitions/ResolutionBehavior"
-                }
-              },
-              "type": "object"
-            },
-            "scale": {
-              "additionalProperties": {
-                "$ref": "#/definitions/ResolutionBehavior"
-              },
-              "properties": {
-                "default": {
-                  "$ref": "#/definitions/ResolutionBehavior"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "type": "object"
-        },
-        "spacing": {
-          "type": "number"
-        },
-        "spec": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/LayerSpec"
-            },
-            {
-              "$ref": "#/definitions/UnitSpec"
-            }
-          ]
-        },
-        "title": {
-          "type": "string"
-        },
-        "transform": {
-          "items": {
-            "$ref": "#/definitions/TransformParams"
-          },
-          "type": "array"
-        },
-        "visible": {
-          "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
-          "type": "boolean"
-        },
-        "width": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/SizeDef"
-            },
-            {
-              "type": "number"
-            },
-            {
-              "$ref": "#/definitions/Step"
-            },
-            {
-              "const": "container",
-              "type": "string"
-            }
-          ]
-        }
-      },
-      "required": [
-        "facet",
-        "spec"
-      ],
       "type": "object"
     },
     "Field": {
       "description": "The name of the field or a JavaScript expression for accessing nested properties. Dots and brackets in the field name must be escaped.",
       "type": "string"
     },
-    "FieldDef": {
+    "FieldDefWithoutScale<string>": {
       "additionalProperties": false,
       "properties": {
-        "axis": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Axis"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "band": {
-          "description": "Offset within a band of a band scale, [0, 1]\n\nTODO: rename to bandPosition: https://github.com/vega/vega-lite/pull/7190",
-          "type": "number"
-        },
         "field": {
-          "$ref": "#/definitions/FieldName"
-        },
-        "format": {
+          "description": "__Required.__ A string defining the name of the field from which to pull a data value or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.\n\n__See also:__ [`field`](https://vega.github.io/vega-lite/docs/field.html) documentation.\n\n__Notes:__ 1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `\"field\": \"foo.bar\"` and `\"field\": \"foo['bar']\"`). If field names contain dots or brackets but are not nested, you can use `\\\\` to escape dots and brackets (e.g., `\"a\\\\.b\"` and `\"a\\\\[0\\\\]\"`). See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html). 2) `field` is not required if `aggregate` is `count`.",
           "type": "string"
         },
-        "fp64": {
-          "description": "Use emulated 64 bit floating points to increase precision of scales computed on the GPU. By default, 32 bit floats are used.",
-          "type": "boolean"
-        },
-        "resolutionChannel": {
-          "$ref": "#/definitions/Channel",
-          "description": "Use an alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
-        },
-        "scale": {
-          "$ref": "#/definitions/Scale"
-        },
         "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
           "type": [
             "string",
             "null"
           ]
-        },
-        "type": {
-          "type": "string"
         }
       },
-      "required": [
-        "field",
-        "type"
-      ],
       "type": "object"
     },
     "FieldName": {
@@ -2426,6 +1962,248 @@
       ],
       "type": "object"
     },
+    "MarkPropDatumDef<Type>": {
+      "additionalProperties": false,
+      "properties": {
+        "datum": {
+          "$ref": "#/definitions/Scalar",
+          "description": "A constant value in data domain."
+        },
+        "resolutionChannel": {
+          "$ref": "#/definitions/Channel",
+          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scale"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
+        },
+        "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/Type"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "MarkPropDatumDef<TypeForShape>": {
+      "additionalProperties": false,
+      "properties": {
+        "datum": {
+          "$ref": "#/definitions/Scalar",
+          "description": "A constant value in data domain."
+        },
+        "resolutionChannel": {
+          "$ref": "#/definitions/Channel",
+          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scale"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
+        },
+        "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/TypeForShape"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "MarkPropDef<string,(string|null),TypeForShape>": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/MarkPropFieldOrDatumOrExprDef%3Cstring%2CTypeForShape%3E"
+        },
+        {
+          "$ref": "#/definitions/ValueDef%3C(string%7Cnull)%3E"
+        }
+      ]
+    },
+    "MarkPropDef<string,(string|null)>": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/MarkPropFieldOrDatumOrExprDef%3Cstring%2CType%3E"
+        },
+        {
+          "$ref": "#/definitions/ValueDef%3C(string%7Cnull)%3E"
+        }
+      ]
+    },
+    "MarkPropDef<string,number>": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/MarkPropFieldOrDatumOrExprDef%3Cstring%2CType%3E"
+        },
+        {
+          "$ref": "#/definitions/ValueDef%3Cnumber%3E"
+        }
+      ]
+    },
+    "MarkPropExprDef": {
+      "additionalProperties": false,
+      "properties": {
+        "expr": {
+          "description": "An expression. Properties of the data can be accessed through the `datum` object.",
+          "type": "string"
+        },
+        "resolutionChannel": {
+          "$ref": "#/definitions/Channel",
+          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scale"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
+        },
+        "type": {
+          "$ref": "#/definitions/Type"
+        }
+      },
+      "required": [
+        "expr",
+        "type"
+      ],
+      "type": "object"
+    },
+    "MarkPropFieldDef<string,Type>": {
+      "additionalProperties": false,
+      "description": "Field definition of a mark property, which can contain a legend.",
+      "properties": {
+        "field": {
+          "description": "__Required.__ A string defining the name of the field from which to pull a data value or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.\n\n__See also:__ [`field`](https://vega.github.io/vega-lite/docs/field.html) documentation.\n\n__Notes:__ 1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `\"field\": \"foo.bar\"` and `\"field\": \"foo['bar']\"`). If field names contain dots or brackets but are not nested, you can use `\\\\` to escape dots and brackets (e.g., `\"a\\\\.b\"` and `\"a\\\\[0\\\\]\"`). See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html). 2) `field` is not required if `aggregate` is `count`.",
+          "type": "string"
+        },
+        "resolutionChannel": {
+          "$ref": "#/definitions/Channel",
+          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scale"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
+        },
+        "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/Type"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "MarkPropFieldDef<string,TypeForShape>": {
+      "additionalProperties": false,
+      "description": "Field definition of a mark property, which can contain a legend.",
+      "properties": {
+        "field": {
+          "description": "__Required.__ A string defining the name of the field from which to pull a data value or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.\n\n__See also:__ [`field`](https://vega.github.io/vega-lite/docs/field.html) documentation.\n\n__Notes:__ 1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `\"field\": \"foo.bar\"` and `\"field\": \"foo['bar']\"`). If field names contain dots or brackets but are not nested, you can use `\\\\` to escape dots and brackets (e.g., `\"a\\\\.b\"` and `\"a\\\\[0\\\\]\"`). See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html). 2) `field` is not required if `aggregate` is `count`.",
+          "type": "string"
+        },
+        "resolutionChannel": {
+          "$ref": "#/definitions/Channel",
+          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scale"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
+        },
+        "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/TypeForShape"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "MarkPropFieldOrDatumOrExprDef<string,Type>": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/MarkPropFieldDef%3Cstring%2CType%3E"
+        },
+        {
+          "$ref": "#/definitions/MarkPropDatumDef%3CType%3E"
+        },
+        {
+          "$ref": "#/definitions/MarkPropExprDef"
+        }
+      ]
+    },
+    "MarkPropFieldOrDatumOrExprDef<string,TypeForShape>": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/MarkPropFieldDef%3Cstring%2CTypeForShape%3E"
+        },
+        {
+          "$ref": "#/definitions/MarkPropDatumDef%3CTypeForShape%3E"
+        },
+        {
+          "$ref": "#/definitions/MarkPropExprDef"
+        }
+      ]
+    },
     "MarkType": {
       "enum": [
         "rect",
@@ -2498,6 +2276,25 @@
         "type": "number"
       },
       "type": "array"
+    },
+    "NumericMarkPropDef<string>": {
+      "$ref": "#/definitions/MarkPropDef%3Cstring%2Cnumber%3E"
+    },
+    "NumericValueDef": {
+      "$ref": "#/definitions/ValueDef%3Cnumber%3E"
+    },
+    "OtherDataFormat": {
+      "additionalProperties": false,
+      "description": "Other data format, such as `\"fasta\"`",
+      "properties": {
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
     },
     "PaddingConfig": {
       "anyOf": [
@@ -2618,7 +2415,258 @@
       ],
       "type": "object"
     },
+    "Position2Def<string>": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "band": {
+              "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            "field": {
+              "description": "__Required.__ A string defining the name of the field from which to pull a data value or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.\n\n__See also:__ [`field`](https://vega.github.io/vega-lite/docs/field.html) documentation.\n\n__Notes:__ 1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `\"field\": \"foo.bar\"` and `\"field\": \"foo['bar']\"`). If field names contain dots or brackets but are not nested, you can use `\\\\` to escape dots and brackets (e.g., `\"a\\\\.b\"` and `\"a\\\\[0\\\\]\"`). See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html). 2) `field` is not required if `aggregate` is `count`.",
+              "type": "string"
+            },
+            "title": {
+              "description": "A title for the field. If `null`, the title will be removed.",
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        {
+          "$ref": "#/definitions/SecondaryChromPosDef"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "band": {
+              "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            "datum": {
+              "$ref": "#/definitions/Scalar",
+              "description": "A constant value in data domain."
+            },
+            "title": {
+              "description": "A title for the field. If `null`, the title will be removed.",
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "band": {
+              "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            "expr": {
+              "description": "An expression. Properties of the data can be accessed through the `datum` object.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "expr"
+          ],
+          "type": "object"
+        },
+        {
+          "$ref": "#/definitions/PositionValueDef"
+        }
+      ]
+    },
+    "PositionDatumDef": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Axis"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of axis's gridlines, ticks and labels. If `null`, the axis for the encoding channel will be removed.\n\n__Default value:__ If undefined, default [axis properties](https://vega.github.io/vega-lite/docs/axis.html) are applied.\n\n__See also:__ [`axis`](https://vega.github.io/vega-lite/docs/axis.html) documentation."
+        },
+        "band": {
+          "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "datum": {
+          "$ref": "#/definitions/Scalar",
+          "description": "A constant value in data domain."
+        },
+        "resolutionChannel": {
+          "$ref": "#/definitions/Channel",
+          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scale"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
+        },
+        "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/Type"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "PositionDef<string>": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/PositionFieldDef%3Cstring%3E"
+        },
+        {
+          "$ref": "#/definitions/ChromPosDef"
+        },
+        {
+          "$ref": "#/definitions/PositionDatumDef"
+        },
+        {
+          "$ref": "#/definitions/PositionExprDef"
+        },
+        {
+          "$ref": "#/definitions/PositionValueDef"
+        }
+      ]
+    },
+    "PositionExprDef": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Axis"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of axis's gridlines, ticks and labels. If `null`, the axis for the encoding channel will be removed.\n\n__Default value:__ If undefined, default [axis properties](https://vega.github.io/vega-lite/docs/axis.html) are applied.\n\n__See also:__ [`axis`](https://vega.github.io/vega-lite/docs/axis.html) documentation."
+        },
+        "band": {
+          "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "expr": {
+          "description": "An expression. Properties of the data can be accessed through the `datum` object.",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/Type"
+        }
+      },
+      "required": [
+        "expr",
+        "type"
+      ],
+      "type": "object"
+    },
+    "PositionFieldDef<string>": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Axis"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of axis's gridlines, ticks and labels. If `null`, the axis for the encoding channel will be removed.\n\n__Default value:__ If undefined, default [axis properties](https://vega.github.io/vega-lite/docs/axis.html) are applied.\n\n__See also:__ [`axis`](https://vega.github.io/vega-lite/docs/axis.html) documentation."
+        },
+        "band": {
+          "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "field": {
+          "description": "__Required.__ A string defining the name of the field from which to pull a data value or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.\n\n__See also:__ [`field`](https://vega.github.io/vega-lite/docs/field.html) documentation.\n\n__Notes:__ 1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `\"field\": \"foo.bar\"` and `\"field\": \"foo['bar']\"`). If field names contain dots or brackets but are not nested, you can use `\\\\` to escape dots and brackets (e.g., `\"a\\\\.b\"` and `\"a\\\\[0\\\\]\"`). See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html). 2) `field` is not required if `aggregate` is `count`.",
+          "type": "string"
+        },
+        "resolutionChannel": {
+          "$ref": "#/definitions/Channel",
+          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scale"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
+        },
+        "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/Type"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "PositionValueDef": {
+      "$ref": "#/definitions/NumericValueDef"
+    },
     "PositionalChannel": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/PrimaryPositionalChannel"
+        },
+        {
+          "$ref": "#/definitions/SecondaryPositionalChannel"
+        }
+      ]
+    },
+    "PrimaryPositionalChannel": {
       "enum": [
         "x",
         "y"
@@ -2769,7 +2817,7 @@
           "description": "Color scale (primary)"
         },
         "type": {
-          "type": "string"
+          "$ref": "#/definitions/Type"
         },
         "visible": {
           "type": "boolean"
@@ -3137,8 +3185,8 @@
           "description": "A string indicating a color [scheme](https://vega.github.io/vega-lite/docs/scale.html#scheme) name (e.g., `\"category10\"` or `\"blues\"`) or a [scheme parameter object](https://vega.github.io/vega-lite/docs/scale.html#scheme-params).\n\nDiscrete color schemes may be used with [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) or [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales. Continuous color schemes are intended for use with color scales.\n\nFor the full list of supported schemes, please refer to the [Vega Scheme](https://vega.github.io/vega/docs/schemes/#reference) reference."
         },
         "type": {
-          "description": "The type of scale.  Vega-Lite supports the following categories of scale types:\n\n1) [**Continuous Scales**](https://vega.github.io/vega-lite/docs/scale.html#continuous) -- mapping continuous domains to continuous output ranges ([`\"linear\"`](https://vega.github.io/vega-lite/docs/scale.html#linear), [`\"pow\"`](https://vega.github.io/vega-lite/docs/scale.html#pow), [`\"sqrt\"`](https://vega.github.io/vega-lite/docs/scale.html#sqrt), [`\"symlog\"`](https://vega.github.io/vega-lite/docs/scale.html#symlog), [`\"log\"`](https://vega.github.io/vega-lite/docs/scale.html#log), [`\"time\"`](https://vega.github.io/vega-lite/docs/scale.html#time), [`\"utc\"`](https://vega.github.io/vega-lite/docs/scale.html#utc).\n\n2) [**Discrete Scales**](https://vega.github.io/vega-lite/docs/scale.html#discrete) -- mapping discrete domains to discrete ([`\"ordinal\"`](https://vega.github.io/vega-lite/docs/scale.html#ordinal)) or continuous ([`\"band\"`](https://vega.github.io/vega-lite/docs/scale.html#band) and [`\"point\"`](https://vega.github.io/vega-lite/docs/scale.html#point)) output ranges.\n\n3) [**Discretizing Scales**](https://vega.github.io/vega-lite/docs/scale.html#discretizing) -- mapping continuous domains to discrete output ranges [`\"bin-ordinal\"`](https://vega.github.io/vega-lite/docs/scale.html#bin-ordinal), [`\"quantile\"`](https://vega.github.io/vega-lite/docs/scale.html#quantile), [`\"quantize\"`](https://vega.github.io/vega-lite/docs/scale.html#quantize) and [`\"threshold\"`](https://vega.github.io/vega-lite/docs/scale.html#threshold).\n\n__Default value:__ please see the [scale type table](https://vega.github.io/vega-lite/docs/scale.html#type).",
-          "type": "string"
+          "$ref": "#/definitions/ScaleType",
+          "description": "The type of scale.  Vega-Lite supports the following categories of scale types:\n\n1) [**Continuous Scales**](https://vega.github.io/vega-lite/docs/scale.html#continuous) -- mapping continuous domains to continuous output ranges ([`\"linear\"`](https://vega.github.io/vega-lite/docs/scale.html#linear), [`\"pow\"`](https://vega.github.io/vega-lite/docs/scale.html#pow), [`\"sqrt\"`](https://vega.github.io/vega-lite/docs/scale.html#sqrt), [`\"symlog\"`](https://vega.github.io/vega-lite/docs/scale.html#symlog), [`\"log\"`](https://vega.github.io/vega-lite/docs/scale.html#log), [`\"time\"`](https://vega.github.io/vega-lite/docs/scale.html#time), [`\"utc\"`](https://vega.github.io/vega-lite/docs/scale.html#utc).\n\n2) [**Discrete Scales**](https://vega.github.io/vega-lite/docs/scale.html#discrete) -- mapping discrete domains to discrete ([`\"ordinal\"`](https://vega.github.io/vega-lite/docs/scale.html#ordinal)) or continuous ([`\"band\"`](https://vega.github.io/vega-lite/docs/scale.html#band) and [`\"point\"`](https://vega.github.io/vega-lite/docs/scale.html#point)) output ranges.\n\n3) [**Discretizing Scales**](https://vega.github.io/vega-lite/docs/scale.html#discretizing) -- mapping continuous domains to discrete output ranges [`\"bin-ordinal\"`](https://vega.github.io/vega-lite/docs/scale.html#bin-ordinal), [`\"quantile\"`](https://vega.github.io/vega-lite/docs/scale.html#quantile), [`\"quantize\"`](https://vega.github.io/vega-lite/docs/scale.html#quantize) and [`\"threshold\"`](https://vega.github.io/vega-lite/docs/scale.html#threshold).\n\n__Default value:__ please see the [scale type table](https://vega.github.io/vega-lite/docs/scale.html#type)."
         },
         "zero": {
           "description": "If `true`, ensures that a zero baseline value is included in the scale domain.\n\n__Default value:__ `true` for x and y channels if the quantitative field is not binned and no custom `domain` is provided; `false` otherwise.\n\n__Note:__ Log, time, and utc scales do not support `zero`.",
@@ -3191,6 +3239,26 @@
       ],
       "type": "object"
     },
+    "ScaleType": {
+      "enum": [
+        "null",
+        "linear",
+        "log",
+        "pow",
+        "sqrt",
+        "symlog",
+        "identity",
+        "sequential",
+        "quantize",
+        "threshold",
+        "ordinal",
+        "point",
+        "band",
+        "index",
+        "locus"
+      ],
+      "type": "string"
+    },
     "SchemeParams": {
       "additionalProperties": false,
       "properties": {
@@ -3212,6 +3280,51 @@
       },
       "required": [
         "name"
+      ],
+      "type": "object"
+    },
+    "SecondaryChromPosDef": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Axis"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of axis's gridlines, ticks and labels. If `null`, the axis for the encoding channel will be removed.\n\n__Default value:__ If undefined, default [axis properties](https://vega.github.io/vega-lite/docs/axis.html) are applied.\n\n__See also:__ [`axis`](https://vega.github.io/vega-lite/docs/axis.html) documentation."
+        },
+        "band": {
+          "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "chrom": {
+          "$ref": "#/definitions/FieldName",
+          "description": "The field having the chromosome or contig."
+        },
+        "offset": {
+          "description": "An offset or offsets that allow for adjusting the numbering base. The offset is subtracted from the positions.\n\nGenomeSpy uses internally zero-based indexing with half-open intervals. UCSC-based formats (BED, etc.) generally use this scheme. However, for example, VCF files use one-based indexing and must be adjusted by setting the offset to `1`.\n\n**Default:** `0`",
+          "type": "number"
+        },
+        "pos": {
+          "$ref": "#/definitions/FieldName",
+          "description": "The field having an intra-chromosomal position."
+        },
+        "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "chrom"
       ],
       "type": "object"
     },
@@ -3264,6 +3377,9 @@
         "stop"
       ],
       "type": "object"
+    },
+    "ShapeDef<string>": {
+      "$ref": "#/definitions/MarkPropDef%3Cstring%2C(string%7Cnull)%2CTypeForShape%3E"
     },
     "SizeDef": {
       "additionalProperties": false,
@@ -3354,6 +3470,58 @@
       ],
       "type": "object"
     },
+    "StringDatumDef": {
+      "additionalProperties": false,
+      "properties": {
+        "datum": {
+          "$ref": "#/definitions/Scalar",
+          "description": "A constant value in data domain."
+        },
+        "format": {
+          "description": "When used with the default `\"number\"` format type, the text formatting pattern for labels of guides (axes, legends, headers) and text marks.\n\n- If the format type is `\"number\"` (e.g., for quantitative fields), this is D3's [number format pattern](https://github.com/d3/d3-format#locale_format).\n\nSee the [format documentation](https://vega.github.io/vega-lite/docs/format.html) for more examples.",
+          "type": "string"
+        },
+        "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "StringFieldDef<string>": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "description": "__Required.__ A string defining the name of the field from which to pull a data value or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.\n\n__See also:__ [`field`](https://vega.github.io/vega-lite/docs/field.html) documentation.\n\n__Notes:__ 1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `\"field\": \"foo.bar\"` and `\"field\": \"foo['bar']\"`). If field names contain dots or brackets but are not nested, you can use `\\\\` to escape dots and brackets (e.g., `\"a\\\\.b\"` and `\"a\\\\[0\\\\]\"`). See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html). 2) `field` is not required if `aggregate` is `count`.",
+          "type": "string"
+        },
+        "format": {
+          "description": "When used with the default `\"number\"` format type, the text formatting pattern for labels of guides (axes, legends, headers) and text marks.\n\n- If the format type is `\"number\"` (e.g., for quantitative fields), this is D3's [number format pattern](https://github.com/d3/d3-format#locale_format).\n\nSee the [format documentation](https://vega.github.io/vega-lite/docs/format.html) for more examples.",
+          "type": "string"
+        },
+        "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "TextDef<string>": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/StringFieldDef%3Cstring%3E"
+        },
+        {
+          "$ref": "#/definitions/StringDatumDef"
+        }
+      ]
+    },
     "Tooltip": {
       "anyOf": [
         {
@@ -3424,6 +3592,23 @@
           "$ref": "#/definitions/StackParams"
         }
       ]
+    },
+    "Type": {
+      "enum": [
+        "quantitative",
+        "ordinal",
+        "nominal",
+        "index",
+        "locus"
+      ],
+      "type": "string"
+    },
+    "TypeForShape": {
+      "enum": [
+        "ordinal",
+        "nominal"
+      ],
+      "type": "string"
     },
     "UnitSpec": {
       "additionalProperties": false,
@@ -3742,18 +3927,28 @@
       ],
       "type": "object"
     },
-    "ValueDef": {
+    "ValueDef<(string|null)>": {
       "additionalProperties": false,
       "properties": {
-        "title": {
+        "value": {
+          "description": "A constant value in visual domain (e.g., `\"red\"` / `\"#0099ff\"`, values between `0` to `1` for opacity).",
           "type": [
             "string",
             "null"
           ]
-        },
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    },
+    "ValueDef<number>": {
+      "additionalProperties": false,
+      "properties": {
         "value": {
-          "$ref": "#/definitions/Scalar",
-          "description": "A constant value in the context of the range"
+          "description": "A constant value in visual domain (e.g., `\"red\"` / `\"#0099ff\"`, values between `0` to `1` for opacity).",
+          "type": "number"
         }
       },
       "required": [
@@ -3837,9 +4032,6 @@
         },
         {
           "$ref": "#/definitions/LayerSpec"
-        },
-        {
-          "$ref": "#/definitions/FacetSpec"
         },
         {
           "$ref": "#/definitions/SampleSpec"
