@@ -1,5 +1,5 @@
 {
-  "$ref": "#/definitions/ViewSpec",
+  "$ref": "#/definitions/RootSpec",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
     "AggregateParams": {
@@ -610,6 +610,22 @@
       ],
       "type": "object"
     },
+    "Contig": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "name",
+        "size"
+      ],
+      "type": "object"
+    },
     "CoverageParams": {
       "additionalProperties": false,
       "properties": {
@@ -1191,6 +1207,30 @@
     },
     "Generator": {
       "$ref": "#/definitions/SequenceGenerator"
+    },
+    "GenomeConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "baseUrl": {
+          "description": "Base url of data files: chromsizes, cytobands, and gene annotations.\n\n**Default:** `\"https://genomespy.app/data/genomes/\"`",
+          "type": "string"
+        },
+        "contigs": {
+          "description": "As an alternative for chromSizes, the contigs can be provided inline.",
+          "items": {
+            "$ref": "#/definitions/Contig"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Name of the genome assembly, e.g., `hg19` or `hg38`.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object"
     },
     "HConcatSpec": {
       "additionalProperties": false,
@@ -2805,6 +2845,928 @@
         "excluded"
       ],
       "type": "string"
+    },
+    "RootSpec": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "aggregateSamples": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/UnitSpec"
+                  },
+                  {
+                    "$ref": "#/definitions/LayerSpec"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "baseUrl": {
+              "type": "string"
+            },
+            "configurableVisibility": {
+              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/definitions/Data"
+            },
+            "datasets": {
+              "additionalProperties": {
+                "items": {},
+                "type": "array"
+              },
+              "description": "https://vega.github.io/vega-lite/docs/data.html#datasets",
+              "type": "object"
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              ],
+              "description": "A description of the view. Multiple lines can be provided as an array."
+            },
+            "encoding": {
+              "$ref": "#/definitions/Encoding"
+            },
+            "genome": {
+              "$ref": "#/definitions/GenomeConfig"
+            },
+            "height": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ]
+            },
+            "mark": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/MarkType"
+                },
+                {
+                  "$ref": "#/definitions/MarkConfigAndType"
+                }
+              ]
+            },
+            "name": {
+              "type": "string"
+            },
+            "opacity": {
+              "$ref": "#/definitions/ViewOpacityDef",
+              "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+            },
+            "padding": {
+              "$ref": "#/definitions/PaddingConfig",
+              "description": "Padding in pixels.\n\n**Default:* `0`"
+            },
+            "resolve": {
+              "additionalProperties": false,
+              "properties": {
+                "axis": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                },
+                "scale": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "title": {
+              "type": "string"
+            },
+            "transform": {
+              "items": {
+                "$ref": "#/definitions/TransformParams"
+              },
+              "type": "array"
+            },
+            "view": {
+              "$ref": "#/definitions/ViewConfig"
+            },
+            "visible": {
+              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "type": "boolean"
+            },
+            "width": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "required": [
+            "mark"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "aggregateSamples": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/UnitSpec"
+                  },
+                  {
+                    "$ref": "#/definitions/LayerSpec"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "baseUrl": {
+              "type": "string"
+            },
+            "configurableVisibility": {
+              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/definitions/Data"
+            },
+            "datasets": {
+              "additionalProperties": {
+                "items": {},
+                "type": "array"
+              },
+              "description": "https://vega.github.io/vega-lite/docs/data.html#datasets",
+              "type": "object"
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              ],
+              "description": "A description of the view. Multiple lines can be provided as an array."
+            },
+            "encoding": {
+              "$ref": "#/definitions/Encoding"
+            },
+            "genome": {
+              "$ref": "#/definitions/GenomeConfig"
+            },
+            "height": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ]
+            },
+            "layer": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/LayerSpec"
+                  },
+                  {
+                    "$ref": "#/definitions/UnitSpec"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "name": {
+              "type": "string"
+            },
+            "opacity": {
+              "$ref": "#/definitions/ViewOpacityDef",
+              "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+            },
+            "padding": {
+              "$ref": "#/definitions/PaddingConfig",
+              "description": "Padding in pixels.\n\n**Default:* `0`"
+            },
+            "resolve": {
+              "additionalProperties": false,
+              "properties": {
+                "axis": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                },
+                "scale": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "title": {
+              "type": "string"
+            },
+            "transform": {
+              "items": {
+                "$ref": "#/definitions/TransformParams"
+              },
+              "type": "array"
+            },
+            "view": {
+              "$ref": "#/definitions/ViewConfig"
+            },
+            "visible": {
+              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "type": "boolean"
+            },
+            "width": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "required": [
+            "layer"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "baseUrl": {
+              "type": "string"
+            },
+            "configurableVisibility": {
+              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/definitions/Data"
+            },
+            "datasets": {
+              "additionalProperties": {
+                "items": {},
+                "type": "array"
+              },
+              "description": "https://vega.github.io/vega-lite/docs/data.html#datasets",
+              "type": "object"
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              ],
+              "description": "A description of the view. Multiple lines can be provided as an array."
+            },
+            "encoding": {
+              "$ref": "#/definitions/Encoding"
+            },
+            "genome": {
+              "$ref": "#/definitions/GenomeConfig"
+            },
+            "height": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ]
+            },
+            "name": {
+              "type": "string"
+            },
+            "opacity": {
+              "$ref": "#/definitions/ViewOpacityDef",
+              "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+            },
+            "padding": {
+              "$ref": "#/definitions/PaddingConfig",
+              "description": "Padding in pixels.\n\n**Default:* `0`"
+            },
+            "resolve": {
+              "additionalProperties": false,
+              "properties": {
+                "axis": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                },
+                "scale": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "samples": {
+              "$ref": "#/definitions/SampleDef"
+            },
+            "spec": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/LayerSpec"
+                },
+                {
+                  "$ref": "#/definitions/UnitSpec"
+                }
+              ]
+            },
+            "stickySummaries": {
+              "type": "boolean"
+            },
+            "title": {
+              "type": "string"
+            },
+            "transform": {
+              "items": {
+                "$ref": "#/definitions/TransformParams"
+              },
+              "type": "array"
+            },
+            "visible": {
+              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "type": "boolean"
+            },
+            "width": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "required": [
+            "samples",
+            "spec"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "baseUrl": {
+              "type": "string"
+            },
+            "configurableVisibility": {
+              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/definitions/Data"
+            },
+            "datasets": {
+              "additionalProperties": {
+                "items": {},
+                "type": "array"
+              },
+              "description": "https://vega.github.io/vega-lite/docs/data.html#datasets",
+              "type": "object"
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              ],
+              "description": "A description of the view. Multiple lines can be provided as an array."
+            },
+            "encoding": {
+              "$ref": "#/definitions/Encoding"
+            },
+            "genome": {
+              "$ref": "#/definitions/GenomeConfig"
+            },
+            "height": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ]
+            },
+            "name": {
+              "type": "string"
+            },
+            "opacity": {
+              "$ref": "#/definitions/ViewOpacityDef",
+              "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+            },
+            "padding": {
+              "$ref": "#/definitions/PaddingConfig",
+              "description": "Padding in pixels.\n\n**Default:* `0`"
+            },
+            "resolve": {
+              "additionalProperties": false,
+              "properties": {
+                "axis": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                },
+                "scale": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "spacing": {
+              "type": "number"
+            },
+            "title": {
+              "type": "string"
+            },
+            "transform": {
+              "items": {
+                "$ref": "#/definitions/TransformParams"
+              },
+              "type": "array"
+            },
+            "vconcat": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/ViewSpec"
+                  },
+                  {
+                    "$ref": "#/definitions/ImportSpec"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "visible": {
+              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "type": "boolean"
+            },
+            "width": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "required": [
+            "vconcat"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "baseUrl": {
+              "type": "string"
+            },
+            "configurableVisibility": {
+              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/definitions/Data"
+            },
+            "datasets": {
+              "additionalProperties": {
+                "items": {},
+                "type": "array"
+              },
+              "description": "https://vega.github.io/vega-lite/docs/data.html#datasets",
+              "type": "object"
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              ],
+              "description": "A description of the view. Multiple lines can be provided as an array."
+            },
+            "encoding": {
+              "$ref": "#/definitions/Encoding"
+            },
+            "genome": {
+              "$ref": "#/definitions/GenomeConfig"
+            },
+            "hconcat": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/ViewSpec"
+                  },
+                  {
+                    "$ref": "#/definitions/ImportSpec"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "height": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ]
+            },
+            "name": {
+              "type": "string"
+            },
+            "opacity": {
+              "$ref": "#/definitions/ViewOpacityDef",
+              "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+            },
+            "padding": {
+              "$ref": "#/definitions/PaddingConfig",
+              "description": "Padding in pixels.\n\n**Default:* `0`"
+            },
+            "resolve": {
+              "additionalProperties": false,
+              "properties": {
+                "axis": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                },
+                "scale": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "spacing": {
+              "type": "number"
+            },
+            "title": {
+              "type": "string"
+            },
+            "transform": {
+              "items": {
+                "$ref": "#/definitions/TransformParams"
+              },
+              "type": "array"
+            },
+            "visible": {
+              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "type": "boolean"
+            },
+            "width": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "required": [
+            "hconcat"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "baseUrl": {
+              "type": "string"
+            },
+            "concat": {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/ViewSpec"
+                  },
+                  {
+                    "$ref": "#/definitions/ImportSpec"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "configurableVisibility": {
+              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/definitions/Data"
+            },
+            "datasets": {
+              "additionalProperties": {
+                "items": {},
+                "type": "array"
+              },
+              "description": "https://vega.github.io/vega-lite/docs/data.html#datasets",
+              "type": "object"
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              ],
+              "description": "A description of the view. Multiple lines can be provided as an array."
+            },
+            "encoding": {
+              "$ref": "#/definitions/Encoding"
+            },
+            "genome": {
+              "$ref": "#/definitions/GenomeConfig"
+            },
+            "height": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ]
+            },
+            "name": {
+              "type": "string"
+            },
+            "opacity": {
+              "$ref": "#/definitions/ViewOpacityDef",
+              "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+            },
+            "padding": {
+              "$ref": "#/definitions/PaddingConfig",
+              "description": "Padding in pixels.\n\n**Default:* `0`"
+            },
+            "resolve": {
+              "additionalProperties": false,
+              "properties": {
+                "axis": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                },
+                "scale": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "spacing": {
+              "type": "number"
+            },
+            "title": {
+              "type": "string"
+            },
+            "transform": {
+              "items": {
+                "$ref": "#/definitions/TransformParams"
+              },
+              "type": "array"
+            },
+            "visible": {
+              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "type": "boolean"
+            },
+            "width": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "required": [
+            "concat"
+          ],
+          "type": "object"
+        }
+      ]
     },
     "SampleAttributeDef": {
       "additionalProperties": false,
