@@ -2851,6 +2851,9 @@
         {
           "additionalProperties": false,
           "properties": {
+            "$schema": {
+              "type": "string"
+            },
             "aggregateSamples": {
               "items": {
                 "anyOf": [
@@ -3010,6 +3013,9 @@
         {
           "additionalProperties": false,
           "properties": {
+            "$schema": {
+              "type": "string"
+            },
             "aggregateSamples": {
               "items": {
                 "anyOf": [
@@ -3172,6 +3178,9 @@
         {
           "additionalProperties": false,
           "properties": {
+            "$schema": {
+              "type": "string"
+            },
             "baseUrl": {
               "type": "string"
             },
@@ -3322,6 +3331,9 @@
         {
           "additionalProperties": false,
           "properties": {
+            "$schema": {
+              "type": "string"
+            },
             "baseUrl": {
               "type": "string"
             },
@@ -3471,6 +3483,9 @@
         {
           "additionalProperties": false,
           "properties": {
+            "$schema": {
+              "type": "string"
+            },
             "baseUrl": {
               "type": "string"
             },
@@ -3620,6 +3635,9 @@
         {
           "additionalProperties": false,
           "properties": {
+            "$schema": {
+              "type": "string"
+            },
             "baseUrl": {
               "type": "string"
             },
