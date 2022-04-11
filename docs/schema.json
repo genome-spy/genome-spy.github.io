@@ -4062,10 +4062,6 @@
           "description": "The exponent of the `pow` scale.",
           "type": "number"
         },
-        "fp64": {
-          "description": "Use emulated 64bit floating points on the GPU to increase precision.\n\nEmulation has a performance cost when compared to the native 32bit processing, but the effect is negligible in the most cases.\n\n__Default value:__ `true` for `\"locus\"` scale, `false` for others.",
-          "type": "boolean"
-        },
         "interpolate": {
           "anyOf": [
             {
