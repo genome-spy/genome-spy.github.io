@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -17,10 +17,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.120efc48.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
           
           
@@ -1177,33 +1177,33 @@ a limited set of features, guaranteeing secure execution.</p>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <p>All basic arithmetic operators are supported:</p>
 <!-- prettier-ignore -->
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="mf">1</span> <span class="o">+</span> <span class="mf">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">3</span> <span class="o">/</span> <span class="mf">4</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="mf">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">4</span><span class="w"></span>
 </code></pre></div>
 <p>The current data object is provided as the <code>datum</code> object. Its properties (fields)
 can be accessed by using the dot or bracket notation:</p>
 <!-- prettier-ignore -->
-<div class="highlight"><pre><span></span><code><span class="nx">datum</span><span class="p">.</span><span class="nx">foo</span> <span class="o">+</span> <span class="mf">2</span>
+<div class="highlight"><pre><span></span><code><span class="nx">datum</span><span class="p">.</span><span class="nx">foo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="w"></span>
 </code></pre></div>
 <p>If the name of the property contains special characters such as "<code>.</code>", "<code>!</code>",
 or "<code> </code>" (a space) the bracket notation must be used:</p>
 <!-- prettier-ignore -->
-<div class="highlight"><pre><span></span><code><span class="nx">datum</span><span class="p">[</span><span class="s1">&#39;A very *special* name!&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">100</span>
+<div class="highlight"><pre><span></span><code><span class="nx">datum</span><span class="p">[</span><span class="s1">&#39;A very *special* name!&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">100</span><span class="w"></span>
 </code></pre></div>
 <h2 id="conditional-operators">Conditional operators<a class="headerlink" href="#conditional-operators" title="Permanent link">&para;</a></h2>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator">Ternary</a> operator:</p>
 <!-- prettier-ignore -->
-<div class="highlight"><pre><span></span><code><span class="nx">datum</span><span class="p">.</span><span class="nx">foo</span> <span class="o">&lt;</span> <span class="mf">5</span> <span class="o">?</span> <span class="s1">&#39;small&#39;</span> <span class="o">:</span> <span class="s1">&#39;large&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="nx">datum</span><span class="p">.</span><span class="nx">foo</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;small&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;large&#39;</span><span class="w"></span>
 </code></pre></div>
 <p>And an equivalent <code>if</code> construct:</p>
 <!-- prettier-ignore -->
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="nx">datum</span><span class="p">.</span><span class="nx">foo</span> <span class="o">&lt;</span> <span class="mf">5</span><span class="p">,</span> <span class="s1">&#39;small&#39;</span><span class="p">,</span> <span class="s1">&#39;large&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="nx">datum</span><span class="p">.</span><span class="nx">foo</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;small&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;large&#39;</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 <h2 id="provided-constants-and-functions">Provided constants and functions<a class="headerlink" href="#provided-constants-and-functions" title="Permanent link">&para;</a></h2>
 <p>Common mathematical functions are supported:</p>
 <!-- prettier-ignore -->
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nx">datum</span><span class="p">.</span><span class="nx">u</span> <span class="o">%</span> <span class="mf">1e-8</span> <span class="o">&gt;</span> <span class="mf">5e-9</span> <span class="o">?</span> <span class="mf">1</span> <span class="o">:</span> <span class="o">-</span><span class="mf">1</span><span class="p">)</span> <span class="o">*</span>
-  <span class="p">(</span><span class="nx">sqrt</span><span class="p">(</span><span class="o">-</span><span class="nx">log</span><span class="p">(</span><span class="nx">max</span><span class="p">(</span><span class="mf">1e-9</span><span class="p">,</span> <span class="nx">datum</span><span class="p">.</span><span class="nx">u</span><span class="p">)))</span> <span class="o">-</span> <span class="mf">0.618</span><span class="p">)</span> <span class="o">*</span>
-  <span class="mf">1.618</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nx">datum</span><span class="p">.</span><span class="nx">u</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">1e-8</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">5e-9</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="nx">sqrt</span><span class="p">(</span><span class="o">-</span><span class="nx">log</span><span class="p">(</span><span class="nx">max</span><span class="p">(</span><span class="mf">1e-9</span><span class="p">,</span><span class="w"> </span><span class="nx">datum</span><span class="p">.</span><span class="nx">u</span><span class="p">)))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.618</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="w">  </span><span class="mf">1.618</span><span class="w"></span>
 </code></pre></div>
 <p>The full list of built-in constants and functions are documented in
 <a href="https://github.com/vega/vega/tree/master/packages/vega-expression#provided-constants-and-functions">vega-expression</a>.</p>
@@ -1275,7 +1275,7 @@ or "<code> </code>" (a space) the bracket notation must be used:</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.6e54b5cd.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../app/index.js"></script>
       
