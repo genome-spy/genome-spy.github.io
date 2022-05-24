@@ -1816,9 +1816,6 @@
           "description": "The vertical offset between the text and its anchor point, in pixels. Applied after the rotation by `angle`.",
           "type": "number"
         },
-        "dynamicData": {
-          "type": "boolean"
-        },
         "fill": {
           "type": "string"
         },
