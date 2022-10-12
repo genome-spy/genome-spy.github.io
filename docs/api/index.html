@@ -1068,8 +1068,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#methods-in-the-result-object" class="md-nav__link">
-    Methods in the result object
+  <a href="#the-api" class="md-nav__link">
+    The API
   </a>
   
 </li>
@@ -1081,6 +1081,13 @@
   
     <nav class="md-nav" aria-label="Embed options">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#named-data-provider" class="md-nav__link">
+    Named data provider
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#custom-tooltip-handlers" class="md-nav__link">
@@ -1164,8 +1171,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#methods-in-the-result-object" class="md-nav__link">
-    Methods in the result object
+  <a href="#the-api" class="md-nav__link">
+    The API
   </a>
   
 </li>
@@ -1177,6 +1184,13 @@
   
     <nav class="md-nav" aria-label="Embed options">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#named-data-provider" class="md-nav__link">
+    Named data provider
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#custom-tooltip-handlers" class="md-nav__link">
@@ -1224,30 +1238,20 @@
 
 
 <h1 id="javascript-api">JavaScript API<a class="headerlink" href="#javascript-api" title="Permanent link">&para;</a></h1>
-<p>The JavaScipt API is currently quite minimal.</p>
+<p>The public JavaScript API is currently quite minimal.</p>
 <h2 id="embedding">Embedding<a class="headerlink" href="#embedding" title="Permanent link">&para;</a></h2>
 <p>See the <a href="../getting-started/">getting started</a> page.</p>
-<h2 id="methods-in-the-result-object">Methods in the result object<a class="headerlink" href="#methods-in-the-result-object" title="Permanent link">&para;</a></h2>
-<p>The <code>embed</code> function returns a promise that resolves into an object that provides
-the current public API. The following methods are currently exposed:</p>
-<p><a name="api_finalize" href="#api_finalize">#</a>
-api.<b>finalize</b>()</p>
-<p>Releases all resources and unregisters event listeners, etc.</p>
-<p><a name="api_addEventListener" href="#api_addEventListener">#</a>
-api.<b>addEventListener</b>(<i>type</i>, <i>listener</i>)</p>
-<p>Adds an event listener, which is called when the user interacts with a mark
-instance. Currently, only <code>"click"</code> events are supported. The callback receives
-an event object as its first (and only) parameter. Its <code>datum</code> property
-contains the datum that the user interacted with.</p>
-<p><a name="api_removeEventListener" href="#api_removeEventListener">#</a>
-api.<b>removeEventListener</b>(<i>type</i>, <i>listener</i>)</p>
-<p>Removes a registered event listener.</p>
-<p><a name="api_getScaleResolutionByName" href="#api_getScaleResolutionByName">#</a>
-api.<b>getScaleResolutionByName</b>(<i>name</i>)</p>
-<p>Returns a named <em>ScaleResolution</em> object that allows for attaching event listeners
-and controlling the scale domain.</p>
-<p>TODO: Complete documentation for ScaleResolution</p>
+<h2 id="the-api">The API<a class="headerlink" href="#the-api" title="Permanent link">&para;</a></h2>
+<p>The <code>embed</code> function returns a promise that resolves into an object that
+provides the current public API. The API is documented in the <a href="https://github.com/genome-spy/genome-spy/blob/master/packages/core/src/embedApi.d.ts">interface
+definition</a>.</p>
+<p>For practical examples on using the API, check the
+<a href="https://github.com/genome-spy/genome-spy/tree/master/packages/embed-examples">embed-examples</a>
+package.</p>
 <h2 id="embed-options">Embed options<a class="headerlink" href="#embed-options" title="Permanent link">&para;</a></h2>
+<p>The <code>embed</code> function accepts an optional options object.</p>
+<h3 id="named-data-provider">Named data provider<a class="headerlink" href="#named-data-provider" title="Permanent link">&para;</a></h3>
+<p>See the API definition.</p>
 <h3 id="custom-tooltip-handlers">Custom tooltip handlers<a class="headerlink" href="#custom-tooltip-handlers" title="Permanent link">&para;</a></h3>
 <p>GenomeSpy provides two built-in tooltip handlers.</p>
 <p>The
