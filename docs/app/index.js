@@ -28,10 +28,10 @@ uniform float uMinOpacity;
 /** top-right, bottom-right, top-left, bottom-left */
 uniform vec4 uCornerRadii;
 
-flat out lowp vec4 vFillColor;
-flat out lowp vec4 vStrokeColor;
-flat out float vHalfStrokeWidth;
-flat out vec4 vCornerRadii;
+out lowp vec4 vFillColor;
+out lowp vec4 vStrokeColor;
+out float vHalfStrokeWidth;
+out vec4 vCornerRadii;
 
 
 #if defined(ROUNDED_CORNERS) || defined(STROKED)
@@ -40,7 +40,7 @@ out vec2 vPosInPixels;
 #endif
 
 /** Size of the rect in pixels */
-flat out vec2 vHalfSizeInPixels;
+out vec2 vHalfSizeInPixels;
 
 /**
  * Clamps the minimumSize and returns an opacity that reflects the amount of clamping.
@@ -129,12 +129,12 @@ void main(void) {
 in vec2 vPosInPixels;
 #endif
 
-flat in vec2 vHalfSizeInPixels;
+in vec2 vHalfSizeInPixels;
 
-flat in lowp vec4 vFillColor;
-flat in lowp vec4 vStrokeColor;
-flat in float vHalfStrokeWidth;
-flat in vec4 vCornerRadii;
+in lowp vec4 vFillColor;
+in lowp vec4 vStrokeColor;
+in float vHalfStrokeWidth;
+in vec4 vCornerRadii;
 
 out lowp vec4 fragColor;
 
@@ -485,7 +485,7 @@ float getSampleFacetHeight(vec2 pos) {
  * https://deck.gl/docs/developer-guide/custom-layers/picking
  */
 
-flat out highp vec4 vPickingColor;
+out highp vec4 vPickingColor;
 
 /**
  * Passes the unique id to the fragment shader as a color if picking is enabled.
@@ -506,7 +506,7 @@ bool setupPicking() {
     }
     return false;
 }
-`,w2=`flat in highp vec4 vPickingColor;
+`,w2=`in highp vec4 vPickingColor;
 `,vs=Symbol("cacheMap");function On(t,e,n){let r=Xr(t).get(e);return r===void 0&&(r=n(e),Xr(t).set(e,r)),r}function t0(t,e){Xr(t).delete(e)}function Es(t,e){const n=Xr(t);for(const r of n.keys())r.startsWith(e)&&n.delete(r);Xr(t).delete(e)}function n0(t){t[vs]=new Map}function Xr(t){return t[vs]||n0(t),t[vs]}function v2(t,e,n,r){const i=Z(t)?t:t.name,s=!Z(t)&&t.extent||[0,1];if(n===void 0&&!Z(t)&&(n=t.count),i){const o=ta(i);if(ge(o)){const a=i0(o,{extent:s,count:n});return Cs(e,{minMag:e.LINEAR,format:e.RGB,height:1,wrap:e.CLAMP_TO_EDGE},a,r)}else{if(Te(o))return r0(o,e);throw new Error("Unknown scheme: "+i)}}}function E2(t,e="rgb",n,r){const i=ji(t,Z(e)?e:e.type,Z(e)?void 0:e.gamma),s=i0(i);return Cs(n,{minMag:n.LINEAR,format:n.RGB,height:1,wrap:n.CLAMP_TO_EDGE},s,r)}function C2(t,e,n,r){const i=Math.max(t.length,n||0),s=new Float32Array(i);for(let o=0;o<i;o++)s[o]=t[o%t.length];return Cs(e,{minMag:e.NEAREST,format:e.RED,internalFormat:e.R32F,height:1},s,r)}function r0(t,e,n,r){const i=s0(t,n);return Cs(e,{minMag:e.NEAREST,format:e.RGB,height:1},i,r)}function i0(t,{extent:e=[0,1],reverse:n=!1,count:r=256}={}){const i=e[0],s=Cn(e)-i,o=Jn(r).map(a=>a/(r-1)).map(a=>i+a/s).map(t);return n&&o.reverse(),s0(o)}function s0(t,e){const n=Math.max(t.length,e||0),r=new Uint8Array(n*3);for(let i=0;i<n;i++){const s=Qt(t[i%t.length]).rgb();r[i*3+0]=s.r,r[i*3+1]=s.g,r[i*3+2]=s.b}return r}class S2{constructor(e,n){this._container=e,this._sizeSource=n,this._shaderCache=new Map,this._listeners=[],this.rangeTextures=new WeakMap;const r=document.createElement("canvas");e.appendChild(r);const i=$w(r,{antialias:!0,depth:!1,premultipliedAlpha:!0});if(!i)throw new Error("Unable to initialize WebGL. Your browser or machine may not support it.");if(!Dn(i))throw new Error("Your web browser does not support WebGL 2.0. Chrome, Firefox, and Safari Tech Preview should work.");Xh(i),i.blendFunc(i.ONE,i.ONE_MINUS_SRC_ALPHA),this.canvas=r,this.gl=i,this._pickingAttachmentOptions=[{format:i.RGBA,type:i.UNSIGNED_BYTE,minMag:i.LINEAR,wrap:i.CLAMP_TO_EDGE}],this._pickingBufferInfo=Xw(i,this._pickingAttachmentOptions),i.bindFramebuffer(i.FRAMEBUFFER,null),this.adjustGl(),this._resizeObserver=new ResizeObserver(s=>{this.invalidateSize(),this._emit("resize")}),this._resizeObserver.observe(this._container),this._updateDpr()}invalidateSize(){this._logicalCanvasSize=void 0,this._updateDpr(),this.adjustGl()}_updateDpr(){this.dpr=window.devicePixelRatio}compileShader(e,n){const r="#version 300 es",i="precision mediump float;";Te(n)&&(n=n.join(`
 
 `));const s=this.gl,o=n.replaceAll(/ {2,}|^\s*\/\/.*$/gm,"");let a=this._shaderCache.get(o);if(!a){const c=[r,i,n].join(`
@@ -540,13 +540,13 @@ uniform float uMaxPointSize;
 uniform float uZoomLevel;
 uniform float uSemanticThreshold;
 
-flat out float vRadius;
-flat out float vRadiusWithPadding;
-flat out lowp vec4 vFillColor;
-flat out lowp vec4 vStrokeColor;
-flat out lowp float vShape;
-flat out lowp float vHalfStrokeWidth;
-flat out mat2 vRotationMatrix;
+out float vRadius;
+out float vRadiusWithPadding;
+out lowp vec4 vFillColor;
+out lowp vec4 vStrokeColor;
+out lowp float vShape;
+out lowp float vHalfStrokeWidth;
+out mat2 vRotationMatrix;
 
 
 float computeSemanticThresholdFactor() {
@@ -656,15 +656,15 @@ const lowp vec4 black = vec4(0.0, 0.0, 0.0, 1.0);
 uniform bool uInwardStroke;
 uniform float uGradientStrength;
 
-flat in float vRadius;
-flat in float vRadiusWithPadding;
+in float vRadius;
+in float vRadiusWithPadding;
 
-flat in lowp vec4 vFillColor;
-flat in lowp vec4 vStrokeColor;
-flat in lowp float vShape;
-flat in lowp float vHalfStrokeWidth;
+in lowp vec4 vFillColor;
+in lowp vec4 vStrokeColor;
+in lowp float vShape;
+in lowp float vHalfStrokeWidth;
 
-flat in mat2 vRotationMatrix;
+in mat2 vRotationMatrix;
 
 out lowp vec4 fragColor;
 
@@ -793,10 +793,10 @@ uniform float uMinLength;
 uniform mediump float uDashTextureSize;
 uniform lowp int uStrokeCap;
 
-flat out vec4 vColor;
+out vec4 vColor;
 
 /** Stroke width */
-flat out float vSize;
+out float vSize;
 
 /** The distance from the line center to the direction of normal in pixels */
 out float vNormalLengthInPixels;
@@ -875,8 +875,8 @@ uniform float uDashTextureSize;
 uniform float uStrokeDashOffset;
 uniform lowp int uStrokeCap;
 
-flat in vec4 vColor;
-flat in float vSize;
+in vec4 vColor;
+in float vSize;
 
 /** Position on the rule along its length in pixels */
 in vec2 vPosInPixels;
@@ -1077,8 +1077,8 @@ uniform bool uFlushY;
 #endif
 
 out vec2 vTexCoord;
-flat out vec4 vColor;
-flat out float vSlope;
+out vec4 vColor;
+out float vSlope;
 out float vEdgeFadeOpacity;
 
 struct RangeResult {
@@ -1296,8 +1296,8 @@ void main(void) {
 
 in vec2 vTexCoord;
 in float vEdgeFadeOpacity;
-flat in vec4 vColor;
-flat in float vSlope;
+in vec4 vColor;
+in float vSlope;
 
 out lowp vec4 fragColor;
 
