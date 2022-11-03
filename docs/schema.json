@@ -946,6 +946,19 @@
       },
       "type": "object"
     },
+    "ExprDef": {
+      "additionalProperties": false,
+      "properties": {
+        "expr": {
+          "description": "An expression. Properties of the data can be accessed through the `datum` object.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expr"
+      ],
+      "type": "object"
+    },
     "Field": {
       "description": "The name of the field or a JavaScript expression for accessing nested properties. Dots and brackets in the field name must be escaped.",
       "type": "string"
@@ -4570,6 +4583,9 @@
         },
         {
           "$ref": "#/definitions/StringDatumDef"
+        },
+        {
+          "$ref": "#/definitions/ExprDef"
         }
       ]
     },
