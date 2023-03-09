@@ -10,16 +10,8 @@
 .vscode/
 node_modules/
 
-**/static/private/
-**/private/
-**/static/examples/drafts/
-
-/docs/app/
-/docs/genome-spy-schema.json
-
 build/
 dist/
 /coverage/
 /site/
 
-lerna-debug.log
