@@ -881,15 +881,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#importing-named-tracks" class="md-nav__link">
-    Importing named tracks
+  <a href="#importing-from-a-url" class="md-nav__link">
+    Importing from a URL
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#importing-from-a-url" class="md-nav__link">
-    Importing from a URL
+  <a href="#importing-named-tracks" class="md-nav__link">
+    Importing named tracks
   </a>
   
 </li>
@@ -1200,15 +1200,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#importing-named-tracks" class="md-nav__link">
-    Importing named tracks
+  <a href="#importing-from-a-url" class="md-nav__link">
+    Importing from a URL
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#importing-from-a-url" class="md-nav__link">
-    Importing from a URL
+  <a href="#importing-named-tracks" class="md-nav__link">
+    Importing named tracks
   </a>
   
 </li>
@@ -1234,38 +1234,20 @@
 <h1 id="importing-views">Importing Views<a class="headerlink" href="#importing-views" title="Permanent link">&para;</a></h1>
 <p>GenomeSpy facilitates reusing views by allowing them to be imported from
 external specification files. The files can be placed flexibly – it may be
-practical to split large specifications into multiple files and put them in
+practical to split large specifications into multiple files and place them in
 the same directory. On the other hand, if you have created, for example, an
-annotation track that you would like the share with the research community,
-you can upload the specification file and the associated data to a publicly
+annotation track that you would like the share with the research community, you
+can upload the specification file and the associated data to a publicly
 accessible web server.</p>
-<h3 id="importing-named-tracks">Importing named tracks<a class="headerlink" href="#importing-named-tracks" title="Permanent link">&para;</a></h3>
-<div class="admonition missing">
-<p class="admonition-title">Currently unsupported</p>
-<p>Named imports are currently not supported. Will be back at some point.</p>
-</div>
-<p>GenomeSpy provides a few built-in tracks, mainly to support genomic data
-exploration. They must be imported by a name. Read more at <a href="../../genomic-data/tracks/">genome
-tracks</a>.</p>
-<p>Usage:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="err">...</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;concat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="err">...</span><span class="p">,</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;import&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cytobands&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
 <h3 id="importing-from-a-url">Importing from a URL<a class="headerlink" href="#importing-from-a-url" title="Permanent link">&para;</a></h3>
-<p>You can also import views from relative or absolute URLs. Relative URLs are
-imported with respect to the current <code>baseUrl</code>. (TODO: Document baseUrl
-somewhere)</p>
+<p>Views can be imported from relative and absolute URLs. Relative URLs are
+imported with respect to the current <a href="../#properties"><code>baseUrl</code></a>.</p>
 <p>The imported specification may contain a single, concatenated, or layered view.
-The <code>baseUrl</code> of the imported specification is updated to match its directory.
-Thus, you can publish a view (or track as known in genome browsers) by placing
-its specification and data available in the same directory on a web server.</p>
-<p>Usage:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
+The <code>baseUrl</code> of the imported specification is updated to match the directory of
+the imported specification. Thus, you can publish a view (or a track as known in
+genome browsers) by placing its specification and data available in the same
+directory on a web server.</p>
+<div class="highlight"><span class="filename">Example</span><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="err">...</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;vconcat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="err">...</span><span class="p">,</span>
@@ -1274,6 +1256,11 @@ its specification and data available in the same directory on a web server.</p>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
+<h3 id="importing-named-tracks">Importing named tracks<a class="headerlink" href="#importing-named-tracks" title="Permanent link">&para;</a></h3>
+<div class="admonition missing">
+<p class="admonition-title">Currently unsupported</p>
+<p>Named imports are currently not supported. Will be back at some point.</p>
+</div>
 
 
 

@@ -1156,11 +1156,24 @@
     A single view specification
   </a>
   
+    <nav class="md-nav" aria-label="A single view specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    Properties
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#more-complex-visualizations-with-view-composition" class="md-nav__link">
-    More complex visualizations with view composition
+  <a href="#view-composition-for-more-complex-visualizations" class="md-nav__link">
+    View composition for more complex visualizations
   </a>
   
 </li>
@@ -1191,18 +1204,18 @@ such as <a href="mark/point/">marks</a>, <a href="transform/">transformations</a
 <a href="scale/">scales</a>. As a result, users can author tailored visualizations that
 display the underlying data more effectively.</p>
 <p>The concept was first introduced in <a href="https://www.springer.com/gp/book/9780387245447">The Grammar of
-Graphics</a> and developer further
+Graphics</a> and developed further
 in <a href="https://ggplot2.tidyverse.org/">ggplot2</a> and
 <a href="https://vega.github.io/vega-lite/">Vega-Lite</a>.</p>
 <div class="admonition note">
-<p class="admonition-title">A subset of Vega-Lite</p>
-<p>The visualization grammar of GenomeSpy is a subset and a dialect of
-<a href="https://vega.github.io/vega-lite/">Vega-Lite</a>. However, the goals of
-GenomeSpy and Vega-Lite are different – GenomeSpy is more domain specific
-and is intended for visualization and analysis of large datasets that
-contain genomic coordinates. GenomeSpy tries to faithfully follow
-Vega-Lite's grammar where practical. Thus, this documentation has many
-references to its documentation.</p>
+<p class="admonition-title">A dialect of Vega-Lite</p>
+<p>The visualization grammar of GenomeSpy is a dialect of
+<a href="https://vega.github.io/vega-lite/">Vega-Lite</a>, providing partial
+compatibility. However, the goals of GenomeSpy and Vega-Lite are different –
+GenomeSpy is more domain-specific and primarily intended for the
+visualization and analysis of large datasets containing genomic coordinates.
+Nevertheless, GenomeSpy tries to follow Vega-Lite's grammar where practical,
+and thus, this documentation has several references to its documentation.</p>
 </div>
 <h2 id="a-single-view-specification">A single view specification<a class="headerlink" href="#a-single-view-specification" title="Permanent link">&para;</a></h2>
 <p>Each view specification must have at least the <code>data</code> to be visualized, the
@@ -1228,17 +1241,53 @@ encoded into mark instances.</p>
 
 </genome-spy-doc-embed></div>
 
-<p>TODO: Document the supported properties. Meanwhile, have a look at Vega-Lite's
-<a href="https://vega.github.io/vega-lite/docs/spec.html">view specification</a>
-documentation, as many of the properties (e.g., width/height, title, etc.) are
-supported in GenomeSpy.</p>
-<h2 id="more-complex-visualizations-with-view-composition">More complex visualizations with view composition<a class="headerlink" href="#more-complex-visualizations-with-view-composition" title="Permanent link">&para;</a></h2>
+<h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>data</code></dt>
+<dd>Specifies a <a href="data/">data source</a>. If omitted, the data source is inherited
+from the parent view.</dd>
+<dt><code>transform</code></dt>
+<dd>An array of <a href="transform/">transformations</a> applied to the data before
+visual encoding.</dd>
+<dt><code>mark</code></dt>
+<dd>The graphical mark presenting the data objects.</dd>
+<dt><code>encoding</code></dt>
+<dd>Specifies how data is encoded using the visual channels.</dd>
+<dt><code>name</code></dt>
+<dd>An internal name that can be used for referring the view. For referencing purposes,
+the name should be unique within the whole view hierarchy.</dd>
+<dt><code>width</code></dt>
+<dd>Width of the view. Check <a href="composition/concat/#child-sizing">child sizing</a> for details.</dd>
+<dt><code>height</code></dt>
+<dd>Height of the view. Check <a href="composition/concat/#child-sizing">child sizing</a> for details.</dd>
+<dt><code>padding</code></dt>
+<dd>Padding applied to the view. Accepts either a number reprenting pixels or a
+PaddingConfig. Example: <code>padding: { top: 10, right: 20, bottom: 10, left: 20 }</code></dd>
+<dt><code>title</code></dt>
+<dd>View title. Accepts a string or a
+<a href="https://github.com/genome-spy/genome-spy/blob/master/packages/core/src/spec/title.d.ts">title specification</a>
+object. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to
+manually specify proper <code>padding</code> for the view to ensure that the title is visible.</dd>
+<dt><code>description</code></dt>
+<dd>A description of the view. Can be used for documentation. The description of the
+top-level view is shown in the toolbar of the <a href="../sample-collections/">GenomeSpy <em>app</em></a>.</dd>
+<dt><code>baseUrl</code></dt>
+<dd>The base URL for relative <a href="data/">URL data sources</a>. The base URLs are
+inherited in the view hierarchy unless overridden with this property. By default,
+the top-level view's base URL equals to the visualization specification's base URL.</dd>
+<dt><code>opacity</code></dt>
+<dd>TODO</dd>
+<dt><code>visible</code></dt>
+<dd>The default visibility of the view. An invisible view is removed from the
+layout and not rendered. For context, see
+<a href="../sample-collections/visualizing/#toggleable-view-visibility">toggleable view visibility</a>.</dd>
+</dl>
+<h2 id="view-composition-for-more-complex-visualizations">View composition for more complex visualizations<a class="headerlink" href="#view-composition-for-more-complex-visualizations" title="Permanent link">&para;</a></h2>
 <p>View <a href="composition/">composition</a> allows for building more complex
-visualizations from multiple view specifications. For example, the
-<a href="composition/layer/"><code>layer</code></a> operator enables creation of custom glyphs and
-the <a href="composition/concat/">concatenation</a> operators allow stacked layouts
+visualizations from multiple single-view specifications. For example, the
+<a href="composition/layer/"><code>layer</code></a> operator allows creation of custom glyphs and
+the <a href="composition/concat/">concatenation</a> operators enables stacked layouts
 resembling genome browsers with multiple tracks.</p>
-<p>TODO: Write about inheritance of <code>data</code> and <code>encoding</code>.</p>
 
 
 

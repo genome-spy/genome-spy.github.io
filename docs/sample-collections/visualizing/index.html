@@ -1555,10 +1555,10 @@ inferred automatically from the data: numeric attributes are interpreted as
 </tbody>
 </table>
 <h4 id="specifying-data-types-of-metadata-attributes">Specifying data types of metadata attributes<a class="headerlink" href="#specifying-data-types-of-metadata-attributes" title="Permanent link">&para;</a></h4>
-<p>To adjust the data types and <a href="../../grammar/scale/">scales</a> of the attributes,
-they can be specified explicitly using the <code>attributes</code> object, as shown in the
-example below:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<p>To adjust the data types, <a href="../../grammar/scale/">scales</a>, and default visibility
+of the attributes, they can be specified explicitly using the <code>attributes</code>
+object, as shown in the example below:</p>
+<div class="highlight"><span class="filename">Specifying a purity attribute</span><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;samples.tsv&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1567,7 +1567,9 @@ example below:</p>
 <span class="w">        </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span>
 <span class="w">          </span><span class="nt">&quot;scheme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;yellowgreenblue&quot;</span>
-<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;barScale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="err">...</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1575,6 +1577,10 @@ example below:</p>
 <span class="w">  </span><span class="err">...</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>The <code>scale</code> property specifies a scale for the <code>color</code> channel used to encode
+the values on the metadata heatmap. The optional <code>barScale</code> property enables
+positional encoding, changing the heatmap cells into a horizontal bar chart. The
+<code>visible</code> property configures the default visibility for the attribute.</p>
 <h3 id="aggregation">Aggregation<a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h3>
 <p>TODO</p>
 <h2 id="bookmarking">Bookmarking<a class="headerlink" href="#bookmarking" title="Permanent link">&para;</a></h2>
