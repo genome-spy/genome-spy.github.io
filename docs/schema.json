@@ -4478,10 +4478,10 @@
         },
         "baseField": {
           "$ref": "#/definitions/Field",
-          "description": "The field that contains the base or amino acid. Used for information content calculation when the offset is `\"information\"`. The data items that have `null` in the baseField are considered gaps and they are taken into account when scaling the the locus' information content."
+          "description": "The field that contains the base or amino acid. Used for information content calculation when the offset is `\"information\"`. The data objects that have `null` in the baseField are considered gaps and they are taken into account when scaling the the locus' information content."
         },
         "cardinality": {
-          "description": "Cardinality, e.g., the number if distinct bases or amino acids. Used for information content calculation when the offset is `\"information\"`.\n\n**Default:** `4`;",
+          "description": "Cardinality, e.g., the number if distinct bases or amino acids. Used for information content calculation when the offset is `\"information\"`.\n\n**Default:** `4`",
           "type": "number"
         },
         "field": {

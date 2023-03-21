@@ -754,6 +754,10 @@
       
         
           
+            
+          
+        
+          
         
           
         
@@ -765,10 +769,16 @@
         
       
       
-        <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
-          Graphical Marks
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../grammar/mark/">Graphical Marks</a>
+          
+            <label for="__nav_3_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_4">
@@ -776,6 +786,8 @@
           Graphical Marks
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
           
             
               
@@ -1003,8 +1015,6 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -1039,77 +1049,9 @@
   
   
     <li class="md-nav__item">
-      <a href="../genomic-data/tracks/" class="md-nav__link">
-        Tracks
+      <a href="../genomic-data/examples/" class="md-nav__link">
+        Examples
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
-      
-      
-        
-          
-        
-          
-        
-      
-      
-        <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
-          Examples
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_4_3">
-          <span class="md-nav__icon md-icon"></span>
-          Examples
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../genomic-data/examples/seg-file/" class="md-nav__link">
-        SEG file
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../genomic-data/examples/ascat/" class="md-nav__link">
-        ASCAT
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -1384,9 +1326,13 @@ line:</p>
 <p>By default, it serves files from the current working directory. See Python's
 <a href="https://docs.python.org/3/library/http.server.html">documentation</a> for details.</p>
 <h3 id="html-template">HTML template<a class="headerlink" href="#html-template" title="Permanent link">&para;</a></h3>
-<p>The templates below load GenomeSpy from a content delivery network. Because
-the specification schema and the JavaScript API are not yet 100% stable, it is
-recommended to use a specific version.</p>
+<p>The templates below load the GenomeSpy JavaScript library from a content
+delivery network. Because the specification schema and the JavaScript API are
+not yet 100% stable, it is recommended to use a specific version.</p>
+<p>The <code>embed</code> function initializes a visualization into the HTML element given as
+the first parameter using the specification given as the second parameter. The
+function returns a promise that resolves into an object that provides the
+current public API. For deails, see the <a href="../api/">API Documentation</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Check the latest version!</p>
 <p>The versions in the examples below may be slightly out of date. The current
@@ -1394,7 +1340,7 @@ version is:</p>
 <p><img alt="npm version" src="https://img.shields.io/npm/v/@genome-spy/core" /></p>
 </div>
 <h4 id="load-the-spec-from-a-file">Load the spec from a file<a class="headerlink" href="#load-the-spec-from-a-file" title="Permanent link">&para;</a></h4>
-<p>This template loads the spec from the <code>spec.json</code> file.</p>
+<p>This template loads the spec from a separate <code>spec.json</code> file.</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -1402,13 +1348,13 @@ version is:</p>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@genome-spy/core@0.28.x/dist/style.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.28.x/dist/style.css&quot;</span>
     <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span>
-      <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@genome-spy/core@0.28.x/dist/index.js&quot;</span>
+      <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.28.x/dist/index.js&quot;</span>
     <span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -1418,6 +1364,7 @@ version is:</p>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div>
 <h4 id="embed-the-spec-in-the-html-document">Embed the spec in the HTML document<a class="headerlink" href="#embed-the-spec-in-the-html-document" title="Permanent link">&para;</a></h4>
+<p>You can alternatively provide the specification as a JavaScript object.</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -1425,13 +1372,13 @@ version is:</p>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@genome-spy/core@0.28.x/dist/style.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.28.x/dist/style.css&quot;</span>
     <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span>
-      <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@genome-spy/core@0.28.x/dist/index.js&quot;</span>
+      <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.28.x/dist/index.js&quot;</span>
     <span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>

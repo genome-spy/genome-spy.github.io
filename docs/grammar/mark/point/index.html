@@ -649,6 +649,10 @@
       
         
           
+            
+          
+        
+          
         
           
         
@@ -660,10 +664,16 @@
         
       
       
-        <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
-          Graphical Marks
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">Graphical Marks</a>
+          
+            <label for="__nav_3_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_4">
@@ -671,6 +681,8 @@
           Graphical Marks
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
           
             
               
@@ -993,8 +1005,6 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -1029,77 +1039,9 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../genomic-data/tracks/" class="md-nav__link">
-        Tracks
+      <a href="../../../genomic-data/examples/" class="md-nav__link">
+        Examples
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
-      
-      
-        
-          
-        
-          
-        
-      
-      
-        <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
-          Examples
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_4_3">
-          <span class="md-nav__icon md-icon"></span>
-          Examples
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../genomic-data/examples/seg-file/" class="md-nav__link">
-        SEG file
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../genomic-data/examples/ascat/" class="md-nav__link">
-        ASCAT
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -1347,7 +1289,7 @@ point mutations at genomic loci.</p>
 </genome-spy-doc-embed></div>
 
 <h2 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h2>
-<p>In addition to standard <a href="../../encoding/">position</a> channels and
+<p>In addition to standard <a href="../#channels">position</a> channels and
 <code>color</code>, <code>opacity</code>, and <code>strokeWidth</code> channels, point mark has the following
 channels:</p>
 <dl>
@@ -1365,6 +1307,20 @@ of a circle with the size of <code>100</code> is 10 (sqrt(100)) pixels.</p>
 <p>One of <code>"circle"</code>, <code>"square"</code>, <code>"cross"</code>, <code>"diamond"</code>, <code>"triangle-up"</code>,
 <code>"triangle-down"</code>, <code>"triangle-right"</code>, or <code>"triangle-left"</code>.</p>
 <p><strong>Default value:</strong> <code>"circle"</code></p>
+</dd>
+<dt><code>dx</code></dt>
+<dd>
+<p>Type: Number</p>
+<p>The horizontal offset between the text and its anchor point, in pixels.
+Applied after the rotation by <code>angle</code>.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
+<dt><code>dy</code></dt>
+<dd>
+<p>Type: Number</p>
+<p>The vertical offset between the text and its anchor point, in pixels.
+Applied after the rotation by <code>angle</code>.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 </dl>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
@@ -1387,6 +1343,7 @@ size is reached.</p>
 <dt><code>sampleFacetPadding</code></dt>
 <dd>
 <p>Type: Number</p>
+<p>A special property for the <a href="../../../sample-collections/visualizing/">GenomeSpy app</a>.</p>
 <p>Padding between sample facet's upper/lower edge and the maximum point size. This property
 controls how tightly points are squeezed when facet's height is smaller than the maximum
 point size. The unit is a proportion of facet's height. The value must be between <code>0</code>

@@ -708,6 +708,10 @@
       
         
           
+            
+          
+        
+          
         
           
         
@@ -719,10 +723,16 @@
         
       
       
-        <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
-          Graphical Marks
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../mark/">Graphical Marks</a>
+          
+            <label for="__nav_3_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_4">
@@ -730,6 +740,8 @@
           Graphical Marks
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
           
             
               
@@ -957,8 +969,6 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -993,77 +1003,9 @@
   
   
     <li class="md-nav__item">
-      <a href="../../genomic-data/tracks/" class="md-nav__link">
-        Tracks
+      <a href="../../genomic-data/examples/" class="md-nav__link">
+        Examples
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
-      
-      
-        
-          
-        
-          
-        
-      
-      
-        <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
-          Examples
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_4_3">
-          <span class="md-nav__icon md-icon"></span>
-          Examples
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../genomic-data/examples/seg-file/" class="md-nav__link">
-        SEG file
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../genomic-data/examples/ascat/" class="md-nav__link">
-        ASCAT
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -1260,7 +1202,7 @@
 <h1 id="data-input">Data Input<a class="headerlink" href="#data-input" title="Permanent link">&para;</a></h1>
 <p>GenomeSpy inputs tabular data as <code>"csv"</code>, <code>"tsv"</code>, and <code>"json"</code> files.
 Currently, the only supported bioinformatic file format is non-indexed
-<code>"fasta"</code>. Other formats such as <em>BED</em> or <em>BigWig</em> are not directly supported.
+<a href="#fasta"><code>"fasta"</code></a>. Other formats such as <em>BED</em> or <em>BigWig</em> are not directly supported.
 They must be first converted into one of the above tabular formats.</p>
 <p>GenomeSpy can load data from external files or use inline data. You
 can also use generators to generate data on the fly and modify them using
@@ -1289,6 +1231,11 @@ overly eager to interpret strings as a dates. In such cases, the field types
 need to be specified explicitly. On the other hand, explicit type
 specification also gives a significant performance boost to parsing
 performance.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Handling empty (NA) values</p>
+<p>Empty or missing values must be presented as <strong>empty strings</strong> instead of <code>NA</code>
+that R writes by default. Otherwise type inference fails for numeric fields.</p>
 </div>
 <h2 id="named-data-sources">Named Data Sources<a class="headerlink" href="#named-data-sources" title="Permanent link">&para;</a></h2>
 <p>Data can be added or updated at runtime using the <a href="../../api/">API</a>. Data sources

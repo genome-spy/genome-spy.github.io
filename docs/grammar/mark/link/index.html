@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../../transform/stack/">
+        <link rel="prev" href="../">
       
       
         <link rel="next" href="../point/">
@@ -649,6 +649,10 @@
       
         
           
+            
+          
+        
+          
         
           
         
@@ -660,10 +664,16 @@
         
       
       
-        <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
-          Graphical Marks
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">Graphical Marks</a>
+          
+            <label for="__nav_3_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_4">
@@ -671,6 +681,8 @@
           Graphical Marks
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
           
             
               
@@ -953,8 +965,6 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -989,77 +999,9 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../genomic-data/tracks/" class="md-nav__link">
-        Tracks
+      <a href="../../../genomic-data/examples/" class="md-nav__link">
+        Examples
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
-      
-      
-        
-          
-        
-          
-        
-      
-      
-        <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
-          Examples
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_4_3">
-          <span class="md-nav__icon md-icon"></span>
-          Examples
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../genomic-data/examples/seg-file/" class="md-nav__link">
-        SEG file
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../genomic-data/examples/ascat/" class="md-nav__link">
-        ASCAT
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -1281,23 +1223,14 @@ example.</p>
 more use cases.</p>
 </div>
 <h2 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h2>
-<p>In addition to the standard <a href="../../encoding/">position</a> channels and
-<code>color</code> and <code>opacity</code> channels, link mark supports the following channels:</p>
+<p>In addition to the primary and secondary <a href="../#channels">position</a>
+channels and the <code>color</code> and <code>opacity</code> channels, link mark supports the following
+channels:</p>
 <dl>
 <dt><code>size</code></dt>
 <dd>
 <p>Type: Number</p>
 <p>Stroke width of the starting point in pixels.</p>
-</dd>
-<dt><code>size2</code></dt>
-<dd>
-<p>Type: Number</p>
-<p>Stroke width of the end point in pixels. Same as <code>size</code> if left undefined.</p>
-</dd>
-<dt><code>color2</code></dt>
-<dd>
-<p>Type: Number</p>
-<p>Color of the end point. Same as <code>color</code> if left undefined.</p>
 </dd>
 </dl>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
@@ -1325,8 +1258,7 @@ more use cases.</p>
 <span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;link&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;size2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;datum&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="w"> </span><span class="p">},</span>
@@ -1337,8 +1269,7 @@ more use cases.</p>
 <span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;theta&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;scheme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rainbow&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;color2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;white&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
