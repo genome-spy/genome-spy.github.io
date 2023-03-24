@@ -15,7 +15,7 @@
         <link rel="next" href="../analyzing/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.c4a75a56.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.240905d7.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
@@ -1085,6 +1085,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#adjusting-font-sizes-etc" class="md-nav__link">
+    Adjusting font sizes, etc.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#aggregation" class="md-nav__link">
     Aggregation
   </a>
@@ -1281,6 +1288,13 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adjusting-font-sizes-etc" class="md-nav__link">
+    Adjusting font sizes, etc.
+  </a>
   
 </li>
         
@@ -1523,6 +1537,55 @@ object, as shown in the example below:</p>
 the values on the metadata heatmap. The optional <code>barScale</code> property enables
 positional encoding, changing the heatmap cells into a horizontal bar chart. The
 <code>visible</code> property configures the default visibility for the attribute.</p>
+<h3 id="adjusting-font-sizes-etc">Adjusting font sizes, etc.<a class="headerlink" href="#adjusting-font-sizes-etc" title="Permanent link">&para;</a></h3>
+<p>The <code>samples</code> object can also be used to adjust the font sizes, etc. of the
+metadata attributes. For example, to increase the font sizes of the sample and
+attribute labels, use the following configuration:</p>
+<div class="highlight"><span class="filename">Adjusting font sizes</span><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">...</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;labelFontSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;attributeLabelFontSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The following properties allow for fine-grained control of the font styles:
+<code>labelFont</code>, <code>labelFontSize</code>, <code>labelFontWeight</code>, <code>labelFontStyle</code>, <code>labelAlign</code>,
+<code>attributeLabelFont</code>, <code>attributeLabelFontSize</code>, <code>attributeLabelFontWeight</code>, <code>attributeLabelFontStyle</code>.</p>
+<p>In addition, the following properties are supported:</p>
+<dl>
+<dt><code>labelTitleText</code></dt>
+<dd>
+<p>The title of the sample labels.</p>
+<p><strong>Default value:</strong> <code>"Sample name"</code></p>
+</dd>
+<dt><code>labelLength</code></dt>
+<dd>
+<p>The space allocated for the sample labels in pixels.</p>
+<p><strong>Default value:</strong> <code>140</code></p>
+</dd>
+<dt><code>labelAlign</code></dt>
+<dd>
+<p>The horizontal alignment of the text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
+<p><strong>Default value:</strong> <code>"left"</code></p>
+</dd>
+<dt><code>attributeSize</code></dt>
+<dd>
+<p>Default size (width) of the metadata attribute columns. Can be configured per attribute using the <code>attributes</code> property.</p>
+<p><strong>Default value:</strong> <code>10</code></p>
+</dd>
+<dt><code>attributeLabelAngle</code></dt>
+<dd>
+<p>Angle to be added to the default label angle (-90).</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
+<dt><code>attributeSpacing</code></dt>
+<dd>
+<p>Spacing between attribute columns in pixels.</p>
+<p><strong>Default value:</strong> <code>1</code></p>
+</dd>
+</dl>
 <h3 id="aggregation">Aggregation<a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h3>
 <p>TODO</p>
 <h2 id="bookmarking">Bookmarking<a class="headerlink" href="#bookmarking" title="Permanent link">&para;</a></h2>
@@ -1693,7 +1756,7 @@ exploration</a></p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.efa0ade1.min.js"></script>
+      <script src="../../assets/javascripts/bundle.19047be9.min.js"></script>
       
         <script src="../../app/index.js"></script>
       
