@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "American Typewriter";
+  src: local("American Typewriter"),
+    url("//db.onlinewebfonts.com/t/bf35ddaa105b41dd66cb2eb93424c588.woff2")
+      format("woff2"),
+    url("//db.onlinewebfonts.com/t/bf35ddaa105b41dd66cb2eb93424c588.woff")
+      format("woff");
+}
+
 @media (max-width: 500px) {
   :root {
     --side-padding: 15px;
