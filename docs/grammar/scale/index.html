@@ -15,7 +15,7 @@
         <link rel="next" href="../import/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
@@ -23,10 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ded33207.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -61,7 +61,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     
@@ -112,6 +112,8 @@
         </div>
       </div>
     </div>
+    
+      
     
     
     
@@ -302,10 +304,76 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../data/">Data Input</a>
+          
+            <label for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Data Input
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../data/" class="md-nav__link">
-        Data Input
+      <a href="../data/eager/" class="md-nav__link">
+        Eager data
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data/lazy/" class="md-nav__link">
+        Lazy data
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -986,6 +1054,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#axes" class="md-nav__link">
+    Axes
+  </a>
+  
+    <nav class="md-nav" aria-label="Axes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#genome-axis-for-loci" class="md-nav__link">
+    Genome axis for loci
+  </a>
+  
+    <nav class="md-nav" aria-label="Genome axis for loci">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fully-customized-axes" class="md-nav__link">
+    Fully customized axes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1343,6 +1444,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#axes" class="md-nav__link">
+    Axes
+  </a>
+  
+    <nav class="md-nav" aria-label="Axes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#genome-axis-for-loci" class="md-nav__link">
+    Genome axis for loci
+  </a>
+  
+    <nav class="md-nav" aria-label="Genome axis for loci">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fully-customized-axes" class="md-nav__link">
+    Fully customized axes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1438,8 +1572,7 @@ the whole band.</p>
 <span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1500,8 +1633,7 @@ range would be defined as: x = 2 (inclusive), x2 = 5 (exclusive).</p>
 <span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;[&#39; + datum.from + &#39;, &#39; + datum.to + &#39;)&#39;&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span>
+<span class="w">          </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;[&#39; + datum.from + &#39;, &#39; + datum.to + &#39;)&#39;&quot;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1541,8 +1673,7 @@ the label indices.</p>
 <span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -1653,6 +1784,77 @@ the <code>"locus"</code> scale, where it includes the whole genome. Example:</p>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h2 id="axes">Axes<a class="headerlink" href="#axes" title="Permanent link">&para;</a></h2>
+<p>Positional channels are usually annotated with axes, which are automatically
+generated based on the scale type. However, you can customize the axis by
+specifying the <code>axis</code> property in the encoding block.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="err">...</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My axis title&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>GenomeSpy implements most of Vega-Lite's axis properties. See the <a href="https://github.com/genome-spy/genome-spy/blob/master/packages/core/src/spec/axis.d.ts">interface
+definition</a>
+for supported properties. TODO: Write a proper documentation.</p>
+<div class="admonition note">
+<p class="admonition-title">Grid lines</p>
+<p>Grid lines are hidden by default in GenomeSpy and can be enabled for each
+view using the <code>grid</code> property. The default behavior will be configurable
+once GenomeSpy supports themes.</p>
+</div>
+<h3 id="genome-axis-for-loci">Genome axis for loci<a class="headerlink" href="#genome-axis-for-loci" title="Permanent link">&para;</a></h3>
+<p>The genome axis is a special axis for the <code>"locus"</code> scale. It displays
+chromosome names and the intra-chromosomal coordinates. You can adjust the style
+of the chromosome axis and grid using various parameters.</p>
+<div><genome-spy-doc-embed height="150">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{}]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;chromTickColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#5F87F5&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;chromLabelColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#E16B67&quot;</span><span class="p">,</span>
+
+<span class="w">        </span><span class="nt">&quot;grid&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;gridColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;gridOpacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;gridDash&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">],</span>
+
+<span class="w">        </span><span class="nt">&quot;chromGrid&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;chromGridDash&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;chromGridColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#5F87F5&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;chromGridOpacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;chromGridFillEven&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#BEFACC&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;chromGridFillOdd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#FDFCE8&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<h4 id="fully-customized-axes">Fully customized axes<a class="headerlink" href="#fully-customized-axes" title="Permanent link">&para;</a></h4>
+<p>You can also disable the genome axis and grid and specify a custom axis instead.
+The <a href="../data/lazy/#axis-genome"><code>"axisGenome"</code></a> data source provides the
+chromosomes and their sizes, which can be used to create a custom axes or grids
+for a view.</p>
 
 
 
@@ -1693,7 +1895,7 @@ the <code>"locus"</code> scale, where it includes the whole genome. Example:</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.51198bba.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
       
         <script src="../../app/index.js"></script>
       

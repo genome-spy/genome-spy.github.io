@@ -1,0 +1,2103 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../eager/">
+      
+      
+        <link rel="next" href="../../transform/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+    
+    
+      
+        <title>Lazy data - GenomeSpy Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a6bdf11c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+     
+<meta name="base_url" content="../../.." />
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lazy-data-sources" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="GenomeSpy Docs" class="md-header__button md-logo" aria-label="GenomeSpy Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GenomeSpy Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lazy data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tuner/genome-spy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="GenomeSpy Docs" class="md-nav__button md-logo" aria-label="GenomeSpy Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    GenomeSpy Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tuner/genome-spy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../">Visualization Grammar</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Visualization Grammar
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">Data Input</a>
+          
+            <label for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Data Input
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eager/" class="md-nav__link">
+        Eager data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lazy data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lazy data
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#indexed-fasta" class="md-nav__link">
+    Indexed FASTA
+  </a>
+  
+    <nav class="md-nav" aria-label="Indexed FASTA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bigwig" class="md-nav__link">
+    BigWig
+  </a>
+  
+    <nav class="md-nav" aria-label="BigWig">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bigbed" class="md-nav__link">
+    BigBed
+  </a>
+  
+    <nav class="md-nav" aria-label="BigBed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bam" class="md-nav__link">
+    BAM
+  </a>
+  
+    <nav class="md-nav" aria-label="BAM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_3" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#axis-ticks" class="md-nav__link">
+    Axis ticks
+  </a>
+  
+    <nav class="md-nav" aria-label="Axis ticks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_4" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_4" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#axis-genome" class="md-nav__link">
+    Axis genome
+  </a>
+  
+    <nav class="md-nav" aria-label="Axis genome">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_5" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_5" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../transform/">Transform</a>
+          
+            <label for="__nav_3_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Transform
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/aggregate/" class="md-nav__link">
+        Aggregate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/collect/" class="md-nav__link">
+        Collect
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/coverage/" class="md-nav__link">
+        Coverage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/filter/" class="md-nav__link">
+        Filter
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/filter-scored-labels/" class="md-nav__link">
+        FilterScoredLabels
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/flatten-compressed-exons/" class="md-nav__link">
+        FlattenCompressedExons
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/flatten-delimited/" class="md-nav__link">
+        FlattenDelimited
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/flatten-sequence/" class="md-nav__link">
+        FlattenSequence
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/formula/" class="md-nav__link">
+        Formula
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/linearize-genomic-coordinate/" class="md-nav__link">
+        LinearizeGenomicCoordinate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/measure-text/" class="md-nav__link">
+        MeasureText
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/pileup/" class="md-nav__link">
+        Pileup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/project/" class="md-nav__link">
+        Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/regex-extract/" class="md-nav__link">
+        RegexExtract
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/regex-fold/" class="md-nav__link">
+        RegexFold
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/sample/" class="md-nav__link">
+        Sample
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/stack/" class="md-nav__link">
+        Stack
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../mark/">Graphical Marks</a>
+          
+            <label for="__nav_3_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Graphical Marks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mark/link/" class="md-nav__link">
+        Link
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mark/point/" class="md-nav__link">
+        Point
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mark/rect/" class="md-nav__link">
+        Rect
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mark/rule/" class="md-nav__link">
+        Rule
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mark/text/" class="md-nav__link">
+        Text
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../composition/">View Composition</a>
+          
+            <label for="__nav_3_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          View Composition
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../composition/concat/" class="md-nav__link">
+        Concat
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../composition/layer/" class="md-nav__link">
+        Layer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scale/" class="md-nav__link">
+        Scales
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../import/" class="md-nav__link">
+        Importing Views
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expressions/" class="md-nav__link">
+        Expressions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Working with Genomic Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Working with Genomic Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../genomic-data/genomic-coordinates/" class="md-nav__link">
+        Genomic Coordinates
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../genomic-data/examples/" class="md-nav__link">
+        Examples
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../sample-collections/">Working with Sample Collections</a>
+          
+            <label for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Working with Sample Collections
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sample-collections/visualizing/" class="md-nav__link">
+        Visualizing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sample-collections/analyzing/" class="md-nav__link">
+        Analyzing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/" class="md-nav__link">
+        JavaScript API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#indexed-fasta" class="md-nav__link">
+    Indexed FASTA
+  </a>
+  
+    <nav class="md-nav" aria-label="Indexed FASTA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bigwig" class="md-nav__link">
+    BigWig
+  </a>
+  
+    <nav class="md-nav" aria-label="BigWig">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bigbed" class="md-nav__link">
+    BigBed
+  </a>
+  
+    <nav class="md-nav" aria-label="BigBed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bam" class="md-nav__link">
+    BAM
+  </a>
+  
+    <nav class="md-nav" aria-label="BAM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_3" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#axis-ticks" class="md-nav__link">
+    Axis ticks
+  </a>
+  
+    <nav class="md-nav" aria-label="Axis ticks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_4" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_4" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#axis-genome" class="md-nav__link">
+    Axis genome
+  </a>
+  
+    <nav class="md-nav" aria-label="Axis genome">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_5" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_5" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="lazy-data-sources">Lazy Data Sources<a class="headerlink" href="#lazy-data-sources" title="Permanent link">&para;</a></h1>
+<p><em>Lazy</em> data sources load data on-demand in response to user interactions. Unlike
+<a href="../eager/">eager</a> sources, most lazy data sources support indexing, which offers
+the capability to retrieve and load data partially and incrementally, as users
+navigate the genome. This is especially useful for very large datasets that are
+infeasible to load in their entirety.</p>
+<div class="admonition note">
+<p class="admonition-title">How it works</p>
+<p>Lazy data sources observe the scale domains of the view where the data
+source is specified. When the domain changes as a result of an user interaction,
+the data source invokes a request to fetch a new subset of the data. Lazy
+sources need the visual <code>channel</code> to be specified, which is used to determine the
+scale to observe. For genomic data sources, the channel defaults to <code>"x"</code>.</p>
+</div>
+<p>Lazy data sources are specified using the <code>lazy</code> property of the <code>data</code> object.
+Unlike in eager data, the <code>type</code> of the data source must be specified explicitly:</p>
+<div class="highlight"><span class="filename">Example: Specifiying a lazy data source</span><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bigbed&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://hgdownload.soe.ucsc.edu/gbdb/hg38/encode3/ccre/encodeCcreCombined.bb&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="indexed-fasta">Indexed FASTA<a class="headerlink" href="#indexed-fasta" title="Permanent link">&para;</a></h2>
+<p>The <code>"indexedFasta"</code> source enable fast random access to a reference sequence.
+It loads the sequence as three consecutive chuncks that cover and flank the
+currently visible region (domain), allowing the user to rapidly pan the view.
+The chunks are provided as data objects with the following fields: <code>chrom</code>
+(string), <code>start</code> (integer), and <code>sequence</code> (a string of bases).</p>
+<h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>channel</code></dt>
+<dd>
+<p>Which channel's scale domain to monitor.</p>
+<p><strong>Default value:</strong> <code>"x"</code></p>
+</dd>
+<dt><code>indexUrl</code></dt>
+<dd>
+<p>URL of the index file.</p>
+<p><strong>Default value:</strong> <code>url</code> + <code>".fai"</code>.</p>
+</dd>
+<dt><code>url</code> <span class="required">Required</span></dt>
+<dd>URL of the fasta file.</dd>
+<dt><code>windowSize</code></dt>
+<dd>
+<p>Size of each chunk when fetching the fasta file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<p><strong>Default value:</strong> <code>7000</code></p>
+</dd>
+</dl>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>The example below shows how to specify a sequence track using an indexed FASTA
+file. The sequence chunks are split into separate data objects using the
+<a href="../../transform/flatten-sequence/"><code>"flattenSequence"</code></a> transform, and the final
+position of each nucleotide is computed using the
+<a href="../../transform/formula/"><code>"formula"</code></a> transform. Please note that new data are
+fetched only when the user zooms into a region smaller than the window size
+(default: 7000 bp).</p>
+<div><genome-spy-doc-embed height="60" spechidden="true">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;indexedFasta&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://data.genomespy.app/genomes/hg38/hg38.fa&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flattenSequence&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sequence&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;rawPos&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;base&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum.rawPos + datum.start&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pos&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pos&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr7&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20003500</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr7&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20003540</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;base&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;T&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;G&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">&quot;#7BD56C&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;#FF9B9B&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;#86BBF1&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;#FFC56C&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;#7BD56C&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;#FF9B9B&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;#86BBF1&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;#FFC56C&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;#E0E0E0&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;fitToBand&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;paddingX&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;paddingY&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;opacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;flushX&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;tooltip&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;black&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;base&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
+<a href="https://github.com/GMOD/indexedfasta-js">indexedfasta-js</a> library.</p>
+<h2 id="bigwig">BigWig<a class="headerlink" href="#bigwig" title="Permanent link">&para;</a></h2>
+<p>The <code>"bigwig"</code> source enables the retrieval of dense, continuous data, such as
+coverage or other signal data stored in BigWig files. It behaves similarly to
+the indexed FASTA source, loading the data in chunks that cover and flank the
+currently visible region. However, the window size automatically adapts to the
+zoom level, and data are fetched in higher resolution when zooming in. The data
+source provides data objects with the following fields: <code>chrom</code> (string),
+<code>start</code> (integer), <code>end</code> (integer), and <code>score</code> (number).</p>
+<h3 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>channel</code></dt>
+<dd>
+<p>Which channel's scale domain to monitor.</p>
+<p><strong>Default value:</strong> <code>"x"</code></p>
+</dd>
+<dt><code>pixelsPerBin</code></dt>
+<dd>
+<p>The approximate minimum width of each data bin, in pixels.</p>
+<p><strong>Default value:</strong> <code>2</code></p>
+</dd>
+<dt><code>url</code> <span class="required">Required</span></dt>
+<dd>URL of the BigWig file.</dd>
+</dl>
+<h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
+<p>The example below shows the GC content of the human genome in 5-base windows.
+When you zoom in, the resolution of the data automatically increases.</p>
+<div><genome-spy-doc-embed height="120" spechidden="true">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bigwig&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://data.genomespy.app/genomes/hg38/hg38.gc5Base.bw&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;score&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GC (%)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;grid&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;gridDash&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
+<a href="https://github.com/GMOD/bbi-js">bbi-js</a> library.</p>
+<h2 id="bigbed">BigBed<a class="headerlink" href="#bigbed" title="Permanent link">&para;</a></h2>
+<p>The <code>"bigbed"</code> source enables the retrieval of segmented data, such as annotated
+genomic regions stored in BigBed files.</p>
+<h3 id="parameters_2">Parameters<a class="headerlink" href="#parameters_2" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>channel</code></dt>
+<dd>
+<p>Which channel's scale domain to monitor.</p>
+<p><strong>Default value:</strong> <code>"x"</code></p>
+</dd>
+<dt><code>url</code> <span class="required">Required</span></dt>
+<dd>URL of the BigBed file.</dd>
+<dt><code>windowSize</code></dt>
+<dd>
+<p>Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<p><strong>Default value:</strong> <code>1000000</code></p>
+</dd>
+</dl>
+<h3 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h3>
+<p>The example below displays "ENCODE Candidate Cis-Regulatory Elements (cCREs) combined from all cell types" dataset for the hg38 genome.</p>
+<div><genome-spy-doc-embed height="70" spechidden="true">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bigbed&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://hgdownload.soe.ucsc.edu/gbdb/hg38/encode3/ccre/encodeCcreCombined.bb&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chromStart&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr7&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">66600000</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr7&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">66800000</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chromEnd&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ucscLabel&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;prom&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;enhP&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;enhD&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;K4m3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;CTCF&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;#FF0000&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#FFA700&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#FFCD00&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#FFAAAA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#00B0F0&quot;</span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
+<a href="https://github.com/GMOD/bbi-js">bbi-js</a> library.</p>
+<h2 id="bam">BAM<a class="headerlink" href="#bam" title="Permanent link">&para;</a></h2>
+<p>The <code>"bam"</code> source is very much work in progress but has a low priority. It
+currently exposes the reads but provides no handling for variants alleles,
+CIGARs, etc. Please send a message to <a href="https://github.com/genome-spy/genome-spy/discussions">GitHub
+Discussions</a> if you are
+interested in this feature.</p>
+<h3 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>channel</code></dt>
+<dd>
+<p>Which channel's scale domain to monitor.</p>
+<p><strong>Default value:</strong> <code>"x"</code></p>
+</dd>
+<dt><code>indexUrl</code></dt>
+<dd>
+<p>URL of the index file.</p>
+<p><strong>Default value:</strong> <code>url</code> + <code>".bai"</code>.</p>
+</dd>
+<dt><code>url</code> <span class="required">Required</span></dt>
+<dd>URL of the BigBed file.</dd>
+<dt><code>windowSize</code></dt>
+<dd>
+<p>Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<p><strong>Default value:</strong> <code>10000</code></p>
+</dd>
+</dl>
+<h3 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h3>
+<div><genome-spy-doc-embed height="350" spechidden="true">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg18&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bam&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://data.genomespy.app/sample-data/bamExample.bam&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;windowSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;resolve&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shared&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;spacing&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;vconcat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
+
+<span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;coverage&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;coverage&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;coverage&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pileup&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_lane&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr21&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">33037317</span><span class="w"> </span><span class="p">},</span>
+<span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr21&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">33039137</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_lane&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;padding&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;reverse&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;zoom&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;strand&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;crimson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;orange&quot;</span><span class="p">]</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
+<a href="https://github.com/GMOD/bam-js">bam-js</a> library.</p>
+<h2 id="axis-ticks">Axis ticks<a class="headerlink" href="#axis-ticks" title="Permanent link">&para;</a></h2>
+<p>The <code>"axisTicks"</code> data source generates a set of ticks for the specified channel.
+While GenomeSpy internally uses this data source for generating axis ticks, you
+also have the flexibility to employ it for creating fully customized axes
+according to your requirements. The data source generates data objects with
+<code>value</code> and <code>label</code> fields.</p>
+<h3 id="parameters_4">Parameters<a class="headerlink" href="#parameters_4" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>axis</code></dt>
+<dd>Optional axis properties</dd>
+<dt><code>channel</code> <span class="required">Required</span></dt>
+<dd>Which channel's scale domain to listen to</dd>
+</dl>
+<h3 id="example_4">Example<a class="headerlink" href="#example_4" title="Permanent link">&para;</a></h3>
+<p>The example below generates approximately three ticks for the <code>x</code> axis.</p>
+<div><genome-spy-doc-embed height="80" spechidden="true">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;axisTicks&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;tickCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;clip&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;zoom&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<h2 id="axis-genome">Axis genome<a class="headerlink" href="#axis-genome" title="Permanent link">&para;</a></h2>
+<p>The <code>axisGenome</code> data source, in fact, does not dynamically update data.
+However, it provides a convenient access to the genome (chromosomes) of the
+given channel, allowing creation of customized chromosome ticks or annotations.
+The data source generates data objects with the following fields: <code>name</code>, <code>size</code>
+(in bp), <code>continuousStart</code> (linearized coordinate), <code>continuousEnd</code>, <code>odd</code>
+(boolean), and <code>number</code> (1-based index).</p>
+<h3 id="parameters_5">Parameters<a class="headerlink" href="#parameters_5" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>channel</code> <span class="required">Required</span></dt>
+<dd>Which channel's scale domain to use</dd>
+</dl>
+<h3 id="example_5">Example<a class="headerlink" href="#example_5" title="Permanent link">&para;</a></h3>
+<div><genome-spy-doc-embed height="150" spechidden="true">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;axisGenome&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;continuousStart&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;continuousEnd&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum.odd&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;fill&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#f0f0f0&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;angle&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-90</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;align&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;right&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;baseline&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;top&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;paddingX&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;paddingY&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+<p></genome-spy-doc-embed></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      
+        <script src="../../../app/index.js"></script>
+      
+    
+  </body>
+</html>

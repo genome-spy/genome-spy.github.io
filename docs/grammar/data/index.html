@@ -12,10 +12,10 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../transform/">
+        <link rel="next" href="eager/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
@@ -23,10 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ded33207.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -61,7 +61,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     
@@ -112,6 +112,8 @@
         </div>
       </div>
     </div>
+    
+      
     
     
     
@@ -304,69 +306,76 @@
     
   
   
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Data Input
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Data Input
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
     
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
-        <li class="md-nav__item">
-  <a href="#named-data-sources" class="md-nav__link">
-    Named Data Sources
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#bioinformatic-formats" class="md-nav__link">
-    Bioinformatic Formats
-  </a>
-  
-    <nav class="md-nav" aria-label="Bioinformatic Formats">
-      <ul class="md-nav__list">
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+      
+      
         
-          <li class="md-nav__item">
-  <a href="#fasta" class="md-nav__link">
-    FASTA
-  </a>
-  
-</li>
+          
+            
+          
         
-      </ul>
-    </nav>
-  
-</li>
+          
+        
+          
+        
       
-    </ul>
-  
-</nav>
       
+        
+        
+        <div class="md-nav__link md-nav__link--index md-nav__link--active">
+          <a href="./">Data Input</a>
+          
+            <label for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Data Input
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eager/" class="md-nav__link">
+        Eager data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lazy/" class="md-nav__link">
+        Lazy data
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1148,41 +1157,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#named-data-sources" class="md-nav__link">
-    Named Data Sources
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bioinformatic-formats" class="md-nav__link">
-    Bioinformatic Formats
-  </a>
-  
-    <nav class="md-nav" aria-label="Bioinformatic Formats">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#fasta" class="md-nav__link">
-    FASTA
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1200,76 +1174,33 @@
 
 
 <h1 id="data-input">Data Input<a class="headerlink" href="#data-input" title="Permanent link">&para;</a></h1>
-<p>GenomeSpy inputs tabular data as <code>"csv"</code>, <code>"tsv"</code>, and <code>"json"</code> files.
-Currently, the only supported bioinformatic file format is non-indexed
-<a href="#fasta"><code>"fasta"</code></a>. Other formats such as <em>BED</em> or <em>BigWig</em> are not directly supported.
-They must be first converted into one of the above tabular formats.</p>
-<p>GenomeSpy can load data from external files or use inline data. You
-can also use generators to generate data on the fly and modify them using
-<a href="../transform/">transforms</a>.</p>
-<p>The <code>data</code> property of the view specification describes a data source. The
-following example loads a tab-delimited file. By default, the format is inferred
-from the file extension. However, in bioinformatics, CSV files are often
-actually tab-delimited and the <code>"tsv"</code> format must be specified explicitly:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fileWithTabs.csv&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tsv&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>With the exception of the unsupported geographical formats, the data property of
-GenomeSpy is identical to Vega-Lite's
-<a href="https://vega.github.io/vega-lite/docs/data.html">data</a> property.</p>
-<div class="admonition warning">
-<p class="admonition-title">Type inference</p>
-<p>GenomeSpy uses
-<a href="https://github.com/vega/vega/tree/master/packages/vega-loader">vega-loader</a>
-to parse tabular data and infer its data types. Vega-loader is sometimes
-overly eager to interpret strings as a dates. In such cases, the field types
-need to be specified explicitly. On the other hand, explicit type
-specification also gives a significant performance boost to parsing
-performance.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Handling empty (NA) values</p>
-<p>Empty or missing values must be presented as <strong>empty strings</strong> instead of <code>NA</code>
-that R writes by default. Otherwise type inference fails for numeric fields.</p>
-</div>
-<h2 id="named-data-sources">Named Data Sources<a class="headerlink" href="#named-data-sources" title="Permanent link">&para;</a></h2>
-<p>Data can be added or updated at runtime using the <a href="../../api/">API</a>. Data sources
-are referenced by a name, which is passed to the <code>updateNamedData</code> method:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dynamicData&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="s2">&quot;#container&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">spec</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">updateNamedData</span><span class="p">(</span><span class="s2">&quot;dynamicData&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="p">},</span>
-<span class="p">]);</span>
-</code></pre></div>
-<p>For practical examples, check the
-<a href="https://github.com/genome-spy/genome-spy/tree/master/packages/embed-examples">embed-examples</a>
-package.</p>
-<h2 id="bioinformatic-formats">Bioinformatic Formats<a class="headerlink" href="#bioinformatic-formats" title="Permanent link">&para;</a></h2>
-<h3 id="fasta">FASTA<a class="headerlink" href="#fasta" title="Permanent link">&para;</a></h3>
-<p>The type of <em>FASTA</em> format is <code>"fasta"</code> as shown in the example below:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;16SRNA_Deino_87seq_copy.aln&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fasta&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The FASTA loader produces data objects with two fields: <code>"identifier"</code> and
-<code>"sequence"</code>. With the <a href="../transform/flatten-sequence/"><code>"flattenSequence"</code></a>
-transform you can split the sequences into individual bases (one object per
-base) for easier visualization.</p>
+<p>Like <a href="https://vega.github.io/vega-lite/docs/data.html">Vega-Lite's data model</a>,
+GenomeSpy utilizes a tabular data structure as its fundamental data model,
+resembling a spreadsheet or database table. Each data set in GenomeSpy is
+considered to consist of a set of records, each containing various named data
+fields.</p>
+<p>In GenomeSpy, the <code>data</code> property within a view specification describes the
+data source. In a hierarchically <a href="../composition/">composed</a> view
+specification, the views inherit the data, which may be further
+<a href="../transform/">transformed</a>, from their parent views. However, each
+view can also override the inherited data.</p>
+<p>Non-indexed <em><a href="eager/">eager</a></em> data, which is fully loaded during the
+visualization initialization stage, can be provided as inline data (<code>values</code>) or
+by specifying a URL from which the data can be loaded (<code>url</code>). Additionally, you
+can use a <code>sequence</code> generator for generating sequences of numbers.</p>
+<p>GenomeSpy provides several <em><a href="lazy/">lazy</a></em> data sources that load data
+on-demand in response to user interactions to support large genomic data sets
+comprising millions of records. These data sources enable easy handling of
+standard bioinformatic data formats such as <a href="lazy/#indexed-fasta">indexed
+FASTA</a> and <a href="lazy/#bigwig">BigWig</a>.</p>
+<p>Furthermore, GenomeSpy enables the creation of an empty data source with a given
+<code>name</code>. This data source can be dynamically updated using the
+<a href="eager/#named-data">API</a>, making it particularly useful when embedding
+GenomeSpy in web applications.</p>
+<ul>
+<li><a href="eager/">Eager data</a></li>
+<li><a href="lazy/">Lazy data</a></li>
+</ul>
 
 
 
@@ -1310,7 +1241,7 @@ base) for easier visualization.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.51198bba.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
       
         <script src="../../app/index.js"></script>
       

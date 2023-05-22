@@ -70,6 +70,42 @@
           "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
           "type": "string"
         },
+        "grid": {
+          "description": "A boolean flag indicating if grid lines should be included as part of the axis.\n\n__Default value:__ `false`",
+          "type": "boolean"
+        },
+        "gridCap": {
+          "description": "The stroke cap for the grid line's ending style. One of `\"butt\"`, `\"round\"` or `\"square\"`.\n\n__Default value:__ `\"butt\"`",
+          "enum": [
+            "butt",
+            "round",
+            "square"
+          ],
+          "type": "string"
+        },
+        "gridColor": {
+          "description": "Color of grid lines.\n\n__Default value:__ `lightgray`",
+          "type": "string"
+        },
+        "gridDash": {
+          "description": "An array of alternating [stroke, space] lengths for dashed grid mark lines.",
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "gridDashOffset": {
+          "description": "The pixel offset at which to start drawing with the grid mark dash array.",
+          "type": "number"
+        },
+        "gridOpacity": {
+          "description": "The opacity of the grid lines.\n\n__Default value:__ `1`",
+          "type": "number"
+        },
+        "gridWidth": {
+          "description": "Width of the grid lines.\n\n__Default value:__ `1`",
+          "type": "number"
+        },
         "labelAlign": {
           "$ref": "#/definitions/Align",
           "description": "Horizontal text alignment of axis tick labels, overriding the default setting for the current axis orientation."
@@ -221,6 +257,24 @@
       },
       "type": "object"
     },
+    "AxisGenomeData": {
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/PrimaryPositionalChannel",
+          "description": "Which channel's scale domain to use"
+        },
+        "type": {
+          "const": "axisGenome",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "channel"
+      ],
+      "type": "object"
+    },
     "AxisOrient": {
       "enum": [
         "top",
@@ -230,6 +284,58 @@
       ],
       "type": "string"
     },
+    "AxisTicksData": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "$ref": "#/definitions/Axis",
+          "description": "Optional axis properties"
+        },
+        "channel": {
+          "$ref": "#/definitions/PrimaryPositionalChannel",
+          "description": "Which channel's scale domain to listen to"
+        },
+        "type": {
+          "const": "axisTicks",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "channel"
+      ],
+      "type": "object"
+    },
+    "BamData": {
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/PrimaryPositionalChannel",
+          "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
+        },
+        "indexUrl": {
+          "description": "URL of the index file.\n\n__Default value:__ `url` + `\".bai\"`.",
+          "type": "string"
+        },
+        "type": {
+          "const": "bam",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL of the BigBed file.",
+          "type": "string"
+        },
+        "windowSize": {
+          "description": "Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.\n\n__Default value:__ `10000`",
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "url"
+      ],
+      "type": "object"
+    },
     "Baseline": {
       "enum": [
         "top",
@@ -238,6 +344,58 @@
         "alphabetic"
       ],
       "type": "string"
+    },
+    "BigBedData": {
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/PrimaryPositionalChannel",
+          "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
+        },
+        "type": {
+          "const": "bigbed",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL of the BigBed file.",
+          "type": "string"
+        },
+        "windowSize": {
+          "description": "Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.\n\n__Default value:__ `1000000`",
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "url"
+      ],
+      "type": "object"
+    },
+    "BigWigData": {
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/PrimaryPositionalChannel",
+          "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
+        },
+        "pixelsPerBin": {
+          "description": "The approximate minimum width of each data bin, in pixels.\n\n__Default value:__ `2`",
+          "type": "number"
+        },
+        "type": {
+          "const": "bigwig",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL of the BigWig file.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "url"
+      ],
+      "type": "object"
     },
     "Channel": {
       "anyOf": [
@@ -751,7 +909,7 @@
           "$ref": "#/definitions/DynamicCallbackData"
         },
         {
-          "$ref": "#/definitions/DynamicData"
+          "$ref": "#/definitions/LazyData"
         }
       ]
     },
@@ -804,27 +962,6 @@
       },
       "required": [
         "dynamicCallbackSource"
-      ],
-      "type": "object"
-    },
-    "DynamicData": {
-      "additionalProperties": false,
-      "properties": {
-        "dynamicSource": {
-          "description": "For internal use.",
-          "type": "boolean"
-        },
-        "format": {
-          "$ref": "#/definitions/DataFormat",
-          "description": "An object that specifies the format for parsing the data."
-        },
-        "name": {
-          "description": "Provide a placeholder name and bind data at runtime.",
-          "type": "string"
-        }
-      },
-      "required": [
-        "dynamicSource"
       ],
       "type": "object"
     },
@@ -1461,6 +1598,36 @@
       ],
       "type": "object"
     },
+    "IndexedFastaData": {
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/PrimaryPositionalChannel",
+          "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
+        },
+        "indexUrl": {
+          "description": "URL of the index file.\n\n__Default value:__ `url` + `\".fai\"`.",
+          "type": "string"
+        },
+        "type": {
+          "const": "indexedFasta",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL of the fasta file.",
+          "type": "string"
+        },
+        "windowSize": {
+          "description": "Size of each chunk when fetching the fasta file. Data is only fetched when the length of the visible domain smaller than the window size.\n\n__Default value:__ `7000`",
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "url"
+      ],
+      "type": "object"
+    },
     "InlineData": {
       "additionalProperties": false,
       "properties": {
@@ -1699,6 +1866,40 @@
         "layer"
       ],
       "type": "object"
+    },
+    "LazyData": {
+      "additionalProperties": false,
+      "properties": {
+        "lazy": {
+          "$ref": "#/definitions/LazyDataParams"
+        }
+      },
+      "required": [
+        "lazy"
+      ],
+      "type": "object"
+    },
+    "LazyDataParams": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/AxisTicksData"
+        },
+        {
+          "$ref": "#/definitions/AxisGenomeData"
+        },
+        {
+          "$ref": "#/definitions/IndexedFastaData"
+        },
+        {
+          "$ref": "#/definitions/BigWigData"
+        },
+        {
+          "$ref": "#/definitions/BigBedData"
+        },
+        {
+          "$ref": "#/definitions/BamData"
+        }
+      ]
     },
     "LinearizeGenomicCoordinateParams": {
       "additionalProperties": false,
@@ -2873,11 +3074,12 @@
       "type": "object"
     },
     "ResolutionBehavior": {
-      "description": "`\"independent\"` and `\"shared\"` behave similarly to Vega-Lite. `\"excluded\"` behaves like `\"shared\"`, but is not pulled towards the root.",
+      "description": "`\"independent\"` and `\"shared\"` behave similarly to Vega-Lite. `\"excluded\"` behaves like `\"shared\"`, but is not pulled towards the root. `\"forced\"` behaves like `\"shared\"`, but is forced towards the root even if the parent has `\"independent\"` behavior.",
       "enum": [
         "independent",
         "shared",
-        "excluded"
+        "excluded",
+        "forced"
       ],
       "type": "string"
     },
