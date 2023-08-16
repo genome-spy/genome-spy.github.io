@@ -1253,6 +1253,52 @@
       ],
       "type": "object"
     },
+    "FlattenParams": {
+      "additionalProperties": false,
+      "properties": {
+        "as": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "The output field name(s) for the flattened field.\n\n**Default:** the input fields."
+        },
+        "fields": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/definitions/Field"
+              },
+              "type": "array"
+            },
+            {
+              "$ref": "#/definitions/Field"
+            }
+          ],
+          "description": "The field(s) to flatten. If no field is defined, the data object itself is treated as an array to be flattened."
+        },
+        "index": {
+          "description": "The output field name for the zero-based index of the array values. If unspecified, an index field is not added.",
+          "type": "string"
+        },
+        "type": {
+          "const": "flatten",
+          "description": "The type of the transform to be applied",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
     "FlattenSequenceParams": {
       "additionalProperties": false,
       "properties": {
@@ -1370,6 +1416,40 @@
       },
       "required": [
         "name"
+      ],
+      "type": "object"
+    },
+    "Gff3Data": {
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/PrimaryPositionalChannel",
+          "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
+        },
+        "debounceDomainChange": {
+          "description": "The debounce time for domain changes, in milliseconds. Debouncing prevents data fetches while the user is still panning around.\n\n__Default value:__ `200`",
+          "type": "number"
+        },
+        "indexUrl": {
+          "description": "Url of the tabix index file.\n\n__Default value:__ `url` + `\".tbi\"`.",
+          "type": "string"
+        },
+        "type": {
+          "const": "gff3",
+          "type": "string"
+        },
+        "url": {
+          "description": "Url of the bgzip compressed file.",
+          "type": "string"
+        },
+        "windowSize": {
+          "description": "Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.\n\n__Default value:__ `30000000`",
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "url"
       ],
       "type": "object"
     },
@@ -1878,6 +1958,9 @@
         },
         {
           "$ref": "#/definitions/BamData"
+        },
+        {
+          "$ref": "#/definitions/Gff3Data"
         }
       ]
     },
@@ -5024,6 +5107,9 @@
         },
         {
           "$ref": "#/definitions/FilterScoredLabelsParams"
+        },
+        {
+          "$ref": "#/definitions/FlattenParams"
         },
         {
           "$ref": "#/definitions/FlattenCompressedExonsParams"
