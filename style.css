@@ -275,3 +275,11 @@ ul.icon-list li {
     padding: 0;
   }
 }
+
+ul.publication-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding-left: 0;
+  gap: 0.5em;
+}
