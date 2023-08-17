@@ -30,11 +30,13 @@
 
 :root {
   --brand-color-dark: #3e8cb6;
+  --text-color: black;
 }
 
 body {
   font-family: "Lato", sans-serif;
   margin: 0;
+  color: var(--text-color);
 }
 
 p,
@@ -49,7 +51,7 @@ p:first-child {
 h2,
 h3 {
   font-weight: normal;
-  margin-top: 1.5em;
+  margin-top: 2em;
   margin-bottom: 0.5em;
 }
 
@@ -128,13 +130,32 @@ section:not(.dark) + section:not(.dark) {
   font-size: clamp(16px, 2.2vw, 22px);
 }
 
-#building-blocks > figure {
+#building-blocks > a {
+  display: block;
+
+  color: var(--text-color);
+
   margin-top: 30px;
   margin-bottom: 30px;
+
+  transition: 0.2s ease-in-out;
+  outline-color: rgba(255, 255, 255, 0);
+  outline-width: 3px;
+  outline-style: solid;
+  outline-offset: 0.5em;
 }
 
-#building-blocks > figure:last-child {
+#building-blocks > a:last-child {
   margin-bottom: 20px;
+}
+
+#building-blocks > a:hover {
+  outline-color: rgba(127, 187, 221, 1);
+  text-decoration: none;
+}
+
+#building-blocks figure {
+  margin: 0;
 }
 
 #building-blocks img {
@@ -145,16 +166,16 @@ section:not(.dark) + section:not(.dark) {
   margin-right: 0.3em;
 }
 
-#building-blocks .flex-figure:nth-child(2n + 1) {
+#building-blocks > a:nth-child(2n + 1) figure {
   flex-direction: row-reverse;
 }
 
-#building-blocks .flex-figure:nth-child(2n + 1) picture {
+#building-blocks > a:nth-child(2n + 1) figure picture {
   margin-left: 40px;
   margin-right: 0;
 }
 
-#building-blocks .flex-figure:nth-child(2n) picture {
+#building-blocks > a:nth-child(2n) figure picture {
   margin-left: 0;
   margin-right: 40px;
 }

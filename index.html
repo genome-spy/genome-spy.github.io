@@ -69,61 +69,74 @@
     <section id="building-blocks">
         <h2>The Building Blocks</h2>
 
-        <figure class="flex-figure">
-            <picture><img src="img/block-data.svg" alt="data" /></picture>
-            <figcaption>
-                <strong>Your data:</strong>
-                Currently supported formats: CSV, TSV, JSON, FASTA, indexed FASTA, BigWig, BigBed, and GFF3.
-            </figcaption>
-        </figure>
+        <a href="docs/grammar/data/">
+            <figure class="flex-figure">
+                <picture><img src="img/block-data.svg" alt="data" /></picture>
+                <figcaption>
+                    <strong>Your data:</strong>
+                    Currently supported formats: CSV, TSV, JSON, FASTA, indexed FASTA, BigWig, BigBed, and GFF3.
+                </figcaption>
+            </figure>
+        </a>
 
-        <figure class="flex-figure">
-            <picture><img src="img/block-transform.svg" alt="transform" /></picture>
-            <figcaption><strong>Transformations:</strong> Filter and derive data, perform computations such as
-                <em>pileup</em> or
-                <em>coverage</em>.
-            </figcaption>
-        </figure>
+        <a href="docs/grammar/transform/">
+            <figure class="flex-figure">
+                <picture><img src="img/block-transform.svg" alt="transform" /></picture>
+                <figcaption><strong>Transformations:</strong> Filter and derive data, perform computations such as
+                    <em>pileup</em> or
+                    <em>coverage</em>.
+                </figcaption>
+            </figure>
+        </a>
 
-        <figure class="flex-figure">
-            <picture><img src="img/block-scale.svg" alt="scale" /></picture>
-            <figcaption><strong>Scales:</strong> Make the data dimensions suitable for visual representation.
-            </figcaption>
-        </figure>
+        <a href="docs/grammar/scale/">
+            <figure class="flex-figure">
+                <picture><img src="img/block-scale.svg" alt="scale" /></picture>
+                <figcaption><strong>Scales:</strong> Make the data dimensions suitable for visual representation.
+                </figcaption>
+            </figure>
+        </a>
 
-        <figure class="flex-figure">
-            <picture><img src="img/block-mark.svg" alt="mark" /></picture>
-            <figcaption>
-                <strong>Graphical marks:</strong> Use the <em>point</em> mark for a scatter plot or mutations,
-                adapt the <em>rect</em> mark for a bar chart or genomic segments.
-            </figcaption>
-        </figure>
+        <a href="docs/grammar/mark/">
+            <figure class="flex-figure">
+                <picture><img src="img/block-mark.svg" alt="mark" /></picture>
+                <figcaption>
+                    <strong>Graphical marks:</strong> Use the <em>point</em> mark for a scatter plot or mutations,
+                    adapt the <em>rect</em> mark for a bar chart or genomic segments.
+                </figcaption>
+            </figure>
+        </a>
 
-        <figure class="flex-figure">
-            <picture><img src="img/block-channel.svg" alt="channel" /></picture>
-            <figcaption>
-                <strong>Visual channels:</strong> Map the scale-transformed data to the properties of the marks.
-                For example: position, size, color, and symbol.
-            </figcaption>
-        </figure>
+        <a href="docs/grammar/mark/#channels">
+            <figure class="flex-figure">
+                <picture><img src="img/block-channel.svg" alt="channel" /></picture>
+                <figcaption>
+                    <strong>Visual channels:</strong> Map the scale-transformed data to the properties of the marks.
+                    For example: position, size, color, and symbol.
+                </figcaption>
+            </figure>
+        </a>
 
-        <figure class="flex-figure">
-            <picture><img src="img/block-view-composition.svg" alt="view composition" /></picture>
-            <figcaption>
-                <strong>View composition:</strong> Combine multiple views, optionally sharing data and scales.
-                Concatenate, layer, and facet.
-            </figcaption>
-        </figure>
+        <a href="docs/grammar/composition/">
+            <figure class="flex-figure">
+                <picture><img src="img/block-view-composition.svg" alt="view composition" /></picture>
+                <figcaption>
+                    <strong>View composition:</strong> Combine multiple views, optionally sharing data and scales.
+                    Concatenate, layer, and facet.
+                </figcaption>
+            </figure>
+        </a>
 
-        <figure class="flex-figure">
-            <picture><img src="img/block-spec.svg" alt="view spec" /></picture>
-            <figcaption>
-                <strong>View specification:</strong> Put everything together using the grammar.
-                GenomeSpy's visualization grammar is <strong>heavily</strong> inspired by
-                <a href="https://vega.github.io/vega-lite/">Vega-Lite</a>, extending it with
-                functionalities often needed with genomic data.
-            </figcaption>
-        </figure>
+        <a href="docs/grammar/">
+            <figure class="flex-figure">
+                <picture><img src="img/block-spec.svg" alt="view spec" /></picture>
+                <figcaption>
+                    <strong>View specification:</strong> Put everything together using the grammar.
+                    GenomeSpy's visualization grammar is <strong>heavily</strong> inspired by
+                    Vega-Lite, extending it with functionalities often needed with genomic data.
+                </figcaption>
+            </figure>
+        </a>
 
     </section>
 
