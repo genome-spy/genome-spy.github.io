@@ -1,5 +1,4 @@
-// Using https://github.com/fserb/lit-dist
-import { html, render } from "https://unpkg.com/lit-dist/dist/lit.js";
+import { html, render } from "./lit-all.min.js";
 
 const stylesheet = html`
   <style>
@@ -13,12 +12,12 @@ const stylesheet = html`
     }
 
     a {
-        color: #3797ce;
-        text-decoration: none;
+      color: #3797ce;
+      text-decoration: none;
     }
 
     a:hover {
-        text-decoration: underline;
+      text-decoration: underline;
     }
 
     .screenshot {

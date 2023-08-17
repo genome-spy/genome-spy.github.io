@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&text=GenomeSpy&display=swap" rel="stylesheet" />
 
+    <link rel="preload" href="lit-all.min.js" as="script" />
+    <link rel="preload" href="example-card.js" as="script" />
+
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <link rel="icon" type="image/svg+xml" href="img/genomespy-favicon.svg" />
@@ -68,9 +71,10 @@
 
         <figure class="flex-figure">
             <picture><img src="img/block-data.svg" alt="data" /></picture>
-            <figcaption><strong>Your data:</strong> Currently supported formats: CSV, TSV, JSON, FASTA, indexed FASTA,
-                BigWig, and
-                BigBed.</figcaption>
+            <figcaption>
+                <strong>Your data:</strong>
+                Currently supported formats: CSV, TSV, JSON, FASTA, indexed FASTA, BigWig, BigBed, and GFF3.
+            </figcaption>
         </figure>
 
         <figure class="flex-figure">
@@ -234,8 +238,10 @@
                 loss of heterozygosity, and SNPs and INDELs.
             </genome-spy-example>
 
-            <genome-spy-example spec="TCGA_BRCA/tcga_brca.json" img-src="tcga_brca.png">
-                Copy-numbers and SNPs of 1097 TCGA breast cancer samples.
+            <genome-spy-example link="https://csbi.ltdk.helsinki.fi/p/lahtinen_et_al_2023/" img-src="lahtinen_2023.png">
+                Lahtinen, A., Lavikka, K., <em>et al</em>. (2023) Evolutionary states
+                and trajectories characterized by distinct pathways stratify patients
+                with ovarian high grade serous carcinoma.
             </genome-spy-example>
 
             <genome-spy-example link="segmentmodel/" img-src="segmentmodel.png">
