@@ -53,9 +53,14 @@ class GenomeSpyExample extends HTMLElement {
     super();
 
     const specAttr = this.getAttribute("spec");
+    const appAttr = this.getAttribute("app");
     const linkAttr = this.getAttribute("link");
 
-    const linkUrl = specAttr ? "examples/?spec=" + specAttr : linkAttr;
+    const linkUrl = specAttr
+      ? "playground/?spec=../examples/" + specAttr
+      : appAttr
+      ? "examples/?spec=" + appAttr
+      : linkAttr ?? "";
 
     const content = html`
       ${stylesheet}
@@ -73,15 +78,6 @@ class GenomeSpyExample extends HTMLElement {
             <div class="description-text">
               <slot></slot>
             </div>
-            ${
-              specAttr
-                ? html` <div class="spec-link">
-                    <a href="${"examples/" + this.getAttribute("spec")}"
-                      >view spec</a
-                    >
-                  </div>`
-                : ""
-            }
           </div>
         </div>
       </div>

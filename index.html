@@ -223,20 +223,22 @@
         <div id="cards">
 
             <genome-spy-example spec="simple/lollipop.json" img-src="lollipop.png">
-                Layering rule and point marks to create a lollipop plot.
+                Abstract example: Using view composition to superimpose a point mark over
+                a line mark to create a lollipop plot.
             </genome-spy-example>
 
             <genome-spy-example spec="simple/bar.json" img-src="bar.png">
-                Using the rect mark to create a bar chart.
+                Abstract example: Adapting rect and text marks to specify a labeled bar chart.
             </genome-spy-example>
 
             <genome-spy-example spec="simple/heatmap_with_text.json" img-src="heatmap_with_text.png">
-                A heatmap with labels.
+                Abstract example: Using the text mark to add labels to a heatmap. The labels are
+                automatically scaled to fit the cells. Try to zoom in and out!
             </genome-spy-example>
 
             <genome-spy-example spec="tSNE/tsne.json" img-src="tsne.jpg">
-                Visualizing a miserably failed t-SNE attempt. A scatter plot with one and a half
-                million points decorated with some annotations.
+                A scatter plot with one and a half million points decorated with some
+                annotations visualizes a miserably failed t-SNE attempt.
             </genome-spy-example>
 
             <genome-spy-example spec="OCAC/ocac.json" img-src="gwas.png">
@@ -244,18 +246,20 @@
             </genome-spy-example>
 
             <genome-spy-example spec="MSA/msa.json" img-src="msa.png">
-                Multiple sequence alignment. Loading data from a fasta file and
-                displaying it as a scrollable heatmap and a sequence logo.
+                Multiple sequence alignment. Loads data from a fasta file and
+                displays it as a scrollable heatmap and a sequence logo.
             </genome-spy-example>
 
             <genome-spy-example spec="SV/sv.json" img-src="sv.png">
-                An example of structural variation and segmented copy-numbers.
+                A structural variation visualization that uses the link mark to show
+                pretty arcs connecting the breakpoints. There's also some segmented copy-number data.
             </genome-spy-example>
 
-            <genome-spy-example spec="ASCAT/ascat.json" img-src="ascat.png">
-                Displaying copy-number segmentations together with the raw
-                SNPs. The visualization replicates the plot produced by ASCAT,
-                but does it interactively.
+            <genome-spy-example
+                link="https://observablehq.com/@tuner/ascat-copy-number-segmentation?collection=@tuner/genomespy"
+                img-src="ascat.png">
+                An Observable notebook describing how to replicate ASCAT's copy-number segmentation
+                visualization. The visualization is interactive and thoroughly commented.
             </genome-spy-example>
 
             <genome-spy-example spec="GENCODE/gencode.json" img-src="gencode.png">
@@ -264,20 +268,21 @@
                 GFF3 file.
             </genome-spy-example>
 
-            <genome-spy-example spec="PARPiCL/parpicl.json" img-src="parpicl.png">
-                A number of cell-line samples with segmented copy numbers,
-                loss of heterozygosity, and SNPs and INDELs.
+            <genome-spy-example app="PARPiCL/parpicl.json" img-src="parpicl.png">
+                Exploring a sample collection with the GenomeSpy App. The visualization shows
+                several cell-line samples with segmented copy numbers, loss of heterozygosity, and SNPs and INDELs.
             </genome-spy-example>
 
             <genome-spy-example link="https://csbi.ltdk.helsinki.fi/p/lahtinen_et_al_2023/" img-src="lahtinen_2023.png">
-                Lahtinen, A., Lavikka, K., <em>et al</em>. (2023) Evolutionary states
+                GenomeSpy in action: Lahtinen, A., Lavikka, K., <em>et al</em>. (2023) Evolutionary states
                 and trajectories characterized by distinct pathways stratify patients
                 with ovarian high grade serous carcinoma.
             </genome-spy-example>
 
             <genome-spy-example link="segmentmodel/" img-src="segmentmodel.png">
                 SegmentModel Spy. Visualize GATK's copy-number segment models together
-                with read and allelic counts. Uses GenomeSpy as a visualization library.
+                with read and allelic counts. An example of using GenomeSpy as a visualization
+                library in a special-purpose web application.
             </genome-spy-example>
         </div>
     </section>
