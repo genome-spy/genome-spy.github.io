@@ -7,10 +7,17 @@
       format("woff");
 }
 
+:root {
+  --brand-color-dark: #3e8cb6;
+  --text-color: black;
+  --example-card-padding: 15px;
+}
+
 @media (max-width: 500px) {
   :root {
-    --side-padding: 15px;
-    --vertical-padding: 15px;
+    --side-padding: 20px;
+    --vertical-padding: 20px;
+    --example-card-padding: 10px;
   }
 }
 
@@ -26,11 +33,6 @@
     --side-padding: 60px;
     --vertical-padding: 30px;
   }
-}
-
-:root {
-  --brand-color-dark: #3e8cb6;
-  --text-color: black;
 }
 
 body {
@@ -112,7 +114,7 @@ section:not(.dark) + section:not(.dark) {
 #title h1 {
   font-family: "Special Elite", cursive;
   font-weight: normal;
-  font-size: min(10vw, 100px);
+  font-size: min(12vw, 100px);
 
   margin-top: 10px;
   margin-bottom: 10px;
@@ -127,7 +129,7 @@ section:not(.dark) + section:not(.dark) {
 }
 
 #title p {
-  font-size: clamp(16px, 2.2vw, 22px);
+  font-size: clamp(17px, 2.2vw, 22px);
 }
 
 #building-blocks > a {
@@ -149,7 +151,7 @@ section:not(.dark) + section:not(.dark) {
   margin-bottom: 20px;
 }
 
-#building-blocks > a:hover {
+#building-blocks > :is(a:hover, a:focus) {
   outline-color: rgba(127, 187, 221, 1);
   transition-duration: 0.2s;
   text-decoration: none;
@@ -206,14 +208,14 @@ section:not(.dark) + section:not(.dark) {
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
-  padding: 15px;
+  padding: var(--example-card-padding);
   margin-left: 0;
   margin-right: 0;
 }
 
 #cards > * {
   width: 360px;
-  margin: 15px;
+  margin: var(--example-card-padding);
 
   background-color: white;
 
@@ -281,6 +283,11 @@ ul.icon-list li {
 
   #title {
     text-align: center;
+    padding: 40px;
+  }
+
+  #title picture {
+    width: 60%;
   }
 }
 
