@@ -221,19 +221,13 @@
         <!-- <h2>Examples</h2> -->
 
         <div id="cards">
-
-            <genome-spy-example spec="simple/lollipop.json" img-src="lollipop.png">
-                Abstract example: Using view composition to superimpose a point mark over
-                a line mark to create a lollipop plot.
-            </genome-spy-example>
-
             <genome-spy-example spec="simple/bar.json" img-src="bar.png">
-                Abstract example: Adapting rect and text marks to specify a labeled bar chart.
+                Abstract example: Using rect and text marks to specify a labeled bar chart.
             </genome-spy-example>
 
             <genome-spy-example spec="simple/heatmap_with_text.json" img-src="heatmap_with_text.png">
-                Abstract example: Using the text mark to add labels to a heatmap. The labels are
-                automatically scaled to fit the cells. Try to zoom in and out!
+                Abstract example: Using rect and text marks to make a labeled heatmap.
+                The labels are automatically scaled to fit the cells. Try to zoom in and out!
             </genome-spy-example>
 
             <genome-spy-example spec="tSNE/tsne.json" img-src="tsne.jpg">
@@ -255,17 +249,23 @@
                 pretty arcs connecting the breakpoints. There's also some segmented copy-number data.
             </genome-spy-example>
 
-            <genome-spy-example
-                link="https://observablehq.com/@tuner/ascat-copy-number-segmentation?collection=@tuner/genomespy"
-                img-src="ascat.png">
-                An Observable notebook describing how to replicate ASCAT's copy-number segmentation
-                visualization. The visualization is interactive and thoroughly commented.
+            <genome-spy-example spec="simple/bigwig.json" img-src="gc-content.png">
+                GC content of the human genome: One dataset, two visual representations. The data
+                are loaded lazily from a BigWig file and the scale domains are autoscaled
+                to accommodate the region.
             </genome-spy-example>
 
             <genome-spy-example spec="GENCODE/gencode.json" img-src="gencode.png">
                 Using lazy data loading, data transformations, and multiple layers
                 to visualize the GENCODE gene annotation stored in a hierarchical
                 GFF3 file.
+            </genome-spy-example>
+
+            <genome-spy-example
+                link="https://observablehq.com/@tuner/ascat-copy-number-segmentation?collection=@tuner/genomespy"
+                img-src="ascat.png">
+                An Observable notebook describing how to replicate ASCAT's copy-number segmentation
+                visualization. The visualization is interactive and thoroughly commented.
             </genome-spy-example>
 
             <genome-spy-example app="PARPiCL/parpicl.json" img-src="parpicl.png">
