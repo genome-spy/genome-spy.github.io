@@ -1783,10 +1783,33 @@
 using the GenomeSpy app.</p>
 </div>
 <h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
-<p>The app has its own NPM package. To get started, follow the generic <a href="../../getting-started/#html-template">Getting
-Started</a> documentation, but replace the
-<code>@genome-spy/core</code> package with the <code>@genome-spy/app</code> package, and use
-<code>genomeSpyApp.embed(...)</code> instead of <code>genomeSpyEmbed.embed(...)</code>.</p>
+<p>You can use the following HTML template to create a web page for your
+visualization. The template loads the app from a content delivery network
+and the visualization specification from a separate <code>spec.json</code> file placed
+in the same directory. See the <a href="../../getting-started/#local-or-remote-web-server">getting started</a>
+page for more information.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>GenomeSpy<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span>
+      <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
+      <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.37.x/dist/style.css&quot;</span>
+    <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span>
+      <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span>
+      <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.37.x&quot;</span>
+    <span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="nx">genomeSpyApp</span><span class="p">.</span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;spec.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{});</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
 <p>For a complete example, check the
 <a href="https://github.com/genome-spy/website-examples/blob/master/index.html">website-examples</a>
 repository on GitHub.</p>

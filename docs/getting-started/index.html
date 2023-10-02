@@ -1681,10 +1681,21 @@
 
 
 <h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
-<p>There are three ways to get quickly started with GenomeSpy visualizations: the
-Playground app, Observable notebooks, and embedding GenomeSpy on HTML pages.
-More advanced users can use GenomeSpy as a visualization library in web
-applications.</p>
+<p>GenomeSpy is a visualization toolkit for genomic data. More specifically, it is
+a JavaScript library that can be used to create interactive visualizations of
+genomic data in web browsers. To visualize data with GenomeSpy, you need to:</p>
+<ol>
+<li>Have some data to be visualized</li>
+<li>Write or find a <a href="../grammar/">visualization specification</a> that
+   describes how the data should be visualized</li>
+<li>Embed GenomeSpy into a web page and initialize it with the specification and
+   the data</li>
+<li>Open the web page with your web browser</li>
+</ol>
+<p>However, there are three ways to get quickly started with GenomeSpy
+visualizations: the Playground app, Observable notebooks, and embedding
+GenomeSpy on HTML pages. More advanced users can use GenomeSpy as a
+visualization library in web applications.</p>
 <h2 id="playground">Playground<a class="headerlink" href="#playground" title="Permanent link">&para;</a></h2>
 <p>The easiest way to try out GenomeSpy is the <a href="https://genomespy.app/playground/">Playground
 </a> app, which allows you to experiment with
@@ -1703,7 +1714,7 @@ create a web page for the visualization:</p>
 <li>Create an HTML document (web page) by using the example below</li>
 <li>Place the visualization spec and your data files into the same directory
    as the HTML document</li>
-<li>Copy them onto a web server or start a local web server in the directory</li>
+<li>Copy them onto a remote web server or start a local web server in the directory</li>
 </ol>
 <h3 id="local-web-server">Local web server<a class="headerlink" href="#local-web-server" title="Permanent link">&para;</a></h3>
 <p>Python comes with an HTTP server module that can be started from command
@@ -1736,7 +1747,7 @@ version is:</p>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span>
-      <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.36.x&quot;</span>
+      <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.37.x&quot;</span>
     <span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -1755,7 +1766,7 @@ version is:</p>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span>
-      <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.36.x&quot;</span>
+      <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.37.x&quot;</span>
     <span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -1782,10 +1793,18 @@ in the <a href="https://github.com/genome-spy/website-examples">website-examples
 repository. You can clone the repository and launch the examples locally for
 further experimentation.</p>
 <h2 id="using-genomespy-as-a-visualization-library-in-web-applications">Using GenomeSpy as a visualization library in web applications<a class="headerlink" href="#using-genomespy-as-a-visualization-library-in-web-applications" title="Permanent link">&para;</a></h2>
-<p>TODO</p>
-<p>Meanwhile, check the
-<a href="https://github.com/genome-spy/genome-spy/tree/master/packages/embed-examples">embed-examples</a>
-package.</p>
+<p>The <a href="https://www.npmjs.com/package/@genome-spy/core">@genome-spy/core</a> NPM
+package contains a bundled library that can be used on web pages as shown in the
+examples above. In addition, it contains the source code in
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ESM</a>
+format, allowing use with bundlers such as <a href="https://vitejs.dev">Vite</a> and
+<a href="https://webpack.js.org/">Webpack</a>. For examples of such use, see:</p>
+<ul>
+<li>The <a href="https://github.com/genome-spy/genome-spy/tree/master/packages/embed-examples">embed-examples</a>
+  package contains examples of embedding GenomeSpy in web applications and using the API.</li>
+<li><a href="https://github.com/genome-spy/segment-model-spy">SegmentModel Spy</a> is an example
+  of a complete web application that uses GenomeSpy for visualization.</li>
+</ul>
 
 
 
