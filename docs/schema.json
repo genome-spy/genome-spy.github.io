@@ -671,14 +671,15 @@
               "const": "container",
               "type": "string"
             }
-          ]
+          ],
+          "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
         },
         "name": {
           "type": "string"
         },
         "opacity": {
           "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+          "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
@@ -731,6 +732,36 @@
           },
           "type": "array"
         },
+        "viewportHeight": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SizeDef"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "const": "container",
+              "type": "string"
+            }
+          ],
+          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+        },
+        "viewportWidth": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SizeDef"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "const": "container",
+              "type": "string"
+            }
+          ],
+          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+        },
         "visible": {
           "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
           "type": "boolean"
@@ -750,7 +781,8 @@
               "const": "container",
               "type": "string"
             }
-          ]
+          ],
+          "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
         }
       },
       "required": [
@@ -1826,14 +1858,15 @@
               "const": "container",
               "type": "string"
             }
-          ]
+          ],
+          "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
         },
         "name": {
           "type": "string"
         },
         "opacity": {
           "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+          "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
@@ -1886,6 +1919,36 @@
           },
           "type": "array"
         },
+        "viewportHeight": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SizeDef"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "const": "container",
+              "type": "string"
+            }
+          ],
+          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+        },
+        "viewportWidth": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SizeDef"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "const": "container",
+              "type": "string"
+            }
+          ],
+          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+        },
         "visible": {
           "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
           "type": "boolean"
@@ -1905,7 +1968,8 @@
               "const": "container",
               "type": "string"
             }
-          ]
+          ],
+          "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
         }
       },
       "required": [
@@ -2142,7 +2206,8 @@
               "const": "container",
               "type": "string"
             }
-          ]
+          ],
+          "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
         },
         "layer": {
           "items": {
@@ -2162,7 +2227,7 @@
         },
         "opacity": {
           "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+          "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
@@ -2215,6 +2280,36 @@
         "view": {
           "$ref": "#/definitions/ViewBackground"
         },
+        "viewportHeight": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SizeDef"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "const": "container",
+              "type": "string"
+            }
+          ],
+          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+        },
+        "viewportWidth": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SizeDef"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "const": "container",
+              "type": "string"
+            }
+          ],
+          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+        },
         "visible": {
           "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
           "type": "boolean"
@@ -2234,7 +2329,8 @@
               "const": "container",
               "type": "string"
             }
-          ]
+          ],
+          "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
         }
       },
       "required": [
@@ -3558,7 +3654,8 @@
                   "const": "container",
                   "type": "string"
                 }
-              ]
+              ],
+              "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
             },
             "mark": {
               "anyOf": [
@@ -3575,7 +3672,7 @@
             },
             "opacity": {
               "$ref": "#/definitions/ViewOpacityDef",
-              "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+              "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
@@ -3628,6 +3725,36 @@
             "view": {
               "$ref": "#/definitions/ViewBackground"
             },
+            "viewportHeight": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+            },
+            "viewportWidth": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+            },
             "visible": {
               "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
               "type": "boolean"
@@ -3647,7 +3774,8 @@
                   "const": "container",
                   "type": "string"
                 }
-              ]
+              ],
+              "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
             }
           },
           "required": [
@@ -3731,7 +3859,8 @@
                   "const": "container",
                   "type": "string"
                 }
-              ]
+              ],
+              "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
             },
             "layer": {
               "items": {
@@ -3751,7 +3880,7 @@
             },
             "opacity": {
               "$ref": "#/definitions/ViewOpacityDef",
-              "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+              "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
@@ -3804,6 +3933,36 @@
             "view": {
               "$ref": "#/definitions/ViewBackground"
             },
+            "viewportHeight": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+            },
+            "viewportWidth": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+            },
             "visible": {
               "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
               "type": "boolean"
@@ -3823,7 +3982,8 @@
                   "const": "container",
                   "type": "string"
                 }
-              ]
+              ],
+              "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
             }
           },
           "required": [
@@ -3894,184 +4054,15 @@
                   "const": "container",
                   "type": "string"
                 }
-              ]
+              ],
+              "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
             },
             "name": {
               "type": "string"
             },
             "opacity": {
               "$ref": "#/definitions/ViewOpacityDef",
-              "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
-            },
-            "padding": {
-              "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding in pixels.\n\n**Default:* `0`"
-            },
-            "resolve": {
-              "additionalProperties": false,
-              "properties": {
-                "axis": {
-                  "additionalProperties": {
-                    "$ref": "#/definitions/ResolutionBehavior"
-                  },
-                  "properties": {
-                    "default": {
-                      "$ref": "#/definitions/ResolutionBehavior"
-                    }
-                  },
-                  "type": "object"
-                },
-                "scale": {
-                  "additionalProperties": {
-                    "$ref": "#/definitions/ResolutionBehavior"
-                  },
-                  "properties": {
-                    "default": {
-                      "$ref": "#/definitions/ResolutionBehavior"
-                    }
-                  },
-                  "type": "object"
-                }
-              },
-              "type": "object"
-            },
-            "samples": {
-              "$ref": "#/definitions/SampleDef",
-              "description": "Sample metadata definition. If the object is empty, the sample identifiers will be inferred from the data."
-            },
-            "spec": {
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/LayerSpec"
-                },
-                {
-                  "$ref": "#/definitions/UnitSpec"
-                }
-              ],
-              "description": "The view specification to be repeated for each sample."
-            },
-            "stickySummaries": {
-              "type": "boolean"
-            },
-            "title": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "$ref": "#/definitions/Title"
-                }
-              ]
-            },
-            "transform": {
-              "items": {
-                "$ref": "#/definitions/TransformParams"
-              },
-              "type": "array"
-            },
-            "view": {
-              "$ref": "#/definitions/ViewBackground",
-              "description": "An object defining the view background and outline. The background is repeated for each group."
-            },
-            "visible": {
-              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
-              "type": "boolean"
-            },
-            "width": {
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/SizeDef"
-                },
-                {
-                  "type": "number"
-                },
-                {
-                  "$ref": "#/definitions/Step"
-                },
-                {
-                  "const": "container",
-                  "type": "string"
-                }
-              ]
-            }
-          },
-          "required": [
-            "samples",
-            "spec"
-          ],
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "properties": {
-            "$schema": {
-              "type": "string"
-            },
-            "background": {
-              "description": "Background color of the canvas.",
-              "type": "string"
-            },
-            "baseUrl": {
-              "type": "string"
-            },
-            "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
-            },
-            "data": {
-              "$ref": "#/definitions/Data"
-            },
-            "datasets": {
-              "additionalProperties": {
-                "items": {},
-                "type": "array"
-              },
-              "description": "https://vega.github.io/vega-lite/docs/data.html#datasets",
-              "type": "object"
-            },
-            "description": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                }
-              ],
-              "description": "A description of the view. Multiple lines can be provided as an array."
-            },
-            "encoding": {
-              "$ref": "#/definitions/Encoding"
-            },
-            "genome": {
-              "$ref": "#/definitions/GenomeConfig"
-            },
-            "height": {
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/SizeDef"
-                },
-                {
-                  "type": "number"
-                },
-                {
-                  "$ref": "#/definitions/Step"
-                },
-                {
-                  "const": "container",
-                  "type": "string"
-                }
-              ]
-            },
-            "name": {
-              "type": "string"
-            },
-            "opacity": {
-              "$ref": "#/definitions/ViewOpacityDef",
-              "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+              "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
@@ -4137,6 +4128,36 @@
               },
               "type": "array"
             },
+            "viewportHeight": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+            },
+            "viewportWidth": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+            },
             "visible": {
               "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
               "type": "boolean"
@@ -4156,7 +4177,8 @@
                   "const": "container",
                   "type": "string"
                 }
-              ]
+              ],
+              "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
             }
           },
           "required": [
@@ -4240,14 +4262,15 @@
                   "const": "container",
                   "type": "string"
                 }
-              ]
+              ],
+              "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
             },
             "name": {
               "type": "string"
             },
             "opacity": {
               "$ref": "#/definitions/ViewOpacityDef",
-              "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+              "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
@@ -4300,6 +4323,36 @@
               },
               "type": "array"
             },
+            "viewportHeight": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+            },
+            "viewportWidth": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+            },
             "visible": {
               "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
               "type": "boolean"
@@ -4319,7 +4372,8 @@
                   "const": "container",
                   "type": "string"
                 }
-              ]
+              ],
+              "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
             }
           },
           "required": [
@@ -4406,14 +4460,15 @@
                   "const": "container",
                   "type": "string"
                 }
-              ]
+              ],
+              "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
             },
             "name": {
               "type": "string"
             },
             "opacity": {
               "$ref": "#/definitions/ViewOpacityDef",
-              "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+              "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
@@ -4466,6 +4521,36 @@
               },
               "type": "array"
             },
+            "viewportHeight": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+            },
+            "viewportWidth": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+            },
             "visible": {
               "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
               "type": "boolean"
@@ -4485,12 +4570,215 @@
                   "const": "container",
                   "type": "string"
                 }
-              ]
+              ],
+              "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
             }
           },
           "required": [
             "columns",
             "concat"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "$schema": {
+              "type": "string"
+            },
+            "background": {
+              "description": "Background color of the canvas.",
+              "type": "string"
+            },
+            "baseUrl": {
+              "type": "string"
+            },
+            "configurableVisibility": {
+              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "type": "boolean"
+            },
+            "data": {
+              "$ref": "#/definitions/Data"
+            },
+            "datasets": {
+              "additionalProperties": {
+                "items": {},
+                "type": "array"
+              },
+              "description": "https://vega.github.io/vega-lite/docs/data.html#datasets",
+              "type": "object"
+            },
+            "description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              ],
+              "description": "A description of the view. Multiple lines can be provided as an array."
+            },
+            "encoding": {
+              "$ref": "#/definitions/Encoding"
+            },
+            "genome": {
+              "$ref": "#/definitions/GenomeConfig"
+            },
+            "height": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+            },
+            "name": {
+              "type": "string"
+            },
+            "opacity": {
+              "$ref": "#/definitions/ViewOpacityDef",
+              "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
+            },
+            "padding": {
+              "$ref": "#/definitions/PaddingConfig",
+              "description": "Padding in pixels.\n\n**Default:* `0`"
+            },
+            "resolve": {
+              "additionalProperties": false,
+              "properties": {
+                "axis": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                },
+                "scale": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/ResolutionBehavior"
+                  },
+                  "properties": {
+                    "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "samples": {
+              "$ref": "#/definitions/SampleDef",
+              "description": "Sample metadata definition. If the object is empty, the sample identifiers will be inferred from the data."
+            },
+            "spec": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/LayerSpec"
+                },
+                {
+                  "$ref": "#/definitions/UnitSpec"
+                }
+              ],
+              "description": "The view specification to be repeated for each sample."
+            },
+            "stickySummaries": {
+              "type": "boolean"
+            },
+            "title": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "$ref": "#/definitions/Title"
+                }
+              ]
+            },
+            "transform": {
+              "items": {
+                "$ref": "#/definitions/TransformParams"
+              },
+              "type": "array"
+            },
+            "view": {
+              "$ref": "#/definitions/ViewBackground",
+              "description": "An object defining the view background and outline. The background is repeated for each group."
+            },
+            "viewportHeight": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+            },
+            "viewportWidth": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+            },
+            "visible": {
+              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "type": "boolean"
+            },
+            "width": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/SizeDef"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/definitions/Step"
+                },
+                {
+                  "const": "container",
+                  "type": "string"
+                }
+              ],
+              "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+            }
+          },
+          "required": [
+            "samples",
+            "spec"
           ],
           "type": "object"
         }
@@ -4662,14 +4950,15 @@
               "const": "container",
               "type": "string"
             }
-          ]
+          ],
+          "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
         },
         "name": {
           "type": "string"
         },
         "opacity": {
           "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+          "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
@@ -4741,6 +5030,36 @@
           "$ref": "#/definitions/ViewBackground",
           "description": "An object defining the view background and outline. The background is repeated for each group."
         },
+        "viewportHeight": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SizeDef"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "const": "container",
+              "type": "string"
+            }
+          ],
+          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+        },
+        "viewportWidth": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SizeDef"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "const": "container",
+              "type": "string"
+            }
+          ],
+          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+        },
         "visible": {
           "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
           "type": "boolean"
@@ -4760,7 +5079,8 @@
               "const": "container",
               "type": "string"
             }
-          ]
+          ],
+          "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
         }
       },
       "required": [
@@ -5539,7 +5859,8 @@
               "const": "container",
               "type": "string"
             }
-          ]
+          ],
+          "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
         },
         "mark": {
           "anyOf": [
@@ -5556,7 +5877,7 @@
         },
         "opacity": {
           "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+          "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
@@ -5609,6 +5930,36 @@
         "view": {
           "$ref": "#/definitions/ViewBackground"
         },
+        "viewportHeight": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SizeDef"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "const": "container",
+              "type": "string"
+            }
+          ],
+          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+        },
+        "viewportWidth": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SizeDef"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "const": "container",
+              "type": "string"
+            }
+          ],
+          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+        },
         "visible": {
           "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
           "type": "boolean"
@@ -5628,7 +5979,8 @@
               "const": "container",
               "type": "string"
             }
-          ]
+          ],
+          "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
         }
       },
       "required": [
@@ -5712,14 +6064,15 @@
               "const": "container",
               "type": "string"
             }
-          ]
+          ],
+          "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
         },
         "name": {
           "type": "string"
         },
         "opacity": {
           "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:* `1.0`"
+          "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
@@ -5785,6 +6138,36 @@
           },
           "type": "array"
         },
+        "viewportHeight": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SizeDef"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "const": "container",
+              "type": "string"
+            }
+          ],
+          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+        },
+        "viewportWidth": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/SizeDef"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "const": "container",
+              "type": "string"
+            }
+          ],
+          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+        },
         "visible": {
           "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
           "type": "boolean"
@@ -5804,7 +6187,8 @@
               "const": "container",
               "type": "string"
             }
-          ]
+          ],
+          "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
         }
       },
       "required": [
@@ -5899,9 +6283,6 @@
           "$ref": "#/definitions/LayerSpec"
         },
         {
-          "$ref": "#/definitions/SampleSpec"
-        },
-        {
           "$ref": "#/definitions/VConcatSpec"
         },
         {
@@ -5909,6 +6290,9 @@
         },
         {
           "$ref": "#/definitions/ConcatSpec"
+        },
+        {
+          "$ref": "#/definitions/SampleSpec"
         }
       ]
     },

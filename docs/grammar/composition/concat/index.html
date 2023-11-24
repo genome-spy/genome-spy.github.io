@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.12">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4b4a2bd9.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.fad675c6.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.356b1318.min.css">
@@ -1158,7 +1158,9 @@
       
         <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
-    Example
+    <span class="md-ellipsis">
+      Example
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Example">
@@ -1166,21 +1168,27 @@
         
           <li class="md-nav__item">
   <a href="#vertical" class="md-nav__link">
-    Vertical
+    <span class="md-ellipsis">
+      Vertical
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#horizontal" class="md-nav__link">
-    Horizontal
+    <span class="md-ellipsis">
+      Horizontal
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#grid" class="md-nav__link">
-    Grid
+    <span class="md-ellipsis">
+      Grid
+    </span>
   </a>
   
 </li>
@@ -1192,14 +1200,33 @@
       
         <li class="md-nav__item">
   <a href="#child-sizing" class="md-nav__link">
-    Child sizing
+    <span class="md-ellipsis">
+      Child sizing
+    </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Child sizing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scrollable-viewports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scrollable viewports
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#resolve" class="md-nav__link">
-    Resolve
+    <span class="md-ellipsis">
+      Resolve
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Resolve">
@@ -1207,7 +1234,9 @@
         
           <li class="md-nav__item">
   <a href="#shared-axes" class="md-nav__link">
-    Shared axes
+    <span class="md-ellipsis">
+      Shared axes
+    </span>
   </a>
   
 </li>
@@ -1579,7 +1608,9 @@
       
         <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
-    Example
+    <span class="md-ellipsis">
+      Example
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Example">
@@ -1587,21 +1618,27 @@
         
           <li class="md-nav__item">
   <a href="#vertical" class="md-nav__link">
-    Vertical
+    <span class="md-ellipsis">
+      Vertical
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#horizontal" class="md-nav__link">
-    Horizontal
+    <span class="md-ellipsis">
+      Horizontal
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#grid" class="md-nav__link">
-    Grid
+    <span class="md-ellipsis">
+      Grid
+    </span>
   </a>
   
 </li>
@@ -1613,14 +1650,33 @@
       
         <li class="md-nav__item">
   <a href="#child-sizing" class="md-nav__link">
-    Child sizing
+    <span class="md-ellipsis">
+      Child sizing
+    </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Child sizing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scrollable-viewports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scrollable viewports
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#resolve" class="md-nav__link">
-    Resolve
+    <span class="md-ellipsis">
+      Resolve
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Resolve">
@@ -1628,7 +1684,9 @@
         
           <li class="md-nav__item">
   <a href="#shared-axes" class="md-nav__link">
-    Shared axes
+    <span class="md-ellipsis">
+      Shared axes
+    </span>
   </a>
   
 </li>
@@ -1813,12 +1871,40 @@ following example.</p>
 
 </genome-spy-doc-embed></div>
 
+<h3 id="scrollable-viewports">Scrollable viewports<a class="headerlink" href="#scrollable-viewports" title="Permanent link">&para;</a></h3>
+<p>Sometimes the concents of a view are so large that they do not fit into the
+available space. In such cases, the view can be made scrollable by setting an
+explicit size for the view using the <code>viewportWidth</code> and <code>viewportHeight</code>
+properties. They accept the same values as <code>width</code> and <code>height</code> properties except
+for the step size. Scrollable viewports are particularly useful for categorical
+data types (<code>"ordinal"</code> and <code>"nominal"</code>) and respective scales and axes that
+do not support zooming and panning.</p>
+<div><genome-spy-doc-embed height="200">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;viewportHeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;container&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sequence&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;stop&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ordinal&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
 <h2 id="resolve">Resolve<a class="headerlink" href="#resolve" title="Permanent link">&para;</a></h2>
-<p>By default, all channels have independent scales and axes. However, because
+<p>By default, all channels have <code>"independent"</code> scales and axes. However, because
 track-based layouts that resemble genome browsers are such a common use case,
-<code>vconcat</code> has a special treatment for the <code>x</code> channel: if all child views use
-<code>"locus"</code> or <code>"index"</code> data type on the <code>x</code> channel, the scale resolution
-defaults to <code>"shared"</code>. However, axes are still <code>"independent"</code> by default.</p>
+<code>vconcat</code> defaults to <code>"shared"</code> resolution for <code>x</code> channel and <code>hconcat</code>
+defaults to <code>"shared"</code> resolution for <code>y</code> channel.</p>
 <h3 id="shared-axes">Shared axes<a class="headerlink" href="#shared-axes" title="Permanent link">&para;</a></h3>
 <p>Concatenation operators support shared axes on channels that also have shared
 scales. Axis domain line, ticks, and labels are drawn only once for each row or column.
@@ -1891,7 +1977,7 @@ Grid lines are drawn for all participating views.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes"], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.6c14ae12.min.js"></script>
       
         <script src="../../../app/index.js"></script>
       
