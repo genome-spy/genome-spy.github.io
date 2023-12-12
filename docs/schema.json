@@ -2457,12 +2457,20 @@
           "description": "The rotation angle in degrees.\n\n**Default value:** `0`",
           "type": "number"
         },
+        "arcHeightFactor": {
+          "description": "Scaling factor for the `\"arc`\" shape's height. The default value `1.0` produces roughly circular arcs.\n\n**Default value:** `1.0`",
+          "type": "number"
+        },
         "baseline": {
           "$ref": "#/definitions/Baseline",
           "description": "The vertical alignment of the text.  One of `\"top\"`, `\"middle\"`, `\"bottom\"`.\n\n**Default value:** `\"bottom\"`"
         },
         "buildIndex": {
           "description": "Builds and index for efficient rendering of subsets of the data. The data must be sorted by the x coordinate.\n\nTODO: This should be enabled automatically if the data are sorted.",
+          "type": "boolean"
+        },
+        "clampApex": {
+          "description": "Whether the apex of the `\"dome\"` shape is clamped to the viewport edge. When over a half of the dome is located outside the viewport, clamping allows for more accurate reading of the value encoded by the apex' position.\n\n**Default value:** `false`",
           "type": "boolean"
         },
         "clip": {
@@ -2478,10 +2486,6 @@
           "description": "If true, the mark is clipped to the UnitView's rectangle. By default, clipping is enabled for marks that have zoomable positional scales."
         },
         "color": {
-          "type": "string"
-        },
-        "color2": {
-          "description": "TODO",
           "type": "string"
         },
         "cornerRadius": {
@@ -2560,9 +2564,23 @@
           "description": "Should the stroke only grow inwards, e.g, the diameter/outline is not affected by the stroke width. Thus, a point that has a zero size has no visible stroke. This allows strokes to be used with geometric zoom, etc.\n\n**Default value:** `false`",
           "type": "boolean"
         },
+        "linkShape": {
+          "description": "The shape of the link path. Either `\"arc\"`, `\"diagonal\"`, `\"line\"`, or `\"dome\"`.\n\n**Default value:** `\"arc\"`",
+          "enum": [
+            "arc",
+            "diagonal",
+            "line",
+            "dome"
+          ],
+          "type": "string"
+        },
         "logoLetters": {
           "description": "Stretch letters so that they can be used with [sequence logos](https://en.wikipedia.org/wiki/Sequence_logo), etc...",
           "type": "boolean"
+        },
+        "minArcHeight": {
+          "description": "The minimum height of an `\"arc\"` shape. Makes very short links more clearly visible.\n\n**Default value:** `1.5`",
+          "type": "number"
         },
         "minBufferSize": {
           "description": "Minimum size for WebGL buffers (number of data items). Allows for using `bufferSubData()` to update graphics.\n\nThis property is intended for internal use.",
@@ -2580,8 +2598,8 @@
           "description": "Clamps the minimum size-dependent opacity. The property does not affect the `opacity` channel. Valid values are between `0` and `1`.\n\nWhen a rectangle would be smaller than what is specified in `minHeight` and `minWidth`, it is faded out proportionally. Example: a rectangle would be rendered as one pixel wide, but `minWidth` clamps it to five pixels. The rectangle is actually rendered as five pixels wide, but its opacity is multiplied by 0.2. With this setting, you can limit the factor to, for example, 0.5 to keep the rectangles more clearly visible.\n\n**Default value:** `0`",
           "type": "number"
         },
-        "minSagittaLength": {
-          "description": "Minimum length of the arc's sagitta. Makes very short links more clearly visible.\n\n**Default value:** `1.5`",
+        "minPickingSize": {
+          "description": "The minimum stroke width of the links when pointing with the mouse cursor. Allows making very thin links easier to point at.\n\n**Default value:** `3.0`",
           "type": "number"
         },
         "minWidth": {
@@ -2591,16 +2609,20 @@
         "opacity": {
           "type": "number"
         },
+        "orient": {
+          "description": "The orientation of the link path. Either `\"vertical\"` or `\"horizontal\"`. Only applies to diagonal links.\n\n**Default value:** `\"vertical\"`",
+          "enum": [
+            "vertical",
+            "horizontal"
+          ],
+          "type": "string"
+        },
         "paddingX": {
           "description": "The horizontal padding, in pixels, when the `x2` channel is used for ranged text.\n\n**Default value:** `0`",
           "type": "number"
         },
         "paddingY": {
           "description": "The vertical padding, in pixels, when the `y2` channel is used for ranged text.\n\n**Default value:** `0`",
-          "type": "number"
-        },
-        "sagittaScaleFactor": {
-          "description": "Scaling factor of the arc's sagitta. The default value `1.0` produces roughly circular arcs.\n\n**Default value:** `1.0`",
           "type": "number"
         },
         "sampleFacetPadding": {
@@ -2621,10 +2643,6 @@
         },
         "size": {
           "description": "The font size in pixels.\n\n**Default value:** `11`",
-          "type": "number"
-        },
-        "size2": {
-          "description": "TODO",
           "type": "number"
         },
         "squeeze": {
