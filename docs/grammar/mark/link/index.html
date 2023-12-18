@@ -1766,6 +1766,25 @@ roughly circular arcs.</p>
 <p>The minimum height of an <code>"arc"</code> shape. Makes very short links more clearly visible.</p>
 <p><strong>Default value:</strong> <code>1.5</code></p>
 </dd>
+<dt><code>maxChordLength</code></dt>
+<dd>
+<p>Type: Number</p>
+<p>The maximum length of <code>"arc"</code> shape's chord in pixels. The chord is the line segment
+between the two points that define the arc. Limiting the chord length serves two purposes
+when zooming in close enough:
+1) it prevents the arc from becoming a straight line and
+2) it mitigates the limited precision of floating point numbers in arc rendering.</p>
+<p><strong>Default value:</strong> <code>50000</code></p>
+</dd>
+<dt><code>arcFadingDistance</code></dt>
+<dd>
+<p>Type: [Number, Number] | false</p>
+<p>The range of the <code>"arc"</code> shape's fading distance in pixels. This property allows for
+making the arc's opacity fade out as it extends away from the chord. The fading distance
+is interpolated from one to zero between the interval defined by this property.
+Both <code>false</code> and <code>[0, 0]</code> disable fading.</p>
+<p><strong>Default value:</strong> <code>false</code></p>
+</dd>
 <dt><code>segments</code></dt>
 <dd>
 <p>Type: Number</p>

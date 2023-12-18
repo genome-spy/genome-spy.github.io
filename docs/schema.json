@@ -2457,6 +2457,23 @@
           "description": "The rotation angle in degrees.\n\n**Default value:** `0`",
           "type": "number"
         },
+        "arcFadingDistance": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            },
+            {
+              "const": false,
+              "type": "boolean"
+            }
+          ],
+          "description": "The range of the `\"arc\"` shape's fading distance in pixels. This property allows for making the arc's opacity fade out as it extends away from the chord. The fading distance is interpolated from one to zero between the interval defined by this property. Both `false` and `[0, 0]` disable fading.\n\n**Default value:** `false`"
+        },
         "arcHeightFactor": {
           "description": "Scaling factor for the `\"arc`\" shape's height. The default value `1.0` produces roughly circular arcs.\n\n**Default value:** `1.0`",
           "type": "number"
@@ -2577,6 +2594,10 @@
         "logoLetters": {
           "description": "Stretch letters so that they can be used with [sequence logos](https://en.wikipedia.org/wiki/Sequence_logo), etc...",
           "type": "boolean"
+        },
+        "maxChordLength": {
+          "description": "The maximum length of `\"arc\"` shape's chord in pixels. The chord is the line segment between the two points that define the arc. Limiting the chord length serves two purposes when zooming in close enough: 1) it prevents the arc from becoming a straight line and 2) it mitigates the limited precision of floating point numbers in arc rendering.\n\n**Default value:** `50000`",
+          "type": "number"
         },
         "minArcHeight": {
           "description": "The minimum height of an `\"arc\"` shape. Makes very short links more clearly visible.\n\n**Default value:** `1.5`",
