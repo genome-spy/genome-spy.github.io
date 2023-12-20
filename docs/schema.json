@@ -1108,6 +1108,19 @@
       ],
       "type": "object"
     },
+    "ExprRef": {
+      "additionalProperties": false,
+      "properties": {
+        "expr": {
+          "description": "The expression string.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expr"
+      ],
+      "type": "object"
+    },
     "Field": {
       "description": "The name of the field or a JavaScript expression for accessing nested properties. Dots and brackets in the field name must be escaped.",
       "type": "string"
@@ -2470,13 +2483,23 @@
             {
               "const": false,
               "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
             }
           ],
           "description": "The range of the `\"arc\"` shape's fading distance in pixels. This property allows for making the arc's opacity fade out as it extends away from the chord. The fading distance is interpolated from one to zero between the interval defined by this property. Both `false` and `[0, 0]` disable fading.\n\n**Default value:** `false`"
         },
         "arcHeightFactor": {
-          "description": "Scaling factor for the `\"arc`\" shape's height. The default value `1.0` produces roughly circular arcs.\n\n**Default value:** `1.0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Scaling factor for the `\"arc`\" shape's height. The default value `1.0` produces roughly circular arcs.\n\n**Default value:** `1.0`"
         },
         "baseline": {
           "$ref": "#/definitions/Baseline",
@@ -2487,8 +2510,15 @@
           "type": "boolean"
         },
         "clampApex": {
-          "description": "Whether the apex of the `\"dome\"` shape is clamped to the viewport edge. When over a half of the dome is located outside the viewport, clamping allows for more accurate reading of the value encoded by the apex' position.\n\n**Default value:** `false`",
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Whether the apex of the `\"dome\"` shape is clamped to the viewport edge. When over a half of the dome is located outside the viewport, clamping allows for more accurate reading of the value encoded by the apex' position.\n\n**Default value:** `false`"
         },
         "clip": {
           "anyOf": [
@@ -2506,24 +2536,59 @@
           "type": "string"
         },
         "cornerRadius": {
-          "description": "Radius of the rounded corners.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Radius of the rounded corners.\n\n**Default value:** `0`"
         },
         "cornerRadiusBottomLeft": {
-          "description": "Radius of the bottom left rounded corner. Has higher precedence than `cornerRadius`.\n\n**Default value:** (None)",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Radius of the bottom left rounded corner. Has higher precedence than `cornerRadius`.\n\n**Default value:** (None)"
         },
         "cornerRadiusBottomRight": {
-          "description": "Radius of the bottom right rounded corner. Has higher precedence than `cornerRadius`.\n\n**Default value:** (None)",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Radius of the bottom right rounded corner. Has higher precedence than `cornerRadius`.\n\n**Default value:** (None)"
         },
         "cornerRadiusTopLeft": {
-          "description": "Radius of the top left rounded corner. Has higher precedence than `cornerRadius`.\n\n**Default value:** (None)",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Radius of the top left rounded corner. Has higher precedence than `cornerRadius`.\n\n**Default value:** (None)"
         },
         "cornerRadiusTopRight": {
-          "description": "Radius of the top right rounded corner. Has higher precedence than `cornerRadius`.\n\n**Default value:** (None)",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Radius of the top right rounded corner. Has higher precedence than `cornerRadius`.\n\n**Default value:** (None)"
         },
         "dx": {
           "description": "The horizontal offset between the text and its anchor point, in pixels. Applied after the rotation by `angle`.",
@@ -2582,61 +2647,132 @@
           "type": "boolean"
         },
         "linkShape": {
-          "description": "The shape of the link path. Either `\"arc\"`, `\"diagonal\"`, `\"line\"`, or `\"dome\"`.\n\n**Default value:** `\"arc\"`",
-          "enum": [
-            "arc",
-            "diagonal",
-            "line",
-            "dome"
+          "anyOf": [
+            {
+              "const": "arc",
+              "type": "string"
+            },
+            {
+              "const": "diagonal",
+              "type": "string"
+            },
+            {
+              "const": "line",
+              "type": "string"
+            },
+            {
+              "const": "dome",
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
           ],
-          "type": "string"
+          "description": "The shape of the link path. Either `\"arc\"`, `\"diagonal\"`, `\"line\"`, or `\"dome\"`.\n\n**Default value:** `\"arc\"`"
         },
         "logoLetters": {
           "description": "Stretch letters so that they can be used with [sequence logos](https://en.wikipedia.org/wiki/Sequence_logo), etc...",
           "type": "boolean"
         },
         "maxChordLength": {
-          "description": "The maximum length of `\"arc\"` shape's chord in pixels. The chord is the line segment between the two points that define the arc. Limiting the chord length serves two purposes when zooming in close enough: 1) it prevents the arc from becoming a straight line and 2) it mitigates the limited precision of floating point numbers in arc rendering.\n\n**Default value:** `50000`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The maximum length of `\"arc\"` shape's chord in pixels. The chord is the line segment between the two points that define the arc. Limiting the chord length serves two purposes when zooming in close enough: 1) it prevents the arc from becoming a straight line and 2) it mitigates the limited precision of floating point numbers in arc rendering.\n\n**Default value:** `50000`"
         },
         "minArcHeight": {
-          "description": "The minimum height of an `\"arc\"` shape. Makes very short links more clearly visible.\n\n**Default value:** `1.5`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The minimum height of an `\"arc\"` shape. Makes very short links more clearly visible.\n\n**Default value:** `1.5`"
         },
         "minBufferSize": {
           "description": "Minimum size for WebGL buffers (number of data items). Allows for using `bufferSubData()` to update graphics.\n\nThis property is intended for internal use.",
           "type": "number"
         },
         "minHeight": {
-          "description": "The minimum height of a rectangle in pixels. The property clamps rectangles' heights.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The minimum height of a rectangle in pixels. The property clamps rectangles' heights.\n\n**Default value:** `0`"
         },
         "minLength": {
-          "description": "The minimum length of the rule in pixels. Use this property to ensure that very short ranged rules remain visible even when the user zooms out.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The minimum length of the rule in pixels. Use this property to ensure that very short ranged rules remain visible even when the user zooms out.\n\n**Default value:** `0`"
         },
         "minOpacity": {
-          "description": "Clamps the minimum size-dependent opacity. The property does not affect the `opacity` channel. Valid values are between `0` and `1`.\n\nWhen a rectangle would be smaller than what is specified in `minHeight` and `minWidth`, it is faded out proportionally. Example: a rectangle would be rendered as one pixel wide, but `minWidth` clamps it to five pixels. The rectangle is actually rendered as five pixels wide, but its opacity is multiplied by 0.2. With this setting, you can limit the factor to, for example, 0.5 to keep the rectangles more clearly visible.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Clamps the minimum size-dependent opacity. The property does not affect the `opacity` channel. Valid values are between `0` and `1`.\n\nWhen a rectangle would be smaller than what is specified in `minHeight` and `minWidth`, it is faded out proportionally. Example: a rectangle would be rendered as one pixel wide, but `minWidth` clamps it to five pixels. The rectangle is actually rendered as five pixels wide, but its opacity is multiplied by 0.2. With this setting, you can limit the factor to, for example, 0.5 to keep the rectangles more clearly visible.\n\n**Default value:** `0`"
         },
         "minPickingSize": {
-          "description": "The minimum stroke width of the links when pointing with the mouse cursor. Allows making very thin links easier to point at.\n\n**Default value:** `3.0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The minimum stroke width of the links when pointing with the mouse cursor. Allows making very thin links easier to point at.\n\n**Default value:** `3.0`"
         },
         "minWidth": {
-          "description": "The minimum width of a rectangle in pixels. The property clamps rectangles' widths when the viewport is zoomed out.\n\nThis property also reduces flickering of very narrow rectangles when zooming. The value should generally be at least one.\n\n**Default value:** `1`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The minimum width of a rectangle in pixels. The property clamps rectangles' widths when the viewport is zoomed out.\n\nThis property also reduces flickering of very narrow rectangles when zooming. The value should generally be at least one.\n\n**Default value:** `1`"
         },
         "opacity": {
           "type": "number"
         },
         "orient": {
-          "description": "The orientation of the link path. Either `\"vertical\"` or `\"horizontal\"`. Only applies to diagonal links.\n\n**Default value:** `\"vertical\"`",
-          "enum": [
-            "vertical",
-            "horizontal"
+          "anyOf": [
+            {
+              "const": "vertical",
+              "type": "string"
+            },
+            {
+              "const": "horizontal",
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
           ],
-          "type": "string"
+          "description": "The orientation of the link path. Either `\"vertical\"` or `\"horizontal\"`. Only applies to diagonal links.\n\n**Default value:** `\"vertical\"`"
         },
         "paddingX": {
           "description": "The horizontal padding, in pixels, when the `x2` channel is used for ranged text.\n\n**Default value:** `0`",
@@ -2675,13 +2811,24 @@
           "type": "string"
         },
         "strokeCap": {
-          "description": "The style of stroke ends. Available choices: `\"butt\"`, `\"round`\", and `\"square\"`.\n\n**Default value:** `\"butt\"`",
-          "enum": [
-            "butt",
-            "square",
-            "round"
+          "anyOf": [
+            {
+              "const": "butt",
+              "type": "string"
+            },
+            {
+              "const": "square",
+              "type": "string"
+            },
+            {
+              "const": "round",
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
           ],
-          "type": "string"
+          "description": "The style of stroke ends. Available choices: `\"butt\"`, `\"round`\", and `\"square\"`.\n\n**Default value:** `\"butt\"`"
         },
         "strokeDash": {
           "description": "An array of of alternating stroke and gap lengths or `null` for solid strokes.\n\n**Default value:** `null`",
@@ -6310,6 +6457,9 @@
         },
         {
           "$ref": "#/definitions/DynamicOpacity"
+        },
+        {
+          "$ref": "#/definitions/ExprRef"
         }
       ]
     },
