@@ -313,6 +313,18 @@
           "$ref": "#/definitions/PrimaryPositionalChannel",
           "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
         },
+        "debounce": {
+          "description": "Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.\n\n__Default value:__ `200`",
+          "type": "number"
+        },
+        "debounceMode": {
+          "description": "The debounce mode for data updates. If set to `\"domain\"`, domain change events (panning and zooming) will be debounced. If set to `\"window\"`, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the `\"window\"` is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.\n\n__Default value:__ `\"window\"`",
+          "enum": [
+            "domain",
+            "window"
+          ],
+          "type": "string"
+        },
         "indexUrl": {
           "description": "URL of the index file.\n\n__Default value:__ `url` + `\".bai\"`.",
           "type": "string"
@@ -352,6 +364,18 @@
           "$ref": "#/definitions/PrimaryPositionalChannel",
           "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
         },
+        "debounce": {
+          "description": "Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.\n\n__Default value:__ `200`",
+          "type": "number"
+        },
+        "debounceMode": {
+          "description": "The debounce mode for data updates. If set to `\"domain\"`, domain change events (panning and zooming) will be debounced. If set to `\"window\"`, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the `\"window\"` is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.\n\n__Default value:__ `\"window\"`",
+          "enum": [
+            "domain",
+            "window"
+          ],
+          "type": "string"
+        },
         "type": {
           "const": "bigbed",
           "type": "string"
@@ -377,6 +401,18 @@
         "channel": {
           "$ref": "#/definitions/PrimaryPositionalChannel",
           "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
+        },
+        "debounce": {
+          "description": "Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.\n\n__Default value:__ `200`",
+          "type": "number"
+        },
+        "debounceMode": {
+          "description": "The debounce mode for data updates. If set to `\"domain\"`, domain change events (panning and zooming) will be debounced. If set to `\"window\"`, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the `\"window\"` is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.\n\n__Default value:__ `\"window\"`",
+          "enum": [
+            "domain",
+            "window"
+          ],
+          "type": "string"
         },
         "pixelsPerBin": {
           "description": "The approximate minimum width of each data bin, in pixels.\n\n__Default value:__ `2`",
@@ -1786,9 +1822,17 @@
           "$ref": "#/definitions/PrimaryPositionalChannel",
           "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
         },
-        "debounceDomainChange": {
-          "description": "The debounce time for domain changes, in milliseconds. Debouncing prevents data fetches while the user is still panning around.\n\n__Default value:__ `200`",
+        "debounce": {
+          "description": "Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.\n\n__Default value:__ `200`",
           "type": "number"
+        },
+        "debounceMode": {
+          "description": "The debounce mode for data updates. If set to `\"domain\"`, domain change events (panning and zooming) will be debounced. If set to `\"window\"`, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the `\"window\"` is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.\n\n__Default value:__ `\"window\"`",
+          "enum": [
+            "domain",
+            "window"
+          ],
+          "type": "string"
         },
         "indexUrl": {
           "description": "Url of the tabix index file.\n\n__Default value:__ `url` + `\".tbi\"`.",
@@ -2056,6 +2100,18 @@
         "channel": {
           "$ref": "#/definitions/PrimaryPositionalChannel",
           "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
+        },
+        "debounce": {
+          "description": "Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.\n\n__Default value:__ `200`",
+          "type": "number"
+        },
+        "debounceMode": {
+          "description": "The debounce mode for data updates. If set to `\"domain\"`, domain change events (panning and zooming) will be debounced. If set to `\"window\"`, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the `\"window\"` is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.\n\n__Default value:__ `\"window\"`",
+          "enum": [
+            "domain",
+            "window"
+          ],
+          "type": "string"
         },
         "indexUrl": {
           "description": "URL of the index file.\n\n__Default value:__ `url` + `\".fai\"`.",
@@ -2504,10 +2560,6 @@
         "baseline": {
           "$ref": "#/definitions/Baseline",
           "description": "The vertical alignment of the text.  One of `\"top\"`, `\"middle\"`, `\"bottom\"`.\n\n**Default value:** `\"bottom\"`"
-        },
-        "buildIndex": {
-          "description": "Builds and index for efficient rendering of subsets of the data. The data must be sorted by the x coordinate.\n\nTODO: This should be enabled automatically if the data are sorted.",
-          "type": "boolean"
         },
         "clampApex": {
           "anyOf": [

@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
     
     
       
@@ -2080,6 +2080,16 @@ The chunks are provided as data objects with the following fields: <code>chrom</
 <p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
+<dt><code>debounce</code></dt>
+<dd>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<p><strong>Default value:</strong> <code>200</code></p>
+</dd>
+<dt><code>debounceMode</code></dt>
+<dd>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<p><strong>Default value:</strong> <code>"window"</code></p>
+</dd>
 <dt><code>indexUrl</code></dt>
 <dd>
 <p>URL of the index file.</p>
@@ -2196,6 +2206,16 @@ source provides data objects with the following fields: <code>chrom</code> (stri
 <p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
+<dt><code>debounce</code></dt>
+<dd>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<p><strong>Default value:</strong> <code>200</code></p>
+</dd>
+<dt><code>debounceMode</code></dt>
+<dd>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<p><strong>Default value:</strong> <code>"window"</code></p>
+</dd>
 <dt><code>pixelsPerBin</code></dt>
 <dd>
 <p>The approximate minimum width of each data bin, in pixels.</p>
@@ -2248,6 +2268,16 @@ genomic regions stored in BigBed files.</p>
 <dd>
 <p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
+</dd>
+<dt><code>debounce</code></dt>
+<dd>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<p><strong>Default value:</strong> <code>200</code></p>
+</dd>
+<dt><code>debounceMode</code></dt>
+<dd>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
 <dd>URL of the BigBed file.</dd>
@@ -2321,10 +2351,15 @@ example below.</p>
 <p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
-<dt><code>debounceDomainChange</code></dt>
+<dt><code>debounce</code></dt>
 <dd>
-<p>The debounce time for domain changes, in milliseconds. Debouncing prevents data fetches while the user is still panning around.</p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
+</dd>
+<dt><code>debounceMode</code></dt>
+<dd>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
 <dd>
@@ -2645,6 +2680,16 @@ interested in this feature.</p>
 <dd>
 <p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
+</dd>
+<dt><code>debounce</code></dt>
+<dd>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<p><strong>Default value:</strong> <code>200</code></p>
+</dd>
+<dt><code>debounceMode</code></dt>
+<dd>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
 <dd>
