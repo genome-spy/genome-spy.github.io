@@ -433,6 +433,122 @@
       ],
       "type": "object"
     },
+    "BindCheckbox": {
+      "additionalProperties": false,
+      "properties": {
+        "debounce": {
+          "description": "If defined, delays event handling until the specified milliseconds have elapsed since the last event was fired.",
+          "type": "number"
+        },
+        "element": {
+          "$ref": "#/definitions/Element",
+          "description": "An optional CSS selector string indicating the parent element to which the input element should be added. By default, all input elements are added within the parent container of the Vega view."
+        },
+        "input": {
+          "const": "checkbox",
+          "type": "string"
+        },
+        "name": {
+          "description": "By default, the parameter name is used to label input elements. This `name` property can be used instead to specify a custom label for the bound parameter.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input"
+      ],
+      "type": "object"
+    },
+    "BindRadioSelect": {
+      "additionalProperties": false,
+      "properties": {
+        "debounce": {
+          "description": "If defined, delays event handling until the specified milliseconds have elapsed since the last event was fired.",
+          "type": "number"
+        },
+        "element": {
+          "$ref": "#/definitions/Element",
+          "description": "An optional CSS selector string indicating the parent element to which the input element should be added. By default, all input elements are added within the parent container of the Vega view."
+        },
+        "input": {
+          "enum": [
+            "radio",
+            "select"
+          ],
+          "type": "string"
+        },
+        "labels": {
+          "description": "An array of label strings to represent the `options` values. If unspecified, the `options` value will be coerced to a string and used as the label.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "By default, the parameter name is used to label input elements. This `name` property can be used instead to specify a custom label for the bound parameter.",
+          "type": "string"
+        },
+        "options": {
+          "description": "An array of options to select from.",
+          "items": {},
+          "type": "array"
+        }
+      },
+      "required": [
+        "input",
+        "options"
+      ],
+      "type": "object"
+    },
+    "BindRange": {
+      "additionalProperties": false,
+      "properties": {
+        "debounce": {
+          "description": "If defined, delays event handling until the specified milliseconds have elapsed since the last event was fired.",
+          "type": "number"
+        },
+        "element": {
+          "$ref": "#/definitions/Element",
+          "description": "An optional CSS selector string indicating the parent element to which the input element should be added. By default, all input elements are added within the parent container of the Vega view."
+        },
+        "input": {
+          "const": "range",
+          "type": "string"
+        },
+        "max": {
+          "description": "Sets the maximum slider value. Defaults to the larger of the signal value and `100`.",
+          "type": "number"
+        },
+        "min": {
+          "description": "Sets the minimum slider value. Defaults to the smaller of the signal value and `0`.",
+          "type": "number"
+        },
+        "name": {
+          "description": "By default, the parameter name is used to label input elements. This `name` property can be used instead to specify a custom label for the bound parameter.",
+          "type": "string"
+        },
+        "step": {
+          "description": "Sets the minimum slider increment. If undefined, the step size will be automatically determined based on the `min` and `max` values.",
+          "type": "number"
+        }
+      },
+      "required": [
+        "input"
+      ],
+      "type": "object"
+    },
+    "Binding": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/BindCheckbox"
+        },
+        {
+          "$ref": "#/definitions/BindRadioSelect"
+        },
+        {
+          "$ref": "#/definitions/BindRange"
+        }
+      ]
+    },
     "ChannelWithScale": {
       "anyOf": [
         {
@@ -1041,6 +1157,9 @@
       ],
       "type": "object"
     },
+    "Element": {
+      "type": "string"
+    },
     "Encoding": {
       "additionalProperties": false,
       "properties": {
@@ -1267,7 +1386,14 @@
                   "type": "boolean"
                 },
                 "datum": {
-                  "$ref": "#/definitions/Scalar",
+                  "anyOf": [
+                    {
+                      "$ref": "#/definitions/Scalar"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
                   "description": "A constant value in data domain."
                 },
                 "resolutionChannel": {
@@ -1354,8 +1480,15 @@
                   ]
                 },
                 "value": {
-                  "description": "A constant value in visual domain (e.g., `\"red\"` / `\"#0099ff\"`, values between `0` to `1` for opacity).",
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A constant value in visual domain (e.g., `\"red\"` / `\"#0099ff\"`, values between `0` to `1` for opacity)."
                 }
               },
               "required": [
@@ -2773,8 +2906,15 @@
           "description": "The horizontal alignment of the text. One of `\"left\"`, `\"center\"`, or `\"right\"`.\n\n**Default value:** `\"left\"`"
         },
         "angle": {
-          "description": "The rotation angle in degrees.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The rotation angle in degrees.\n\n**Default value:** `0`"
         },
         "arcFadingDistance": {
           "anyOf": [
@@ -2835,7 +2975,14 @@
           "description": "If true, the mark is clipped to the UnitView's rectangle. By default, clipping is enabled for marks that have zoomable positional scales."
         },
         "color": {
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "cornerRadius": {
           "anyOf": [
@@ -2901,16 +3048,30 @@
           "type": "number"
         },
         "fill": {
-          "description": "The fill color",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The fill color"
         },
         "fillGradientStrength": {
           "description": "Gradient strength controls the amount of the gradient eye-candy effect in the fill color. Valid values are between 0 and 1.\n\n**Default value:** `0`",
           "type": "number"
         },
         "fillOpacity": {
-          "description": "The fill opacity. Value between [0, 1].",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The fill opacity. Value between [0, 1]."
         },
         "filled": {
           "description": "Whether the `color` represents the `fill` color (`true`) or the `stroke` color (`false`).",
@@ -3058,7 +3219,14 @@
           "description": "The minimum width of a rectangle in pixels. The property clamps rectangles' widths when the viewport is zoomed out.\n\nThis property also reduces flickering of very narrow rectangles when zooming. The value should generally be at least one.\n\n**Default value:** `1`"
         },
         "opacity": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "orient": {
           "anyOf": [
@@ -3101,16 +3269,30 @@
           "type": "string"
         },
         "size": {
-          "description": "The font size in pixels.\n\n**Default value:** `11`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The font size in pixels.\n\n**Default value:** `11`"
         },
         "squeeze": {
           "description": "If the `squeeze` property is true and secondary positional channels (`x2` and/or `y2`) are used, the text is scaled to fit mark's width and/or height.\n\n**Default value:** `true`",
           "type": "boolean"
         },
         "stroke": {
-          "description": "The stroke color",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The stroke color"
         },
         "strokeCap": {
           "anyOf": [
@@ -3144,12 +3326,26 @@
           "type": "number"
         },
         "strokeOpacity": {
-          "description": "The stroke opacity. Value between [0, 1].",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The stroke opacity. Value between [0, 1]."
         },
         "strokeWidth": {
-          "description": "The stroke width in pixels.",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The stroke width in pixels."
         },
         "text": {
           "$ref": "#/definitions/Scalar",
@@ -3187,20 +3383,48 @@
           "type": "number"
         },
         "x": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "x2": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "xOffset": {
           "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
           "type": "number"
         },
         "y": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "y2": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "yOffset": {
           "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
@@ -3216,7 +3440,14 @@
       "additionalProperties": false,
       "properties": {
         "datum": {
-          "$ref": "#/definitions/Scalar",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scalar"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
           "description": "A constant value in data domain."
         },
         "resolutionChannel": {
@@ -3254,7 +3485,14 @@
       "additionalProperties": false,
       "properties": {
         "datum": {
-          "$ref": "#/definitions/Scalar",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scalar"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
           "description": "A constant value in data domain."
         },
         "resolutionChannel": {
@@ -3710,7 +3948,14 @@
               "type": "number"
             },
             "datum": {
-              "$ref": "#/definitions/Scalar",
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/Scalar"
+                },
+                {
+                  "$ref": "#/definitions/ExprRef"
+                }
+              ],
               "description": "A constant value in data domain."
             },
             "title": {
@@ -3768,7 +4013,14 @@
           "type": "number"
         },
         "datum": {
-          "$ref": "#/definitions/Scalar",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scalar"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
           "description": "A constant value in data domain."
         },
         "resolutionChannel": {
@@ -4166,6 +4418,13 @@
               "$ref": "#/definitions/PaddingConfig",
               "description": "Padding in pixels.\n\n**Default:* `0`"
             },
+            "params": {
+              "description": "Dynamic variables that parameterize a visualization.\n\nFor now, these are only supported in mark properties, i.e., they are not supported in the filter and formula transforms (yet).",
+              "items": {
+                "$ref": "#/definitions/VariableParameter"
+              },
+              "type": "array"
+            },
             "resolve": {
               "additionalProperties": false,
               "properties": {
@@ -4374,6 +4633,13 @@
               "$ref": "#/definitions/PaddingConfig",
               "description": "Padding in pixels.\n\n**Default:* `0`"
             },
+            "params": {
+              "description": "Dynamic variables that parameterize a visualization.\n\nFor now, these are only supported in mark properties, i.e., they are not supported in the filter and formula transforms (yet).",
+              "items": {
+                "$ref": "#/definitions/VariableParameter"
+              },
+              "type": "array"
+            },
             "resolve": {
               "additionalProperties": false,
               "properties": {
@@ -4555,6 +4821,13 @@
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
               "description": "Padding in pixels.\n\n**Default:* `0`"
+            },
+            "params": {
+              "description": "Dynamic variables that parameterize a visualization.\n\nFor now, these are only supported in mark properties, i.e., they are not supported in the filter and formula transforms (yet).",
+              "items": {
+                "$ref": "#/definitions/VariableParameter"
+              },
+              "type": "array"
             },
             "resolve": {
               "additionalProperties": false,
@@ -4764,6 +5037,13 @@
               "$ref": "#/definitions/PaddingConfig",
               "description": "Padding in pixels.\n\n**Default:* `0`"
             },
+            "params": {
+              "description": "Dynamic variables that parameterize a visualization.\n\nFor now, these are only supported in mark properties, i.e., they are not supported in the filter and formula transforms (yet).",
+              "items": {
+                "$ref": "#/definitions/VariableParameter"
+              },
+              "type": "array"
+            },
             "resolve": {
               "additionalProperties": false,
               "properties": {
@@ -4962,6 +5242,13 @@
               "$ref": "#/definitions/PaddingConfig",
               "description": "Padding in pixels.\n\n**Default:* `0`"
             },
+            "params": {
+              "description": "Dynamic variables that parameterize a visualization.\n\nFor now, these are only supported in mark properties, i.e., they are not supported in the filter and formula transforms (yet).",
+              "items": {
+                "$ref": "#/definitions/VariableParameter"
+              },
+              "type": "array"
+            },
             "resolve": {
               "additionalProperties": false,
               "properties": {
@@ -5144,6 +5431,13 @@
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
               "description": "Padding in pixels.\n\n**Default:* `0`"
+            },
+            "params": {
+              "description": "Dynamic variables that parameterize a visualization.\n\nFor now, these are only supported in mark properties, i.e., they are not supported in the filter and formula transforms (yet).",
+              "items": {
+                "$ref": "#/definitions/VariableParameter"
+              },
+              "type": "array"
             },
             "resolve": {
               "additionalProperties": false,
@@ -5731,6 +6025,12 @@
             },
             {
               "type": "string"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/ExprRef"
+              },
+              "type": "array"
             }
           ],
           "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating  minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise).\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
@@ -6044,7 +6344,14 @@
       "additionalProperties": false,
       "properties": {
         "datum": {
-          "$ref": "#/definitions/Scalar",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scalar"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
           "description": "A constant value in data domain."
         },
         "format": {
@@ -6695,11 +7002,18 @@
           ]
         },
         "value": {
-          "description": "A constant value in visual domain (e.g., `\"red\"` / `\"#0099ff\"`, values between `0` to `1` for opacity).",
-          "type": [
-            "string",
-            "null"
-          ]
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "A constant value in visual domain (e.g., `\"red\"` / `\"#0099ff\"`, values between `0` to `1` for opacity)."
         }
       },
       "required": [
@@ -6718,8 +7032,15 @@
           ]
         },
         "value": {
-          "description": "A constant value in visual domain (e.g., `\"red\"` / `\"#0099ff\"`, values between `0` to `1` for opacity).",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "A constant value in visual domain (e.g., `\"red\"` / `\"#0099ff\"`, values between `0` to `1` for opacity)."
         }
       },
       "required": [
@@ -6727,24 +7048,72 @@
       ],
       "type": "object"
     },
+    "VariableParameter": {
+      "additionalProperties": false,
+      "properties": {
+        "bind": {
+          "$ref": "#/definitions/Binding",
+          "description": "Binds the parameter to an external input element such as a slider, selection list or radio button group."
+        },
+        "name": {
+          "description": "A unique name for the variable parameter. Parameter names should be valid JavaScript identifiers: they should contain only alphanumeric characters (or \"$\", or \"_\") and may not start with a digit. Reserved keywords that may not be used as parameter names are: \"datum\".",
+          "type": "string"
+        },
+        "value": {
+          "description": "The [initial value](http://vega.github.io/vega-lite/docs/value.html) of the parameter.\n\n__Default value:__ `undefined`"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object"
+    },
     "ViewBackground": {
       "additionalProperties": false,
       "properties": {
         "fill": {
-          "description": "The fill color",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The fill color"
         },
         "fillOpacity": {
-          "description": "The fill opacity. Value between [0, 1].",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The fill opacity. Value between [0, 1]."
         },
         "stroke": {
-          "description": "The stroke color",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The stroke color"
         },
         "strokeOpacity": {
-          "description": "The stroke opacity. Value between [0, 1].",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The stroke opacity. Value between [0, 1]."
         },
         "strokeWidth": {
           "type": "number"
