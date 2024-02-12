@@ -815,12 +815,15 @@
       "additionalProperties": false,
       "properties": {
         "baseUrl": {
+          "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
           "type": "string"
         },
         "columns": {
+          "description": "The number of columns in the grid.",
           "type": "number"
         },
         "concat": {
+          "description": "Specifies views that will be concatenated into a grid that wraps when the specified number of columns are used.",
           "items": {
             "anyOf": [
               {
@@ -922,7 +925,15 @@
           "type": "object"
         },
         "spacing": {
+          "description": "The gap between the views, in pixels.",
           "type": "number"
+        },
+        "templates": {
+          "additionalProperties": {
+            "$ref": "#/definitions/ViewSpec"
+          },
+          "description": "Templates that can be reused within the view specification by importing them with the template key.",
+          "type": "object"
         },
         "title": {
           "anyOf": [
@@ -2304,6 +2315,7 @@
       "additionalProperties": false,
       "properties": {
         "baseUrl": {
+          "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
           "type": "string"
         },
         "configurableVisibility": {
@@ -2331,6 +2343,7 @@
           "$ref": "#/definitions/Encoding"
         },
         "hconcat": {
+          "description": "Specifies views that will be concatenated horizontally.",
           "items": {
             "anyOf": [
               {
@@ -2408,7 +2421,15 @@
           "type": "object"
         },
         "spacing": {
+          "description": "The gap between the views, in pixels.",
           "type": "number"
+        },
+        "templates": {
+          "additionalProperties": {
+            "$ref": "#/definitions/ViewSpec"
+          },
+          "description": "Templates that can be reused within the view specification by importing them with the template key.",
+          "type": "object"
         },
         "title": {
           "anyOf": [
@@ -2517,11 +2538,22 @@
       ],
       "type": "object"
     },
-    "ImportParams": {
+    "ImportSpec": {
       "additionalProperties": false,
       "properties": {
+        "import": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/UrlImport"
+            },
+            {
+              "$ref": "#/definitions/TemplateImport"
+            }
+          ],
+          "description": "The method to import a specification."
+        },
         "name": {
-          "description": "Name for the imported view. Overrides the name defined in the imported spec.",
+          "description": "The name given to the imported view. This property overrides the name specified in the imported specification.",
           "type": "string"
         },
         "params": {
@@ -2536,19 +2568,7 @@
               "type": "object"
             }
           ],
-          "description": "Dynamic variables that parameterize a visualization. Parameters defined here override the parameters defined in the imported spec."
-        },
-        "url": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ImportSpec": {
-      "additionalProperties": false,
-      "properties": {
-        "import": {
-          "$ref": "#/definitions/ImportParams"
+          "description": "Dynamic variables that parameterize a visualization. Parameters defined here override the parameters defined in the imported specification."
         }
       },
       "required": [
@@ -2703,6 +2723,7 @@
           "type": "array"
         },
         "baseUrl": {
+          "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
           "type": "string"
         },
         "configurableVisibility": {
@@ -2755,6 +2776,9 @@
               },
               {
                 "$ref": "#/definitions/UnitSpec"
+              },
+              {
+                "$ref": "#/definitions/ImportSpec"
               }
             ]
           },
@@ -2804,6 +2828,13 @@
               "type": "object"
             }
           },
+          "type": "object"
+        },
+        "templates": {
+          "additionalProperties": {
+            "$ref": "#/definitions/ViewSpec"
+          },
+          "description": "Templates that can be reused within the view specification by importing them with the template key.",
           "type": "object"
         },
         "title": {
@@ -4508,6 +4539,7 @@
               "type": "string"
             },
             "baseUrl": {
+              "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
               "type": "string"
             },
             "configurableVisibility": {
@@ -4619,6 +4651,13 @@
               },
               "type": "object"
             },
+            "templates": {
+              "additionalProperties": {
+                "$ref": "#/definitions/ViewSpec"
+              },
+              "description": "Templates that can be reused within the view specification by importing them with the template key.",
+              "type": "object"
+            },
             "title": {
               "anyOf": [
                 {
@@ -4720,6 +4759,7 @@
               "type": "string"
             },
             "baseUrl": {
+              "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
               "type": "string"
             },
             "configurableVisibility": {
@@ -4783,6 +4823,9 @@
                   },
                   {
                     "$ref": "#/definitions/UnitSpec"
+                  },
+                  {
+                    "$ref": "#/definitions/ImportSpec"
                   }
                 ]
               },
@@ -4832,6 +4875,13 @@
                   "type": "object"
                 }
               },
+              "type": "object"
+            },
+            "templates": {
+              "additionalProperties": {
+                "$ref": "#/definitions/ViewSpec"
+              },
+              "description": "Templates that can be reused within the view specification by importing them with the template key.",
               "type": "object"
             },
             "title": {
@@ -4922,6 +4972,7 @@
               "type": "string"
             },
             "baseUrl": {
+              "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
               "type": "string"
             },
             "configurableVisibility": {
@@ -5024,7 +5075,15 @@
               "type": "object"
             },
             "spacing": {
+              "description": "The gap between the views, in pixels.",
               "type": "number"
+            },
+            "templates": {
+              "additionalProperties": {
+                "$ref": "#/definitions/ViewSpec"
+              },
+              "description": "Templates that can be reused within the view specification by importing them with the template key.",
+              "type": "object"
             },
             "title": {
               "anyOf": [
@@ -5043,6 +5102,7 @@
               "type": "array"
             },
             "vconcat": {
+              "description": "Specifies views that will be concatenated vertically.",
               "items": {
                 "anyOf": [
                   {
@@ -5124,6 +5184,7 @@
               "type": "string"
             },
             "baseUrl": {
+              "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
               "type": "string"
             },
             "configurableVisibility": {
@@ -5162,6 +5223,7 @@
               "$ref": "#/definitions/GenomeConfig"
             },
             "hconcat": {
+              "description": "Specifies views that will be concatenated horizontally.",
               "items": {
                 "anyOf": [
                   {
@@ -5239,7 +5301,15 @@
               "type": "object"
             },
             "spacing": {
+              "description": "The gap between the views, in pixels.",
               "type": "number"
+            },
+            "templates": {
+              "additionalProperties": {
+                "$ref": "#/definitions/ViewSpec"
+              },
+              "description": "Templates that can be reused within the view specification by importing them with the template key.",
+              "type": "object"
             },
             "title": {
               "anyOf": [
@@ -5326,12 +5396,15 @@
               "type": "string"
             },
             "baseUrl": {
+              "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
               "type": "string"
             },
             "columns": {
+              "description": "The number of columns in the grid.",
               "type": "number"
             },
             "concat": {
+              "description": "Specifies views that will be concatenated into a grid that wraps when the specified number of columns are used.",
               "items": {
                 "anyOf": [
                   {
@@ -5444,7 +5517,15 @@
               "type": "object"
             },
             "spacing": {
+              "description": "The gap between the views, in pixels.",
               "type": "number"
+            },
+            "templates": {
+              "additionalProperties": {
+                "$ref": "#/definitions/ViewSpec"
+              },
+              "description": "Templates that can be reused within the view specification by importing them with the template key.",
+              "type": "object"
             },
             "title": {
               "anyOf": [
@@ -5532,6 +5613,7 @@
               "type": "string"
             },
             "baseUrl": {
+              "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
               "type": "string"
             },
             "configurableVisibility": {
@@ -5650,6 +5732,13 @@
             },
             "stickySummaries": {
               "type": "boolean"
+            },
+            "templates": {
+              "additionalProperties": {
+                "$ref": "#/definitions/ViewSpec"
+              },
+              "description": "Templates that can be reused within the view specification by importing them with the template key.",
+              "type": "object"
             },
             "title": {
               "anyOf": [
@@ -5857,6 +5946,7 @@
       "description": "A view specification for a SampleView. This is only functional in the GenomeSpy app.",
       "properties": {
         "baseUrl": {
+          "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
           "type": "string"
         },
         "configurableVisibility": {
@@ -5964,6 +6054,13 @@
         },
         "stickySummaries": {
           "type": "boolean"
+        },
+        "templates": {
+          "additionalProperties": {
+            "$ref": "#/definitions/ViewSpec"
+          },
+          "description": "Templates that can be reused within the view specification by importing them with the template key.",
+          "type": "object"
         },
         "title": {
           "anyOf": [
@@ -6590,6 +6687,19 @@
       },
       "type": "object"
     },
+    "TemplateImport": {
+      "additionalProperties": false,
+      "properties": {
+        "template": {
+          "description": "Imports a specification from the current view hierarchy, searching first in the current view, then ascending through ancestors.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "template"
+      ],
+      "type": "object"
+    },
     "TextDef<string>": {
       "anyOf": [
         {
@@ -6842,6 +6952,7 @@
           "type": "array"
         },
         "baseUrl": {
+          "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
           "type": "string"
         },
         "configurableVisibility": {
@@ -6940,6 +7051,13 @@
               "type": "object"
             }
           },
+          "type": "object"
+        },
+        "templates": {
+          "additionalProperties": {
+            "$ref": "#/definitions/ViewSpec"
+          },
+          "description": "Templates that can be reused within the view specification by importing them with the template key.",
           "type": "object"
         },
         "title": {
@@ -7053,10 +7171,24 @@
       ],
       "type": "object"
     },
+    "UrlImport": {
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "description": "Imports a specification from the specified URL.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "type": "object"
+    },
     "VConcatSpec": {
       "additionalProperties": false,
       "properties": {
         "baseUrl": {
+          "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
           "type": "string"
         },
         "configurableVisibility": {
@@ -7148,7 +7280,15 @@
           "type": "object"
         },
         "spacing": {
+          "description": "The gap between the views, in pixels.",
           "type": "number"
+        },
+        "templates": {
+          "additionalProperties": {
+            "$ref": "#/definitions/ViewSpec"
+          },
+          "description": "Templates that can be reused within the view specification by importing them with the template key.",
+          "type": "object"
         },
         "title": {
           "anyOf": [
@@ -7167,6 +7307,7 @@
           "type": "array"
         },
         "vconcat": {
+          "description": "Specifies views that will be concatenated vertically.",
           "items": {
             "anyOf": [
               {
