@@ -507,6 +507,41 @@
       ],
       "type": "object"
     },
+    "BindInput": {
+      "additionalProperties": false,
+      "properties": {
+        "autocomplete": {
+          "description": "A hint for form autofill. See the [HTML autocomplete attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for additional information.",
+          "type": "string"
+        },
+        "debounce": {
+          "description": "If defined, delays event handling until the specified milliseconds have elapsed since the last event was fired.",
+          "type": "number"
+        },
+        "description": {
+          "description": "An optional description or help text that is shown below the input element.",
+          "type": "string"
+        },
+        "input": {
+          "description": "The type of input element to use. The valid values are `\"checkbox\"`, `\"radio\"`, `\"range\"`, `\"select\"`, `\"text\"`, `\"number\"`, and `\"color\"`.",
+          "enum": [
+            "text",
+            "number",
+            "color"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "By default, the parameter name is used to label input elements. This `name` property can be used instead to specify a custom label for the bound parameter.",
+          "type": "string"
+        },
+        "placeholder": {
+          "description": "Text that appears in the form control when it has no value set.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BindRadioSelect": {
       "additionalProperties": false,
       "properties": {
@@ -595,6 +630,9 @@
         },
         {
           "$ref": "#/definitions/BindRange"
+        },
+        {
+          "$ref": "#/definitions/BindInput"
         }
       ]
     },
