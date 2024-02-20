@@ -3471,8 +3471,15 @@
           "description": "The vertical padding, in pixels, when the `y2` channel is used for ranged text.\n\n**Default value:** `0`"
         },
         "segments": {
-          "description": "The number of segments in the bézier curve. Affects the rendering quality and performance. Use a higher value for a smoother curve.\n\n**Default value:* `101`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The number of segments in the bézier curve. Affects the rendering quality and performance. Use a higher value for a smoother curve.\n\n**Default value:* `101`"
         },
         "semanticZoomFraction": {
           "anyOf": [
