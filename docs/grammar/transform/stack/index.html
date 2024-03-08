@@ -280,6 +280,8 @@
       
         
       
+        
+      
     
     
     
@@ -1322,6 +1324,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1657,6 +1680,7 @@ applications.</p>
 <dl>
 <dt><code>as</code> <span class="required">Required</span></dt>
 <dd>
+<p>Type: array</p>
 <p>Fields to write the stacked values.</p>
 <p><strong>Default:</strong> <code>["y0", "y1"]</code></p>
 </dd>
@@ -1664,15 +1688,22 @@ applications.</p>
 <dd>The field that contains the base or amino acid. Used for information content calculation when the offset is <code>"information"</code>. The data objects that have <code>null</code> in the baseField are considered gaps and they are taken into account when scaling the the locus' information content.</dd>
 <dt><code>cardinality</code></dt>
 <dd>
+<p>Type: number</p>
 <p>Cardinality, e.g., the number if distinct bases or amino acids. Used for information content calculation when the offset is <code>"information"</code>.</p>
 <p><strong>Default:</strong> <code>4</code></p>
 </dd>
 <dt><code>field</code></dt>
 <dd>The field to stack. If no field is defined, a constant value of one is assumed.</dd>
 <dt><code>groupby</code> <span class="required">Required</span></dt>
-<dd>The fields to be used for forming groups for different stacks.</dd>
+<dd>
+<p>Type: array</p>
+<p>The fields to be used for forming groups for different stacks.</p>
+</dd>
 <dt><code>offset</code></dt>
-<dd>How to offset the values in a stack. <code>"zero"</code> (default) starts stacking at 0. <code>"center"</code> centers the values around zero. <code>"normalize"</code> computes intra-stack percentages and normalizes the values to the range of <code>[0, 1]</code>. <code>"information"</code> computes a layout for a sequence logo. The total height of the stack reflects the group's information content.</dd>
+<dd>
+<p>Type: string</p>
+<p>How to offset the values in a stack. <code>"zero"</code> (default) starts stacking at 0. <code>"center"</code> centers the values around zero. <code>"normalize"</code> computes intra-stack percentages and normalizes the values to the range of <code>[0, 1]</code>. <code>"information"</code> computes a layout for a sequence logo. The total height of the stack reflects the group's information content.</p>
+</dd>
 <dt><code>sort</code></dt>
 <dd>The sort order of data in each stack.</dd>
 </dl>

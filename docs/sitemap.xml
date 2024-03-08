@@ -51,6 +51,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://genomespy.app/docs/grammar/parameters/</loc>
+         <lastmod>2024-03-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://genomespy.app/docs/grammar/scale/</loc>
          <lastmod>2024-03-08</lastmod>
          <changefreq>daily</changefreq>

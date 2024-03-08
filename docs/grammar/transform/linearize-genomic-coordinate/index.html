@@ -280,6 +280,8 @@
       
         
       
+        
+      
     
     
     
@@ -1298,6 +1300,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1609,9 +1632,13 @@ the current <a href="../../../genomic-data/genomic-coordinates/">genome assembly
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code> <span class="required">Required</span></dt>
-<dd>The output field or fields for linearized coordinates.</dd>
+<dd>
+<p>Type: string | string[]</p>
+<p>The output field or fields for linearized coordinates.</p>
+</dd>
 <dt><code>channel</code></dt>
 <dd>
+<p>Type: string</p>
 <p>Get the genome assembly from the scale of the channel.</p>
 <p><strong>Default:</strong> <code>"x"</code></p>
 </dd>
@@ -1619,12 +1646,16 @@ the current <a href="../../../genomic-data/genomic-coordinates/">genome assembly
 <dd>The chromosome/contig field</dd>
 <dt><code>offset</code></dt>
 <dd>
+<p>Type: number | number[]</p>
 <p>An offset or offsets that allow for adjusting the numbering base. The offset is subtracted from the positions.</p>
 <p>GenomeSpy uses internally zero-based indexing with half-open intervals. UCSC-based formats (BED, etc.) generally use this scheme. However, for example, VCF files use one-based indexing and must be adjusted by setting the offset to <code>1</code>.</p>
 <p><strong>Default:</strong> <code>0</code></p>
 </dd>
 <dt><code>pos</code> <span class="required">Required</span></dt>
-<dd>The field or fields that contain intra-chromosomal positions</dd>
+<dd>
+<p>Type: <code>Field</code> | <code>Field</code>[]</p>
+<p>The field or fields that contain intra-chromosomal positions</p>
+</dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>

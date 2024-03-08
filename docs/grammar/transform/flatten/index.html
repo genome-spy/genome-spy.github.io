@@ -280,6 +280,8 @@
       
         
       
+        
+      
     
     
     
@@ -1340,6 +1342,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1694,13 +1717,20 @@ fields from the corresponding input object.</p>
 <dl>
 <dt><code>as</code></dt>
 <dd>
+<p>Type: string[] | string</p>
 <p>The output field name(s) for the flattened field.</p>
 <p><strong>Default:</strong> the input fields.</p>
 </dd>
 <dt><code>fields</code></dt>
-<dd>The field(s) to flatten. If no field is defined, the data object itself is treated as an array to be flattened.</dd>
+<dd>
+<p>Type: <code>Field</code>[] | <code>Field</code></p>
+<p>The field(s) to flatten. If no field is defined, the data object itself is treated as an array to be flattened.</p>
+</dd>
 <dt><code>index</code></dt>
-<dd>The output field name for the zero-based index of the array values. If unspecified, an index field is not added.</dd>
+<dd>
+<p>Type: string</p>
+<p>The output field name for the zero-based index of the array values. If unspecified, an index field is not added.</p>
+</dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="single-field-flattening">Single-Field Flattening<a class="headerlink" href="#single-field-flattening" title="Permanent link">&para;</a></h3>

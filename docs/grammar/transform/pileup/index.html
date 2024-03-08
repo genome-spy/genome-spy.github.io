@@ -280,6 +280,8 @@
       
         
       
+        
+      
     
     
     
@@ -1307,6 +1309,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1628,6 +1651,7 @@ pileup transform.</p>
 <dl>
 <dt><code>as</code></dt>
 <dd>
+<p>Type: string</p>
 <p>The output field name for the computed lane.</p>
 <p><strong>Default:</strong> <code>"lane"</code>.</p>
 </dd>
@@ -1636,9 +1660,13 @@ pileup transform.</p>
 <dt><code>preference</code></dt>
 <dd>An optional field indicating the preferred lane. Use together with the <code>preferredOrder</code> property.</dd>
 <dt><code>preferredOrder</code></dt>
-<dd>The order of the lane preferences. The first element contains the value that should place the segment on the first lane and so forth. If the preferred lane is occupied, the first available lane is taken.</dd>
+<dd>
+<p>Type: string[] | number[] | boolean[]</p>
+<p>The order of the lane preferences. The first element contains the value that should place the segment on the first lane and so forth. If the preferred lane is occupied, the first available lane is taken.</p>
+</dd>
 <dt><code>spacing</code></dt>
 <dd>
+<p>Type: number</p>
 <p>The spacing between adjacent segments on the same lane in coordinate units.</p>
 <p><strong>Default:</strong> <code>1</code>.</p>
 </dd>

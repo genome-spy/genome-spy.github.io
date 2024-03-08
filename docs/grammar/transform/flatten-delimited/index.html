@@ -280,6 +280,8 @@
       
         
       
+        
+      
     
     
     
@@ -1298,6 +1300,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1610,13 +1633,20 @@ field. All other fields are copied as such.</p>
 <dl>
 <dt><code>as</code></dt>
 <dd>
+<p>Type: string[] | string</p>
 <p>The output field name(s) for the flattened field.</p>
 <p><strong>Default:</strong> the input fields.</p>
 </dd>
 <dt><code>field</code> <span class="required">Required</span></dt>
-<dd>The field(s) to split and flatten</dd>
+<dd>
+<p>Type: <code>Field</code>[] | <code>Field</code></p>
+<p>The field(s) to split and flatten</p>
+</dd>
 <dt><code>separator</code> <span class="required">Required</span></dt>
-<dd>Separator(s) used on the field(s) TODO: Rename to delimiter</dd>
+<dd>
+<p>Type: string[] | string</p>
+<p>Separator(s) used on the field(s) TODO: Rename to delimiter</p>
+</dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <p>Given the following data:</p>

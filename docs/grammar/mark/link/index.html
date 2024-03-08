@@ -280,6 +280,8 @@
       
         
       
+        
+      
     
     
     
@@ -1331,6 +1333,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1699,90 +1722,129 @@ how the curve is drawn.</p>
 <h2 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h2>
 <p>In addition to the primary and secondary <a href="../#channels">position</a>
 channels and the <code>color</code> and <code>opacity</code> channels, link mark supports the following
-channels:</p>
-<dl>
-<dt><code>size</code></dt>
-<dd>
-<p>Type: Number</p>
-<p>The stroke width.</p>
-</dd>
-</dl>
+channels: <code>size</code>.</p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <dl>
-<dt><code>linkShape</code></dt>
+<dt><code>arcFadingDistance</code></dt>
 <dd>
-<p>Type: String</p>
-<p>The shape of the link. Can be one of <code>"arc"</code>, <code>"dome"</code>, <code>"diagonal"</code>, or
-<code>"line"</code>.</p>
-<p>The <code>"arc"</code> shape draws a circular arc between the two points. The apex of the
-arc resides on the left side of the line that connects the two points.
-The <code>"dome"</code> shape draws a vertical or horizontal arc with a specific height.
-The primary positional channel determines the apex of the arc and the secondary
-determines the endpoint placement.
-The <code>"diagonal"</code> shape draws an "S"-shaped curve between the two points.
-The <code>"line"</code> shape draws a straight line between the two points. See an
-<a href="#different-link-shapes-and-orientations">example</a> of the different shapes below.</p>
-<p><strong>Default value:</strong> <code>"arc"</code></p>
-</dd>
-<dt><code>orient</code></dt>
-<dd>
-<p>Type: String</p>
-<p>The orientation of the link. Can be one of <code>"vertical"</code> or <code>"horizontal"</code>.
-Only affects the <code>"dome"</code> and <code>"diagonal"</code> shapes.</p>
-<p><strong>Default value:</strong> <code>"vertical"</code></p>
-</dd>
-<dt><code>clampApex</code></dt>
-<dd>
-<p>Type: Boolean</p>
-<p>Whether the apex of the <code>"dome"</code> shape is clamped to the viewport edge. When over a
-half of the dome is located outside the viewport, clamping allows for more accurate
-reading of the value encoded by the apex' position.</p>
+<p>Type: [number, number] | boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The range of the <code>"arc"</code> shape's fading distance in pixels. This property allows for making the arc's opacity fade out as it extends away from the chord. The fading distance is interpolated from one to zero between the interval defined by this property. Both <code>false</code> and <code>[0, 0]</code> disable fading.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>arcHeightFactor</code></dt>
 <dd>
-<p>Type: Number</p>
-<p>Scaling factor for the <code>"arc</code>" shape's height. The default value <code>1.0</code> produces
-roughly circular arcs.</p>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Scaling factor for the <code>"arc</code>" shape's height. The default value <code>1.0</code> produces roughly circular arcs.</p>
 <p><strong>Default value:</strong> <code>1.0</code></p>
 </dd>
-<dt><code>minArcHeight</code></dt>
+<dt><code>clampApex</code></dt>
 <dd>
-<p>Type: Number</p>
-<p>The minimum height of an <code>"arc"</code> shape. Makes very short links more clearly visible.</p>
-<p><strong>Default value:</strong> <code>1.5</code></p>
+<p>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Whether the apex of the <code>"dome"</code> shape is clamped to the viewport edge. When over a half of the dome is located outside the viewport, clamping allows for more accurate reading of the value encoded by the apex' position.</p>
+<p><strong>Default value:</strong> <code>false</code></p>
+</dd>
+<dt><code>clip</code></dt>
+<dd>
+<p>Type: boolean | <code>"never"</code></p>
+<p>If true, the mark is clipped to the UnitView's rectangle. By default, clipping is enabled for marks that have zoomable positional scales.</p>
+</dd>
+<dt><code>color</code></dt>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
+</dd>
+<dt><code>linkShape</code></dt>
+<dd>
+<p>Type: <code>"arc"</code> | <code>"diagonal"</code> | <code>"line"</code> | <code>"dome"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The shape of the link path.</p>
+<p>The <code>"arc"</code> shape draws a circular arc between the two points. The apex of the arc resides on the left side of the line that connects the two points. The <code>"dome"</code> shape draws a vertical or horizontal arc with a specific height. The primary positional channel determines the apex of the arc and the secondary determines the endpoint placement. The <code>"diagonal"</code> shape draws an "S"-shaped curve between the two points. The <code>"line"</code> shape draws a straight line between the two points. See an <a href="#different-link-shapes-and-orientations">example</a> of the different shapes below.</p>
+<p><strong>Default value:</strong> <code>"arc"</code></p>
 </dd>
 <dt><code>maxChordLength</code></dt>
 <dd>
-<p>Type: Number</p>
-<p>The maximum length of <code>"arc"</code> shape's chord in pixels. The chord is the line segment
-between the two points that define the arc. Limiting the chord length serves two purposes
-when zooming in close enough:
-1) it prevents the arc from becoming a straight line and
-2) it mitigates the limited precision of floating point numbers in arc rendering.</p>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The maximum length of <code>"arc"</code> shape's chord in pixels. The chord is the line segment between the two points that define the arc. Limiting the chord length serves two purposes when zooming in close enough: 1) it prevents the arc from becoming a straight line and 2) it mitigates the limited precision of floating point numbers in arc rendering.</p>
 <p><strong>Default value:</strong> <code>50000</code></p>
 </dd>
-<dt><code>arcFadingDistance</code></dt>
+<dt><code>minArcHeight</code></dt>
 <dd>
-<p>Type: [Number, Number] | false</p>
-<p>The range of the <code>"arc"</code> shape's fading distance in pixels. This property allows for
-making the arc's opacity fade out as it extends away from the chord. The fading distance
-is interpolated from one to zero between the interval defined by this property.
-Both <code>false</code> and <code>[0, 0]</code> disable fading.</p>
-<p><strong>Default value:</strong> <code>false</code></p>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The minimum height of an <code>"arc"</code> shape. Makes very short links more clearly visible.</p>
+<p><strong>Default value:</strong> <code>1.5</code></p>
 </dd>
-<dt><code>segments</code></dt>
+<dt><code>minBufferSize</code></dt>
 <dd>
-<p>Type: Number</p>
-<p>Number of segments in the bézier curve. Affects the rendering quality and speed.</p>
-<p><strong>Default value:</strong> <code>101</code></p>
+<p>Type: number</p>
+<p>Minimum size for WebGL buffers (number of data items). Allows for using <code>bufferSubData()</code> to update graphics.</p>
+<p>This property is intended for internal use.</p>
 </dd>
 <dt><code>minPickingSize</code></dt>
 <dd>
-<p>Type: Number</p>
-<p>The minimum stroke width of the links when pointing with the mouse cursor.
-Allows making very thin links easier to point at.</p>
-<p><strong>Default value:</strong> <code>3.0</code></p>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The minimum picking size invisibly increases the stroke width or point diameter of marks when pointing them with the mouse cursor, making it easier to select them. The valus is the minimum size in pixels.</p>
+<p><strong>Default value:</strong> <code>3.0</code> for <code>"link"</code> and <code>2.0</code> for <code>"point"</code></p>
+</dd>
+<dt><code>noFadingOnPointSelection</code></dt>
+<dd>
+<p>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Disables fading of the link when an mark instance is subject to any point selection. As the fading distance is unavailable as a visual channel, this property allows for enhancing the visibility of the selected links.</p>
+<p><strong>Default value:</strong> <code>true</code></p>
+</dd>
+<dt><code>opacity</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Opacity of the mark. Affects <code>fillOpacity</code> or <code>strokeOpacity</code>, depending on the <code>filled</code> property.</p>
+</dd>
+<dt><code>orient</code></dt>
+<dd>
+<p>Type: <code>"vertical"</code> | <code>"horizontal"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The orientation of the link path. Either <code>"vertical"</code> or <code>"horizontal"</code>. Only applies to diagonal links.</p>
+<p><strong>Default value:</strong> <code>"vertical"</code></p>
+</dd>
+<dt><code>segments</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The number of segments in the bézier curve. Affects the rendering quality and performance. Use a higher value for a smoother curve.</p>
+<p><strong>Default value:</strong> <code>101</code></p>
+</dd>
+<dt><code>size</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Stroke width of <code>"link"</code> and <code>"rule"</code> marks in pixels, the area of the bounding square of <code>"point"</code> mark, or the font size of <code>"text"</code> mark.</p>
+</dd>
+<dt><code>tooltip</code></dt>
+<dd>Tooltip handler. If <code>null</code>, no tooltip is shown. If string, specifies the <a href="https://genomespy.app/docs/api/#custom-tooltip-handlers">tooltip handler</a> to use.</dd>
+<dt><code>x</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Position on the x axis.</p>
+</dd>
+<dt><code>x2</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The secondary position on the x axis.</p>
+</dd>
+<dt><code>xOffset</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Offsets of the <code>x</code> and <code>x2</code> coordinates in pixels. The offset is applied after the viewport scaling and translation.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
+<dt><code>y</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Position on the y axis.</p>
+</dd>
+<dt><code>y2</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The secondary position on the y axis.</p>
+</dd>
+<dt><code>yOffset</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Offsets of the <code>y</code> and <code>y2</code> coordinates in pixels. The offset is applied after the viewport scaling and translation.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 </dl>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>

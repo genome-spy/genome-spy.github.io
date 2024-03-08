@@ -280,6 +280,8 @@
       
         
       
+        
+      
     
     
     
@@ -1298,6 +1300,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1607,13 +1630,25 @@ expression.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>asKey</code></dt>
-<dd><strong>Default:</strong> <code>"sample"</code></dd>
+<dd>
+<p>Type: string</p>
+<p><strong>Default:</strong> <code>"sample"</code></p>
+</dd>
 <dt><code>asValue</code> <span class="required">Required</span></dt>
-<dd>A new column name for the extracted values.</dd>
+<dd>
+<p>Type: string[] | string</p>
+<p>A new column name for the extracted values.</p>
+</dd>
 <dt><code>columnRegex</code> <span class="required">Required</span></dt>
-<dd>A regular expression that matches to column names. The regex must have one capturing group that is used for extracting the key (e.g., a sample id) from the column name.</dd>
+<dd>
+<p>Type: string[] | string</p>
+<p>A regular expression that matches to column names. The regex must have one capturing group that is used for extracting the key (e.g., a sample id) from the column name.</p>
+</dd>
 <dt><code>skipRegex</code></dt>
-<dd>An optional regex that matches to fields that should not be included in the new folded data objects.</dd>
+<dd>
+<p>Type: string</p>
+<p>An optional regex that matches to fields that should not be included in the new folded data objects.</p>
+</dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <p>Given the following data:</p>
