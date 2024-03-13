@@ -319,6 +319,8 @@
       
         
       
+        
+      
     
     
     
@@ -1271,6 +1273,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#sizedef" class="md-nav__link">
+    <span class="md-ellipsis">
+      SizeDef
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#scrollable-viewports" class="md-nav__link">
     <span class="md-ellipsis">
       Scrollable viewports
@@ -1421,6 +1432,27 @@
   
   <span class="md-ellipsis">
     Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Types
   </span>
   
 
@@ -1750,6 +1782,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#sizedef" class="md-nav__link">
+    <span class="md-ellipsis">
+      SizeDef
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#scrollable-viewports" class="md-nav__link">
     <span class="md-ellipsis">
       Scrollable viewports
@@ -1936,6 +1977,19 @@ the remaining space is distributed in proportions of 1:2.</p>
 
 </genome-spy-doc-embed></div>
 
+<h3 id="sizedef">SizeDef<a class="headerlink" href="#sizedef" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>grow</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Share of the remaining space</p>
+</dd>
+<dt><code>px</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Size in pixels</p>
+</dd>
+</dl>
 <p>The size may have both absolute (<code>px</code>) and proportional (<code>grow</code>) components.
 When views are nested, both the absolute and proportional sizes are added up.
 Thus, the width of the above example is <code>{ "px": 40, "grow": 3 }</code>. The spacing

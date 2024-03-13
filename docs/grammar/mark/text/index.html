@@ -319,6 +319,8 @@
       
         
       
+        
+      
     
     
     
@@ -1391,6 +1393,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1758,6 +1781,7 @@ and <code>color</code> and <code>opacity</code> channels, point mark has the fol
 <dl>
 <dt><code>align</code></dt>
 <dd>
+<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
 <p>The horizontal alignment of the text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
 <p><strong>Default value:</strong> <code>"left"</code></p>
 </dd>
@@ -1769,6 +1793,7 @@ and <code>color</code> and <code>opacity</code> channels, point mark has the fol
 </dd>
 <dt><code>baseline</code></dt>
 <dd>
+<p>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code></p>
 <p>The vertical alignment of the text.  One of <code>"top"</code>, <code>"middle"</code>, <code>"bottom"</code>.</p>
 <p><strong>Default value:</strong> <code>"bottom"</code></p>
 </dd>
@@ -1816,11 +1841,13 @@ and <code>color</code> and <code>opacity</code> channels, point mark has the fol
 </dd>
 <dt><code>fontStyle</code></dt>
 <dd>
+<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
 <p>The font style. Valid values: <code>"normal"</code> and <code>"italic"</code>.</p>
 <p><strong>Default value:</strong> <code>"normal"</code></p>
 </dd>
 <dt><code>fontWeight</code></dt>
 <dd>
+<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
 <p>The font weight. The following strings and numbers are valid values: <code>"thin"</code> (<code>100</code>), <code>"light"</code> (<code>300</code>), <code>"regular"</code> (<code>400</code>), <code>"normal"</code> (<code>400</code>), <code>"medium"</code> (<code>500</code>), <code>"bold"</code> (<code>700</code>), <code>"black"</code> (<code>900</code>)</p>
 <p><strong>Default value:</strong> <code>"regular"</code></p>
 </dd>
@@ -1866,12 +1893,15 @@ and <code>color</code> and <code>opacity</code> channels, point mark has the fol
 </dd>
 <dt><code>text</code></dt>
 <dd>
-<p>Type: <code>Scalar</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">Scalar</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 <p>The text to display. The format of numeric data can be customized by setting a <a href="https://github.com/d3/d3-format#locale_format">format specifier</a> to channel definition's <code>format</code> property.</p>
 <p><strong>Default value:</strong> <code>""</code></p>
 </dd>
 <dt><code>tooltip</code></dt>
-<dd>Tooltip handler. If <code>null</code>, no tooltip is shown. If string, specifies the <a href="https://genomespy.app/docs/api/#custom-tooltip-handlers">tooltip handler</a> to use.</dd>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">HandledTooltip</a> | null</p>
+<p>Tooltip handler. If <code>null</code>, no tooltip is shown. If string, specifies the <a href="https://genomespy.app/docs/api/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
+</dd>
 <dt><code>viewportEdgeFadeDistanceBottom</code></dt>
 <dd>
 <p>Type: number</p>

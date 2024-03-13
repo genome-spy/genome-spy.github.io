@@ -319,6 +319,8 @@
       
         
       
+        
+      
     
     
     
@@ -1382,6 +1384,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1722,7 +1745,10 @@ applications.</p>
 <p><strong>Default:</strong> <code>["y0", "y1"]</code></p>
 </dd>
 <dt><code>baseField</code></dt>
-<dd>The field that contains the base or amino acid. Used for information content calculation when the offset is <code>"information"</code>. The data objects that have <code>null</code> in the baseField are considered gaps and they are taken into account when scaling the the locus' information content.</dd>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">Field</a></p>
+<p>The field that contains the base or amino acid. Used for information content calculation when the offset is <code>"information"</code>. The data objects that have <code>null</code> in the baseField are considered gaps and they are taken into account when scaling the the locus' information content.</p>
+</dd>
 <dt><code>cardinality</code></dt>
 <dd>
 <p>Type: number</p>
@@ -1730,7 +1756,10 @@ applications.</p>
 <p><strong>Default:</strong> <code>4</code></p>
 </dd>
 <dt><code>field</code></dt>
-<dd>The field to stack. If no field is defined, a constant value of one is assumed.</dd>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">Field</a></p>
+<p>The field to stack. If no field is defined, a constant value of one is assumed.</p>
+</dd>
 <dt><code>groupby</code> <span class="required">Required</span></dt>
 <dd>
 <p>Type: array</p>
@@ -1742,7 +1771,10 @@ applications.</p>
 <p>How to offset the values in a stack. <code>"zero"</code> (default) starts stacking at 0. <code>"center"</code> centers the values around zero. <code>"normalize"</code> computes intra-stack percentages and normalizes the values to the range of <code>[0, 1]</code>. <code>"information"</code> computes a layout for a sequence logo. The total height of the stack reflects the group's information content.</p>
 </dd>
 <dt><code>sort</code></dt>
-<dd>The sort order of data in each stack.</dd>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">CompareParams</a></p>
+<p>The sort order of data in each stack.</p>
+</dd>
 </dl>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <h3 id="stacked-bar-plot">Stacked bar plot<a class="headerlink" href="#stacked-bar-plot" title="Permanent link">&para;</a></h3>

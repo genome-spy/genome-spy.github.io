@@ -319,6 +319,8 @@
       
         
       
+        
+      
     
     
     
@@ -1571,6 +1573,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2123,6 +2146,7 @@ The chunks are provided as data objects with the following fields: <code>chrom</
 <dl>
 <dt><code>channel</code></dt>
 <dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
 <p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
@@ -2256,6 +2280,7 @@ source provides data objects with the following fields: <code>chrom</code> (stri
 <dl>
 <dt><code>channel</code></dt>
 <dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
 <p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
@@ -2325,6 +2350,7 @@ genomic regions stored in BigBed files.</p>
 <dl>
 <dt><code>channel</code></dt>
 <dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
 <p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
@@ -2413,6 +2439,7 @@ example below.</p>
 <dl>
 <dt><code>channel</code></dt>
 <dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
 <p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
@@ -2750,6 +2777,7 @@ interested in this feature.</p>
 <dl>
 <dt><code>channel</code></dt>
 <dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
 <p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
@@ -2895,9 +2923,15 @@ according to your requirements. The data source generates data objects with
 <h3 id="parameters_5">Parameters<a class="headerlink" href="#parameters_5" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>axis</code></dt>
-<dd>Optional axis properties</dd>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">Axis</a></p>
+<p>Optional axis properties</p>
+</dd>
 <dt><code>channel</code> <span class="required">Required</span></dt>
-<dd>Which channel's scale domain to listen to</dd>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to listen to</p>
+</dd>
 </dl>
 <h3 id="example_5">Example<a class="headerlink" href="#example_5" title="Permanent link">&para;</a></h3>
 <p>The example below generates approximately three ticks for the <code>x</code> axis.</p>
@@ -2948,7 +2982,10 @@ The data source generates data objects with the following fields: <code>name</co
 <h3 id="parameters_6">Parameters<a class="headerlink" href="#parameters_6" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code> <span class="required">Required</span></dt>
-<dd>Which channel's scale domain to use</dd>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to use</p>
+</dd>
 </dl>
 <h3 id="example_6">Example<a class="headerlink" href="#example_6" title="Permanent link">&para;</a></h3>
 <div><genome-spy-doc-embed height="150" spechidden="true">

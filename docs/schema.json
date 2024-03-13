@@ -853,7 +853,7 @@
       "additionalProperties": false,
       "properties": {
         "baseUrl": {
-          "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
+          "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
           "type": "string"
         },
         "columns": {
@@ -875,11 +875,12 @@
           "type": "array"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
           "type": "boolean"
         },
         "data": {
-          "$ref": "#/definitions/Data"
+          "$ref": "#/definitions/Data",
+          "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
         },
         "description": {
           "anyOf": [
@@ -893,10 +894,11 @@
               "type": "array"
             }
           ],
-          "description": "A description of the view. Multiple lines can be provided as an array."
+          "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
         },
         "encoding": {
-          "$ref": "#/definitions/Encoding"
+          "$ref": "#/definitions/Encoding",
+          "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
         },
         "height": {
           "anyOf": [
@@ -914,9 +916,10 @@
               "type": "string"
             }
           ],
-          "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+          "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
         },
         "name": {
+          "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
           "type": "string"
         },
         "opacity": {
@@ -925,10 +928,10 @@
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding in pixels.\n\n**Default:* `0`"
+          "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
         },
         "params": {
-          "description": "Dynamic variables that parameterize a visualization.",
+          "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
           "items": {
             "$ref": "#/definitions/Parameter"
           },
@@ -936,6 +939,7 @@
         },
         "resolve": {
           "additionalProperties": false,
+          "description": "Specifies how scales and axes are [resolved](https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution) in the view hierarchy.",
           "properties": {
             "axis": {
               "additionalProperties": {
@@ -970,7 +974,7 @@
           "additionalProperties": {
             "$ref": "#/definitions/ViewSpec"
           },
-          "description": "Templates that can be reused within the view specification by importing them with the template key.",
+          "description": "[Templates](https://genomespy.app/docs/grammar/import/#repeating-with-named-templates) that can be reused within the view specification by importing them with the template key.",
           "type": "object"
         },
         "title": {
@@ -981,9 +985,11 @@
             {
               "$ref": "#/definitions/Title"
             }
-          ]
+          ],
+          "description": "View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible."
         },
         "transform": {
+          "description": "An array of [transformations](https://genomespy.app/docs/grammar/transform/) applied to the data before visual encoding.",
           "items": {
             "$ref": "#/definitions/TransformParams"
           },
@@ -1002,7 +1008,7 @@
               "type": "string"
             }
           ],
-          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
         },
         "viewportWidth": {
           "anyOf": [
@@ -1017,10 +1023,10 @@
               "type": "string"
             }
           ],
-          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
         },
         "visible": {
-          "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+          "description": "The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see [toggleable view visibility](https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility).\n\n**Default:** `true`",
           "type": "boolean"
         },
         "width": {
@@ -1039,7 +1045,7 @@
               "type": "string"
             }
           ],
-          "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+          "description": "Width of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
         }
       },
       "required": [
@@ -2917,15 +2923,16 @@
       "additionalProperties": false,
       "properties": {
         "baseUrl": {
-          "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
+          "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
           "type": "boolean"
         },
         "data": {
-          "$ref": "#/definitions/Data"
+          "$ref": "#/definitions/Data",
+          "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
         },
         "description": {
           "anyOf": [
@@ -2939,10 +2946,11 @@
               "type": "array"
             }
           ],
-          "description": "A description of the view. Multiple lines can be provided as an array."
+          "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
         },
         "encoding": {
-          "$ref": "#/definitions/Encoding"
+          "$ref": "#/definitions/Encoding",
+          "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
         },
         "hconcat": {
           "description": "Specifies views that will be concatenated horizontally.",
@@ -2974,9 +2982,10 @@
               "type": "string"
             }
           ],
-          "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+          "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
         },
         "name": {
+          "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
           "type": "string"
         },
         "opacity": {
@@ -2985,10 +2994,10 @@
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding in pixels.\n\n**Default:* `0`"
+          "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
         },
         "params": {
-          "description": "Dynamic variables that parameterize a visualization.",
+          "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
           "items": {
             "$ref": "#/definitions/Parameter"
           },
@@ -2996,6 +3005,7 @@
         },
         "resolve": {
           "additionalProperties": false,
+          "description": "Specifies how scales and axes are [resolved](https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution) in the view hierarchy.",
           "properties": {
             "axis": {
               "additionalProperties": {
@@ -3030,7 +3040,7 @@
           "additionalProperties": {
             "$ref": "#/definitions/ViewSpec"
           },
-          "description": "Templates that can be reused within the view specification by importing them with the template key.",
+          "description": "[Templates](https://genomespy.app/docs/grammar/import/#repeating-with-named-templates) that can be reused within the view specification by importing them with the template key.",
           "type": "object"
         },
         "title": {
@@ -3041,9 +3051,11 @@
             {
               "$ref": "#/definitions/Title"
             }
-          ]
+          ],
+          "description": "View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible."
         },
         "transform": {
+          "description": "An array of [transformations](https://genomespy.app/docs/grammar/transform/) applied to the data before visual encoding.",
           "items": {
             "$ref": "#/definitions/TransformParams"
           },
@@ -3062,7 +3074,7 @@
               "type": "string"
             }
           ],
-          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
         },
         "viewportWidth": {
           "anyOf": [
@@ -3077,10 +3089,10 @@
               "type": "string"
             }
           ],
-          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
         },
         "visible": {
-          "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+          "description": "The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see [toggleable view visibility](https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility).\n\n**Default:** `true`",
           "type": "boolean"
         },
         "width": {
@@ -3099,7 +3111,7 @@
               "type": "string"
             }
           ],
-          "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+          "description": "Width of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
         }
       },
       "required": [
@@ -3348,6 +3360,7 @@
       "additionalProperties": false,
       "properties": {
         "aggregateSamples": {
+          "description": "Specifies views that [aggregate](https://genomespy.app/docs/sample-collections/visualizing/#aggregation) multiple samples within the GenomeSpy App.",
           "items": {
             "anyOf": [
               {
@@ -3361,15 +3374,16 @@
           "type": "array"
         },
         "baseUrl": {
-          "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
+          "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
           "type": "boolean"
         },
         "data": {
-          "$ref": "#/definitions/Data"
+          "$ref": "#/definitions/Data",
+          "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
         },
         "description": {
           "anyOf": [
@@ -3383,10 +3397,11 @@
               "type": "array"
             }
           ],
-          "description": "A description of the view. Multiple lines can be provided as an array."
+          "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
         },
         "encoding": {
-          "$ref": "#/definitions/Encoding"
+          "$ref": "#/definitions/Encoding",
+          "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
         },
         "height": {
           "anyOf": [
@@ -3404,7 +3419,7 @@
               "type": "string"
             }
           ],
-          "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+          "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
         },
         "layer": {
           "items": {
@@ -3423,6 +3438,7 @@
           "type": "array"
         },
         "name": {
+          "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
           "type": "string"
         },
         "opacity": {
@@ -3431,10 +3447,10 @@
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding in pixels.\n\n**Default:* `0`"
+          "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
         },
         "params": {
-          "description": "Dynamic variables that parameterize a visualization.",
+          "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
           "items": {
             "$ref": "#/definitions/Parameter"
           },
@@ -3442,6 +3458,7 @@
         },
         "resolve": {
           "additionalProperties": false,
+          "description": "Specifies how scales and axes are [resolved](https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution) in the view hierarchy.",
           "properties": {
             "axis": {
               "additionalProperties": {
@@ -3472,7 +3489,7 @@
           "additionalProperties": {
             "$ref": "#/definitions/ViewSpec"
           },
-          "description": "Templates that can be reused within the view specification by importing them with the template key.",
+          "description": "[Templates](https://genomespy.app/docs/grammar/import/#repeating-with-named-templates) that can be reused within the view specification by importing them with the template key.",
           "type": "object"
         },
         "title": {
@@ -3483,9 +3500,11 @@
             {
               "$ref": "#/definitions/Title"
             }
-          ]
+          ],
+          "description": "View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible."
         },
         "transform": {
+          "description": "An array of [transformations](https://genomespy.app/docs/grammar/transform/) applied to the data before visual encoding.",
           "items": {
             "$ref": "#/definitions/TransformParams"
           },
@@ -3507,7 +3526,7 @@
               "type": "string"
             }
           ],
-          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
         },
         "viewportWidth": {
           "anyOf": [
@@ -3522,10 +3541,10 @@
               "type": "string"
             }
           ],
-          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
         },
         "visible": {
-          "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+          "description": "The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see [toggleable view visibility](https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility).\n\n**Default:** `true`",
           "type": "boolean"
         },
         "width": {
@@ -3544,7 +3563,7 @@
               "type": "string"
             }
           ],
-          "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+          "description": "Width of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
         }
       },
       "required": [
@@ -5171,6 +5190,7 @@
               "type": "string"
             },
             "aggregateSamples": {
+              "description": "Specifies views that [aggregate](https://genomespy.app/docs/sample-collections/visualizing/#aggregation) multiple samples within the GenomeSpy App.",
               "items": {
                 "anyOf": [
                   {
@@ -5188,15 +5208,16 @@
               "type": "string"
             },
             "baseUrl": {
-              "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
+              "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
               "type": "string"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
               "type": "boolean"
             },
             "data": {
-              "$ref": "#/definitions/Data"
+              "$ref": "#/definitions/Data",
+              "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
             },
             "datasets": {
               "additionalProperties": {
@@ -5218,10 +5239,11 @@
                   "type": "array"
                 }
               ],
-              "description": "A description of the view. Multiple lines can be provided as an array."
+              "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
             },
             "encoding": {
-              "$ref": "#/definitions/Encoding"
+              "$ref": "#/definitions/Encoding",
+              "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
             },
             "genome": {
               "$ref": "#/definitions/GenomeConfig"
@@ -5242,7 +5264,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+              "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
             },
             "mark": {
               "anyOf": [
@@ -5252,9 +5274,11 @@
                 {
                   "$ref": "#/definitions/MarkProps"
                 }
-              ]
+              ],
+              "description": "The graphical mark presenting the data objects."
             },
             "name": {
+              "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
               "type": "string"
             },
             "opacity": {
@@ -5263,10 +5287,10 @@
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding in pixels.\n\n**Default:* `0`"
+              "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
             },
             "params": {
-              "description": "Dynamic variables that parameterize a visualization.",
+              "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
               "items": {
                 "$ref": "#/definitions/Parameter"
               },
@@ -5274,6 +5298,7 @@
             },
             "resolve": {
               "additionalProperties": false,
+              "description": "Specifies how scales and axes are [resolved](https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution) in the view hierarchy.",
               "properties": {
                 "axis": {
                   "additionalProperties": {
@@ -5304,7 +5329,7 @@
               "additionalProperties": {
                 "$ref": "#/definitions/ViewSpec"
               },
-              "description": "Templates that can be reused within the view specification by importing them with the template key.",
+              "description": "[Templates](https://genomespy.app/docs/grammar/import/#repeating-with-named-templates) that can be reused within the view specification by importing them with the template key.",
               "type": "object"
             },
             "title": {
@@ -5315,16 +5340,19 @@
                 {
                   "$ref": "#/definitions/Title"
                 }
-              ]
+              ],
+              "description": "View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible."
             },
             "transform": {
+              "description": "An array of [transformations](https://genomespy.app/docs/grammar/transform/) applied to the data before visual encoding.",
               "items": {
                 "$ref": "#/definitions/TransformParams"
               },
               "type": "array"
             },
             "view": {
-              "$ref": "#/definitions/ViewBackground"
+              "$ref": "#/definitions/ViewBackground",
+              "description": "The background of the view, including fill, stroke, and stroke width."
             },
             "viewportHeight": {
               "anyOf": [
@@ -5339,7 +5367,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
             },
             "viewportWidth": {
               "anyOf": [
@@ -5354,10 +5382,10 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
             },
             "visible": {
-              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "description": "The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see [toggleable view visibility](https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility).\n\n**Default:** `true`",
               "type": "boolean"
             },
             "width": {
@@ -5376,7 +5404,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+              "description": "Width of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
             }
           },
           "required": [
@@ -5391,6 +5419,7 @@
               "type": "string"
             },
             "aggregateSamples": {
+              "description": "Specifies views that [aggregate](https://genomespy.app/docs/sample-collections/visualizing/#aggregation) multiple samples within the GenomeSpy App.",
               "items": {
                 "anyOf": [
                   {
@@ -5408,15 +5437,16 @@
               "type": "string"
             },
             "baseUrl": {
-              "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
+              "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
               "type": "string"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
               "type": "boolean"
             },
             "data": {
-              "$ref": "#/definitions/Data"
+              "$ref": "#/definitions/Data",
+              "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
             },
             "datasets": {
               "additionalProperties": {
@@ -5438,10 +5468,11 @@
                   "type": "array"
                 }
               ],
-              "description": "A description of the view. Multiple lines can be provided as an array."
+              "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
             },
             "encoding": {
-              "$ref": "#/definitions/Encoding"
+              "$ref": "#/definitions/Encoding",
+              "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
             },
             "genome": {
               "$ref": "#/definitions/GenomeConfig"
@@ -5462,7 +5493,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+              "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
             },
             "layer": {
               "items": {
@@ -5481,6 +5512,7 @@
               "type": "array"
             },
             "name": {
+              "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
               "type": "string"
             },
             "opacity": {
@@ -5489,10 +5521,10 @@
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding in pixels.\n\n**Default:* `0`"
+              "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
             },
             "params": {
-              "description": "Dynamic variables that parameterize a visualization.",
+              "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
               "items": {
                 "$ref": "#/definitions/Parameter"
               },
@@ -5500,6 +5532,7 @@
             },
             "resolve": {
               "additionalProperties": false,
+              "description": "Specifies how scales and axes are [resolved](https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution) in the view hierarchy.",
               "properties": {
                 "axis": {
                   "additionalProperties": {
@@ -5530,7 +5563,7 @@
               "additionalProperties": {
                 "$ref": "#/definitions/ViewSpec"
               },
-              "description": "Templates that can be reused within the view specification by importing them with the template key.",
+              "description": "[Templates](https://genomespy.app/docs/grammar/import/#repeating-with-named-templates) that can be reused within the view specification by importing them with the template key.",
               "type": "object"
             },
             "title": {
@@ -5541,9 +5574,11 @@
                 {
                   "$ref": "#/definitions/Title"
                 }
-              ]
+              ],
+              "description": "View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible."
             },
             "transform": {
+              "description": "An array of [transformations](https://genomespy.app/docs/grammar/transform/) applied to the data before visual encoding.",
               "items": {
                 "$ref": "#/definitions/TransformParams"
               },
@@ -5565,7 +5600,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
             },
             "viewportWidth": {
               "anyOf": [
@@ -5580,10 +5615,10 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
             },
             "visible": {
-              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "description": "The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see [toggleable view visibility](https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility).\n\n**Default:** `true`",
               "type": "boolean"
             },
             "width": {
@@ -5602,7 +5637,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+              "description": "Width of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
             }
           },
           "required": [
@@ -5621,15 +5656,16 @@
               "type": "string"
             },
             "baseUrl": {
-              "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
+              "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
               "type": "string"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
               "type": "boolean"
             },
             "data": {
-              "$ref": "#/definitions/Data"
+              "$ref": "#/definitions/Data",
+              "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
             },
             "datasets": {
               "additionalProperties": {
@@ -5651,10 +5687,11 @@
                   "type": "array"
                 }
               ],
-              "description": "A description of the view. Multiple lines can be provided as an array."
+              "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
             },
             "encoding": {
-              "$ref": "#/definitions/Encoding"
+              "$ref": "#/definitions/Encoding",
+              "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
             },
             "genome": {
               "$ref": "#/definitions/GenomeConfig"
@@ -5675,9 +5712,10 @@
                   "type": "string"
                 }
               ],
-              "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+              "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
             },
             "name": {
+              "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
               "type": "string"
             },
             "opacity": {
@@ -5686,10 +5724,10 @@
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding in pixels.\n\n**Default:* `0`"
+              "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
             },
             "params": {
-              "description": "Dynamic variables that parameterize a visualization.",
+              "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
               "items": {
                 "$ref": "#/definitions/Parameter"
               },
@@ -5697,6 +5735,7 @@
             },
             "resolve": {
               "additionalProperties": false,
+              "description": "Specifies how scales and axes are [resolved](https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution) in the view hierarchy.",
               "properties": {
                 "axis": {
                   "additionalProperties": {
@@ -5731,7 +5770,7 @@
               "additionalProperties": {
                 "$ref": "#/definitions/ViewSpec"
               },
-              "description": "Templates that can be reused within the view specification by importing them with the template key.",
+              "description": "[Templates](https://genomespy.app/docs/grammar/import/#repeating-with-named-templates) that can be reused within the view specification by importing them with the template key.",
               "type": "object"
             },
             "title": {
@@ -5742,9 +5781,11 @@
                 {
                   "$ref": "#/definitions/Title"
                 }
-              ]
+              ],
+              "description": "View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible."
             },
             "transform": {
+              "description": "An array of [transformations](https://genomespy.app/docs/grammar/transform/) applied to the data before visual encoding.",
               "items": {
                 "$ref": "#/definitions/TransformParams"
               },
@@ -5777,7 +5818,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
             },
             "viewportWidth": {
               "anyOf": [
@@ -5792,10 +5833,10 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
             },
             "visible": {
-              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "description": "The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see [toggleable view visibility](https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility).\n\n**Default:** `true`",
               "type": "boolean"
             },
             "width": {
@@ -5814,7 +5855,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+              "description": "Width of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
             }
           },
           "required": [
@@ -5833,15 +5874,16 @@
               "type": "string"
             },
             "baseUrl": {
-              "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
+              "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
               "type": "string"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
               "type": "boolean"
             },
             "data": {
-              "$ref": "#/definitions/Data"
+              "$ref": "#/definitions/Data",
+              "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
             },
             "datasets": {
               "additionalProperties": {
@@ -5863,10 +5905,11 @@
                   "type": "array"
                 }
               ],
-              "description": "A description of the view. Multiple lines can be provided as an array."
+              "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
             },
             "encoding": {
-              "$ref": "#/definitions/Encoding"
+              "$ref": "#/definitions/Encoding",
+              "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
             },
             "genome": {
               "$ref": "#/definitions/GenomeConfig"
@@ -5901,9 +5944,10 @@
                   "type": "string"
                 }
               ],
-              "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+              "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
             },
             "name": {
+              "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
               "type": "string"
             },
             "opacity": {
@@ -5912,10 +5956,10 @@
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding in pixels.\n\n**Default:* `0`"
+              "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
             },
             "params": {
-              "description": "Dynamic variables that parameterize a visualization.",
+              "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
               "items": {
                 "$ref": "#/definitions/Parameter"
               },
@@ -5923,6 +5967,7 @@
             },
             "resolve": {
               "additionalProperties": false,
+              "description": "Specifies how scales and axes are [resolved](https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution) in the view hierarchy.",
               "properties": {
                 "axis": {
                   "additionalProperties": {
@@ -5957,7 +6002,7 @@
               "additionalProperties": {
                 "$ref": "#/definitions/ViewSpec"
               },
-              "description": "Templates that can be reused within the view specification by importing them with the template key.",
+              "description": "[Templates](https://genomespy.app/docs/grammar/import/#repeating-with-named-templates) that can be reused within the view specification by importing them with the template key.",
               "type": "object"
             },
             "title": {
@@ -5968,9 +6013,11 @@
                 {
                   "$ref": "#/definitions/Title"
                 }
-              ]
+              ],
+              "description": "View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible."
             },
             "transform": {
+              "description": "An array of [transformations](https://genomespy.app/docs/grammar/transform/) applied to the data before visual encoding.",
               "items": {
                 "$ref": "#/definitions/TransformParams"
               },
@@ -5989,7 +6036,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
             },
             "viewportWidth": {
               "anyOf": [
@@ -6004,10 +6051,10 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
             },
             "visible": {
-              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "description": "The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see [toggleable view visibility](https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility).\n\n**Default:** `true`",
               "type": "boolean"
             },
             "width": {
@@ -6026,7 +6073,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+              "description": "Width of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
             }
           },
           "required": [
@@ -6045,7 +6092,7 @@
               "type": "string"
             },
             "baseUrl": {
-              "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
+              "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
               "type": "string"
             },
             "columns": {
@@ -6067,11 +6114,12 @@
               "type": "array"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
               "type": "boolean"
             },
             "data": {
-              "$ref": "#/definitions/Data"
+              "$ref": "#/definitions/Data",
+              "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
             },
             "datasets": {
               "additionalProperties": {
@@ -6093,10 +6141,11 @@
                   "type": "array"
                 }
               ],
-              "description": "A description of the view. Multiple lines can be provided as an array."
+              "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
             },
             "encoding": {
-              "$ref": "#/definitions/Encoding"
+              "$ref": "#/definitions/Encoding",
+              "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
             },
             "genome": {
               "$ref": "#/definitions/GenomeConfig"
@@ -6117,9 +6166,10 @@
                   "type": "string"
                 }
               ],
-              "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+              "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
             },
             "name": {
+              "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
               "type": "string"
             },
             "opacity": {
@@ -6128,10 +6178,10 @@
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding in pixels.\n\n**Default:* `0`"
+              "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
             },
             "params": {
-              "description": "Dynamic variables that parameterize a visualization.",
+              "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
               "items": {
                 "$ref": "#/definitions/Parameter"
               },
@@ -6139,6 +6189,7 @@
             },
             "resolve": {
               "additionalProperties": false,
+              "description": "Specifies how scales and axes are [resolved](https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution) in the view hierarchy.",
               "properties": {
                 "axis": {
                   "additionalProperties": {
@@ -6173,7 +6224,7 @@
               "additionalProperties": {
                 "$ref": "#/definitions/ViewSpec"
               },
-              "description": "Templates that can be reused within the view specification by importing them with the template key.",
+              "description": "[Templates](https://genomespy.app/docs/grammar/import/#repeating-with-named-templates) that can be reused within the view specification by importing them with the template key.",
               "type": "object"
             },
             "title": {
@@ -6184,9 +6235,11 @@
                 {
                   "$ref": "#/definitions/Title"
                 }
-              ]
+              ],
+              "description": "View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible."
             },
             "transform": {
+              "description": "An array of [transformations](https://genomespy.app/docs/grammar/transform/) applied to the data before visual encoding.",
               "items": {
                 "$ref": "#/definitions/TransformParams"
               },
@@ -6205,7 +6258,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
             },
             "viewportWidth": {
               "anyOf": [
@@ -6220,10 +6273,10 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
             },
             "visible": {
-              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "description": "The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see [toggleable view visibility](https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility).\n\n**Default:** `true`",
               "type": "boolean"
             },
             "width": {
@@ -6242,7 +6295,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+              "description": "Width of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
             }
           },
           "required": [
@@ -6262,15 +6315,16 @@
               "type": "string"
             },
             "baseUrl": {
-              "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
+              "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
               "type": "string"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
               "type": "boolean"
             },
             "data": {
-              "$ref": "#/definitions/Data"
+              "$ref": "#/definitions/Data",
+              "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
             },
             "datasets": {
               "additionalProperties": {
@@ -6292,10 +6346,11 @@
                   "type": "array"
                 }
               ],
-              "description": "A description of the view. Multiple lines can be provided as an array."
+              "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
             },
             "encoding": {
-              "$ref": "#/definitions/Encoding"
+              "$ref": "#/definitions/Encoding",
+              "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
             },
             "genome": {
               "$ref": "#/definitions/GenomeConfig"
@@ -6316,9 +6371,10 @@
                   "type": "string"
                 }
               ],
-              "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+              "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
             },
             "name": {
+              "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
               "type": "string"
             },
             "opacity": {
@@ -6327,10 +6383,10 @@
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding in pixels.\n\n**Default:* `0`"
+              "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
             },
             "params": {
-              "description": "Dynamic variables that parameterize a visualization.",
+              "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
               "items": {
                 "$ref": "#/definitions/Parameter"
               },
@@ -6338,6 +6394,7 @@
             },
             "resolve": {
               "additionalProperties": false,
+              "description": "Specifies how scales and axes are [resolved](https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution) in the view hierarchy.",
               "properties": {
                 "axis": {
                   "additionalProperties": {
@@ -6386,7 +6443,7 @@
               "additionalProperties": {
                 "$ref": "#/definitions/ViewSpec"
               },
-              "description": "Templates that can be reused within the view specification by importing them with the template key.",
+              "description": "[Templates](https://genomespy.app/docs/grammar/import/#repeating-with-named-templates) that can be reused within the view specification by importing them with the template key.",
               "type": "object"
             },
             "title": {
@@ -6397,9 +6454,11 @@
                 {
                   "$ref": "#/definitions/Title"
                 }
-              ]
+              ],
+              "description": "View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible."
             },
             "transform": {
+              "description": "An array of [transformations](https://genomespy.app/docs/grammar/transform/) applied to the data before visual encoding.",
               "items": {
                 "$ref": "#/definitions/TransformParams"
               },
@@ -6422,7 +6481,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+              "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
             },
             "viewportWidth": {
               "anyOf": [
@@ -6437,10 +6496,10 @@
                   "type": "string"
                 }
               ],
-              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+              "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
             },
             "visible": {
-              "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+              "description": "The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see [toggleable view visibility](https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility).\n\n**Default:** `true`",
               "type": "boolean"
             },
             "width": {
@@ -6459,7 +6518,7 @@
                   "type": "string"
                 }
               ],
-              "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+              "description": "Width of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
             }
           },
           "required": [
@@ -6755,15 +6814,16 @@
       "description": "A view specification for a SampleView. This is only functional in the GenomeSpy app.",
       "properties": {
         "baseUrl": {
-          "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
+          "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
           "type": "boolean"
         },
         "data": {
-          "$ref": "#/definitions/Data"
+          "$ref": "#/definitions/Data",
+          "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
         },
         "description": {
           "anyOf": [
@@ -6777,10 +6837,11 @@
               "type": "array"
             }
           ],
-          "description": "A description of the view. Multiple lines can be provided as an array."
+          "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
         },
         "encoding": {
-          "$ref": "#/definitions/Encoding"
+          "$ref": "#/definitions/Encoding",
+          "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
         },
         "height": {
           "anyOf": [
@@ -6798,9 +6859,10 @@
               "type": "string"
             }
           ],
-          "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+          "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
         },
         "name": {
+          "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
           "type": "string"
         },
         "opacity": {
@@ -6809,10 +6871,10 @@
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding in pixels.\n\n**Default:* `0`"
+          "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
         },
         "params": {
-          "description": "Dynamic variables that parameterize a visualization.",
+          "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
           "items": {
             "$ref": "#/definitions/Parameter"
           },
@@ -6820,6 +6882,7 @@
         },
         "resolve": {
           "additionalProperties": false,
+          "description": "Specifies how scales and axes are [resolved](https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution) in the view hierarchy.",
           "properties": {
             "axis": {
               "additionalProperties": {
@@ -6868,7 +6931,7 @@
           "additionalProperties": {
             "$ref": "#/definitions/ViewSpec"
           },
-          "description": "Templates that can be reused within the view specification by importing them with the template key.",
+          "description": "[Templates](https://genomespy.app/docs/grammar/import/#repeating-with-named-templates) that can be reused within the view specification by importing them with the template key.",
           "type": "object"
         },
         "title": {
@@ -6879,9 +6942,11 @@
             {
               "$ref": "#/definitions/Title"
             }
-          ]
+          ],
+          "description": "View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible."
         },
         "transform": {
+          "description": "An array of [transformations](https://genomespy.app/docs/grammar/transform/) applied to the data before visual encoding.",
           "items": {
             "$ref": "#/definitions/TransformParams"
           },
@@ -6904,7 +6969,7 @@
               "type": "string"
             }
           ],
-          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
         },
         "viewportWidth": {
           "anyOf": [
@@ -6919,10 +6984,10 @@
               "type": "string"
             }
           ],
-          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
         },
         "visible": {
-          "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+          "description": "The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see [toggleable view visibility](https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility).\n\n**Default:** `true`",
           "type": "boolean"
         },
         "width": {
@@ -6941,7 +7006,7 @@
               "type": "string"
             }
           ],
-          "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+          "description": "Width of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
         }
       },
       "required": [
@@ -8107,6 +8172,7 @@
       "additionalProperties": false,
       "properties": {
         "aggregateSamples": {
+          "description": "Specifies views that [aggregate](https://genomespy.app/docs/sample-collections/visualizing/#aggregation) multiple samples within the GenomeSpy App.",
           "items": {
             "anyOf": [
               {
@@ -8120,15 +8186,16 @@
           "type": "array"
         },
         "baseUrl": {
-          "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
+          "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
           "type": "boolean"
         },
         "data": {
-          "$ref": "#/definitions/Data"
+          "$ref": "#/definitions/Data",
+          "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
         },
         "description": {
           "anyOf": [
@@ -8142,10 +8209,11 @@
               "type": "array"
             }
           ],
-          "description": "A description of the view. Multiple lines can be provided as an array."
+          "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
         },
         "encoding": {
-          "$ref": "#/definitions/Encoding"
+          "$ref": "#/definitions/Encoding",
+          "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
         },
         "height": {
           "anyOf": [
@@ -8163,7 +8231,7 @@
               "type": "string"
             }
           ],
-          "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+          "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
         },
         "mark": {
           "anyOf": [
@@ -8173,9 +8241,11 @@
             {
               "$ref": "#/definitions/MarkProps"
             }
-          ]
+          ],
+          "description": "The graphical mark presenting the data objects."
         },
         "name": {
+          "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
           "type": "string"
         },
         "opacity": {
@@ -8184,10 +8254,10 @@
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding in pixels.\n\n**Default:* `0`"
+          "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
         },
         "params": {
-          "description": "Dynamic variables that parameterize a visualization.",
+          "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
           "items": {
             "$ref": "#/definitions/Parameter"
           },
@@ -8195,6 +8265,7 @@
         },
         "resolve": {
           "additionalProperties": false,
+          "description": "Specifies how scales and axes are [resolved](https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution) in the view hierarchy.",
           "properties": {
             "axis": {
               "additionalProperties": {
@@ -8225,7 +8296,7 @@
           "additionalProperties": {
             "$ref": "#/definitions/ViewSpec"
           },
-          "description": "Templates that can be reused within the view specification by importing them with the template key.",
+          "description": "[Templates](https://genomespy.app/docs/grammar/import/#repeating-with-named-templates) that can be reused within the view specification by importing them with the template key.",
           "type": "object"
         },
         "title": {
@@ -8236,16 +8307,19 @@
             {
               "$ref": "#/definitions/Title"
             }
-          ]
+          ],
+          "description": "View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible."
         },
         "transform": {
+          "description": "An array of [transformations](https://genomespy.app/docs/grammar/transform/) applied to the data before visual encoding.",
           "items": {
             "$ref": "#/definitions/TransformParams"
           },
           "type": "array"
         },
         "view": {
-          "$ref": "#/definitions/ViewBackground"
+          "$ref": "#/definitions/ViewBackground",
+          "description": "The background of the view, including fill, stroke, and stroke width."
         },
         "viewportHeight": {
           "anyOf": [
@@ -8260,7 +8334,7 @@
               "type": "string"
             }
           ],
-          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
         },
         "viewportWidth": {
           "anyOf": [
@@ -8275,10 +8349,10 @@
               "type": "string"
             }
           ],
-          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
         },
         "visible": {
-          "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+          "description": "The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see [toggleable view visibility](https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility).\n\n**Default:** `true`",
           "type": "boolean"
         },
         "width": {
@@ -8297,7 +8371,7 @@
               "type": "string"
             }
           ],
-          "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+          "description": "Width of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
         }
       },
       "required": [
@@ -8356,15 +8430,16 @@
       "additionalProperties": false,
       "properties": {
         "baseUrl": {
-          "description": "Optional base URL for constructing request URLs. When set, all views deeper in the hierarchy inherit this base URL, using it for importing loading data and importing specifications.",
+          "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the App. Configurability requires that the view has an explicitly specified name that is *unique* in within the view specification.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
           "type": "boolean"
         },
         "data": {
-          "$ref": "#/definitions/Data"
+          "$ref": "#/definitions/Data",
+          "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
         },
         "description": {
           "anyOf": [
@@ -8378,10 +8453,11 @@
               "type": "array"
             }
           ],
-          "description": "A description of the view. Multiple lines can be provided as an array."
+          "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
         },
         "encoding": {
-          "$ref": "#/definitions/Encoding"
+          "$ref": "#/definitions/Encoding",
+          "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
         },
         "height": {
           "anyOf": [
@@ -8399,9 +8475,10 @@
               "type": "string"
             }
           ],
-          "description": "Height of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+          "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
         },
         "name": {
+          "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
           "type": "string"
         },
         "opacity": {
@@ -8410,10 +8487,10 @@
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding in pixels.\n\n**Default:* `0`"
+          "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
         },
         "params": {
-          "description": "Dynamic variables that parameterize a visualization.",
+          "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
           "items": {
             "$ref": "#/definitions/Parameter"
           },
@@ -8421,6 +8498,7 @@
         },
         "resolve": {
           "additionalProperties": false,
+          "description": "Specifies how scales and axes are [resolved](https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution) in the view hierarchy.",
           "properties": {
             "axis": {
               "additionalProperties": {
@@ -8455,7 +8533,7 @@
           "additionalProperties": {
             "$ref": "#/definitions/ViewSpec"
           },
-          "description": "Templates that can be reused within the view specification by importing them with the template key.",
+          "description": "[Templates](https://genomespy.app/docs/grammar/import/#repeating-with-named-templates) that can be reused within the view specification by importing them with the template key.",
           "type": "object"
         },
         "title": {
@@ -8466,9 +8544,11 @@
             {
               "$ref": "#/definitions/Title"
             }
-          ]
+          ],
+          "description": "View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible."
         },
         "transform": {
+          "description": "An array of [transformations](https://genomespy.app/docs/grammar/transform/) applied to the data before visual encoding.",
           "items": {
             "$ref": "#/definitions/TransformParams"
           },
@@ -8501,7 +8581,7 @@
               "type": "string"
             }
           ],
-          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
+          "description": "Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `height`)"
         },
         "viewportWidth": {
           "anyOf": [
@@ -8516,10 +8596,10 @@
               "type": "string"
             }
           ],
-          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with scrollbars. This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
+          "description": "Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with [scrollbars](https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports). This property implicitly enables clipping.\n\n**Default:** `null` (same as `width`)"
         },
         "visible": {
-          "description": "Visibility of the view. An invisible view is removed from the layout and not rendered.\n\n**Default:** `true`",
+          "description": "The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see [toggleable view visibility](https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility).\n\n**Default:** `true`",
           "type": "boolean"
         },
         "width": {
@@ -8538,7 +8618,7 @@
               "type": "string"
             }
           ],
-          "description": "Width of the view. If a number, it is interpreted as pixels.\n\n**Default:** `\"container\"`"
+          "description": "Width of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
         }
       },
       "required": [
