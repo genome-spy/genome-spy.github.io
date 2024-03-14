@@ -21,17 +21,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://genomespy.app/docs/genomic-data/</loc>
+         <lastmod>2024-03-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://genomespy.app/docs/genomic-data/examples/</loc>
          <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/genomic-data/genomic-coordinates/</loc>
-         <lastmod>2024-03-14</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://genomespy.app/docs/genomic-data/tracks/</loc>
          <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
