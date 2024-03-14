@@ -1371,9 +1371,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#viewopacitydef" class="md-nav__link">
+  <a href="#paddings" class="md-nav__link">
     <span class="md-ellipsis">
-      ViewOpacityDef
+      Paddings
     </span>
   </a>
   
@@ -1410,6 +1410,15 @@
   <a href="#viewbackground" class="md-nav__link">
     <span class="md-ellipsis">
       ViewBackground
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewopacitydef" class="md-nav__link">
+    <span class="md-ellipsis">
+      ViewOpacityDef
     </span>
   </a>
   
@@ -1710,9 +1719,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#viewopacitydef" class="md-nav__link">
+  <a href="#paddings" class="md-nav__link">
     <span class="md-ellipsis">
-      ViewOpacityDef
+      Paddings
     </span>
   </a>
   
@@ -1754,6 +1763,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#viewopacitydef" class="md-nav__link">
+    <span class="md-ellipsis">
+      ViewOpacityDef
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1773,20 +1791,20 @@
 
 
 <h1 id="types-used-in-the-grammar">Types Used in the Grammar<a class="headerlink" href="#types-used-in-the-grammar" title="Permanent link">&para;</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>The list is still incomplete.</p>
 </div>
 <h2 id="compareparams">CompareParams<a class="headerlink" href="#compareparams" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>field</code> <span class="required">Required</span></dt>
 <dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">Field</a>[] | <a href="https://genomespy.app/docs/grammar/types/">Field</a></p>
+<p>Type: string (field name)[] | string (field name)</p>
 <p>The field(s) to sort by</p>
 </dd>
 <dt><code>order</code></dt>
 <dd>
-<p>Type: <code>"ascending"</code> | <code>"descending"</code>[] | <code>"ascending"</code> | <code>"descending"</code></p>
+<p>Type: (<code>"ascending"</code> | <code>"descending"</code>)[] | <code>"ascending"</code> | <code>"descending"</code></p>
 <p>The order(s) to use: <code>"ascending"</code> (default), <code>"descending"</code>.</p>
 </dd>
 </dl>
@@ -1808,8 +1826,29 @@
 <p>Opacity values that match the given stops.</p>
 </dd>
 </dl>
-<h2 id="viewopacitydef">ViewOpacityDef<a class="headerlink" href="#viewopacitydef" title="Permanent link">&para;</a></h2>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/types/">DynamicOpacity</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<h2 id="paddings">Paddings<a class="headerlink" href="#paddings" title="Permanent link">&para;</a></h2>
+<dl>
+<dt><code>bottom</code></dt>
+<dd>
+<p>Type: number</p>
+<p>TODO</p>
+</dd>
+<dt><code>left</code></dt>
+<dd>
+<p>Type: number</p>
+<p>TODO</p>
+</dd>
+<dt><code>right</code></dt>
+<dd>
+<p>Type: number</p>
+<p>TODO</p>
+</dd>
+<dt><code>top</code></dt>
+<dd>
+<p>Type: number</p>
+<p>TODO</p>
+</dd>
+</dl>
 <h2 id="step">Step<a class="headerlink" href="#step" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>step</code> <span class="required">Required</span></dt>
@@ -1823,7 +1862,7 @@
 <dt><code>grow</code></dt>
 <dd>
 <p>Type: number</p>
-<p>Share of the remaining space</p>
+<p>Share of the remaining space. See <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
 </dd>
 <dt><code>px</code></dt>
 <dd>
@@ -1942,6 +1981,8 @@
 <p>The stroke width in pixels.</p>
 </dd>
 </dl>
+<h2 id="viewopacitydef">ViewOpacityDef<a class="headerlink" href="#viewopacitydef" title="Permanent link">&para;</a></h2>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/types/">DynamicOpacity</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 
 
 

@@ -922,13 +922,9 @@
           "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
           "type": "string"
         },
-        "opacity": {
-          "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
-        },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
+          "description": "Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.\n\nExamples:\n- `padding: 10`\n- `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
         },
         "params": {
           "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
@@ -2988,13 +2984,9 @@
           "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
           "type": "string"
         },
-        "opacity": {
-          "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
-        },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
+          "description": "Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.\n\nExamples:\n- `padding: 10`\n- `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
         },
         "params": {
           "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
@@ -3443,11 +3435,11 @@
         },
         "opacity": {
           "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
+          "description": "Opacity of the view and all its children. Allows implementing semantic zooming where the layers are faded in and out as the user zooms in and out.\n\nTODO: Write proper documentation with examples.\n\n**Default:** `1.0`"
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
+          "description": "Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.\n\nExamples:\n- `padding: 10`\n- `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
         },
         "params": {
           "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
@@ -5283,11 +5275,11 @@
             },
             "opacity": {
               "$ref": "#/definitions/ViewOpacityDef",
-              "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
+              "description": "Opacity of the view and all its children. Allows implementing semantic zooming where the layers are faded in and out as the user zooms in and out.\n\nTODO: Write proper documentation with examples.\n\n**Default:** `1.0`"
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
+              "description": "Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.\n\nExamples:\n- `padding: 10`\n- `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
             },
             "params": {
               "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
@@ -5517,11 +5509,11 @@
             },
             "opacity": {
               "$ref": "#/definitions/ViewOpacityDef",
-              "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
+              "description": "Opacity of the view and all its children. Allows implementing semantic zooming where the layers are faded in and out as the user zooms in and out.\n\nTODO: Write proper documentation with examples.\n\n**Default:** `1.0`"
             },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
+              "description": "Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.\n\nExamples:\n- `padding: 10`\n- `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
             },
             "params": {
               "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
@@ -5718,13 +5710,9 @@
               "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
               "type": "string"
             },
-            "opacity": {
-              "$ref": "#/definitions/ViewOpacityDef",
-              "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
-            },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
+              "description": "Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.\n\nExamples:\n- `padding: 10`\n- `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
             },
             "params": {
               "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
@@ -5950,13 +5938,9 @@
               "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
               "type": "string"
             },
-            "opacity": {
-              "$ref": "#/definitions/ViewOpacityDef",
-              "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
-            },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
+              "description": "Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.\n\nExamples:\n- `padding: 10`\n- `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
             },
             "params": {
               "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
@@ -6172,13 +6156,9 @@
               "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
               "type": "string"
             },
-            "opacity": {
-              "$ref": "#/definitions/ViewOpacityDef",
-              "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
-            },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
+              "description": "Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.\n\nExamples:\n- `padding: 10`\n- `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
             },
             "params": {
               "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
@@ -6377,13 +6357,9 @@
               "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
               "type": "string"
             },
-            "opacity": {
-              "$ref": "#/definitions/ViewOpacityDef",
-              "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
-            },
             "padding": {
               "$ref": "#/definitions/PaddingConfig",
-              "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
+              "description": "Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.\n\nExamples:\n- `padding: 10`\n- `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
             },
             "params": {
               "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
@@ -6865,13 +6841,9 @@
           "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
           "type": "string"
         },
-        "opacity": {
-          "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
-        },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
+          "description": "Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.\n\nExamples:\n- `padding: 10`\n- `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
         },
         "params": {
           "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
@@ -7489,7 +7461,7 @@
       "additionalProperties": false,
       "properties": {
         "grow": {
-          "description": "Share of the remaining space",
+          "description": "Share of the remaining space. See [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.",
           "type": "number"
         },
         "px": {
@@ -8250,11 +8222,11 @@
         },
         "opacity": {
           "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
+          "description": "Opacity of the view and all its children. Allows implementing semantic zooming where the layers are faded in and out as the user zooms in and out.\n\nTODO: Write proper documentation with examples.\n\n**Default:** `1.0`"
         },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
+          "description": "Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.\n\nExamples:\n- `padding: 10`\n- `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
         },
         "params": {
           "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",
@@ -8481,13 +8453,9 @@
           "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
           "type": "string"
         },
-        "opacity": {
-          "$ref": "#/definitions/ViewOpacityDef",
-          "description": "Opacity of the view and all its children.\n\n**Default:** `1.0`"
-        },
         "padding": {
           "$ref": "#/definitions/PaddingConfig",
-          "description": "Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
+          "description": "Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.\n\nExamples:\n- `padding: 10`\n- `padding: { top: 10, right: 20, bottom: 10, left: 20 }`\n\n**Default value:** `0`"
         },
         "params": {
           "description": "Dynamic variables that [parameterize](https://genomespy.app/docs/grammar/parameters/) a visualization.",

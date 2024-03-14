@@ -1643,7 +1643,7 @@
 <p>Genome browser applications typically couple the visual representations to
 specific file formats and provide few customization options. GenomeSpy has a
 more abstract approach to visualization, providing combinatorial building blocks
-such as <a href="mark/point/">marks</a>, <a href="transform/">transformations</a>, and
+such as <a href="mark/">marks</a>, <a href="transform/">transformations</a>, and
 <a href="scale/">scales</a>. As a result, users can author tailored visualizations that
 display the underlying data more effectively.</p>
 <p>The concept was first introduced in <a href="https://www.springer.com/gp/book/9780387245447">The Grammar of
@@ -1704,7 +1704,7 @@ encoded into mark instances.</p>
 </dd>
 <dt><code>data</code></dt>
 <dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/types/">InlineData</a> | <a href="https://genomespy.app/docs/grammar/types/">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/types/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/types/">Generator</a></p>
+<p>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">Generator</a></p>
 <p>Specifies a <a href="https://genomespy.app/docs/grammar/data/">data source</a>. If omitted, the data source is inherited from the parent view.</p>
 </dd>
 <dt><code>description</code></dt>
@@ -1714,7 +1714,7 @@ encoded into mark instances.</p>
 </dd>
 <dt><code>encoding</code></dt>
 <dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">Encoding</a></p>
+<p>Type: <a href="https://genomespy.app/docs/grammar/mark/#encoding">Encoding</a></p>
 <p>Specifies how data are <a href="https://genomespy.app/docs/grammar/mark/#encoding">encoded</a> using the visual channels.</p>
 </dd>
 <dt><code>height</code></dt>
@@ -1725,7 +1725,7 @@ encoded into mark instances.</p>
 </dd>
 <dt><code>mark</code> <span class="required">Required</span></dt>
 <dd>
-<p>Type: <code>"rect"</code> | <code>"point"</code> | <code>"rule"</code> | <code>"text"</code> | <code>"link"</code> | <a href="https://genomespy.app/docs/grammar/types/">RectProps</a> | <a href="https://genomespy.app/docs/grammar/types/">TextProps</a> | <a href="https://genomespy.app/docs/grammar/types/">RuleProps</a> | <a href="https://genomespy.app/docs/grammar/types/">LinkProps</a> | <a href="https://genomespy.app/docs/grammar/types/">PointProps</a></p>
+<p>Type: <code>"rect"</code> | <code>"point"</code> | <code>"rule"</code> | <code>"text"</code> | <code>"link"</code> | <a href="https://genomespy.app/docs/grammar/mark/rect/#properties">RectProps</a> | <a href="https://genomespy.app/docs/grammar/mark/text/#properties">TextProps</a> | <a href="https://genomespy.app/docs/grammar/mark/rule/#properties">RuleProps</a> | <a href="https://genomespy.app/docs/grammar/mark/link/#properties">LinkProps</a> | <a href="https://genomespy.app/docs/grammar/mark/point/#properties">PointProps</a></p>
 <p>The graphical mark presenting the data objects.</p>
 </dd>
 <dt><code>name</code></dt>
@@ -1736,13 +1736,17 @@ encoded into mark instances.</p>
 <dt><code>opacity</code></dt>
 <dd>
 <p>Type: number | <a href="https://genomespy.app/docs/grammar/types/">DynamicOpacity</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Opacity of the view and all its children.</p>
+<p>Opacity of the view and all its children. Allows implementing semantic zooming where the layers are faded in and out as the user zooms in and out.</p>
+<p>TODO: Write proper documentation with examples.</p>
 <p><strong>Default:</strong> <code>1.0</code></p>
 </dd>
 <dt><code>padding</code></dt>
 <dd>
 <p>Type: <a href="https://genomespy.app/docs/grammar/types/">Paddings</a> | number</p>
-<p>Padding applied to the view. Accepts either a number representing pixels or a PaddingConfig. Example: <code>padding: { top: 10, right: 20, bottom: 10, left: 20 }</code></p>
+<p>Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.</p>
+<p>Examples:
+- <code>padding: 10</code>
+- <code>padding: { top: 10, right: 20, bottom: 10, left: 20 }</code></p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>params</code></dt>
