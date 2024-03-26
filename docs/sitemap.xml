@@ -2,237 +2,237 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://genomespy.app/docs/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/api/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/getting-started/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/license/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/genomic-data/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/genomic-data/examples/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/genomic-data/genomic-coordinates/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/expressions/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/import/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/parameters/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/scale/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/types/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/composition/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/composition/concat/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/composition/layer/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/data/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/data/eager/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/data/lazy/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/mark/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/mark/link/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/mark/point/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/mark/rect/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/mark/rule/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/mark/text/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/aggregate/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/collect/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/coverage/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/filter-scored-labels/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/filter/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/flatten-compressed-exons/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/flatten-delimited/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/flatten-sequence/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/flatten/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/formula/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/linearize-genomic-coordinate/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/measure-text/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/pileup/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/project/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/regex-extract/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/regex-fold/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/sample/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/grammar/transform/stack/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/sample-collections/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/sample-collections/analyzing/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomespy.app/docs/sample-collections/visualizing/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
