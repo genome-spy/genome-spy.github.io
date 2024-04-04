@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1601,6 +1601,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#handling-variable-sample-heights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling variable sample heights
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#aggregation" class="md-nav__link">
     <span class="md-ellipsis">
       Aggregation
@@ -1854,6 +1863,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#handling-variable-sample-heights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling variable sample heights
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#aggregation" class="md-nav__link">
     <span class="md-ellipsis">
       Aggregation
@@ -2023,8 +2041,7 @@ while the top layer might show single-nucleotide variants.</p>
 <span class="w">      </span><span class="err">...</span><span class="p">,</span>
 <span class="w">      </span><span class="c1">// The sample channel identifies the track</span>
 <span class="w">      </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sampleId&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span>
+<span class="w">        </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sampleId&quot;</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
@@ -2180,6 +2197,39 @@ attribute labels, use the following configuration:</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 </dl>
+<h3 id="handling-variable-sample-heights">Handling variable sample heights<a class="headerlink" href="#handling-variable-sample-heights" title="Permanent link">&para;</a></h3>
+<p>The height of a single sample depend on the number of samples and the height of
+the sample view. Moreover, the end user can
+<a href="../analyzing/#peeking-samples">toggle</a> between a bird's eye view and a closeup
+view making the height very dynamic.</p>
+<p>To adapt the maximum size of <a href="../../grammar/mark/point/"><code>"point"</code></a> marks to the
+height of the samples, you need to specify a dynamic
+<a href="../../grammar/scale/">scale</a> range for the <code>size</code> channel. The following example
+demonstrates how to use <a href="../../grammar/expressions/">expressions</a> and the
+<code>height</code> <a href="../../grammar/parameters/">parameter</a> adjust the point size:</p>
+<div class="highlight"><span class="filename">Dynamic point sizes</span><pre><span></span><code><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VAF&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pow(clamp(height * 0.65, 2, 18), 2)&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="err">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>In this example, the <code>height</code> parameter contains the height of a single sample.
+By multiplying it with <code>0.65</code>, the points get some padding at the top and
+bottom. To prevent the points from becoming too small or excessively large, the
+<code>clamp</code> function is used to limit the point's diameter to a minimum of <code>2</code> and a
+maximum of <code>18</code> pixels. As the <code>size</code> channel encodes the <em>area</em>, not the
+diameter of the points, the <code>pow</code> function is used to square the value. The
+technique shown here is used in the
+<a href="https://genomespy.app/examples/?spec=PARPiCL/parpicl.json">PARPiCL</a> example.</p>
 <h3 id="aggregation">Aggregation<a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h3>
 <p>TODO</p>
 <h2 id="bookmarking">Bookmarking<a class="headerlink" href="#bookmarking" title="Permanent link">&para;</a></h2>
@@ -2246,7 +2296,7 @@ If undefined, the default state without any performed actions will be loaded.</d
 <h4 id="the-bookmark-file">The bookmark file<a class="headerlink" href="#the-bookmark-file" title="Permanent link">&para;</a></h4>
 <p>The remote bookmark file consists of an array of bookmark objects. The easiest
 way to create such bookmark objects is to create a bookmark in the app and
-choose <em>Share</em> from the submenu (:fontawesome-solid-ellipsis-vertical:) of the
+choose <em>Share</em> from the submenu (<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm56-104A56 56 0 1 0 8 96a56 56 0 1 0 112 0z"/></svg></span>) of the
 bookmark item. The sharing dialog provides the bookmark in an URL-encoded format
 and as a JSON object. Just copy-paste the JSON object into the bookmark file to
 make it available to all users. A simplified example:</p>
@@ -2362,7 +2412,7 @@ exploration</a></p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.bd41221c.min.js"></script>
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
       
         <script src="../../app/index.js"></script>
       
