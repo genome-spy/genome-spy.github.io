@@ -2843,19 +2843,21 @@
       "type": "object"
     },
     "GenomeConfig": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/UrlGenomeConfig"
+        },
+        {
+          "$ref": "#/definitions/InlineGenomeConfig"
+        },
+        {
+          "$ref": "#/definitions/GenomeConfigBase"
+        }
+      ]
+    },
+    "GenomeConfigBase": {
       "additionalProperties": false,
       "properties": {
-        "baseUrl": {
-          "description": "Base url of data files: chromsizes, cytobands, and gene annotations.\n\n**Default:** `\"https://genomespy.app/data/genomes/\"`",
-          "type": "string"
-        },
-        "contigs": {
-          "description": "As an alternative for chromSizes, the contigs can be provided inline.",
-          "items": {
-            "$ref": "#/definitions/Contig"
-          },
-          "type": "array"
-        },
         "name": {
           "description": "Name of the genome assembly, e.g., `hg19` or `hg38`.",
           "type": "string"
@@ -3285,6 +3287,27 @@
           "type": "object"
         }
       ]
+    },
+    "InlineGenomeConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "contigs": {
+          "description": "An array of contigs/sequences in the genome assembly.",
+          "items": {
+            "$ref": "#/definitions/Contig"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Name of the genome assembly, e.g., `hg19` or `hg38`.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "contigs",
+        "name"
+      ],
+      "type": "object"
     },
     "IntervalSelectionConfig": {
       "additionalProperties": false,
@@ -8381,6 +8404,24 @@
         }
       },
       "required": [
+        "url"
+      ],
+      "type": "object"
+    },
+    "UrlGenomeConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "Name of the genome assembly, e.g., `hg19` or `hg38`.",
+          "type": "string"
+        },
+        "url": {
+          "description": "A URL to a `chrom.sizes` file, which is a tab-separated file with two columns: the sequence name and its size.\n\nYou may want to strip alternative loci, haplotypes, and other non-canonical contigs from the file.\n\nExample: `\"https://genomespy.app/data/genomes/hg19/chrom.sizes\"`",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
         "url"
       ],
       "type": "object"
