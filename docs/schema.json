@@ -2905,6 +2905,13 @@
     "Gff3Data": {
       "additionalProperties": false,
       "properties": {
+        "addChrPrefix": {
+          "description": "Add a `chr` (boolean) or custom (string) prefix to the chromosome names in the Tabix file.\n\n__Default value:__ `false`",
+          "type": [
+            "boolean",
+            "string"
+          ]
+        },
         "channel": {
           "$ref": "#/definitions/PrimaryPositionalChannel",
           "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
@@ -3654,6 +3661,9 @@
         },
         {
           "$ref": "#/definitions/Gff3Data"
+        },
+        {
+          "$ref": "#/definitions/VcfData"
         }
       ]
     },
@@ -8818,6 +8828,62 @@
       },
       "required": [
         "name"
+      ],
+      "type": "object"
+    },
+    "VcfData": {
+      "additionalProperties": false,
+      "properties": {
+        "addChrPrefix": {
+          "description": "Add a `chr` (boolean) or custom (string) prefix to the chromosome names in the Tabix file.\n\n__Default value:__ `false`",
+          "type": [
+            "boolean",
+            "string"
+          ]
+        },
+        "channel": {
+          "$ref": "#/definitions/PrimaryPositionalChannel",
+          "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
+        },
+        "debounce": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.\n\n__Default value:__ `200`"
+        },
+        "debounceMode": {
+          "description": "The debounce mode for data updates. If set to `\"domain\"`, domain change events (panning and zooming) will be debounced. If set to `\"window\"`, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the `\"window\"` is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.\n\n__Default value:__ `\"window\"`",
+          "enum": [
+            "domain",
+            "window"
+          ],
+          "type": "string"
+        },
+        "indexUrl": {
+          "description": "Url of the tabix index file.\n\n__Default value:__ `url` + `\".tbi\"`.",
+          "type": "string"
+        },
+        "type": {
+          "const": "vcf",
+          "type": "string"
+        },
+        "url": {
+          "description": "Url of the bgzip compressed file.",
+          "type": "string"
+        },
+        "windowSize": {
+          "description": "Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.\n\n__Default value:__ `30000000`",
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "url"
       ],
       "type": "object"
     },
