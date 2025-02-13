@@ -6747,6 +6747,10 @@
           "$ref": "#/definitions/Scale",
           "description": "Scale definition for the (default) color channel"
         },
+        "title": {
+          "description": "The title of the attribute. Defaults to attribute name.",
+          "type": "string"
+        },
         "type": {
           "$ref": "#/definitions/Type",
           "description": "The attribute type. One of `\"nominal\"`, `\"ordinal\"`, or `\"quantitative\"`."
@@ -6760,14 +6764,15 @@
           "type": "number"
         }
       },
-      "required": [
-        "type"
-      ],
       "type": "object"
     },
     "SampleDef": {
       "additionalProperties": false,
       "properties": {
+        "attributeGroupSeparator": {
+          "description": "If attributes form a hierarchy, specify the separator character to split the attribute names into paths.",
+          "type": "string"
+        },
         "attributeLabelAngle": {
           "description": "Angle to be added to the default label angle (-90).\n\n**Default value:** `0`",
           "type": "number"
