@@ -2261,12 +2261,16 @@ category with a single checkbox.</p>
 configure hierarchically:</p>
 <ul>
 <li>patientId</li>
-<li>Clinical data</li>
+<li>Clinical data<ul>
 <li>PFI</li>
 <li>OS</li>
-<li>Mutational signatures</li>
+</ul>
+</li>
+<li>Mutational signatures<ul>
 <li>HRD</li>
 <li>APOBEC</li>
+</ul>
+</li>
 </ul>
 <p>To use hierarchical metadata attributes, the attribute names must have a
 (multi-level) group prefix, where a designated character separates the levels of
@@ -2329,34 +2333,22 @@ attribute labels, use the following configuration:</p>
 <p>In addition, the following properties are supported:</p>
 <dl>
 <dt><code>labelTitleText</code></dt>
-<dd>
-<p>The title of the sample labels.</p>
-<p><strong>Default value:</strong> <code>"Sample name"</code></p>
+<dd>The title of the sample labels.<p><strong>Default value:</strong> <code>"Sample name"</code></p>
 </dd>
 <dt><code>labelLength</code></dt>
-<dd>
-<p>The space allocated for the sample labels in pixels.</p>
-<p><strong>Default value:</strong> <code>140</code></p>
+<dd>The space allocated for the sample labels in pixels.<p><strong>Default value:</strong> <code>140</code></p>
 </dd>
 <dt><code>labelAlign</code></dt>
-<dd>
-<p>The horizontal alignment of the text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
-<p><strong>Default value:</strong> <code>"left"</code></p>
+<dd>The horizontal alignment of the text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.<p><strong>Default value:</strong> <code>"left"</code></p>
 </dd>
 <dt><code>attributeSize</code></dt>
-<dd>
-<p>Default size (width) of the metadata attribute columns. Can be configured per attribute using the <code>attributes</code> property.</p>
-<p><strong>Default value:</strong> <code>10</code></p>
+<dd>Default size (width) of the metadata attribute columns. Can be configured per attribute using the <code>attributes</code> property.<p><strong>Default value:</strong> <code>10</code></p>
 </dd>
 <dt><code>attributeLabelAngle</code></dt>
-<dd>
-<p>Angle to be added to the default label angle (-90).</p>
-<p><strong>Default value:</strong> <code>0</code></p>
+<dd>Angle to be added to the default label angle (-90).<p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>attributeSpacing</code></dt>
-<dd>
-<p>Spacing between attribute columns in pixels.</p>
-<p><strong>Default value:</strong> <code>1</code></p>
+<dd>Spacing between attribute columns in pixels.<p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 </dl>
 <h3 id="handling-variable-sample-heights">Handling variable sample heights<a class="headerlink" href="#handling-variable-sample-heights" title="Permanent link">&para;</a></h3>
@@ -2444,11 +2436,9 @@ previous/next buttons.</p>
 <dd>Name of the bookmark that should be loaded as the initial state. The bookmark
 description dialog is shown only if the <code>tour</code> property is set to <code>true</code>.</dd>
 <dt><code>tour</code> (boolean, optional)</dt>
-<dd>
-<p>Should the user be shown a tour of the remote bookmarks when the visualization
+<dd>Should the user be shown a tour of the remote bookmarks when the visualization
 is launched? If the <code>initialBookmark</code> property is not defined, the tour starts
-from the first bookmark.</p>
-<p><strong>Default:</strong> <code>false</code></p>
+from the first bookmark.<p><strong>Default:</strong> <code>false</code></p>
 </dd>
 <dt><code>afterTourBookmark</code> (string, optional)</dt>
 <dd>Name of the bookmark that should be loaded when the user ends the tour.
@@ -2493,15 +2483,11 @@ preferred configurations.</p>
 <p>Views have two properties for controlling the visibility:</p>
 <dl>
 <dt><code>visible</code> (boolean)</dt>
-<dd>
-<p>If true, the view is visible. This property can be used to set the default visibility.</p>
-<p><strong>Default:</strong> <code>true</code></p>
+<dd>If true, the view is visible. This property can be used to set the default visibility.<p><strong>Default:</strong> <code>true</code></p>
 </dd>
 <dt><code>configurableVisibility</code> (boolean)</dt>
-<dd>
-<p>If true, the visibility is configurable from a menu in the app</p>
-<p>Configurability requires that the view has an explicitly specified <code>name</code>
-that is <em>unique</em> within the view specification.</p>
+<dd>If true, the visibility is configurable from a menu in the app<p>Configurability requires that the view has an explicitly specified <code>name</code>
+  that is <em>unique</em> within the view specification.</p>
 <p><strong>Default:</strong> <code>false</code> for children of <code>layer</code>, <code>true</code> for others</p>
 </dd>
 </dl>
