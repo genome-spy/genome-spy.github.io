@@ -670,6 +670,96 @@
         }
       ]
     },
+    "BrushConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "fill": {
+          "description": "The fill color of the interval mark.\n\n__Default value:__ `\"#808080\"`",
+          "type": "string"
+        },
+        "fillOpacity": {
+          "description": "The fill opacity of the interval mark (a value between `0` and `1`).\n\n__Default value:__ `0.05`",
+          "type": "number"
+        },
+        "measure": {
+          "description": "Where to display the measurement text (e.g., number of base pairs) for the interval selection.\n\n- `\"none\"` -- do not show the measurement.\n- `\"inside\"` -- show inside the brush rectangle.\n- `\"outside\"` -- show outside the brush rectangle.\n\n__Default value:__ `\"none\"`",
+          "enum": [
+            "none",
+            "inside",
+            "outside"
+          ],
+          "type": "string"
+        },
+        "shadowBlur": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The blur radius of the drop shadow in pixels. Higher values produce a more diffuse shadow.\n\n**Default value:** `0`"
+        },
+        "shadowColor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The color of the drop shadow. Any valid CSS color string is allowed.\n\n**Default value:** `\"black\"`"
+        },
+        "shadowOffsetX": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The horizontal offset of the drop shadow in pixels. Positive values move the shadow to the right.\n\n**Default value:** `0`"
+        },
+        "shadowOffsetY": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The vertical offset of the drop shadow in pixels. Positive values move the shadow downward.\n\n**Default value:** `0`"
+        },
+        "shadowOpacity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The opacity of the drop shadow. Value between `0` (fully transparent) and `1` (fully opaque).\n\n**Default value:** `0` (disabled)"
+        },
+        "stroke": {
+          "description": "The stroke color of the interval mark.\n\n__Default value:__ `\"black\"`",
+          "type": "string"
+        },
+        "strokeOpacity": {
+          "description": "The stroke opacity of the interval mark (a value between `0` and `1`).\n\n__Default value:__ `0.2`",
+          "type": "number"
+        },
+        "strokeWidth": {
+          "description": "The stroke width of the interval mark.\n\n__Default value:__ `1`",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "ChannelWithScale": {
       "anyOf": [
         {
@@ -3354,18 +3444,15 @@
       "additionalProperties": false,
       "properties": {
         "encodings": {
-          "description": "An array of encoding channels. The corresponding data field values must match for a data tuple to fall within the selection.\n\n__See also:__ The [projection with `encodings` and `fields` section](https://vega.github.io/vega-lite/docs/selection.html#project) in the documentation.",
+          "description": "An array of encoding channels that define the interval selection.",
           "items": {
-            "$ref": "#/definitions/ChannelWithScale"
+            "$ref": "#/definitions/PrimaryPositionalChannel"
           },
           "type": "array"
         },
-        "fields": {
-          "description": "An array of field names whose values must match for a data tuple to fall within the selection.\n\n__See also:__ The [projection with `encodings` and `fields` section](https://vega.github.io/vega-lite/docs/selection.html#project) in the documentation.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
+        "mark": {
+          "$ref": "#/definitions/BrushConfig",
+          "description": "Interval selections display a rectangle mark to show the selected range. Use the `mark` property to adjust the appearance of this rectangle."
         },
         "on": {
           "enum": [
@@ -4500,20 +4587,6 @@
     "PointSelectionConfig": {
       "additionalProperties": false,
       "properties": {
-        "encodings": {
-          "description": "An array of encoding channels. The corresponding data field values must match for a data tuple to fall within the selection.\n\n__See also:__ The [projection with `encodings` and `fields` section](https://vega.github.io/vega-lite/docs/selection.html#project) in the documentation.",
-          "items": {
-            "$ref": "#/definitions/ChannelWithScale"
-          },
-          "type": "array"
-        },
-        "fields": {
-          "description": "An array of field names whose values must match for a data tuple to fall within the selection.\n\n__See also:__ The [projection with `encodings` and `fields` section](https://vega.github.io/vega-lite/docs/selection.html#project) in the documentation.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "on": {
           "enum": [
             "click",
@@ -4992,6 +5065,54 @@
           "description": "Whether the `color` represents the `fill` color (`true`) or the `stroke` color (`false`).",
           "type": "boolean"
         },
+        "hatch": {
+          "anyOf": [
+            {
+              "const": "none",
+              "type": "string"
+            },
+            {
+              "const": "diagonal",
+              "type": "string"
+            },
+            {
+              "const": "antiDiagonal",
+              "type": "string"
+            },
+            {
+              "const": "cross",
+              "type": "string"
+            },
+            {
+              "const": "vertical",
+              "type": "string"
+            },
+            {
+              "const": "horizontal",
+              "type": "string"
+            },
+            {
+              "const": "grid",
+              "type": "string"
+            },
+            {
+              "const": "dots",
+              "type": "string"
+            },
+            {
+              "const": "rings",
+              "type": "string"
+            },
+            {
+              "const": "ringsLarge",
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "A hatch pattern drawn inside the mark using the stroke width, color, and opacity. The pattern is aligned in screen space and scaled by the stroke width.\n\n**Default value:** `\"none\"`"
+        },
         "minBufferSize": {
           "description": "Minimum size for WebGL buffers (number of data items). Allows for using `bufferSubData()` to update graphics.\n\nThis property is intended for internal use.",
           "type": "number"
@@ -5039,6 +5160,61 @@
             }
           ],
           "description": "Opacity of the mark. Affects `fillOpacity` or `strokeOpacity`, depending on the `filled` property."
+        },
+        "shadowBlur": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The blur radius of the drop shadow in pixels. Higher values produce a more diffuse shadow.\n\n**Default value:** `0`"
+        },
+        "shadowColor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The color of the drop shadow. Any valid CSS color string is allowed.\n\n**Default value:** `\"black\"`"
+        },
+        "shadowOffsetX": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The horizontal offset of the drop shadow in pixels. Positive values move the shadow to the right.\n\n**Default value:** `0`"
+        },
+        "shadowOffsetY": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The vertical offset of the drop shadow in pixels. Positive values move the shadow downward.\n\n**Default value:** `0`"
+        },
+        "shadowOpacity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The opacity of the drop shadow. Value between `0` (fully transparent) and `1` (fully opaque).\n\n**Default value:** `0` (disabled)"
         },
         "stroke": {
           "anyOf": [
@@ -7420,6 +7596,28 @@
       ],
       "type": "object"
     },
+    "SelectionInitIntervalMapping": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        "y": {
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "SelectionParameter": {
       "additionalProperties": false,
       "properties": {
@@ -7444,6 +7642,10 @@
             }
           ],
           "description": "Determines the default event processing and data query for the selection. Vega-Lite currently supports two selection types:\n\n- `\"point\"` -- to select multiple discrete data values; the first value is selected on `click` and additional values toggled on shift-click.\n- `\"interval\"` -- to select a continuous range of data values on `drag`."
+        },
+        "value": {
+          "$ref": "#/definitions/SelectionInitIntervalMapping",
+          "description": "Initial value for the selection."
         }
       },
       "required": [
@@ -8451,6 +8653,9 @@
             },
             {
               "$ref": "#/definitions/ExprRef"
+            },
+            {
+              "$ref": "#/definitions/UrlList"
             }
           ],
           "description": "An URL or an array of URLs from which to load the data set. Use the `format.type` property to ensure the loaded data is correctly parsed."
@@ -8489,6 +8694,28 @@
       },
       "required": [
         "url"
+      ],
+      "type": "object"
+    },
+    "UrlList": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "description": "The format of the data in the list. If the type is `\"json\"`, the list is expected to be an array of strings. If the type is `\"csv\"` or `\"tsv\"`, the list is expected to be a table with a single column named `file`.\n\n__Default value:__ `\"txt\"`",
+          "enum": [
+            "json",
+            "csv",
+            "tsv"
+          ],
+          "type": "string"
+        },
+        "urlsFromFile": {
+          "description": "A URL that returns a list of URLs to load the data set. The URLs in the list can be absolute or relative to the URL of the list.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "urlsFromFile"
       ],
       "type": "object"
     },
@@ -8916,6 +9143,61 @@
             }
           ],
           "description": "The fill opacity. Value between `0` and `1`."
+        },
+        "shadowBlur": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The blur radius of the drop shadow in pixels. Higher values produce a more diffuse shadow.\n\n**Default value:** `0`"
+        },
+        "shadowColor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The color of the drop shadow. Any valid CSS color string is allowed.\n\n**Default value:** `\"black\"`"
+        },
+        "shadowOffsetX": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The horizontal offset of the drop shadow in pixels. Positive values move the shadow to the right.\n\n**Default value:** `0`"
+        },
+        "shadowOffsetY": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The vertical offset of the drop shadow in pixels. Positive values move the shadow downward.\n\n**Default value:** `0`"
+        },
+        "shadowOpacity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The opacity of the drop shadow. Value between `0` (fully transparent) and `1` (fully opaque).\n\n**Default value:** `0` (disabled)"
         },
         "stroke": {
           "anyOf": [
