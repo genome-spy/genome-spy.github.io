@@ -1066,7 +1066,73 @@
                 "$ref": "#/definitions/ResolutionBehavior"
               },
               "properties": {
+                "angle": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "color": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "default": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dx": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dy": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "facetIndex": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fill": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "sample": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "search": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "semanticScore": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "shape": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "size": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "text": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "uniqueId": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -1077,7 +1143,73 @@
                 "$ref": "#/definitions/ResolutionBehavior"
               },
               "properties": {
+                "angle": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "color": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "default": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dx": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dy": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "facetIndex": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fill": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "sample": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "search": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "semanticScore": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "shape": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "size": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "text": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "uniqueId": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -3137,7 +3269,73 @@
                 "$ref": "#/definitions/ResolutionBehavior"
               },
               "properties": {
+                "angle": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "color": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "default": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dx": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dy": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "facetIndex": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fill": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "sample": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "search": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "semanticScore": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "shape": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "size": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "text": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "uniqueId": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -3148,7 +3346,73 @@
                 "$ref": "#/definitions/ResolutionBehavior"
               },
               "properties": {
+                "angle": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "color": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "default": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dx": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dy": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "facetIndex": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fill": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "sample": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "search": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "semanticScore": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "shape": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "size": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "text": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "uniqueId": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -3608,7 +3872,73 @@
                 "$ref": "#/definitions/ResolutionBehavior"
               },
               "properties": {
+                "angle": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "color": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "default": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dx": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dy": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "facetIndex": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fill": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "sample": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "search": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "semanticScore": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "shape": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "size": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "text": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "uniqueId": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -3619,7 +3949,73 @@
                 "$ref": "#/definitions/ResolutionBehavior"
               },
               "properties": {
+                "angle": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "color": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "default": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dx": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dy": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "facetIndex": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fill": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "sample": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "search": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "semanticScore": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "shape": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "size": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "text": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "uniqueId": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -4275,29 +4671,9 @@
       "type": "object"
     },
     "ParseValue": {
-      "anyOf": [
-        {
-          "type": "null"
-        },
-        {
-          "type": "string"
-        },
-        {
-          "const": "string",
-          "type": "string"
-        },
-        {
-          "const": "boolean",
-          "type": "string"
-        },
-        {
-          "const": "date",
-          "type": "string"
-        },
-        {
-          "const": "number",
-          "type": "string"
-        }
+      "type": [
+        "string",
+        "null"
       ]
     },
     "PileupParams": {
@@ -5544,7 +5920,73 @@
                     "$ref": "#/definitions/ResolutionBehavior"
                   },
                   "properties": {
+                    "angle": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "color": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dx": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dy": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "facetIndex": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fill": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "opacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "sample": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "search": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "semanticScore": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "shape": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "size": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "stroke": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeWidth": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "text": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "uniqueId": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -5555,7 +5997,73 @@
                     "$ref": "#/definitions/ResolutionBehavior"
                   },
                   "properties": {
+                    "angle": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "color": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dx": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dy": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "facetIndex": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fill": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "opacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "sample": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "search": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "semanticScore": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "shape": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "size": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "stroke": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeWidth": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "text": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "uniqueId": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -5778,7 +6286,73 @@
                     "$ref": "#/definitions/ResolutionBehavior"
                   },
                   "properties": {
+                    "angle": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "color": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dx": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dy": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "facetIndex": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fill": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "opacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "sample": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "search": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "semanticScore": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "shape": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "size": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "stroke": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeWidth": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "text": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "uniqueId": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -5789,7 +6363,73 @@
                     "$ref": "#/definitions/ResolutionBehavior"
                   },
                   "properties": {
+                    "angle": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "color": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dx": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dy": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "facetIndex": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fill": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "opacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "sample": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "search": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "semanticScore": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "shape": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "size": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "stroke": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeWidth": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "text": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "uniqueId": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -5977,7 +6617,73 @@
                     "$ref": "#/definitions/ResolutionBehavior"
                   },
                   "properties": {
+                    "angle": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "color": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dx": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dy": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "facetIndex": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fill": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "opacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "sample": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "search": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "semanticScore": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "shape": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "size": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "stroke": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeWidth": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "text": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "uniqueId": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -5988,7 +6694,73 @@
                     "$ref": "#/definitions/ResolutionBehavior"
                   },
                   "properties": {
+                    "angle": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "color": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dx": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dy": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "facetIndex": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fill": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "opacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "sample": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "search": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "semanticScore": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "shape": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "size": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "stroke": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeWidth": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "text": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "uniqueId": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -6205,7 +6977,73 @@
                     "$ref": "#/definitions/ResolutionBehavior"
                   },
                   "properties": {
+                    "angle": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "color": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dx": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dy": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "facetIndex": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fill": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "opacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "sample": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "search": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "semanticScore": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "shape": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "size": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "stroke": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeWidth": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "text": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "uniqueId": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -6216,7 +7054,73 @@
                     "$ref": "#/definitions/ResolutionBehavior"
                   },
                   "properties": {
+                    "angle": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "color": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dx": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dy": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "facetIndex": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fill": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "opacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "sample": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "search": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "semanticScore": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "shape": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "size": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "stroke": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeWidth": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "text": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "uniqueId": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -6423,7 +7327,73 @@
                     "$ref": "#/definitions/ResolutionBehavior"
                   },
                   "properties": {
+                    "angle": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "color": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dx": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dy": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "facetIndex": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fill": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "opacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "sample": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "search": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "semanticScore": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "shape": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "size": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "stroke": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeWidth": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "text": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "uniqueId": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -6434,7 +7404,73 @@
                     "$ref": "#/definitions/ResolutionBehavior"
                   },
                   "properties": {
+                    "angle": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "color": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dx": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dy": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "facetIndex": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fill": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "opacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "sample": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "search": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "semanticScore": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "shape": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "size": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "stroke": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeWidth": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "text": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "uniqueId": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -6624,7 +7660,73 @@
                     "$ref": "#/definitions/ResolutionBehavior"
                   },
                   "properties": {
+                    "angle": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "color": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dx": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dy": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "facetIndex": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fill": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "opacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "sample": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "search": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "semanticScore": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "shape": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "size": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "stroke": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeWidth": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "text": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "uniqueId": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -6635,7 +7737,73 @@
                     "$ref": "#/definitions/ResolutionBehavior"
                   },
                   "properties": {
+                    "angle": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "color": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "default": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dx": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "dy": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "facetIndex": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fill": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "opacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "sample": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "search": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "semanticScore": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "shape": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "size": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "stroke": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "strokeWidth": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "text": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "uniqueId": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "x2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "y2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -7113,7 +8281,73 @@
                 "$ref": "#/definitions/ResolutionBehavior"
               },
               "properties": {
+                "angle": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "color": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "default": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dx": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dy": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "facetIndex": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fill": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "sample": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "search": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "semanticScore": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "shape": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "size": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "text": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "uniqueId": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -7124,7 +8358,73 @@
                 "$ref": "#/definitions/ResolutionBehavior"
               },
               "properties": {
+                "angle": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "color": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "default": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dx": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dy": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "facetIndex": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fill": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "sample": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "search": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "semanticScore": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "shape": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "size": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "text": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "uniqueId": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -7579,6 +8879,27 @@
         "empty": {
           "description": "If true, the filter retains all data objects when the selection is empty.\n\n**Default:** `true`",
           "type": "boolean"
+        },
+        "fields": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Field"
+          },
+          "description": "An optional mapping of positional channels to fields. Used to determine which fields are checked against the selection intervals.",
+          "properties": {
+            "x": {
+              "$ref": "#/definitions/Field"
+            },
+            "x2": {
+              "$ref": "#/definitions/Field"
+            },
+            "y": {
+              "$ref": "#/definitions/Field"
+            },
+            "y2": {
+              "$ref": "#/definitions/Field"
+            }
+          },
+          "type": "object"
         },
         "param": {
           "description": "A selection parameter. The data object is removed if it is not part of the selection.",
@@ -8522,7 +9843,73 @@
                 "$ref": "#/definitions/ResolutionBehavior"
               },
               "properties": {
+                "angle": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "color": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "default": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dx": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dy": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "facetIndex": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fill": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "sample": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "search": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "semanticScore": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "shape": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "size": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "text": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "uniqueId": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -8533,7 +9920,73 @@
                 "$ref": "#/definitions/ResolutionBehavior"
               },
               "properties": {
+                "angle": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "color": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "default": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dx": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dy": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "facetIndex": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fill": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "sample": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "search": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "semanticScore": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "shape": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "size": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "text": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "uniqueId": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -8794,7 +10247,73 @@
                 "$ref": "#/definitions/ResolutionBehavior"
               },
               "properties": {
+                "angle": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "color": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "default": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dx": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dy": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "facetIndex": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fill": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "sample": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "search": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "semanticScore": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "shape": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "size": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "text": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "uniqueId": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -8805,7 +10324,73 @@
                 "$ref": "#/definitions/ResolutionBehavior"
               },
               "properties": {
+                "angle": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "color": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "default": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dx": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "dy": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "facetIndex": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fill": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "sample": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "search": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "semanticScore": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "shape": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "size": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "text": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "uniqueId": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "x2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "y2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -9282,3 +10867,4 @@
     }
   }
 }
+
