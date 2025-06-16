@@ -2075,15 +2075,15 @@ in a zoomed-in view, the plot may become overly sparse.</p>
 <p>To control overplotting, the point mark provides two zooming behaviors that
 adjust the point size and visibility based on the zoom level.</p>
 <h3 id="geometric-zoom">Geometric zoom<a class="headerlink" href="#geometric-zoom" title="Permanent link">&para;</a></h3>
-<p>Geometric zoom scales the point size down if the current zoom level is lower
-than the specified level (bound). <code>geometricZoomBound</code> mark property enables
-geometric zooming. The value is the negative base two logarithm of the
-relative width of the visible domain. Example: <code>0</code>: (the default) full-size
-points are always shown, <code>1</code>: when a half of the domain is visible, <code>2</code>: when
-a quarter is visible, and so on.</p>
-<p>The example below displays 200 000 semi-randomly generated points. The points
-reach their full size when 1 / 2^10.5 of the domain is visible, which equals
-about 1500X zoom.</p>
+<p>Geometric zoom automatically changes the size of points as you zoom in or out.
+In the example below, the <code>size</code> property is set using an
+<a href="../../expressions/">expression</a> that references the <code>zoomLevel</code>
+<a href="../../parameters/">parameter</a>. The expression <code>min(0.5 * pow(zoomLevel, 1.5), 200)</code>
+means that as you zoom in, point size increases, but the growth rate is
+controlled by the exponent. This helps keep points visible and reduces overlap
+at higher zoom levels, while preventing them from becoming too large. You can
+adjust the expression to fine-tune how point size responds to zooming for your
+specific visualization.</p>
 <div><genome-spy-doc-embed>
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -2100,12 +2100,11 @@ about 1500X zoom.</p>
 <span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;geometricZoomBound&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10.5</span>
+<span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;min(0.5 * pow(zoomLevel, 1.5), 200)&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;zoom&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;opacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -2197,7 +2196,7 @@ for example.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 8, 2024 14:02:13 UTC">March 8, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 16, 2025 13:41:14 UTC">June 16, 2025</span>
   </span>
 
     
