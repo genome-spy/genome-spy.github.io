@@ -2510,6 +2510,10 @@
     "FilterScoredLabelsParams": {
       "additionalProperties": false,
       "properties": {
+        "asMidpoint": {
+          "description": "Outputs the average of pos and pos2 as the midpoint of the element. This is useful for elements that have a width, such as transcripts. The midpoint is clamped to the visible region of the element.",
+          "type": "string"
+        },
         "channel": {
           "description": "**Default:** `\"x\"`",
           "enum": [
@@ -2520,7 +2524,7 @@
         },
         "lane": {
           "$ref": "#/definitions/Field",
-          "description": "An optional field representing element's lane, e.g., if transcripts are shown using a piled up layout."
+          "description": "An optional field representing element's lane, e.g., if transcripts are shown using a piled up layout. Each line is processed separately."
         },
         "padding": {
           "description": "Padding (in pixels) around the element.\n\n**Default:** `0`",
@@ -2528,7 +2532,11 @@
         },
         "pos": {
           "$ref": "#/definitions/Field",
-          "description": "The field representing element's position on the domain."
+          "description": "The field representing element's start position on the domain."
+        },
+        "pos2": {
+          "$ref": "#/definitions/Field",
+          "description": "The field representing element's end position on the domain. If not specified, the `pos` field is used."
         },
         "score": {
           "$ref": "#/definitions/Field",
@@ -2541,7 +2549,7 @@
         },
         "width": {
           "$ref": "#/definitions/Field",
-          "description": "The field representing element's width in pixels"
+          "description": "The field representing element's width in pixels."
         }
       },
       "required": [
@@ -4554,7 +4562,14 @@
           "$ref": "#/definitions/Field"
         },
         "fontSize": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "type": {
           "const": "measureText",
