@@ -1654,6 +1654,15 @@
         }
       ]
     },
+    "DomEventType": {
+      "enum": [
+        "click",
+        "dblclick",
+        "mouseover",
+        "pointerover"
+      ],
+      "type": "string"
+    },
     "DsvDataFormat": {
       "additionalProperties": false,
       "properties": {
@@ -2105,6 +2114,23 @@
           "description": "Y2 coordinates of the marks.\n\nThe `value` of this channel can be a number between zero and one."
         }
       },
+      "type": "object"
+    },
+    "EventConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "filter": {
+          "description": "An optional filter expression to further filter events of the specified type. The expression can only refer to the event object as `event`, and should evaluate to a boolean value indicating whether to include the event. No other data or parameters are in scope.",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/DomEventType",
+          "description": "The type of event to listen to. For example, `\"click\"` or `\"mouseover\"`."
+        }
+      },
+      "required": [
+        "type"
+      ],
       "type": "object"
     },
     "ExprDef": {
@@ -3715,6 +3741,23 @@
     "IntervalSelectionConfig": {
       "additionalProperties": false,
       "properties": {
+        "clear": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DomEventType"
+            },
+            {
+              "$ref": "#/definitions/EventConfig"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "description": "A string or object that defines the events that should clear the selection.\n\n__Default value:__ `\"dblclick\"`"
+        },
         "encodings": {
           "description": "An array of encoding channels that define the interval selection.",
           "items": {
@@ -3727,16 +3770,22 @@
           "description": "Interval selections display a rectangle mark to show the selected range. Use the `mark` property to adjust the appearance of this rectangle."
         },
         "on": {
-          "enum": [
-            "click",
-            "mouseover",
-            "pointerover"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DomEventType"
+            },
+            {
+              "$ref": "#/definitions/EventConfig"
+            },
+            {
+              "type": "string"
+            }
           ],
-          "type": "string"
+          "description": "A string or object that defines the events to which the selection should listen."
         },
         "type": {
           "const": "interval",
-          "description": "Determines the default event processing and data query for the selection. Vega-Lite currently supports two selection types:\n\n- `\"point\"` -- to select multiple discrete data values; the first value is selected on `click` and additional values toggled on shift-click.\n- `\"interval\"` -- to select a continuous range of data values on `drag`.",
+          "description": "The selection type.\n\n- `\"point\"` -- to select multiple discrete data values; the first value is selected on `click` and additional values toggled on shift-click.\n- `\"interval\"` -- to select a continuous range of data values on `drag`.",
           "type": "string"
         }
       },
@@ -4978,13 +5027,36 @@
     "PointSelectionConfig": {
       "additionalProperties": false,
       "properties": {
-        "on": {
-          "enum": [
-            "click",
-            "mouseover",
-            "pointerover"
+        "clear": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DomEventType"
+            },
+            {
+              "$ref": "#/definitions/EventConfig"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
           ],
-          "type": "string"
+          "description": "A string or object that defines the events that should clear the selection.\n\n__Default value:__ `\"dblclick\"`"
+        },
+        "on": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DomEventType"
+            },
+            {
+              "$ref": "#/definitions/EventConfig"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "A string or object that defines the events to which the selection should listen."
         },
         "toggle": {
           "description": "Controls whether data values should be toggled (inserted or removed from a point selection) when clicking with the shift key pressed.\n\n- `true` -- additional values can be selected by shift-clicking.\n- `false` -- only a single value can be selected at a time.\n\n__Default value:__ `true`",
@@ -4992,7 +5064,7 @@
         },
         "type": {
           "const": "point",
-          "description": "Determines the default event processing and data query for the selection. Vega-Lite currently supports two selection types:\n\n- `\"point\"` -- to select multiple discrete data values; the first value is selected on `click` and additional values toggled on shift-click.\n- `\"interval\"` -- to select a continuous range of data values on `drag`.",
+          "description": "The selection type.\n\n- `\"point\"` -- to select multiple discrete data values; the first value is selected on `click` and additional values toggled on shift-click.\n- `\"interval\"` -- to select a continuous range of data values on `drag`.",
           "type": "string"
         }
       },
