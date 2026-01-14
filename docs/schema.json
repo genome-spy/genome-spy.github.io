@@ -8183,7 +8183,7 @@
           "type": "string"
         },
         "type": {
-          "$ref": "#/definitions/Type",
+          "$ref": "#/definitions/SampleAttributeType",
           "description": "The attribute type. One of `\"nominal\"`, `\"ordinal\"`, or `\"quantitative\"`."
         },
         "visible": {
@@ -8196,6 +8196,14 @@
         }
       },
       "type": "object"
+    },
+    "SampleAttributeType": {
+      "enum": [
+        "nominal",
+        "ordinal",
+        "quantitative"
+      ],
+      "type": "string"
     },
     "SampleDef": {
       "additionalProperties": false,
