@@ -2353,7 +2353,9 @@
       "type": "object"
     },
     "FieldOrDatumDefWithCondition<MarkPropFieldDef<Type>,(string|null)>": {
-      "additionalProperties": false,
+      "additionalProperties": {
+        "not": {}
+      },
       "description": "A FieldDef with Condition<ValueDef> {   condition: {value: ...},   field: ...,   ... }",
       "properties": {
         "condition": {
@@ -2410,7 +2412,9 @@
       "type": "object"
     },
     "FieldOrDatumDefWithCondition<MarkPropFieldDef<Type>,number>": {
-      "additionalProperties": false,
+      "additionalProperties": {
+        "not": {}
+      },
       "description": "A FieldDef with Condition<ValueDef> {   condition: {value: ...},   field: ...,   ... }",
       "properties": {
         "condition": {
@@ -2467,7 +2471,9 @@
       "type": "object"
     },
     "FieldOrDatumDefWithCondition<MarkPropFieldDef<TypeForShape>,(string|null)>": {
-      "additionalProperties": false,
+      "additionalProperties": {
+        "not": {}
+      },
       "description": "A FieldDef with Condition<ValueDef> {   condition: {value: ...},   field: ...,   ... }",
       "properties": {
         "condition": {
@@ -8666,6 +8672,10 @@
         "align": {
           "description": "The alignment of the steps within the scale range.\n\nThis value must lie in the range `[0,1]`. A value of `0.5` indicates that the steps should be centered within the range. A value of `0` or `1` may be used to shift the bands to one side, say to position them adjacent to an axis.\n\n__Default value:__ `0.5`",
           "type": "number"
+        },
+        "assembly": {
+          "description": "The genome assembly name for locus scales. If undefined, the default genome from the genome store is used.",
+          "type": "string"
         },
         "base": {
           "description": "The logarithm base of the `log` scale (default `10`).",
