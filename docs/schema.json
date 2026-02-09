@@ -839,8 +839,8 @@
           "$ref": "#/definitions/FieldName",
           "description": "The field having the chromosome or contig."
         },
-        "contributesToScaleDomain": {
-          "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
+        "domainInert": {
+          "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
         },
         "offset": {
@@ -999,7 +999,7 @@
           "type": "array"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
           "type": "boolean"
         },
         "data": {
@@ -1019,6 +1019,10 @@
             }
           ],
           "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
+        },
+        "domainInert": {
+          "description": "If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.\n\n**Default value:** `false`",
+          "type": "boolean"
         },
         "encoding": {
           "$ref": "#/definitions/Encoding",
@@ -1043,7 +1047,7 @@
           "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
         },
         "name": {
-          "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
+          "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
           "type": "string"
         },
         "padding": {
@@ -1088,6 +1092,9 @@
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "key": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "opacity": {
@@ -1167,6 +1174,9 @@
                 "fillOpacity": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "key": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "opacity": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
@@ -1217,6 +1227,17 @@
             }
           },
           "type": "object"
+        },
+        "separator": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/SeparatorProps"
+            }
+          ],
+          "description": "Draws separator rules between visible child views. The separators are centered within the spacing gaps and do not affect layout.\n\nIf `true`, the defaults are equivalent to: `{\"type\":\"rule\",\"size\":1,\"color\":\"#ccc\",\"opacity\":1,\"strokeDash\":[4,4],\"strokeCap\":\"butt\"}` Use `includePlotMargin` to control whether the separators extend into the plot margin.\n\n__Default value:__ `false`"
         },
         "spacing": {
           "description": "The gap between the views, in pixels.",
@@ -1327,10 +1348,6 @@
           "minimum": 0,
           "type": "number"
         },
-        "contributesToScaleDomain": {
-          "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
-          "type": "boolean"
-        },
         "datum": {
           "anyOf": [
             {
@@ -1386,6 +1403,10 @@
         {
           "additionalProperties": false,
           "properties": {
+            "domainInert": {
+              "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
+              "type": "boolean"
+            },
             "empty": {
               "description": "For selection parameters, the predicate of empty selections returns true by default. Override this behavior, by setting this property `empty: false`.",
               "type": "boolean"
@@ -1772,6 +1793,10 @@
           "$ref": "#/definitions/NumericMarkPropDef",
           "description": "Fill opacity of the marks."
         },
+        "key": {
+          "$ref": "#/definitions/KeyDef",
+          "description": "One or more data fields that uniquely identify data objects for stable point selections and bookmarking across sessions. Unlike `uniqueId` (an implicit surrogate key), key fields must be stable in the source data.\n\nUse a single field definition for simple keys, or an array of field definitions for composite keys. For composite keys, field order is significant."
+        },
         "opacity": {
           "$ref": "#/definitions/NumericMarkPropDef",
           "description": "Opacity of the marks."
@@ -1781,7 +1806,8 @@
           "description": "Facet identifier for interactive filtering, sorting, and grouping in the App."
         },
         "search": {
-          "$ref": "#/definitions/FieldDefWithoutScale"
+          "$ref": "#/definitions/SearchDef",
+          "description": "One or more fields used by the App's location/search input to match data objects in this view.\n\nUse a single field definition for simple search, or an array for matching against multiple fields. A datum matches when any configured search field matches the entered term."
         },
         "semanticScore": {
           "$ref": "#/definitions/FieldDefWithoutScale"
@@ -1840,8 +1866,8 @@
                   "description": "Builds and index for efficient rendering of subsets of the data. This setting is useful when rendering large amounts of data and often only a small subset of the data is visible. An example of such a situation is a scatter plot spanning the whole genome.\n\nThis setting implicitly sorts the data by the field assigned on the `x` channel.",
                   "type": "boolean"
                 },
-                "contributesToScaleDomain": {
-                  "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
+                "domainInert": {
+                  "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
                   "type": "boolean"
                 },
                 "field": {
@@ -1907,8 +1933,8 @@
                   "$ref": "#/definitions/FieldName",
                   "description": "The field having the chromosome or contig."
                 },
-                "contributesToScaleDomain": {
-                  "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
+                "domainInert": {
+                  "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
                   "type": "boolean"
                 },
                 "offset": {
@@ -1976,10 +2002,6 @@
                   "description": "Builds and index for efficient rendering of subsets of the data. This setting is useful when rendering large amounts of data and often only a small subset of the data is visible. An example of such a situation is a scatter plot spanning the whole genome.\n\nThis setting implicitly sorts the data by the field assigned on the `x` channel.",
                   "type": "boolean"
                 },
-                "contributesToScaleDomain": {
-                  "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
-                  "type": "boolean"
-                },
                 "datum": {
                   "anyOf": [
                     {
@@ -1990,6 +2012,10 @@
                     }
                   ],
                   "description": "A constant value in data domain."
+                },
+                "domainInert": {
+                  "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
+                  "type": "boolean"
                 },
                 "resolutionChannel": {
                   "$ref": "#/definitions/ChannelWithScale",
@@ -2044,6 +2070,10 @@
                 },
                 "buildIndex": {
                   "description": "Builds and index for efficient rendering of subsets of the data. This setting is useful when rendering large amounts of data and often only a small subset of the data is visible. An example of such a situation is a scatter plot spanning the whole genome.\n\nThis setting implicitly sorts the data by the field assigned on the `x` channel.",
+                  "type": "boolean"
+                },
+                "domainInert": {
+                  "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
                   "type": "boolean"
                 },
                 "expr": {
@@ -2218,140 +2248,6 @@
     "FieldName": {
       "type": "string"
     },
-    "FieldOrDatumDefWithCondition<DatumDef,(string|null)>": {
-      "additionalProperties": false,
-      "description": "A FieldDef with Condition<ValueDef> {   condition: {value: ...},   field: ...,   ... }",
-      "properties": {
-        "band": {
-          "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
-          "maximum": 1,
-          "minimum": 0,
-          "type": "number"
-        },
-        "condition": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Conditional%3CValueDef%3C(string%7Cnull%7CExprRef)%3E%3E"
-            },
-            {
-              "items": {
-                "$ref": "#/definitions/Conditional%3CValueDef%3C(string%7Cnull%7CExprRef)%3E%3E"
-              },
-              "type": "array"
-            }
-          ],
-          "description": "One or more value definition(s) with [a parameter or a test predicate](https://vega.github.io/vega-lite/docs/condition.html).\n\n__Note:__ A field definition's `condition` property can only contain [conditional value definitions](https://vega.github.io/vega-lite/docs/condition.html#value) since Vega-Lite only allows at most one encoded field per encoding channel."
-        },
-        "contributesToScaleDomain": {
-          "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
-          "type": "boolean"
-        },
-        "datum": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Scalar"
-            },
-            {
-              "$ref": "#/definitions/ExprRef"
-            }
-          ],
-          "description": "A constant value in data domain."
-        },
-        "resolutionChannel": {
-          "$ref": "#/definitions/ChannelWithScale",
-          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
-        },
-        "scale": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Scale"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
-        },
-        "title": {
-          "description": "A title for the field. If `null`, the title will be removed.",
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "type": {
-          "$ref": "#/definitions/Type"
-        }
-      },
-      "type": "object"
-    },
-    "FieldOrDatumDefWithCondition<DatumDef,number>": {
-      "additionalProperties": false,
-      "description": "A FieldDef with Condition<ValueDef> {   condition: {value: ...},   field: ...,   ... }",
-      "properties": {
-        "band": {
-          "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
-          "maximum": 1,
-          "minimum": 0,
-          "type": "number"
-        },
-        "condition": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Conditional%3CValueDef%3C(number%7CExprRef)%3E%3E"
-            },
-            {
-              "items": {
-                "$ref": "#/definitions/Conditional%3CValueDef%3C(number%7CExprRef)%3E%3E"
-              },
-              "type": "array"
-            }
-          ],
-          "description": "One or more value definition(s) with [a parameter or a test predicate](https://vega.github.io/vega-lite/docs/condition.html).\n\n__Note:__ A field definition's `condition` property can only contain [conditional value definitions](https://vega.github.io/vega-lite/docs/condition.html#value) since Vega-Lite only allows at most one encoded field per encoding channel."
-        },
-        "contributesToScaleDomain": {
-          "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
-          "type": "boolean"
-        },
-        "datum": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Scalar"
-            },
-            {
-              "$ref": "#/definitions/ExprRef"
-            }
-          ],
-          "description": "A constant value in data domain."
-        },
-        "resolutionChannel": {
-          "$ref": "#/definitions/ChannelWithScale",
-          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
-        },
-        "scale": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Scale"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
-        },
-        "title": {
-          "description": "A title for the field. If `null`, the title will be removed.",
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "type": {
-          "$ref": "#/definitions/Type"
-        }
-      },
-      "type": "object"
-    },
     "FieldOrDatumDefWithCondition<MarkPropFieldDef<Type>,(string|null)>": {
       "additionalProperties": {
         "not": {}
@@ -2372,8 +2268,8 @@
           ],
           "description": "One or more value definition(s) with [a parameter or a test predicate](https://vega.github.io/vega-lite/docs/condition.html).\n\n__Note:__ A field definition's `condition` property can only contain [conditional value definitions](https://vega.github.io/vega-lite/docs/condition.html#value) since Vega-Lite only allows at most one encoded field per encoding channel."
         },
-        "contributesToScaleDomain": {
-          "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
+        "domainInert": {
+          "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
         },
         "field": {
@@ -2431,8 +2327,8 @@
           ],
           "description": "One or more value definition(s) with [a parameter or a test predicate](https://vega.github.io/vega-lite/docs/condition.html).\n\n__Note:__ A field definition's `condition` property can only contain [conditional value definitions](https://vega.github.io/vega-lite/docs/condition.html#value) since Vega-Lite only allows at most one encoded field per encoding channel."
         },
-        "contributesToScaleDomain": {
-          "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
+        "domainInert": {
+          "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
         },
         "field": {
@@ -2490,8 +2386,8 @@
           ],
           "description": "One or more value definition(s) with [a parameter or a test predicate](https://vega.github.io/vega-lite/docs/condition.html).\n\n__Note:__ A field definition's `condition` property can only contain [conditional value definitions](https://vega.github.io/vega-lite/docs/condition.html#value) since Vega-Lite only allows at most one encoded field per encoding channel."
         },
-        "contributesToScaleDomain": {
-          "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
+        "domainInert": {
+          "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
         },
         "field": {
@@ -2527,6 +2423,140 @@
       "required": [
         "type"
       ],
+      "type": "object"
+    },
+    "FieldOrDatumDefWithCondition<ScaleDatumDef,(string|null)>": {
+      "additionalProperties": false,
+      "description": "A FieldDef with Condition<ValueDef> {   condition: {value: ...},   field: ...,   ... }",
+      "properties": {
+        "band": {
+          "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Conditional%3CValueDef%3C(string%7Cnull%7CExprRef)%3E%3E"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/Conditional%3CValueDef%3C(string%7Cnull%7CExprRef)%3E%3E"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "One or more value definition(s) with [a parameter or a test predicate](https://vega.github.io/vega-lite/docs/condition.html).\n\n__Note:__ A field definition's `condition` property can only contain [conditional value definitions](https://vega.github.io/vega-lite/docs/condition.html#value) since Vega-Lite only allows at most one encoded field per encoding channel."
+        },
+        "datum": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scalar"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "A constant value in data domain."
+        },
+        "domainInert": {
+          "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
+          "type": "boolean"
+        },
+        "resolutionChannel": {
+          "$ref": "#/definitions/ChannelWithScale",
+          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scale"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
+        },
+        "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/Type"
+        }
+      },
+      "type": "object"
+    },
+    "FieldOrDatumDefWithCondition<ScaleDatumDef,number>": {
+      "additionalProperties": false,
+      "description": "A FieldDef with Condition<ValueDef> {   condition: {value: ...},   field: ...,   ... }",
+      "properties": {
+        "band": {
+          "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Conditional%3CValueDef%3C(number%7CExprRef)%3E%3E"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/Conditional%3CValueDef%3C(number%7CExprRef)%3E%3E"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "One or more value definition(s) with [a parameter or a test predicate](https://vega.github.io/vega-lite/docs/condition.html).\n\n__Note:__ A field definition's `condition` property can only contain [conditional value definitions](https://vega.github.io/vega-lite/docs/condition.html#value) since Vega-Lite only allows at most one encoded field per encoding channel."
+        },
+        "datum": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scalar"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "A constant value in data domain."
+        },
+        "domainInert": {
+          "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
+          "type": "boolean"
+        },
+        "resolutionChannel": {
+          "$ref": "#/definitions/ChannelWithScale",
+          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scale"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
+        },
+        "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/Type"
+        }
+      },
       "type": "object"
     },
     "FilterParams": {
@@ -3228,7 +3258,7 @@
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
           "type": "boolean"
         },
         "data": {
@@ -3248,6 +3278,10 @@
             }
           ],
           "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
+        },
+        "domainInert": {
+          "description": "If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.\n\n**Default value:** `false`",
+          "type": "boolean"
         },
         "encoding": {
           "$ref": "#/definitions/Encoding",
@@ -3286,7 +3320,7 @@
           "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
         },
         "name": {
-          "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
+          "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
           "type": "string"
         },
         "padding": {
@@ -3331,6 +3365,9 @@
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "key": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "opacity": {
@@ -3410,6 +3447,9 @@
                 "fillOpacity": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "key": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "opacity": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
@@ -3460,6 +3500,17 @@
             }
           },
           "type": "object"
+        },
+        "separator": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/SeparatorProps"
+            }
+          ],
+          "description": "Draws separator rules between visible child views. The separators are centered within the spacing gaps and do not affect layout.\n\nIf `true`, the defaults are equivalent to: `{\"type\":\"rule\",\"size\":1,\"color\":\"#ccc\",\"opacity\":1,\"strokeDash\":[4,4],\"strokeCap\":\"butt\"}` Use `includePlotMargin` to control whether the separators extend into the plot margin.\n\n__Default value:__ `false`"
         },
         "spacing": {
           "description": "The gap between the views, in pixels.",
@@ -3596,7 +3647,7 @@
           "description": "The method to import a specification."
         },
         "name": {
-          "description": "The name given to the imported view. This property overrides the name specified in the imported specification.",
+          "description": "The name given to the imported view. This property overrides the name specified in the imported specification and defines an import scope that is used for bookmarkable view visibility and parameter addressing.",
           "type": "string"
         },
         "params": {
@@ -3826,6 +3877,19 @@
       },
       "type": "object"
     },
+    "KeyDef": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/FieldDefWithoutScale"
+        },
+        {
+          "items": {
+            "$ref": "#/definitions/FieldDefWithoutScale"
+          },
+          "type": "array"
+        }
+      ]
+    },
     "LayerSpec": {
       "additionalProperties": false,
       "properties": {
@@ -3848,7 +3912,7 @@
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
           "type": "boolean"
         },
         "data": {
@@ -3868,6 +3932,10 @@
             }
           ],
           "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
+        },
+        "domainInert": {
+          "description": "If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.\n\n**Default value:** `false`",
+          "type": "boolean"
         },
         "encoding": {
           "$ref": "#/definitions/Encoding",
@@ -3908,7 +3976,7 @@
           "type": "array"
         },
         "name": {
-          "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
+          "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
           "type": "string"
         },
         "opacity": {
@@ -3957,6 +4025,9 @@
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "key": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "opacity": {
@@ -4034,6 +4105,9 @@
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "key": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "opacity": {
@@ -4545,7 +4619,7 @@
           "$ref": "#/definitions/FieldOrDatumDefWithCondition%3CMarkPropFieldDef%3CTypeForShape%3E%2C(string%7Cnull)%3E"
         },
         {
-          "$ref": "#/definitions/FieldOrDatumDefWithCondition%3CDatumDef%2C(string%7Cnull)%3E"
+          "$ref": "#/definitions/FieldOrDatumDefWithCondition%3CScaleDatumDef%2C(string%7Cnull)%3E"
         },
         {
           "$ref": "#/definitions/ValueDefWithCondition%3C(string%7Cnull)%3E"
@@ -4558,7 +4632,7 @@
           "$ref": "#/definitions/FieldOrDatumDefWithCondition%3CMarkPropFieldDef%3CType%3E%2C(string%7Cnull)%3E"
         },
         {
-          "$ref": "#/definitions/FieldOrDatumDefWithCondition%3CDatumDef%2C(string%7Cnull)%3E"
+          "$ref": "#/definitions/FieldOrDatumDefWithCondition%3CScaleDatumDef%2C(string%7Cnull)%3E"
         },
         {
           "$ref": "#/definitions/ValueDefWithCondition%3C(string%7Cnull)%3E"
@@ -4571,7 +4645,7 @@
           "$ref": "#/definitions/FieldOrDatumDefWithCondition%3CMarkPropFieldDef%3CType%3E%2Cnumber%3E"
         },
         {
-          "$ref": "#/definitions/FieldOrDatumDefWithCondition%3CDatumDef%2Cnumber%3E"
+          "$ref": "#/definitions/FieldOrDatumDefWithCondition%3CScaleDatumDef%2Cnumber%3E"
         },
         {
           "$ref": "#/definitions/ValueDefWithCondition%3Cnumber%3E"
@@ -5090,6 +5164,10 @@
               "minimum": 0,
               "type": "number"
             },
+            "domainInert": {
+              "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
+              "type": "boolean"
+            },
             "field": {
               "description": "__Required.__ A string defining the name of the field from which to pull a data value or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.\n\n__See also:__ [`field`](https://vega.github.io/vega-lite/docs/field.html) documentation.\n\n__Notes:__ 1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `\"field\": \"foo.bar\"` and `\"field\": \"foo['bar']\"`). If field names contain dots or brackets but are not nested, you can use `\\\\` to escape dots and brackets (e.g., `\"a\\\\.b\"` and `\"a\\\\[0\\\\]\"`). See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html). 2) `field` is not required if `aggregate` is `count`.",
               "type": "string"
@@ -5116,10 +5194,6 @@
               "minimum": 0,
               "type": "number"
             },
-            "contributesToScaleDomain": {
-              "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
-              "type": "boolean"
-            },
             "datum": {
               "anyOf": [
                 {
@@ -5130,6 +5204,10 @@
                 }
               ],
               "description": "A constant value in data domain."
+            },
+            "domainInert": {
+              "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
+              "type": "boolean"
             },
             "resolutionChannel": {
               "$ref": "#/definitions/ChannelWithScale",
@@ -5167,6 +5245,10 @@
               "maximum": 1,
               "minimum": 0,
               "type": "number"
+            },
+            "domainInert": {
+              "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
+              "type": "boolean"
             },
             "expr": {
               "description": "An expression. Properties of the data can be accessed through the `datum` object.",
@@ -5213,10 +5295,6 @@
           "minimum": 0,
           "type": "number"
         },
-        "contributesToScaleDomain": {
-          "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
-          "type": "boolean"
-        },
         "datum": {
           "anyOf": [
             {
@@ -5227,6 +5305,10 @@
             }
           ],
           "description": "A constant value in data domain."
+        },
+        "domainInert": {
+          "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
+          "type": "boolean"
         },
         "resolutionChannel": {
           "$ref": "#/definitions/ChannelWithScale",
@@ -5298,6 +5380,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "domainInert": {
+          "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
+          "type": "boolean"
+        },
         "expr": {
           "description": "An expression. Properties of the data can be accessed through the `datum` object.",
           "type": "string"
@@ -5339,8 +5425,8 @@
           "minimum": 0,
           "type": "number"
         },
-        "contributesToScaleDomain": {
-          "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
+        "domainInert": {
+          "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
         },
         "field": {
@@ -5920,7 +6006,7 @@
               "type": "string"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
               "type": "boolean"
             },
             "data": {
@@ -5948,6 +6034,10 @@
                 }
               ],
               "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
+            },
+            "domainInert": {
+              "description": "If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.\n\n**Default value:** `false`",
+              "type": "boolean"
             },
             "encoding": {
               "$ref": "#/definitions/Encoding",
@@ -5986,7 +6076,7 @@
               "description": "The graphical mark presenting the data objects."
             },
             "name": {
-              "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
+              "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
               "type": "string"
             },
             "opacity": {
@@ -6035,6 +6125,9 @@
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "key": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "opacity": {
@@ -6112,6 +6205,9 @@
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "key": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "opacity": {
@@ -6281,7 +6377,7 @@
               "type": "string"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
               "type": "boolean"
             },
             "data": {
@@ -6309,6 +6405,10 @@
                 }
               ],
               "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
+            },
+            "domainInert": {
+              "description": "If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.\n\n**Default value:** `false`",
+              "type": "boolean"
             },
             "encoding": {
               "$ref": "#/definitions/Encoding",
@@ -6352,7 +6452,7 @@
               "type": "array"
             },
             "name": {
-              "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
+              "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
               "type": "string"
             },
             "opacity": {
@@ -6401,6 +6501,9 @@
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "key": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "opacity": {
@@ -6478,6 +6581,9 @@
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "key": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "opacity": {
@@ -6632,7 +6738,7 @@
               "type": "string"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
               "type": "boolean"
             },
             "data": {
@@ -6661,6 +6767,10 @@
               ],
               "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
             },
+            "domainInert": {
+              "description": "If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.\n\n**Default value:** `false`",
+              "type": "boolean"
+            },
             "encoding": {
               "$ref": "#/definitions/Encoding",
               "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
@@ -6687,7 +6797,7 @@
               "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
             },
             "name": {
-              "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
+              "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
               "type": "string"
             },
             "padding": {
@@ -6732,6 +6842,9 @@
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "key": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "opacity": {
@@ -6811,6 +6924,9 @@
                     "fillOpacity": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "key": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "opacity": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
@@ -6861,6 +6977,17 @@
                 }
               },
               "type": "object"
+            },
+            "separator": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "$ref": "#/definitions/SeparatorProps"
+                }
+              ],
+              "description": "Draws separator rules between visible child views. The separators are centered within the spacing gaps and do not affect layout.\n\nIf `true`, the defaults are equivalent to: `{\"type\":\"rule\",\"size\":1,\"color\":\"#ccc\",\"opacity\":1,\"strokeDash\":[4,4],\"strokeCap\":\"butt\"}` Use `includePlotMargin` to control whether the separators extend into the plot margin.\n\n__Default value:__ `false`"
             },
             "spacing": {
               "description": "The gap between the views, in pixels.",
@@ -6978,7 +7105,7 @@
               "type": "string"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
               "type": "boolean"
             },
             "data": {
@@ -7006,6 +7133,10 @@
                 }
               ],
               "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
+            },
+            "domainInert": {
+              "description": "If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.\n\n**Default value:** `false`",
+              "type": "boolean"
             },
             "encoding": {
               "$ref": "#/definitions/Encoding",
@@ -7047,7 +7178,7 @@
               "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
             },
             "name": {
-              "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
+              "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
               "type": "string"
             },
             "padding": {
@@ -7092,6 +7223,9 @@
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "key": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "opacity": {
@@ -7171,6 +7305,9 @@
                     "fillOpacity": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "key": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "opacity": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
@@ -7221,6 +7358,17 @@
                 }
               },
               "type": "object"
+            },
+            "separator": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "$ref": "#/definitions/SeparatorProps"
+                }
+              ],
+              "description": "Draws separator rules between visible child views. The separators are centered within the spacing gaps and do not affect layout.\n\nIf `true`, the defaults are equivalent to: `{\"type\":\"rule\",\"size\":1,\"color\":\"#ccc\",\"opacity\":1,\"strokeDash\":[4,4],\"strokeCap\":\"butt\"}` Use `includePlotMargin` to control whether the separators extend into the plot margin.\n\n__Default value:__ `false`"
             },
             "spacing": {
               "description": "The gap between the views, in pixels.",
@@ -7342,7 +7490,7 @@
               "type": "array"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
               "type": "boolean"
             },
             "data": {
@@ -7371,6 +7519,10 @@
               ],
               "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
             },
+            "domainInert": {
+              "description": "If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.\n\n**Default value:** `false`",
+              "type": "boolean"
+            },
             "encoding": {
               "$ref": "#/definitions/Encoding",
               "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
@@ -7397,7 +7549,7 @@
               "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
             },
             "name": {
-              "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
+              "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
               "type": "string"
             },
             "padding": {
@@ -7442,6 +7594,9 @@
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "key": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "opacity": {
@@ -7521,6 +7676,9 @@
                     "fillOpacity": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "key": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "opacity": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
@@ -7571,6 +7729,17 @@
                 }
               },
               "type": "object"
+            },
+            "separator": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "$ref": "#/definitions/SeparatorProps"
+                }
+              ],
+              "description": "Draws separator rules between visible child views. The separators are centered within the spacing gaps and do not affect layout.\n\nIf `true`, the defaults are equivalent to: `{\"type\":\"rule\",\"size\":1,\"color\":\"#ccc\",\"opacity\":1,\"strokeDash\":[4,4],\"strokeCap\":\"butt\"}` Use `includePlotMargin` to control whether the separators extend into the plot margin.\n\n__Default value:__ `false`"
             },
             "spacing": {
               "description": "The gap between the views, in pixels.",
@@ -7675,7 +7844,7 @@
               "type": "string"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
               "type": "boolean"
             },
             "data": {
@@ -7704,6 +7873,10 @@
               ],
               "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
             },
+            "domainInert": {
+              "description": "If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.\n\n**Default value:** `false`",
+              "type": "boolean"
+            },
             "encoding": {
               "$ref": "#/definitions/Encoding",
               "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
@@ -7730,7 +7903,7 @@
               "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
             },
             "name": {
-              "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
+              "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
               "type": "string"
             },
             "padding": {
@@ -7775,6 +7948,9 @@
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "key": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "opacity": {
@@ -7852,6 +8028,9 @@
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "fillOpacity": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "key": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "opacity": {
@@ -8315,7 +8494,7 @@
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
           "type": "boolean"
         },
         "data": {
@@ -8335,6 +8514,10 @@
             }
           ],
           "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
+        },
+        "domainInert": {
+          "description": "If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.\n\n**Default value:** `false`",
+          "type": "boolean"
         },
         "encoding": {
           "$ref": "#/definitions/Encoding",
@@ -8359,7 +8542,7 @@
           "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
         },
         "name": {
-          "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
+          "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
           "type": "string"
         },
         "padding": {
@@ -8404,6 +8587,9 @@
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "key": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "opacity": {
@@ -8481,6 +8667,9 @@
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "key": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "opacity": {
@@ -8926,6 +9115,19 @@
       ],
       "type": "object"
     },
+    "SearchDef": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/FieldDefWithoutScale"
+        },
+        {
+          "items": {
+            "$ref": "#/definitions/FieldDefWithoutScale"
+          },
+          "type": "array"
+        }
+      ]
+    },
     "SecondaryChromPosDef": {
       "additionalProperties": false,
       "properties": {
@@ -8949,6 +9151,10 @@
         "chrom": {
           "$ref": "#/definitions/FieldName",
           "description": "The field having the chromosome or contig."
+        },
+        "domainInert": {
+          "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
+          "type": "boolean"
         },
         "offset": {
           "description": "An offset or offsets that allow for adjusting the numbering base. The offset is subtracted from the positions.\n\nGenomeSpy uses internally zero-based indexing with half-open intervals. UCSC-based formats (BED, etc.) generally use this scheme. However, for example, VCF files use one-based indexing and must be adjusted by setting the offset to `1`.\n\n**Default:** `0`",
@@ -9051,6 +9257,10 @@
           "description": "A unique name for the variable parameter. Parameter names should be valid JavaScript identifiers: they should contain only alphanumeric characters (or \"$\", or \"_\") and may not start with a digit. Reserved keywords that may not be used as parameter names are: \"datum\".",
           "type": "string"
         },
+        "persist": {
+          "description": "Whether the parameter should be persisted in bookmarks and provenance.\n\nThis primarily affects GenomeSpy App behavior. Set to `false` for ephemeral params (e.g., hover selections) or when the selection cannot be persisted due to missing `encoding.key`.\n\n__Default value:__ `true`",
+          "type": "boolean"
+        },
         "push": {
           "const": "outer",
           "type": "string"
@@ -9086,6 +9296,167 @@
         "interval"
       ],
       "type": "string"
+    },
+    "SeparatorProps": {
+      "additionalProperties": false,
+      "properties": {
+        "clip": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "never",
+              "type": "string"
+            }
+          ],
+          "description": "If true, the mark is clipped to the UnitView's rectangle. By default, clipping is enabled for marks that have zoomable positional scales."
+        },
+        "color": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Color of the mark. Affects either `fill` or `stroke`, depending on the `filled` property."
+        },
+        "includePlotMargin": {
+          "description": "Whether separators extend into the plot margin (axes/padding) around the grid.\n\n__Default value:__ `true`",
+          "type": "boolean"
+        },
+        "minBufferSize": {
+          "description": "Minimum size for WebGL buffers (number of data items). Allows for using `bufferSubData()` to update graphics.\n\nThis property is intended for internal use.",
+          "type": "number"
+        },
+        "minLength": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The minimum length of the rule in pixels. Use this property to ensure that very short ranged rules remain visible even when the user zooms out.\n\n**Default value:** `0`"
+        },
+        "opacity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Opacity of the mark. Affects `fillOpacity` or `strokeOpacity`, depending on the `filled` property."
+        },
+        "size": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Stroke width of `\"link\"` and `\"rule\"` marks in pixels, the area of the bounding square of `\"point\"` mark, or the font size of `\"text\"` mark."
+        },
+        "strokeCap": {
+          "anyOf": [
+            {
+              "const": "butt",
+              "type": "string"
+            },
+            {
+              "const": "square",
+              "type": "string"
+            },
+            {
+              "const": "round",
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The style of stroke ends. Available choices: `\"butt\"`, `\"round`\", and `\"square\"`.\n\n**Default value:** `\"butt\"`"
+        },
+        "strokeDash": {
+          "description": "An array of of alternating stroke and gap lengths or `null` for solid strokes.\n\n**Default value:** `null`",
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "strokeDashOffset": {
+          "description": "An offset for the stroke dash pattern.\n\n**Default value:** `0`",
+          "type": "number"
+        },
+        "tooltip": {
+          "$ref": "#/definitions/Tooltip",
+          "description": "Tooltip handler. If `null`, no tooltip is shown. If string, specifies the [tooltip handler](https://genomespy.app/docs/api/#custom-tooltip-handlers) to use."
+        },
+        "type": {
+          "const": "rule",
+          "type": "string"
+        },
+        "x": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Position on the x axis."
+        },
+        "x2": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The secondary position on the x axis."
+        },
+        "xOffset": {
+          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
+          "type": "number"
+        },
+        "y": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Position on the y axis."
+        },
+        "y2": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The secondary position on the y axis."
+        },
+        "yOffset": {
+          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
+          "type": "number"
+        }
+      },
+      "type": "object"
     },
     "SequenceGenerator": {
       "additionalProperties": false,
@@ -9258,10 +9629,6 @@
           "maximum": 1,
           "minimum": 0,
           "type": "number"
-        },
-        "contributesToScaleDomain": {
-          "description": "Whether the field or evaluated expr should be included in the scale's domain.\n\n**Default value:** `true`",
-          "type": "boolean"
         },
         "datum": {
           "anyOf": [
@@ -9866,7 +10233,7 @@
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
           "type": "boolean"
         },
         "data": {
@@ -9886,6 +10253,10 @@
             }
           ],
           "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
+        },
+        "domainInert": {
+          "description": "If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.\n\n**Default value:** `false`",
+          "type": "boolean"
         },
         "encoding": {
           "$ref": "#/definitions/Encoding",
@@ -9921,7 +10292,7 @@
           "description": "The graphical mark presenting the data objects."
         },
         "name": {
-          "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
+          "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
           "type": "string"
         },
         "opacity": {
@@ -9970,6 +10341,9 @@
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "key": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "opacity": {
@@ -10047,6 +10421,9 @@
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "key": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "opacity": {
@@ -10285,7 +10662,7 @@
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is *unique* in within the view hierarchy.\n\n**Default:** `false` for children of `layer`, `true` for others.",
+          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
           "type": "boolean"
         },
         "data": {
@@ -10305,6 +10682,10 @@
             }
           ],
           "description": "A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the [GenomeSpy App](https://genomespy.app/docs/sample-collections/)."
+        },
+        "domainInert": {
+          "description": "If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.\n\n**Default value:** `false`",
+          "type": "boolean"
         },
         "encoding": {
           "$ref": "#/definitions/Encoding",
@@ -10329,7 +10710,7 @@
           "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
         },
         "name": {
-          "description": "An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.",
+          "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
           "type": "string"
         },
         "padding": {
@@ -10374,6 +10755,9 @@
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "fillOpacity": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "key": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "opacity": {
@@ -10453,6 +10837,9 @@
                 "fillOpacity": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "key": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "opacity": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
@@ -10503,6 +10890,17 @@
             }
           },
           "type": "object"
+        },
+        "separator": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/SeparatorProps"
+            }
+          ],
+          "description": "Draws separator rules between visible child views. The separators are centered within the spacing gaps and do not affect layout.\n\nIf `true`, the defaults are equivalent to: `{\"type\":\"rule\",\"size\":1,\"color\":\"#ccc\",\"opacity\":1,\"strokeDash\":[4,4],\"strokeCap\":\"butt\"}` Use `includePlotMargin` to control whether the separators extend into the plot margin.\n\n__Default value:__ `false`"
         },
         "spacing": {
           "description": "The gap between the views, in pixels.",
@@ -10739,6 +11137,10 @@
         "name": {
           "description": "A unique name for the variable parameter. Parameter names should be valid JavaScript identifiers: they should contain only alphanumeric characters (or \"$\", or \"_\") and may not start with a digit. Reserved keywords that may not be used as parameter names are: \"datum\".",
           "type": "string"
+        },
+        "persist": {
+          "description": "Whether the parameter should be persisted in bookmarks and provenance.\n\nThis primarily affects GenomeSpy App behavior. Set to `false` for ephemeral params (e.g., hover selections) or when the selection cannot be persisted due to missing `encoding.key`.\n\n__Default value:__ `true`",
+          "type": "boolean"
         },
         "push": {
           "const": "outer",

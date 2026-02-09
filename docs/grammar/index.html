@@ -2065,7 +2065,7 @@ encoded into mark instances.</p>
 <dd>Type: string<p>The base URL for relative URL data sources and URL <a href="https://genomespy.app/docs/grammar/import/#importing-from-a-url">imports</a>. The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.</p>
 </dd>
 <dt><code>configurableVisibility</code></dt>
-<dd>Type: boolean<p>Is the visibility configurable interactively from the <a href="https://genomespy.app/docs/sample-collections/">GenomeSpy App</a>. Configurability requires that the view has an explicitly specified name that is <em>unique</em> in within the view hierarchy.</p>
+<dd>Type: boolean<p>Is the visibility configurable interactively from the <a href="https://genomespy.app/docs/sample-collections/">GenomeSpy App</a>. Configurability requires that the view has an explicitly specified name that is unique within its import scope.</p>
 <p><strong>Default:</strong> <code>false</code> for children of <code>layer</code>, <code>true</code> for others.</p>
 </dd>
 <dt><code>data</code></dt>
@@ -2073,6 +2073,10 @@ encoded into mark instances.</p>
 </dd>
 <dt><code>description</code></dt>
 <dd>Type: string | string[]<p>A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the <a href="https://genomespy.app/docs/sample-collections/">GenomeSpy App</a>.</p>
+</dd>
+<dt><code>domainInert</code></dt>
+<dd>Type: boolean<p>If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.</p>
+<p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>encoding</code></dt>
 <dd>Type: <a href="https://genomespy.app/docs/grammar/mark/#encoding">Encoding</a><p>Specifies how data are <a href="https://genomespy.app/docs/grammar/mark/#encoding">encoded</a> using the visual channels.</p>
@@ -2085,7 +2089,7 @@ encoded into mark instances.</p>
 <dd>Type: <code>"rect"</code> | <code>"point"</code> | <code>"rule"</code> | <code>"text"</code> | <code>"link"</code> | <a href="https://genomespy.app/docs/grammar/mark/rect/#properties">RectProps</a> | <a href="https://genomespy.app/docs/grammar/mark/text/#properties">TextProps</a> | <a href="https://genomespy.app/docs/grammar/mark/rule/#properties">RuleProps</a> | <a href="https://genomespy.app/docs/grammar/mark/link/#properties">LinkProps</a> | <a href="https://genomespy.app/docs/grammar/mark/point/#properties">PointProps</a><p>The graphical mark presenting the data objects.</p>
 </dd>
 <dt><code>name</code></dt>
-<dd>Type: string<p>An internal name that can be used for referring the view. For referencing purposes, the name should be unique within the view hierarchy.</p>
+<dd>Type: string<p>An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.</p>
 </dd>
 <dt><code>opacity</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/types/">DynamicOpacity</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Opacity of the view and all its children. Allows implementing semantic zooming where the layers are faded in and out as the user zooms in and out.</p>
