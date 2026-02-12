@@ -1349,6 +1349,8 @@
       
         
       
+        
+      
     
     
     
@@ -1441,6 +1443,34 @@
     
   
     Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../composition/multiscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiscale
   
 
     
@@ -2225,147 +2255,228 @@
 <h2 id="compareparams">CompareParams<a class="headerlink" href="#compareparams" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>field</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name)[] | string (field name)<p>The field(s) to sort by</p>
+<dd>
+<p>Type: string (field name)[] | string (field name)</p>
+<p>The field(s) to sort by</p>
 </dd>
 <dt><code>order</code></dt>
-<dd>Type: (<code>"ascending"</code> | <code>"descending"</code>)[] | <code>"ascending"</code> | <code>"descending"</code><p>The order(s) to use: <code>"ascending"</code> (default), <code>"descending"</code>.</p>
+<dd>
+<p>Type: (<code>"ascending"</code> | <code>"descending"</code>)[] | <code>"ascending"</code> | <code>"descending"</code></p>
+<p>The order(s) to use: <code>"ascending"</code> (default), <code>"descending"</code>.</p>
 </dd>
 </dl>
 <h2 id="dynamicopacity">DynamicOpacity<a class="headerlink" href="#dynamicopacity" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>TODO</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code> | <code>"auto"</code></p>
+<p>The positional channel whose scale domain controls the opacity. If set to <code>"auto"</code>, both <code>x</code> and <code>y</code> scales may contribute.</p>
+<p>If omitted, <code>x</code> is used when available and <code>y</code> is used as a fallback.</p>
 </dd>
 <dt><code>unitsPerPixel</code> <span class="required">Required</span></dt>
-<dd>Type: array<p>Stops expressed as units (base pairs, for example) per pixel.</p>
+<dd>
+<p>Type: array</p>
+<p>Opacity stops expressed as units (base pairs, for example) per pixel. The values must be positive.</p>
+<p>Each stop is paired with an opacity in <code>values</code> at the same index. Stops can be constants or expression references.</p>
 </dd>
 <dt><code>values</code> <span class="required">Required</span></dt>
-<dd>Type: array<p>Opacity values that match the given stops.</p>
+<dd>
+<p>Type: array</p>
+<p>Opacity values that match the given <code>unitsPerPixel</code> stops.</p>
+<p>Values outside the stop range are clamped to the nearest stop.</p>
 </dd>
 </dl>
 <h2 id="exprref">ExprRef<a class="headerlink" href="#exprref" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>expr</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>The expression string.</p>
+<dd>
+<p>Type: string</p>
+<p>The expression string.</p>
 </dd>
 </dl>
 <h2 id="paddings">Paddings<a class="headerlink" href="#paddings" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>bottom</code></dt>
-<dd>Type: number<p>TODO</p>
+<dd>
+<p>Type: number</p>
+<p>TODO</p>
 </dd>
 <dt><code>left</code></dt>
-<dd>Type: number<p>TODO</p>
+<dd>
+<p>Type: number</p>
+<p>TODO</p>
 </dd>
 <dt><code>right</code></dt>
-<dd>Type: number<p>TODO</p>
+<dd>
+<p>Type: number</p>
+<p>TODO</p>
 </dd>
 <dt><code>top</code></dt>
-<dd>Type: number<p>TODO</p>
+<dd>
+<p>Type: number</p>
+<p>TODO</p>
 </dd>
 </dl>
 <h2 id="step">Step<a class="headerlink" href="#step" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>step</code> <span class="required">Required</span></dt>
-<dd>Type: number<p>TODO</p>
+<dd>
+<p>Type: number</p>
+<p>TODO</p>
 </dd>
 </dl>
 <h2 id="sizedef">SizeDef<a class="headerlink" href="#sizedef" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>grow</code></dt>
-<dd>Type: number<p>Share of the remaining space. See <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
+<dd>
+<p>Type: number</p>
+<p>Share of the remaining space. See <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
 </dd>
 <dt><code>px</code></dt>
-<dd>Type: number<p>Size in pixels</p>
+<dd>
+<p>Type: number</p>
+<p>Size in pixels</p>
 </dd>
 </dl>
 <h2 id="title">Title<a class="headerlink" href="#title" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>align</code></dt>
-<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>Horizontal text alignment for title text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
+<dd>
+<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
+<p>Horizontal text alignment for title text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
 </dd>
 <dt><code>anchor</code></dt>
-<dd>Type: <code>None</code> | <code>start</code> | <code>middle</code> | <code>end</code><p>The anchor position for placing the title and subtitle text. One of <code>"start"</code>, <code>"middle"</code>, or <code>"end"</code>. For example, with an orientation of top these anchor positions map to a left-, center-, or right-aligned title.</p>
+<dd>
+<p>Type: <code>None</code> | <code>start</code> | <code>middle</code> | <code>end</code></p>
+<p>The anchor position for placing the title and subtitle text. One of <code>"start"</code>, <code>"middle"</code>, or <code>"end"</code>. For example, with an orientation of top these anchor positions map to a left-, center-, or right-aligned title.</p>
 </dd>
 <dt><code>angle</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Angle in degrees of title and subtitle text.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Angle in degrees of title and subtitle text.</p>
 </dd>
 <dt><code>baseline</code></dt>
-<dd>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code><p>Vertical text baseline for title and subtitle text. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, or <code>"bottom"</code>.</p>
+<dd>
+<p>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code></p>
+<p>Vertical text baseline for title and subtitle text. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, or <code>"bottom"</code>.</p>
 </dd>
 <dt><code>color</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Text color for title text.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Text color for title text.</p>
 </dd>
 <dt><code>dx</code></dt>
-<dd>Type: number<p>Delta offset for title and subtitle text x-coordinate.</p>
+<dd>
+<p>Type: number</p>
+<p>Delta offset for title and subtitle text x-coordinate.</p>
 </dd>
 <dt><code>dy</code></dt>
-<dd>Type: number<p>Delta offset for title and subtitle text y-coordinate.</p>
+<dd>
+<p>Type: number</p>
+<p>Delta offset for title and subtitle text y-coordinate.</p>
 </dd>
 <dt><code>font</code></dt>
-<dd>Type: string<p>Font name for title text.</p>
+<dd>
+<p>Type: string</p>
+<p>Font name for title text.</p>
 </dd>
 <dt><code>fontSize</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Font size in pixels for title text.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Font size in pixels for title text.</p>
 </dd>
 <dt><code>fontStyle</code></dt>
-<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style for title text.</p>
+<dd>
+<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
+<p>Font style for title text.</p>
 </dd>
 <dt><code>fontWeight</code></dt>
-<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight for title text. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
+<dd>
+<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
+<p>Font weight for title text. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
 </dd>
 <dt><code>frame</code></dt>
-<dd>Type: <code>"bounds"</code> | <code>"group"</code><p>The reference frame for the anchor position, one of <code>"bounds"</code> (to anchor relative to the full bounding box) or <code>"group"</code> (to anchor relative to the group width or height).</p>
+<dd>
+<p>Type: <code>"bounds"</code> | <code>"group"</code></p>
+<p>The reference frame for the anchor position, one of <code>"bounds"</code> (to anchor relative to the full bounding box) or <code>"group"</code> (to anchor relative to the group width or height).</p>
 </dd>
 <dt><code>offset</code></dt>
-<dd>Type: number<p>The orthogonal offset in pixels by which to displace the title group from its position along the edge of the chart.</p>
+<dd>
+<p>Type: number</p>
+<p>The orthogonal offset in pixels by which to displace the title group from its position along the edge of the chart.</p>
 </dd>
 <dt><code>orient</code></dt>
-<dd>Type: <code>"none"</code> | <code>"left"</code> | <code>"right"</code> | <code>"top"</code> | <code>"bottom"</code><p>Default title orientation (<code>"none"</code>, <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code>, or <code>"right"</code>)</p>
+<dd>
+<p>Type: <code>"none"</code> | <code>"left"</code> | <code>"right"</code> | <code>"top"</code> | <code>"bottom"</code></p>
+<p>Default title orientation (<code>"none"</code>, <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code>, or <code>"right"</code>)</p>
 </dd>
 <dt><code>style</code></dt>
-<dd>Type: string<p>A mark style property to apply to the title text mark. If not specified, a default style of <code>"group-title"</code> is applied.</p>
+<dd>
+<p>Type: string</p>
+<p>A mark style property to apply to the title text mark. If not specified, a default style of <code>"group-title"</code> is applied.</p>
 </dd>
 <dt><code>text</code> <span class="required">Required</span></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The title text.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The title text.</p>
 </dd>
 </dl>
 <h2 id="viewbackground">ViewBackground<a class="headerlink" href="#viewbackground" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>fill</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The fill color.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The fill color.</p>
 </dd>
 <dt><code>fillOpacity</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The fill opacity. Value between <code>0</code> and <code>1</code>.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The fill opacity. Value between <code>0</code> and <code>1</code>.</p>
 </dd>
 <dt><code>shadowBlur</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The blur radius of the drop shadow in pixels. Higher values produce a more diffuse shadow.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The blur radius of the drop shadow in pixels. Higher values produce a more diffuse shadow.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>shadowColor</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The color of the drop shadow. Any valid CSS color string is allowed.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The color of the drop shadow. Any valid CSS color string is allowed.</p>
 <p><strong>Default value:</strong> <code>"black"</code></p>
 </dd>
 <dt><code>shadowOffsetX</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The horizontal offset of the drop shadow in pixels. Positive values move the shadow to the right.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The horizontal offset of the drop shadow in pixels. Positive values move the shadow to the right.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>shadowOffsetY</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The vertical offset of the drop shadow in pixels. Positive values move the shadow downward.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The vertical offset of the drop shadow in pixels. Positive values move the shadow downward.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>shadowOpacity</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The opacity of the drop shadow. Value between <code>0</code> (fully transparent) and <code>1</code> (fully opaque).</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The opacity of the drop shadow. Value between <code>0</code> (fully transparent) and <code>1</code> (fully opaque).</p>
 <p><strong>Default value:</strong> <code>0</code> (disabled)</p>
 </dd>
 <dt><code>stroke</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The stroke color</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The stroke color</p>
 </dd>
 <dt><code>strokeOpacity</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The stroke opacity. Value between <code>0</code> and <code>1</code>.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The stroke opacity. Value between <code>0</code> and <code>1</code>.</p>
 </dd>
 <dt><code>strokeWidth</code></dt>
-<dd>Type: number<p>The stroke width in pixels.</p>
+<dd>
+<p>Type: number</p>
+<p>The stroke width in pixels.</p>
 </dd>
 </dl>
 <h2 id="viewopacitydef">ViewOpacityDef<a class="headerlink" href="#viewopacitydef" title="Permanent link">&para;</a></h2>

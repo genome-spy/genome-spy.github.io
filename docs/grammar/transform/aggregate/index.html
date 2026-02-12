@@ -1454,6 +1454,8 @@
       
         
       
+        
+      
     
     
     
@@ -1546,6 +1548,34 @@
     
   
     Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../composition/multiscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiscale
   
 
     
@@ -2141,16 +2171,24 @@ values.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code></dt>
-<dd>Type: array<p>The names for the output fields corresponding to each aggregated field. If not provided, names will be automatically created using the operation and field names (e.g., <code>sum_field</code>, <code>average_field</code>).</p>
+<dd>
+<p>Type: array</p>
+<p>The names for the output fields corresponding to each aggregated field. If not provided, names will be automatically created using the operation and field names (e.g., <code>sum_field</code>, <code>average_field</code>).</p>
 </dd>
 <dt><code>fields</code></dt>
-<dd>Type: array<p>The data fields to apply aggregate functions to. This array should correspond with the <code>ops</code> and <code>as</code> arrays. If no fields or operations are specified, a count aggregation will be applied by default.</p>
+<dd>
+<p>Type: array</p>
+<p>The data fields to apply aggregate functions to. This array should correspond with the <code>ops</code> and <code>as</code> arrays. If no fields or operations are specified, a count aggregation will be applied by default.</p>
 </dd>
 <dt><code>groupby</code></dt>
-<dd>Type: array<p>The fields by which to group the data. If these are not defined, all data objects will be grouped into a single category.</p>
+<dd>
+<p>Type: array</p>
+<p>The fields by which to group the data. If these are not defined, all data objects will be grouped into a single category.</p>
 </dd>
 <dt><code>ops</code></dt>
-<dd>Type: array<p>The aggregation operations to be performed on the fields, such as <code>"sum"</code>, <code>"average"</code>, or <code>"count"</code>.</p>
+<dd>
+<p>Type: array</p>
+<p>The aggregation operations to be performed on the fields, such as <code>"sum"</code>, <code>"average"</code>, or <code>"count"</code>.</p>
 </dd>
 </dl>
 <h3 id="available-aggregate-functions">Available aggregate functions<a class="headerlink" href="#available-aggregate-functions" title="Permanent link">&para;</a></h3>

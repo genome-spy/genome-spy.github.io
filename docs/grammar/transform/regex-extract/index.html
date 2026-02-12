@@ -1420,6 +1420,8 @@
       
         
       
+        
+      
     
     
     
@@ -1512,6 +1514,34 @@
     
   
     Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../composition/multiscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiscale
   
 
     
@@ -2071,17 +2101,25 @@ and adds them to the data objects as new fields.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code> <span class="required">Required</span></dt>
-<dd>Type: string | string[]<p>The new field or an array of fields where the extracted values are written.</p>
+<dd>
+<p>Type: string | string[]</p>
+<p>The new field or an array of fields where the extracted values are written.</p>
 </dd>
 <dt><code>field</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name)<p>The source field</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>The source field</p>
 </dd>
 <dt><code>regex</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>A valid JavaScript regular expression with at least one group. For example: <code>"^Sample(\\d+)$"</code>.</p>
+<dd>
+<p>Type: string</p>
+<p>A valid JavaScript regular expression with at least one group. For example: <code>"^Sample(\\d+)$"</code>.</p>
 <p>Read more at: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions</a></p>
 </dd>
 <dt><code>skipInvalidInput</code></dt>
-<dd>Type: boolean<p>Do not complain about invalid input. Just skip it and leave the new fields undefined on the affected datum.</p>
+<dd>
+<p>Type: boolean</p>
+<p>Do not complain about invalid input. Just skip it and leave the new fields undefined on the affected datum.</p>
 <p><strong>Default:</strong> <code>false</code></p>
 </dd>
 </dl>

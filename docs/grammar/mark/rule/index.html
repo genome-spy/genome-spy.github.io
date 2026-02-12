@@ -1459,6 +1459,8 @@
       
         
       
+        
+      
     
     
     
@@ -1551,6 +1553,34 @@
     
   
     Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../composition/multiscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiscale
   
 
     
@@ -2171,58 +2201,90 @@ channels and the <code>color</code>, <code>opacity</code>, and <code>size</code>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>clip</code></dt>
-<dd>Type: boolean | <code>"never"</code><p>If true, the mark is clipped to the UnitView's rectangle. By default, clipping is enabled for marks that have zoomable positional scales.</p>
+<dd>
+<p>Type: boolean | <code>"never"</code></p>
+<p>If true, the mark is clipped to the UnitView's rectangle. By default, clipping is enabled for marks that have zoomable positional scales.</p>
 </dd>
 <dt><code>color</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
 </dd>
 <dt><code>minBufferSize</code></dt>
-<dd>Type: number<p>Minimum size for WebGL buffers (number of data items). Allows for using <code>bufferSubData()</code> to update graphics.</p>
+<dd>
+<p>Type: number</p>
+<p>Minimum size for WebGL buffers (number of data items). Allows for using <code>bufferSubData()</code> to update graphics.</p>
 <p>This property is intended for internal use.</p>
 </dd>
 <dt><code>minLength</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The minimum length of the rule in pixels. Use this property to ensure that very short ranged rules remain visible even when the user zooms out.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The minimum length of the rule in pixels. Use this property to ensure that very short ranged rules remain visible even when the user zooms out.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>opacity</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Opacity of the mark. Affects <code>fillOpacity</code> or <code>strokeOpacity</code>, depending on the <code>filled</code> property.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Opacity of the mark. Affects <code>fillOpacity</code> or <code>strokeOpacity</code>, depending on the <code>filled</code> property.</p>
 </dd>
 <dt><code>size</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Stroke width of <code>"link"</code> and <code>"rule"</code> marks in pixels, the area of the bounding square of <code>"point"</code> mark, or the font size of <code>"text"</code> mark.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Stroke width of <code>"link"</code> and <code>"rule"</code> marks in pixels, the area of the bounding square of <code>"point"</code> mark, or the font size of <code>"text"</code> mark.</p>
 </dd>
 <dt><code>strokeCap</code></dt>
-<dd>Type: <code>"butt"</code> | <code>"square"</code> | <code>"round"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The style of stroke ends. Available choices: <code>"butt"</code>, <code>"round</code>", and <code>"square"</code>.</p>
+<dd>
+<p>Type: <code>"butt"</code> | <code>"square"</code> | <code>"round"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The style of stroke ends. Available choices: <code>"butt"</code>, <code>"round</code>", and <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>strokeDash</code></dt>
-<dd>Type: array<p>An array of of alternating stroke and gap lengths or <code>null</code> for solid strokes.</p>
+<dd>
+<p>Type: array</p>
+<p>An array of of alternating stroke and gap lengths or <code>null</code> for solid strokes.</p>
 <p><strong>Default value:</strong> <code>null</code></p>
 </dd>
 <dt><code>strokeDashOffset</code></dt>
-<dd>Type: number<p>An offset for the stroke dash pattern.</p>
+<dd>
+<p>Type: number</p>
+<p>An offset for the stroke dash pattern.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>tooltip</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">HandledTooltip</a> | null<p>Tooltip handler. If <code>null</code>, no tooltip is shown. If string, specifies the <a href="https://genomespy.app/docs/api/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">HandledTooltip</a> | null</p>
+<p>Tooltip handler. If <code>null</code>, no tooltip is shown. If string, specifies the <a href="https://genomespy.app/docs/api/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
 </dd>
 <dt><code>x</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Position on the x axis.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Position on the x axis.</p>
 </dd>
 <dt><code>x2</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The secondary position on the x axis.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The secondary position on the x axis.</p>
 </dd>
 <dt><code>xOffset</code></dt>
-<dd>Type: number<p>Offsets of the <code>x</code> and <code>x2</code> coordinates in pixels. The offset is applied after the viewport scaling and translation.</p>
+<dd>
+<p>Type: number</p>
+<p>Offsets of the <code>x</code> and <code>x2</code> coordinates in pixels. The offset is applied after the viewport scaling and translation.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>y</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Position on the y axis.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Position on the y axis.</p>
 </dd>
 <dt><code>y2</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The secondary position on the y axis.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The secondary position on the y axis.</p>
 </dd>
 <dt><code>yOffset</code></dt>
-<dd>Type: number<p>Offsets of the <code>y</code> and <code>y2</code> coordinates in pixels. The offset is applied after the viewport scaling and translation.</p>
+<dd>
+<p>Type: number</p>
+<p>Offsets of the <code>y</code> and <code>y2</code> coordinates in pixels. The offset is applied after the viewport scaling and translation.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 </dl>

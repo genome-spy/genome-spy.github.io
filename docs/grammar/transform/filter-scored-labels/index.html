@@ -1420,6 +1420,8 @@
       
         
       
+        
+      
     
     
     
@@ -1512,6 +1514,34 @@
     
   
     Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../composition/multiscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiscale
   
 
     
@@ -2079,29 +2109,45 @@ notebook or the <a href="#example">example</a> below.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>asMidpoint</code></dt>
-<dd>Type: string<p>Outputs the average of pos and pos2 as the midpoint of the element. This is useful for elements that have a width, such as transcripts. The midpoint is clamped to the visible region of the element.</p>
+<dd>
+<p>Type: string</p>
+<p>Outputs the average of pos and pos2 as the midpoint of the element. This is useful for elements that have a width, such as transcripts. The midpoint is clamped to the visible region of the element.</p>
 </dd>
 <dt><code>channel</code></dt>
-<dd>Type: string<p><strong>Default:</strong> <code>"x"</code></p>
+<dd>
+<p>Type: string</p>
+<p><strong>Default:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>lane</code></dt>
-<dd>Type: string (field name)<p>An optional field representing element's lane, e.g., if transcripts are shown using a piled up layout. Each line is processed separately.</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>An optional field representing element's lane, e.g., if transcripts are shown using a piled up layout. Each line is processed separately.</p>
 </dd>
 <dt><code>padding</code></dt>
-<dd>Type: number<p>Padding (in pixels) around the element.</p>
+<dd>
+<p>Type: number</p>
+<p>Padding (in pixels) around the element.</p>
 <p><strong>Default:</strong> <code>0</code></p>
 </dd>
 <dt><code>pos</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name)<p>The field representing element's start position on the domain.</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>The field representing element's start position on the domain.</p>
 </dd>
 <dt><code>pos2</code></dt>
-<dd>Type: string (field name)<p>The field representing element's end position on the domain. If not specified, the <code>pos</code> field is used.</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>The field representing element's end position on the domain. If not specified, the <code>pos</code> field is used.</p>
 </dd>
 <dt><code>score</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name)<p>The field representing the score used for prioritization.</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>The field representing the score used for prioritization.</p>
 </dd>
 <dt><code>width</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name)<p>The field representing element's width in pixels.</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>The field representing element's width in pixels.</p>
 </dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>

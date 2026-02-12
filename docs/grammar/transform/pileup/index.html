@@ -1431,6 +1431,8 @@
       
         
       
+        
+      
     
     
     
@@ -1523,6 +1525,34 @@
     
   
     Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../composition/multiscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiscale
   
 
     
@@ -2095,24 +2125,36 @@ pileup transform.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code></dt>
-<dd>Type: string<p>The output field name for the computed lane.</p>
+<dd>
+<p>Type: string</p>
+<p>The output field name for the computed lane.</p>
 <p><strong>Default:</strong> <code>"lane"</code>.</p>
 </dd>
 <dt><code>end</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name)<p>The field representing the end coordinate of the segment (exclusive).</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>The field representing the end coordinate of the segment (exclusive).</p>
 </dd>
 <dt><code>preference</code></dt>
-<dd>Type: string (field name)<p>An optional field indicating the preferred lane. Use together with the <code>preferredOrder</code> property.</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>An optional field indicating the preferred lane. Use together with the <code>preferredOrder</code> property.</p>
 </dd>
 <dt><code>preferredOrder</code></dt>
-<dd>Type: string[] | number[] | boolean[]<p>The order of the lane preferences. The first element contains the value that should place the segment on the first lane and so forth. If the preferred lane is occupied, the first available lane is taken.</p>
+<dd>
+<p>Type: string[] | number[] | boolean[]</p>
+<p>The order of the lane preferences. The first element contains the value that should place the segment on the first lane and so forth. If the preferred lane is occupied, the first available lane is taken.</p>
 </dd>
 <dt><code>spacing</code></dt>
-<dd>Type: number<p>The spacing between adjacent segments on the same lane in coordinate units.</p>
+<dd>
+<p>Type: number</p>
+<p>The spacing between adjacent segments on the same lane in coordinate units.</p>
 <p><strong>Default:</strong> <code>1</code>.</p>
 </dd>
 <dt><code>start</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name)<p>The field representing the start coordinate of the segment (inclusive).</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>The field representing the start coordinate of the segment (inclusive).</p>
 </dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>

@@ -1349,6 +1349,8 @@
       
         
       
+        
+      
     
     
     
@@ -1441,6 +1443,34 @@
     
   
     Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="composition/multiscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiscale
   
 
     
@@ -2058,83 +2088,131 @@ encoded into mark instances.</p>
 
 <h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
 <dl>
-<dt><code>aggregateSamples</code></dt>
-<dd>Type: array<p>Specifies views that <a href="https://genomespy.app/docs/sample-collections/visualizing/#aggregation">aggregate</a> multiple samples within the GenomeSpy App.</p>
-</dd>
 <dt><code>baseUrl</code></dt>
-<dd>Type: string<p>The base URL for relative URL data sources and URL <a href="https://genomespy.app/docs/grammar/import/#importing-from-a-url">imports</a>. The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.</p>
+<dd>
+<p>Type: string</p>
+<p>The base URL for relative URL data sources and URL <a href="https://genomespy.app/docs/grammar/import/#importing-from-a-url">imports</a>. The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.</p>
 </dd>
 <dt><code>configurableVisibility</code></dt>
-<dd>Type: boolean<p>Is the visibility configurable interactively from the <a href="https://genomespy.app/docs/sample-collections/">GenomeSpy App</a>. Configurability requires that the view has an explicitly specified name that is unique within its import scope.</p>
+<dd>
+<p>Type: boolean</p>
+<p>Is the visibility configurable interactively from the <a href="https://genomespy.app/docs/sample-collections/">GenomeSpy App</a>. Configurability requires that the view has an explicitly specified name that is unique within its import scope.</p>
 <p><strong>Default:</strong> <code>false</code> for children of <code>layer</code>, <code>true</code> for others.</p>
 </dd>
 <dt><code>data</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">Generator</a><p>Specifies a <a href="https://genomespy.app/docs/grammar/data/">data source</a>. If omitted, the data source is inherited from the parent view.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">Generator</a></p>
+<p>Specifies a <a href="https://genomespy.app/docs/grammar/data/">data source</a>. If omitted, the data source is inherited from the parent view.</p>
 </dd>
 <dt><code>description</code></dt>
-<dd>Type: string | string[]<p>A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the <a href="https://genomespy.app/docs/sample-collections/">GenomeSpy App</a>.</p>
+<dd>
+<p>Type: string | string[]</p>
+<p>A description of the view. Can be used for documentation. The description of the top-level view is shown in the toolbar of the <a href="https://genomespy.app/docs/sample-collections/">GenomeSpy App</a>.</p>
 </dd>
 <dt><code>domainInert</code></dt>
-<dd>Type: boolean<p>If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.</p>
+<dd>
+<p>Type: boolean</p>
+<p>If true, this view and its descendants do not contribute to scale domains. Child views inherit this flag automatically.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>encoding</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/mark/#encoding">Encoding</a><p>Specifies how data are <a href="https://genomespy.app/docs/grammar/mark/#encoding">encoded</a> using the visual channels.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/mark/#encoding">Encoding</a></p>
+<p>Specifies how data are <a href="https://genomespy.app/docs/grammar/mark/#encoding">encoded</a> using the visual channels.</p>
 </dd>
 <dt><code>height</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">Step</a> | <code>"container"</code><p>Height of the view. If a number, it is interpreted as pixels. Check <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">Step</a> | <code>"container"</code></p>
+<p>Height of the view. If a number, it is interpreted as pixels. Check <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
 <p><strong>Default value:</strong> <code>"container"</code></p>
 </dd>
 <dt><code>mark</code> <span class="required">Required</span></dt>
-<dd>Type: <code>"rect"</code> | <code>"point"</code> | <code>"rule"</code> | <code>"text"</code> | <code>"link"</code> | <a href="https://genomespy.app/docs/grammar/mark/rect/#properties">RectProps</a> | <a href="https://genomespy.app/docs/grammar/mark/text/#properties">TextProps</a> | <a href="https://genomespy.app/docs/grammar/mark/rule/#properties">RuleProps</a> | <a href="https://genomespy.app/docs/grammar/mark/link/#properties">LinkProps</a> | <a href="https://genomespy.app/docs/grammar/mark/point/#properties">PointProps</a><p>The graphical mark presenting the data objects.</p>
+<dd>
+<p>Type: <code>"rect"</code> | <code>"point"</code> | <code>"rule"</code> | <code>"text"</code> | <code>"link"</code> | <a href="https://genomespy.app/docs/grammar/mark/rect/#properties">RectProps</a> | <a href="https://genomespy.app/docs/grammar/mark/text/#properties">TextProps</a> | <a href="https://genomespy.app/docs/grammar/mark/rule/#properties">RuleProps</a> | <a href="https://genomespy.app/docs/grammar/mark/link/#properties">LinkProps</a> | <a href="https://genomespy.app/docs/grammar/mark/point/#properties">PointProps</a></p>
+<p>The graphical mark presenting the data objects.</p>
 </dd>
 <dt><code>name</code></dt>
-<dd>Type: string<p>An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.</p>
+<dd>
+<p>Type: string</p>
+<p>An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.</p>
 </dd>
 <dt><code>opacity</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/types/">DynamicOpacity</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Opacity of the view and all its children. Allows implementing semantic zooming where the layers are faded in and out as the user zooms in and out.</p>
-<p>TODO: Write proper documentation with examples.</p>
-<p><strong>Default:</strong> <code>1.0</code></p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/types/">DynamicOpacity</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Opacity of the view and all its children.</p>
+<p>This can be:</p>
+<ul>
+<li>a fixed number between <code>0</code> and <code>1</code></li>
+<li>an expression reference (<code>ExprRef</code>)</li>
+<li>a <code>DynamicOpacity</code> definition for zoom-dependent opacity</li>
+</ul>
+<p>Dynamic opacity is useful for semantic zooming where layers are faded in and out as the user zooms.</p>
+<p>Example:</p>
+<p><code>json "opacity": {   "unitsPerPixel": [100000, 40000],   "values": [0, 1] }</code></p>
+<p>In this example, the view fades in while zooming in from 100 000 to 40 000 units per pixel.</p>
+<p><strong>Default value:</strong> <code>1.0</code></p>
 </dd>
 <dt><code>padding</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">Paddings</a> | number<p>Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">Paddings</a> | number</p>
+<p>Padding applied to the view. Accepts either a number representing pixels or an object specifying separate paddings for each edge.</p>
 <p>Examples:
 - <code>padding: 10</code>
 - <code>padding: { top: 10, right: 20, bottom: 10, left: 20 }</code></p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>params</code></dt>
-<dd>Type: array<p>Dynamic variables that <a href="https://genomespy.app/docs/grammar/parameters/">parameterize</a> a visualization.</p>
+<dd>
+<p>Type: array</p>
+<p>Dynamic variables that <a href="https://genomespy.app/docs/grammar/parameters/">parameterize</a> a visualization.</p>
 </dd>
 <dt><code>resolve</code></dt>
-<dd>Type: object<p>Specifies how scales and axes are <a href="https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution">resolved</a> in the view hierarchy.</p>
+<dd>
+<p>Type: object</p>
+<p>Specifies how scales and axes are <a href="https://genomespy.app/docs/grammar/composition/#scale-and-axis-resolution">resolved</a> in the view hierarchy.</p>
 </dd>
 <dt><code>templates</code></dt>
-<dd>Type: object<p><a href="https://genomespy.app/docs/grammar/import/#repeating-with-named-templates">Templates</a> that can be reused within the view specification by importing them with the template key.</p>
+<dd>
+<p>Type: object</p>
+<p>TODO</p>
 </dd>
 <dt><code>title</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/types/">Title</a><p>View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/types/">Title</a></p>
+<p>View title. N.B.: Currently, GenomeSpy doesn't do bound calculation, and you need to manually specify proper padding for the view to ensure that the title is visible.</p>
 </dd>
 <dt><code>transform</code></dt>
-<dd>Type: array<p>An array of <a href="https://genomespy.app/docs/grammar/transform/">transformations</a> applied to the data before visual encoding.</p>
+<dd>
+<p>Type: array</p>
+<p>An array of <a href="https://genomespy.app/docs/grammar/transform/">transformations</a> applied to the data before visual encoding.</p>
 </dd>
 <dt><code>view</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">ViewBackground</a><p>The background of the view, including fill, stroke, and stroke width.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">ViewBackground</a></p>
+<p>The background of the view, including fill, stroke, and stroke width.</p>
 </dd>
 <dt><code>viewportHeight</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <code>"container"</code><p>Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with <a href="https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports">scrollbars</a>. This property implicitly enables clipping.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <code>"container"</code></p>
+<p>Optional viewport height of the view. If the view size exceeds the viewport height, it will be shown with <a href="https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports">scrollbars</a>. This property implicitly enables clipping.</p>
 <p><strong>Default:</strong> <code>null</code> (same as <code>height</code>)</p>
 </dd>
 <dt><code>viewportWidth</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <code>"container"</code><p>Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with <a href="https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports">scrollbars</a>. This property implicitly enables clipping.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <code>"container"</code></p>
+<p>Optional viewport width of the view. If the view size exceeds the viewport width, it will be shown with <a href="https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports">scrollbars</a>. This property implicitly enables clipping.</p>
 <p><strong>Default:</strong> <code>null</code> (same as <code>width</code>)</p>
 </dd>
 <dt><code>visible</code></dt>
-<dd>Type: boolean<p>The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see <a href="https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility">toggleable view visibility</a>.</p>
+<dd>
+<p>Type: boolean</p>
+<p>The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see <a href="https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility">toggleable view visibility</a>.</p>
 <p><strong>Default:</strong> <code>true</code></p>
 </dd>
 <dt><code>width</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">Step</a> | <code>"container"</code><p>Width of the view. If a number, it is interpreted as pixels. Check <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">Step</a> | <code>"container"</code></p>
+<p>Width of the view. If a number, it is interpreted as pixels. Check <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
 <p><strong>Default:</strong> <code>"container"</code></p>
 </dd>
 </dl>

@@ -1448,6 +1448,8 @@
       
         
       
+        
+      
     
     
     
@@ -1540,6 +1542,34 @@
     
   
     Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../composition/multiscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiscale
   
 
     
@@ -2128,27 +2158,41 @@ applications.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code> <span class="required">Required</span></dt>
-<dd>Type: array<p>Fields to write the stacked values.</p>
+<dd>
+<p>Type: array</p>
+<p>Fields to write the stacked values.</p>
 <p><strong>Default:</strong> <code>["y0", "y1"]</code></p>
 </dd>
 <dt><code>baseField</code></dt>
-<dd>Type: string (field name)<p>The field that contains the base or amino acid. Used for information content calculation when the offset is <code>"information"</code>. The data objects that have <code>null</code> in the baseField are considered gaps and they are taken into account when scaling the the locus' information content.</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>The field that contains the base or amino acid. Used for information content calculation when the offset is <code>"information"</code>. The data objects that have <code>null</code> in the baseField are considered gaps and they are taken into account when scaling the the locus' information content.</p>
 </dd>
 <dt><code>cardinality</code></dt>
-<dd>Type: number<p>Cardinality, e.g., the number if distinct bases or amino acids. Used for information content calculation when the offset is <code>"information"</code>.</p>
+<dd>
+<p>Type: number</p>
+<p>Cardinality, e.g., the number if distinct bases or amino acids. Used for information content calculation when the offset is <code>"information"</code>.</p>
 <p><strong>Default:</strong> <code>4</code></p>
 </dd>
 <dt><code>field</code></dt>
-<dd>Type: string (field name)<p>The field to stack. If no field is defined, a constant value of one is assumed.</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>The field to stack. If no field is defined, a constant value of one is assumed.</p>
 </dd>
 <dt><code>groupby</code> <span class="required">Required</span></dt>
-<dd>Type: array<p>The fields to be used for forming groups for different stacks.</p>
+<dd>
+<p>Type: array</p>
+<p>The fields to be used for forming groups for different stacks.</p>
 </dd>
 <dt><code>offset</code></dt>
-<dd>Type: string<p>How to offset the values in a stack. <code>"zero"</code> (default) starts stacking at 0. <code>"center"</code> centers the values around zero. <code>"normalize"</code> computes intra-stack percentages and normalizes the values to the range of <code>[0, 1]</code>. <code>"information"</code> computes a layout for a sequence logo. The total height of the stack reflects the group's information content.</p>
+<dd>
+<p>Type: string</p>
+<p>How to offset the values in a stack. <code>"zero"</code> (default) starts stacking at 0. <code>"center"</code> centers the values around zero. <code>"normalize"</code> computes intra-stack percentages and normalizes the values to the range of <code>[0, 1]</code>. <code>"information"</code> computes a layout for a sequence logo. The total height of the stack reflects the group's information content.</p>
 </dd>
 <dt><code>sort</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">CompareParams</a><p>The sort order of data in each stack.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">CompareParams</a></p>
+<p>The sort order of data in each stack.</p>
 </dd>
 </dl>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>

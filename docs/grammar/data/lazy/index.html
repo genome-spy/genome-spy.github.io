@@ -1710,6 +1710,8 @@
       
         
       
+        
+      
     
     
     
@@ -1802,6 +1804,34 @@
     
   
     Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../composition/multiscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiscale
   
 
     
@@ -2680,26 +2710,38 @@ The chunks are provided as data objects with the following fields: <code>chrom</
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>Type: string<p>URL of the index file.</p>
+<dd>
+<p>Type: string</p>
+<p>URL of the index file.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".fai"</code>.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>URL of the fasta file.</p>
+<dd>
+<p>Type: string</p>
+<p>URL of the fasta file.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>Type: number<p>Size of each chunk when fetching the fasta file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>
+<p>Type: number</p>
+<p>Size of each chunk when fetching the fasta file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>7000</code></p>
 </dd>
 </dl>
@@ -2802,23 +2844,33 @@ source provides data objects with the following fields: <code>chrom</code> (stri
 <h3 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>pixelsPerBin</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The approximate minimum width of each data bin, in pixels.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The approximate minimum width of each data bin, in pixels.</p>
 <p><strong>Default value:</strong> <code>2</code></p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>URL of the BigWig file.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>URL of the BigWig file.</p>
 </dd>
 </dl>
 <h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
@@ -2862,22 +2914,32 @@ genomic regions stored in BigBed files.</p>
 <h3 id="parameters_2">Parameters<a class="headerlink" href="#parameters_2" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>URL of the BigBed file.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>URL of the BigBed file.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>1000000</code></p>
 </dd>
 </dl>
@@ -2938,30 +3000,44 @@ documentation.</p>
 <h3 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>addChrPrefix</code></dt>
-<dd>Type: boolean | string<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
+<dd>
+<p>Type: boolean | string</p>
+<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>Type: string<p>Url of the tabix index file.</p>
+<dd>
+<p>Type: string</p>
+<p>Url of the tabix index file.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".tbi"</code>.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>Url of the bgzip compressed file.</p>
+<dd>
+<p>Type: string</p>
+<p>Url of the bgzip compressed file.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>Type: number<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>
+<p>Type: number</p>
+<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>30000000</code></p>
 </dd>
 </dl>
@@ -2980,30 +3056,44 @@ example below.</p>
 <h3 id="parameters_4">Parameters<a class="headerlink" href="#parameters_4" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>addChrPrefix</code></dt>
-<dd>Type: boolean | string<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
+<dd>
+<p>Type: boolean | string</p>
+<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>Type: string<p>Url of the tabix index file.</p>
+<dd>
+<p>Type: string</p>
+<p>Url of the tabix index file.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".tbi"</code>.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>Url of the bgzip compressed file.</p>
+<dd>
+<p>Type: string</p>
+<p>Url of the bgzip compressed file.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>Type: number<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>
+<p>Type: number</p>
+<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>30000000</code></p>
 </dd>
 </dl>
@@ -3310,26 +3400,38 @@ interested in this feature.</p>
 <h3 id="parameters_5">Parameters<a class="headerlink" href="#parameters_5" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>Type: string<p>URL of the index file.</p>
+<dd>
+<p>Type: string</p>
+<p>URL of the index file.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".bai"</code>.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>URL of the BigBed file.</p>
+<dd>
+<p>Type: string</p>
+<p>URL of the BigBed file.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>Type: number<p>Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>
+<p>Type: number</p>
+<p>Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>10000</code></p>
 </dd>
 </dl>
@@ -3445,10 +3547,14 @@ according to your requirements. The data source generates data objects with
 <h3 id="parameters_6">Parameters<a class="headerlink" href="#parameters_6" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>axis</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">Axis</a><p>Optional axis properties</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">Axis</a></p>
+<p>Optional axis properties</p>
 </dd>
 <dt><code>channel</code> <span class="required">Required</span></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to listen to</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to listen to</p>
 </dd>
 </dl>
 <h3 id="example_6">Example<a class="headerlink" href="#example_6" title="Permanent link">&para;</a></h3>
@@ -3500,7 +3606,9 @@ The data source generates data objects with the following fields: <code>name</co
 <h3 id="parameters_7">Parameters<a class="headerlink" href="#parameters_7" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code> <span class="required">Required</span></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to use</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to use</p>
 </dd>
 </dl>
 <h3 id="example_7">Example<a class="headerlink" href="#example_7" title="Permanent link">&para;</a></h3>

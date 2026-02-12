@@ -1420,6 +1420,8 @@
       
         
       
+        
+      
     
     
     
@@ -1512,6 +1514,34 @@
     
   
     Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../composition/multiscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiscale
   
 
     
@@ -2073,22 +2103,32 @@ the current <a href="../../../genomic-data/genomic-coordinates/">genome assembly
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code> <span class="required">Required</span></dt>
-<dd>Type: string | string[]<p>The output field or fields for linearized coordinates.</p>
+<dd>
+<p>Type: string | string[]</p>
+<p>The output field or fields for linearized coordinates.</p>
 </dd>
 <dt><code>channel</code></dt>
-<dd>Type: string<p>Get the genome assembly from the scale of the channel.</p>
+<dd>
+<p>Type: string</p>
+<p>Get the genome assembly from the scale of the channel.</p>
 <p><strong>Default:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>chrom</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name)<p>The chromosome/contig field</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>The chromosome/contig field</p>
 </dd>
 <dt><code>offset</code></dt>
-<dd>Type: number | number[]<p>An offset or offsets that allow for adjusting the numbering base. The offset is subtracted from the positions.</p>
+<dd>
+<p>Type: number | number[]</p>
+<p>An offset or offsets that allow for adjusting the numbering base. The offset is subtracted from the positions.</p>
 <p>GenomeSpy uses internally zero-based indexing with half-open intervals. UCSC-based formats (BED, etc.) generally use this scheme. However, for example, VCF files use one-based indexing and must be adjusted by setting the offset to <code>1</code>.</p>
 <p><strong>Default:</strong> <code>0</code></p>
 </dd>
 <dt><code>pos</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name) | string (field name)[]<p>The field or fields that contain intra-chromosomal positions</p>
+<dd>
+<p>Type: string (field name) | string (field name)[]</p>
+<p>The field or fields that contain intra-chromosomal positions</p>
 </dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
