@@ -14,7 +14,7 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../analyzing/">
+        <link rel="next" href="../metadata-sources/">
       
       
         
@@ -1785,6 +1785,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1935,58 +1939,13 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#explicit-sample-identifiers-and-metadata-attributes" class="md-nav__link">
+  <a href="#defining-samples-minimal-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Explicit sample identifiers and metadata attributes
+        Defining samples (minimal example)
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Explicit sample identifiers and metadata attributes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#specifying-data-types-of-metadata-attributes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Specifying data types of metadata attributes
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hierarchical-metadata-attributes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hierarchical metadata attributes
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Hierarchical metadata attributes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -2133,6 +2092,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../metadata-sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring Metadata Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../analyzing/" class="md-nav__link">
         
   
@@ -2141,6 +2128,34 @@
     
   
     Analyzing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../importing-metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Importing Metadata
   
 
     
@@ -2276,58 +2291,13 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#explicit-sample-identifiers-and-metadata-attributes" class="md-nav__link">
+  <a href="#defining-samples-minimal-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Explicit sample identifiers and metadata attributes
+        Defining samples (minimal example)
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Explicit sample identifiers and metadata attributes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#specifying-data-types-of-metadata-attributes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Specifying data types of metadata attributes
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hierarchical-metadata-attributes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hierarchical metadata attributes
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Hierarchical metadata attributes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -2573,152 +2543,42 @@ between the bands.</p>
 <h3 id="implicit-sample-identifiers">Implicit sample identifiers<a class="headerlink" href="#implicit-sample-identifiers" title="Permanent link">&para;</a></h3>
 <p>By default, the identifiers of the samples are extracted from the
 data, and each sample gets its own track.</p>
-<h3 id="explicit-sample-identifiers-and-metadata-attributes">Explicit sample identifiers and metadata attributes<a class="headerlink" href="#explicit-sample-identifiers-and-metadata-attributes" title="Permanent link">&para;</a></h3>
-<p>Genomic data is commonly supplemented with metadata that contains various
-clinical and computational annotations. To show such metadata alongside the
-genomic data as a color-coded heat map, you can provide a
-<a href="../../grammar/data/eager/"><code>data</code></a> source with sample identifiers and metadata
-columns.</p>
-<div class="highlight"><span class="filename">Explicit sample identifiers</span><pre><span></span><code><span class="p">{</span>
+<h3 id="defining-samples-minimal-example">Defining samples (minimal example)<a class="headerlink" href="#defining-samples-minimal-example" title="Permanent link">&para;</a></h3>
+<p>For most sample-collection visualizations, define:</p>
+<ol>
+<li>sample identity (<code>identity</code>)</li>
+<li>one or more metadata sources (<code>metadataSources</code>)</li>
+</ol>
+<div class="highlight"><span class="filename">Minimal sample definition</span><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;samples.tsv&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;spec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="err">...</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The data source must have a <code>sample</code> field matching the sample identifiers used
-in the genomic data. In addition, an optional <code>displayName</code> field can be
-provided if the sample names should be shown, for example, in a shortened form.
-All other fields are shown as metadata attributes, and their data types are
-inferred automatically from the data: numeric attributes are interpreted as
-<code>"quantitative"</code> data, all others as <code>"nominal"</code>.</p>
-<p>An example of a metadata file (<code>samples.tsv</code>):</p>
-<table>
-<thead>
-<tr>
-<th>sample</th>
-<th>displayName</th>
-<th>treatment</th>
-<th>ploidy</th>
-<th>purity</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>EOC52_pPer_DNA4</td>
-<td>EOC52_pPer</td>
-<td>NACT</td>
-<td>3.37</td>
-<td>0.29</td>
-</tr>
-<tr>
-<td>EOC702_pOme1_DNA1</td>
-<td>EOC702_pOme1</td>
-<td>PDS</td>
-<td>3.74</td>
-<td>0.155</td>
-</tr>
-<tr>
-<td>EOC912_p2Bow2_DNA1</td>
-<td>EOC912_p2Bow2</td>
-<td>PDS</td>
-<td>3.29</td>
-<td>0.53</td>
-</tr>
-</tbody>
-</table>
-<h4 id="specifying-data-types-of-metadata-attributes">Specifying data types of metadata attributes<a class="headerlink" href="#specifying-data-types-of-metadata-attributes" title="Permanent link">&para;</a></h4>
-<p>To adjust the data types, <a href="../../grammar/scale/">scales</a>, and default visibility
-of the attributes, they can be specified explicitly using the <code>attributes</code>
-object, as shown in the example below:</p>
-<div class="highlight"><span class="filename">Specifying a purity attribute</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;samples.tsv&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;purity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span>
-<span class="w">          </span><span class="nt">&quot;scheme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;yellowgreenblue&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;barScale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="err">...</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nt">&quot;identity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;samples.tsv&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;idField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;displayNameField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;displayName&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;metadataSources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clinical&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Clinical metadata&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;initialLoad&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;excludeColumns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;displayName&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;samples.tsv&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;sampleIdField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="err">...</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The <code>scale</code> property specifies a scale for the <code>color</code> channel used to encode
-the values on the metadata heatmap. The optional <code>barScale</code> property enables
-positional encoding, changing the heatmap cells into a horizontal bar chart. The
-<code>visible</code> property configures the default visibility for the attribute.</p>
-<h3 id="hierarchical-metadata-attributes">Hierarchical metadata attributes<a class="headerlink" href="#hierarchical-metadata-attributes" title="Permanent link">&para;</a></h3>
-<p>Metadata attributes can be grouped into hierarchical categories, which is
-practical when the number of attributes is large. You only need to define the
-data types and scales for the categories, and the attributes inherit these
-settings. Moreover, the user can easily toggle the visibility of the entire
-category with a single checkbox.</p>
-<p>Suppose you have the following metadata attributes that you would like to
-configure hierarchically:</p>
-<ul>
-<li>patientId</li>
-<li>Clinical data<ul>
-<li>PFI</li>
-<li>OS</li>
-</ul>
-</li>
-<li>Mutational signatures<ul>
-<li>HRD</li>
-<li>APOBEC</li>
-</ul>
-</li>
-</ul>
-<p>To use hierarchical metadata attributes, the attribute names must have a
-(multi-level) group prefix, where a designated character separates the levels of
-the hierarchy. Use the <code>attributeGroupSeparator</code> property to delimit attribute
-names into groups. Then, specify settings for both individual attributes and
-groups if needed. The <code>visible</code> and <code>title</code> properties are not inherited; they
-only apply to the group itself.</p>
-<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
-<p>The above-mentioned metadata attributes could be named as follows:</p>
-<ul>
-<li><code>patientId</code></li>
-<li><code>clinical.PFI</code></li>
-<li><code>clinical.OS</code></li>
-<li><code>signature.HRD</code></li>
-<li><code>signature.APOBEC</code></li>
-</ul>
-<p>... and configured as follows:</p>
-<div class="highlight"><span class="filename">Hierarchical metadata attributes</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;samples.tsv&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;attributeGroupSeparator&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;patientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;clinical&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;scheme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;blues&quot;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;clinical.OS&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;signature&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;scheme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;yelloworangered&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;visible&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<p>This configuration reads sample ids and display names from <code>samples.tsv</code>, then
+loads metadata columns from the same file at startup. The <code>sample</code> and
+<code>displayName</code> columns are excluded from metadata import, so only actual metadata
+attributes are shown in the metadata panel.</p>
+<p>For advanced metadata-source configuration (for example, lazy Zarr-backed
+imports), see <a href="../metadata-sources/">Configuring Metadata Sources</a>.</p>
 <h3 id="adjusting-font-sizes-etc">Adjusting font sizes, etc.<a class="headerlink" href="#adjusting-font-sizes-etc" title="Permanent link">&para;</a></h3>
 <p>The <code>samples</code> object can also be used to adjust the font sizes, etc. of the
 metadata attributes. For example, to increase the font sizes of the sample and
@@ -2963,7 +2823,7 @@ exploration</a></p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 9, 2026 13:51:48 UTC">February 9, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 17, 2026 09:57:57 UTC">February 17, 2026</span>
   </span>
 
     
