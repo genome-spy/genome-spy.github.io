@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
     
     
       
@@ -2592,28 +2592,94 @@ attribute labels, use the following configuration:</p>
 <span class="w">  </span><span class="err">...</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The following properties allow for fine-grained control of the font styles:
-<code>labelFont</code>, <code>labelFontSize</code>, <code>labelFontWeight</code>, <code>labelFontStyle</code>, <code>labelAlign</code>,
-<code>attributeLabelFont</code>, <code>attributeLabelFontSize</code>, <code>attributeLabelFontWeight</code>, <code>attributeLabelFontStyle</code>.</p>
+<p>The following properties allow for fine-grained control of the font styles:</p>
+<dl>
+<dt><code>labelFont</code></dt>
+<dd>
+<p>Type: string</p>
+<p>The font typeface. GenomeSpy uses <a href="https://github.com/Chlumsky/msdfgen">SDF</a> versions of <a href="https://fonts.google.com/">Google Fonts</a>. Check their availability at the <a href="https://github.com/etiennepinchon/aframe-fonts/tree/master/fonts">A-Frame Fonts</a> repository. System fonts are <strong>not</strong> supported.</p>
+<p><strong>Default value:</strong> <code>"Lato"</code></p>
+</dd>
+<dt><code>labelFontSize</code></dt>
+<dd>
+<p>Type: number</p>
+<p>The font size in pixels.</p>
+<p><strong>Default value:</strong> <code>11</code></p>
+</dd>
+<dt><code>labelFontWeight</code></dt>
+<dd>
+<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
+<p>The font weight. The following strings and numbers are valid values: <code>"thin"</code> (<code>100</code>), <code>"light"</code> (<code>300</code>), <code>"regular"</code> (<code>400</code>), <code>"normal"</code> (<code>400</code>), <code>"medium"</code> (<code>500</code>), <code>"bold"</code> (<code>700</code>), <code>"black"</code> (<code>900</code>)</p>
+<p><strong>Default value:</strong> <code>"regular"</code></p>
+</dd>
+<dt><code>labelFontStyle</code></dt>
+<dd>
+<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
+<p>The font style. Valid values: <code>"normal"</code> and <code>"italic"</code>.</p>
+<p><strong>Default value:</strong> <code>"normal"</code></p>
+</dd>
+<dt><code>labelAlign</code></dt>
+<dd>
+<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
+<p>The horizontal alignment of the text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
+<p><strong>Default value:</strong> <code>"left"</code></p>
+</dd>
+<dt><code>attributeLabelFont</code></dt>
+<dd>
+<p>Type: string</p>
+<p>The font typeface. GenomeSpy uses <a href="https://github.com/Chlumsky/msdfgen">SDF</a> versions of <a href="https://fonts.google.com/">Google Fonts</a>. Check their availability at the <a href="https://github.com/etiennepinchon/aframe-fonts/tree/master/fonts">A-Frame Fonts</a> repository. System fonts are <strong>not</strong> supported.</p>
+<p><strong>Default value:</strong> <code>"Lato"</code></p>
+</dd>
+<dt><code>attributeLabelFontSize</code></dt>
+<dd>
+<p>Type: number</p>
+<p>The font size in pixels.</p>
+<p><strong>Default value:</strong> <code>11</code></p>
+</dd>
+<dt><code>attributeLabelFontWeight</code></dt>
+<dd>
+<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
+<p>The font weight. The following strings and numbers are valid values: <code>"thin"</code> (<code>100</code>), <code>"light"</code> (<code>300</code>), <code>"regular"</code> (<code>400</code>), <code>"normal"</code> (<code>400</code>), <code>"medium"</code> (<code>500</code>), <code>"bold"</code> (<code>700</code>), <code>"black"</code> (<code>900</code>)</p>
+<p><strong>Default value:</strong> <code>"regular"</code></p>
+</dd>
+<dt><code>attributeLabelFontStyle</code></dt>
+<dd>
+<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
+<p>The font style. Valid values: <code>"normal"</code> and <code>"italic"</code>.</p>
+<p><strong>Default value:</strong> <code>"normal"</code></p>
+</dd>
+</dl>
 <p>In addition, the following properties are supported:</p>
 <dl>
 <dt><code>labelTitleText</code></dt>
-<dd>The title of the sample labels.<p><strong>Default value:</strong> <code>"Sample name"</code></p>
+<dd>
+<p>Type: string</p>
+<p>Text in the label title</p>
+<p><strong>Default:</strong> <code>"Sample name"</code></p>
 </dd>
 <dt><code>labelLength</code></dt>
-<dd>The space allocated for the sample labels in pixels.<p><strong>Default value:</strong> <code>140</code></p>
-</dd>
-<dt><code>labelAlign</code></dt>
-<dd>The horizontal alignment of the text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.<p><strong>Default value:</strong> <code>"left"</code></p>
+<dd>
+<p>Type: number</p>
+<p>How much space in pixels to reserve for the labels.</p>
+<p><strong>Default:</strong> <code>140</code></p>
 </dd>
 <dt><code>attributeSize</code></dt>
-<dd>Default size (width) of the metadata attribute columns. Can be configured per attribute using the <code>attributes</code> property.<p><strong>Default value:</strong> <code>10</code></p>
+<dd>
+<p>Type: number</p>
+<p>Default size (width) of the metadata attribute columns. Can be configured per attribute using the <code>attributes</code> property.</p>
+<p><strong>Default value:</strong> <code>10</code></p>
 </dd>
 <dt><code>attributeLabelAngle</code></dt>
-<dd>Angle to be added to the default label angle (-90).<p><strong>Default value:</strong> <code>0</code></p>
+<dd>
+<p>Type: number</p>
+<p>Angle to be added to the default label angle (-90).</p>
+<p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>attributeSpacing</code></dt>
-<dd>Spacing between attribute columns in pixels.<p><strong>Default value:</strong> <code>1</code></p>
+<dd>
+<p>Type: number</p>
+<p>Spacing between attribute columns in pixels.</p>
+<p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 </dl>
 <h3 id="handling-variable-sample-heights">Handling variable sample heights<a class="headerlink" href="#handling-variable-sample-heights" title="Permanent link">&para;</a></h3>
@@ -2695,20 +2761,27 @@ previous/next buttons.</p>
 </code></pre></div>
 <p>The <code>remote</code> object accepts the following properties:</p>
 <dl>
-<dt><code>url</code> (string)</dt>
-<dd>A URL to the remote bookmark file.</dd>
-<dt><code>initialBookmark</code> (string)</dt>
-<dd>Name of the bookmark that should be loaded as the initial state. The bookmark
-description dialog is shown only if the <code>tour</code> property is set to <code>true</code>.</dd>
-<dt><code>tour</code> (boolean, optional)</dt>
-<dd>Should the user be shown a tour of the remote bookmarks when the visualization
-is launched? If the <code>initialBookmark</code> property is not defined, the tour starts
-from the first bookmark.<p><strong>Default:</strong> <code>false</code></p>
+<dt><code>url</code> <span class="required">Required</span></dt>
+<dd>
+<p>Type: string</p>
+<p>URL to the remote bookmark file.</p>
 </dd>
-<dt><code>afterTourBookmark</code> (string, optional)</dt>
-<dd>Name of the bookmark that should be loaded when the user ends the tour.
-If <code>null</code>, the dialog will be closed and the current state is retained.
-If undefined, the default state without any performed actions will be loaded.</dd>
+<dt><code>initialBookmark</code></dt>
+<dd>
+<p>Type: string</p>
+<p>Name of the bookmark that should be loaded as the initial state. The bookmark description dialog is shown only if the <code>tour</code> property is set to <code>true</code>.</p>
+</dd>
+<dt><code>tour</code></dt>
+<dd>
+<p>Type: boolean</p>
+<p>Should the user be shown a tour of the remote bookmarks when the visualization is launched? If the <code>initialBookmark</code> property is not defined, the tour starts from the first bookmark.</p>
+<p><strong>Default value:</strong> <code>false</code></p>
+</dd>
+<dt><code>afterTourBookmark</code></dt>
+<dd>
+<p>Type: string</p>
+<p>Name of the bookmark that should be loaded when the user ends the tour. If <code>null</code>, the dialog will be closed and the current state is retained. If undefined, the default state without any performed actions will be loaded.</p>
+</dd>
 </dl>
 <h4 id="the-bookmark-file">The bookmark file<a class="headerlink" href="#the-bookmark-file" title="Permanent link">&para;</a></h4>
 <p>The remote bookmark file consists of an array of bookmark objects. The easiest
@@ -2747,19 +2820,30 @@ included in shareable links and bookmarks, allowing users to easily access their
 preferred configurations.</p>
 <p>Views have two properties for controlling the visibility:</p>
 <dl>
-<dt><code>visible</code> (boolean)</dt>
-<dd>If true, the view is visible. This property can be used to set the default visibility.<p><strong>Default:</strong> <code>true</code></p>
+<dt><code>visible</code></dt>
+<dd>
+<p>Type: boolean</p>
+<p>The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see <a href="https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility">toggleable view visibility</a>.</p>
+<p><strong>Default:</strong> <code>true</code></p>
 </dd>
-<dt><code>configurableVisibility</code> (boolean)</dt>
-<dd>If true, the visibility is configurable from a menu in the app<p>Configurability requires an explicitly specified <code>name</code>. Views are
-  addressed by name within their
-  <a href="../../grammar/import/#repeating-with-named-templates">import scope</a>,
-  so if you instantiate the same template multiple times, give each
-  import instance a unique <code>name</code> to make its descendants addressable
-  for visibility toggles and bookmarks.</p>
-<p><strong>Default:</strong> <code>false</code> for children of <code>layer</code>, <code>true</code> for others</p>
+<dt><code>configurableVisibility</code></dt>
+<dd>
+<p>Type: boolean | <a href="https://genomespy.app/docs/grammar/types/">AppVisibilityGroupSpec</a></p>
+<p>Is the visibility configurable from the GenomeSpy App view visibility menu.</p>
+<p>Configurability requires an explicit view name that is unique in its import scope.</p>
+<p>Set to an object with <code>group</code> to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.</p>
+<p><strong>Default value:</strong> <code>false</code> for children of <code>layer</code>, <code>true</code> for others</p>
 </dd>
 </dl>
+<p>Use object-form <code>configurableVisibility</code> to make views mutually exclusive in the
+menu. Views that share the same <code>group</code> in the same import scope are shown as
+radio buttons:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rawCoverage&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;configurableVisibility&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;coverageMode&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="err">...</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="search">Search<a class="headerlink" href="#search" title="Permanent link">&para;</a></h2>
 <p>The location/search field in the toolbar allows users to quickly navigate to
 features in the data. To make features searchable, use the <code>search</code> channel
@@ -2823,7 +2907,7 @@ exploration</a></p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 17, 2026 09:57:57 UTC">February 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 23, 2026 16:48:15 UTC">February 23, 2026</span>
   </span>
 
     

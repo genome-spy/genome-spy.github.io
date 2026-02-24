@@ -100,8 +100,15 @@
           "type": "array"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/AppVisibilityGroupSpec"
+            }
+          ],
+          "description": "Is the visibility configurable from the GenomeSpy App view visibility menu.\n\nConfigurability requires an explicit view name that is unique in its import scope.\n\nSet to an object with `group` to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.\n\n__Default value:__ `false` for children of `layer`, `true` for others"
         },
         "data": {
           "$ref": "#/definitions/Data",
@@ -435,8 +442,15 @@
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/AppVisibilityGroupSpec"
+            }
+          ],
+          "description": "Is the visibility configurable from the GenomeSpy App view visibility menu.\n\nConfigurability requires an explicit view name that is unique in its import scope.\n\nSet to an object with `group` to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.\n\n__Default value:__ `false` for children of `layer`, `true` for others"
         },
         "data": {
           "$ref": "#/definitions/Data",
@@ -789,8 +803,15 @@
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/AppVisibilityGroupSpec"
+            }
+          ],
+          "description": "Is the visibility configurable from the GenomeSpy App view visibility menu.\n\nConfigurability requires an explicit view name that is unique in its import scope.\n\nSet to an object with `group` to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.\n\n__Default value:__ `false` for children of `layer`, `true` for others"
         },
         "data": {
           "$ref": "#/definitions/Data",
@@ -1141,8 +1162,15 @@
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/AppVisibilityGroupSpec"
+            }
+          ],
+          "description": "Is the visibility configurable from the GenomeSpy App view visibility menu.\n\nConfigurability requires an explicit view name that is unique in its import scope.\n\nSet to an object with `group` to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.\n\n__Default value:__ `false` for children of `layer`, `true` for others"
         },
         "data": {
           "$ref": "#/definitions/Data",
@@ -1529,11 +1557,19 @@
               "type": "string"
             },
             "bookmarks": {
-              "$ref": "#/definitions/BookmarkConfig"
+              "$ref": "#/definitions/BookmarkConfig",
+              "description": "Bookmark configuration."
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "$ref": "#/definitions/AppVisibilityGroupSpec"
+                }
+              ],
+              "description": "Is the visibility configurable from the GenomeSpy App view visibility menu.\n\nConfigurability requires an explicit view name that is unique in its import scope.\n\nSet to an object with `group` to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.\n\n__Default value:__ `false` for children of `layer`, `true` for others"
             },
             "data": {
               "$ref": "#/definitions/Data",
@@ -1899,11 +1935,19 @@
               "type": "string"
             },
             "bookmarks": {
-              "$ref": "#/definitions/BookmarkConfig"
+              "$ref": "#/definitions/BookmarkConfig",
+              "description": "Bookmark configuration."
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "$ref": "#/definitions/AppVisibilityGroupSpec"
+                }
+              ],
+              "description": "Is the visibility configurable from the GenomeSpy App view visibility menu.\n\nConfigurability requires an explicit view name that is unique in its import scope.\n\nSet to an object with `group` to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.\n\n__Default value:__ `false` for children of `layer`, `true` for others"
             },
             "data": {
               "$ref": "#/definitions/Data",
@@ -2276,11 +2320,19 @@
               "type": "string"
             },
             "bookmarks": {
-              "$ref": "#/definitions/BookmarkConfig"
+              "$ref": "#/definitions/BookmarkConfig",
+              "description": "Bookmark configuration."
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "$ref": "#/definitions/AppVisibilityGroupSpec"
+                }
+              ],
+              "description": "Is the visibility configurable from the GenomeSpy App view visibility menu.\n\nConfigurability requires an explicit view name that is unique in its import scope.\n\nSet to an object with `group` to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.\n\n__Default value:__ `false` for children of `layer`, `true` for others"
             },
             "data": {
               "$ref": "#/definitions/Data",
@@ -2651,11 +2703,19 @@
               "type": "string"
             },
             "bookmarks": {
-              "$ref": "#/definitions/BookmarkConfig"
+              "$ref": "#/definitions/BookmarkConfig",
+              "description": "Bookmark configuration."
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "$ref": "#/definitions/AppVisibilityGroupSpec"
+                }
+              ],
+              "description": "Is the visibility configurable from the GenomeSpy App view visibility menu.\n\nConfigurability requires an explicit view name that is unique in its import scope.\n\nSet to an object with `group` to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.\n\n__Default value:__ `false` for children of `layer`, `true` for others"
             },
             "data": {
               "$ref": "#/definitions/Data",
@@ -3023,11 +3083,19 @@
               "type": "string"
             },
             "bookmarks": {
-              "$ref": "#/definitions/BookmarkConfig"
+              "$ref": "#/definitions/BookmarkConfig",
+              "description": "Bookmark configuration."
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "$ref": "#/definitions/AppVisibilityGroupSpec"
+                }
+              ],
+              "description": "Is the visibility configurable from the GenomeSpy App view visibility menu.\n\nConfigurability requires an explicit view name that is unique in its import scope.\n\nSet to an object with `group` to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.\n\n__Default value:__ `false` for children of `layer`, `true` for others"
             },
             "data": {
               "$ref": "#/definitions/Data",
@@ -3395,7 +3463,8 @@
               "type": "string"
             },
             "bookmarks": {
-              "$ref": "#/definitions/BookmarkConfig"
+              "$ref": "#/definitions/BookmarkConfig",
+              "description": "Bookmark configuration."
             },
             "columns": {
               "description": "The number of columns in the grid.",
@@ -3415,8 +3484,15 @@
               "type": "array"
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "$ref": "#/definitions/AppVisibilityGroupSpec"
+                }
+              ],
+              "description": "Is the visibility configurable from the GenomeSpy App view visibility menu.\n\nConfigurability requires an explicit view name that is unique in its import scope.\n\nSet to an object with `group` to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.\n\n__Default value:__ `false` for children of `layer`, `true` for others"
             },
             "data": {
               "$ref": "#/definitions/Data",
@@ -3772,11 +3848,19 @@
               "type": "string"
             },
             "bookmarks": {
-              "$ref": "#/definitions/BookmarkConfig"
+              "$ref": "#/definitions/BookmarkConfig",
+              "description": "Bookmark configuration."
             },
             "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "$ref": "#/definitions/AppVisibilityGroupSpec"
+                }
+              ],
+              "description": "Is the SampleView visibility configurable from the GenomeSpy App toolbar.\n\n__Default value:__ `true`"
             },
             "data": {
               "$ref": "#/definitions/Data",
@@ -4141,8 +4225,15 @@
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/AppVisibilityGroupSpec"
+            }
+          ],
+          "description": "Is the visibility configurable from the GenomeSpy App view visibility menu.\n\nConfigurability requires an explicit view name that is unique in its import scope.\n\nSet to an object with `group` to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.\n\n__Default value:__ `false` for children of `layer`, `true` for others"
         },
         "data": {
           "$ref": "#/definitions/Data",
@@ -4479,8 +4570,15 @@
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/AppVisibilityGroupSpec"
+            }
+          ],
+          "description": "Is the visibility configurable from the GenomeSpy App view visibility menu.\n\nConfigurability requires an explicit view name that is unique in its import scope.\n\nSet to an object with `group` to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.\n\n__Default value:__ `false` for children of `layer`, `true` for others"
         },
         "data": {
           "$ref": "#/definitions/Data",
@@ -4827,6 +4925,20 @@
           "$ref": "#/definitions/SampleSpec"
         }
       ]
+    },
+    "AppVisibilityGroupSpec": {
+      "additionalProperties": false,
+      "description": "App-only visibility setting exposed in the view visibility menu.",
+      "properties": {
+        "group": {
+          "description": "Name of a mutually exclusive visibility group.\n\nViews with the same group name in the same import scope are controlled with radio buttons in the view visibility menu.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "group"
+      ],
+      "type": "object"
     },
     "ArrowBackendDef": {
       "additionalProperties": false,
@@ -5460,7 +5572,8 @@
       "additionalProperties": false,
       "properties": {
         "remote": {
-          "$ref": "#/definitions/RemoteBookmarkConfig"
+          "$ref": "#/definitions/RemoteBookmarkConfig",
+          "description": "Configuration for loading bookmarks from a remote JSON file."
         }
       },
       "type": "object"
@@ -9981,10 +10094,11 @@
           "type": "string"
         },
         "tour": {
-          "description": "Should the user be shown a tour of the remote bookmarks when the visualization is launched? If the `initialBookmark` property is not defined, the tour starts from the first bookmark.",
+          "description": "Should the user be shown a tour of the remote bookmarks when the visualization is launched? If the `initialBookmark` property is not defined, the tour starts from the first bookmark.\n\n__Default value:__ `false`",
           "type": "boolean"
         },
         "url": {
+          "description": "URL to the remote bookmark file.",
           "type": "string"
         }
       },
@@ -10340,8 +10454,15 @@
           "type": "string"
         },
         "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/AppVisibilityGroupSpec"
+            }
+          ],
+          "description": "Is the SampleView visibility configurable from the GenomeSpy App toolbar.\n\n__Default value:__ `true`"
         },
         "data": {
           "$ref": "#/definitions/Data",

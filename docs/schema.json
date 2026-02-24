@@ -997,10 +997,6 @@
           },
           "type": "array"
         },
-        "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
-        },
         "data": {
           "$ref": "#/definitions/Data",
           "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
@@ -1571,10 +1567,6 @@
               "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
               "type": "string"
             },
-            "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
-            },
             "data": {
               "$ref": "#/definitions/Data",
               "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
@@ -1926,10 +1918,6 @@
             "baseUrl": {
               "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
               "type": "string"
-            },
-            "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
             },
             "data": {
               "$ref": "#/definitions/Data",
@@ -2289,10 +2277,6 @@
             "baseUrl": {
               "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
               "type": "string"
-            },
-            "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
             },
             "data": {
               "$ref": "#/definitions/Data",
@@ -2658,10 +2642,6 @@
               "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
               "type": "string"
             },
-            "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
-            },
             "data": {
               "$ref": "#/definitions/Data",
               "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
@@ -3022,10 +3002,6 @@
             "baseUrl": {
               "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
               "type": "string"
-            },
-            "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
             },
             "data": {
               "$ref": "#/definitions/Data",
@@ -3404,10 +3380,6 @@
                 ]
               },
               "type": "array"
-            },
-            "configurableVisibility": {
-              "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-              "type": "boolean"
             },
             "data": {
               "$ref": "#/definitions/Data",
@@ -5455,10 +5427,6 @@
           "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
           "type": "string"
         },
-        "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
-        },
         "data": {
           "$ref": "#/definitions/Data",
           "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
@@ -6096,10 +6064,6 @@
         "baseUrl": {
           "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
           "type": "string"
-        },
-        "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
         },
         "data": {
           "$ref": "#/definitions/Data",
@@ -6922,10 +6886,6 @@
         "baseUrl": {
           "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
           "type": "string"
-        },
-        "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
         },
         "data": {
           "$ref": "#/definitions/Data",
@@ -10140,10 +10100,6 @@
           "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
           "type": "string"
         },
-        "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
-        },
         "data": {
           "$ref": "#/definitions/Data",
           "description": "Specifies a [data source](https://genomespy.app/docs/grammar/data/). If omitted, the data source is inherited from the parent view."
@@ -10567,10 +10523,6 @@
         "baseUrl": {
           "description": "The base URL for relative URL data sources and URL [imports](https://genomespy.app/docs/grammar/import/#importing-from-a-url). The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.",
           "type": "string"
-        },
-        "configurableVisibility": {
-          "description": "Is the visibility configurable interactively from the [GenomeSpy App](https://genomespy.app/docs/sample-collections/). Configurability requires that the view has an explicitly specified name that is unique within its import scope.\n\n**Default:** `false` for children of `layer`, `true` for others.",
-          "type": "boolean"
         },
         "data": {
           "$ref": "#/definitions/Data",
