@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
@@ -529,16 +529,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#bioinformatic-formats" class="md-nav__link">
+  <a href="#additional-formats" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Bioinformatic Formats
+        Additional Formats
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Bioinformatic Formats">
+    <nav class="md-nav" aria-label="Additional Formats">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parquet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parquet
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#fasta" class="md-nav__link">
@@ -2159,16 +2170,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#bioinformatic-formats" class="md-nav__link">
+  <a href="#additional-formats" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Bioinformatic Formats
+        Additional Formats
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Bioinformatic Formats">
+    <nav class="md-nav" aria-label="Additional Formats">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parquet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parquet
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#fasta" class="md-nav__link">
@@ -2217,10 +2239,11 @@ initialization stage. They are suitable for small data sets as they do not
 support partial loading or loading in response to user interactions. However,
 eager data sources are often more flexible and straightforward than
 <a href="../lazy/">lazy</a> ones.</p>
-<p>GenomeSpy inputs eager data as tabular <code>"csv"</code>, <code>"tsv"</code>, and <code>"json"</code> files or
-as non-indexed <a href="#fasta"><code>"fasta"</code></a> files. Data can be loaded from URLs or
-provided inline. You can also use generators to generate data on the fly and
-further modify them using <a href="../../transform/">transforms</a>.</p>
+<p>GenomeSpy inputs eager data as tabular <code>"csv"</code>, <code>"tsv"</code>, <code>"json"</code>, and
+<a href="#parquet"><code>"parquet"</code></a> files or as non-indexed <a href="#fasta"><code>"fasta"</code></a> files. Data
+can be loaded from URLs or provided inline. You can also use generators to
+generate data on the fly and further modify them using
+<a href="../../transform/">transforms</a>.</p>
 <p>The <code>data</code> property of the view specification describes a data source. The
 following example loads a tab-delimited file. By default, GenomeSpy infers the
 format from the file extension. However, in bioinformatics, CSV files are often
@@ -2305,9 +2328,50 @@ respond to user interactions. For practical examples of dynamically updated
 named data, check the
 <a href="https://github.com/genome-spy/genome-spy/tree/master/packages/embed-examples">embed-examples</a>
 package.</p>
-<h2 id="bioinformatic-formats">Bioinformatic Formats<a class="headerlink" href="#bioinformatic-formats" title="Permanent link">&para;</a></h2>
+<h2 id="additional-formats">Additional Formats<a class="headerlink" href="#additional-formats" title="Permanent link">&para;</a></h2>
 <p>Most bioinformatic data formats are supported through <a href="../lazy/">lazy</a> data. The
-following formats are supported as eager data with the <code>url</code> source.</p>
+following additional formats are supported as eager data with the <code>url</code> source.</p>
+<h3 id="parquet">Parquet<a class="headerlink" href="#parquet" title="Permanent link">&para;</a></h3>
+<p><a href="https://en.wikipedia.org/wiki/Apache_Parquet"><em>Apache Parquet</em></a> is a
+column-oriented binary storage format designed for efficient analytics on large
+tables. Compared to row-oriented text formats, it usually provides better
+compression and faster column scans.
+In GenomeSpy, Parquet is decoded into row objects similarly to <code>"csv"</code> and
+<code>"tsv"</code> formats supported by the <code>url</code> data source.</p>
+<p>The type of <em>Parquet</em> format is <code>"parquet"</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data.parquet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;parquet&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Current constraints:</p>
+<ul>
+<li>Only Snappy-compressed Parquet files are supported.</li>
+<li>64-bit integer values that require JavaScript <code>BigInt</code> are not supported.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Writing compatible Parquet files in R</p>
+<p>The following example shows how to write compatible Parquet files in R
+using the <code>arrow</code> package:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">arrow</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+
+<span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">123L</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.23</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">arrow_table</span><span class="p">()</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">across</span><span class="p">(</span><span class="nf">where</span><span class="p">(</span><span class="n">is.integer</span><span class="p">),</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">arrow</span><span class="o">::</span><span class="nf">cast</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="nf">int32</span><span class="p">())),</span>
+<span class="w">    </span><span class="c1"># Using float32 instead of double is optional but can significantly reduce file size</span>
+<span class="w">    </span><span class="nf">across</span><span class="p">(</span><span class="nf">where</span><span class="p">(</span><span class="n">is.double</span><span class="p">),</span><span class="w">  </span><span class="o">~</span><span class="w"> </span><span class="n">arrow</span><span class="o">::</span><span class="nf">cast</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="nf">float32</span><span class="p">()))</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">write_parquet</span><span class="p">(</span><span class="s">&quot;data.parquet&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>The implementation is based on
+<a href="https://github.com/hyparam/hyparquet">hyparquet</a>.</p>
 <h3 id="fasta">FASTA<a class="headerlink" href="#fasta" title="Permanent link">&para;</a></h3>
 <p>The type of <em>FASTA</em> format is <code>"fasta"</code> as shown in the example below:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -2344,7 +2408,7 @@ base) for easier visualization.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 28, 2025 13:15:05 UTC">May 28, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 25, 2026 15:06:39 UTC">February 25, 2026</span>
   </span>
 
     
