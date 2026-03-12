@@ -63,8 +63,8 @@
                 href="https://vega.github.io/vega-lite/">Vega-Lite</a>.
             The building blocks that GenomeSpy provides enable users to create tailored, interactive genomic
             visualizations that can be embedded in web pages or integrated into JavaScript applications.
-            The carefully crafted GPU-accelerated WebGL rendering engine ensures smoothly animated interactions
-            and a pleasant user experience for end-users. Scroll down for live <a href="#examples">examples</a>.
+            The carefully crafted, GPU-accelerated WebGL rendering engine ensures smooth interactions
+            and a pleasant user experience. Scroll down for live <a href="#examples">examples</a>.
         </p>
 
         <p>
@@ -82,7 +82,8 @@
                 <picture><img src="img/block-data.svg" alt="data" /></picture>
                 <figcaption>
                     <strong>Your data:</strong>
-                    Currently supported formats: CSV, TSV, JSON, FASTA, indexed FASTA, BigWig, BigBed, and GFF3.
+                    Supports multiple formats: CSV, TSV, JSON, Parquet, BED, BEDPE, FASTA, indexed FASTA, BigWig,
+                    BigBed, and GFF3.
                 </figcaption>
             </figure>
         </a>
@@ -141,7 +142,7 @@
                 <figcaption>
                     <strong>View specification:</strong> Put everything together using the grammar.
                     GenomeSpy's visualization grammar is <strong>heavily</strong> inspired by
-                    Vega-Lite, extending it with functionalities often needed with genomic data.
+                    Vega-Lite, extending it with functionality often needed for genomic data.
                 </figcaption>
             </figure>
         </a>
@@ -159,7 +160,7 @@
             </li>
             <li>
                 <i class="fas fa-futbol fa-fw"></i>
-                <a href="playground/">Playground</a>
+                <a href="playground/#examples">Playground</a>
             </li>
             <li>
                 <i class="fas fa-external-link-alt fa-fw"></i>
@@ -237,13 +238,13 @@
             </genome-spy-example>
 
             <genome-spy-example spec="MSA/msa.json" img-src="msa.png">
-                Multiple sequence alignment. Loads data from a fasta file and
-                displays it as a scrollable heatmap and a sequence logo.
+                A multiple sequence alignment that loads data from a FASTA file and
+                displays it as a scrollable heatmap and sequence logo.
             </genome-spy-example>
 
             <genome-spy-example spec="SV/sv.json" img-src="sv.png">
                 A structural variation visualization that uses the link mark to show
-                pretty arcs connecting the breakpoints. There's also some segmented copy-number data.
+                arcs connecting the breakpoints. It also includes segmented copy-number data.
             </genome-spy-example>
 
             <genome-spy-example spec="simple/bigwig.json" img-src="gc-content.png">
@@ -261,13 +262,13 @@
             <genome-spy-example
                 link="https://observablehq.com/@tuner/ascat-copy-number-segmentation?collection=@tuner/genomespy"
                 img-src="ascat.png">
-                An Observable notebook describing how to replicate ASCAT's copy-number segmentation
+                An Observable notebook that describes how to replicate ASCAT's copy-number segmentation
                 visualization. The visualization is interactive and thoroughly commented.
             </genome-spy-example>
 
             <genome-spy-example app="PARPiCL/parpicl.json" img-src="parpicl.png">
                 Exploring a sample collection with the GenomeSpy App. The visualization shows
-                several cell-line samples with segmented copy numbers, loss of heterozygosity, and SNPs and INDELs.
+                several cell-line samples with segmented copy numbers, loss of heterozygosity, and SNPs and indels.
             </genome-spy-example>
 
             <genome-spy-example link="https://csbi.ltdk.helsinki.fi/p/lahtinen_et_al_2023/" img-src="lahtinen_2023.png">
@@ -277,8 +278,8 @@
             </genome-spy-example>
 
             <genome-spy-example link="segmentmodel/" img-src="segmentmodel.png">
-                SegmentModel Spy. Visualize GATK's copy-number segment models together
-                with read and allelic counts. An example of using GenomeSpy as a visualization
+                SegmentModel Spy. Visualizes GATK's copy-number segment models together
+                with read and allelic counts. This is an example of using GenomeSpy as a visualization
                 library in a special-purpose web application.
             </genome-spy-example>
         </div>
