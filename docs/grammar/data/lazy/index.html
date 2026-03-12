@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
     
     
       
@@ -2813,10 +2813,12 @@ position of each nucleotide is computed using the
 <a href="../../transform/formula/"><code>"formula"</code></a> transform. Please note that new data are
 fetched only when the user zooms into a region smaller than the window size
 (default: 7000 bp).</p>
-<div><genome-spy-doc-embed height="60" spechidden="true">
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.json" height="60" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Indexed FASTA sequence track example.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
 
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -2865,10 +2867,9 @@ fetched only when the user zooms into a region smaller than the window size
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
+
 <span class="w">  </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span>
-<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
@@ -2936,10 +2937,13 @@ source provides data objects with the following fields: <code>chrom</code> (stri
 <h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
 <p>The example below shows the GC content of the human genome in 5-base windows.
 When you zoom in, the resolution of the data automatically increases.</p>
-<div><genome-spy-doc-embed height="120" spechidden="true">
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/bigwig-gc-content.json" height="120" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BigWig GC content example.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
+
 <span class="w">  </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
 
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3005,10 +3009,13 @@ genomic regions stored in BigBed files.</p>
 </dl>
 <h3 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h3>
 <p>The example below displays "ENCODE Candidate Cis-Regulatory Elements (cCREs) combined from all cell types" dataset for the hg38 genome.</p>
-<div><genome-spy-doc-embed height="70" spechidden="true">
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/bigbed-ccre-track.json" height="70" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BigBed cCRE track example.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
+
 <span class="w">  </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
 
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3030,10 +3037,7 @@ genomic regions stored in BigBed files.</p>
 <span class="w">        </span><span class="p">]</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chromEnd&quot;</span>
-<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chromEnd&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ucscLabel&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
@@ -3162,14 +3166,15 @@ example below.</p>
 <a href="https://www.gencodegenes.org/">GENCODE</a> v43 annotation dataset. Please note
 that the example shows a maximum of ten overlapping features per locus as
 vertical scrolling is currently not supported properly.</p>
-<div><genome-spy-doc-embed height="360" spechidden="true">
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/gff3-gene-annotations.json" height="360" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://unpkg.com/@genome-spy/core/dist/schema.json&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GFF3 gene annotation example.&quot;</span><span class="p">,</span>
 
-<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
 
 <span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="w"> </span><span class="p">},</span>
+
 <span class="w">  </span><span class="nt">&quot;viewportHeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;container&quot;</span><span class="p">,</span>
 
 <span class="w">  </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
@@ -3184,18 +3189,13 @@ vertical scrolling is currently not supported properly.</p>
 <span class="w">  </span><span class="p">},</span>
 
 <span class="w">  </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flatten&quot;</span>
-<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flatten&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum.attributes.gene_name&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gene_name&quot;</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flatten&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;child_features&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flatten&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;child_features&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flatten&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;child_features&quot;</span><span class="p">],</span>
@@ -3238,16 +3238,9 @@ vertical scrolling is currently not supported properly.</p>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;collect&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;seq_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;transcript_id&quot;</span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;seq_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;transcript_id&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pileup&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_lane&quot;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pileup&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_lane&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">],</span>
 
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3263,10 +3256,7 @@ vertical scrolling is currently not supported properly.</p>
 <span class="w">        </span><span class="p">]</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seq_id&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span>
-<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seq_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_lane&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
@@ -3283,7 +3273,6 @@ vertical scrolling is currently not supported properly.</p>
 <span class="w">  </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gencode-transcript&quot;</span><span class="p">,</span>
-
 <span class="w">      </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gencode-tooltip-trap&quot;</span><span class="p">,</span>
@@ -3297,22 +3286,14 @@ vertical scrolling is currently not supported properly.</p>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gencode-transcript-body&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rule&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#b0b0b0&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;tooltip&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
-<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rule&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#b0b0b0&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;tooltip&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">]</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gencode-exons&quot;</span><span class="p">,</span>
-
 <span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flatten&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;_child_features&quot;</span><span class="p">]</span>
-<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flatten&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;_child_features&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flatten&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;_child_features&quot;</span><span class="p">],</span>
@@ -3342,38 +3323,33 @@ vertical scrolling is currently not supported properly.</p>
 <span class="w">          </span><span class="p">]</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">],</span>
-
 <span class="w">      </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GENCODE exon&quot;</span><span class="p">,</span>
-
 <span class="w">          </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum.type == &#39;exon&#39;&quot;</span><span class="w"> </span><span class="p">}],</span>
-
 <span class="w">          </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;minWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;minOpacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#505050&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;fill&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#fafafa&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;strokeWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="w">            </span><span class="nt">&quot;strokeWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">          </span><span class="p">}</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GENCODE exon&quot;</span><span class="p">,</span>
-
 <span class="w">          </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum.type != &#39;exon&#39; &amp;&amp; datum.type != &#39;start_codon&#39; &amp;&amp; datum.type != &#39;stop_codon&#39;&quot;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">],</span>
-
 <span class="w">          </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;minWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;minOpacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;strokeWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;strokeOpacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;strokeWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;strokeOpacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gray&quot;</span>
 <span class="w">          </span><span class="p">},</span>
 <span class="w">          </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3399,7 +3375,6 @@ vertical scrolling is currently not supported properly.</p>
 <span class="w">              </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label&quot;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">],</span>
-
 <span class="w">          </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
@@ -3409,18 +3384,14 @@ vertical scrolling is currently not supported properly.</p>
 <span class="w">            </span><span class="nt">&quot;paddingY&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;tooltip&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
 <span class="w">          </span><span class="p">},</span>
-
 <span class="w">          </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label&quot;</span>
-<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">          </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">]</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gencode-transcript-labels&quot;</span><span class="p">,</span>
-
 <span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span>
@@ -3428,7 +3399,6 @@ vertical scrolling is currently not supported properly.</p>
 <span class="w">          </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label&quot;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">],</span>
-
 <span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
@@ -3436,11 +3406,8 @@ vertical scrolling is currently not supported properly.</p>
 <span class="w">        </span><span class="nt">&quot;tooltip&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#505050&quot;</span>
 <span class="w">      </span><span class="p">},</span>
-
 <span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label&quot;</span>
-<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
@@ -3496,10 +3463,12 @@ interested in this feature.</p>
 </dd>
 </dl>
 <h3 id="example_5">Example<a class="headerlink" href="#example_5" title="Permanent link">&para;</a></h3>
-<div><genome-spy-doc-embed height="350" spechidden="true">
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/bam-read-alignments.json" height="350" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg18&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BAM read alignment example.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg18&quot;</span><span class="p">,</span>
 
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3509,7 +3478,9 @@ interested in this feature.</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 
-<span class="w">  </span><span class="nt">&quot;resolve&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shared&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;resolve&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shared&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
 
 <span class="w">  </span><span class="nt">&quot;spacing&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
 
@@ -3517,7 +3488,6 @@ interested in this feature.</p>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
-
 <span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;coverage&quot;</span><span class="p">,</span>
@@ -3541,16 +3511,9 @@ interested in this feature.</p>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
-
 <span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pileup&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_lane&quot;</span>
-<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pileup&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_lane&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">      </span><span class="p">],</span>
-
 <span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
@@ -3564,10 +3527,7 @@ interested in this feature.</p>
 <span class="w">            </span><span class="p">]</span>
 <span class="w">          </span><span class="p">}</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span>
-<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_lane&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
@@ -3581,13 +3541,9 @@ interested in this feature.</p>
 <span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;strand&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;crimson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;orange&quot;</span><span class="p">]</span>
-<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;crimson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;orange&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">},</span>
-
 <span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
@@ -3619,37 +3575,28 @@ according to your requirements. The data source generates data objects with
 </dl>
 <h3 id="example_6">Example<a class="headerlink" href="#example_6" title="Permanent link">&para;</a></h3>
 <p>The example below generates approximately three ticks for the <code>x</code> axis.</p>
-<div><genome-spy-doc-embed height="80" spechidden="true">
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/axis-ticks.json" height="80" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Axis ticks data source example.&quot;</span><span class="p">,</span>
+
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;axisTicks&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;tickCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
-<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;tickCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 
-<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;clip&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;clip&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
 
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;zoom&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;zoom&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label&quot;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -3672,43 +3619,27 @@ The data source generates data objects with the following fields: <code>name</co
 </dd>
 </dl>
 <h3 id="example_7">Example<a class="headerlink" href="#example_7" title="Permanent link">&para;</a></h3>
-<div><genome-spy-doc-embed height="150" spechidden="true">
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/axis-genome.json" height="150" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Axis genome data source example.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
 
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;axisGenome&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;axisGenome&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;continuousStart&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;continuousEnd&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;continuousStart&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;continuousEnd&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 
 <span class="w">  </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum.odd&quot;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;fill&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#f0f0f0&quot;</span>
-<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum.odd&quot;</span><span class="w"> </span><span class="p">}],</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;fill&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#f0f0f0&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3726,8 +3657,7 @@ The data source generates data objects with the following fields: <code>name</co
 <span class="p">}</span>
 </code></pre></div>
 
-</div>
-<p></genome-spy-doc-embed></p>
+</genome-spy-doc-embed></div>
 
 
 
@@ -3748,7 +3678,7 @@ The data source generates data objects with the following fields: <code>name</co
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 7, 2024 12:58:25 UTC">December 7, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 12, 2026 13:21:05 UTC">March 12, 2026</span>
   </span>
 
     

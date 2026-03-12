@@ -398,6 +398,63 @@
       ],
       "type": "string"
     },
+    "BedDataFormat": {
+      "additionalProperties": false,
+      "properties": {
+        "parse": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Parse"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "If set to `null`, disable type inference based on the spec and only use type inference based on the data. Alternatively, a parsing directive object can be provided for explicit data types. Each property of the object corresponds to a field name, and the value to the desired data type (one of `\"number\"`, `\"boolean\"`, `\"date\"`, or null (do not parse the field)). For example, `\"parse\": {\"modified_on\": \"date\"}` parses the `modified_on` field in each input record a Date value.\n\nFor `\"date\"`, we parse data based using Javascript's [`Date.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse). For Specific date formats can be provided (e.g., `{foo: \"date:'%m%d%Y'\"}`), using the [d3-time-format syntax](https://github.com/d3/d3-time-format#locale_format). UTC date format parsing is supported similarly (e.g., `{foo: \"utc:'%m%d%Y'\"}`). See more about [UTC time](https://vega.github.io/vega-lite/docs/timeunit.html#utc)"
+        },
+        "type": {
+          "const": "bed",
+          "description": "Type of input data: `\"json\"`, `\"csv\"`, `\"tsv\"`, `\"dsv\"`.\n\n__Default value:__  The default format type is determined by the extension of the file URL. Compression suffixes such as `.gz` are ignored during inference. If no extension is detected, `\"json\"` will be used by default.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "BedpeDataFormat": {
+      "additionalProperties": false,
+      "properties": {
+        "columns": {
+          "description": "Optional ordered list of field names for headerless BEDPE input. If omitted, BEDPE fields are resolved from the default BEDPE column order or from a matching header row when present.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "parse": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Parse"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "If set to `null`, disable type inference based on the spec and only use type inference based on the data. Alternatively, a parsing directive object can be provided for explicit data types. Each property of the object corresponds to a field name, and the value to the desired data type (one of `\"number\"`, `\"boolean\"`, `\"date\"`, or null (do not parse the field)). For example, `\"parse\": {\"modified_on\": \"date\"}` parses the `modified_on` field in each input record a Date value.\n\nFor `\"date\"`, we parse data based using Javascript's [`Date.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse). For Specific date formats can be provided (e.g., `{foo: \"date:'%m%d%Y'\"}`), using the [d3-time-format syntax](https://github.com/d3/d3-time-format#locale_format). UTC date format parsing is supported similarly (e.g., `{foo: \"utc:'%m%d%Y'\"}`). See more about [UTC time](https://vega.github.io/vega-lite/docs/timeunit.html#utc)"
+        },
+        "type": {
+          "const": "bedpe",
+          "description": "Type of input data: `\"json\"`, `\"csv\"`, `\"tsv\"`, `\"dsv\"`.\n\n__Default value:__  The default format type is determined by the extension of the file URL. Compression suffixes such as `.gz` are ignored during inference. If no extension is detected, `\"json\"` will be used by default.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
     "BigBedData": {
       "additionalProperties": false,
       "properties": {
@@ -1559,6 +1616,10 @@
             "$schema": {
               "type": "string"
             },
+            "assembly": {
+              "description": "Default assembly for locus scales that do not define `scale.assembly`.\n\nCan reference either a key in `genomes` or a built-in assembly name.",
+              "type": "string"
+            },
             "background": {
               "description": "Background color of the canvas.",
               "type": "string"
@@ -1602,7 +1663,15 @@
               "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
             },
             "genome": {
-              "$ref": "#/definitions/GenomeConfig"
+              "$ref": "#/definitions/GenomeConfig",
+              "deprecated": "Legacy root-level genome config. Use `genomes` and `assembly` instead."
+            },
+            "genomes": {
+              "additionalProperties": {
+                "$ref": "#/definitions/NamedGenomeConfig"
+              },
+              "description": "Named genome assembly definitions.\n\nEach object key is the assembly name.",
+              "type": "object"
             },
             "height": {
               "anyOf": [
@@ -1911,6 +1980,10 @@
             "$schema": {
               "type": "string"
             },
+            "assembly": {
+              "description": "Default assembly for locus scales that do not define `scale.assembly`.\n\nCan reference either a key in `genomes` or a built-in assembly name.",
+              "type": "string"
+            },
             "background": {
               "description": "Background color of the canvas.",
               "type": "string"
@@ -1954,7 +2027,15 @@
               "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
             },
             "genome": {
-              "$ref": "#/definitions/GenomeConfig"
+              "$ref": "#/definitions/GenomeConfig",
+              "deprecated": "Legacy root-level genome config. Use `genomes` and `assembly` instead."
+            },
+            "genomes": {
+              "additionalProperties": {
+                "$ref": "#/definitions/NamedGenomeConfig"
+              },
+              "description": "Named genome assembly definitions.\n\nEach object key is the assembly name.",
+              "type": "object"
             },
             "height": {
               "anyOf": [
@@ -2270,6 +2351,10 @@
             "$schema": {
               "type": "string"
             },
+            "assembly": {
+              "description": "Default assembly for locus scales that do not define `scale.assembly`.\n\nCan reference either a key in `genomes` or a built-in assembly name.",
+              "type": "string"
+            },
             "background": {
               "description": "Background color of the canvas.",
               "type": "string"
@@ -2313,7 +2398,15 @@
               "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
             },
             "genome": {
-              "$ref": "#/definitions/GenomeConfig"
+              "$ref": "#/definitions/GenomeConfig",
+              "deprecated": "Legacy root-level genome config. Use `genomes` and `assembly` instead."
+            },
+            "genomes": {
+              "additionalProperties": {
+                "$ref": "#/definitions/NamedGenomeConfig"
+              },
+              "description": "Named genome assembly definitions.\n\nEach object key is the assembly name.",
+              "type": "object"
             },
             "height": {
               "anyOf": [
@@ -2634,6 +2727,10 @@
             "$schema": {
               "type": "string"
             },
+            "assembly": {
+              "description": "Default assembly for locus scales that do not define `scale.assembly`.\n\nCan reference either a key in `genomes` or a built-in assembly name.",
+              "type": "string"
+            },
             "background": {
               "description": "Background color of the canvas.",
               "type": "string"
@@ -2677,7 +2774,15 @@
               "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
             },
             "genome": {
-              "$ref": "#/definitions/GenomeConfig"
+              "$ref": "#/definitions/GenomeConfig",
+              "deprecated": "Legacy root-level genome config. Use `genomes` and `assembly` instead."
+            },
+            "genomes": {
+              "additionalProperties": {
+                "$ref": "#/definitions/NamedGenomeConfig"
+              },
+              "description": "Named genome assembly definitions.\n\nEach object key is the assembly name.",
+              "type": "object"
             },
             "height": {
               "anyOf": [
@@ -2995,6 +3100,10 @@
             "$schema": {
               "type": "string"
             },
+            "assembly": {
+              "description": "Default assembly for locus scales that do not define `scale.assembly`.\n\nCan reference either a key in `genomes` or a built-in assembly name.",
+              "type": "string"
+            },
             "background": {
               "description": "Background color of the canvas.",
               "type": "string"
@@ -3038,7 +3147,15 @@
               "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
             },
             "genome": {
-              "$ref": "#/definitions/GenomeConfig"
+              "$ref": "#/definitions/GenomeConfig",
+              "deprecated": "Legacy root-level genome config. Use `genomes` and `assembly` instead."
+            },
+            "genomes": {
+              "additionalProperties": {
+                "$ref": "#/definitions/NamedGenomeConfig"
+              },
+              "description": "Named genome assembly definitions.\n\nEach object key is the assembly name.",
+              "type": "object"
             },
             "hconcat": {
               "items": {
@@ -3356,6 +3473,10 @@
             "$schema": {
               "type": "string"
             },
+            "assembly": {
+              "description": "Default assembly for locus scales that do not define `scale.assembly`.\n\nCan reference either a key in `genomes` or a built-in assembly name.",
+              "type": "string"
+            },
             "background": {
               "description": "Background color of the canvas.",
               "type": "string"
@@ -3416,7 +3537,15 @@
               "description": "Specifies how data are [encoded](https://genomespy.app/docs/grammar/mark/#encoding) using the visual channels."
             },
             "genome": {
-              "$ref": "#/definitions/GenomeConfig"
+              "$ref": "#/definitions/GenomeConfig",
+              "deprecated": "Legacy root-level genome config. Use `genomes` and `assembly` instead."
+            },
+            "genomes": {
+              "additionalProperties": {
+                "$ref": "#/definitions/NamedGenomeConfig"
+              },
+              "description": "Named genome assembly definitions.\n\nEach object key is the assembly name.",
+              "type": "object"
             },
             "height": {
               "anyOf": [
@@ -3781,7 +3910,7 @@
           "description": "If set to `null`, disable type inference based on the spec and only use type inference based on the data. Alternatively, a parsing directive object can be provided for explicit data types. Each property of the object corresponds to a field name, and the value to the desired data type (one of `\"number\"`, `\"boolean\"`, `\"date\"`, or null (do not parse the field)). For example, `\"parse\": {\"modified_on\": \"date\"}` parses the `modified_on` field in each input record a Date value.\n\nFor `\"date\"`, we parse data based using Javascript's [`Date.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse). For Specific date formats can be provided (e.g., `{foo: \"date:'%m%d%Y'\"}`), using the [d3-time-format syntax](https://github.com/d3/d3-time-format#locale_format). UTC date format parsing is supported similarly (e.g., `{foo: \"utc:'%m%d%Y'\"}`). See more about [UTC time](https://vega.github.io/vega-lite/docs/timeunit.html#utc)"
         },
         "type": {
-          "description": "Type of input data: `\"json\"`, `\"csv\"`, `\"tsv\"`, `\"dsv\"`.\n\n__Default value:__  The default format type is determined by the extension of the file URL. If no extension is detected, `\"json\"` will be used by default.",
+          "description": "Type of input data: `\"json\"`, `\"csv\"`, `\"tsv\"`, `\"dsv\"`.\n\n__Default value:__  The default format type is determined by the extension of the file URL. Compression suffixes such as `.gz` are ignored during inference. If no extension is detected, `\"json\"` will be used by default.",
           "enum": [
             "csv",
             "tsv"
@@ -3813,6 +3942,12 @@
           "$ref": "#/definitions/JsonDataFormat"
         },
         {
+          "$ref": "#/definitions/BedDataFormat"
+        },
+        {
+          "$ref": "#/definitions/BedpeDataFormat"
+        },
+        {
           "$ref": "#/definitions/OtherDataFormat"
         }
       ]
@@ -3841,7 +3976,9 @@
         "click",
         "dblclick",
         "mouseover",
-        "pointerover"
+        "pointerover",
+        "mousedown",
+        "wheel"
       ],
       "type": "string"
     },
@@ -3867,7 +4004,7 @@
         },
         "type": {
           "const": "dsv",
-          "description": "Type of input data: `\"json\"`, `\"csv\"`, `\"tsv\"`, `\"dsv\"`.\n\n__Default value:__  The default format type is determined by the extension of the file URL. If no extension is detected, `\"json\"` will be used by default.",
+          "description": "Type of input data: `\"json\"`, `\"csv\"`, `\"tsv\"`, `\"dsv\"`.\n\n__Default value:__  The default format type is determined by the extension of the file URL. Compression suffixes such as `.gz` are ignored during inference. If no extension is detected, `\"json\"` will be used by default.",
           "type": "string"
         }
       },
@@ -5349,7 +5486,8 @@
         {
           "$ref": "#/definitions/GenomeConfigBase"
         }
-      ]
+      ],
+      "deprecated": "Use root `genomes` and `assembly` instead of root `genome`."
     },
     "GenomeConfigBase": {
       "additionalProperties": false,
@@ -5363,6 +5501,17 @@
         "name"
       ],
       "type": "object"
+    },
+    "GenomeDefinition": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/UrlGenomeDefinition"
+        },
+        {
+          "$ref": "#/definitions/InlineGenomeDefinition"
+        }
+      ],
+      "description": "Genome definition for contexts where the name is provided externally (for example, as a key in root `genomes`) or not needed (for example, inline `scale.assembly`)."
     },
     "Gff3Data": {
       "additionalProperties": false,
@@ -5944,6 +6093,7 @@
     },
     "InlineGenomeConfig": {
       "additionalProperties": false,
+      "deprecated": "Use `GenomeDefinition` in root `genomes` entries and `scale.assembly`.",
       "properties": {
         "contigs": {
           "description": "An array of contigs/sequences in the genome assembly.",
@@ -5962,6 +6112,25 @@
         "name"
       ],
       "type": "object"
+    },
+    "InlineGenomeDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "contigs": {
+          "description": "An array of contigs/sequences in the genome assembly.",
+          "items": {
+            "$ref": "#/definitions/Contig"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "contigs"
+      ],
+      "type": "object"
+    },
+    "InlineLocusAssembly": {
+      "$ref": "#/definitions/GenomeDefinition"
     },
     "IntervalSelectionConfig": {
       "additionalProperties": false,
@@ -6006,12 +6175,29 @@
               "type": "string"
             }
           ],
-          "description": "A string or object that defines the events to which the selection should listen."
+          "description": "A string or object that defines the events to which the selection should listen.\n\n__Default value:__\n\n- point selections: `\"click\"`\n- interval selections:   - `\"mousedown[event.shiftKey]\"` when any brushed channel is zoomable   - `\"mousedown\"` otherwise"
         },
         "type": {
           "const": "interval",
           "description": "The selection type.\n\n- `\"point\"` -- to select multiple discrete data values; the first value is selected on `click` and additional values toggled on shift-click.\n- `\"interval\"` -- to select a continuous range of data values on `drag`.",
           "type": "string"
+        },
+        "zoom": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DomEventType"
+            },
+            {
+              "$ref": "#/definitions/EventConfig"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "description": "Controls whether an active interval selection can be resized by mouse wheel. The wheel interaction only applies when the cursor is over the interval.\n\nCan be:\n\n- `true` / `false`\n- event type string such as `\"wheel\"` or `\"wheel[event.altKey]\"`\n- an `EventConfig` object\n\nCurrently, only `\"wheel\"` events are supported.\n\n__Default value:__\n\n- `false` when any brushed channel uses a zoomable scale\n- `true` otherwise"
         }
       },
       "required": [
@@ -6039,7 +6225,7 @@
         },
         "type": {
           "const": "json",
-          "description": "Type of input data: `\"json\"`, `\"csv\"`, `\"tsv\"`, `\"dsv\"`.\n\n__Default value:__  The default format type is determined by the extension of the file URL. If no extension is detected, `\"json\"` will be used by default.",
+          "description": "Type of input data: `\"json\"`, `\"csv\"`, `\"tsv\"`, `\"dsv\"`.\n\n__Default value:__  The default format type is determined by the extension of the file URL. Compression suffixes such as `.gz` are ignored during inference. If no extension is detected, `\"json\"` will be used by default.",
           "type": "string"
         }
       },
@@ -7293,6 +7479,19 @@
       ],
       "type": "object"
     },
+    "NamedGenomeConfig": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/GenomeDefinition"
+        },
+        {
+          "additionalProperties": {
+            "not": {}
+          },
+          "type": "object"
+        }
+      ]
+    },
     "NumericDomain": {
       "items": {
         "type": "number"
@@ -7319,7 +7518,19 @@
       "additionalProperties": false,
       "description": "Other data format, such as `\"fasta\"`",
       "properties": {
+        "parse": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Parse"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "If set to `null`, disable type inference based on the spec and only use type inference based on the data. Alternatively, a parsing directive object can be provided for explicit data types. Each property of the object corresponds to a field name, and the value to the desired data type (one of `\"number\"`, `\"boolean\"`, `\"date\"`, or null (do not parse the field)). For example, `\"parse\": {\"modified_on\": \"date\"}` parses the `modified_on` field in each input record a Date value.\n\nFor `\"date\"`, we parse data based using Javascript's [`Date.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse). For Specific date formats can be provided (e.g., `{foo: \"date:'%m%d%Y'\"}`), using the [d3-time-format syntax](https://github.com/d3/d3-time-format#locale_format). UTC date format parsing is supported similarly (e.g., `{foo: \"utc:'%m%d%Y'\"}`). See more about [UTC time](https://vega.github.io/vega-lite/docs/timeunit.html#utc)"
+        },
         "type": {
+          "description": "Type of input data: `\"json\"`, `\"csv\"`, `\"tsv\"`, `\"dsv\"`.\n\n__Default value:__  The default format type is determined by the extension of the file URL. Compression suffixes such as `.gz` are ignored during inference. If no extension is detected, `\"json\"` will be used by default.",
           "type": "string"
         }
       },
@@ -7694,7 +7905,7 @@
               "type": "string"
             }
           ],
-          "description": "A string or object that defines the events to which the selection should listen."
+          "description": "A string or object that defines the events to which the selection should listen.\n\n__Default value:__\n\n- point selections: `\"click\"`\n- interval selections:   - `\"mousedown[event.shiftKey]\"` when any brushed channel is zoomable   - `\"mousedown\"` otherwise"
         },
         "toggle": {
           "description": "Controls whether data values should be toggled (inserted or removed from a point selection) when clicking with the shift key pressed.\n\n- `true` -- additional values can be selected by shift-clicking.\n- `false` -- only a single value can be selected at a time.\n\n__Default value:__ `true`",
@@ -8745,8 +8956,15 @@
           "type": "number"
         },
         "assembly": {
-          "description": "The genome assembly name for locus scales. If undefined, the default genome from the genome store is used.",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/InlineLocusAssembly"
+            }
+          ],
+          "description": "Genome assembly definition for locus scales.\n\nThis can be:\n\n- A string reference to a named assembly (built-in or root-configured).\n- An inline anonymous assembly that defines either `contigs` or `url`.\n\nIf undefined, the default genome from the genome store is used."
         },
         "base": {
           "description": "The logarithm base of the `log` scale (default `10`).",
@@ -8774,6 +8992,9 @@
             },
             {
               "$ref": "#/definitions/ComplexDomain"
+            },
+            {
+              "$ref": "#/definitions/SelectionDomainRef"
             }
           ],
           "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
@@ -9065,6 +9286,35 @@
         "y2"
       ],
       "type": "string"
+    },
+    "SelectionDomainRef": {
+      "additionalProperties": false,
+      "properties": {
+        "encoding": {
+          "description": "Selection interval channel to use.\n\nIf omitted, GenomeSpy infers the channel from the scale channel when possible (e.g., `x` -> `x`, `x2` -> `x`, `y` -> `y`, `y2` -> `y`).",
+          "enum": [
+            "x",
+            "y"
+          ],
+          "type": "string"
+        },
+        "param": {
+          "description": "Name of an interval selection parameter that provides the domain.",
+          "type": "string"
+        },
+        "sync": {
+          "description": "Domain synchronization mode.\n\n- `\"oneWay\"`: selection drives the domain.\n- `\"twoWay\"`: selection drives the domain and zoom/pan updates selection.\n\n__Default value:__ implicit auto mode:\n\n- `\"twoWay\"` when the linked scale is zoomable\n- `\"oneWay\"` otherwise",
+          "enum": [
+            "oneWay",
+            "twoWay"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "param"
+      ],
+      "type": "object"
     },
     "SelectionFilterParams": {
       "additionalProperties": false,
@@ -10456,7 +10706,7 @@
               "$ref": "#/definitions/UrlList"
             }
           ],
-          "description": "An URL or an array of URLs from which to load the data set. Use the `format.type` property to ensure the loaded data is correctly parsed."
+          "description": "An URL or an array of URLs from which to load the data set. Gzip-compressed resources are decompressed transparently when the URL, MIME type, or payload indicates gzip content. Use the `format.type` property to ensure the loaded data is correctly parsed."
         }
       },
       "required": [
@@ -10466,6 +10716,7 @@
     },
     "UrlGenomeConfig": {
       "additionalProperties": false,
+      "deprecated": "Use `GenomeDefinition` in root `genomes` entries and `scale.assembly`.",
       "properties": {
         "name": {
           "description": "Name of the genome assembly, e.g., `hg19` or `hg38`.",
@@ -10478,6 +10729,19 @@
       },
       "required": [
         "name",
+        "url"
+      ],
+      "type": "object"
+    },
+    "UrlGenomeDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "description": "A URL to a `chrom.sizes` file, which is a tab-separated file with two columns: the sequence name and its size.\n\nYou may want to strip alternative loci, haplotypes, and other non-canonical contigs from the file.\n\nExample: `\"https://genomespy.app/data/genomes/hg19/chrom.sizes\"`",
+          "type": "string"
+        }
+      },
+      "required": [
         "url"
       ],
       "type": "object"
@@ -10499,7 +10763,7 @@
       "additionalProperties": false,
       "properties": {
         "type": {
-          "description": "The format of the data in the list. If the type is `\"json\"`, the list is expected to be an array of strings. If the type is `\"csv\"` or `\"tsv\"`, the list is expected to be a table with a single column named `file`.\n\n__Default value:__ `\"txt\"`",
+          "description": "The format of the data in the list. If the type is `\"json\"`, the list is expected to be an array of strings. If the type is `\"csv\"` or `\"tsv\"`, the list is expected to be a table with a single column named `url`.\n\n__Default value:__ `\"txt\"`",
           "enum": [
             "json",
             "csv",

@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
     
     
       
@@ -1816,6 +1816,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#inline-in-scaleassembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inline in scale.assembly
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1871,6 +1882,17 @@
     <span class="md-ellipsis">
       
         Segment features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synteny-between-assemblies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synteny between assemblies
       
     </span>
   </a>
@@ -2240,6 +2262,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#inline-in-scaleassembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inline in scale.assembly
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2301,6 +2334,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#synteny-between-assemblies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synteny between assemblies
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2333,31 +2377,42 @@
 
 <h1 id="genomic-coordinates">Genomic Coordinates<a class="headerlink" href="#genomic-coordinates" title="Permanent link">&para;</a></h1>
 <p><img align="right" alt="Placeholder" src="../../img/coordinate-linearization.svg" /></p>
-<p>To allow easy visualization of coordinate-based genomic data, GenomeSpy can
-concatenate the discrete chromosomes onto a single continuous linear axis.
-Concatenation needs the sizes and preferred order for the contigs or
-chromosomes. These are usually provided with a genome assembly.</p>
-<p>To activate support for genomic coordinates, add the <code>genome</code> property with the
-name of the assembly to the top level view specification:</p>
+<p>GenomeSpy can visualize genomic coordinates by concatenating chromosomes (or
+other contigs) into one continuous axis. To do that, it needs contig sizes and
+their preferred order. This information usually comes from a genome assembly.</p>
+<p>A common setup is to define a default assembly at the top level with the
+<code>assembly</code> property:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span>
-<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="err">...</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Only a single genome assembly</p>
-<p>Currently, a visualization may have only a single globally configured genome
-assembly. Different assemblies for different scales (for <code>x</code> and <code>y</code> axes,
-for example) will be supported in the future.</p>
-</div>
+<p>If different axes use different coordinate systems (for example, synteny or
+cross-species dot plots), set <code>assembly</code> separately in each locus scale:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg19&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>See <a href="#synteny-between-assemblies">Synteny between assemblies</a> for a complete
+example.</p>
+<p>When every locus scale sets <code>scale.assembly</code>, root <code>assembly</code> is optional.
+Also, if root <code>assembly</code> is omitted and <code>genomes</code> has exactly one entry, that
+single entry is used as the default assembly.</p>
 <h2 id="supported-genomes">Supported genomes<a class="headerlink" href="#supported-genomes" title="Permanent link">&para;</a></h2>
 <p>GenomeSpy bundles a few common built-in genome assemblies: <code>"hg38"</code>, <code>"hg19"</code>,
 <code>"hg18"</code>, <code>"mm10"</code>, <code>"mm9"</code>, and <code>"dm6"</code>.</p>
 <h2 id="custom-genomes">Custom genomes<a class="headerlink" href="#custom-genomes" title="Permanent link">&para;</a></h2>
-<p>Custom genome assemblies can be provided in two ways: as a <code>chrom.sizes</code> file or within the
-the specification.</p>
+<p>Reusable custom assemblies are defined under root <code>genomes</code>, which maps assembly
+names to their configurations.</p>
 <h3 id="as-a-chromsizes-file">As a <code>chrom.sizes</code> file<a class="headerlink" href="#as-a-chromsizes-file" title="Permanent link">&para;</a></h3>
 <p>The <code>chrom.sizes</code> file is a two-column text file with the chromosome names and
 their sizes. You may want to use the UCSC Genome Browser's
@@ -2367,38 +2422,96 @@ out any alternative contigs or haplotypes, so you may want to preprocess the
 file before using it.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg19&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://genomespy.app/data/genomes/hg19/chrom.sizes&quot;</span>
+<span class="w">  </span><span class="nt">&quot;genomes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;myAssembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://genomespy.app/data/genomes/hg19/chrom.sizes&quot;</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;myAssembly&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="err">...</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="within-the-specification">Within the specification<a class="headerlink" href="#within-the-specification" title="Permanent link">&para;</a></h3>
-<p>You can provide the genome assembly directly in the specification using the
+<p>You can provide a named genome definition directly in root <code>genomes</code> using the
 <code>contigs</code> property. The contigs are an array of objects with the <code>name</code> and
 <code>size</code> properties.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dm6&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;contigs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr3R&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32079331</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr3L&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">28110227</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr2R&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25286936</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrX&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23542271</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr2L&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23513712</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrY&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3667352</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr4&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1348131</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="nt">&quot;genomes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;dm6custom&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;contigs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr3R&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32079331</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr3L&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">28110227</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr2R&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25286936</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrX&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23542271</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr2L&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23513712</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrY&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3667352</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr4&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1348131</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dm6custom&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="err">...</span>
 <span class="p">}</span>
 </code></pre></div>
+<h3 id="inline-in-scaleassembly">Inline in <code>scale.assembly</code><a class="headerlink" href="#inline-in-scaleassembly" title="Permanent link">&para;</a></h3>
+<p>For one-off assemblies, you can define the assembly object directly in a locus
+scale.</p>
+<p>Inline objects are anonymous and must define exactly one of:</p>
+<ul>
+<li><code>contigs</code></li>
+<li><code>url</code></li>
+</ul>
+<p>Example (<code>contigs</code> inline):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pos&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;contigs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">248956422</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">242193529</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Example (<code>url</code> inline):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pos&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://genomespy.app/data/genomes/hg19/chrom.sizes&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If the same assembly is reused across multiple scales, define it once in root
+<code>genomes</code> and reference it by name.</p>
+<div class="admonition note">
+<p class="admonition-title">Legacy root <code>genome</code></p>
+<p>Root <code>genome</code> is still supported for backward compatibility, but it is
+deprecated. Use <code>genomes</code> and <code>assembly</code> in new specifications.</p>
+</div>
 <h2 id="encoding-genomic-coordinates">Encoding genomic coordinates<a class="headerlink" href="#encoding-genomic-coordinates" title="Permanent link">&para;</a></h2>
-<p>When a genome assembly has been specified, you can encode the genomic
-coordinates conveniently by specifying the chromosome (<code>chrom</code>) and position
-(<code>pos</code>) fields as follows:</p>
+<p>When an assembly can be resolved (from <code>scale.assembly</code> or root <code>assembly</code>), you
+can encode genomic coordinates by specifying the chromosome (<code>chrom</code>) and
+position (<code>pos</code>) fields as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="err">...</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -2442,10 +2555,13 @@ Blog</a>.</p>
 <p>Point features cover a single position on a chromosome. An example of a point
 feature is a single nucleotide variant (SNV), where a nucleotide has been
 replaced by another.</p>
-<div><genome-spy-doc-embed height="80">
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/genomic-data/genomic-coordinates/point-features.json" height="80">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Genomic point features example.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
+
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr3&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">134567890</span><span class="w"> </span><span class="p">},</span>
@@ -2453,13 +2569,11 @@ replaced by another.</p>
 <span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr9&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">34567890</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
 <span class="w">  </span><span class="p">},</span>
+
 <span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pos&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pos&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -2470,10 +2584,13 @@ replaced by another.</p>
 <p>Segment features cover a range of positions on a chromosome. They are defined by
 their two end positions. An example of a segment feature is a copy number
 variant (CNV), where a region of the genome has been duplicated or deleted.</p>
-<div><genome-spy-doc-embed height="80">
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/genomic-data/genomic-coordinates/segment-features.json" height="80">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;genome&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Genomic segment features example.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
+
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr3&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;startpos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000000</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;endpos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">140000000</span><span class="w"> </span><span class="p">},</span>
@@ -2481,17 +2598,62 @@ variant (CNV), where a region of the genome has been duplicated or deleted.</p>
 <span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr9&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;startpos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50000000</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;endpos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">70000000</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
 <span class="w">  </span><span class="p">},</span>
+
 <span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;startpos&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;endpos&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<h3 id="synteny-between-assemblies">Synteny between assemblies<a class="headerlink" href="#synteny-between-assemblies" title="Permanent link">&para;</a></h3>
+<p>When each locus scale specifies its own assembly, rules can connect homologous
+or syntenic segments across species.</p>
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/mark/rule/synteny-hg38-mm10.json" height="450">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Human-mouse synteny example&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Data source: http://bioinfo.konkuk.ac.kr/synteny_portal/&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data/synteny-hg38-mm10.tsv&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rule&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;strokeCap&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;round&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="p">},</span>
+
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;startpos&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span>
+<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38_chrom&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38_start&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chromGrid&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;chromGridColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#bbb&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;endpos&quot;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38_chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38_end&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mm10_chrom&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mm10_start&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mm10&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chromGrid&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;chromGridColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#bbb&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mm10&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;y2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mm10_chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mm10_end&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mm10_chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -2517,7 +2679,7 @@ variant (CNV), where a region of the genome has been duplicated or deleted.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 15, 2024 12:56:27 UTC">April 15, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 12, 2026 13:21:05 UTC">March 12, 2026</span>
   </span>
 
     
