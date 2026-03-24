@@ -17,19 +17,20 @@
 
   "vconcat": [
     {
-      "title": { "text": "First", "style": "overlay" },
-      "view": { "stroke": "lightgray" },
+      "title": { "text": "First", "style": "overlay-title" },
       "mark": "point"
     },
     {
-      "title": { "text": "Second", "style": "overlay" },
-      "view": { "stroke": "lightgray" },
+      "title": { "text": "Second", "style": "overlay-title" },
       "mark": "point"
     },
     {
-      "title": { "text": "Third", "style": "overlay" },
-      "view": { "stroke": "lightgray" },
+      "title": { "text": "Third", "style": "overlay-title" },
       "mark": "point"
     }
-  ]
+  ],
+
+  "config": {
+    "view": { "stroke": "lightgray" }
+  }
 }

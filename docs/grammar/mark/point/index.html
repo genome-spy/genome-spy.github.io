@@ -323,6 +323,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1137,6 +1141,8 @@
       
         
       
+        
+      
     
     
     
@@ -1441,6 +1447,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../tick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../text/" class="md-nav__link">
         
   
@@ -1476,6 +1510,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../conditional-encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -1497,7 +1559,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1519,14 +1581,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1645,6 +1707,34 @@
     
   
     Scales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config And Themes
   
 
     
@@ -2324,6 +2414,11 @@ channels: <code>size</code>, <code>shape</code>, <code>dx</code>, and <code>dy</
 <p>The rotation angle in degrees.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
+<dt><code>buildIndex</code></dt>
+<dd>
+<p>Type: boolean</p>
+<p>Whether the x channel should build an index for efficient subset rendering. If omitted, GenomeSpy enables indexing automatically for positional x encodings.</p>
+</dd>
 <dt><code>clip</code></dt>
 <dd>
 <p>Type: boolean | <code>"never"</code></p>
@@ -2333,6 +2428,24 @@ channels: <code>size</code>, <code>shape</code>, <code>dx</code>, and <code>dy</
 <dd>
 <p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 <p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
+</dd>
+<dt><code>cursor</code></dt>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Mouse cursor shown while the pointer is over the mark. Mark cursor takes precedence over enclosing view cursors.</p>
+<p><strong>Default value:</strong> browser default</p>
+</dd>
+<dt><code>dx</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Horizontal offset in pixels.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
+<dt><code>dy</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Vertical offset in pixels.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>fill</code></dt>
 <dd>
@@ -2384,6 +2497,18 @@ channels: <code>size</code>, <code>shape</code>, <code>dx</code>, and <code>dy</
 <p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 <p>Opacity of the mark. Affects <code>fillOpacity</code> or <code>strokeOpacity</code>, depending on the <code>filled</code> property.</p>
 </dd>
+<dt><code>sampleFacetPadding</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Additional padding used by sample facets.</p>
+<p><strong>Default value:</strong> <code>0.1</code></p>
+</dd>
+<dt><code>semanticScore</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The semantic score used by semantic zooming in the point mark. This is primarily intended for internal use.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
 <dt><code>semanticZoomFraction</code></dt>
 <dd>
 <p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
@@ -2416,9 +2541,14 @@ channels: <code>size</code>, <code>shape</code>, <code>dx</code>, and <code>dy</
 <p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 <p>The stroke width in pixels.</p>
 </dd>
+<dt><code>style</code></dt>
+<dd>
+<p>Type: string | string[]</p>
+<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones.</p>
+</dd>
 <dt><code>tooltip</code></dt>
 <dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">HandledTooltip</a> | null</p>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">HandledTooltip</a> | null | boolean</p>
 <p>Tooltip handler. If <code>null</code>, no tooltip is shown. If string, specifies the <a href="https://genomespy.app/docs/api/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
 </dd>
 <dt><code>x</code></dt>
@@ -2596,7 +2726,7 @@ possible score has been reached.</p>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;semanticScore&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;score&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;semanticScore&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;score&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>

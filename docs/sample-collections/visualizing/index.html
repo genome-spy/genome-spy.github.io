@@ -321,6 +321,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1133,6 +1137,8 @@
       
         
       
+        
+      
     
     
     
@@ -1301,6 +1307,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../grammar/mark/tick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../grammar/mark/text/" class="md-nav__link">
         
   
@@ -1336,6 +1370,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../grammar/conditional-encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -1357,7 +1419,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1379,14 +1441,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1505,6 +1567,34 @@
     
   
     Scales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config And Themes
   
 
     
@@ -2472,12 +2562,12 @@ page for more information.</p>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.73.0/dist/style.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.74.0/dist/style.css&quot;</span>
     <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.73.0/dist/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.74.0/dist/index.es.js&quot;</span><span class="p">;</span>
 
 <span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;spec.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// Show the dataflow inspector button in the toolbar (default: true)</span>
@@ -2650,15 +2740,13 @@ attribute labels, use the following configuration:</p>
 <dl>
 <dt><code>labelTitleText</code></dt>
 <dd>
-<p>Type: string</p>
-<p>Text in the label title</p>
-<p><strong>Default:</strong> <code>"Sample name"</code></p>
+<p>Type: string | null</p>
+<p>Legacy alias for <code>labelTitle</code>.</p>
 </dd>
 <dt><code>labelLength</code></dt>
 <dd>
 <p>Type: number</p>
-<p>How much space in pixels to reserve for the labels.</p>
-<p><strong>Default:</strong> <code>140</code></p>
+<p>How much space in pixels to reserve for the labels. If omitted, the width is inferred from the sample labels.</p>
 </dd>
 <dt><code>attributeSize</code></dt>
 <dd>
@@ -2713,7 +2801,25 @@ encodes the <em>area</em>, not the diameter of the points, the <code>pow</code> 
 to square the value. The technique shown here is used in the
 <a href="https://genomespy.app/examples/?spec=PARPiCL/parpicl.json">PARPiCL</a> example.</p>
 <h3 id="aggregation">Aggregation<a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h3>
-<p>TODO</p>
+<p><code>aggregateSamples</code> adds one or more summary tracks to a sample view. Use it when
+you want to compare patterns across sample subgroups in addition to inspecting
+individual samples.</p>
+<p>In the GenomeSpy <a href="https://doi.org/10.1093/gigascience/giae040">paper</a>, the
+summary track is used as a copy-number landscape above the main heatmap. The
+summary is computed separately for each visible group, which makes recurrent
+amplification and deletion patterns easier to compare between subgroups.</p>
+<p>Each entry in <code>aggregateSamples</code> is a normal unit or layer spec. It may define
+its own <code>transform</code>, <code>encoding</code>, <code>params</code>, etc. sections. GenomeSpy prepends a
+<code>mergeFacets</code> transform automatically and removes the <code>sample</code> channel from the
+summary encoding.</p>
+<p>Use the provided <code>sampleCount</code> parameter to normalize summary values by the
+number of samples in the current group.</p>
+<p>Examples:</p>
+<ul>
+<li><a href="/docs/examples/app/copy-numbers.json"><code>copy-numbers.json</code></a></li>
+<li><a href="/docs/examples/app/expression-zscores.json"><code>expression-zscores.json</code></a></li>
+<li><a href="https://github.com/HautaniemiLab/genomespy-paper-2024-spec/blob/main/cnv-segments.json">Spec from the GenomeSpy paper</a></li>
+</ul>
 <h2 id="bookmarking">Bookmarking<a class="headerlink" href="#bookmarking" title="Permanent link">&para;</a></h2>
 <p>With the GenomeSpy app, users can save the current visualization state,
 including scale domains and view visibilities, as bookmarks. These bookmarks are
@@ -2904,7 +3010,7 @@ exploration</a></p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 13, 2026 07:21:05 UTC">March 13, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 23, 2026 13:55:56 UTC">March 23, 2026</span>
   </span>
 
     

@@ -323,6 +323,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1135,6 +1139,8 @@
       
         
       
+        
+      
     
     
     
@@ -1303,6 +1309,34 @@
   
   
     <li class="md-nav__item">
+      <a href="mark/tick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="mark/text/" class="md-nav__link">
         
   
@@ -1338,6 +1372,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="conditional-encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -1359,7 +1421,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1381,14 +1443,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1507,6 +1569,34 @@
     
   
     Scales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config And Themes
   
 
     
@@ -2158,6 +2248,18 @@ encoded into mark instances.</p>
 <p>Type: string</p>
 <p>The base URL for relative URL data sources and URL <a href="https://genomespy.app/docs/grammar/import/#importing-from-a-url">imports</a>. The base URLs are inherited in the view hierarchy unless overridden with this property. By default, the top-level view's base URL equals to the visualization specification's base URL.</p>
 </dd>
+<dt><code>config</code></dt>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/config/#properties">GenomeSpyConfig</a></p>
+<p>Configures defaults for this view subtree.</p>
+<p>Properties in child views override properties inherited from ancestors.</p>
+</dd>
+<dt><code>cursor</code></dt>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Mouse cursor shown while the pointer is inside the view. The deepest matching cursor wins: mark cursor first, then the pointed view, then ancestor views outward toward the root.</p>
+<p><strong>Default value:</strong> browser default</p>
+</dd>
 <dt><code>data</code></dt>
 <dd>
 <p>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">Generator</a></p>
@@ -2187,7 +2289,7 @@ encoded into mark instances.</p>
 </dd>
 <dt><code>mark</code> <span class="required">Required</span></dt>
 <dd>
-<p>Type: <code>"rect"</code> | <code>"point"</code> | <code>"rule"</code> | <code>"text"</code> | <code>"link"</code> | <a href="https://genomespy.app/docs/grammar/mark/rect/#properties">RectProps</a> | <a href="https://genomespy.app/docs/grammar/mark/text/#properties">TextProps</a> | <a href="https://genomespy.app/docs/grammar/mark/rule/#properties">RuleProps</a> | <a href="https://genomespy.app/docs/grammar/mark/link/#properties">LinkProps</a> | <a href="https://genomespy.app/docs/grammar/mark/point/#properties">PointProps</a></p>
+<p>Type: <code>"rect"</code> | <code>"point"</code> | <code>"rule"</code> | <code>"tick"</code> | <code>"text"</code> | <code>"link"</code> | <a href="https://genomespy.app/docs/grammar/mark/rect/#properties">RectProps</a> | <a href="https://genomespy.app/docs/grammar/mark/text/#properties">TextProps</a> | <a href="https://genomespy.app/docs/grammar/mark/rule/#properties">RuleProps</a> | <a href="https://genomespy.app/docs/grammar/mark/tick/#properties">TickProps</a> | <a href="https://genomespy.app/docs/grammar/mark/link/#properties">LinkProps</a> | <a href="https://genomespy.app/docs/grammar/mark/point/#properties">PointProps</a></p>
 <p>The graphical mark presenting the data objects.</p>
 </dd>
 <dt><code>name</code></dt>

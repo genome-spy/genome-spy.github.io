@@ -323,6 +323,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -847,6 +851,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1210,8 @@
       
         
       
+        
+      
     
     
     
@@ -1363,6 +1380,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../mark/tick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../mark/text/" class="md-nav__link">
         
   
@@ -1398,6 +1443,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../conditional-encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -1419,7 +1492,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1441,14 +1514,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1567,6 +1640,34 @@
     
   
     Scales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config And Themes
   
 
     
@@ -2108,6 +2209,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2134,10 +2246,13 @@
 
 
 <h1 id="flatten-compressed-exons">Flatten Compressed Exons<a class="headerlink" href="#flatten-compressed-exons" title="Permanent link">&para;</a></h1>
-<p>The <code>"flattenCompressedExons"</code> transform flattens "delta encoded" exons. The
-transform inputs the start coordinate of the gene body and a comma-delimited
-string of alternating intron and exon lengths. A new data object is created for
-each exon.</p>
+<p>The <code>"flattenCompressedExons"</code> transform expands a compact exon encoding into
+one datum per exon.</p>
+<p>It reads the transcript start coordinate from <code>start</code> and parses <code>exons</code> as
+alternating segment lengths in <code>gap, exon, gap, exon, ...</code> order. The first gap
+is typically <code>0</code>, so the first exon begins at <code>start</code>.</p>
+<p>Each output row is a clone of the input datum with added exon interval fields.
+By default, these are <code>exonStart</code> and <code>exonEnd</code>.</p>
 <p>This transform is mainly intended to be used with an optimized gene annotation
 track. Read more at <a href="https://observablehq.com/@tuner/annotation-tracks?collection=@tuner/genomespy">Annotation
 Tracks</a>
@@ -2163,6 +2278,106 @@ notebook.</p>
 <p><strong>Default:</strong> <code>"start"</code></p>
 </dd>
 </dl>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<p>Given the following input data:</p>
+<table>
+<thead>
+<tr>
+<th>transcript</th>
+<th>start</th>
+<th>exons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TX1</td>
+<td>1000</td>
+<td><code>0,80,40,60,30,50</code></td>
+</tr>
+</tbody>
+</table>
+<p>... and the transform:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flattenCompressedExons&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <code>exons</code> string is interpreted as:</p>
+<table>
+<thead>
+<tr>
+<th>Segment</th>
+<th>Meaning</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Gap from <code>start</code> to exon 1</td>
+<td>exon 1 starts at <code>1000</code></td>
+</tr>
+<tr>
+<td><code>80</code></td>
+<td>Length of exon 1</td>
+<td>exon 1 ends at <code>1100</code></td>
+</tr>
+<tr>
+<td><code>40</code></td>
+<td>Gap to exon 2</td>
+<td>exon 2 starts at <code>1140</code></td>
+</tr>
+<tr>
+<td><code>60</code></td>
+<td>Length of exon 2</td>
+<td>exon 2 ends at <code>1200</code></td>
+</tr>
+<tr>
+<td><code>30</code></td>
+<td>Gap to exon 3</td>
+<td>exon 3 starts at <code>1230</code></td>
+</tr>
+<tr>
+<td><code>50</code></td>
+<td>Length of exon 3</td>
+<td>exon 3 ends at <code>1280</code></td>
+</tr>
+</tbody>
+</table>
+<p>Flattened data is produced:</p>
+<table>
+<thead>
+<tr>
+<th>transcript</th>
+<th>start</th>
+<th>exons</th>
+<th>exonStart</th>
+<th>exonEnd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TX1</td>
+<td>1000</td>
+<td><code>0,80,40,60,30,50</code></td>
+<td>1000</td>
+<td>1100</td>
+</tr>
+<tr>
+<td>TX1</td>
+<td>1000</td>
+<td><code>0,80,40,60,30,50</code></td>
+<td>1140</td>
+<td>1200</td>
+</tr>
+<tr>
+<td>TX1</td>
+<td>1000</td>
+<td><code>0,80,40,60,30,50</code></td>
+<td>1230</td>
+<td>1280</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -2183,7 +2398,7 @@ notebook.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 21, 2023 14:16:22 UTC">March 21, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 13, 2026 09:30:45 UTC">March 13, 2026</span>
   </span>
 
     

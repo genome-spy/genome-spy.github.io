@@ -1,0 +1,139 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/@genome-spy/core/dist/schema.json",
+
+  "description": [
+    "Aggregate-driven boxplot of penguin body mass by species.",
+    "Quartiles come from the aggregate transform. Whiskers use grouped min/max because Tukey-style outlier filtering would require joinaggregate-style transforms."
+  ],
+
+  "width": 300,
+  "height": 200,
+
+  "data": {
+    "url": "vega-datasets/penguins.json"
+  },
+
+  "transform": [{ "type": "filter", "expr": "isFinite(datum['Body Mass (g)'])" }],
+
+  "encoding": {
+    "x": {
+      "field": "Species",
+      "type": "nominal",
+      "title": null,
+      "scale": { "padding": 0.4 },
+      "axis": { "labelAngle": 0 }
+    }
+  },
+
+  "layer": [
+    {
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": ["Species"],
+          "fields": [
+            "Body Mass (g)",
+            "Body Mass (g)",
+            "Body Mass (g)",
+            "Body Mass (g)",
+            "Body Mass (g)"
+          ],
+          "ops": ["min", "q1", "median", "q3", "max"],
+          "as": [
+            "minBodyMass",
+            "q1BodyMass",
+            "medianBodyMass",
+            "q3BodyMass",
+            "maxBodyMass"
+          ]
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#7b8794",
+            "size": 2,
+            "tooltip": null
+          },
+          "encoding": {
+            "y": {
+              "field": "minBodyMass",
+              "type": "quantitative",
+              "scale": { "zero": false },
+              "axis": { "title": "Body mass (g)" }
+            },
+            "y2": { "field": "maxBodyMass" }
+          }
+        },
+
+        {
+          "mark": {
+            "type": "rect",
+            "stroke": "#243b53",
+            "strokeWidth": 1,
+            "tooltip": null
+          },
+          "encoding": {
+            "y": { "field": "q3BodyMass", "type": "quantitative" },
+            "y2": { "field": "q1BodyMass" },
+            "color": {
+              "field": "Species",
+              "type": "nominal",
+              "scale": {
+                "domain": ["Chinstrap", "Adelie", "Gentoo"],
+                "range": ["#BF5CCA", "#FF6C02", "#0F7574"]
+              }
+            }
+          }
+        },
+
+        {
+          "mark": {
+            "type": "tick",
+            "color": "#102a43",
+            "thickness": 2,
+            "tooltip": null
+          },
+          "encoding": {
+            "y": { "field": "medianBodyMass", "type": "quantitative" }
+          }
+        },
+
+        {
+          "mark": {
+            "type": "tick",
+            "color": "#243b53",
+            "thickness": 2,
+            "tooltip": null
+          },
+          "encoding": {
+            "x": {
+              "field": "Species",
+              "type": "nominal",
+              "band": 0.3
+            },
+            "y": { "field": "minBodyMass", "type": "quantitative" }
+          }
+        },
+
+        {
+          "mark": {
+            "type": "tick",
+            "color": "#243b53",
+            "thickness": 2,
+            "tooltip": null
+          },
+          "encoding": {
+            "x": {
+              "field": "Species",
+              "type": "nominal",
+              "band": 0.3
+            },
+            "y": { "field": "maxBodyMass", "type": "quantitative" }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -323,6 +323,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1496,6 +1500,8 @@
       
         
       
+        
+      
     
     
     
@@ -1664,6 +1670,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../mark/tick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../mark/text/" class="md-nav__link">
         
   
@@ -1699,6 +1733,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../conditional-encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -1720,7 +1782,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1742,14 +1804,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1868,6 +1930,34 @@
     
   
     Scales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config And Themes
   
 
     
@@ -2781,6 +2871,12 @@ The chunks are provided as data objects with the following fields: <code>chrom</
 <p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
+<dt><code>debounceDomainChange</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<p><strong>Default value:</strong> <code>200</code></p>
+</dd>
 <dt><code>debounceMode</code></dt>
 <dd>
 <p>Type: string</p>
@@ -2806,7 +2902,7 @@ The chunks are provided as data objects with the following fields: <code>chrom</
 </dd>
 </dl>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
-<p>The example below shows how to specify a sequence track using an indexed FASTA
+<p>The visualization below shows how to specify a sequence track using an indexed FASTA
 file. The sequence chunks are split into separate data objects using the
 <a href="../../transform/flatten-sequence/"><code>"flattenSequence"</code></a> transform, and the final
 position of each nucleotide is computed using the
@@ -2816,7 +2912,10 @@ fetched only when the user zooms into a region smaller than the window size
 <div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.json" height="60" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Indexed FASTA sequence track example.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Indexed FASTA sequence track example.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Data source: UCSC hg38 / GRCh38 reference FASTA (`goldenPath/hg38/bigZips/latest/hg38.fa.gz`). Terms: UCSC downloadable data files are freely reusable.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
 
 <span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
 
@@ -2892,6 +2991,14 @@ fetched only when the user zooms into a region smaller than the window size
 
 </genome-spy-doc-embed></div>
 
+<div class="admonition disclaimer">
+<p>The visualization uses a mirrored, indexed copy of UCSC's hg38 / GRCh38
+reference FASTA from
+<a href="https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/latest/hg38.fa.gz">goldenPath/hg38/bigZips/latest/hg38.fa.gz</a>.
+UCSC states that its downloadable data files and database tables are freely
+available for public and commercial use, subject to any upstream
+restrictions noted for the original assembly data.</p>
+</div>
 <p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
 <a href="https://github.com/GMOD/indexedfasta-js">indexedfasta-js</a> library.</p>
 <h2 id="bigwig">BigWig<a class="headerlink" href="#bigwig" title="Permanent link">&para;</a></h2>
@@ -2916,6 +3023,12 @@ source provides data objects with the following fields: <code>chrom</code> (stri
 <p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
+<dt><code>debounceDomainChange</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<p><strong>Default value:</strong> <code>200</code></p>
+</dd>
 <dt><code>debounceMode</code></dt>
 <dd>
 <p>Type: string</p>
@@ -2935,12 +3048,15 @@ source provides data objects with the following fields: <code>chrom</code> (stri
 </dd>
 </dl>
 <h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
-<p>The example below shows the GC content of the human genome in 5-base windows.
+<p>The visualization below shows the GC content of the human genome in 5-base windows.
 When you zoom in, the resolution of the data automatically increases.</p>
 <div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/bigwig-gc-content.json" height="120" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BigWig GC content example.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;BigWig GC content example.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Data source: UCSC hg38 GC Percent in 5-base windows (`goldenPath/hg38/bigZips/latest/hg38.gc5Base.bw`). Terms: UCSC downloadable data files are freely reusable.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
 
 <span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
 
@@ -2970,6 +3086,13 @@ When you zoom in, the resolution of the data automatically increases.</p>
 
 </genome-spy-doc-embed></div>
 
+<div class="admonition disclaimer">
+<p>The visualization uses UCSC's hg38 GC Percent in 5-base windows track,
+distributed as
+<a href="https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/latest/hg38.gc5Base.bw">goldenPath/hg38/bigZips/latest/hg38.gc5Base.bw</a>.
+UCSC states that its downloadable data files and database tables are freely
+available for public and commercial use.</p>
+</div>
 <p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
 <a href="https://github.com/GMOD/bbi-js">bbi-js</a> library.</p>
 <h2 id="bigbed">BigBed<a class="headerlink" href="#bigbed" title="Permanent link">&para;</a></h2>
@@ -2987,6 +3110,12 @@ genomic regions stored in BigBed files.</p>
 <dd>
 <p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 <p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<p><strong>Default value:</strong> <code>200</code></p>
+</dd>
+<dt><code>debounceDomainChange</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
@@ -3008,11 +3137,14 @@ genomic regions stored in BigBed files.</p>
 </dd>
 </dl>
 <h3 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h3>
-<p>The example below displays "ENCODE Candidate Cis-Regulatory Elements (cCREs) combined from all cell types" dataset for the hg38 genome.</p>
+<p>The visualization below displays the "ENCODE Candidate Cis-Regulatory Elements (cCREs) combined from all cell types" dataset for the hg38 genome.</p>
 <div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/bigbed-ccre-track.json" height="70" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BigBed cCRE track example.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;BigBed cCRE track example.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Data source: ENCODE Registry of candidate cis-Regulatory Elements, distributed by UCSC as `gbdb/hg38/encode3/ccre/encodeCcreCombined.bb`. Terms: ENCODE data are unrestricted and UCSC downloadable data files are freely reusable.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
 
 <span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
 
@@ -3054,6 +3186,16 @@ genomic regions stored in BigBed files.</p>
 
 </genome-spy-doc-embed></div>
 
+<div class="admonition disclaimer">
+<p>The visualization uses the ENCODE Registry of candidate cis-Regulatory
+Elements (cCREs), distributed by UCSC as
+<a href="https://hgdownload.soe.ucsc.edu/gbdb/hg38/encode3/ccre/encodeCcreCombined.bb">gbdb/hg38/encode3/ccre/encodeCcreCombined.bb</a>;
+see ENCODE Encyclopedia Version 2: <a href="https://www.encodeproject.org/data/annotations/">Genomic and Transcriptomic
+Annotations</a>. ENCODE data
+may be freely downloaded, analyzed, and published without restriction, and
+UCSC also states that its downloadable data files are freely available for
+public and commercial use.</p>
+</div>
 <p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
 <a href="https://github.com/GMOD/bbi-js">bbi-js</a> library.</p>
 <h2 id="vcf">VCF<a class="headerlink" href="#vcf" title="Permanent link">&para;</a></h2>
@@ -3081,6 +3223,12 @@ documentation.</p>
 <p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
+<dt><code>debounceDomainChange</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<p><strong>Default value:</strong> <code>200</code></p>
+</dd>
 <dt><code>debounceMode</code></dt>
 <dd>
 <p>Type: string</p>
@@ -3106,8 +3254,166 @@ documentation.</p>
 </dd>
 </dl>
 <h3 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h3>
-<p>TODO</p>
-<p>The data source is vased on <a href="http://gmod.org/">GMOD</a>'s
+<p>The visualization below replicates the small-variant classification view
+described in NCBI's
+<a href="https://ncbiinsights.ncbi.nlm.nih.gov/2022/08/30/clinvar-graphical-view/">"New ClinVar graphical display"</a>
+post. It places ClinVar variants by genomic position and germline
+classification and uses color to distinguish the classification categories.</p>
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/vcf-clinvar.json" height="100" spechidden="true">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;ClinVar variants track example.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Replicates the small-variant classification view described in NCBI&#39;s \&quot;New ClinVar graphical display\&quot; post.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Data source: mirrored copy of the ClinVar GRCh38 VCF release from NCBI FTP (`/pub/clinvar/vcf_GRCh38/`). Terms: attribute ClinVar as the data source.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clinvar&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ClinVar Variants&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;style&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;overlay&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;fill&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#f8f8f8&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;baseline&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{}]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rule&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;datum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Uncertain significance&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ordinal&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vcf&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://data.genomespy.app/sample-data/clinvar_20241215.vcf.gz&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;addChrPrefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;windowSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;replace(datum.INFO[&#39;CLNSIG&#39;], /_/g, &#39; &#39;)&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Germline classification&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;regexExtract&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Germline classification&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;regex&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^([^/]+)&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Germline classification&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;replace(datum[&#39;Germline classification&#39;], /^Conflicting.*/g, &#39;Conflicting&#39;)&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Germline classification&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum[&#39;Germline classification&#39;] == &#39;Pathogenic&#39; || datum[&#39;Germline classification&#39;] == &#39;Likely pathogenic&#39; || datum[&#39;Germline classification&#39;] == &#39;Uncertain significance&#39; || datum[&#39;Germline classification&#39;] == &#39;Likely benign&#39; || datum[&#39;Germline classification&#39;] == &#39;Benign&#39; || datum[&#39;Germline classification&#39;] == &#39;Conflicting&#39;&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sticks&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rule&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;tooltip&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;y2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;datum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Uncertain significance&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;balls&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;geometricZoomBound&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CHROM&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POS&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr18&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">31524101</span><span class="w"> </span><span class="p">},</span>
+<span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr18&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">31525003</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Germline classification&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ordinal&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="s2">&quot;Pathogenic&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;Likely pathogenic&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;Uncertain significance&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;Likely benign&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;Benign&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;Conflicting&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Classification&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Germline classification&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ordinal&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="s2">&quot;Pathogenic&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;Likely pathogenic&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;Uncertain significance&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;Likely benign&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;Benign&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;Conflicting&quot;</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="s2">&quot;firebrick&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;orange&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;#f0f000&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;#00a000&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;darkgreen&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;gray&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<div class="admonition disclaimer">
+<p>The visualization uses a mirrored copy of the ClinVar GRCh38 VCF release
+from NCBI's
+<a href="https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/">ClinVar FTP downloads</a>.
+ClinVar asks that redistributed data be attributed to ClinVar as the data
+source.</p>
+</div>
+<p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
 <a href="https://github.com/GMOD/vcf-js">vcf-js</a> library.</p>
 <h2 id="gff3">GFF3<a class="headerlink" href="#gff3" title="Permanent link">&para;</a></h2>
 <p>The tabix-based <code>"gff3"</code> source enables the retrieval of hierarchical data, such
@@ -3116,7 +3422,7 @@ is described in <a href="https://github.com/GMOD/gff-js#object-format">gff-js</a
 documentation. The <a href="../../transform/flatten/">flatten</a> and
 <a href="../../transform/project/">project</a> transforms are useful when extracting the
 child features and attributes from the hierarchical data structure. See the
-example below.</p>
+visualization below.</p>
 <h3 id="parameters_4">Parameters<a class="headerlink" href="#parameters_4" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>addChrPrefix</code></dt>
@@ -3135,6 +3441,12 @@ example below.</p>
 <dd>
 <p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 <p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<p><strong>Default value:</strong> <code>200</code></p>
+</dd>
+<dt><code>debounceDomainChange</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
@@ -3162,14 +3474,17 @@ example below.</p>
 </dd>
 </dl>
 <h3 id="example_4">Example<a class="headerlink" href="#example_4" title="Permanent link">&para;</a></h3>
-<p>The example below displays the human (GRCh38.p13)
+<p>The visualization below displays the human (GRCh38.p13)
 <a href="https://www.gencodegenes.org/">GENCODE</a> v43 annotation dataset. Please note
 that the example shows a maximum of ten overlapping features per locus as
 vertical scrolling is currently not supported properly.</p>
 <div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/gff3-gene-annotations.json" height="360" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GFF3 gene annotation example.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;GFF3 gene annotation example.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Data source: sorted and bgzip-compressed copy of the GENCODE human release 43 (GRCh38.p13) comprehensive gene annotation GFF3. Terms: GENCODE project data are open access.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
 
 <span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
 
@@ -3416,6 +3731,12 @@ vertical scrolling is currently not supported properly.</p>
 
 </genome-spy-doc-embed></div>
 
+<div class="admonition disclaimer">
+<p>The visualization uses a sorted and bgzip-compressed copy of the GENCODE
+human <a href="https://www.gencodegenes.org/human/release_43.html">release 43 (GRCh38.p13) comprehensive gene annotation
+GFF3</a>. GENCODE states
+that all project data are open access.</p>
+</div>
 <p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
 <a href="https://github.com/GMOD/tabix-js">tabix-js</a> and <a href="https://github.com/GMOD/gff-js">gff-js</a> libraries.</p>
 <h2 id="bam">BAM<a class="headerlink" href="#bam" title="Permanent link">&para;</a></h2>
@@ -3436,6 +3757,12 @@ interested in this feature.</p>
 <dd>
 <p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 <p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<p><strong>Default value:</strong> <code>200</code></p>
+</dd>
+<dt><code>debounceDomainChange</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
@@ -3466,7 +3793,10 @@ interested in this feature.</p>
 <div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/bam-read-alignments.json" height="350" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BAM read alignment example.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;BAM read alignment example.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Data source: mirrored copy of UCSC&#39;s `bamExample.bam`, described by UCSC as 1000 Genomes NA12878 read alignments for hg18. Terms: UCSC downloadable data files are freely reusable.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
 
 <span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg18&quot;</span><span class="p">,</span>
 
@@ -3486,7 +3816,6 @@ interested in this feature.</p>
 
 <span class="w">  </span><span class="nt">&quot;vconcat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
@@ -3510,7 +3839,6 @@ interested in this feature.</p>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pileup&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_lane&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">      </span><span class="p">],</span>
@@ -3546,12 +3874,24 @@ interested in this feature.</p>
 <span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 </genome-spy-doc-embed></div>
 
+<div class="admonition disclaimer">
+<p>The visualization uses a mirrored copy of UCSC's
+<a href="http://genome.ucsc.edu/goldenPath/help/examples/bamExample.bam">bamExample.bam</a>,
+which the UCSC BAM format documentation describes as 1000 Genomes read
+alignments for individual NA12878 on hg18. UCSC states that its downloadable
+data files are freely available for public and commercial use, and the
+underlying 1000 Genomes / IGSR data are also openly available.</p>
+</div>
 <p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
 <a href="https://github.com/GMOD/bam-js">bam-js</a> library.</p>
 <h2 id="axis-ticks">Axis ticks<a class="headerlink" href="#axis-ticks" title="Permanent link">&para;</a></h2>
@@ -3574,7 +3914,7 @@ according to your requirements. The data source generates data objects with
 </dd>
 </dl>
 <h3 id="example_6">Example<a class="headerlink" href="#example_6" title="Permanent link">&para;</a></h3>
-<p>The example below generates approximately three ticks for the <code>x</code> axis.</p>
+<p>The visualization below generates approximately three ticks for the <code>x</code> axis.</p>
 <div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/axis-ticks.json" height="80" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -3678,7 +4018,7 @@ The data source generates data objects with the following fields: <code>name</co
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 12, 2026 13:21:05 UTC">March 12, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 17, 2026 14:06:47 UTC">March 17, 2026</span>
   </span>
 
     

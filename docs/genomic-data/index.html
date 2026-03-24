@@ -321,6 +321,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1133,6 +1137,8 @@
       
         
       
+        
+      
     
     
     
@@ -1301,6 +1307,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../grammar/mark/tick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../grammar/mark/text/" class="md-nav__link">
         
   
@@ -1336,6 +1370,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../grammar/conditional-encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -1357,7 +1419,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1379,14 +1441,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1505,6 +1567,34 @@
     
   
     Scales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grammar/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config And Themes
   
 
     
@@ -2108,32 +2198,70 @@
 
 <h1 id="working-with-genomic-data">Working with Genomic Data<a class="headerlink" href="#working-with-genomic-data" title="Permanent link">&para;</a></h1>
 <p><img align="right" alt="DNA" src="../img/DNA.svg" style="width: 25%" /></p>
-<p>GenomeSpy provides various features that are specifically designed for working
-with genomic data.</p>
+<p>GenomeSpy includes features designed specifically for genomic data.</p>
 <h2 id="loading-genomic-data">Loading Genomic Data<a class="headerlink" href="#loading-genomic-data" title="Permanent link">&para;</a></h2>
-<p>While GenomeSpy can load data from various <a href="../grammar/data/">sources</a>,
-such as CSV and JSON files, genomic data is often stored in specialized file
-formats, such as Indexed FASTA, BigWig, and BigBed. GenomeSpy provides <a href="../grammar/data/lazy/">built-in
-support</a> for these formats, allowing you to load and
-visualize genomic data without the need for additional tools or libraries.</p>
+<p>GenomeSpy can load data from various <a href="../grammar/data/">sources</a>, such
+as CSV and JSON files. However, genomic data is often stored in specialized
+formats such as Indexed FASTA, BigWig, and BigBed. GenomeSpy provides <a href="../grammar/data/lazy/">built-in
+support</a> for these formats, so you can load and
+visualize genomic data without additional tools or libraries.</p>
+<ul>
+<li><a href="../grammar/data/">Data sources</a> gives the overall data-loading model
+  and the distinction between eager and lazy sources.</li>
+<li><a href="../grammar/data/lazy/">Lazy data sources</a> covers Indexed FASTA, BigWig,
+  BigBed, VCF, GFF3, and BAM.</li>
+</ul>
 <h2 id="handling-genomic-coordinates">Handling Genomic Coordinates<a class="headerlink" href="#handling-genomic-coordinates" title="Permanent link">&para;</a></h2>
-<p>Genomic data is typically associated with genomic coordinates comprising
-chromosome names and positions within the chromosomes. GenomeSpy provides
-various <a href="genomic-coordinates/">techniques</a> for working with such
-coordinates, such as
+<p>Genomic data is typically associated with coordinates that include chromosome
+names and positions within each chromosome. GenomeSpy provides several
+techniques for working with these coordinates, such as
 <a href="../grammar/transform/linearize-genomic-coordinate/">transforming</a> between
 different coordinate systems and visualizing data in the context of a reference
 genome.</p>
+<ul>
+<li><a href="genomic-coordinates/">Genomic coordinates</a> explains assemblies, contigs,
+  locus encoding, and coordinate counting.</li>
+<li><a href="../grammar/scale/#locus-scale">Locus scale</a> documents chromosome-aware
+  genomic axes.</li>
+<li><a href="../grammar/scale/#genome-axis-for-loci">Genome axis for loci</a> shows how to
+  configure the genome axis and grid.</li>
+<li><a href="../grammar/transform/linearize-genomic-coordinate/">linearizeGenomicCoordinate</a>
+  covers explicit coordinate linearization in the data flow.</li>
+</ul>
 <h2 id="data-transformations">Data Transformations<a class="headerlink" href="#data-transformations" title="Permanent link">&para;</a></h2>
-<p>Specialized transformations, such as
+<p>Specialized transformations such as
 <a href="../grammar/transform/regex-fold/">folding</a> tabular data, calculating
 <a href="../grammar/transform/coverage/">coverage</a>, and computing a <a href="../grammar/transform/pileup/">piled
-up</a> layout allows GenomeSpy to be adapted for
-many genomic data visualization and analysis tasks.</p>
+up</a> layout help adapt GenomeSpy to many genomic
+data visualization and analysis tasks.</p>
+<ul>
+<li><a href="../grammar/transform/">Transforms overview</a> explains how
+  transformation pipelines work in GenomeSpy.</li>
+<li><a href="../grammar/transform/regex-fold/">regexFold</a> turns repeated tabular fields
+  into tidy row-wise data.</li>
+<li><a href="../grammar/transform/coverage/">coverage</a> computes coverage from genomic
+  intervals.</li>
+<li><a href="../grammar/transform/pileup/">pileup</a> lays out overlapping features into
+  rows.</li>
+<li><a href="../grammar/transform/flatten-compressed-exons/">flattenCompressedExons</a>
+  expands compact exon encodings for gene models.</li>
+<li><a href="../grammar/transform/filter-scored-labels/">filterScoredLabels</a> keeps
+  labels readable while zooming.</li>
+</ul>
 <h2 id="gpu-accelerated-rendering">GPU-accelerated Rendering<a class="headerlink" href="#gpu-accelerated-rendering" title="Permanent link">&para;</a></h2>
-<p>As genomic data can be large and complex, GenomeSpy's GPU-accelerated rendering
-allows you to visualize, navigate, and explore large datasets with high
+<p>Genomic datasets can be large and complex. GenomeSpy's GPU-accelerated
+rendering lets you visualize, navigate, and explore them with high
 performance.</p>
+<ul>
+<li><a href="../grammar/scale/#zooming-and-panning">Scale zooming and panning</a> covers
+  interactive navigation on genomic axes.</li>
+<li><a href="../grammar/composition/multiscale/">Multiscale composition</a> helps build
+  overview-detail views with semantic zooming.</li>
+<li><a href="../grammar/composition/layer/#zoom-driven-layer-opacity">Layer zoom-driven opacity</a>
+  gives lower-level control over zoom-dependent detail.</li>
+<li><a href="../grammar/mark/point/">Point mark</a> documents geometric and semantic zoom
+  techniques for dense point data.</li>
+</ul>
 
 
 
@@ -2154,7 +2282,7 @@ performance.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 14, 2024 17:19:10 UTC">March 14, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 19, 2026 18:15:07 UTC">March 19, 2026</span>
   </span>
 
     

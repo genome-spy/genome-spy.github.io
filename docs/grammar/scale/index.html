@@ -14,7 +14,7 @@
         <link rel="prev" href="../composition/multiscale/">
       
       
-        <link rel="next" href="../import/">
+        <link rel="next" href="../config/">
       
       
         
@@ -303,6 +303,10 @@
       
         
           
+        
+      
+        
+      
         
       
         
@@ -1135,6 +1139,8 @@
       
         
       
+        
+      
     
     
     
@@ -1303,6 +1309,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../mark/tick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mark/text/" class="md-nav__link">
         
   
@@ -1338,6 +1372,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../conditional-encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -1359,7 +1421,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1381,14 +1443,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1605,10 +1667,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#range-indices" class="md-nav__link">
+  <a href="#segment-indices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Range indices
+        Segment indices
       
     </span>
   </a>
@@ -1683,6 +1745,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Domain from Selection Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1774,6 +1853,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config And Themes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2343,10 +2450,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#range-indices" class="md-nav__link">
+  <a href="#segment-indices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Range indices
+        Segment indices
       
     </span>
   </a>
@@ -2421,6 +2528,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Domain from Selection Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2541,6 +2665,10 @@ colors that indicate the type).</p>
 <p>By default, GenomeSpy configures scales automatically based on the data type
 (e.g., <code>"ordinal"</code>), the visual channel, and the data domain. As the defaults
 may not always be optimal, the scales can be configured explicitly.</p>
+<p>Scale defaults can also be configured globally using <code>config.scale</code> and
+<code>config.range</code>. For example, color defaults by data type can be set with
+<code>nominalColorScheme</code>, <code>ordinalColorScheme</code>, and <code>quantitativeColorScheme</code>. See
+<a href="../config/">Config, Themes, and Styles</a>.</p>
 <div class="highlight"><span class="filename">Specifying a scale for a channel</span><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -2587,6 +2715,9 @@ band. Properties such as <code>padding</code> work just as in the band scale.</p
 numbering of the axis labels can be adjusted to give an impression of, for
 example, one-based indexing.</p>
 <p>The index scale is used by default when the <em>field</em> type is <code>"index"</code>.</p>
+<p>User-facing two-point domains on index scales are inclusive. For example,
+<code>"domain": [2, 4]</code> covers the indices 2, 3, and 4. Domains inferred from
+observed data also include the last observed index.</p>
 <h4 id="point-indices">Point indices<a class="headerlink" href="#point-indices" title="Permanent link">&para;</a></h4>
 <p>When only the primary positional channel is defined, marks such as <code>"rect"</code> fill
 the whole band.</p>
@@ -2641,12 +2772,14 @@ centered.</p>
 
 </genome-spy-doc-embed></div>
 
-<h4 id="range-indices">Range indices<a class="headerlink" href="#range-indices" title="Permanent link">&para;</a></h4>
-<p>When the index scale is used with ranges, e.g., a <code>"rect"</code> mark that has both
+<h4 id="segment-indices">Segment indices<a class="headerlink" href="#segment-indices" title="Permanent link">&para;</a></h4>
+<p>When the index scale is used with segments, e.g., a <code>"rect"</code> mark that has both
 the <code>x</code> and <code>x2</code> channels defined, the ranges must be <a href="http://genome.ucsc.edu/blog/the-ucsc-genome-browser-coordinate-counting-systems/">half
 open</a>.
 For example, if a segment should cover the indices 2, 3, and 4, a half-open
 range would be defined as: x = 2 (inclusive), x2 = 5 (exclusive).</p>
+<p>Thus, <code>scale.domain</code> uses inclusive bounds, whereas ranged mark encodings such
+as <code>x</code>/<code>x2</code> use half-open interval edges directly.</p>
 <div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/scale/range-indices.json" height="100" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -2746,6 +2879,7 @@ A genomic coordinate consists of a chromosome (<code>chrom</code>) and an option
 (<code>pos</code>). The left bound's position defaults to zero, whereas the right bound's
 position defaults to the size of the chromosome. Thus, the chromosomes are
 inclusive.</p>
+<p>Two-point locus domains are inclusive and cover both endpoint positions.</p>
 <p>For example, chromosomes 3, 4, and 5:</p>
 <div class="highlight"><pre><span></span><code><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr3&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr5&quot;</span><span class="w"> </span><span class="p">}]</span>
 </code></pre></div>
@@ -2800,18 +2934,40 @@ inclusive.</p>
 <p>Use an object-valued <code>domain</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;zoom&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;brush&quot;</span>
+<span class="w">      </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;brush&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;initial&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Essential properties:</p>
-<ul>
-<li><code>param</code>: name of an interval selection parameter</li>
-<li><code>encoding</code> (optional): selection interval channel to use (<code>"x"</code> or <code>"y"</code>)</li>
-<li><code>sync</code> (optional): <code>"oneWay"</code> or <code>"twoWay"</code>; if omitted, behavior is inferred from zoomability</li>
-</ul>
+<h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>encoding</code></dt>
+<dd>
+<p>Type: string</p>
+<p>Selection interval channel to use.</p>
+<p>If omitted, GenomeSpy infers the channel from the scale channel when possible (e.g., <code>x</code> -&gt; <code>x</code>, <code>x2</code> -&gt; <code>x</code>, <code>y</code> -&gt; <code>y</code>, <code>y2</code> -&gt; <code>y</code>).</p>
+</dd>
+<dt><code>initial</code></dt>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/">ComplexDomain</a></p>
+<p>Initial configured domain for the linked scale when the linked interval selection is empty.</p>
+<p>Only supported when the linked scale is zoomable.</p>
+<p>Clearing the linked interval selection resets the domain to the normal default/data-derived domain instead of restoring <code>initial</code>.</p>
+</dd>
+<dt><code>param</code> <span class="required">Required</span></dt>
+<dd>
+<p>Type: string</p>
+<p>Name of an interval selection parameter that provides the domain.</p>
+</dd>
+</dl>
+<p>Clearing the linked interval selection returns the scale to its normal default
+or data-derived domain instead of restoring <code>initial</code>.</p>
+<p>Zoomable linked scales automatically synchronize the domain back to the
+selection. Non-zoomable linked scales only read the selection. This affects
+<code>"index"</code> and <code>"locus"</code> scales as they are zoomable by default.</p>
 <p>For detailed brushing-and-linking guidance and interactive examples, see
 <a href="../parameters/#interval-selection">Parameters: Interval selection</a>.</p>
 <h2 id="zooming-and-panning">Zooming and panning<a class="headerlink" href="#zooming-and-panning" title="Permanent link">&para;</a></h2>
@@ -2832,6 +2988,7 @@ the <code>zoom</code> scale property to <code>true</code>. Example:</p>
 <p>The zoom <code>extent</code> allows you to control how far the scale can be zoomed out or
 panned (translated). Zoom extent equals the scale domain by default, except for
 the <code>"locus"</code> scale, where it includes the whole genome. Example:</p>
+<p>For <code>"index"</code> and <code>"locus"</code> scales, two-point zoom extents are inclusive.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="err">...</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -2844,7 +3001,7 @@ the <code>"locus"</code> scale, where it includes the whole genome. Example:</p>
 </code></pre></div>
 <h2 id="named-scales">Named scales<a class="headerlink" href="#named-scales" title="Permanent link">&para;</a></h2>
 <p>By giving the scale a name, it can be accessed through the
-<a href="../../api/#api_getScaleResolutionByName">API</a>.</p>
+<a href="../../api/#named-scales">API</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="err">...</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -2875,8 +3032,8 @@ for supported properties. TODO: Write a proper documentation.</p>
 <div class="admonition note">
 <p class="admonition-title">Grid lines</p>
 <p>Grid lines are hidden by default in GenomeSpy and can be enabled for each
-view using the <code>grid</code> property. The default behavior will be configurable
-once GenomeSpy supports themes.</p>
+view using the <code>grid</code> property. Global defaults can be configured with
+<a href="../config/"><code>config.axis*</code></a>.</p>
 </div>
 <h3 id="genome-axis-for-loci">Genome axis for loci<a class="headerlink" href="#genome-axis-for-loci" title="Permanent link">&para;</a></h3>
 <p>The genome axis is a special axis for the <code>"locus"</code> scale. It displays
@@ -2944,7 +3101,7 @@ for a view.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 12, 2026 13:21:05 UTC">March 12, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 20, 2026 13:20:14 UTC">March 20, 2026</span>
   </span>
 
     

@@ -11,10 +11,10 @@
         <link rel="canonical" href="https://genomespy.app/docs/grammar/mark/text/">
       
       
-        <link rel="prev" href="../rule/">
+        <link rel="prev" href="../tick/">
       
       
-        <link rel="next" href="../../composition/">
+        <link rel="next" href="../../conditional-encoding/">
       
       
         
@@ -303,6 +303,10 @@
       
         
           
+        
+      
+        
+      
         
       
         
@@ -1137,6 +1141,8 @@
       
         
       
+        
+      
     
     
     
@@ -1302,6 +1308,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../tick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1448,6 +1482,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../conditional-encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -1469,7 +1531,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1491,14 +1553,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1617,6 +1679,34 @@
     
   
     Scales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config And Themes
   
 
     
@@ -2280,9 +2370,14 @@ and <code>color</code> and <code>opacity</code> channels, point mark has the fol
 </dd>
 <dt><code>baseline</code></dt>
 <dd>
-<p>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code></p>
+<p>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code></p>
 <p>The vertical alignment of the text.  One of <code>"top"</code>, <code>"middle"</code>, <code>"bottom"</code>.</p>
 <p><strong>Default value:</strong> <code>"bottom"</code></p>
+</dd>
+<dt><code>buildIndex</code></dt>
+<dd>
+<p>Type: boolean</p>
+<p>Whether the x channel should build an index for efficient subset rendering. If omitted, GenomeSpy enables indexing automatically for positional x encodings.</p>
 </dd>
 <dt><code>clip</code></dt>
 <dd>
@@ -2293,6 +2388,12 @@ and <code>color</code> and <code>opacity</code> channels, point mark has the fol
 <dd>
 <p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 <p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
+</dd>
+<dt><code>cursor</code></dt>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Mouse cursor shown while the pointer is over the mark. Mark cursor takes precedence over enclosing view cursors.</p>
+<p><strong>Default value:</strong> browser default</p>
 </dd>
 <dt><code>dx</code></dt>
 <dd>
@@ -2378,6 +2479,11 @@ and <code>color</code> and <code>opacity</code> channels, point mark has the fol
 <p>If the <code>squeeze</code> property is true and secondary positional channels (<code>x2</code> and/or <code>y2</code>) are used, the text is scaled to fit mark's width and/or height.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
+<dt><code>style</code></dt>
+<dd>
+<p>Type: string | string[]</p>
+<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones.</p>
+</dd>
 <dt><code>text</code></dt>
 <dd>
 <p>Type: <a href="https://genomespy.app/docs/grammar/types/">Scalar</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
@@ -2386,7 +2492,7 @@ and <code>color</code> and <code>opacity</code> channels, point mark has the fol
 </dd>
 <dt><code>tooltip</code></dt>
 <dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">HandledTooltip</a> | null</p>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">HandledTooltip</a> | null | boolean</p>
 <p>Tooltip handler. If <code>null</code>, no tooltip is shown. If string, specifies the <a href="https://genomespy.app/docs/api/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
 </dd>
 <dt><code>viewportEdgeFadeDistanceBottom</code></dt>
@@ -2568,7 +2674,7 @@ good in sequence logos, but <em>Source Sans Pro</em> seems decent.</p>
 <span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Information&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;y2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_y1&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;base&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;base&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;base&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>

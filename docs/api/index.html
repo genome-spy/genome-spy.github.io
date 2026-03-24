@@ -321,6 +321,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1133,6 +1137,8 @@
       
         
       
+        
+      
     
     
     
@@ -1301,6 +1307,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../grammar/mark/tick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tick
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../grammar/mark/text/" class="md-nav__link">
         
   
@@ -1336,6 +1370,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../grammar/conditional-encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -1357,7 +1419,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1379,14 +1441,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1505,6 +1567,34 @@
     
   
     Scales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grammar/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config And Themes
   
 
     
@@ -2033,6 +2123,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#entry-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry points
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-api" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2093,6 +2194,28 @@
     <span class="md-ellipsis">
       
         Named data provider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theme-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#named-scales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Named scales
       
     </span>
   </a>
@@ -2205,6 +2328,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#entry-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry points
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-api" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2265,6 +2399,28 @@
     <span class="md-ellipsis">
       
         Named data provider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theme-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#named-scales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Named scales
       
     </span>
   </a>
@@ -2333,11 +2489,22 @@
 <p>The public JavaScript API is currently quite minimal.</p>
 <h2 id="embedding">Embedding<a class="headerlink" href="#embedding" title="Permanent link">&para;</a></h2>
 <p>See the <a href="../getting-started/">getting started</a> page.</p>
+<h2 id="entry-points">Entry points<a class="headerlink" href="#entry-points" title="Permanent link">&para;</a></h2>
+<p>When embedding GenomeSpy into a web application, you can choose between two
+entry points for importing the <code>embed</code> function:</p>
+<p><code>@genome-spy/core</code> is the default entry point. It includes the standard
+GenomeSpy runtime and the built-in data source and format registrations.</p>
+<p><code>@genome-spy/core/minimal</code> provides the same <code>embed</code> API without the built-in
+loaders. Import the data source and format modules you need explicitly:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/minimal&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/data/formats/parquet.js&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/data/sources/lazy/bigBedSource.js&quot;</span><span class="p">;</span>
+</code></pre></div>
 <h2 id="the-api">The API<a class="headerlink" href="#the-api" title="Permanent link">&para;</a></h2>
 <p>The <code>embed</code> function returns a promise that resolves into an object that
 provides the current public API. The API is documented in the <a href="https://github.com/genome-spy/genome-spy/blob/master/packages/core/src/types/embedApi.d.ts">interface
 definition</a>.</p>
-<p>For practical examples on using the API, check the
+<p>For practical examples of using the API, check the
 <a href="https://github.com/genome-spy/genome-spy/tree/master/packages/embed-examples">embed-examples</a>
 package.</p>
 <h2 id="embed-options">Embed options<a class="headerlink" href="#embed-options" title="Permanent link">&para;</a></h2>
@@ -2355,7 +2522,7 @@ specification, declare a named data source with the <code>data.name</code> prope
 </code></pre></div>
 <p>There are two ways to provide the data:</p>
 <h3 id="updatenameddata"><code>updateNamedData()</code><a class="headerlink" href="#updatenameddata" title="Permanent link">&para;</a></h3>
-<p>Use <code>updateNamedData(name, data)</code> when your application pushes updated data
+<p>Use <code>updateNamedData(name, data)</code> when your application provides updated data
 explicitly.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="s2">&quot;#container&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">spec</span><span class="p">);</span>
 
@@ -2365,7 +2532,7 @@ explicitly.</p>
 <span class="p">]);</span>
 </code></pre></div>
 <h3 id="nameddataprovider"><code>namedDataProvider</code><a class="headerlink" href="#nameddataprovider" title="Permanent link">&para;</a></h3>
-<p>Use the <code>namedDataProvider</code> embed option when GenomeSpy should pull named data
+<p>Use the <code>namedDataProvider</code> embed option when GenomeSpy should load named data
 on demand.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="s2">&quot;#container&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">spec</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">namedDataProvider</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -2381,17 +2548,35 @@ on demand.</p>
 <p>If <code>updateNamedData(name)</code> is called without the second argument, GenomeSpy
 retrieves the data from the provider instead.</p>
 <p>Named data can be updated dynamically, but it does not automatically react to
-user interactions. For practical examples, check the
+user interactions. For practical examples, see the
 <a href="https://github.com/genome-spy/genome-spy/tree/master/packages/embed-examples">embed-examples</a>
 package.</p>
 <h3 id="named-data-provider">Named data provider<a class="headerlink" href="#named-data-provider" title="Permanent link">&para;</a></h3>
 <p>See <a href="#named-data">Named data</a>.</p>
+<h3 id="theme-config">Theme config<a class="headerlink" href="#theme-config" title="Permanent link">&para;</a></h3>
+<p>Use the <code>theme</code> embed option to provide global defaults without modifying the
+specification itself:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">embed</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span><span class="w"> </span><span class="nx">spec</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">mark</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;#1f77b4&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">point</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">size</span><span class="o">:</span><span class="w"> </span><span class="mf">80</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">scale</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nominalColorScheme</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;set2&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Theme config is merged before <code>spec.config</code>, so spec-local config and explicit
+properties still take precedence.</p>
+<p>See also <a href="../grammar/config/">Config, Themes, and Styles</a>.</p>
+<h3 id="named-scales">Named scales<a class="headerlink" href="#named-scales" title="Permanent link">&para;</a></h3>
+<p>Named scales can be accessed through <code>getScaleResolutionByName()</code>. To define a
+named scale in a spec, set <code>scale.name</code>. See <a href="../grammar/scale/">Scale</a>.</p>
 <h3 id="custom-tooltip-handlers">Custom tooltip handlers<a class="headerlink" href="#custom-tooltip-handlers" title="Permanent link">&para;</a></h3>
 <p>GenomeSpy provides two built-in tooltip handlers.</p>
 <p>The
 <a href="https://github.com/genome-spy/genome-spy/blob/master/packages/core/src/tooltip/dataTooltipHandler.js"><code>default</code></a>
 handler displays the underlying datum's properties in a table. Property names
-starting with an underscore are omitted. The values are formatted nicely.</p>
+starting with an underscore are omitted. The values are formatted for
+readability.</p>
 <p>When positional channels use a <code>"locus"</code> scale, the default handler also shows
 derived genomic rows before raw rows:</p>
 <ul>
@@ -2406,11 +2591,11 @@ linearized coordinates can be verified for the hovered datum.</p>
 <a href="https://github.com/genome-spy/genome-spy/blob/master/packages/core/src/tooltip/refseqGeneTooltipHandler.js"><code>refseqgene</code></a>
 handler fetches a summary description for a gene symbol using the
 <a href="https://www.ncbi.nlm.nih.gov/home/develop/api/">Entrez</a> API. For an example,
-check the RefSeq gene track in
+see the RefSeq gene track in
 <a href="https://observablehq.com/@tuner/annotation-tracks">this notebook</a>.
 Custom search terms can be provided through the <code>params</code> property.</p>
 <p>Handlers are functions that receive the hovered mark's underlying datum and
-return a promise that resolves into a string, HTMLElement, or lit-html
+return a promise that resolves to a string, HTMLElement, or lit-html
 <a href="https://lit.dev/docs/libraries/standalone-templates/">TemplateResult</a>.</p>
 <p>The function signature:</p>
 <div class="highlight"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="nx">TooltipHandler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
@@ -2498,7 +2683,7 @@ default. See the example below.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 11, 2026 11:45:10 UTC">March 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 24, 2026 13:04:17 UTC">March 24, 2026</span>
   </span>
 
     

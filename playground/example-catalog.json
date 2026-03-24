@@ -221,6 +221,45 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/config/theme",
+    "title": "Built-in FiveThirtyEight theme example.",
+    "description": "Built-in FiveThirtyEight theme example.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Config",
+    "specPath": "examples/docs/grammar/config/theme.json",
+    "specUrl": "/docs/examples/docs/grammar/config/theme.json",
+    "screenshotPath": "examples/docs/grammar/config/theme.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/config/theme.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/config/title-styles",
+    "title": "Built-in title style examples.",
+    "description": "Built-in title style examples.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Config",
+    "specPath": "examples/docs/grammar/config/title-styles.json",
+    "specUrl": "/docs/examples/docs/grammar/config/title-styles.json",
+    "screenshotPath": "examples/docs/grammar/config/title-styles.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/config/title-styles.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/config/config-overview",
+    "title": "Configuration overview example.",
+    "description": "Configuration overview example.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Config",
+    "specPath": "examples/docs/grammar/config/config-overview.json",
+    "specUrl": "/docs/examples/docs/grammar/config/config-overview.json",
+    "screenshotPath": "examples/docs/grammar/config/config-overview.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/config/config-overview.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/data/eager/bedpe",
     "title": "BEDPE example using link marks between paired breakpoints.",
     "description": "BEDPE example using link marks between paired breakpoints.",
@@ -312,6 +351,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/data/lazy/vcf-clinvar",
+    "title": "ClinVar variants track example.",
+    "description": "ClinVar variants track example.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Data / Lazy",
+    "specPath": "examples/docs/grammar/data/lazy/vcf-clinvar.json",
+    "specUrl": "/docs/examples/docs/grammar/data/lazy/vcf-clinvar.json",
+    "screenshotPath": "examples/docs/grammar/data/lazy/vcf-clinvar.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/data/lazy/vcf-clinvar.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/data/lazy/gff3-gene-annotations",
     "title": "GFF3 gene annotation example.",
     "description": "GFF3 gene annotation example.",
@@ -335,6 +387,19 @@
     "specUrl": "/docs/examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.png",
     "screenshotUrl": "/docs/examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/import/named-template-repeat-config",
+    "title": "Template import example with import-site config overrides.",
+    "description": "Template import example with import-site config overrides.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Import",
+    "specPath": "examples/docs/grammar/import/named-template-repeat-config.json",
+    "specUrl": "/docs/examples/docs/grammar/import/named-template-repeat-config.json",
+    "screenshotPath": "examples/docs/grammar/import/named-template-repeat-config.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/import/named-template-repeat-config.png",
     "sourceMode": "shared-example"
   },
   {
@@ -598,6 +663,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/mark/tick/tick-mark",
+    "title": "Tick mark example.",
+    "description": "Tick mark example.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Mark / Tick",
+    "specPath": "examples/docs/grammar/mark/tick/tick-mark.json",
+    "specUrl": "/docs/examples/docs/grammar/mark/tick/tick-mark.json",
+    "screenshotPath": "examples/docs/grammar/mark/tick/tick-mark.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/mark/tick/tick-mark.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/parameters/point-selection",
     "title": "A bar chart with highlighting on hover and selecting on click. (Inspired by Tableau's interaction style.)",
     "description": "A bar chart with highlighting on hover and selecting on click. (Inspired by Tableau's interaction style.)",
@@ -611,6 +689,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/parameters/penguins",
+    "title": "Aggregating brushed penguins",
+    "description": "Aggregating brushed penguins",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Parameters",
+    "specPath": "examples/docs/grammar/parameters/penguins.json",
+    "specUrl": "/docs/examples/docs/grammar/parameters/penguins.json",
+    "screenshotPath": "examples/docs/grammar/parameters/penguins.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/parameters/penguins.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/parameters/expressions",
     "title": "Expression parameter example.",
     "description": "Expression parameter example.",
@@ -621,6 +712,19 @@
     "specUrl": "/docs/examples/docs/grammar/parameters/expressions.json",
     "screenshotPath": "examples/docs/grammar/parameters/expressions.png",
     "screenshotUrl": "/docs/examples/docs/grammar/parameters/expressions.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/parameters/genome-overview-detail",
+    "title": "Genome overview + detail example.",
+    "description": "Genome overview + detail example.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Parameters",
+    "specPath": "examples/docs/grammar/parameters/genome-overview-detail.json",
+    "specUrl": "/docs/examples/docs/grammar/parameters/genome-overview-detail.json",
+    "screenshotPath": "examples/docs/grammar/parameters/genome-overview-detail.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/parameters/genome-overview-detail.png",
     "sourceMode": "shared-example"
   },
   {
@@ -754,6 +858,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/transform/aggregate/aggregate-boxplot",
+    "title": "Aggregate-driven boxplot of penguin body mass by species.",
+    "description": "Aggregate-driven boxplot of penguin body mass by species.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Transform / Aggregate",
+    "specPath": "examples/docs/grammar/transform/aggregate/aggregate-boxplot.json",
+    "specUrl": "/docs/examples/docs/grammar/transform/aggregate/aggregate-boxplot.json",
+    "screenshotPath": "examples/docs/grammar/transform/aggregate/aggregate-boxplot.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/transform/aggregate/aggregate-boxplot.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/transform/coverage/coverage-pileup",
     "title": "Coverage and pileup transform example.",
     "description": "Coverage and pileup transform example.",
@@ -806,6 +923,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/transform/measure-text/measure-text-table",
+    "title": "Measure text widths in a table-like layout.",
+    "description": "Measure text widths in a table-like layout.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Transform / Measure Text",
+    "specPath": "examples/docs/grammar/transform/measure-text/measure-text-table.json",
+    "specUrl": "/docs/examples/docs/grammar/transform/measure-text/measure-text-table.json",
+    "screenshotPath": "examples/docs/grammar/transform/measure-text/measure-text-table.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/transform/measure-text/measure-text-table.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/transform/pileup/pileup-lanes",
     "title": "Pileup transform example.",
     "description": "Pileup transform example.",
@@ -842,6 +972,97 @@
     "specUrl": "/docs/examples/docs/grammar/transform/stack/stacked-bar-plot.json",
     "screenshotPath": "examples/docs/grammar/transform/stack/stacked-bar-plot.png",
     "screenshotUrl": "/docs/examples/docs/grammar/transform/stack/stacked-bar-plot.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/config/config-scoped-view",
+    "title": "Child views can override parent config scopes.",
+    "description": "Child views can override parent config scopes.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Config",
+    "specPath": "examples/core/config/config-scoped-view.json",
+    "specUrl": "/docs/examples/core/config/config-scoped-view.json",
+    "screenshotPath": "examples/core/config/config-scoped-view.png",
+    "screenshotUrl": "/docs/examples/core/config/config-scoped-view.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/config/config-crazy-theme-style-showcase",
+    "title": "Complex showcase of root theme + scoped config/style overrides (no subtree themes).",
+    "description": "Complex showcase of root theme + scoped config/style overrides (no subtree themes).",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Config",
+    "specPath": "examples/core/config/config-crazy-theme-style-showcase.json",
+    "specUrl": "/docs/examples/core/config/config-crazy-theme-style-showcase.json",
+    "screenshotPath": "examples/core/config/config-crazy-theme-style-showcase.png",
+    "screenshotUrl": "/docs/examples/core/config/config-crazy-theme-style-showcase.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/config/config-scale-schemes-by-type",
+    "title": "Configure nominal/ordinal/quantitative color schemes globally.",
+    "description": "Configure nominal/ordinal/quantitative color schemes globally.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Config",
+    "specPath": "examples/core/config/config-scale-schemes-by-type.json",
+    "specUrl": "/docs/examples/core/config/config-scale-schemes-by-type.json",
+    "screenshotPath": "examples/core/config/config-scale-schemes-by-type.png",
+    "screenshotUrl": "/docs/examples/core/config/config-scale-schemes-by-type.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/config/config-import-override",
+    "title": "Import-site config overrides parent scopes but not imported root config.",
+    "description": "Import-site config overrides parent scopes but not imported root config.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Config",
+    "specPath": "examples/core/config/config-import-override.json",
+    "specUrl": "/docs/examples/core/config/config-import-override.json",
+    "screenshotPath": "examples/core/config/config-import-override.png",
+    "screenshotUrl": "/docs/examples/core/config/config-import-override.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/config/config-imported-track",
+    "title": "Imported specs can carry self-contained config.",
+    "description": "Imported specs can carry self-contained config.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Config",
+    "specPath": "examples/core/config/config-imported-track.json",
+    "specUrl": "/docs/examples/core/config/config-imported-track.json",
+    "screenshotPath": "examples/core/config/config-imported-track.png",
+    "screenshotUrl": "/docs/examples/core/config/config-imported-track.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/config/config-basic",
+    "title": "Top-level config defaults for marks and axes.",
+    "description": "Top-level config defaults for marks and axes.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Config",
+    "specPath": "examples/core/config/config-basic.json",
+    "specUrl": "/docs/examples/core/config/config-basic.json",
+    "screenshotPath": "examples/core/config/config-basic.png",
+    "screenshotUrl": "/docs/examples/core/config/config-basic.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/config/config-theme-comparison-bars",
+    "title": "Two-row comparison: root GenomeSpy defaults vs scoped Vega-Lite-like config overrides.",
+    "description": "Two-row comparison: root GenomeSpy defaults vs scoped Vega-Lite-like config overrides.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Config",
+    "specPath": "examples/core/config/config-theme-comparison-bars.json",
+    "specUrl": "/docs/examples/core/config/config-theme-comparison-bars.json",
+    "screenshotPath": "examples/core/config/config-theme-comparison-bars.png",
+    "screenshotUrl": "/docs/examples/core/config/config-theme-comparison-bars.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1308,8 +1529,8 @@
     "category": "Scales",
     "specPath": "examples/core/scales/constrained_locus_test.json",
     "specUrl": "/docs/examples/core/scales/constrained_locus_test.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/scales/constrained_locus_test.png",
+    "screenshotUrl": "/docs/examples/core/scales/constrained_locus_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1482,19 +1703,6 @@
     "sourceMode": "shared-example"
   },
   {
-    "id": "core/selection/penguins",
-    "title": "Aggregating brushed penguins",
-    "description": "Aggregating brushed penguins",
-    "sourceGroup": "core",
-    "sourceLabel": "Core",
-    "category": "Selection",
-    "specPath": "examples/core/selection/penguins.json",
-    "specUrl": "/docs/examples/core/selection/penguins.json",
-    "screenshotPath": "examples/core/selection/penguins.png",
-    "screenshotUrl": "/docs/examples/core/selection/penguins.png",
-    "sourceMode": "shared-example"
-  },
-  {
     "id": "core/selection/interval_genome",
     "title": "Interval_genome",
     "description": "",
@@ -1503,8 +1711,8 @@
     "category": "Selection",
     "specPath": "examples/core/selection/interval_genome.json",
     "specUrl": "/docs/examples/core/selection/interval_genome.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/selection/interval_genome.png",
+    "screenshotUrl": "/docs/examples/core/selection/interval_genome.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1547,19 +1755,6 @@
     "sourceMode": "shared-example"
   },
   {
-    "id": "core/selection/interval_linked_domain_two_way",
-    "title": "Two-way brushing and linking with hierarchical params.",
-    "description": "Two-way brushing and linking with hierarchical params.",
-    "sourceGroup": "core",
-    "sourceLabel": "Core",
-    "category": "Selection",
-    "specPath": "examples/core/selection/interval_linked_domain_two_way.json",
-    "specUrl": "/docs/examples/core/selection/interval_linked_domain_two_way.json",
-    "screenshotPath": "examples/core/selection/interval_linked_domain_two_way.png",
-    "screenshotUrl": "/docs/examples/core/selection/interval_linked_domain_two_way.png",
-    "sourceMode": "shared-example"
-  },
-  {
     "id": "core/selection/interval_concat",
     "title": "Using interval selection to brush across concatenated views.",
     "description": "Using interval selection to brush across concatenated views.",
@@ -1570,6 +1765,19 @@
     "specUrl": "/docs/examples/core/selection/interval_concat.json",
     "screenshotPath": "examples/core/selection/interval_concat.png",
     "screenshotUrl": "/docs/examples/core/selection/interval_concat.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/selection/interval_linked_domain_two_way",
+    "title": "Zoomable brushing and linking with hierarchical params.",
+    "description": "Zoomable brushing and linking with hierarchical params.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Selection",
+    "specPath": "examples/core/selection/interval_linked_domain_two_way.json",
+    "specUrl": "/docs/examples/core/selection/interval_linked_domain_two_way.json",
+    "screenshotPath": "examples/core/selection/interval_linked_domain_two_way.png",
+    "screenshotUrl": "/docs/examples/core/selection/interval_linked_domain_two_way.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1625,19 +1833,6 @@
     "sourceMode": "shared-example"
   },
   {
-    "id": "core/techniques/import_from_template",
-    "title": "Importing templates defined within the specification.",
-    "description": "Importing templates defined within the specification.",
-    "sourceGroup": "core",
-    "sourceLabel": "Core",
-    "category": "Techniques",
-    "specPath": "examples/core/techniques/import_from_template.json",
-    "specUrl": "/docs/examples/core/techniques/import_from_template.json",
-    "screenshotPath": "examples/core/techniques/import_from_template.png",
-    "screenshotUrl": "/docs/examples/core/techniques/import_from_template.png",
-    "sourceMode": "shared-example"
-  },
-  {
     "id": "core/techniques/semantic_zoom",
     "title": "Semantic_zoom",
     "description": "",
@@ -1665,13 +1860,39 @@
   },
   {
     "id": "app/samples",
-    "title": "Samples",
-    "description": "",
+    "title": "A trivial example showing how to display multiple samples in the App.",
+    "description": "A trivial example showing how to display multiple samples in the App.",
     "sourceGroup": "app",
     "sourceLabel": "App",
     "category": "General",
     "specPath": "examples/app/samples.json",
     "specUrl": "/docs/examples/app/samples.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "app/copy-numbers",
+    "title": "Aggregated copy-number-style segments with logR values across a toy genome indexed from 0 to 100.",
+    "description": "Aggregated copy-number-style segments with logR values across a toy genome indexed from 0 to 100.",
+    "sourceGroup": "app",
+    "sourceLabel": "App",
+    "category": "General",
+    "specPath": "examples/app/copy-numbers.json",
+    "specUrl": "/docs/examples/app/copy-numbers.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "app/expression-zscores",
+    "title": "Toy expression heatmap with five samples and gene-wise z-scores.",
+    "description": "Toy expression heatmap with five samples and gene-wise z-scores.",
+    "sourceGroup": "app",
+    "sourceLabel": "App",
+    "category": "General",
+    "specPath": "examples/app/expression-zscores.json",
+    "specUrl": "/docs/examples/app/expression-zscores.json",
     "screenshotPath": null,
     "screenshotUrl": null,
     "sourceMode": "shared-example"
