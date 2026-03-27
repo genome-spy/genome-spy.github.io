@@ -5542,8 +5542,11 @@
           "type": "boolean"
         },
         "title": {
-          "description": "A title for the axis (none by default).",
-          "type": "string"
+          "description": "A title for the axis (none by default). Set to `null` to remove it.",
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "titleColor": {
           "description": "Color of the title, can be in hex color code or regular color name.",
@@ -5875,8 +5878,11 @@
           "type": "boolean"
         },
         "title": {
-          "description": "A title for the axis (none by default).",
-          "type": "string"
+          "description": "A title for the axis (none by default). Set to `null` to remove it.",
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "titleColor": {
           "description": "Color of the title, can be in hex color code or regular color name.",
@@ -7228,6 +7234,13 @@
     "CsvDataFormat": {
       "additionalProperties": false,
       "properties": {
+        "columns": {
+          "description": "Optional ordered list of field names for headerless CSV or TSV input. When provided, the first row is interpreted as data rather than a header row.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "parse": {
           "anyOf": [
             {
@@ -7344,6 +7357,13 @@
     "DsvDataFormat": {
       "additionalProperties": false,
       "properties": {
+        "columns": {
+          "description": "Optional ordered list of field names for headerless delimiter-separated input. When provided, the first row is interpreted as data rather than a header row.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "delimiter": {
           "description": "The delimiter between records. The delimiter must be a single character (i.e., a single 16-bit code unit); so, ASCII delimiters are fine, but emoji delimiters are not.",
           "maxLength": 1,
@@ -7442,10 +7462,24 @@
           "description": "Color of the marks – either fill or stroke color based on  the `filled` property of mark definition.\n\n_Note:_ 1) For fine-grained control over both fill and stroke colors of the marks, please use the `fill` and `stroke` channels. The `fill` or `stroke` encodings have higher precedence than `color`, thus may override the `color` encoding if conflicting encodings are specified. 2) See the scale documentation for more information about customizing [color scheme](https://vega.github.io/vega-lite/docs/scale.html#scheme)."
         },
         "dx": {
-          "$ref": "#/definitions/NumericMarkPropDef"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/NumericMarkPropDef"
+            },
+            {
+              "$ref": "#/definitions/MarkPropExprDef"
+            }
+          ]
         },
         "dy": {
-          "$ref": "#/definitions/NumericMarkPropDef"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/NumericMarkPropDef"
+            },
+            {
+              "$ref": "#/definitions/MarkPropExprDef"
+            }
+          ]
         },
         "facetIndex": {
           "$ref": "#/definitions/FieldDefWithoutScale",
@@ -7815,7 +7849,14 @@
           "description": "X coordinates of the marks.\n\nThe `value` of this channel can be a number between zero and one."
         },
         "x2": {
-          "$ref": "#/definitions/Position2Def",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Position2Def"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "X2 coordinates of the marks.\n\nThe `value` of this channel can be a number between zero and one."
         },
         "y": {
@@ -7823,7 +7864,14 @@
           "description": "Y coordinates of the marks.\n\nThe `value` of this channel can be a number between zero and one."
         },
         "y2": {
-          "$ref": "#/definitions/Position2Def",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Position2Def"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Y2 coordinates of the marks.\n\nThe `value` of this channel can be a number between zero and one."
         }
       },
@@ -8825,8 +8873,11 @@
           "type": "boolean"
         },
         "title": {
-          "description": "A title for the axis (none by default).",
-          "type": "string"
+          "description": "A title for the axis (none by default). Set to `null` to remove it.",
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "titleColor": {
           "description": "Color of the title, can be in hex color code or regular color name.",
@@ -10255,6 +10306,55 @@
           "$ref": "#/definitions/ValueDefWithCondition%3Cnumber%2CType%3E"
         }
       ]
+    },
+    "MarkPropExprDef": {
+      "additionalProperties": false,
+      "properties": {
+        "band": {
+          "description": "Relative position on band scale. For example, the marks will be positioned at the beginning of the band if set to `0`, and at the middle of the band if set to `0.5`.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "domainInert": {
+          "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
+          "type": "boolean"
+        },
+        "expr": {
+          "description": "An expression. Properties of the data can be accessed through the `datum` object.",
+          "type": "string"
+        },
+        "resolutionChannel": {
+          "$ref": "#/definitions/ChannelWithScale",
+          "description": "An alternative channel for scale resolution.\n\nThis is mainly for internal use and allows using `color` channel to resolve `fill` and `stroke` channels under certain circumstances."
+        },
+        "scale": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Scale"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "An object defining properties of the channel's scale, which is the function that transforms values in the data domain (numbers, dates, strings, etc) to visual values (pixels, colors, sizes) of the encoding channels.\n\nIf `null`, the scale will be [disabled and the data value will be directly encoded](https://vega.github.io/vega-lite/docs/scale.html#disable).\n\n__Default value:__ If undefined, default [scale properties](https://vega.github.io/vega-lite/docs/scale.html) are applied.\n\n__See also:__ [`scale`](https://vega.github.io/vega-lite/docs/scale.html) documentation."
+        },
+        "title": {
+          "description": "A title for the field. If `null`, the title will be removed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/Type"
+        }
+      },
+      "required": [
+        "expr",
+        "type"
+      ],
+      "type": "object"
     },
     "MarkProps": {
       "anyOf": [
@@ -13630,6 +13730,9 @@
             },
             {
               "$ref": "#/definitions/SelectionDomainRef"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
             }
           ],
           "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
@@ -13645,6 +13748,18 @@
         "domainMin": {
           "description": "Sets the minimum value in the scale domain, overriding the domain property. This property is only intended for use with scales having continuous domains.",
           "type": "number"
+        },
+        "domainTransition": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "additionalProperties": {},
+              "type": "object"
+            }
+          ],
+          "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
         },
         "exponent": {
           "description": "The exponent of the `pow` scale.",
@@ -13827,6 +13942,9 @@
             },
             {
               "$ref": "#/definitions/SelectionDomainRef"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
             }
           ],
           "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
@@ -13842,6 +13960,18 @@
         "domainMin": {
           "description": "Sets the minimum value in the scale domain, overriding the domain property. This property is only intended for use with scales having continuous domains.",
           "type": "number"
+        },
+        "domainTransition": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "additionalProperties": {},
+              "type": "object"
+            }
+          ],
+          "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
         },
         "exponent": {
           "description": "The exponent of the `pow` scale.",
@@ -13895,6 +14025,9 @@
                 },
                 {
                   "$ref": "#/definitions/SelectionDomainRef"
+                },
+                {
+                  "$ref": "#/definitions/ExprRef"
                 }
               ],
               "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
@@ -13910,6 +14043,18 @@
             "domainMin": {
               "description": "Sets the minimum value in the scale domain, overriding the domain property. This property is only intended for use with scales having continuous domains.",
               "type": "number"
+            },
+            "domainTransition": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "additionalProperties": {},
+                  "type": "object"
+                }
+              ],
+              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
             },
             "exponent": {
               "description": "The exponent of the `pow` scale.",
@@ -14104,6 +14249,9 @@
                 },
                 {
                   "$ref": "#/definitions/SelectionDomainRef"
+                },
+                {
+                  "$ref": "#/definitions/ExprRef"
                 }
               ],
               "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
@@ -14119,6 +14267,18 @@
             "domainMin": {
               "description": "Sets the minimum value in the scale domain, overriding the domain property. This property is only intended for use with scales having continuous domains.",
               "type": "number"
+            },
+            "domainTransition": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "additionalProperties": {},
+                  "type": "object"
+                }
+              ],
+              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
             },
             "exponent": {
               "description": "The exponent of the `pow` scale.",
@@ -14333,6 +14493,9 @@
                 },
                 {
                   "$ref": "#/definitions/SelectionDomainRef"
+                },
+                {
+                  "$ref": "#/definitions/ExprRef"
                 }
               ],
               "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
@@ -14348,6 +14511,18 @@
             "domainMin": {
               "description": "Sets the minimum value in the scale domain, overriding the domain property. This property is only intended for use with scales having continuous domains.",
               "type": "number"
+            },
+            "domainTransition": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "additionalProperties": {},
+                  "type": "object"
+                }
+              ],
+              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
             },
             "exponent": {
               "description": "The exponent of the `pow` scale.",
@@ -14539,6 +14714,9 @@
                 },
                 {
                   "$ref": "#/definitions/SelectionDomainRef"
+                },
+                {
+                  "$ref": "#/definitions/ExprRef"
                 }
               ],
               "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
@@ -14554,6 +14732,18 @@
             "domainMin": {
               "description": "Sets the minimum value in the scale domain, overriding the domain property. This property is only intended for use with scales having continuous domains.",
               "type": "number"
+            },
+            "domainTransition": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "additionalProperties": {},
+                  "type": "object"
+                }
+              ],
+              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
             },
             "exponent": {
               "description": "The exponent of the `pow` scale.",
@@ -14758,6 +14948,9 @@
                 },
                 {
                   "$ref": "#/definitions/SelectionDomainRef"
+                },
+                {
+                  "$ref": "#/definitions/ExprRef"
                 }
               ],
               "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
@@ -14773,6 +14966,18 @@
             "domainMin": {
               "description": "Sets the minimum value in the scale domain, overriding the domain property. This property is only intended for use with scales having continuous domains.",
               "type": "number"
+            },
+            "domainTransition": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "additionalProperties": {},
+                  "type": "object"
+                }
+              ],
+              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
             },
             "exponent": {
               "description": "The exponent of the `pow` scale.",
@@ -16895,8 +17100,11 @@
           "type": "boolean"
         },
         "title": {
-          "description": "A title for the axis (none by default).",
-          "type": "string"
+          "description": "A title for the axis (none by default). Set to `null` to remove it.",
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "titleColor": {
           "description": "Color of the title, can be in hex color code or regular color name.",

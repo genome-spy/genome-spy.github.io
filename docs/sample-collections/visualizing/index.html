@@ -1827,9 +1827,33 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../genomic-data/examples/" class="md-nav__link">
+    
+    
+      
         
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../genomic-data/examples/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -1843,7 +1867,115 @@
   
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/ascat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASCAT Copy-Number Segmentation
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/ascat-algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASCAT Algorithm in GenomeSpy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/sashimi-plot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sashimi plot from splice junctions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2138,6 +2270,17 @@
     <span class="md-ellipsis">
       
         Toggleable View Visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions
       
     </span>
   </a>
@@ -2497,6 +2640,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#search" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2562,12 +2716,12 @@ page for more information.</p>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.74.0/dist/style.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.75.0/dist/style.css&quot;</span>
     <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.74.0/dist/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.75.0/dist/index.es.js&quot;</span><span class="p">;</span>
 
 <span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;spec.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// Show the dataflow inspector button in the toolbar (default: true)</span>
@@ -2917,10 +3071,13 @@ above for details.</p>
 <h2 id="toggleable-view-visibility">Toggleable View Visibility<a class="headerlink" href="#toggleable-view-visibility" title="Permanent link">&para;</a></h2>
 <p>When working with a complex visualization that includes multiple tracks and
 extensive metadata, it may not always be necessary to display all views
-simultaneously. The GenomeSpy app offers users the ability to toggle the
-visibility of nodes within the view hierarchy. This visibility state is also
-included in shareable links and bookmarks, allowing users to easily access their
-preferred configurations.</p>
+simultaneously. GenomeSpy App allows for interactive toggling of the visibility
+of nodes within the view hierarchy. This visibility state is also included in
+shareable links and bookmarks, allowing users to easily access their preferred
+configurations.</p>
+<p>Toggleable visibility requires each view to have an explicit unique <code>name</code>.
+GenomeSpy uses the name to address visibility state in bookmarks and shared
+state, and to keep views unambiguous within the import scope.</p>
 <p>Views have two properties for controlling the visibility:</p>
 <dl>
 <dt><code>visible</code></dt>
@@ -2947,6 +3104,13 @@ radio buttons:</p>
 <span class="w">  </span><span class="err">...</span>
 <span class="p">}</span>
 </code></pre></div>
+<h2 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h2>
+<p>The app provides context-menu actions for sorting, filtering, grouping, and
+other sample-collection operations. For an overview, see
+<a href="../analyzing/">Analyzing Sample Collections</a>.</p>
+<p>Actions in sample collections also require each view to have an explicit unique
+<code>name</code>. GenomeSpy uses the name to address the view in action definitions and
+to replay those actions from bookmarks, shared state, and provenance history.</p>
 <h2 id="search">Search<a class="headerlink" href="#search" title="Permanent link">&para;</a></h2>
 <p>The location/search field in the toolbar allows users to quickly navigate to
 features in the data. To make features searchable, use the <code>search</code> channel
@@ -3010,7 +3174,7 @@ exploration</a></p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 23, 2026 13:55:56 UTC">March 23, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 25, 2026 08:13:23 UTC">March 25, 2026</span>
   </span>
 
     
