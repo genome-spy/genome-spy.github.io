@@ -33,11 +33,7 @@ class GenomeSpyShowcase extends LitElement {
     }
   `;
 
-  #isInViewport = false;
-  #isUserPaused = false;
-  #playbackWait = null;
-  #resumePlayback = null;
-  #intersectionObserver = null;
+  #pauseObserver = null;
 
   constructor() {
     super();
@@ -48,13 +44,12 @@ class GenomeSpyShowcase extends LitElement {
   }
 
   firstUpdated() {
-    this.#setupPlaybackControls();
+    this.#pauseObserver = addPauseObserver(this);
     this.#init();
   }
 
   disconnectedCallback() {
-    this.#releasePlaybackWait();
-    this.#intersectionObserver?.disconnect();
+    this.#pauseObserver?.disconnect();
     super.disconnectedCallback();
   }
 
@@ -75,7 +70,7 @@ class GenomeSpyShowcase extends LitElement {
     while (true) {
       for (const entry of script) {
         if ("loci" in entry) {
-          await this.#waitForPlayback();
+          await this.#pauseObserver.waitForPlayback();
           await xResolution.zoomTo(entry.loci, entry.duration);
         } else if ("duration" in entry) {
           await new Promise((resolve) => setTimeout(resolve, entry.duration));
@@ -83,62 +78,102 @@ class GenomeSpyShowcase extends LitElement {
       }
     }
   }
-
-  #setupPlaybackControls() {
-    this.#intersectionObserver = new IntersectionObserver(([entry]) => {
-      this.#isInViewport = entry.isIntersecting;
-      this.#syncPlaybackWait();
-    });
-    this.#intersectionObserver.observe(this);
-
-    const pausePlayback = () => {
-      this.#isUserPaused = true;
-      this.#syncPlaybackWait();
-    };
-    const resumePlayback = () => {
-      this.#isUserPaused = false;
-      this.#syncPlaybackWait();
-    };
-
-    this.addEventListener("mousedown", pausePlayback);
-    this.addEventListener("wheel", pausePlayback, { passive: true });
-    this.addEventListener("mouseleave", resumePlayback);
-  }
-
-  #canPlay() {
-    return this.#isInViewport && !this.#isUserPaused;
-  }
-
-  #syncPlaybackWait() {
-    if (this.#canPlay()) {
-      this.#releasePlaybackWait();
-      return;
-    }
-
-    if (!this.#playbackWait) {
-      this.#playbackWait = new Promise((resolve) => {
-        this.#resumePlayback = resolve;
-      });
-    }
-  }
-
-  #releasePlaybackWait() {
-    if (this.#resumePlayback) {
-      this.#resumePlayback();
-      this.#resumePlayback = null;
-    }
-    this.#playbackWait = null;
-  }
-
-  async #waitForPlayback() {
-    while (!this.#canPlay()) {
-      this.#syncPlaybackWait();
-      await this.#playbackWait;
-    }
-  }
 }
 
 customElements.define("genome-spy-showcase", GenomeSpyShowcase);
+
+/**
+ * @param {HTMLElement} element
+ */
+function addPauseObserver(element) {
+  let isInViewport = false;
+  let isUserPaused = false;
+  let resumeTimeout = null;
+  let playbackWait = null;
+  /** @type {null | (() => void)} */
+  let resumePlayback = null;
+
+  const canPlay = () => isInViewport && !isUserPaused;
+
+  const cancelResumeTimeout = () => {
+    if (resumeTimeout !== null) {
+      window.clearTimeout(resumeTimeout);
+      resumeTimeout = null;
+    }
+  };
+
+  const releasePlaybackWait = () => {
+    if (resumePlayback) {
+      resumePlayback();
+      resumePlayback = null;
+    }
+    playbackWait = null;
+  };
+
+  const syncPlaybackWait = () => {
+    if (canPlay()) {
+      releasePlaybackWait();
+      return;
+    }
+
+    if (!playbackWait) {
+      playbackWait = new Promise((resolve) => {
+        resumePlayback = resolve;
+      });
+    }
+  };
+
+  const pausePlayback = () => {
+    cancelResumeTimeout();
+    isUserPaused = true;
+    syncPlaybackWait();
+  };
+
+  const resumePlaybackAfterDelay = () => {
+    cancelResumeTimeout();
+    resumeTimeout = window.setTimeout(() => {
+      resumeTimeout = null;
+      isUserPaused = false;
+      syncPlaybackWait();
+    }, 1000);
+  };
+
+  const retainPause = () => {
+    cancelResumeTimeout();
+  };
+
+  const observer = new IntersectionObserver(([entry]) => {
+    isInViewport = entry.isIntersecting;
+    syncPlaybackWait();
+  });
+  observer.observe(element);
+
+  element.addEventListener("mousedown", pausePlayback);
+  element.addEventListener("wheel", pausePlayback, { passive: true });
+  element.addEventListener("mouseenter", retainPause);
+  element.addEventListener("mouseleave", resumePlaybackAfterDelay);
+
+  return {
+    isPaused() {
+      return !canPlay();
+    },
+    async waitForPlayback() {
+      while (!canPlay()) {
+        syncPlaybackWait();
+        await playbackWait;
+      }
+    },
+    disconnect() {
+      cancelResumeTimeout();
+      releasePlaybackWait();
+      observer.disconnect();
+      element.removeEventListener("mousedown", pausePlayback);
+      element.removeEventListener("wheel", pausePlayback);
+      element.removeEventListener("mouseenter", retainPause);
+      element.removeEventListener("mouseleave", resumePlaybackAfterDelay);
+    },
+  };
+}
 
 /**
  *
