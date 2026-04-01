@@ -83,11 +83,25 @@
         "values": [0, 1]
       },
 
-      "encoding": {
-        "color": { "value": "#909090" }
-      },
-
       "layer": [
+        {
+          "name": "bodies",
+
+          "title": "Gene annotations",
+
+          "mark": {
+            "type": "rule",
+            "color": "#b0b0b0",
+            "minLength": 0.5,
+            "size": 1,
+            "tooltip": null
+          },
+          "encoding": {
+            "x": { "field": "_start", "type": "locus" },
+            "x2": { "field": "_end", "band": 0 },
+            "search": { "field": "symbol" }
+          }
+        },
         {
           "name": "exons",
 
@@ -98,31 +112,17 @@
 
           "mark": {
             "type": "rect",
+            "stroke": "#b0b0b0",
+            "strokeWidth": 1,
+            "fill": "#f0f0f0",
             "minOpacity": 0.2,
-            "minWidth": 0.5,
+            "minWidth": 0.1,
             "tooltip": null
           },
 
           "encoding": {
             "x": { "field": "exonStart", "type": "locus" },
             "x2": { "field": "exonEnd" }
-          }
-        },
-        {
-          "name": "bodies",
-
-          "title": "Gene annotations",
-
-          "mark": {
-            "type": "rule",
-            "minLength": 0.5,
-            "size": 1,
-            "tooltip": null
-          },
-          "encoding": {
-            "x": { "field": "_start", "type": "locus" },
-            "x2": { "field": "_end", "band": 0 },
-            "search": { "field": "symbol" }
           }
         }
       ]
