@@ -11,9 +11,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&text=GenomeSpy&display=swap" rel="stylesheet" />
 
-    <link rel="preload" href="lit-all.min.js" as="script" />
-    <link rel="preload" href="example-card.js" as="script" />
-    <link rel="preload" href="showcase/showcase.js" as="script" />
+    <link rel="modulepreload" href="lit-all.min.js" />
+    <link rel="modulepreload" href="example-card.js" />
+
+    <link rel="modulepreload" href="showcase/showcase.js" />
+    <link rel="preload" href="showcase/spec/spec.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="showcase/spec/overview.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="showcase/spec/cytobands.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="showcase/spec/sequence.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="showcase/spec/gc5Base.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="showcase/spec/conservation.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="showcase/spec/genes.json" as="fetch" crossorigin="anonymous" />
 
     <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -24,14 +32,14 @@
 
     <meta property="og:title" content="GenomeSpy" />
     <meta property="og:description"
-        content="A visualization grammar and a GPU-accelerated rendering engine for genomic (and other) data" />
+        content="A visualization grammar and GPU-accelerated rendering engine for genomic (and other) data" />
     <meta property="og:image" content="https://genomespy.app/img/genomespy-card.png" />
     <meta property="og:url" content="https://genomespy.app/" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="GenomeSpy" />
     <meta name="twitter:description"
-        content="A visualization grammar and a GPU-accelerated rendering engine for genomic (and other) data" />
+        content="A visualization grammar and GPU-accelerated rendering engine for genomic (and other) data" />
     <meta name="twitter:image" content="https://genomespy.app/img/genomespy-card.png" />
 </head>
 
