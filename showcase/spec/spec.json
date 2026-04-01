@@ -32,7 +32,7 @@
 
       "vconcat": [
         { "import": { "url": "sequence.json" } },
-        { "import": { "url": "gc5base.json" } },
+        { "import": { "url": "gc5Base.json" } },
         { "import": { "url": "conservation.json" } },
         { "import": { "url": "genes.json" } }
       ]
