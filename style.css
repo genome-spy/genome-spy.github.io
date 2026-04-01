@@ -135,6 +135,7 @@ section:not(.dark) + section:not(.dark) {
 
 #showcase {
   padding-bottom: 0;
+  height: 340px;
 }
 
 #building-blocks > a {
