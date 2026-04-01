@@ -13,6 +13,7 @@
 
     <link rel="preload" href="lit-all.min.js" as="script" />
     <link rel="preload" href="example-card.js" as="script" />
+    <link rel="preload" href="showcase/showcase.js" as="script" />
 
     <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -37,6 +38,7 @@
 <body>
     <script src="https://kit.fontawesome.com/2e65d8a80b.js" crossorigin="anonymous"></script>
     <script type="module" src="example-card.js"></script>
+    <script type="module" src="./showcase/showcase.js"></script>
 
     <section id="title" class="dark">
         <div class="flex-figure">
@@ -72,6 +74,12 @@
             in cancer genomics research. It has since been used in several publications, some of which
             are listed in the <a href="#publications">Publications</a> section below.
         </p>
+
+        <p>The example below showcases an interactive, genome-browser-like visualization created with GenomeSpy:</p>
+    </section>
+
+    <section id="showcase">
+        <genome-spy-showcase></genome-spy-showcase>
     </section>
 
     <section id="building-blocks">

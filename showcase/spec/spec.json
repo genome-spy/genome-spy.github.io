@@ -1,0 +1,47 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/@genome-spy/core/dist/schema.json",
+
+  "description": [
+    "Genome overview + detail example.",
+    "The top view provides an overview of the genome, and the bottom view shows details for the brushed region in the overview.",
+    "The overview is implemented as a template that can be reused across different specs."
+  ],
+
+  "padding": {
+    "top": 5,
+    "right": 1,
+    "bottom": 1,
+    "left": 1
+  },
+
+  "assembly": "hg38",
+
+  "params": [{ "name": "brush" }],
+
+  "vconcat": [
+    {
+      "spacing": 0,
+
+      "vconcat": [
+        { "import": { "url": "overview.json" } },
+        { "import": { "url": "cytobands.json" } }
+      ]
+    },
+    {
+      "resolve": { "axis": { "x": "shared" } },
+
+      "vconcat": [
+        { "import": { "url": "sequence.json" } },
+        { "import": { "url": "gc5base.json" } },
+        { "import": { "url": "conservation.json" } },
+        { "import": { "url": "genes.json" } }
+      ]
+    }
+  ],
+
+  "config": {
+    "mark": {
+      "color": "rgb(127,187,221)"
+    }
+  }
+}

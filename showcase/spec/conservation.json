@@ -1,0 +1,50 @@
+{
+  "$schema": "https://unpkg.com/@genome-spy/core/dist/schema.json",
+
+  "name": "PhyloP",
+
+  "height": 50,
+
+  "title": {
+    "text": "Evolutionary Conservation (phyloP)",
+    "style": "overlay"
+  },
+
+  "view": {},
+
+  "data": {
+    "lazy": {
+      "type": "bigwig",
+      "url": "http://data.genomespy.app/sample-data/hg38.phyloP100way.bw"
+    }
+  },
+
+  "encoding": {
+    "y": {
+      "field": "score",
+      "type": "quantitative",
+      "scale": {},
+      "axis": {
+        "title": "Score",
+        "grid": true,
+        "gridDash": [2, 4]
+      }
+    },
+    "x": {
+      "chrom": "chrom",
+      "pos": "start",
+      "type": "locus"
+    },
+    "x2": {
+      "chrom": "chrom",
+      "pos": "end"
+    }
+  },
+
+  "mark": {
+    "type": "rect",
+    "minWidth": 0.5,
+    "minOpacity": 0.4,
+    "tooltip": null
+  }
+}

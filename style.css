@@ -1,6 +1,7 @@
 @font-face {
   font-family: "American Typewriter";
-  src: local("American Typewriter"),
+  src:
+    local("American Typewriter"),
     url("//db.onlinewebfonts.com/t/bf35ddaa105b41dd66cb2eb93424c588.woff2")
       format("woff2"),
     url("//db.onlinewebfonts.com/t/bf35ddaa105b41dd66cb2eb93424c588.woff")
@@ -130,6 +131,10 @@ section:not(.dark) + section:not(.dark) {
 
 #title p {
   font-size: clamp(17px, 2.2vw, 22px);
+}
+
+#showcase {
+  padding-bottom: 0;
 }
 
 #building-blocks > a {
