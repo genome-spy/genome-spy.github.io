@@ -15,7 +15,7 @@
   "data": {
     "lazy": {
       "type": "bigwig",
-      "url": "http://data.genomespy.app/sample-data/hg38.phyloP100way.bw"
+      "url": "https://data.genomespy.app/sample-data/hg38.phyloP100way.bw"
     }
   },
 
