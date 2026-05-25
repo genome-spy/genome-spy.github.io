@@ -27,6 +27,10 @@
           },
           "type": "array"
         },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "fields": {
           "description": "The data fields to apply aggregate functions to. This array should correspond with the `ops` and `as` arrays. If no fields or operations are specified, a count aggregation will be applied by default.",
           "items": {
@@ -4252,6 +4256,10 @@
               ],
               "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
             },
+            "metadata": {
+              "$ref": "#/definitions/MetadataDef",
+              "description": "Metadata sources and metadata matrix layout."
+            },
             "name": {
               "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
               "type": "string"
@@ -4436,7 +4444,7 @@
             },
             "samples": {
               "$ref": "#/definitions/SampleDef",
-              "description": "Sample metadata definition. If the object is empty, the sample identifiers will be inferred from the data."
+              "description": "Sample identity and label configuration.\n\nIf `identity` is omitted, sample identifiers are inferred from the data."
             },
             "spec": {
               "anyOf": [
@@ -4454,6 +4462,7 @@
               "type": "string"
             },
             "stickySummaries": {
+              "description": "Keep summary tracks visible while scrolling samples.\n\n__Default value:__ `true`",
               "type": "boolean"
             },
             "templates": {
@@ -5331,7 +5340,7 @@
           "type": "string"
         },
         "url": {
-          "description": "URL to an Arrow data source.\n\nReserved for future use.",
+          "description": "URL to an Arrow metadata source.\n\nReserved for future use.",
           "type": "string"
         }
       },
@@ -6612,6 +6621,10 @@
           "$ref": "#/definitions/FieldName",
           "description": "The field having the chromosome or contig."
         },
+        "description": {
+          "description": "A description of the encoded position. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
@@ -6677,6 +6690,10 @@
     "CollectParams": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "groupby": {
           "description": "Arranges the data into consecutive batches based on the groups. This is mainly intended for internal use so that faceted data can be handled as batches.",
           "items": {
@@ -6720,11 +6737,11 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Logical identifier name shown in UI and diagnostics.\n\nExample values: `\"symbol\"`, `\"ensembl\"`, `\"entrez\"`.",
+          "description": "Name of the identifier field shown in UI and diagnostics.\n\nExample values: `\"symbol\"`, `\"ensembl\"`, `\"entrez\"`.",
           "type": "string"
         },
         "path": {
-          "description": "Backend path that provides identifier values aligned to matrix columns.\n\nThe array length must equal the number of columns in the matrix.",
+          "description": "Backend path to identifier values aligned to matrix columns.\n\nThe array length must equal the number of columns in the matrix.",
           "type": "string"
         },
         "primary": {
@@ -6816,6 +6833,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "description": {
+          "description": "A description of the encoded expression. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
@@ -6874,6 +6895,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "description": {
+          "description": "A description of the encoded expression. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
@@ -6928,6 +6953,10 @@
         "not": {}
       },
       "properties": {
+        "description": {
+          "description": "A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
@@ -6981,6 +7010,10 @@
         "not": {}
       },
       "properties": {
+        "description": {
+          "description": "A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
@@ -7049,6 +7082,10 @@
           ],
           "description": "A constant value in data domain."
         },
+        "description": {
+          "description": "A description of the encoded datum. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
@@ -7095,6 +7132,10 @@
     "ConditionalParameter<ValueDef<(number|ExprRef)>>": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the encoded value. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "empty": {
           "description": "For selection parameters, the predicate of empty selections returns true by default. Override this behavior, by setting this property `empty: false`.",
           "type": "boolean"
@@ -7131,6 +7172,10 @@
     "ConditionalParameter<ValueDef<(string|null|ExprRef)>>": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the encoded value. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "empty": {
           "description": "For selection parameters, the predicate of empty selections returns true by default. Override this behavior, by setting this property `empty: false`.",
           "type": "boolean"
@@ -7205,6 +7250,10 @@
         "chrom": {
           "$ref": "#/definitions/Field",
           "description": "An optional chromosome field that is passed through. TODO: groupby"
+        },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
         },
         "end": {
           "$ref": "#/definitions/Field",
@@ -7289,7 +7338,7 @@
               "$ref": "#/definitions/InlineData"
             }
           ],
-          "description": "Eager tabular metadata source using the standard data contract.\n\nSupports `UrlData` and `InlineData`."
+          "description": "Eager tabular metadata source.\n\nSupports `UrlData` and `InlineData`."
         },
         "sampleIdField": {
           "description": "Field name in the table that matches sample ids in the view.\n\n__Default value:__ `\"sample\"`",
@@ -7395,6 +7444,10 @@
     "DynamicCallbackData": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the data source. Can be used for documentation and to explain the role of the data in the visualization.",
+          "type": "string"
+        },
         "dynamicCallbackSource": {
           "description": "The View class has `getDynamicData()` methods that provides the data. This is intended for internal use.",
           "type": "boolean"
@@ -7512,6 +7565,10 @@
         "semanticScore": {
           "additionalProperties": false,
           "properties": {
+            "description": {
+              "description": "A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.",
+              "type": "string"
+            },
             "field": {
               "description": "__Required.__ A string defining the name of the field from which to pull a data value or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.\n\n__See also:__ [`field`](https://vega.github.io/vega-lite/docs/field.html) documentation.\n\n__Notes:__ 1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `\"field\": \"foo.bar\"` and `\"field\": \"foo['bar']\"`). If field names contain dots or brackets but are not nested, you can use `\\\\` to escape dots and brackets (e.g., `\"a\\\\.b\"` and `\"a\\\\[0\\\\]\"`). See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html). 2) `field` is not required if `aggregate` is `count`.",
               "type": "string"
@@ -7583,6 +7640,10 @@
                   "description": "Builds and index for efficient rendering of subsets of the data. This setting is useful when rendering large amounts of data and often only a small subset of the data is visible. An example of such a situation is a scatter plot spanning the whole genome.\n\nThis setting implicitly sorts the data by the field assigned on the `x` channel.",
                   "type": "boolean"
                 },
+                "description": {
+                  "description": "A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.",
+                  "type": "string"
+                },
                 "domainInert": {
                   "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
                   "type": "boolean"
@@ -7649,6 +7710,10 @@
                 "chrom": {
                   "$ref": "#/definitions/FieldName",
                   "description": "The field having the chromosome or contig."
+                },
+                "description": {
+                  "description": "A description of the encoded position. Can be used for documentation and to explain the meaning of the channel mapping.",
+                  "type": "string"
                 },
                 "domainInert": {
                   "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
@@ -7730,6 +7795,10 @@
                   ],
                   "description": "A constant value in data domain."
                 },
+                "description": {
+                  "description": "A description of the encoded datum. Can be used for documentation and to explain the meaning of the channel mapping.",
+                  "type": "string"
+                },
                 "domainInert": {
                   "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
                   "type": "boolean"
@@ -7789,6 +7858,10 @@
                   "description": "Builds and index for efficient rendering of subsets of the data. This setting is useful when rendering large amounts of data and often only a small subset of the data is visible. An example of such a situation is a scatter plot spanning the whole genome.\n\nThis setting implicitly sorts the data by the field assigned on the `x` channel.",
                   "type": "boolean"
                 },
+                "description": {
+                  "description": "A description of the encoded expression. Can be used for documentation and to explain the meaning of the channel mapping.",
+                  "type": "string"
+                },
                 "domainInert": {
                   "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
                   "type": "boolean"
@@ -7820,6 +7893,10 @@
                 "buildIndex": {
                   "description": "Builds and index for efficient rendering of subsets of the data. This setting is useful when rendering large amounts of data and often only a small subset of the data is visible. An example of such a situation is a scatter plot spanning the whole genome.\n\nThis setting implicitly sorts the data by the field assigned on the `x` channel.",
                   "type": "boolean"
+                },
+                "description": {
+                  "description": "A description of the encoded value. Can be used for documentation and to explain the meaning of the channel mapping.",
+                  "type": "string"
                 },
                 "title": {
                   "description": "A title for the field. If `null`, the title will be removed.",
@@ -7903,6 +7980,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "description": {
+          "description": "A description of the encoded expression. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "expr": {
           "description": "An expression. Properties of the data can be accessed through the `datum` object.",
           "type": "string"
@@ -7926,6 +8007,10 @@
     "ExprFilterParams": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "expr": {
           "description": "An expression string. The data object is removed if the expression evaluates to false.",
           "type": "string"
@@ -7962,6 +8047,10 @@
     "FieldDefWithoutScale": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "field": {
           "description": "__Required.__ A string defining the name of the field from which to pull a data value or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.\n\n__See also:__ [`field`](https://vega.github.io/vega-lite/docs/field.html) documentation.\n\n__Notes:__ 1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `\"field\": \"foo.bar\"` and `\"field\": \"foo['bar']\"`). If field names contain dots or brackets but are not nested, you can use `\\\\` to escape dots and brackets (e.g., `\"a\\\\.b\"` and `\"a\\\\[0\\\\]\"`). See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html). 2) `field` is not required if `aggregate` is `count`.",
           "type": "string"
@@ -7998,6 +8087,10 @@
             }
           ],
           "description": "One or more value definition(s) with [a parameter or a test predicate](https://vega.github.io/vega-lite/docs/condition.html).\n\n__Note:__ A field definition's `condition` property can only contain [conditional value definitions](https://vega.github.io/vega-lite/docs/condition.html#value) since Vega-Lite only allows at most one encoded field per encoding channel."
+        },
+        "description": {
+          "description": "A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
         },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
@@ -8058,6 +8151,10 @@
           ],
           "description": "One or more value definition(s) with [a parameter or a test predicate](https://vega.github.io/vega-lite/docs/condition.html).\n\n__Note:__ A field definition's `condition` property can only contain [conditional value definitions](https://vega.github.io/vega-lite/docs/condition.html#value) since Vega-Lite only allows at most one encoded field per encoding channel."
         },
+        "description": {
+          "description": "A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
@@ -8116,6 +8213,10 @@
             }
           ],
           "description": "One or more value definition(s) with [a parameter or a test predicate](https://vega.github.io/vega-lite/docs/condition.html).\n\n__Note:__ A field definition's `condition` property can only contain [conditional value definitions](https://vega.github.io/vega-lite/docs/condition.html#value) since Vega-Lite only allows at most one encoded field per encoding channel."
+        },
+        "description": {
+          "description": "A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
         },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
@@ -8191,6 +8292,10 @@
           ],
           "description": "A constant value in data domain."
         },
+        "description": {
+          "description": "A description of the encoded datum. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
@@ -8258,6 +8363,10 @@
           ],
           "description": "A constant value in data domain."
         },
+        "description": {
+          "description": "A description of the encoded datum. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
@@ -8315,6 +8424,10 @@
           ],
           "type": "string"
         },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "lane": {
           "$ref": "#/definitions/Field",
           "description": "An optional field representing element's lane, e.g., if transcripts are shown using a piled up layout. Each line is processed separately."
@@ -8365,6 +8478,10 @@
           "minItems": 2,
           "type": "array"
         },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "exons": {
           "$ref": "#/definitions/Field",
           "description": "The field containing the exons.\n\n**Default:** `\"exons\"`"
@@ -8400,6 +8517,10 @@
             }
           ],
           "description": "The output field name(s) for the flattened field.\n\n**Default:** the input fields."
+        },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
         },
         "field": {
           "anyOf": [
@@ -8459,6 +8580,10 @@
           ],
           "description": "The output field name(s) for the flattened field.\n\n**Default:** the input fields."
         },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "fields": {
           "anyOf": [
             {
@@ -8499,6 +8624,10 @@
           "maxItems": 2,
           "minItems": 2,
           "type": "array"
+        },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
         },
         "field": {
           "$ref": "#/definitions/Field",
@@ -8562,6 +8691,10 @@
       "properties": {
         "as": {
           "description": "The (new) field where the computed value is written to",
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
           "type": "string"
         },
         "expr": {
@@ -9152,6 +9285,10 @@
           "description": "**Default:** `\"_uniqueId\"`",
           "type": "string"
         },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "type": {
           "const": "identifier",
           "description": "The type of the transform to be applied",
@@ -9272,6 +9409,10 @@
     "InlineData": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the data source. Can be used for documentation and to explain the role of the data in the visualization.",
+          "type": "string"
+        },
         "format": {
           "$ref": "#/definitions/DataFormat",
           "description": "An object that specifies the format for parsing the data."
@@ -9492,6 +9633,10 @@
     "LazyData": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the data source. Can be used for documentation and to explain the role of the lazy data in the visualization.",
+          "type": "string"
+        },
         "lazy": {
           "$ref": "#/definitions/LazyDataParams"
         }
@@ -9520,6 +9665,9 @@
         },
         {
           "$ref": "#/definitions/BamData"
+        },
+        {
+          "$ref": "#/definitions/TabixTsvData"
         },
         {
           "$ref": "#/definitions/Gff3Data"
@@ -9557,6 +9705,10 @@
         "chrom": {
           "$ref": "#/definitions/Field",
           "description": "The chromosome/contig field"
+        },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
         },
         "offset": {
           "anyOf": [
@@ -10316,6 +10468,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "description": {
+          "description": "A description of the encoded expression. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
@@ -10396,6 +10552,10 @@
           "description": "The output field where the measured width is written.",
           "type": "string"
         },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "field": {
           "$ref": "#/definitions/Field",
           "description": "The field that contains the text to be measured."
@@ -10440,6 +10600,10 @@
     "MergeFacetsParams": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "type": {
           "const": "mergeFacets",
           "description": "The type of the transform to be applied",
@@ -10467,6 +10631,47 @@
         }
       ]
     },
+    "MetadataDef": {
+      "additionalProperties": false,
+      "properties": {
+        "attributeWidth": {
+          "description": "Default width of metadata columns in pixels.\n\n__Default value:__ `10`",
+          "type": "number"
+        },
+        "labelAngle": {
+          "description": "Angle of metadata attribute labels in degrees.\n\n__Default value:__ `-90`",
+          "type": "number"
+        },
+        "labelFont": {
+          "description": "Font typeface for metadata attribute labels.\n\n__Default value:__ `\"Lato\"`",
+          "type": "string"
+        },
+        "labelFontSize": {
+          "description": "Font size for metadata attribute labels in pixels.\n\n__Default value:__ `11`",
+          "type": "number"
+        },
+        "labelFontStyle": {
+          "$ref": "#/definitions/FontStyle",
+          "description": "Font style for metadata attribute labels.\n\n__Default value:__ `\"normal\"`"
+        },
+        "labelFontWeight": {
+          "$ref": "#/definitions/FontWeight",
+          "description": "Font weight for metadata attribute labels.\n\n__Default value:__ `\"regular\"`"
+        },
+        "sources": {
+          "description": "Metadata source definitions used for startup and on-demand imports.\n\nSource order is significant for startup loading: eager startup imports are applied in declaration order.",
+          "items": {
+            "$ref": "#/definitions/MetadataSourceEntry"
+          },
+          "type": "array"
+        },
+        "spacing": {
+          "description": "Spacing between metadata columns in pixels.\n\n__Default value:__ `1`",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "MetadataSourceDef": {
       "additionalProperties": false,
       "properties": {
@@ -10483,14 +10688,14 @@
         },
         "backend": {
           "$ref": "#/definitions/MetadataBackendDef",
-          "description": "Backend-specific source configuration."
+          "description": "Source backend configuration."
         },
         "description": {
-          "description": "Optional short description of what this source contains.\n\nCan be shown in UI and can help automated agents choose the correct source.",
+          "description": "User-facing description of what this source contains.\n\nCan be shown in UI and can help automated agents choose the correct source.",
           "type": "string"
         },
         "excludeColumns": {
-          "description": "Column ids that must never be imported from this source.\n\nUseful for excluding identity/helper columns such as `sample` and `displayName`.",
+          "description": "Column ids that must never be imported from this source.\n\nThe data backend always excludes its `sampleIdField` automatically, so this property is only needed for other helper columns such as display labels.",
           "items": {
             "type": "string"
           },
@@ -10501,7 +10706,7 @@
           "type": "string"
         },
         "id": {
-          "description": "Stable source identifier used in actions, provenance, and configuration.\n\nShould remain stable across spec revisions if bookmarks/provenance replay must keep working.",
+          "description": "Stable source identifier.\n\nShould remain stable across spec revisions if bookmarks/provenance replay must keep working.",
           "type": "string"
         },
         "initialLoad": {
@@ -10521,10 +10726,10 @@
               "type": "array"
             }
           ],
-          "description": "Startup loading behavior.\n\n- `false`: do not load at startup\n- `\"*\"`: load all columns allowed by this source\n- `string[]`: resolve and load only the listed columns\n\nOmitted value uses backend defaults."
+          "description": "Startup loading behavior.\n\n- `false`: do not load at startup\n- `\"*\"`: load all columns allowed by this source\n- `string[]`: resolve and load only the listed columns\n\nIf omitted, data backends load all columns and other backends do not load columns at startup."
         },
         "name": {
-          "description": "Optional user-facing label shown in menus and dialogs.\n\nIf omitted, UI falls back to `id`.",
+          "description": "User-facing label shown in menus and dialogs.\n\nIf omitted, UI falls back to `id`.",
           "type": "string"
         }
       },
@@ -10618,6 +10823,10 @@
     "NamedData": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the data source. Can be used for documentation and to explain the role of the data in the visualization.",
+          "type": "string"
+        },
         "format": {
           "$ref": "#/definitions/DataFormat",
           "description": "An object that specifies the format for parsing the data."
@@ -10742,7 +10951,7 @@
           "type": "string"
         },
         "url": {
-          "description": "URL to a Parquet data source.\n\nReserved for future use.",
+          "description": "URL to a Parquet metadata source.\n\nReserved for future use.",
           "type": "string"
         }
       },
@@ -10770,6 +10979,10 @@
       "properties": {
         "as": {
           "description": "The output field name for the computed lane.\n\n**Default:** `\"lane\"`.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
           "type": "string"
         },
         "end": {
@@ -11459,6 +11672,10 @@
               "minimum": 0,
               "type": "number"
             },
+            "description": {
+              "description": "A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.",
+              "type": "string"
+            },
             "domainInert": {
               "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
               "type": "boolean"
@@ -11500,6 +11717,10 @@
               ],
               "description": "A constant value in data domain."
             },
+            "description": {
+              "description": "A description of the encoded datum. Can be used for documentation and to explain the meaning of the channel mapping.",
+              "type": "string"
+            },
             "domainInert": {
               "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
               "type": "boolean"
@@ -11540,6 +11761,10 @@
               "maximum": 1,
               "minimum": 0,
               "type": "number"
+            },
+            "description": {
+              "description": "A description of the encoded expression. Can be used for documentation and to explain the meaning of the channel mapping.",
+              "type": "string"
             },
             "domainInert": {
               "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
@@ -11600,6 +11825,10 @@
             }
           ],
           "description": "A constant value in data domain."
+        },
+        "description": {
+          "description": "A description of the encoded datum. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
         },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
@@ -11675,6 +11904,10 @@
           "minimum": 0,
           "type": "number"
         },
+        "description": {
+          "description": "A description of the encoded expression. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
@@ -11719,6 +11952,10 @@
           "maximum": 1,
           "minimum": 0,
           "type": "number"
+        },
+        "description": {
+          "description": "A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
         },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
@@ -11788,6 +12025,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
         },
         "fields": {
           "description": "The fields to be projected.",
@@ -12629,6 +12870,10 @@
           ],
           "description": "The new field or an array of fields where the extracted values are written."
         },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "field": {
           "$ref": "#/definitions/Field",
           "description": "The source field"
@@ -12689,6 +12934,10 @@
             }
           ],
           "description": "A regular expression that matches to column names. The regex must have one capturing group that is used for extracting the key (e.g., a sample id) from the column name."
+        },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
         },
         "skipRegex": {
           "description": "An optional regex that matches to fields that should not be included in the new folded data objects.",
@@ -13118,14 +13367,22 @@
       "properties": {
         "barScale": {
           "$ref": "#/definitions/Scale",
-          "description": "An optional scale definition for mapping the attribute to the width of a metadata rectangle."
+          "description": "Scale for mapping quantitative values to metadata cell width."
+        },
+        "description": {
+          "description": "User-facing description of the metadata attribute.",
+          "type": "string"
         },
         "scale": {
           "$ref": "#/definitions/Scale",
-          "description": "Scale definition for the (default) color channel"
+          "description": "Color scale for metadata cells."
+        },
+        "semanticType": {
+          "$ref": "#/definitions/SampleAttributeSemanticType",
+          "description": "Domain-specific meaning of the metadata attribute."
         },
         "title": {
-          "description": "The title of the attribute. Defaults to attribute name.",
+          "description": "Attribute label shown in the metadata header.\n\nIf omitted, the attribute name is used.",
           "type": "string"
         },
         "type": {
@@ -13133,7 +13390,7 @@
           "description": "The attribute type. One of `\"nominal\"`, `\"ordinal\"`, or `\"quantitative\"`."
         },
         "visible": {
-          "description": "Whether the attribute is visible by default.",
+          "description": "Whether the attribute is visible when the view opens.",
           "type": "boolean"
         },
         "width": {
@@ -13142,6 +13399,16 @@
         }
       },
       "type": "object"
+    },
+    "SampleAttributeSemanticType": {
+      "enum": [
+        "subjectId",
+        "modelSystemId",
+        "timeToEvent",
+        "eventStatus",
+        "category"
+      ],
+      "type": "string"
     },
     "SampleAttributeType": {
       "enum": [
@@ -13154,55 +13421,9 @@
     "SampleDef": {
       "additionalProperties": false,
       "properties": {
-        "attributeGroupSeparator": {
-          "deprecated": "Configure per-source `attributeGroupSeparator` in `metadataSources`.",
-          "description": "If attributes form a hierarchy, specify the separator character to split the attribute names into paths.",
-          "type": "string"
-        },
-        "attributeLabelAngle": {
-          "description": "Angle to be added to the default label angle (-90).\n\n**Default value:** `0`",
-          "type": "number"
-        },
-        "attributeLabelFont": {
-          "description": "The font typeface. GenomeSpy uses [SDF](https://github.com/Chlumsky/msdfgen) versions of [Google Fonts](https://fonts.google.com/). Check their availability at the [A-Frame Fonts](https://github.com/etiennepinchon/aframe-fonts/tree/master/fonts) repository. System fonts are **not** supported.\n\n**Default value:** `\"Lato\"`",
-          "type": "string"
-        },
-        "attributeLabelFontSize": {
-          "description": "The font size in pixels.\n\n**Default value:** `11`",
-          "type": "number"
-        },
-        "attributeLabelFontStyle": {
-          "$ref": "#/definitions/FontStyle",
-          "description": "The font style. Valid values: `\"normal\"` and `\"italic\"`.\n\n**Default value:** `\"normal\"`"
-        },
-        "attributeLabelFontWeight": {
-          "$ref": "#/definitions/FontWeight",
-          "description": "The font weight. The following strings and numbers are valid values: `\"thin\"` (`100`), `\"light\"` (`300`), `\"regular\"` (`400`), `\"normal\"` (`400`), `\"medium\"` (`500`), `\"bold\"` (`700`), `\"black\"` (`900`)\n\n**Default value:** `\"regular\"`"
-        },
-        "attributeSize": {
-          "description": "Default size (width) of the metadata attribute columns. Can be configured per attribute using the `attributes` property.\n\n**Default value:** `10`",
-          "type": "number"
-        },
-        "attributeSpacing": {
-          "description": "Spacing between attribute columns in pixels.\n\n**Default value:** `1`",
-          "type": "number"
-        },
-        "attributes": {
-          "additionalProperties": {
-            "$ref": "#/definitions/SampleAttributeDef"
-          },
-          "deprecated": "Configure per-source `attributes` in `metadataSources`.",
-          "description": "Explicitly specify the sample attributes.",
-          "type": "object"
-        },
-        "data": {
-          "$ref": "#/definitions/Data",
-          "deprecated": "Use `metadataSources` with `backend: \"data\"` instead.",
-          "description": "Optional metadata about the samples."
-        },
         "identity": {
           "$ref": "#/definitions/SampleIdentityDef",
-          "description": "Optional explicit sample identity definition."
+          "description": "Defines the sample ids and optional display names for the sample view.\n\nIf omitted, sample ids are inferred from the `sample` channel in the view data."
         },
         "labelAlign": {
           "$ref": "#/definitions/Align",
@@ -13225,30 +13446,15 @@
           "description": "The font weight. The following strings and numbers are valid values: `\"thin\"` (`100`), `\"light\"` (`300`), `\"regular\"` (`400`), `\"normal\"` (`400`), `\"medium\"` (`500`), `\"bold\"` (`700`), `\"black\"` (`900`)\n\n**Default value:** `\"regular\"`"
         },
         "labelLength": {
-          "description": "How much space in pixels to reserve for the labels. If omitted, the width is inferred from the sample labels.",
+          "description": "Width reserved for sample labels in pixels.\n\nIf omitted, the width is inferred from the sample labels.",
           "type": "number"
         },
         "labelTitle": {
-          "description": "Text in the label title. If omitted, the title defaults to `\"Sample\"`. Set to `null` to hide the title.",
+          "description": "Title shown above sample labels. If omitted, the title defaults to `\"Sample\"`. Set to `null` to hide the title.",
           "type": [
             "string",
             "null"
           ]
-        },
-        "labelTitleText": {
-          "deprecated": "Use `labelTitle` instead.",
-          "description": "Legacy alias for `labelTitle`.",
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "metadataSources": {
-          "description": "Metadata source definitions used for startup and on-demand imports.\n\nSource order is significant for startup loading: eager startup imports are applied in declaration order.",
-          "items": {
-            "$ref": "#/definitions/MetadataSourceEntry"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -13258,7 +13464,7 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/Data",
-          "description": "Data source that defines the canonical sample set for the view.\n\nThe source must contain one row per sample and is used to resolve sample ids and optional display names before metadata imports are applied."
+          "description": "Data source that defines the sample set for the view.\n\nThe source must contain one row per sample. Metadata imports are matched against these sample ids."
         },
         "displayNameField": {
           "description": "Field containing a user-visible sample label.\n\nIf omitted, sample ids are used.",
@@ -13277,6 +13483,10 @@
     "SampleParams": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "size": {
           "description": "The maximum sample size.\n\n**Default:** `500`",
           "type": "number"
@@ -13369,6 +13579,10 @@
             }
           ],
           "description": "Height of the view. If a number, it is interpreted as pixels. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default value:** `\"container\"`"
+        },
+        "metadata": {
+          "$ref": "#/definitions/MetadataDef",
+          "description": "Metadata sources and metadata matrix layout."
         },
         "name": {
           "description": "An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.",
@@ -13554,7 +13768,7 @@
         },
         "samples": {
           "$ref": "#/definitions/SampleDef",
-          "description": "Sample metadata definition. If the object is empty, the sample identifiers will be inferred from the data."
+          "description": "Sample identity and label configuration.\n\nIf `identity` is omitted, sample identifiers are inferred from the data."
         },
         "spec": {
           "anyOf": [
@@ -13568,6 +13782,7 @@
           "description": "The view specification to be repeated for each sample."
         },
         "stickySummaries": {
+          "description": "Keep summary tracks visible while scrolling samples.\n\n__Default value:__ `true`",
           "type": "boolean"
         },
         "templates": {
@@ -15298,6 +15513,10 @@
           "$ref": "#/definitions/FieldName",
           "description": "The field having the chromosome or contig."
         },
+        "description": {
+          "description": "A description of the encoded position. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "domainInert": {
           "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
           "type": "boolean"
@@ -15365,6 +15584,10 @@
     "SelectionFilterParams": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "empty": {
           "description": "If true, the filter retains all data objects when the selection is empty.\n\n**Default:** `true`",
           "type": "boolean"
@@ -15431,6 +15654,10 @@
     "SelectionParameter": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the parameter. Can be used for documentation and to explain the meaning of the control or selection.",
+          "type": "string"
+        },
         "name": {
           "description": "A unique name for the variable parameter. Parameter names should be valid JavaScript identifiers: they should contain only alphanumeric characters (or \"$\", or \"_\") and may not start with a digit. Reserved keywords that may not be used as parameter names are: \"datum\".",
           "type": "string"
@@ -15672,6 +15899,10 @@
     "SequenceGenerator": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the data source. Can be used for documentation and to explain the role of the generated data in the visualization.",
+          "type": "string"
+        },
         "name": {
           "description": "Provide a placeholder name and bind data at runtime.",
           "type": "string"
@@ -15782,6 +16013,10 @@
           "description": "Cardinality, e.g., the number if distinct bases or amino acids. Used for information content calculation when the offset is `\"information\"`.\n\n**Default:** `4`",
           "type": "number"
         },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
         "field": {
           "$ref": "#/definitions/Field",
           "description": "The field to stack. If no field is defined, a constant value of one is assumed."
@@ -15851,6 +16086,10 @@
           ],
           "description": "A constant value in data domain."
         },
+        "description": {
+          "description": "A description of the encoded datum. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "format": {
           "description": "When used with the default `\"number\"` format type, the text formatting pattern for labels of guides (axes, legends, headers) and text marks.\n\n- If the format type is `\"number\"` (e.g., for quantitative fields), this is D3's [number format pattern](https://github.com/d3/d3-format#locale_format).\n\nSee the [format documentation](https://vega.github.io/vega-lite/docs/format.html) for more examples.",
           "type": "string"
@@ -15888,6 +16127,10 @@
         {
           "additionalProperties": false,
           "properties": {
+            "description": {
+              "description": "A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.",
+              "type": "string"
+            },
             "domainInert": {
               "description": "Whether the field or evaluated expr should be excluded from the scale's domain. Prefer the view-level `domainInert` when an entire subtree should be excluded.\n\n**Default value:** `false`",
               "type": "boolean"
@@ -15913,6 +16156,10 @@
         {
           "additionalProperties": false,
           "properties": {
+            "description": {
+              "description": "A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.",
+              "type": "string"
+            },
             "field": {
               "description": "__Required.__ A string defining the name of the field from which to pull a data value or an object defining iterated values from the [`repeat`](https://vega.github.io/vega-lite/docs/repeat.html) operator.\n\n__See also:__ [`field`](https://vega.github.io/vega-lite/docs/field.html) documentation.\n\n__Notes:__ 1)  Dots (`.`) and brackets (`[` and `]`) can be used to access nested objects (e.g., `\"field\": \"foo.bar\"` and `\"field\": \"foo['bar']\"`). If field names contain dots or brackets but are not nested, you can use `\\\\` to escape dots and brackets (e.g., `\"a\\\\.b\"` and `\"a\\\\[0\\\\]\"`). See more details about escaping in the [field documentation](https://vega.github.io/vega-lite/docs/field.html). 2) `field` is not required if `aggregate` is `count`.",
               "type": "string"
@@ -17235,6 +17482,91 @@
       },
       "type": "object"
     },
+    "TabixTsvData": {
+      "additionalProperties": false,
+      "properties": {
+        "addChrPrefix": {
+          "description": "Add a `chr` (boolean) or custom (string) prefix to the chromosome names in the Tabix file.\n\n__Default value:__ `false`",
+          "type": [
+            "boolean",
+            "string"
+          ]
+        },
+        "channel": {
+          "$ref": "#/definitions/PrimaryPositionalChannel",
+          "description": "Which channel's scale domain to monitor.\n\n__Default value:__ `\"x\"`"
+        },
+        "columns": {
+          "description": "Ordered list of field names for headerless tabix TSV input. If omitted, the source tries to read a commented header line from the tabix file header or the first row of a plain TSV header.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "debounce": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.\n\n__Default value:__ `200`"
+        },
+        "debounceDomainChange": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Debounce time for scale-domain driven data updates, in milliseconds.\n\n__Default value:__ `200`"
+        },
+        "debounceMode": {
+          "description": "The debounce mode for data updates. If set to `\"domain\"`, domain change events (panning and zooming) will be debounced. If set to `\"window\"`, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the `\"window\"` is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.\n\n__Default value:__ `\"window\"`",
+          "enum": [
+            "domain",
+            "window"
+          ],
+          "type": "string"
+        },
+        "indexUrl": {
+          "description": "Url of the tabix index file.\n\n__Default value:__ `url` + `\".tbi\"`.",
+          "type": "string"
+        },
+        "parse": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Parse"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optional type parsing for TSV fields. When omitted, field types are inferred automatically. Set to `null` to disable spec-based type inference and rely on data inference, or provide a field-to-type map to override selected columns.\n\n__Default value:__ `\"auto\"`"
+        },
+        "type": {
+          "const": "tabix",
+          "type": "string"
+        },
+        "url": {
+          "description": "Url of the bgzip compressed file.",
+          "type": "string"
+        },
+        "windowSize": {
+          "description": "Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.\n\n__Default value:__ `30000000`",
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "url"
+      ],
+      "type": "object"
+    },
     "TemplateImport": {
       "additionalProperties": false,
       "properties": {
@@ -18527,6 +18859,10 @@
     "UrlData": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the data source. Can be used for documentation and to explain the role of the data in the visualization.",
+          "type": "string"
+        },
         "format": {
           "$ref": "#/definitions/DataFormat",
           "description": "An object that specifies the format for parsing the data."
@@ -18631,6 +18967,10 @@
     "ValueDef<number>": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the encoded value. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "title": {
           "description": "A title for the field. If `null`, the title will be removed.",
           "type": [
@@ -18658,6 +18998,10 @@
     "ValueDef<string>": {
       "additionalProperties": false,
       "properties": {
+        "description": {
+          "description": "A description of the encoded value. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "title": {
           "description": "A title for the field. If `null`, the title will be removed.",
           "type": [
@@ -18708,6 +19052,10 @@
             }
           ],
           "description": "A field definition or one or more value definition(s) with a parameter predicate."
+        },
+        "description": {
+          "description": "A description of the encoded value. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
         },
         "title": {
           "description": "A title for the field. If `null`, the title will be removed.",
@@ -18760,6 +19108,10 @@
           ],
           "description": "A field definition or one or more value definition(s) with a parameter predicate."
         },
+        "description": {
+          "description": "A description of the encoded value. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "title": {
           "description": "A title for the field. If `null`, the title will be removed.",
           "type": [
@@ -18811,6 +19163,10 @@
           ],
           "description": "A field definition or one or more value definition(s) with a parameter predicate."
         },
+        "description": {
+          "description": "A description of the encoded value. Can be used for documentation and to explain the meaning of the channel mapping.",
+          "type": "string"
+        },
         "title": {
           "description": "A title for the field. If `null`, the title will be removed.",
           "type": [
@@ -18838,6 +19194,10 @@
         "bind": {
           "$ref": "#/definitions/Binding",
           "description": "Binds the parameter to an external input element such as a slider, selection list or radio button group."
+        },
+        "description": {
+          "description": "A description of the parameter. Can be used for documentation and to explain the meaning of the control or selection.",
+          "type": "string"
         },
         "expr": {
           "description": "An expression for the value of the parameter. This expression may include other parameters, in which case the parameter will automatically update in response to upstream parameter changes.",
@@ -19147,7 +19507,7 @@
           "type": "string"
         },
         "identifiers": {
-          "description": "Optional identifier arrays used to resolve user queries to columns.\n\nIf omitted, only primary column ids are used for lookup.",
+          "description": "Identifier arrays used to resolve user queries to columns.\n\nIf omitted, only primary column ids are used for lookup.",
           "items": {
             "$ref": "#/definitions/ColumnIdentifierField"
           },
@@ -19155,7 +19515,7 @@
         },
         "matrix": {
           "$ref": "#/definitions/ZarrMatrixLayoutDef",
-          "description": "Optional path overrides for the expression-style matrix layout."
+          "description": "Path overrides for the matrix layout."
         },
         "url": {
           "description": "URL to the root of the Zarr store.",
@@ -19180,7 +19540,7 @@
           "type": "string"
         },
         "valuesPath": {
-          "description": "Path to matrix values (sample rows x metadata columns).\n\n__Default value:__ `\"X\"`",
+          "description": "Path to matrix values, arranged as sample rows by metadata columns.\n\n__Default value:__ `\"X\"`",
           "type": "string"
         }
       },

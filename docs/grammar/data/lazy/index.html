@@ -656,6 +656,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tabix-tsv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabix TSV
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabix TSV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vcf" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -668,7 +696,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#parameters_3" class="md-nav__link">
+  <a href="#parameters_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         Parameters
@@ -707,7 +735,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#parameters_4" class="md-nav__link">
+  <a href="#parameters_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         Parameters
@@ -746,7 +774,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#parameters_5" class="md-nav__link">
+  <a href="#parameters_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         Parameters
@@ -785,7 +813,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#parameters_6" class="md-nav__link">
+  <a href="#parameters_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         Parameters
@@ -824,7 +852,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#parameters_7" class="md-nav__link">
+  <a href="#parameters_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         Parameters
@@ -2738,6 +2766,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tabix-tsv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabix TSV
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabix TSV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vcf" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2750,7 +2806,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#parameters_3" class="md-nav__link">
+  <a href="#parameters_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         Parameters
@@ -2789,7 +2845,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#parameters_4" class="md-nav__link">
+  <a href="#parameters_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         Parameters
@@ -2828,7 +2884,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#parameters_5" class="md-nav__link">
+  <a href="#parameters_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         Parameters
@@ -2867,7 +2923,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#parameters_6" class="md-nav__link">
+  <a href="#parameters_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         Parameters
@@ -2906,7 +2962,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#parameters_7" class="md-nav__link">
+  <a href="#parameters_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         Parameters
@@ -3330,12 +3386,81 @@ public and commercial use.</p>
 </div>
 <p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
 <a href="https://github.com/GMOD/bbi-js">bbi-js</a> library.</p>
+<h2 id="tabix-tsv">Tabix TSV<a class="headerlink" href="#tabix-tsv" title="Permanent link">&para;</a></h2>
+<p>The <code>"tabix"</code> source enables the retrieval of tab-separated records stored in
+a bgzip-compressed, tabix-indexed file. It returns plain objects using the
+field names from <code>columns</code>, from a commented header line in the tabix file
+header, or from the first row of a plain TSV header. Field types are inferred
+automatically unless you provide <code>parse</code> (see <a href="../eager/#tabular-formats">eager data sources</a>
+for the supported syntax). If the file uses bare chromosome names, set
+<code>addChrPrefix</code> to <code>true</code> to align them with GenomeSpy's UCSC-style genomes.</p>
+<h3 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>addChrPrefix</code></dt>
+<dd>
+<p>Type: boolean | string</p>
+<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
+<p><strong>Default value:</strong> <code>false</code></p>
+</dd>
+<dt><code>channel</code></dt>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
+<p><strong>Default value:</strong> <code>"x"</code></p>
+</dd>
+<dt><code>columns</code></dt>
+<dd>
+<p>Type: array</p>
+<p>Ordered list of field names for headerless tabix TSV input. If omitted, the source tries to read a commented header line from the tabix file header or the first row of a plain TSV header.</p>
+</dd>
+<dt><code>debounce</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<p><strong>Default value:</strong> <code>200</code></p>
+</dd>
+<dt><code>debounceDomainChange</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<p><strong>Default value:</strong> <code>200</code></p>
+</dd>
+<dt><code>debounceMode</code></dt>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<p><strong>Default value:</strong> <code>"window"</code></p>
+</dd>
+<dt><code>indexUrl</code></dt>
+<dd>
+<p>Type: string</p>
+<p>Url of the tabix index file.</p>
+<p><strong>Default value:</strong> <code>url</code> + <code>".tbi"</code>.</p>
+</dd>
+<dt><code>parse</code></dt>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">Parse</a> | null</p>
+<p>Optional type parsing for TSV fields. When omitted, field types are inferred automatically. Set to <code>null</code> to disable spec-based type inference and rely on data inference, or provide a field-to-type map to override selected columns.</p>
+<p><strong>Default value:</strong> <code>"auto"</code></p>
+</dd>
+<dt><code>url</code> <span class="required">Required</span></dt>
+<dd>
+<p>Type: string</p>
+<p>Url of the bgzip compressed file.</p>
+</dd>
+<dt><code>windowSize</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<p><strong>Default value:</strong> <code>30000000</code></p>
+</dd>
+</dl>
 <h2 id="vcf">VCF<a class="headerlink" href="#vcf" title="Permanent link">&para;</a></h2>
 <p>The tabix-based <code>"vcf"</code> source enables the retrieval of variant data stored in
 VCF files. The object format GenomeSpy uses is described in
 <a href="https://github.com/GMOD/vcf-js/tree/master?tab=readme-ov-file#methods">vcf-js</a>'s
 documentation.</p>
-<h3 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">&para;</a></h3>
+<h3 id="parameters_4">Parameters<a class="headerlink" href="#parameters_4" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>addChrPrefix</code></dt>
 <dd>
@@ -3555,7 +3680,7 @@ documentation. The <a href="../../transform/flatten/">flatten</a> and
 <a href="../../transform/project/">project</a> transforms are useful when extracting the
 child features and attributes from the hierarchical data structure. See the
 visualization below.</p>
-<h3 id="parameters_4">Parameters<a class="headerlink" href="#parameters_4" title="Permanent link">&para;</a></h3>
+<h3 id="parameters_5">Parameters<a class="headerlink" href="#parameters_5" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>addChrPrefix</code></dt>
 <dd>
@@ -3877,7 +4002,7 @@ currently exposes the reads but provides no handling for variants alleles,
 CIGARs, etc. Please send a message to <a href="https://github.com/genome-spy/genome-spy/discussions">GitHub
 Discussions</a> if you are
 interested in this feature.</p>
-<h3 id="parameters_5">Parameters<a class="headerlink" href="#parameters_5" title="Permanent link">&para;</a></h3>
+<h3 id="parameters_6">Parameters<a class="headerlink" href="#parameters_6" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
 <dd>
@@ -4032,7 +4157,7 @@ While GenomeSpy internally uses this data source for generating axis ticks, you
 also have the flexibility to employ it for creating fully customized axes
 according to your requirements. The data source generates data objects with
 <code>value</code> and <code>label</code> fields.</p>
-<h3 id="parameters_6">Parameters<a class="headerlink" href="#parameters_6" title="Permanent link">&para;</a></h3>
+<h3 id="parameters_7">Parameters<a class="headerlink" href="#parameters_7" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>axis</code></dt>
 <dd>
@@ -4082,7 +4207,7 @@ given channel, allowing creation of customized chromosome ticks or annotations.
 The data source generates data objects with the following fields: <code>name</code>, <code>size</code>
 (in bp), <code>continuousStart</code> (linearized coordinate), <code>continuousEnd</code>, <code>odd</code>
 (boolean), and <code>number</code> (1-based index).</p>
-<h3 id="parameters_7">Parameters<a class="headerlink" href="#parameters_7" title="Permanent link">&para;</a></h3>
+<h3 id="parameters_8">Parameters<a class="headerlink" href="#parameters_8" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code> <span class="required">Required</span></dt>
 <dd>
@@ -4150,7 +4275,7 @@ The data source generates data objects with the following fields: <code>name</co
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 17, 2026 14:06:47 UTC">March 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 31, 2026 11:08:37 UTC">March 31, 2026</span>
   </span>
 
     

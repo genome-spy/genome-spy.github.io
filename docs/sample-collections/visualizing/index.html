@@ -2161,10 +2161,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#defining-samples-minimal-example" class="md-nav__link">
+  <a href="#defining-sample-identity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Defining samples (minimal example)
+        Defining sample identity
       
     </span>
   </a>
@@ -2172,10 +2172,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#adjusting-font-sizes-etc" class="md-nav__link">
+  <a href="#adjusting-sample-labels" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Adjusting font sizes, etc.
+        Adjusting sample labels
       
     </span>
   </a>
@@ -2524,10 +2524,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#defining-samples-minimal-example" class="md-nav__link">
+  <a href="#defining-sample-identity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Defining samples (minimal example)
+        Defining sample identity
       
     </span>
   </a>
@@ -2535,10 +2535,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#adjusting-font-sizes-etc" class="md-nav__link">
+  <a href="#adjusting-sample-labels" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Adjusting font sizes, etc.
+        Adjusting sample labels
       
     </span>
   </a>
@@ -2716,12 +2716,12 @@ page for more information.</p>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.75.0/dist/style.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.76.0/dist/style.css&quot;</span>
     <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.75.0/dist/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.76.0/dist/index.es.js&quot;</span><span class="p">;</span>
 
 <span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;spec.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// Show the dataflow inspector button in the toolbar (default: true)</span>
@@ -2750,7 +2750,11 @@ types. For instance, the bottom layer could display segmented copy-number data,
 while the top layer might show single-nucleotide variants.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Optional sample identifiers and metadata</span>
+<span class="w">    </span><span class="c1">// Optional sample identifiers and label settings</span>
+<span class="w">    </span><span class="err">...</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Optional metadata sources and metadata matrix layout</span>
 <span class="w">    </span><span class="err">...</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;spec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -2784,51 +2788,51 @@ between the bands.</p>
 <h3 id="implicit-sample-identifiers">Implicit sample identifiers<a class="headerlink" href="#implicit-sample-identifiers" title="Permanent link">&para;</a></h3>
 <p>By default, the identifiers of the samples are extracted from the
 data, and each sample gets its own track.</p>
-<h3 id="defining-samples-minimal-example">Defining samples (minimal example)<a class="headerlink" href="#defining-samples-minimal-example" title="Permanent link">&para;</a></h3>
-<p>For most sample-collection visualizations, define:</p>
-<ol>
-<li>sample identity (<code>identity</code>)</li>
-<li>one or more metadata sources (<code>metadataSources</code>)</li>
-</ol>
-<div class="highlight"><span class="filename">Minimal sample definition</span><pre><span></span><code><span class="p">{</span>
+<h3 id="defining-sample-identity">Defining sample identity<a class="headerlink" href="#defining-sample-identity" title="Permanent link">&para;</a></h3>
+<p>Use <code>samples.identity</code> when you want to define the sample order, display names,
+or the complete sample set independently from the visualized data.</p>
+<div class="highlight"><span class="filename">Explicit sample identity</span><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;identity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;samples.tsv&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;idField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;displayNameField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;displayName&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;metadataSources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clinical&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Clinical metadata&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;initialLoad&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;excludeColumns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;displayName&quot;</span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;samples.tsv&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">          </span><span class="nt">&quot;sampleIdField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="err">...</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>This configuration reads sample ids and display names from <code>samples.tsv</code>, then
-loads metadata columns from the same file at startup. The <code>sample</code> and
-<code>displayName</code> columns are excluded from metadata import, so only actual metadata
-attributes are shown in the metadata panel.</p>
-<p>For advanced metadata-source configuration (for example, lazy Zarr-backed
-imports), see <a href="../metadata-sources/">Configuring Metadata Sources</a>.</p>
-<h3 id="adjusting-font-sizes-etc">Adjusting font sizes, etc.<a class="headerlink" href="#adjusting-font-sizes-etc" title="Permanent link">&para;</a></h3>
-<p>The <code>samples</code> object can also be used to adjust the font sizes, etc. of the
-metadata attributes. For example, to increase the font sizes of the sample and
-attribute labels, use the following configuration:</p>
+<p>This configuration reads sample ids and display names from <code>samples.tsv</code>.
+Configure metadata sources and metadata matrix layout in
+<a href="../metadata-sources/"><code>metadata</code></a>.</p>
+<p>The following properties configure <code>samples.identity</code>:</p>
+<dl>
+<dt><code>data</code> <span class="required">Required</span></dt>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">Generator</a></p>
+<p>Data source that defines the sample set for the view.</p>
+<p>The source must contain one row per sample. Metadata imports are matched against these sample ids.</p>
+</dd>
+<dt><code>displayNameField</code></dt>
+<dd>
+<p>Type: string</p>
+<p>Field containing a user-visible sample label.</p>
+<p>If omitted, sample ids are used.</p>
+</dd>
+<dt><code>idField</code></dt>
+<dd>
+<p>Type: string</p>
+<p>Field that contains the canonical sample id.</p>
+<p><strong>Default value:</strong> <code>"sample"</code></p>
+</dd>
+</dl>
+<h3 id="adjusting-sample-labels">Adjusting sample labels<a class="headerlink" href="#adjusting-sample-labels" title="Permanent link">&para;</a></h3>
+<p>The <code>samples</code> object controls sample labels. For example, to increase the
+sample label font size, use the following configuration:</p>
 <div class="highlight"><span class="filename">Adjusting font sizes</span><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="err">...</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;labelFontSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;attributeLabelFontSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">    </span><span class="nt">&quot;labelFontSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="err">...</span>
 <span class="p">}</span>
@@ -2865,62 +2869,23 @@ attribute labels, use the following configuration:</p>
 <p>The horizontal alignment of the text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
 <p><strong>Default value:</strong> <code>"left"</code></p>
 </dd>
-<dt><code>attributeLabelFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The font typeface. GenomeSpy uses <a href="https://github.com/Chlumsky/msdfgen">SDF</a> versions of <a href="https://fonts.google.com/">Google Fonts</a>. Check their availability at the <a href="https://github.com/etiennepinchon/aframe-fonts/tree/master/fonts">A-Frame Fonts</a> repository. System fonts are <strong>not</strong> supported.</p>
-<p><strong>Default value:</strong> <code>"Lato"</code></p>
-</dd>
-<dt><code>attributeLabelFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The font size in pixels.</p>
-<p><strong>Default value:</strong> <code>11</code></p>
-</dd>
-<dt><code>attributeLabelFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>The font weight. The following strings and numbers are valid values: <code>"thin"</code> (<code>100</code>), <code>"light"</code> (<code>300</code>), <code>"regular"</code> (<code>400</code>), <code>"normal"</code> (<code>400</code>), <code>"medium"</code> (<code>500</code>), <code>"bold"</code> (<code>700</code>), <code>"black"</code> (<code>900</code>)</p>
-<p><strong>Default value:</strong> <code>"regular"</code></p>
-</dd>
-<dt><code>attributeLabelFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>The font style. Valid values: <code>"normal"</code> and <code>"italic"</code>.</p>
-<p><strong>Default value:</strong> <code>"normal"</code></p>
-</dd>
 </dl>
 <p>In addition, the following properties are supported:</p>
 <dl>
-<dt><code>labelTitleText</code></dt>
+<dt><code>labelTitle</code></dt>
 <dd>
 <p>Type: string | null</p>
-<p>Legacy alias for <code>labelTitle</code>.</p>
+<p>Title shown above sample labels. If omitted, the title defaults to <code>"Sample"</code>. Set to <code>null</code> to hide the title.</p>
 </dd>
 <dt><code>labelLength</code></dt>
 <dd>
 <p>Type: number</p>
-<p>How much space in pixels to reserve for the labels. If omitted, the width is inferred from the sample labels.</p>
-</dd>
-<dt><code>attributeSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Default size (width) of the metadata attribute columns. Can be configured per attribute using the <code>attributes</code> property.</p>
-<p><strong>Default value:</strong> <code>10</code></p>
-</dd>
-<dt><code>attributeLabelAngle</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Angle to be added to the default label angle (-90).</p>
-<p><strong>Default value:</strong> <code>0</code></p>
-</dd>
-<dt><code>attributeSpacing</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Spacing between attribute columns in pixels.</p>
-<p><strong>Default value:</strong> <code>1</code></p>
+<p>Width reserved for sample labels in pixels.</p>
+<p>If omitted, the width is inferred from the sample labels.</p>
 </dd>
 </dl>
+<p>Metadata attribute label and matrix layout properties are documented in
+<a href="../metadata-sources/#metadata-configuration">Configuring Metadata Sources</a>.</p>
 <h3 id="handling-variable-sample-heights">Handling variable sample heights<a class="headerlink" href="#handling-variable-sample-heights" title="Permanent link">&para;</a></h3>
 <p>The height of a single sample depend on the number of samples and the height of
 the sample view. Moreover, the end user can
@@ -3174,7 +3139,7 @@ exploration</a></p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 25, 2026 08:13:23 UTC">March 25, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 22, 2026 12:38:56 UTC">May 22, 2026</span>
   </span>
 
     

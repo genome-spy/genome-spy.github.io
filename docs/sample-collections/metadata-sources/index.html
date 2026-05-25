@@ -2261,10 +2261,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#samples-entry-points" class="md-nav__link">
+  <a href="#metadata-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        samples entry points
+        metadata configuration
       
     </span>
   </a>
@@ -2279,6 +2279,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Metadata source definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inline-source-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inline source objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2646,10 +2674,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#samples-entry-points" class="md-nav__link">
+  <a href="#metadata-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        samples entry points
+        metadata configuration
       
     </span>
   </a>
@@ -2664,6 +2692,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Metadata source definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inline-source-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inline source objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2801,7 +2857,7 @@
 <div class="admonition note">
 <p class="admonition-title">Developer Documentation</p>
 <p>This page is intended for visualization authors configuring metadata
-sources in <code>samples</code>.</p>
+sources in <code>metadata</code>.</p>
 </div>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>Metadata sources make sample metadata configurable as explicit sources instead
@@ -2813,9 +2869,9 @@ of one monolithic metadata table. This enables:</p>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Legacy compatibility</p>
-<p>The legacy <code>samples.data</code> and <code>samples.attributes</code> configuration remains
-supported for backward compatibility, but new configurations should use
-<code>samples.metadataSources</code>.</p>
+<p>The legacy <code>samples.data</code>, <code>samples.attributes</code>, and
+<code>samples.metadataSources</code> configuration remains supported for backward
+compatibility, but new configurations should use <code>metadata.sources</code>.</p>
 </div>
 <h2 id="quick-example">Quick example<a class="headerlink" href="#quick-example" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -2824,13 +2880,15 @@ supported for backward compatibility, but new configurations should use
 <span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;samples.tsv&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;idField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;displayNameField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;displayName&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;metadataSources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">      </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clinical&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Clinical&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;initialLoad&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;excludeColumns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;displayName&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;excludeColumns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;displayName&quot;</span><span class="p">],</span>
 <span class="w">        </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;samples.tsv&quot;</span><span class="w"> </span><span class="p">},</span>
@@ -2864,10 +2922,11 @@ second source (<code>expression</code>) points to a Zarr matrix, is lazy by defa
 (<code>initialLoad: false</code>), and defines quantitative styling for selected
 expression columns under the <code>Expression</code> group.</p>
 <p>If you omit <code>initialLoad</code>, backend defaults apply. For <code>backend: "data"</code>, that
-means load all columns by default; use <code>excludeColumns</code> to keep helper fields
-such as <code>sample</code> and <code>displayName</code> out of metadata attributes.</p>
+means load all columns by default. The backend excludes <code>sampleIdField</code>
+automatically; use <code>excludeColumns</code> for other helper fields such as
+<code>displayName</code>.</p>
 <h2 id="splitting-configuration-into-files">Splitting configuration into files<a class="headerlink" href="#splitting-configuration-into-files" title="Permanent link">&para;</a></h2>
-<p>When source definitions become long, you can keep <code>samples.metadataSources</code>
+<p>When source definitions become long, you can keep <code>metadata.sources</code>
 compact by importing each source from a separate JSON file.</p>
 <p>Example in the main spec:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -2876,8 +2935,10 @@ compact by importing each source from a separate JSON file.</p>
 <span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;samples.tsv&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;idField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;displayNameField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;displayName&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;metadataSources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;import&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;metadata-sources/clinical-source.json&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;import&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;metadata-sources/expression-source.json&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
@@ -2890,7 +2951,7 @@ compact by importing each source from a separate JSON file.</p>
 <span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clinical&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Clinical&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;initialLoad&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;excludeColumns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;displayName&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;excludeColumns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;displayName&quot;</span><span class="p">],</span>
 <span class="w">  </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;../samples.tsv&quot;</span><span class="w"> </span><span class="p">},</span>
@@ -2918,7 +2979,7 @@ compact by importing each source from a separate JSON file.</p>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Clinical&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;groupPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Clinical&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;initialLoad&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;excludeColumns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;displayName&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;excludeColumns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;displayName&quot;</span><span class="p">],</span>
 <span class="w">  </span><span class="nt">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;purity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
@@ -2949,6 +3010,10 @@ compact by importing each source from a separate JSON file.</p>
 <p>In this example, <code>purity</code> and <code>ploidy</code> are configured as quantitative with
 custom scales, and <code>treatment</code> gets a custom title. Other imported columns
 without explicit defs still work: GenomeSpy infers their type from values.
+Attributes may also define an optional <code>semanticType</code> to describe
+domain-specific meaning for agents and specialized UI. Supported values are
+<code>"subjectId"</code>, <code>"modelSystemId"</code>, <code>"timeToEvent"</code>, <code>"eventStatus"</code>, and
+<code>"category"</code>.
 When using grouped/hierarchical names (<code>attributeGroupSeparator</code>), <code>attributes</code>
 can also target group nodes for shared defaults. See
 <a href="#grouping-and-hierarchy"><code>Grouping and hierarchy</code></a>.</p>
@@ -3041,22 +3106,67 @@ group and <code>attributeGroupSeparator</code> defines how grouped names are int
   id).</li>
 </ul>
 <h2 id="schema-reference">Schema reference<a class="headerlink" href="#schema-reference" title="Permanent link">&para;</a></h2>
-<h3 id="samples-entry-points"><code>samples</code> entry points<a class="headerlink" href="#samples-entry-points" title="Permanent link">&para;</a></h3>
+<h3 id="metadata-configuration"><code>metadata</code> configuration<a class="headerlink" href="#metadata-configuration" title="Permanent link">&para;</a></h3>
+<p>These properties are nested under <code>metadata</code>. Sample identity and sample label
+configuration are documented in
+<a href="../visualizing/">Visualizing Sample Collections</a>.</p>
 <dl>
-<dt><code>identity</code></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">SampleIdentityDef</a></p>
-<p>Optional explicit sample identity definition.</p>
-</dd>
-<dt><code>metadataSources</code></dt>
+<dt><code>sources</code></dt>
 <dd>
 <p>Type: array</p>
 <p>Metadata source definitions used for startup and on-demand imports.</p>
 <p>Source order is significant for startup loading: eager startup imports are applied in declaration order.</p>
 </dd>
+<dt><code>attributeWidth</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Default width of metadata columns in pixels.</p>
+<p><strong>Default value:</strong> <code>10</code></p>
+</dd>
+<dt><code>spacing</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Spacing between metadata columns in pixels.</p>
+<p><strong>Default value:</strong> <code>1</code></p>
+</dd>
+<dt><code>labelFont</code></dt>
+<dd>
+<p>Type: string</p>
+<p>Font typeface for metadata attribute labels.</p>
+<p><strong>Default value:</strong> <code>"Lato"</code></p>
+</dd>
+<dt><code>labelFontSize</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Font size for metadata attribute labels in pixels.</p>
+<p><strong>Default value:</strong> <code>11</code></p>
+</dd>
+<dt><code>labelFontWeight</code></dt>
+<dd>
+<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
+<p>Font weight for metadata attribute labels.</p>
+<p><strong>Default value:</strong> <code>"regular"</code></p>
+</dd>
+<dt><code>labelFontStyle</code></dt>
+<dd>
+<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
+<p>Font style for metadata attribute labels.</p>
+<p><strong>Default value:</strong> <code>"normal"</code></p>
+</dd>
+<dt><code>labelAngle</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Angle of metadata attribute labels in degrees.</p>
+<p><strong>Default value:</strong> <code>-90</code></p>
+</dd>
 </dl>
 <h3 id="metadata-source-definitions">Metadata source definitions<a class="headerlink" href="#metadata-source-definitions" title="Permanent link">&para;</a></h3>
+<p>The <code>metadata.sources</code> array accepts entries that are either inline metadata source
+definitions or import wrappers. <code>MetadataSourceEntry</code> describes this allowed
+array entry shape, while <code>MetadataSourceDef</code> describes an inline source object.</p>
+<h4 id="source-entries">Source entries<a class="headerlink" href="#source-entries" title="Permanent link">&para;</a></h4>
 <p>Type: <a href="https://genomespy.app/docs/grammar/types/">MetadataSourceDef</a> | object</p>
+<h4 id="inline-source-objects">Inline source objects<a class="headerlink" href="#inline-source-objects" title="Permanent link">&para;</a></h4>
 <dl>
 <dt><code>attributeGroupSeparator</code></dt>
 <dd>
@@ -3073,19 +3183,19 @@ group and <code>attributeGroupSeparator</code> defines how grouped names are int
 <dt><code>backend</code> <span class="required">Required</span></dt>
 <dd>
 <p>Type: <a href="https://genomespy.app/docs/grammar/types/">DataBackendDef</a> | <a href="https://genomespy.app/docs/grammar/types/">ZarrBackendDef</a> | <a href="https://genomespy.app/docs/grammar/types/">ParquetBackendDef</a> | <a href="https://genomespy.app/docs/grammar/types/">ArrowBackendDef</a></p>
-<p>Backend-specific source configuration.</p>
+<p>Source backend configuration.</p>
 </dd>
 <dt><code>description</code></dt>
 <dd>
 <p>Type: string</p>
-<p>Optional short description of what this source contains.</p>
+<p>User-facing description of what this source contains.</p>
 <p>Can be shown in UI and can help automated agents choose the correct source.</p>
 </dd>
 <dt><code>excludeColumns</code></dt>
 <dd>
 <p>Type: array</p>
 <p>Column ids that must never be imported from this source.</p>
-<p>Useful for excluding identity/helper columns such as <code>sample</code> and <code>displayName</code>.</p>
+<p>The data backend always excludes its <code>sampleIdField</code> automatically, so this property is only needed for other helper columns such as display labels.</p>
 </dd>
 <dt><code>groupPath</code></dt>
 <dd>
@@ -3098,7 +3208,7 @@ group and <code>attributeGroupSeparator</code> defines how grouped names are int
 <dt><code>id</code></dt>
 <dd>
 <p>Type: string</p>
-<p>Stable source identifier used in actions, provenance, and configuration.</p>
+<p>Stable source identifier.</p>
 <p>Should remain stable across spec revisions if bookmarks/provenance replay must keep working.</p>
 </dd>
 <dt><code>initialLoad</code></dt>
@@ -3110,12 +3220,12 @@ group and <code>attributeGroupSeparator</code> defines how grouped names are int
 <li><code>"*"</code>: load all columns allowed by this source</li>
 <li><code>string[]</code>: resolve and load only the listed columns</li>
 </ul>
-<p>Omitted value uses backend defaults.</p>
+<p>If omitted, data backends load all columns and other backends do not load columns at startup.</p>
 </dd>
 <dt><code>name</code></dt>
 <dd>
 <p>Type: string</p>
-<p>Optional user-facing label shown in menus and dialogs.</p>
+<p>User-facing label shown in menus and dialogs.</p>
 <p>If omitted, UI falls back to <code>id</code>.</p>
 </dd>
 </dl>
@@ -3125,7 +3235,7 @@ group and <code>attributeGroupSeparator</code> defines how grouped names are int
 <dt><code>data</code> <span class="required">Required</span></dt>
 <dd>
 <p>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a></p>
-<p>Eager tabular metadata source using the standard data contract.</p>
+<p>Eager tabular metadata source.</p>
 <p>Supports <code>UrlData</code> and <code>InlineData</code>.</p>
 </dd>
 <dt><code>sampleIdField</code></dt>
@@ -3212,13 +3322,13 @@ arrays/chunks over HTTP.</p>
 <dt><code>identifiers</code></dt>
 <dd>
 <p>Type: array</p>
-<p>Optional identifier arrays used to resolve user queries to columns.</p>
+<p>Identifier arrays used to resolve user queries to columns.</p>
 <p>If omitted, only primary column ids are used for lookup.</p>
 </dd>
 <dt><code>matrix</code></dt>
 <dd>
 <p>Type: <a href="https://genomespy.app/docs/grammar/types/">ZarrMatrixLayoutDef</a></p>
-<p>Optional path overrides for the expression-style matrix layout.</p>
+<p>Path overrides for the matrix layout.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
 <dd>
@@ -3245,7 +3355,7 @@ Use these path overrides for expression-style sample-by-feature arrays.</p>
 <dt><code>valuesPath</code></dt>
 <dd>
 <p>Type: string</p>
-<p>Path to matrix values (sample rows x metadata columns).</p>
+<p>Path to matrix values, arranged as sample rows by metadata columns.</p>
 <p><strong>Default value:</strong> <code>"X"</code></p>
 </dd>
 </dl>
@@ -3261,13 +3371,13 @@ Use these path overrides for expression-style sample-by-feature arrays.</p>
 <dt><code>name</code> <span class="required">Required</span></dt>
 <dd>
 <p>Type: string</p>
-<p>Logical identifier name shown in UI and diagnostics.</p>
+<p>Name of the identifier field shown in UI and diagnostics.</p>
 <p>Example values: <code>"symbol"</code>, <code>"ensembl"</code>, <code>"entrez"</code>.</p>
 </dd>
 <dt><code>path</code> <span class="required">Required</span></dt>
 <dd>
 <p>Type: string</p>
-<p>Backend path that provides identifier values aligned to matrix columns.</p>
+<p>Backend path to identifier values aligned to matrix columns.</p>
 <p>The array length must equal the number of columns in the matrix.</p>
 </dd>
 <dt><code>primary</code></dt>
@@ -3308,7 +3418,7 @@ Use these path overrides for expression-style sample-by-feature arrays.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 17, 2026 09:57:57 UTC">February 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 22, 2026 12:38:56 UTC">May 22, 2026</span>
   </span>
 
     
