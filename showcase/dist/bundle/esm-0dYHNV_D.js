@@ -1,5 +1,5 @@
 import { t as e } from "./esm-C49STiCR.js";
-import { t } from "./browser-BTgw5ieH.js";
+import { t } from "./browser-KWU9rWZT.js";
 //#region node_modules/@gmod/indexedfasta/esm/indexedFasta.js
 function n(e, t, n, r) {
 	return e + t * Math.floor(r / n) + r % n;

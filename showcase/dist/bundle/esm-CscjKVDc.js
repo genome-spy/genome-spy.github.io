@@ -1,6 +1,6 @@
 import { n as e, r as t } from "./esm-C49STiCR.js";
 import { t as n } from "./esm-CuVa5T98.js";
-import { r, t as i } from "./browser-BTgw5ieH.js";
+import { r, t as i } from "./browser-KWU9rWZT.js";
 //#region ../../node_modules/@gmod/bam/esm/chunk.js
 var a = class {
 	constructor(e, t, n, r) {

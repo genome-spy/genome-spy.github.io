@@ -5169,10 +5169,11 @@ var pp = class extends Gd {
 	}
 	async discretizeAndLoad(e, t) {
 		this.#e.abort(), this.setLoadingStatus("loading"), this.#e = new AbortController();
-		let n = this.#e.signal, r = this.genome.continuousToDiscreteChromosomeIntervals(e);
+		let n = this.#e.signal, r = this.genome.continuousToDiscreteChromosomeIntervals(e), i = typeof t == "function" ? { load: t } : t;
 		try {
-			let i = await Promise.all(r.map(async (e) => t(e, n)));
-			if (!n.aborted) return this.setLoadingStatus("complete"), this._lastLoadedDomain = Array.from(e), i;
+			let t = i.loadBatch ? await i.loadBatch(r, n) : await Promise.all(r.map(async (e) => i.load(e, n)));
+			if (t.length !== r.length) throw Error("Batched lazy loader must return one chunk per interval.");
+			if (!n.aborted) return this.setLoadingStatus("complete"), this._lastLoadedDomain = Array.from(e), t;
 		} catch (e) {
 			if (!n.aborted) throw this.setLoadingStatus("error", e.message), e;
 		}
@@ -5192,7 +5193,7 @@ var pp = class extends Gd {
 		};
 		if (super(t, n.channel), this.params = n, !this.params.url) throw Error("No URL provided for IndexedFastaSource");
 		this.setupDebouncing(this.params), this.initializedPromise = new Promise((e) => {
-			Promise.all([import("./esm-BimDEpBb.js"), import("./browser-BTgw5ieH.js").then((e) => e.n)]).then(([{ IndexedFasta: t }, { RemoteFile: n }]) => {
+			Promise.all([import("./esm-0dYHNV_D.js"), import("./browser-KWU9rWZT.js").then((e) => e.n)]).then(([{ IndexedFasta: t }, { RemoteFile: n }]) => {
 				let r = (e) => new n(Zd(e, this.view.getBaseUrl()));
 				this.fasta = new t({
 					fasta: r(this.params.url),
@@ -5243,7 +5244,7 @@ var gp = class extends pp {
 	}
 	#n() {
 		return this.initializedPromise = new Promise((e, t) => {
-			Promise.all([import("./esm-Bvlm1uVk.js"), import("./browser-BTgw5ieH.js").then((e) => e.n)]).then(([{ BigWig: n }, { RemoteFile: r }]) => {
+			Promise.all([import("./esm-CT3ygiMq.js"), import("./browser-KWU9rWZT.js").then((e) => e.n)]).then(([{ BigWig: n }, { RemoteFile: r }]) => {
 				this.#t = new n({ filehandle: new r(Zd(H(this.params.url), this.view.getBaseUrl())) }), this.setLoadingStatus("loading"), this.#t.getHeader().then((t) => {
 					this.#e = t.zoomLevels.map((e) => e.reductionLevel).reverse(), this.#e.push(1), this.setLoadingStatus("complete"), e();
 				}).catch((e) => {
@@ -5254,19 +5255,24 @@ var gp = class extends pp {
 	}
 	async onDomainChanged(e) {
 		await this.initializedPromise;
-		let t = this.scaleResolution.getAxisLength() || 700, n = vp(e, t, this.#e), r = Math.max(n * t, 5e3);
+		let t = this.scaleResolution.getAxisLength() || 700, n = yp(e, t, this.#e), r = Math.max(n * t, 5e3);
 		this.callIfWindowsChanged(e, r, (e) => this.loadInterval(e, n));
 	}
 	async loadInterval(e, t) {
-		let n = 1 / 2 / t / H(this.params.pixelsPerBin), r = await this.discretizeAndLoad(e, (e, t) => this.#t.getFeatures(e.chrom, e.startPos, e.endPos, {
-			scale: n,
-			signal: t
-		}).then((t) => t.map((t) => ({
-			chrom: e.chrom,
-			start: t.start,
-			end: t.end,
-			score: t.score
-		}))));
+		let n = 1 / 2 / t / H(this.params.pixelsPerBin), r = await this.discretizeAndLoad(e, {
+			load: (e, t) => this.#t.getFeatures(e.chrom, e.startPos, e.endPos, {
+				scale: n,
+				signal: t
+			}).then((t) => vp(e.chrom, t)),
+			loadBatch: (e, t) => this.#t.getFeaturesMulti(e.map((e) => ({
+				refName: e.chrom,
+				start: e.startPos,
+				end: e.endPos
+			})), {
+				scale: n,
+				signal: t
+			}).then((t) => t.map((t, n) => vp(e[n].chrom, t)))
+		});
 		r && this.publishData(r);
 	}
 };
@@ -5274,13 +5280,21 @@ function _p(e) {
 	return e?.type == "bigwig";
 }
 Rd(_p, gp);
-function vp(e, t, n) {
+function vp(e, t) {
+	return t.map((t) => ({
+		chrom: e,
+		start: t.start,
+		end: t.end,
+		score: t.score
+	}));
+}
+function yp(e, t, n) {
 	let r = (e[1] - e[0]) / t;
 	return n.find((e) => e < r) ?? n.at(-1);
 }
 //#endregion
 //#region src/data/sources/lazy/bigBedSource.js
-var yp = class extends pp {
+var bp = class extends pp {
 	parser;
 	bbi;
 	parseLine;
@@ -5304,14 +5318,14 @@ var yp = class extends pp {
 		return this.initializedPromise = new Promise((e, t) => {
 			Promise.all([
 				import("./esm-DMXpJXM4.js"),
-				import("./esm-Bvlm1uVk.js"),
-				import("./browser-BTgw5ieH.js").then((e) => e.n)
+				import("./esm-CT3ygiMq.js"),
+				import("./browser-KWU9rWZT.js").then((e) => e.n)
 			]).then(([n, { BigBed: r }, { RemoteFile: i }]) => {
 				let a = n.default;
 				this.bbi = new r({ filehandle: new i(Zd(H(this.params.url), this.view.getBaseUrl())) }), this.setLoadingStatus("loading"), this.bbi.getHeader().then(async (t) => {
 					this.parser = new a({ autoSql: t.autoSql });
 					try {
-						let e = bp(this.parser);
+						let e = xp(this.parser);
 						this.parseLine = (t, n) => e(t, n.start, n.end, n.rest);
 					} catch {
 						this.parseLine = (e, t) => this.parser.parseLine(`${e}\t${t.start}\t${t.end}\t${t.rest}`);
@@ -5328,7 +5342,7 @@ var yp = class extends pp {
 		t && this.publishData(t);
 	}
 };
-function bp(e) {
+function xp(e) {
 	let t = e.autoSql.fields.filter((e) => e.type).slice(3), n = 0, r = "", i = 0, a = {};
 	function o() {
 		let e = r.indexOf("	", n);
@@ -5357,7 +5371,7 @@ function bp(e) {
                 chromEnd,
                 ${c.join(",\n")}
             }
-        };`)(), u = Sp(t.map((e) => {
+        };`)(), u = Cp(t.map((e) => {
 		let t = e.type, n = JSON.stringify(e.name);
 		if ([
 			"ubyte",
@@ -5384,16 +5398,16 @@ function bp(e) {
 	}
 	return f;
 }
-function xp(e) {
+function Sp(e) {
 	return e?.type == "bigbed";
 }
-Rd(xp, yp);
-function Sp(e, t) {
+Rd(Sp, bp);
+function Cp(e, t) {
 	return Array.from({ length: Math.ceil(e.length / t) }, (n, r) => e.slice(r * t, r * t + t));
 }
 //#endregion
 //#region src/data/sources/lazy/bamSource.js
-var Cp = class extends pp {
+var wp = class extends pp {
 	#e;
 	chrPrefixFixer = (e) => e;
 	constructor(e, t) {
@@ -5406,7 +5420,7 @@ var Cp = class extends pp {
 		};
 		if (super(t, n.channel), this.params = n, !this.params.url) throw Error("No URL provided for BamSource");
 		this.setupDebouncing(this.params), this.initializedPromise = new Promise((e) => {
-			Promise.all([import("./esm-D_euN86T.js"), import("./browser-BTgw5ieH.js").then((e) => e.n)]).then(([{ BamFile: t }, { RemoteFile: n }]) => {
+			Promise.all([import("./esm-CscjKVDc.js"), import("./browser-KWU9rWZT.js").then((e) => e.n)]).then(([{ BamFile: t }, { RemoteFile: n }]) => {
 				let r = (e) => new n(Zd(e, this.view.getBaseUrl()));
 				this.#e = new t({
 					bamFilehandle: r(this.params.url),
@@ -5434,16 +5448,16 @@ var Cp = class extends pp {
 		t && this.publishData(t);
 	}
 };
-function wp(e) {
+function Tp(e) {
 	return e?.type == "bam";
 }
-Rd(wp, Cp);
+Rd(Tp, wp);
 //#endregion
 //#region src/data/sources/inlineSource.js
-function Tp(e) {
+function Ep(e) {
 	return "values" in e;
 }
-var Ep = class extends Wd {
+var Dp = class extends Wd {
 	constructor(e, t) {
 		if (super(t), this.params = e, typeof e.values == "string" && !e?.format?.type) throw Error("Data format type (csv, dsv, ...) must be specified if a string is provided!");
 	}
@@ -5462,9 +5476,9 @@ var Ep = class extends Wd {
 	}
 	#e(e) {
 		let t = [], n = (e) => e;
-		if (Array.isArray(e)) e.length > 0 && (t = e, n = Fp(e[0]));
+		if (Array.isArray(e)) e.length > 0 && (t = e, n = Ip(e[0]));
 		else if (typeof e == "object") t = [e];
-		else if (typeof e == "string") t = Do(e, Ap(kp(this.params)));
+		else if (typeof e == "string") t = Do(e, jp(Ap(this.params)));
 		else throw Error("\"values\" in data configuration is not an array, object, or a string!");
 		this.reset(), this.beginBatch({ type: "file" });
 		for (let e of t) this._propagate(n(e));
@@ -5473,63 +5487,63 @@ var Ep = class extends Wd {
 	async load() {
 		this.loadSynchronously();
 	}
-}, Dp = new Set([
+}, Op = new Set([
 	"csv",
 	"tsv",
 	"dsv"
-]), Op = new Set([
+]), kp = new Set([
 	"gz",
 	"bgz",
 	"bgzf"
 ]);
-function kp(e, t = []) {
-	if (!Tp(e) && !Bp(e)) return;
+function Ap(e, t = []) {
+	if (!Ep(e) && !Vp(e)) return;
 	let n = { ...e.format };
-	if (n.type ??= Bp(e) && Mp(t), n.parse === void 0 && Vp(n.type) && (n.parse = "auto"), !n.type) throw Error("Format for the data source was not defined and it could not be inferred: " + JSON.stringify(e));
+	if (n.type ??= Vp(e) && Np(t), n.parse === void 0 && Hp(n.type) && (n.parse = "auto"), !n.type) throw Error("Format for the data source was not defined and it could not be inferred: " + JSON.stringify(e));
 	return n;
 }
-function Ap(e) {
-	let t = { ...e };
-	return (Rp(t) || zp(t)) && t.columns && !("header" in t) && (t.header = t.columns), t;
-}
 function jp(e) {
-	return Eo(e)?.responseType ?? "text";
+	let t = { ...e };
+	return (zp(t) || Bp(t)) && t.columns && !("header" in t) && (t.header = t.columns), t;
 }
 function Mp(e) {
+	return Eo(e)?.responseType ?? "text";
+}
+function Np(e) {
 	if (Array.isArray(e) && (e = e[0]), e) {
-		let t = Pp(e).split("/").pop()?.toLowerCase();
+		let t = Fp(e).split("/").pop()?.toLowerCase();
 		if (!t) return;
 		let n = t.split(".");
-		for (; n.length > 1 && Op.has(n.at(-1));) n.pop();
+		for (; n.length > 1 && kp.has(n.at(-1));) n.pop();
 		let r = n.at(-1);
 		if (r && Eo(r)) return r;
 	}
 }
-function Np(e) {
-	let t = Pp(e).split("/").pop()?.toLowerCase();
+function Pp(e) {
+	let t = Fp(e).split("/").pop()?.toLowerCase();
 	if (!t) return !1;
 	let n = t.split(".").at(-1);
-	return !!n && Op.has(n);
+	return !!n && kp.has(n);
 }
-function Pp(e) {
+function Fp(e) {
 	return e.replace(/[?#].*$/, "");
 }
-var Fp = (e) => typeof e == "object" ? Lp : Ip, Ip = (e) => ({ data: e }), Lp = (e) => e;
-function Rp(e) {
+var Ip = (e) => typeof e == "object" ? Rp : Lp, Lp = (e) => ({ data: e }), Rp = (e) => e;
+function zp(e) {
 	return e.type == "csv" || e.type == "tsv";
 }
-function zp(e) {
+function Bp(e) {
 	return e.type == "dsv";
 }
-function Bp(e) {
+function Vp(e) {
 	return "url" in e;
 }
-function Vp(e) {
-	return Dp.has(e);
+function Hp(e) {
+	return Op.has(e);
 }
 //#endregion
 //#region src/data/sources/lazy/tabixSource.js
-var Hp = class extends pp {
+var Up = class extends pp {
 	#e;
 	constructor(e, t) {
 		let n = {
@@ -5547,7 +5561,7 @@ var Hp = class extends pp {
 	}
 	#t() {
 		return this.initializedPromise = new Promise((e, t) => {
-			Promise.all([import("./esm-CngqBe45.js"), import("./browser-BTgw5ieH.js").then((e) => e.n)]).then(async ([{ TabixIndexedFile: n }, { RemoteFile: r }]) => {
+			Promise.all([import("./esm-CRMf_I9V.js"), import("./browser-KWU9rWZT.js").then((e) => e.n)]).then(async ([{ TabixIndexedFile: n }, { RemoteFile: r }]) => {
 				let i = (e) => new r(Zd(e, this.view.getBaseUrl())), a = H(this.params.url), o = H(this.params.indexUrl) ?? a + ".tbi", s = H(this.params.addChrPrefix);
 				this.#e = new n({
 					filehandle: i(a),
@@ -5588,7 +5602,7 @@ var Hp = class extends pp {
 };
 //#endregion
 //#region src/data/sources/lazy/tabixTsvSource.js
-function Up(e) {
+function Wp(e) {
 	let t = e.split(/\r?\n/);
 	for (let e = t.length - 1; e >= 0; e--) {
 		let n = t[e].trimEnd().replace(/\r$/, "");
@@ -5597,7 +5611,7 @@ function Up(e) {
 		if (r.length > 1) return r;
 	}
 }
-function Wp(e) {
+function Gp(e) {
 	let t = e.split(/\r?\n/).find((e) => {
 		let t = e.trimStart();
 		return t !== "" && !t.startsWith("#");
@@ -5606,40 +5620,40 @@ function Wp(e) {
 	let n = t.trimEnd().replace(/\r$/, "").split("	");
 	if (n.length > 1) return n;
 }
-function Gp(e, t, n) {
+function Kp(e, t, n) {
 	if (e.length == 0) return [];
 	let r = {
 		type: "tsv",
 		columns: t,
 		parse: n ?? "auto"
-	}, i = Do(e.join("\n"), Ap(r)), a = t[0], o = null, s = "";
+	}, i = Do(e.join("\n"), jp(r)), a = t[0], o = null, s = "";
 	for (let e of i) {
 		let t = e[a];
 		t != o && (o = t, s = String(t)), e[a] = s;
 	}
 	return i;
 }
-var Kp = class extends Hp {
+var qp = class extends Up {
 	#e;
 	get label() {
 		return "tabixSource";
 	}
 	async _handleHeader(e) {
 		let t = this.params;
-		if (this.#e = H(t.columns) ?? Up(e), this.#e?.length || (this.#e = Wp(await this._readFilePrefix())), !this.#e?.length) throw Error("No columns available for Tabix TSV source. Provide data.lazy.columns or a tabix header line such as #chrom\\tstart\\tend, or a plain first row such as chrom\\tstart\\tend.");
+		if (this.#e = H(t.columns) ?? Wp(e), this.#e?.length || (this.#e = Gp(await this._readFilePrefix())), !this.#e?.length) throw Error("No columns available for Tabix TSV source. Provide data.lazy.columns or a tabix header line such as #chrom\\tstart\\tend, or a plain first row such as chrom\\tstart\\tend.");
 	}
 	_parseFeatures(e) {
 		let t = this.params;
-		return Gp(e, this.#e ?? [], H(t.parse));
+		return Kp(e, this.#e ?? [], H(t.parse));
 	}
 };
-function qp(e) {
+function Jp(e) {
 	return e?.type == "tabix";
 }
-Rd(qp, Kp);
+Rd(Jp, qp);
 //#endregion
 //#region src/data/sources/lazy/gff3Source.js
-var Jp = class extends Hp {
+var Yp = class extends Up {
 	#e;
 	get label() {
 		return "gff3Source";
@@ -5651,13 +5665,13 @@ var Jp = class extends Hp {
 		return this.#e?.parseStringSync(e.join("\n"));
 	}
 };
-function Yp(e) {
+function Xp(e) {
 	return e?.type == "gff3";
 }
-Rd(Yp, Jp);
+Rd(Xp, Yp);
 //#endregion
 //#region src/data/sources/lazy/vcfSource.js
-var Xp = class extends Hp {
+var Zp = class extends Up {
 	#e;
 	get label() {
 		return "vcfSource";
@@ -5673,20 +5687,20 @@ var Xp = class extends Hp {
 		});
 	}
 };
-function Zp(e) {
+function Qp(e) {
 	return e?.type == "vcf";
 }
-Rd(Zp, Xp);
+Rd(Qp, Zp);
 //#endregion
 //#region src/styles/genome-spy.css.js
-var Qp = "\n@scope {\n:scope {\n--genome-spy-basic-spacing: 10px;\n--genome-spy-font-family:\nsystem-ui, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif,\n\"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n\nfont-family: var(--genome-spy-font-family);\n\nposition: relative;\n\ndisplay: flex;\nflex-direction: column;\n}\n\n.canvas-wrapper {\nposition: relative;\nflex-grow: 1;\noverflow: hidden;\n}\n\ncanvas {\ndisplay: block;\ntouch-action: none;\ntransform: scale(1, 1);\nopacity: 1;\ntransition:\ntransform 0.6s,\nopacity 0.6s;\n\n&:focus,\n&:focus-visible {\noutline: none;\n}\n}\n\n.loading {\n> canvas {\ntransform: scale(0.95, 0.95);\nopacity: 0;\n}\n}\n\n.loading-indicators {\nposition: absolute;\ninset: 0;\n\nuser-select: none;\npointer-events: none;\n\ndiv {\nposition: absolute;\ndisplay: flex;\nalign-items: center;\njustify-content: center;\n\n> div {\nfont-size: 11px;\ntransition: opacity 0.2s;\nbackground: white;\npadding: 2px 5px;\ndisplay: flex;\nborder-radius: 3px;\ngap: 0.5em;\nopacity: 0;\n\n&.loading {\nopacity: 0.5;\n}\n\n&.error {\nopacity: 0.8;\ncolor: firebrick;\n}\n\n> * {\ndisplay: block;\n}\n\nimg {\nwidth: 1.5em;\nheight: 1.5em;\n}\n}\n}\n}\n\n.tooltip {\nposition: absolute;\n\nmax-width: 450px;\noverflow: hidden;\n\n--background-color: #f6f6f6;\nbackground: var(--background-color);\npadding: var(--genome-spy-basic-spacing);\n\n--font-size: 12px;\nfont-size: var(--font-size);\n\nbox-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.21);\n\n&:not(.sticky) {\npointer-events: none;\n}\n\ntransition:\noutline-color 0.3s ease-in-out,\nbox-shadow 0.3s ease-in-out;\n\noutline: 0px solid transparent;\n&.sticky {\noutline: 2px solid black;\nbox-shadow: 0px 3px 18px 0px rgba(0, 0, 0, 0.3);\n}\n\nz-index: 100;\n\n> :last-child {\nmargin-bottom: 0;\n}\n\n> .title {\npadding-bottom: calc(var(--genome-spy-basic-spacing) / 2);\nmargin-bottom: calc(var(--genome-spy-basic-spacing) / 2);\nborder-bottom: 1px dashed var(--background-color);\nborder-bottom: 1px dashed\ncolor-mix(in srgb, black 25%, var(--background-color));\n}\n\n.summary {\nfont-size: 12px;\n}\n\ntable {\n&:first-child {\nmargin-top: 0;\n}\n\nborder-collapse: collapse;\n\nth,\ntd {\npadding: 2px 0.4em;\nvertical-align: top;\nfont-size: var(--font-size);\n\n&:first-child {\npadding-left: 0;\n}\n}\n\nth {\ntext-align: left;\nfont-weight: bold;\n}\n}\n\n.color-legend {\ndisplay: inline-block;\nwidth: 0.8em;\nheight: 0.8em;\nmargin-left: 0.4em;\nbox-shadow: 0px 0px 3px 1px white;\n}\n\n.color-legend-unmapped {\nbackground-color: transparent;\nborder: 1px solid black;\nbox-sizing: border-box;\nbox-shadow: none;\n}\n\n.attributes {\n.hovered {\nbackground-color: #e0e0e0;\n}\n}\n\n.na {\ncolor: #aaa;\nfont-style: italic;\nfont-size: 80%;\n}\n}\n\n.gene-track-tooltip {\n.summary {\nfont-size: 90%;\n}\n}\n\n.gs-input-binding {\ndisplay: grid;\ngrid-template-columns: max-content max-content;\ncolumn-gap: 1em;\nrow-gap: 0.3em;\njustify-items: start;\n\n> select,\n> input:not([type=\"checkbox\"]) {\nwidth: 100%;\n}\n\ninput[type=\"range\"] + span {\ndisplay: inline-block;\nmargin-left: 0.3em;\nmin-width: 2.2em;\nfont-variant-numeric: tabular-nums;\n}\n\ninput[type=\"range\"],\ninput[type=\"radio\"] {\nvertical-align: text-bottom;\n}\n\n.radio-group {\ndisplay: flex;\nalign-items: center;\n}\n\n.description {\nmax-width: 26em;\ngrid-column: 1 / -1;\ncolor: #777;\nfont-size: 90%;\nmargin-top: -0.5em;\n}\n}\n\n.gs-input-bindings {\nflex-basis: content;\nfont-size: 14px;\npadding: var(--genome-spy-basic-spacing);\n}\n\n.message-box {\ndisplay: flex;\nalign-items: center;\njustify-content: center;\nposition: absolute;\ntop: 0;\nheight: 100%;\nwidth: 100%;\n\n> div {\nborder: 1px solid red;\npadding: 10px;\nbackground: #fff0f0;\n}\n}\n}\n";
+var $p = "\n@scope {\n:scope {\n--genome-spy-basic-spacing: 10px;\n--genome-spy-font-family:\nsystem-ui, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif,\n\"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n\nfont-family: var(--genome-spy-font-family);\n\nposition: relative;\n\ndisplay: flex;\nflex-direction: column;\n}\n\n.canvas-wrapper {\nposition: relative;\nflex-grow: 1;\noverflow: hidden;\n}\n\ncanvas {\ndisplay: block;\ntouch-action: none;\ntransform: scale(1, 1);\nopacity: 1;\ntransition:\ntransform 0.6s,\nopacity 0.6s;\n\n&:focus,\n&:focus-visible {\noutline: none;\n}\n}\n\n.loading {\n> canvas {\ntransform: scale(0.95, 0.95);\nopacity: 0;\n}\n}\n\n.loading-indicators {\nposition: absolute;\ninset: 0;\n\nuser-select: none;\npointer-events: none;\n\ndiv {\nposition: absolute;\ndisplay: flex;\nalign-items: center;\njustify-content: center;\n\n> div {\nfont-size: 11px;\ntransition: opacity 0.2s;\nbackground: white;\npadding: 2px 5px;\ndisplay: flex;\nborder-radius: 3px;\ngap: 0.5em;\nopacity: 0;\n\n&.loading {\nopacity: 0.5;\n}\n\n&.error {\nopacity: 0.8;\ncolor: firebrick;\n}\n\n> * {\ndisplay: block;\n}\n\nimg {\nwidth: 1.5em;\nheight: 1.5em;\n}\n}\n}\n}\n\n.tooltip {\nposition: absolute;\n\nmax-width: 450px;\noverflow: hidden;\n\n--background-color: #f6f6f6;\nbackground: var(--background-color);\npadding: var(--genome-spy-basic-spacing);\n\n--font-size: 12px;\nfont-size: var(--font-size);\n\nbox-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.21);\n\n&:not(.sticky) {\npointer-events: none;\n}\n\ntransition:\noutline-color 0.3s ease-in-out,\nbox-shadow 0.3s ease-in-out;\n\noutline: 0px solid transparent;\n&.sticky {\noutline: 2px solid black;\nbox-shadow: 0px 3px 18px 0px rgba(0, 0, 0, 0.3);\n}\n\nz-index: 100;\n\n> :last-child {\nmargin-bottom: 0;\n}\n\n> .title {\npadding-bottom: calc(var(--genome-spy-basic-spacing) / 2);\nmargin-bottom: calc(var(--genome-spy-basic-spacing) / 2);\nborder-bottom: 1px dashed var(--background-color);\nborder-bottom: 1px dashed\ncolor-mix(in srgb, black 25%, var(--background-color));\n}\n\n.summary {\nfont-size: 12px;\n}\n\ntable {\n&:first-child {\nmargin-top: 0;\n}\n\nborder-collapse: collapse;\n\nth,\ntd {\npadding: 2px 0.4em;\nvertical-align: top;\nfont-size: var(--font-size);\n\n&:first-child {\npadding-left: 0;\n}\n}\n\nth {\ntext-align: left;\nfont-weight: bold;\n}\n}\n\n.color-legend {\ndisplay: inline-block;\nwidth: 0.8em;\nheight: 0.8em;\nmargin-left: 0.4em;\nbox-shadow: 0px 0px 3px 1px white;\n}\n\n.color-legend-unmapped {\nbackground-color: transparent;\nborder: 1px solid black;\nbox-sizing: border-box;\nbox-shadow: none;\n}\n\n.attributes {\n.hovered {\nbackground-color: #e0e0e0;\n}\n}\n\n.autoscroll-container {\nmax-height: min(40em, 50vh);\noverflow-x: hidden;\noverflow-y: auto;\npadding-right: var(--genome-spy-basic-spacing);\nmargin-right: calc(-1 * var(--genome-spy-basic-spacing));\n}\n\n.na {\ncolor: #aaa;\nfont-style: italic;\nfont-size: 80%;\n}\n}\n\n.gene-track-tooltip {\n.summary {\nfont-size: 90%;\n}\n}\n\n.gs-input-binding {\ndisplay: grid;\ngrid-template-columns: max-content max-content;\ncolumn-gap: 1em;\nrow-gap: 0.3em;\njustify-items: start;\n\n> select,\n> input:not([type=\"checkbox\"]) {\nwidth: 100%;\n}\n\ninput[type=\"range\"] + span {\ndisplay: inline-block;\nmargin-left: 0.3em;\nmin-width: 2.2em;\nfont-variant-numeric: tabular-nums;\n}\n\ninput[type=\"range\"],\ninput[type=\"radio\"] {\nvertical-align: text-bottom;\n}\n\n.radio-group {\ndisplay: flex;\nalign-items: center;\n}\n\n.description {\nmax-width: 26em;\ngrid-column: 1 / -1;\ncolor: #777;\nfont-size: 90%;\nmargin-top: -0.5em;\n}\n}\n\n.gs-input-bindings {\nflex-basis: content;\nfont-size: 14px;\npadding: var(--genome-spy-basic-spacing);\n}\n\n.message-box {\ndisplay: flex;\nalign-items: center;\njustify-content: center;\nposition: absolute;\ntop: 0;\nheight: 100%;\nwidth: 100%;\n\n> div {\nborder: 1px solid red;\npadding: 10px;\nbackground: #fff0f0;\n}\n}\n}\n";
 //#endregion
 //#region src/utils/point.js
-function $p(e, t) {
+function em(e, t) {
 	var n = e.getBoundingClientRect();
 	return [t.clientX - n.left - e.clientLeft, t.clientY - n.top - e.clientTop];
 }
-var em = class {
+var tm = class {
 	#e = !1;
 	#t = !0;
 	#n = void 0;
@@ -5722,9 +5736,9 @@ var em = class {
 	}
 	handleMouseMove(e) {
 		if (this.#e) return;
-		this.mouseCoords = $p(this.#s, e);
+		this.mouseCoords = em(this.#s, e);
 		let t = performance.now();
-		!this.visible && !this._isPenalty() && t - this.#a > 500 && (this.#r = t + 70), this.#i && tm(this.mouseCoords, this.#i) > 20 && (this.#r = t + 400), this.#i = this.mouseCoords, this.visible && this.updatePlacement(), this.#a = t;
+		!this.visible && !this._isPenalty() && t - this.#a > 500 && (this.#r = t + 70), this.#i && rm(this.mouseCoords, this.#i) > 20 && (this.#r = t + 400), this.#i = this.mouseCoords, this.visible && this.updatePlacement(), this.#a = t;
 	}
 	updatePlacement() {
 		let [e, t] = this.mouseCoords, n = e + 20;
@@ -5736,7 +5750,7 @@ var em = class {
 				this.visible &&= (Re("", this.#o), !1), this.#n = void 0;
 				return;
 			}
-			Re(e, this.#o), this.visible = !0, this.updatePlacement();
+			Re(e, this.#o), this.#o.querySelectorAll(".autoscroll-container").forEach(nm), this.visible = !0, this.updatePlacement();
 		}
 	}
 	clear() {
@@ -5757,32 +5771,40 @@ var em = class {
 		return this.#r && this.#r > performance.now();
 	}
 };
-function tm(e, t) {
+function nm(e) {
+	e && queueMicrotask(() => {
+		e.querySelector("tr.hovered")?.scrollIntoView({
+			block: "nearest",
+			inline: "nearest"
+		});
+	});
+}
+function rm(e, t) {
 	let n = 0;
 	for (let r = 0; r < e.length; r++) n += (e[r] - t[r]) ** 2;
 	return Math.sqrt(n);
 }
 //#endregion
 //#region src/genomeSpy/containerUi.js
-function nm(e) {
+function im(e) {
 	e.classList.add("genome-spy");
 	let t = document.createElement("style");
-	t.innerHTML = Qp, e.appendChild(t);
-	let n = im("div", { class: "canvas-wrapper" });
+	t.innerHTML = $p, e.appendChild(t);
+	let n = om("div", { class: "canvas-wrapper" });
 	return e.appendChild(n), n.classList.add("loading"), {
 		canvasWrapper: n,
-		loadingIndicatorsElement: im("div", { class: "loading-indicators" }),
-		tooltip: new em(e),
+		loadingIndicatorsElement: om("div", { class: "loading-indicators" }),
+		tooltip: new tm(e),
 		styleElement: t
 	};
 }
-function rm(e, t) {
+function am(e, t) {
 	let n = document.createElement("div");
 	n.className = "message-box";
 	let r = document.createElement("div");
 	r.textContent = t, n.appendChild(r), e.appendChild(n);
 }
-function im(e, t) {
+function om(e, t) {
 	let n = document.createElement(e);
 	for (let [e, r] of Object.entries(t)) [
 		"innerHTML",
@@ -5793,17 +5815,17 @@ function im(e, t) {
 }
 //#endregion
 //#region ../../node_modules/lit-html/directive.js
-var am = {
+var sm = {
 	ATTRIBUTE: 1,
 	CHILD: 2,
 	PROPERTY: 3,
 	BOOLEAN_ATTRIBUTE: 4,
 	EVENT: 5,
 	ELEMENT: 6
-}, om = (e) => (...t) => ({
+}, cm = (e) => (...t) => ({
 	_$litDirective$: e,
 	values: t
-}), sm = class {
+}), lm = class {
 	constructor(e) {}
 	get _$AU() {
 		return this._$AM._$AU;
@@ -5817,9 +5839,9 @@ var am = {
 	update(e, t) {
 		return this.render(...t);
 	}
-}, cm = "important", lm = " !" + cm, um = om(class extends sm {
+}, um = "important", dm = " !" + um, fm = cm(class extends lm {
 	constructor(e) {
-		if (super(e), e.type !== am.ATTRIBUTE || e.name !== "style" || e.strings?.length > 2) throw Error("The `styleMap` directive must be used in the `style` attribute and must be the only part in the attribute.");
+		if (super(e), e.type !== sm.ATTRIBUTE || e.name !== "style" || e.strings?.length > 2) throw Error("The `styleMap` directive must be used in the `style` attribute and must be the only part in the attribute.");
 	}
 	render(e) {
 		return Object.keys(e).reduce((t, n) => {
@@ -5835,13 +5857,13 @@ var am = {
 			let r = t[e];
 			if (r != null) {
 				this.ft.add(e);
-				let t = typeof r == "string" && r.endsWith(lm);
-				e.includes("-") || t ? n.setProperty(e, t ? r.slice(0, -11) : r, t ? cm : "") : n[e] = r;
+				let t = typeof r == "string" && r.endsWith(dm);
+				e.includes("-") || t ? n.setProperty(e, t ? r.slice(0, -11) : r, t ? um : "") : n[e] = r;
 			}
 		}
 		return Ce;
 	}
-}), dm = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3e%3cstyle%3e.spinner_ajPY{transform-origin:center;animation:spinner_AtaB%20.75s%20infinite%20linear}@keyframes%20spinner_AtaB{100%25{transform:rotate(360deg)}}%3c/style%3e%3cpath%20d='M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z'%20opacity='.25'/%3e%3cpath%20d='M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z'%20class='spinner_ajPY'/%3e%3c/svg%3e", fm = class {
+}), pm = "data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3e%3cstyle%3e.spinner_ajPY{transform-origin:center;animation:spinner_AtaB%20.75s%20infinite%20linear}@keyframes%20spinner_AtaB{100%25{transform:rotate(360deg)}}%3c/style%3e%3cpath%20d='M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z'%20opacity='.25'/%3e%3cpath%20d='M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z'%20class='spinner_ajPY'/%3e%3c/svg%3e", mm = class {
 	#e;
 	#t;
 	#n = null;
@@ -5866,20 +5888,20 @@ var am = {
 					width: `${o.width}px`,
 					height: `${o.height}px`
 				};
-				e.push(C`<div style=${um(t)}>
+				e.push(C`<div style=${fm(t)}>
                         <div class=${i.status}>
                             ${i.status == "error" ? C`<span
                                       >Loading
                                       failed${i.detail ? C`: ${i.detail}` : w}</span
                                   >` : C`
-                                      <img src="${dm}" alt="" />
+                                      <img src="${pm}" alt="" />
                                       <span>Loading...</span>
                                   `}
                         </div>
                     </div>`);
 			}
 		}
-		n && !r && e.push(C`<div style=${um({
+		n && !r && e.push(C`<div style=${fm({
 			left: "0px",
 			top: "0px",
 			width: "100%",
@@ -5890,7 +5912,7 @@ var am = {
                                   >Loading
                                   failed${n.detail ? C`: ${n.detail}` : w}</span
                               >` : C`
-                                  <img src="${dm}" alt="" />
+                                  <img src="${pm}" alt="" />
                                   <span>Loading...</span>
                               `}
                     </div>
@@ -5898,7 +5920,7 @@ var am = {
 			t() || (this.#e.style.display = "none");
 		}, 3e3), Re(e, this.#e);
 	}
-}, pm = class {
+}, hm = class {
 	#e = /* @__PURE__ */ new Map();
 	#t = /* @__PURE__ */ new Set();
 	set(e, t, n) {
@@ -5939,7 +5961,7 @@ var am = {
 };
 //#endregion
 //#region src/genomeSpy/viewHighlight.js
-function mm(e) {
+function gm(e) {
 	return (t) => {
 		if (e.querySelector(".view-highlight")?.remove(), t) {
 			if (!t.isVisible()) return;
@@ -5953,7 +5975,7 @@ function mm(e) {
 }
 //#endregion
 //#region src/genomeSpy/keyboardListenerManager.js
-var hm = class {
+var _m = class {
 	#e;
 	constructor() {
 		this.#e = /* @__PURE__ */ new Map();
@@ -5967,7 +5989,7 @@ var hm = class {
 		for (let [e, t] of this.#e) for (let n of t) document.removeEventListener(e, n);
 		this.#e.clear();
 	}
-}, gm = class {
+}, vm = class {
 	#e;
 	constructor() {
 		this.#e = /* @__PURE__ */ new Map();
@@ -5985,7 +6007,7 @@ var hm = class {
 };
 //#endregion
 //#region src/utils/inputBinding.js
-function _m(e) {
+function ym(e) {
 	let t = Math.floor(Math.random() * 16777215).toString(16), n = [];
 	for (let r of e.paramConfigs.values()) {
 		if (!op(r)) continue;
@@ -6060,7 +6082,7 @@ function _m(e) {
 }
 //#endregion
 //#region src/genomeSpy/inputBindingManager.js
-var vm = class {
+var bm = class {
 	#e;
 	#t;
 	#n;
@@ -6071,7 +6093,7 @@ var vm = class {
 		let t = [];
 		e.visit((e) => {
 			let n = e.paramRuntime;
-			t.push(..._m(n));
+			t.push(...ym(n));
 		});
 		let n = this.#t.inputBindingContainer;
 		if (!(!n || n == "none" || !t.length)) {
@@ -6086,114 +6108,114 @@ var vm = class {
 	}
 };
 Float32Array, Float32Array;
-var ym = 5120, bm = 5121, xm = 5122, Sm = 5123, Cm = 5124, wm = 5125, Tm = 5126, Em = 32819, Dm = 32820, Om = 33635, km = 5131, Am = 33640, jm = 35899, Mm = 35902, Nm = 36269, Pm = 34042, Fm = {};
+var xm = 5120, Sm = 5121, Cm = 5122, wm = 5123, Tm = 5124, Em = 5125, Dm = 5126, Om = 32819, km = 32820, Am = 33635, jm = 5131, Mm = 33640, Nm = 35899, Pm = 35902, Fm = 36269, Im = 34042, Lm = {};
 {
-	let e = Fm;
-	e[ym] = Int8Array, e[bm] = Uint8Array, e[xm] = Int16Array, e[Sm] = Uint16Array, e[Cm] = Int32Array, e[wm] = Uint32Array, e[Tm] = Float32Array, e[Em] = Uint16Array, e[Dm] = Uint16Array, e[Om] = Uint16Array, e[km] = Uint16Array, e[Am] = Uint32Array, e[jm] = Uint32Array, e[Mm] = Uint32Array, e[Nm] = Uint32Array, e[Pm] = Uint32Array;
-}
-function Im(e) {
-	if (e instanceof Int8Array) return ym;
-	if (e instanceof Uint8Array || e instanceof Uint8ClampedArray) return bm;
-	if (e instanceof Int16Array) return xm;
-	if (e instanceof Uint16Array) return Sm;
-	if (e instanceof Int32Array) return Cm;
-	if (e instanceof Uint32Array) return wm;
-	if (e instanceof Float32Array) return Tm;
-	throw Error("unsupported typed array type");
-}
-function Lm(e) {
-	if (e === Int8Array) return ym;
-	if (e === Uint8Array || e === Uint8ClampedArray) return bm;
-	if (e === Int16Array) return xm;
-	if (e === Uint16Array) return Sm;
-	if (e === Int32Array) return Cm;
-	if (e === Uint32Array) return wm;
-	if (e === Float32Array) return Tm;
-	throw Error("unsupported typed array type");
+	let e = Lm;
+	e[xm] = Int8Array, e[Sm] = Uint8Array, e[Cm] = Int16Array, e[wm] = Uint16Array, e[Tm] = Int32Array, e[Em] = Uint32Array, e[Dm] = Float32Array, e[Om] = Uint16Array, e[km] = Uint16Array, e[Am] = Uint16Array, e[jm] = Uint16Array, e[Mm] = Uint32Array, e[Nm] = Uint32Array, e[Pm] = Uint32Array, e[Fm] = Uint32Array, e[Im] = Uint32Array;
 }
 function Rm(e) {
-	let t = Fm[e];
+	if (e instanceof Int8Array) return xm;
+	if (e instanceof Uint8Array || e instanceof Uint8ClampedArray) return Sm;
+	if (e instanceof Int16Array) return Cm;
+	if (e instanceof Uint16Array) return wm;
+	if (e instanceof Int32Array) return Tm;
+	if (e instanceof Uint32Array) return Em;
+	if (e instanceof Float32Array) return Dm;
+	throw Error("unsupported typed array type");
+}
+function zm(e) {
+	if (e === Int8Array) return xm;
+	if (e === Uint8Array || e === Uint8ClampedArray) return Sm;
+	if (e === Int16Array) return Cm;
+	if (e === Uint16Array) return wm;
+	if (e === Int32Array) return Tm;
+	if (e === Uint32Array) return Em;
+	if (e === Float32Array) return Dm;
+	throw Error("unsupported typed array type");
+}
+function Bm(e) {
+	let t = Lm[e];
 	if (!t) throw Error("unknown gl type");
 	return t;
 }
-var zm = typeof SharedArrayBuffer < "u" ? function(e) {
+var Vm = typeof SharedArrayBuffer < "u" ? function(e) {
 	return e && e.buffer && (e.buffer instanceof ArrayBuffer || e.buffer instanceof SharedArrayBuffer);
 } : function(e) {
 	return e && e.buffer && e.buffer instanceof ArrayBuffer;
 };
-function Bm(...e) {
+function Hm(...e) {
 	console.error(...e);
 }
-function Vm(...e) {
+function Um(...e) {
 	console.warn(...e);
 }
-function Hm(e, t) {
+function Wm(e, t) {
 	return typeof WebGLBuffer < "u" && t instanceof WebGLBuffer;
 }
-function Um(e, t) {
+function Gm(e, t) {
 	return typeof WebGLRenderbuffer < "u" && t instanceof WebGLRenderbuffer;
 }
-function Wm(e, t) {
+function Km(e, t) {
 	return typeof WebGLTexture < "u" && t instanceof WebGLTexture;
 }
-function Gm(e, t) {
+function qm(e, t) {
 	return typeof WebGLSampler < "u" && t instanceof WebGLSampler;
 }
-var Km = 35044, qm = 34962, Jm = 34963, Ym = 34660, Xm = 5120, Zm = 5121, Qm = 5122, $m = 5123, eh = 5124, th = 5125, nh = 5126, rh = { attribPrefix: "" };
-function ih(e, t, n, r, i) {
-	e.bindBuffer(t, n), e.bufferData(t, r, i || Km);
+var Jm = 35044, Ym = 34962, Xm = 34963, Zm = 34660, Qm = 5120, $m = 5121, eh = 5122, th = 5123, nh = 5124, rh = 5125, ih = 5126, ah = { attribPrefix: "" };
+function oh(e, t, n, r, i) {
+	e.bindBuffer(t, n), e.bufferData(t, r, i || Jm);
 }
-function ah(e, t, n, r) {
-	if (Hm(e, t)) return t;
-	n ||= qm;
+function sh(e, t, n, r) {
+	if (Wm(e, t)) return t;
+	n ||= Ym;
 	let i = e.createBuffer();
-	return ih(e, n, i, t, r), i;
-}
-function oh(e) {
-	return e === "indices";
-}
-function sh(e) {
-	return e instanceof Int8Array || e instanceof Uint8Array;
+	return oh(e, n, i, t, r), i;
 }
 function ch(e) {
-	return e === Int8Array || e === Uint8Array;
+	return e === "indices";
 }
 function lh(e) {
+	return e instanceof Int8Array || e instanceof Uint8Array;
+}
+function uh(e) {
+	return e === Int8Array || e === Uint8Array;
+}
+function dh(e) {
 	return e.length ? e : e.data;
 }
-var uh = /coord|texture/i, dh = /color|colour/i;
-function fh(e, t) {
+var fh = /coord|texture/i, ph = /color|colour/i;
+function mh(e, t) {
 	let n;
-	if (n = uh.test(e) ? 2 : dh.test(e) ? 4 : 3, t % n > 0) throw Error(`Can not guess numComponents for attribute '${e}'. Tried ${n} but ${t} values is not evenly divisible by ${n}. You should specify it.`);
+	if (n = fh.test(e) ? 2 : ph.test(e) ? 4 : 3, t % n > 0) throw Error(`Can not guess numComponents for attribute '${e}'. Tried ${n} but ${t} values is not evenly divisible by ${n}. You should specify it.`);
 	return n;
 }
-function ph(e, t) {
-	return e.numComponents || e.size || fh(t, lh(e).length);
+function hh(e, t) {
+	return e.numComponents || e.size || mh(t, dh(e).length);
 }
-function mh(e, t) {
-	if (zm(e)) return e;
-	if (zm(e.data)) return e.data;
+function gh(e, t) {
+	if (Vm(e)) return e;
+	if (Vm(e.data)) return e.data;
 	Array.isArray(e) && (e = { data: e });
 	let n = e.type;
-	return n ||= oh(t) ? Uint16Array : Float32Array, new n(e.data);
+	return n ||= ch(t) ? Uint16Array : Float32Array, new n(e.data);
 }
-function hh(e, t) {
+function _h(e, t) {
 	let n = {};
 	return Object.keys(t).forEach(function(r) {
-		if (!oh(r)) {
-			let i = t[r], a = i.attrib || i.name || i.attribName || rh.attribPrefix + r;
+		if (!ch(r)) {
+			let i = t[r], a = i.attrib || i.name || i.attribName || ah.attribPrefix + r;
 			if (i.value) {
-				if (!Array.isArray(i.value) && !zm(i.value)) throw Error("array.value is not array or typedarray");
+				if (!Array.isArray(i.value) && !Vm(i.value)) throw Error("array.value is not array or typedarray");
 				n[a] = { value: i.value };
 			} else {
 				let t, o, s, c;
 				if (i.buffer && i.buffer instanceof WebGLBuffer) t = i.buffer, c = i.numComponents || i.size, o = i.type, s = i.normalize;
 				else if (typeof i == "number" || typeof i.data == "number") {
 					let n = i.data || i, a = i.type || Float32Array, l = n * a.BYTES_PER_ELEMENT;
-					o = Lm(a), s = i.normalize === void 0 ? ch(a) : i.normalize, c = i.numComponents || i.size || fh(r, n), t = e.createBuffer(), e.bindBuffer(qm, t), e.bufferData(qm, l, i.drawType || Km);
+					o = zm(a), s = i.normalize === void 0 ? uh(a) : i.normalize, c = i.numComponents || i.size || mh(r, n), t = e.createBuffer(), e.bindBuffer(Ym, t), e.bufferData(Ym, l, i.drawType || Jm);
 				} else {
-					let n = mh(i, r);
-					t = ah(e, n, void 0, i.drawType), o = Im(n), s = i.normalize === void 0 ? sh(n) : i.normalize, c = ph(i, r);
+					let n = gh(i, r);
+					t = sh(e, n, void 0, i.drawType), o = Rm(n), s = i.normalize === void 0 ? lh(n) : i.normalize, c = hh(i, r);
 				}
 				n[a] = {
 					buffer: t,
@@ -6207,46 +6229,46 @@ function hh(e, t) {
 				};
 			}
 		}
-	}), e.bindBuffer(qm, null), n;
+	}), e.bindBuffer(Ym, null), n;
 }
-function gh(e, t, n, r) {
-	n = mh(n), r === void 0 ? ih(e, qm, t.buffer, n, t.drawType) : (e.bindBuffer(qm, t.buffer), e.bufferSubData(qm, r, n));
+function vh(e, t, n, r) {
+	n = gh(n), r === void 0 ? oh(e, Ym, t.buffer, n, t.drawType) : (e.bindBuffer(Ym, t.buffer), e.bufferSubData(Ym, r, n));
 }
-function _h(e, t) {
-	return t === Xm || t === Zm ? 1 : t === Qm || t === $m ? 2 : t === eh || t === th || t === nh ? 4 : 0;
+function yh(e, t) {
+	return t === Qm || t === $m ? 1 : t === eh || t === th ? 2 : t === nh || t === rh || t === ih ? 4 : 0;
 }
-var vh = [
+var bh = [
 	"position",
 	"positions",
 	"a_position"
 ];
-function yh(e, t) {
+function xh(e, t) {
 	let n, r;
-	for (r = 0; r < vh.length && (n = vh[r], !(n in t || (n = rh.attribPrefix + n, n in t))); ++r);
-	r === vh.length && (n = Object.keys(t)[0]);
+	for (r = 0; r < bh.length && (n = bh[r], !(n in t || (n = ah.attribPrefix + n, n in t))); ++r);
+	r === bh.length && (n = Object.keys(t)[0]);
 	let i = t[n];
 	if (!i.buffer) return 1;
-	e.bindBuffer(qm, i.buffer);
-	let a = e.getBufferParameter(qm, Ym);
-	e.bindBuffer(qm, null);
-	let o = a / _h(e, i.type), s = i.numComponents || i.size, c = o / s;
+	e.bindBuffer(Ym, i.buffer);
+	let a = e.getBufferParameter(Ym, Zm);
+	e.bindBuffer(Ym, null);
+	let o = a / yh(e, i.type), s = i.numComponents || i.size, c = o / s;
 	if (c % 1 != 0) throw Error(`numComponents ${s} not correct for length ${length}`);
 	return c;
 }
-function bh(e, t, n) {
-	let r = hh(e, t), i = Object.assign({}, n || {});
+function Sh(e, t, n) {
+	let r = _h(e, t), i = Object.assign({}, n || {});
 	i.attribs = Object.assign({}, n ? n.attribs : {}, r);
 	let a = t.indices;
 	if (a) {
-		let t = mh(a, "indices");
-		i.indices = ah(e, t, Jm), i.numElements = t.length, i.elementType = Im(t);
-	} else i.numElements ||= yh(e, i.attribs);
+		let t = gh(a, "indices");
+		i.indices = sh(e, t, Xm), i.numElements = t.length, i.elementType = Rm(t);
+	} else i.numElements ||= xh(e, i.attribs);
 	return i;
 }
-function xh(e) {
+function Ch(e) {
 	return !!e.texStorage2D;
 }
-var Sh = function() {
+var wh = function() {
 	let e = {}, t = {};
 	function n(n) {
 		let r = n.constructor.name;
@@ -6261,7 +6283,7 @@ var Sh = function() {
 	return function(e, r) {
 		return n(e), t[r] || (typeof r == "number" ? `0x${r.toString(16)}` : r);
 	};
-}(), Ch = {
+}(), Th = {
 	textureColor: new Uint8Array([
 		128,
 		192,
@@ -6270,37 +6292,21 @@ var Sh = function() {
 	]),
 	textureOptions: {},
 	crossOrigin: void 0
-}, wh = zm, Th = function() {
+}, Eh = Vm, Dh = function() {
 	let e;
 	return function() {
 		return e ||= typeof document < "u" && document.createElement ? document.createElement("canvas").getContext("2d") : null, e;
 	};
-}(), Eh = 6406, Dh = 6407, U = 6408, Oh = 6409, kh = 6410, Ah = 6402, jh = 34041, Mh = 33071, Nh = 9728, Ph = 9729, Fh = 3553, Ih = 34067, Lh = 32879, Rh = 35866, zh = 34069, Bh = 34070, Vh = 34071, Hh = 34072, Uh = 34073, Wh = 34074, Gh = 10241, Kh = 10240, qh = 10242, Jh = 10243, Yh = 32882, Xh = 33082, Zh = 33083, Qh = 33084, $h = 33085, eg = 3317, tg = 3314, ng = 32878, rg = 3316, ig = 3315, ag = 32877, og = 37443, sg = 37441, cg = 37440, lg = 33321, ug = 36756, dg = 33325, fg = 33326, pg = 33330, mg = 33329, hg = 33338, gg = 33337, _g = 33340, vg = 33339, yg = 33323, bg = 36757, xg = 33327, Sg = 33328, Cg = 33336, wg = 33335, Tg = 33332, Eg = 33331, Dg = 33334, Og = 33333, kg = 32849, Ag = 35905, jg = 36194, Mg = 36758, Ng = 35898, Pg = 35901, Fg = 34843, Ig = 34837, Lg = 36221, Rg = 36239, zg = 36215, Bg = 36233, Vg = 36209, Hg = 36227, Ug = 32856, Wg = 35907, Gg = 36759, Kg = 32855, qg = 32854, Jg = 32857, Yg = 34842, Xg = 34836, Zg = 36220, Qg = 36238, $g = 36975, e_ = 36214, t_ = 36232, n_ = 36226, r_ = 36208, i_ = 33189, a_ = 33190, o_ = 36012, s_ = 36013, c_ = 35056, l_ = 5120, W = 5121, u_ = 5122, d_ = 5123, f_ = 5124, p_ = 5125, m_ = 5126, h_ = 32819, g_ = 32820, __ = 33635, v_ = 5131, y_ = 36193, b_ = 33640, x_ = 35899, S_ = 35902, C_ = 36269, w_ = 34042, T_ = 33319, E_ = 33320, D_ = 6403, O_ = 36244, k_ = 36248, A_ = 36249, j_ = {};
+}(), Oh = 6406, kh = 6407, U = 6408, Ah = 6409, jh = 6410, Mh = 6402, Nh = 34041, Ph = 33071, Fh = 9728, Ih = 9729, Lh = 3553, Rh = 34067, zh = 32879, Bh = 35866, Vh = 34069, Hh = 34070, Uh = 34071, Wh = 34072, Gh = 34073, Kh = 34074, qh = 10241, Jh = 10240, Yh = 10242, Xh = 10243, Zh = 32882, Qh = 33082, $h = 33083, eg = 33084, tg = 33085, ng = 3317, rg = 3314, ig = 32878, ag = 3316, og = 3315, sg = 32877, cg = 37443, lg = 37441, ug = 37440, dg = 33321, fg = 36756, pg = 33325, mg = 33326, hg = 33330, gg = 33329, _g = 33338, vg = 33337, yg = 33340, bg = 33339, xg = 33323, Sg = 36757, Cg = 33327, wg = 33328, Tg = 33336, Eg = 33335, Dg = 33332, Og = 33331, kg = 33334, Ag = 33333, jg = 32849, Mg = 35905, Ng = 36194, Pg = 36758, Fg = 35898, Ig = 35901, Lg = 34843, Rg = 34837, zg = 36221, Bg = 36239, Vg = 36215, Hg = 36233, Ug = 36209, Wg = 36227, Gg = 32856, Kg = 35907, qg = 36759, Jg = 32855, Yg = 32854, Xg = 32857, Zg = 34842, Qg = 34836, $g = 36220, e_ = 36238, t_ = 36975, n_ = 36214, r_ = 36232, i_ = 36226, a_ = 36208, o_ = 33189, s_ = 33190, c_ = 36012, l_ = 36013, u_ = 35056, d_ = 5120, W = 5121, f_ = 5122, p_ = 5123, m_ = 5124, h_ = 5125, g_ = 5126, __ = 32819, v_ = 32820, y_ = 33635, b_ = 5131, x_ = 36193, S_ = 33640, C_ = 35899, w_ = 35902, T_ = 36269, E_ = 34042, D_ = 33319, O_ = 33320, k_ = 6403, A_ = 36244, j_ = 36248, M_ = 36249, N_ = {};
 {
-	let e = j_;
-	e[Eh] = { numColorComponents: 1 }, e[Oh] = { numColorComponents: 1 }, e[kh] = { numColorComponents: 2 }, e[Dh] = { numColorComponents: 3 }, e[U] = { numColorComponents: 4 }, e[D_] = { numColorComponents: 1 }, e[O_] = { numColorComponents: 1 }, e[T_] = { numColorComponents: 2 }, e[E_] = { numColorComponents: 2 }, e[Dh] = { numColorComponents: 3 }, e[k_] = { numColorComponents: 3 }, e[U] = { numColorComponents: 4 }, e[A_] = { numColorComponents: 4 }, e[Ah] = { numColorComponents: 1 }, e[jh] = { numColorComponents: 2 };
+	let e = N_;
+	e[Oh] = { numColorComponents: 1 }, e[Ah] = { numColorComponents: 1 }, e[jh] = { numColorComponents: 2 }, e[kh] = { numColorComponents: 3 }, e[U] = { numColorComponents: 4 }, e[k_] = { numColorComponents: 1 }, e[A_] = { numColorComponents: 1 }, e[D_] = { numColorComponents: 2 }, e[O_] = { numColorComponents: 2 }, e[kh] = { numColorComponents: 3 }, e[j_] = { numColorComponents: 3 }, e[U] = { numColorComponents: 4 }, e[M_] = { numColorComponents: 4 }, e[Mh] = { numColorComponents: 1 }, e[Nh] = { numColorComponents: 2 };
 }
-var M_;
-function N_(e) {
-	if (!M_) {
+var P_;
+function F_(e) {
+	if (!P_) {
 		let e = {};
-		e[Eh] = {
-			textureFormat: Eh,
-			colorRenderable: !0,
-			textureFilterable: !0,
-			bytesPerElement: [
-				1,
-				2,
-				2,
-				4
-			],
-			type: [
-				W,
-				v_,
-				y_,
-				m_
-			]
-		}, e[Oh] = {
+		e[Oh] = {
 			textureFormat: Oh,
 			colorRenderable: !0,
 			textureFilterable: !0,
@@ -6312,12 +6318,28 @@ function N_(e) {
 			],
 			type: [
 				W,
-				v_,
-				y_,
-				m_
+				b_,
+				x_,
+				g_
 			]
-		}, e[kh] = {
-			textureFormat: kh,
+		}, e[Ah] = {
+			textureFormat: Ah,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [
+				1,
+				2,
+				2,
+				4
+			],
+			type: [
+				W,
+				b_,
+				x_,
+				g_
+			]
+		}, e[jh] = {
+			textureFormat: jh,
 			colorRenderable: !0,
 			textureFilterable: !0,
 			bytesPerElement: [
@@ -6328,12 +6350,12 @@ function N_(e) {
 			],
 			type: [
 				W,
-				v_,
-				y_,
-				m_
+				b_,
+				x_,
+				g_
 			]
-		}, e[Dh] = {
-			textureFormat: Dh,
+		}, e[kh] = {
+			textureFormat: kh,
 			colorRenderable: !0,
 			textureFilterable: !0,
 			bytesPerElement: [
@@ -6345,10 +6367,10 @@ function N_(e) {
 			],
 			type: [
 				W,
-				v_,
-				y_,
-				m_,
-				__
+				b_,
+				x_,
+				g_,
+				y_
 			]
 		}, e[U] = {
 			textureFormat: U,
@@ -6364,257 +6386,257 @@ function N_(e) {
 			],
 			type: [
 				W,
-				v_,
-				y_,
-				m_,
-				h_,
-				g_
+				b_,
+				x_,
+				g_,
+				__,
+				v_
 			]
-		}, e[Ah] = {
-			textureFormat: Ah,
+		}, e[Mh] = {
+			textureFormat: Mh,
 			colorRenderable: !0,
 			textureFilterable: !1,
 			bytesPerElement: [2, 4],
-			type: [p_, d_]
-		}, e[lg] = {
-			textureFormat: D_,
+			type: [h_, p_]
+		}, e[dg] = {
+			textureFormat: k_,
 			colorRenderable: !0,
 			textureFilterable: !0,
 			bytesPerElement: [1],
 			type: [W]
-		}, e[ug] = {
-			textureFormat: D_,
+		}, e[fg] = {
+			textureFormat: k_,
 			colorRenderable: !1,
 			textureFilterable: !0,
 			bytesPerElement: [1],
-			type: [l_]
-		}, e[dg] = {
-			textureFormat: D_,
+			type: [d_]
+		}, e[pg] = {
+			textureFormat: k_,
 			colorRenderable: !1,
 			textureFilterable: !0,
 			bytesPerElement: [4, 2],
-			type: [m_, v_]
-		}, e[fg] = {
-			textureFormat: D_,
+			type: [g_, b_]
+		}, e[mg] = {
+			textureFormat: k_,
 			colorRenderable: !1,
 			textureFilterable: !1,
 			bytesPerElement: [4],
-			type: [m_]
-		}, e[pg] = {
-			textureFormat: O_,
+			type: [g_]
+		}, e[hg] = {
+			textureFormat: A_,
 			colorRenderable: !0,
 			textureFilterable: !1,
 			bytesPerElement: [1],
 			type: [W]
-		}, e[mg] = {
-			textureFormat: O_,
+		}, e[gg] = {
+			textureFormat: A_,
 			colorRenderable: !0,
 			textureFilterable: !1,
 			bytesPerElement: [1],
-			type: [l_]
+			type: [d_]
+		}, e[Dg] = {
+			textureFormat: A_,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [2],
+			type: [p_]
+		}, e[Og] = {
+			textureFormat: A_,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [2],
+			type: [f_]
+		}, e[kg] = {
+			textureFormat: A_,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [h_]
+		}, e[Ag] = {
+			textureFormat: A_,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [m_]
+		}, e[xg] = {
+			textureFormat: D_,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [2],
+			type: [W]
+		}, e[Sg] = {
+			textureFormat: D_,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [2],
+			type: [d_]
+		}, e[Cg] = {
+			textureFormat: D_,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [8, 4],
+			type: [g_, b_]
+		}, e[wg] = {
+			textureFormat: D_,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [8],
+			type: [g_]
 		}, e[Tg] = {
 			textureFormat: O_,
 			colorRenderable: !0,
 			textureFilterable: !1,
 			bytesPerElement: [2],
-			type: [d_]
+			type: [W]
 		}, e[Eg] = {
 			textureFormat: O_,
 			colorRenderable: !0,
 			textureFilterable: !1,
 			bytesPerElement: [2],
-			type: [u_]
-		}, e[Dg] = {
+			type: [d_]
+		}, e[_g] = {
 			textureFormat: O_,
 			colorRenderable: !0,
 			textureFilterable: !1,
 			bytesPerElement: [4],
 			type: [p_]
-		}, e[Og] = {
+		}, e[vg] = {
 			textureFormat: O_,
 			colorRenderable: !0,
 			textureFilterable: !1,
 			bytesPerElement: [4],
 			type: [f_]
 		}, e[yg] = {
-			textureFormat: T_,
+			textureFormat: O_,
 			colorRenderable: !0,
-			textureFilterable: !0,
-			bytesPerElement: [2],
-			type: [W]
+			textureFilterable: !1,
+			bytesPerElement: [8],
+			type: [h_]
 		}, e[bg] = {
-			textureFormat: T_,
-			colorRenderable: !1,
-			textureFilterable: !0,
-			bytesPerElement: [2],
-			type: [l_]
-		}, e[xg] = {
-			textureFormat: T_,
-			colorRenderable: !1,
-			textureFilterable: !0,
-			bytesPerElement: [8, 4],
-			type: [m_, v_]
-		}, e[Sg] = {
-			textureFormat: T_,
-			colorRenderable: !1,
+			textureFormat: O_,
+			colorRenderable: !0,
 			textureFilterable: !1,
 			bytesPerElement: [8],
 			type: [m_]
-		}, e[Cg] = {
-			textureFormat: E_,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [2],
-			type: [W]
-		}, e[wg] = {
-			textureFormat: E_,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [2],
-			type: [l_]
-		}, e[hg] = {
-			textureFormat: E_,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [4],
-			type: [d_]
-		}, e[gg] = {
-			textureFormat: E_,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [4],
-			type: [u_]
-		}, e[_g] = {
-			textureFormat: E_,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [8],
-			type: [p_]
-		}, e[vg] = {
-			textureFormat: E_,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [8],
-			type: [f_]
-		}, e[kg] = {
-			textureFormat: Dh,
+		}, e[jg] = {
+			textureFormat: kh,
 			colorRenderable: !0,
 			textureFilterable: !0,
 			bytesPerElement: [3],
 			type: [W]
-		}, e[Ag] = {
-			textureFormat: Dh,
+		}, e[Mg] = {
+			textureFormat: kh,
 			colorRenderable: !1,
 			textureFilterable: !0,
 			bytesPerElement: [3],
 			type: [W]
-		}, e[jg] = {
-			textureFormat: Dh,
+		}, e[Ng] = {
+			textureFormat: kh,
 			colorRenderable: !0,
 			textureFilterable: !0,
 			bytesPerElement: [3, 2],
-			type: [W, __]
-		}, e[Mg] = {
-			textureFormat: Dh,
+			type: [W, y_]
+		}, e[Pg] = {
+			textureFormat: kh,
 			colorRenderable: !1,
 			textureFilterable: !0,
 			bytesPerElement: [3],
-			type: [l_]
-		}, e[Ng] = {
-			textureFormat: Dh,
-			colorRenderable: !1,
-			textureFilterable: !0,
-			bytesPerElement: [
-				12,
-				6,
-				4
-			],
-			type: [
-				m_,
-				v_,
-				x_
-			]
-		}, e[Pg] = {
-			textureFormat: Dh,
-			colorRenderable: !1,
-			textureFilterable: !0,
-			bytesPerElement: [
-				12,
-				6,
-				4
-			],
-			type: [
-				m_,
-				v_,
-				S_
-			]
+			type: [d_]
 		}, e[Fg] = {
-			textureFormat: Dh,
+			textureFormat: kh,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [
+				12,
+				6,
+				4
+			],
+			type: [
+				g_,
+				b_,
+				C_
+			]
+		}, e[Ig] = {
+			textureFormat: kh,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [
+				12,
+				6,
+				4
+			],
+			type: [
+				g_,
+				b_,
+				w_
+			]
+		}, e[Lg] = {
+			textureFormat: kh,
 			colorRenderable: !1,
 			textureFilterable: !0,
 			bytesPerElement: [12, 6],
-			type: [m_, v_]
-		}, e[Ig] = {
-			textureFormat: Dh,
+			type: [g_, b_]
+		}, e[Rg] = {
+			textureFormat: kh,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [12],
+			type: [g_]
+		}, e[zg] = {
+			textureFormat: j_,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [3],
+			type: [W]
+		}, e[Bg] = {
+			textureFormat: j_,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [3],
+			type: [d_]
+		}, e[Vg] = {
+			textureFormat: j_,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [6],
+			type: [p_]
+		}, e[Hg] = {
+			textureFormat: j_,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [6],
+			type: [f_]
+		}, e[Ug] = {
+			textureFormat: j_,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [12],
+			type: [h_]
+		}, e[Wg] = {
+			textureFormat: j_,
 			colorRenderable: !1,
 			textureFilterable: !1,
 			bytesPerElement: [12],
 			type: [m_]
-		}, e[Lg] = {
-			textureFormat: k_,
-			colorRenderable: !1,
-			textureFilterable: !1,
-			bytesPerElement: [3],
-			type: [W]
-		}, e[Rg] = {
-			textureFormat: k_,
-			colorRenderable: !1,
-			textureFilterable: !1,
-			bytesPerElement: [3],
-			type: [l_]
-		}, e[zg] = {
-			textureFormat: k_,
-			colorRenderable: !1,
-			textureFilterable: !1,
-			bytesPerElement: [6],
-			type: [d_]
-		}, e[Bg] = {
-			textureFormat: k_,
-			colorRenderable: !1,
-			textureFilterable: !1,
-			bytesPerElement: [6],
-			type: [u_]
-		}, e[Vg] = {
-			textureFormat: k_,
-			colorRenderable: !1,
-			textureFilterable: !1,
-			bytesPerElement: [12],
-			type: [p_]
-		}, e[Hg] = {
-			textureFormat: k_,
-			colorRenderable: !1,
-			textureFilterable: !1,
-			bytesPerElement: [12],
-			type: [f_]
-		}, e[Ug] = {
-			textureFormat: U,
-			colorRenderable: !0,
-			textureFilterable: !0,
-			bytesPerElement: [4],
-			type: [W]
-		}, e[Wg] = {
-			textureFormat: U,
-			colorRenderable: !0,
-			textureFilterable: !0,
-			bytesPerElement: [4],
-			type: [W]
 		}, e[Gg] = {
 			textureFormat: U,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [4],
+			type: [W]
+		}, e[Kg] = {
+			textureFormat: U,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [4],
+			type: [W]
+		}, e[qg] = {
+			textureFormat: U,
 			colorRenderable: !1,
 			textureFilterable: !0,
 			bytesPerElement: [4],
-			type: [l_]
-		}, e[Kg] = {
+			type: [d_]
+		}, e[Jg] = {
 			textureFormat: U,
 			colorRenderable: !0,
 			textureFilterable: !0,
@@ -6625,151 +6647,151 @@ function N_(e) {
 			],
 			type: [
 				W,
-				g_,
-				b_
+				v_,
+				S_
 			]
-		}, e[qg] = {
+		}, e[Yg] = {
 			textureFormat: U,
 			colorRenderable: !0,
 			textureFilterable: !0,
 			bytesPerElement: [4, 2],
-			type: [W, h_]
-		}, e[Jg] = {
+			type: [W, __]
+		}, e[Xg] = {
 			textureFormat: U,
 			colorRenderable: !0,
 			textureFilterable: !0,
 			bytesPerElement: [4],
-			type: [b_]
-		}, e[Yg] = {
+			type: [S_]
+		}, e[Zg] = {
 			textureFormat: U,
 			colorRenderable: !1,
 			textureFilterable: !0,
 			bytesPerElement: [16, 8],
-			type: [m_, v_]
-		}, e[Xg] = {
+			type: [g_, b_]
+		}, e[Qg] = {
 			textureFormat: U,
 			colorRenderable: !1,
 			textureFilterable: !1,
 			bytesPerElement: [16],
-			type: [m_]
-		}, e[Zg] = {
-			textureFormat: A_,
+			type: [g_]
+		}, e[$g] = {
+			textureFormat: M_,
 			colorRenderable: !0,
 			textureFilterable: !1,
 			bytesPerElement: [4],
 			type: [W]
-		}, e[Qg] = {
-			textureFormat: A_,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [4],
-			type: [l_]
-		}, e[$g] = {
-			textureFormat: A_,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [4],
-			type: [b_]
 		}, e[e_] = {
-			textureFormat: A_,
+			textureFormat: M_,
 			colorRenderable: !0,
 			textureFilterable: !1,
-			bytesPerElement: [8],
+			bytesPerElement: [4],
 			type: [d_]
 		}, e[t_] = {
-			textureFormat: A_,
+			textureFormat: M_,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [S_]
+		}, e[n_] = {
+			textureFormat: M_,
 			colorRenderable: !0,
 			textureFilterable: !1,
 			bytesPerElement: [8],
-			type: [u_]
-		}, e[n_] = {
-			textureFormat: A_,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [16],
-			type: [f_]
-		}, e[r_] = {
-			textureFormat: A_,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [16],
 			type: [p_]
+		}, e[r_] = {
+			textureFormat: M_,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [8],
+			type: [f_]
 		}, e[i_] = {
-			textureFormat: Ah,
+			textureFormat: M_,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [16],
+			type: [m_]
+		}, e[a_] = {
+			textureFormat: M_,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [16],
+			type: [h_]
+		}, e[o_] = {
+			textureFormat: Mh,
 			colorRenderable: !0,
 			textureFilterable: !1,
 			bytesPerElement: [2, 4],
-			type: [d_, p_]
-		}, e[a_] = {
-			textureFormat: Ah,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [4],
-			type: [p_]
-		}, e[o_] = {
-			textureFormat: Ah,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [4],
-			type: [m_]
-		}, e[c_] = {
-			textureFormat: jh,
-			colorRenderable: !0,
-			textureFilterable: !1,
-			bytesPerElement: [4],
-			type: [w_]
+			type: [p_, h_]
 		}, e[s_] = {
-			textureFormat: jh,
+			textureFormat: Mh,
 			colorRenderable: !0,
 			textureFilterable: !1,
 			bytesPerElement: [4],
-			type: [C_]
+			type: [h_]
+		}, e[c_] = {
+			textureFormat: Mh,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [g_]
+		}, e[u_] = {
+			textureFormat: Nh,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [E_]
+		}, e[l_] = {
+			textureFormat: Nh,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [T_]
 		}, Object.keys(e).forEach(function(t) {
 			let n = e[t];
 			n.bytesPerElementMap = {}, n.bytesPerElement.forEach(function(e, t) {
 				let r = n.type[t];
 				n.bytesPerElementMap[r] = e;
 			});
-		}), M_ = e;
+		}), P_ = e;
 	}
-	return M_[e];
+	return P_[e];
 }
-function P_(e, t) {
-	let n = N_(e);
+function I_(e, t) {
+	let n = F_(e);
 	if (!n) throw "unknown internal format";
 	let r = n.bytesPerElementMap[t];
 	if (r === void 0) throw "unknown internal format";
 	return r;
 }
-function F_(e) {
-	let t = N_(e);
+function L_(e) {
+	let t = F_(e);
 	if (!t) throw "unknown internal format";
 	return {
 		format: t.textureFormat,
 		type: t.type[0]
 	};
 }
-function I_(e) {
+function R_(e) {
 	return (e & e - 1) == 0;
 }
-function L_(e, t, n, r) {
-	if (!xh(e)) return I_(t) && I_(n);
-	let i = N_(r);
+function z_(e, t, n, r) {
+	if (!Ch(e)) return R_(t) && R_(n);
+	let i = F_(r);
 	if (!i) throw "unknown internal format";
 	return i.colorRenderable && i.textureFilterable;
 }
-function R_(e) {
-	let t = N_(e);
+function B_(e) {
+	let t = F_(e);
 	if (!t) throw "unknown internal format";
 	return t.textureFilterable;
 }
-function z_(e, t, n) {
-	return wh(t) ? Im(t) : n || W;
+function V_(e, t, n) {
+	return Eh(t) ? Rm(t) : n || W;
 }
-function B_(e, t, n, r, i) {
+function H_(e, t, n, r, i) {
 	if (i % 1 != 0) throw "can't guess dimensions";
 	if (!n && !r) {
-		let e = Math.sqrt(i / (t === Ih ? 6 : 1));
+		let e = Math.sqrt(i / (t === Rh ? 6 : 1));
 		e % 1 == 0 ? (n = e, r = e) : (n = i, r = 1);
 	} else if (!r) {
 		if (r = i / n, r % 1) throw "can't guess dimensions";
@@ -6779,51 +6801,51 @@ function B_(e, t, n, r, i) {
 		height: r
 	};
 }
-function V_(e, t) {
-	t.colorspaceConversion !== void 0 && e.pixelStorei(og, t.colorspaceConversion), t.premultiplyAlpha !== void 0 && e.pixelStorei(sg, t.premultiplyAlpha), t.flipY !== void 0 && e.pixelStorei(cg, t.flipY);
+function U_(e, t) {
+	t.colorspaceConversion !== void 0 && e.pixelStorei(cg, t.colorspaceConversion), t.premultiplyAlpha !== void 0 && e.pixelStorei(lg, t.premultiplyAlpha), t.flipY !== void 0 && e.pixelStorei(ug, t.flipY);
 }
-function H_(e) {
-	e.pixelStorei(eg, 4), xh(e) && (e.pixelStorei(tg, 0), e.pixelStorei(ng, 0), e.pixelStorei(rg, 0), e.pixelStorei(ig, 0), e.pixelStorei(ag, 0));
+function W_(e) {
+	e.pixelStorei(ng, 4), Ch(e) && (e.pixelStorei(rg, 0), e.pixelStorei(ig, 0), e.pixelStorei(ag, 0), e.pixelStorei(og, 0), e.pixelStorei(sg, 0));
 }
-function U_(e, t, n, r) {
-	r.minMag && (n.call(e, t, Gh, r.minMag), n.call(e, t, Kh, r.minMag)), r.min && n.call(e, t, Gh, r.min), r.mag && n.call(e, t, Kh, r.mag), r.wrap && (n.call(e, t, qh, r.wrap), n.call(e, t, Jh, r.wrap), (t === Lh || Gm(e, t)) && n.call(e, t, Yh, r.wrap)), r.wrapR && n.call(e, t, Yh, r.wrapR), r.wrapS && n.call(e, t, qh, r.wrapS), r.wrapT && n.call(e, t, Jh, r.wrapT), r.minLod && n.call(e, t, Xh, r.minLod), r.maxLod && n.call(e, t, Zh, r.maxLod), r.baseLevel && n.call(e, t, Qh, r.baseLevel), r.maxLevel && n.call(e, t, $h, r.maxLevel);
+function G_(e, t, n, r) {
+	r.minMag && (n.call(e, t, qh, r.minMag), n.call(e, t, Jh, r.minMag)), r.min && n.call(e, t, qh, r.min), r.mag && n.call(e, t, Jh, r.mag), r.wrap && (n.call(e, t, Yh, r.wrap), n.call(e, t, Xh, r.wrap), (t === zh || qm(e, t)) && n.call(e, t, Zh, r.wrap)), r.wrapR && n.call(e, t, Zh, r.wrapR), r.wrapS && n.call(e, t, Yh, r.wrapS), r.wrapT && n.call(e, t, Xh, r.wrapT), r.minLod && n.call(e, t, Qh, r.minLod), r.maxLod && n.call(e, t, $h, r.maxLod), r.baseLevel && n.call(e, t, eg, r.baseLevel), r.maxLevel && n.call(e, t, tg, r.maxLevel);
 }
-function W_(e, t, n) {
-	let r = n.target || Fh;
-	e.bindTexture(r, t), U_(e, r, e.texParameteri, n);
+function K_(e, t, n) {
+	let r = n.target || Lh;
+	e.bindTexture(r, t), G_(e, r, e.texParameteri, n);
 }
-function G_(e) {
-	return e ||= Ch.textureColor, wh(e) ? e : new Uint8Array([
+function q_(e) {
+	return e ||= Th.textureColor, Eh(e) ? e : new Uint8Array([
 		e[0] * 255,
 		e[1] * 255,
 		e[2] * 255,
 		e[3] * 255
 	]);
 }
-function K_(e, t, n, r, i, a) {
-	n ||= Ch.textureOptions, a ||= U;
-	let o = n.target || Fh;
-	if (r ||= n.width, i ||= n.height, e.bindTexture(o, t), L_(e, r, i, a)) e.generateMipmap(o);
+function J_(e, t, n, r, i, a) {
+	n ||= Th.textureOptions, a ||= U;
+	let o = n.target || Lh;
+	if (r ||= n.width, i ||= n.height, e.bindTexture(o, t), z_(e, r, i, a)) e.generateMipmap(o);
 	else {
-		let t = R_(a) ? Ph : Nh;
-		e.texParameteri(o, Gh, t), e.texParameteri(o, Kh, t), e.texParameteri(o, qh, Mh), e.texParameteri(o, Jh, Mh);
+		let t = B_(a) ? Ih : Fh;
+		e.texParameteri(o, qh, t), e.texParameteri(o, Jh, t), e.texParameteri(o, Yh, Ph), e.texParameteri(o, Xh, Ph);
 	}
 }
-function q_(e) {
+function Y_(e) {
 	return e.auto === !0 || e.auto === void 0 && e.level === void 0;
 }
-function J_(e, t) {
+function X_(e, t) {
 	return t ||= {}, t.cubeFaceOrder || [
-		zh,
-		Bh,
 		Vh,
 		Hh,
 		Uh,
-		Wh
+		Wh,
+		Gh,
+		Kh
 	];
 }
-function Y_(e, t) {
-	let n = J_(e, t).map(function(e, t) {
+function Z_(e, t) {
+	let n = X_(e, t).map(function(e, t) {
 		return {
 			face: e,
 			ndx: t
@@ -6833,10 +6855,10 @@ function Y_(e, t) {
 		return e.face - t.face;
 	}), n;
 }
-function X_(e, t, n, r) {
-	r ||= Ch.textureOptions;
-	let i = r.target || Fh, a = r.level || 0, o = n.width, s = n.height, c = r.internalFormat || r.format || U, l = F_(c), u = r.format || l.format, d = r.type || l.type;
-	if (V_(e, r), e.bindTexture(i, t), i === Ih) {
+function Q_(e, t, n, r) {
+	r ||= Th.textureOptions;
+	let i = r.target || Lh, a = r.level || 0, o = n.width, s = n.height, c = r.internalFormat || r.format || U, l = L_(c), u = r.format || l.format, d = r.type || l.type;
+	if (U_(e, r), e.bindTexture(i, t), i === Rh) {
 		let l = n.width, f = n.height, p, m;
 		if (l / 6 === f) p = f, m = [
 			0,
@@ -6895,34 +6917,34 @@ function X_(e, t, n, r) {
 			2
 		];
 		else throw "can't figure out cube map from element: " + (n.src ? n.src : n.nodeName);
-		let h = Th();
-		h ? (h.canvas.width = p, h.canvas.height = p, o = p, s = p, Y_(e, r).forEach(function(t) {
+		let h = Dh();
+		h ? (h.canvas.width = p, h.canvas.height = p, o = p, s = p, Z_(e, r).forEach(function(t) {
 			let r = m[t.ndx * 2 + 0] * p, i = m[t.ndx * 2 + 1] * p;
 			h.drawImage(n, r, i, p, p, 0, 0, p, p), e.texImage2D(t.face, a, c, u, d, h.canvas);
-		}), h.canvas.width = 1, h.canvas.height = 1) : typeof createImageBitmap < "u" && (o = p, s = p, Y_(e, r).forEach(function(l) {
+		}), h.canvas.width = 1, h.canvas.height = 1) : typeof createImageBitmap < "u" && (o = p, s = p, Z_(e, r).forEach(function(l) {
 			let f = m[l.ndx * 2 + 0] * p, h = m[l.ndx * 2 + 1] * p;
 			e.texImage2D(l.face, a, c, p, p, 0, u, d, null), createImageBitmap(n, f, h, p, p, {
 				premultiplyAlpha: "none",
 				colorSpaceConversion: "none"
 			}).then(function(n) {
-				V_(e, r), e.bindTexture(i, t), e.texImage2D(l.face, a, c, u, d, n), q_(r) && K_(e, t, r, o, s, c);
+				U_(e, r), e.bindTexture(i, t), e.texImage2D(l.face, a, c, u, d, n), Y_(r) && J_(e, t, r, o, s, c);
 			});
 		}));
-	} else if (i === Lh || i === Rh) {
+	} else if (i === zh || i === Bh) {
 		let t = Math.min(n.width, n.height), r = Math.max(n.width, n.height), o = r / t;
 		if (o % 1 != 0) throw "can not compute 3D dimensions of element";
 		let s = n.width === r ? 1 : 0, l = n.height === r ? 1 : 0;
-		e.pixelStorei(eg, 1), e.pixelStorei(tg, n.width), e.pixelStorei(ng, 0), e.pixelStorei(ag, 0), e.texImage3D(i, a, c, t, t, t, 0, u, d, null);
+		e.pixelStorei(ng, 1), e.pixelStorei(rg, n.width), e.pixelStorei(ig, 0), e.pixelStorei(sg, 0), e.texImage3D(i, a, c, t, t, t, 0, u, d, null);
 		for (let r = 0; r < o; ++r) {
 			let o = r * t * s, c = r * t * l;
-			e.pixelStorei(rg, o), e.pixelStorei(ig, c), e.texSubImage3D(i, a, 0, 0, r, t, t, 1, u, d, n);
+			e.pixelStorei(ag, o), e.pixelStorei(og, c), e.texSubImage3D(i, a, 0, 0, r, t, t, 1, u, d, n);
 		}
-		H_(e);
+		W_(e);
 	} else e.texImage2D(i, a, c, u, d, n);
-	q_(r) && K_(e, t, r, o, s, c), W_(e, t, r);
+	Y_(r) && J_(e, t, r, o, s, c), K_(e, t, r);
 }
-function Z_() {}
-function Q_(e) {
+function $_() {}
+function ev(e) {
 	if (typeof document < "u") {
 		let t = document.createElement("a");
 		return t.href = e, t.hostname === location.hostname && t.port === location.port && t.protocol === location.protocol;
@@ -6931,19 +6953,19 @@ function Q_(e) {
 		return new URL(e, location.href).origin === t;
 	}
 }
-function $_(e, t) {
-	return t === void 0 && !Q_(e) ? "anonymous" : t;
+function tv(e, t) {
+	return t === void 0 && !ev(e) ? "anonymous" : t;
 }
-function ev(e, t, n) {
-	n ||= Z_;
+function nv(e, t, n) {
+	n ||= $_;
 	let r;
-	if (t = t === void 0 ? Ch.crossOrigin : t, t = $_(e, t), typeof Image < "u") {
+	if (t = t === void 0 ? Th.crossOrigin : t, t = tv(e, t), typeof Image < "u") {
 		r = new Image(), t !== void 0 && (r.crossOrigin = t);
 		let i = function() {
 			r.removeEventListener("error", a), r.removeEventListener("load", o), r = null;
 		}, a = function() {
 			let t = "couldn't load image: " + e;
-			Bm(t), n(t, r), i();
+			Hm(t), n(t, r), i();
 		}, o = function() {
 			n(null, r), i();
 		};
@@ -6968,94 +6990,94 @@ function ev(e, t, n) {
 	}
 	return r;
 }
-function tv(e) {
+function rv(e) {
 	return typeof ImageBitmap < "u" && e instanceof ImageBitmap || typeof ImageData < "u" && e instanceof ImageData || typeof HTMLElement < "u" && e instanceof HTMLElement;
 }
-function nv(e, t, n) {
-	return tv(e) ? (setTimeout(function() {
+function iv(e, t, n) {
+	return rv(e) ? (setTimeout(function() {
 		n(null, e);
-	}), e) : ev(e, t, n);
+	}), e) : nv(e, t, n);
 }
-function rv(e, t, n) {
-	n ||= Ch.textureOptions;
-	let r = n.target || Fh;
+function av(e, t, n) {
+	n ||= Th.textureOptions;
+	let r = n.target || Lh;
 	if (e.bindTexture(r, t), n.color === !1) return;
-	let i = G_(n.color);
-	if (r === Ih) for (let t = 0; t < 6; ++t) e.texImage2D(zh + t, 0, U, 1, 1, 0, U, W, i);
-	else r === Lh || r === Rh ? e.texImage3D(r, 0, U, 1, 1, 1, 0, U, W, i) : e.texImage2D(r, 0, U, 1, 1, 0, U, W, i);
+	let i = q_(n.color);
+	if (r === Rh) for (let t = 0; t < 6; ++t) e.texImage2D(Vh + t, 0, U, 1, 1, 0, U, W, i);
+	else r === zh || r === Bh ? e.texImage3D(r, 0, U, 1, 1, 1, 0, U, W, i) : e.texImage2D(r, 0, U, 1, 1, 0, U, W, i);
 }
-function iv(e, t, n, r) {
-	return r ||= Z_, n ||= Ch.textureOptions, rv(e, t, n), n = Object.assign({}, n), nv(n.src, n.crossOrigin, function(i, a) {
-		i ? r(i, t, a) : (X_(e, t, a, n), r(null, t, a));
+function ov(e, t, n, r) {
+	return r ||= $_, n ||= Th.textureOptions, av(e, t, n), n = Object.assign({}, n), iv(n.src, n.crossOrigin, function(i, a) {
+		i ? r(i, t, a) : (Q_(e, t, a, n), r(null, t, a));
 	});
 }
-function av(e, t, n, r) {
-	r ||= Z_;
+function sv(e, t, n, r) {
+	r ||= $_;
 	let i = n.src;
 	if (i.length !== 6) throw "there must be 6 urls for a cubemap";
-	let a = n.level || 0, o = n.internalFormat || n.format || U, s = F_(o), c = n.format || s.format, l = n.type || W, u = n.target || Fh;
-	if (u !== Ih) throw "target must be TEXTURE_CUBE_MAP";
-	rv(e, t, n), n = Object.assign({}, n);
-	let d = 6, f = [], p = J_(e, n), m;
+	let a = n.level || 0, o = n.internalFormat || n.format || U, s = L_(o), c = n.format || s.format, l = n.type || W, u = n.target || Lh;
+	if (u !== Rh) throw "target must be TEXTURE_CUBE_MAP";
+	av(e, t, n), n = Object.assign({}, n);
+	let d = 6, f = [], p = X_(e, n), m;
 	function h(i) {
 		return function(s, p) {
-			--d, s ? f.push(s) : p.width === p.height ? (V_(e, n), e.bindTexture(u, t), d === 5 ? J_().forEach(function(t) {
+			--d, s ? f.push(s) : p.width === p.height ? (U_(e, n), e.bindTexture(u, t), d === 5 ? X_().forEach(function(t) {
 				e.texImage2D(t, a, o, c, l, p);
-			}) : e.texImage2D(i, a, o, c, l, p), q_(n) && e.generateMipmap(u)) : f.push("cubemap face img is not a square: " + p.src), d === 0 && r(f.length ? f : void 0, t, m);
+			}) : e.texImage2D(i, a, o, c, l, p), Y_(n) && e.generateMipmap(u)) : f.push("cubemap face img is not a square: " + p.src), d === 0 && r(f.length ? f : void 0, t, m);
 		};
 	}
 	m = i.map(function(e, t) {
-		return nv(e, n.crossOrigin, h(p[t]));
+		return iv(e, n.crossOrigin, h(p[t]));
 	});
 }
-function ov(e, t, n, r) {
-	r ||= Z_;
-	let i = n.src, a = n.internalFormat || n.format || U, o = F_(a), s = n.format || o.format, c = n.type || W, l = n.target || Rh;
-	if (l !== Lh && l !== Rh) throw "target must be TEXTURE_3D or TEXTURE_2D_ARRAY";
-	rv(e, t, n), n = Object.assign({}, n);
+function cv(e, t, n, r) {
+	r ||= $_;
+	let i = n.src, a = n.internalFormat || n.format || U, o = L_(a), s = n.format || o.format, c = n.type || W, l = n.target || Bh;
+	if (l !== zh && l !== Bh) throw "target must be TEXTURE_3D or TEXTURE_2D_ARRAY";
+	av(e, t, n), n = Object.assign({}, n);
 	let u = i.length, d = [], f, p = n.level || 0, m = n.width, h = n.height, g = i.length, _ = !0;
 	function v(i) {
 		return function(o, v) {
 			if (--u, o) d.push(o);
 			else {
-				if (V_(e, n), e.bindTexture(l, t), _) {
+				if (U_(e, n), e.bindTexture(l, t), _) {
 					_ = !1, m = n.width || v.width, h = n.height || v.height, e.texImage3D(l, p, a, m, h, g, 0, s, c, null);
 					for (let t = 0; t < g; ++t) e.texSubImage3D(l, p, 0, 0, t, m, h, 1, s, c, v);
 				} else {
 					let t = v, n;
-					(v.width !== m || v.height !== h) && (n = Th(), t = n.canvas, n.canvas.width = m, n.canvas.height = h, n.drawImage(v, 0, 0, m, h)), e.texSubImage3D(l, p, 0, 0, i, m, h, 1, s, c, t), n && t === n.canvas && (n.canvas.width = 0, n.canvas.height = 0);
+					(v.width !== m || v.height !== h) && (n = Dh(), t = n.canvas, n.canvas.width = m, n.canvas.height = h, n.drawImage(v, 0, 0, m, h)), e.texSubImage3D(l, p, 0, 0, i, m, h, 1, s, c, t), n && t === n.canvas && (n.canvas.width = 0, n.canvas.height = 0);
 				}
-				q_(n) && e.generateMipmap(l);
+				Y_(n) && e.generateMipmap(l);
 			}
 			u === 0 && r(d.length ? d : void 0, t, f);
 		};
 	}
 	f = i.map(function(e, t) {
-		return nv(e, n.crossOrigin, v(t));
+		return iv(e, n.crossOrigin, v(t));
 	});
 }
-function sv(e, t, n, r) {
-	r ||= Ch.textureOptions;
-	let i = r.target || Fh;
+function lv(e, t, n, r) {
+	r ||= Th.textureOptions;
+	let i = r.target || Lh;
 	e.bindTexture(i, t);
-	let a = r.width, o = r.height, s = r.depth, c = r.level || 0, l = r.internalFormat || r.format || U, u = F_(l), d = r.format || u.format, f = r.type || z_(e, n, u.type);
-	wh(n) ? n instanceof Uint8ClampedArray && (n = new Uint8Array(n.buffer)) : n = new (Rm(f))(n);
-	let p = P_(l, f), m = n.byteLength / p;
-	if (m % 1) throw "length wrong size for format: " + Sh(e, d);
+	let a = r.width, o = r.height, s = r.depth, c = r.level || 0, l = r.internalFormat || r.format || U, u = L_(l), d = r.format || u.format, f = r.type || V_(e, n, u.type);
+	Eh(n) ? n instanceof Uint8ClampedArray && (n = new Uint8Array(n.buffer)) : n = new (Bm(f))(n);
+	let p = I_(l, f), m = n.byteLength / p;
+	if (m % 1) throw "length wrong size for format: " + wh(e, d);
 	let h;
-	if (i === Lh || i === Rh) if (!a && !o && !s) {
+	if (i === zh || i === Bh) if (!a && !o && !s) {
 		let e = Math.cbrt(m);
 		if (e % 1 != 0) throw "can't guess cube size of array of numElements: " + m;
 		a = e, o = e, s = e;
-	} else a && (!o || !s) ? (h = B_(e, i, o, s, m / a), o = h.width, s = h.height) : o && (!a || !s) ? (h = B_(e, i, a, s, m / o), a = h.width, s = h.height) : (h = B_(e, i, a, o, m / s), a = h.width, o = h.height);
-	else h = B_(e, i, a, o, m), a = h.width, o = h.height;
-	if (H_(e), e.pixelStorei(eg, r.unpackAlignment || 1), V_(e, r), i === Ih) {
+	} else a && (!o || !s) ? (h = H_(e, i, o, s, m / a), o = h.width, s = h.height) : o && (!a || !s) ? (h = H_(e, i, a, s, m / o), a = h.width, s = h.height) : (h = H_(e, i, a, o, m / s), a = h.width, o = h.height);
+	else h = H_(e, i, a, o, m), a = h.width, o = h.height;
+	if (W_(e), e.pixelStorei(ng, r.unpackAlignment || 1), U_(e, r), i === Rh) {
 		let t = p / n.BYTES_PER_ELEMENT, i = m / 6 * t;
-		Y_(e, r).forEach((t) => {
+		Z_(e, r).forEach((t) => {
 			let r = i * t.ndx, s = n.subarray(r, r + i);
 			e.texImage2D(t.face, c, l, a, o, 0, d, f, s);
 		});
-	} else i === Lh || i === Rh ? e.texImage3D(i, c, l, a, o, s, 0, d, f, n) : e.texImage2D(i, c, l, a, o, 0, d, f, n);
+	} else i === zh || i === Bh ? e.texImage3D(i, c, l, a, o, s, 0, d, f, n) : e.texImage2D(i, c, l, a, o, 0, d, f, n);
 	return {
 		width: a,
 		height: o,
@@ -7063,408 +7085,408 @@ function sv(e, t, n, r) {
 		type: f
 	};
 }
-function cv(e, t, n) {
-	let r = n.target || Fh;
+function uv(e, t, n) {
+	let r = n.target || Lh;
 	e.bindTexture(r, t);
-	let i = n.level || 0, a = n.internalFormat || n.format || U, o = F_(a), s = n.format || o.format, c = n.type || o.type;
-	if (V_(e, n), r === Ih) for (let t = 0; t < 6; ++t) e.texImage2D(zh + t, i, a, n.width, n.height, 0, s, c, null);
-	else r === Lh || r === Rh ? e.texImage3D(r, i, a, n.width, n.height, n.depth, 0, s, c, null) : e.texImage2D(r, i, a, n.width, n.height, 0, s, c, null);
+	let i = n.level || 0, a = n.internalFormat || n.format || U, o = L_(a), s = n.format || o.format, c = n.type || o.type;
+	if (U_(e, n), r === Rh) for (let t = 0; t < 6; ++t) e.texImage2D(Vh + t, i, a, n.width, n.height, 0, s, c, null);
+	else r === zh || r === Bh ? e.texImage3D(r, i, a, n.width, n.height, n.depth, 0, s, c, null) : e.texImage2D(r, i, a, n.width, n.height, 0, s, c, null);
 }
-function lv(e, t, n) {
-	n ||= Z_, t ||= Ch.textureOptions;
-	let r = e.createTexture(), i = t.target || Fh, a = t.width || 1, o = t.height || 1, s = t.internalFormat || U;
-	e.bindTexture(i, r), i === Ih && (e.texParameteri(i, qh, Mh), e.texParameteri(i, Jh, Mh));
+function dv(e, t, n) {
+	n ||= $_, t ||= Th.textureOptions;
+	let r = e.createTexture(), i = t.target || Lh, a = t.width || 1, o = t.height || 1, s = t.internalFormat || U;
+	e.bindTexture(i, r), i === Rh && (e.texParameteri(i, Yh, Ph), e.texParameteri(i, Xh, Ph));
 	let c = t.src;
-	if (c) if (typeof c == "function" && (c = c(e, t)), typeof c == "string") iv(e, r, t, n);
-	else if (wh(c) || Array.isArray(c) && (typeof c[0] == "number" || Array.isArray(c[0]) || wh(c[0]))) {
-		let n = sv(e, r, c, t);
+	if (c) if (typeof c == "function" && (c = c(e, t)), typeof c == "string") ov(e, r, t, n);
+	else if (Eh(c) || Array.isArray(c) && (typeof c[0] == "number" || Array.isArray(c[0]) || Eh(c[0]))) {
+		let n = lv(e, r, c, t);
 		a = n.width, o = n.height;
-	} else Array.isArray(c) && (typeof c[0] == "string" || tv(c[0])) ? i === Ih ? av(e, r, t, n) : ov(e, r, t, n) : (X_(e, r, c, t), a = c.width, o = c.height);
-	else cv(e, r, t);
-	return q_(t) && K_(e, r, t, a, o, s), W_(e, r, t), r;
+	} else Array.isArray(c) && (typeof c[0] == "string" || rv(c[0])) ? i === Rh ? sv(e, r, t, n) : cv(e, r, t, n) : (Q_(e, r, c, t), a = c.width, o = c.height);
+	else uv(e, r, t);
+	return Y_(t) && J_(e, r, t, a, o, s), K_(e, r, t), r;
 }
-function uv(e, t, n, r, i, a) {
+function fv(e, t, n, r, i, a) {
 	r ||= n.width, i ||= n.height, a ||= n.depth;
-	let o = n.target || Fh;
+	let o = n.target || Lh;
 	e.bindTexture(o, t);
-	let s = n.level || 0, c = n.internalFormat || n.format || U, l = F_(c), u = n.format || l.format, d, f = n.src;
-	if (d = f && (wh(f) || Array.isArray(f) && typeof f[0] == "number") ? n.type || z_(e, f, l.type) : n.type || l.type, o === Ih) for (let t = 0; t < 6; ++t) e.texImage2D(zh + t, s, c, r, i, 0, u, d, null);
-	else o === Lh || o === Rh ? e.texImage3D(o, s, c, r, i, a, 0, u, d, null) : e.texImage2D(o, s, c, r, i, 0, u, d, null);
+	let s = n.level || 0, c = n.internalFormat || n.format || U, l = L_(c), u = n.format || l.format, d, f = n.src;
+	if (d = f && (Eh(f) || Array.isArray(f) && typeof f[0] == "number") ? n.type || V_(e, f, l.type) : n.type || l.type, o === Rh) for (let t = 0; t < 6; ++t) e.texImage2D(Vh + t, s, c, r, i, 0, u, d, null);
+	else o === zh || o === Bh ? e.texImage3D(o, s, c, r, i, a, 0, u, d, null) : e.texImage2D(o, s, c, r, i, 0, u, d, null);
 }
-var dv = Vm, fv = 33984, pv = 35048, mv = 34962, hv = 34963, gv = 35345, _v = 35718, vv = 35721, yv = 35971, bv = 35382, xv = 35396, Sv = 35398, Cv = 35392, wv = 35395, Tv = 5126, Ev = 35664, Dv = 35665, Ov = 35666, kv = 5124, Av = 35667, jv = 35668, Mv = 35669, Nv = 35670, Pv = 35671, Fv = 35672, Iv = 35673, Lv = 35674, Rv = 35675, zv = 35676, Bv = 35678, Vv = 35680, Hv = 35679, Uv = 35682, Wv = 35685, Gv = 35686, Kv = 35687, qv = 35688, Jv = 35689, Yv = 35690, Xv = 36289, Zv = 36292, Qv = 36293, $v = 5125, ey = 36294, ty = 36295, ny = 36296, ry = 36298, iy = 36299, ay = 36300, oy = 36303, sy = 36306, cy = 36307, ly = 36308, uy = 36311, dy = 3553, fy = 34067, py = 32879, my = 35866, G = {};
-function hy(e, t) {
+var pv = Um, mv = 33984, hv = 35048, gv = 34962, _v = 34963, vv = 35345, yv = 35718, bv = 35721, xv = 35971, Sv = 35382, Cv = 35396, wv = 35398, Tv = 35392, Ev = 35395, Dv = 5126, Ov = 35664, kv = 35665, Av = 35666, jv = 5124, Mv = 35667, Nv = 35668, Pv = 35669, Fv = 35670, Iv = 35671, Lv = 35672, Rv = 35673, zv = 35674, Bv = 35675, Vv = 35676, Hv = 35678, Uv = 35680, Wv = 35679, Gv = 35682, Kv = 35685, qv = 35686, Jv = 35687, Yv = 35688, Xv = 35689, Zv = 35690, Qv = 36289, $v = 36292, ey = 36293, ty = 5125, ny = 36294, ry = 36295, iy = 36296, ay = 36298, oy = 36299, sy = 36300, cy = 36303, ly = 36306, uy = 36307, dy = 36308, fy = 36311, py = 3553, my = 34067, hy = 32879, gy = 35866, G = {};
+function _y(e, t) {
 	return G[t].bindPoint;
 }
-function gy(e, t) {
+function vy(e, t) {
 	return function(n) {
 		e.uniform1f(t, n);
 	};
 }
-function _y(e, t) {
+function yy(e, t) {
 	return function(n) {
 		e.uniform1fv(t, n);
 	};
 }
-function vy(e, t) {
+function by(e, t) {
 	return function(n) {
 		e.uniform2fv(t, n);
 	};
 }
-function yy(e, t) {
+function xy(e, t) {
 	return function(n) {
 		e.uniform3fv(t, n);
 	};
 }
-function by(e, t) {
+function Sy(e, t) {
 	return function(n) {
 		e.uniform4fv(t, n);
 	};
 }
-function xy(e, t) {
+function Cy(e, t) {
 	return function(n) {
 		e.uniform1i(t, n);
 	};
 }
-function Sy(e, t) {
+function wy(e, t) {
 	return function(n) {
 		e.uniform1iv(t, n);
 	};
 }
-function Cy(e, t) {
+function Ty(e, t) {
 	return function(n) {
 		e.uniform2iv(t, n);
 	};
 }
-function wy(e, t) {
+function Ey(e, t) {
 	return function(n) {
 		e.uniform3iv(t, n);
 	};
 }
-function Ty(e, t) {
+function Dy(e, t) {
 	return function(n) {
 		e.uniform4iv(t, n);
 	};
 }
-function Ey(e, t) {
+function Oy(e, t) {
 	return function(n) {
 		e.uniform1ui(t, n);
 	};
 }
-function Dy(e, t) {
+function ky(e, t) {
 	return function(n) {
 		e.uniform1uiv(t, n);
 	};
 }
-function Oy(e, t) {
+function Ay(e, t) {
 	return function(n) {
 		e.uniform2uiv(t, n);
 	};
 }
-function ky(e, t) {
+function jy(e, t) {
 	return function(n) {
 		e.uniform3uiv(t, n);
 	};
 }
-function Ay(e, t) {
+function My(e, t) {
 	return function(n) {
 		e.uniform4uiv(t, n);
 	};
 }
-function jy(e, t) {
+function Ny(e, t) {
 	return function(n) {
 		e.uniformMatrix2fv(t, !1, n);
 	};
 }
-function My(e, t) {
+function Py(e, t) {
 	return function(n) {
 		e.uniformMatrix3fv(t, !1, n);
 	};
 }
-function Ny(e, t) {
+function Fy(e, t) {
 	return function(n) {
 		e.uniformMatrix4fv(t, !1, n);
 	};
 }
-function Py(e, t) {
+function Iy(e, t) {
 	return function(n) {
 		e.uniformMatrix2x3fv(t, !1, n);
 	};
 }
-function Fy(e, t) {
+function Ly(e, t) {
 	return function(n) {
 		e.uniformMatrix3x2fv(t, !1, n);
 	};
 }
-function Iy(e, t) {
+function Ry(e, t) {
 	return function(n) {
 		e.uniformMatrix2x4fv(t, !1, n);
 	};
 }
-function Ly(e, t) {
+function zy(e, t) {
 	return function(n) {
 		e.uniformMatrix4x2fv(t, !1, n);
 	};
 }
-function Ry(e, t) {
+function By(e, t) {
 	return function(n) {
 		e.uniformMatrix3x4fv(t, !1, n);
 	};
 }
-function zy(e, t) {
+function Vy(e, t) {
 	return function(n) {
 		e.uniformMatrix4x3fv(t, !1, n);
 	};
 }
-function By(e, t, n, r) {
-	let i = hy(e, t);
-	return xh(e) ? function(t) {
+function Hy(e, t, n, r) {
+	let i = _y(e, t);
+	return Ch(e) ? function(t) {
 		let a, o;
-		Wm(e, t) ? (a = t, o = null) : (a = t.texture, o = t.sampler), e.uniform1i(r, n), e.activeTexture(fv + n), e.bindTexture(i, a), e.bindSampler(n, o);
+		Km(e, t) ? (a = t, o = null) : (a = t.texture, o = t.sampler), e.uniform1i(r, n), e.activeTexture(mv + n), e.bindTexture(i, a), e.bindSampler(n, o);
 	} : function(t) {
-		e.uniform1i(r, n), e.activeTexture(fv + n), e.bindTexture(i, t);
+		e.uniform1i(r, n), e.activeTexture(mv + n), e.bindTexture(i, t);
 	};
 }
-function Vy(e, t, n, r, i) {
-	let a = hy(e, t), o = new Int32Array(i);
+function Uy(e, t, n, r, i) {
+	let a = _y(e, t), o = new Int32Array(i);
 	for (let e = 0; e < i; ++e) o[e] = n + e;
-	return xh(e) ? function(t) {
+	return Ch(e) ? function(t) {
 		e.uniform1iv(r, o), t.forEach(function(t, r) {
-			e.activeTexture(fv + o[r]);
+			e.activeTexture(mv + o[r]);
 			let i, s;
-			Wm(e, t) ? (i = t, s = null) : (i = t.texture, s = t.sampler), e.bindSampler(n, s), e.bindTexture(a, i);
+			Km(e, t) ? (i = t, s = null) : (i = t.texture, s = t.sampler), e.bindSampler(n, s), e.bindTexture(a, i);
 		});
 	} : function(t) {
 		e.uniform1iv(r, o), t.forEach(function(t, n) {
-			e.activeTexture(fv + o[n]), e.bindTexture(a, t);
+			e.activeTexture(mv + o[n]), e.bindTexture(a, t);
 		});
 	};
 }
-G[Tv] = {
+G[Dv] = {
 	Type: Float32Array,
 	size: 4,
-	setter: gy,
-	arraySetter: _y
-}, G[Ev] = {
-	Type: Float32Array,
-	size: 8,
 	setter: vy,
-	cols: 2
-}, G[Dv] = {
-	Type: Float32Array,
-	size: 12,
-	setter: yy,
-	cols: 3
+	arraySetter: yy
 }, G[Ov] = {
 	Type: Float32Array,
-	size: 16,
-	setter: by,
-	cols: 4
-}, G[kv] = {
-	Type: Int32Array,
-	size: 4,
-	setter: xy,
-	arraySetter: Sy
-}, G[Av] = {
-	Type: Int32Array,
 	size: 8,
-	setter: Cy,
+	setter: by,
 	cols: 2
+}, G[kv] = {
+	Type: Float32Array,
+	size: 12,
+	setter: xy,
+	cols: 3
+}, G[Av] = {
+	Type: Float32Array,
+	size: 16,
+	setter: Sy,
+	cols: 4
 }, G[jv] = {
 	Type: Int32Array,
-	size: 12,
-	setter: wy,
-	cols: 3
+	size: 4,
+	setter: Cy,
+	arraySetter: wy
 }, G[Mv] = {
 	Type: Int32Array,
-	size: 16,
-	setter: Ty,
-	cols: 4
-}, G[$v] = {
-	Type: Uint32Array,
-	size: 4,
-	setter: Ey,
-	arraySetter: Dy
-}, G[ey] = {
-	Type: Uint32Array,
 	size: 8,
-	setter: Oy,
+	setter: Ty,
 	cols: 2
+}, G[Nv] = {
+	Type: Int32Array,
+	size: 12,
+	setter: Ey,
+	cols: 3
+}, G[Pv] = {
+	Type: Int32Array,
+	size: 16,
+	setter: Dy,
+	cols: 4
 }, G[ty] = {
 	Type: Uint32Array,
-	size: 12,
-	setter: ky,
-	cols: 3
+	size: 4,
+	setter: Oy,
+	arraySetter: ky
 }, G[ny] = {
 	Type: Uint32Array,
-	size: 16,
-	setter: Ay,
-	cols: 4
-}, G[Nv] = {
-	Type: Uint32Array,
-	size: 4,
-	setter: xy,
-	arraySetter: Sy
-}, G[Pv] = {
-	Type: Uint32Array,
 	size: 8,
-	setter: Cy,
+	setter: Ay,
 	cols: 2
-}, G[Fv] = {
+}, G[ry] = {
 	Type: Uint32Array,
 	size: 12,
-	setter: wy,
+	setter: jy,
 	cols: 3
-}, G[Iv] = {
+}, G[iy] = {
 	Type: Uint32Array,
 	size: 16,
-	setter: Ty,
-	cols: 4
-}, G[Lv] = {
-	Type: Float32Array,
-	size: 32,
-	setter: jy,
-	rows: 2,
-	cols: 2
-}, G[Rv] = {
-	Type: Float32Array,
-	size: 48,
 	setter: My,
-	rows: 3,
+	cols: 4
+}, G[Fv] = {
+	Type: Uint32Array,
+	size: 4,
+	setter: Cy,
+	arraySetter: wy
+}, G[Iv] = {
+	Type: Uint32Array,
+	size: 8,
+	setter: Ty,
+	cols: 2
+}, G[Lv] = {
+	Type: Uint32Array,
+	size: 12,
+	setter: Ey,
 	cols: 3
+}, G[Rv] = {
+	Type: Uint32Array,
+	size: 16,
+	setter: Dy,
+	cols: 4
 }, G[zv] = {
 	Type: Float32Array,
-	size: 64,
+	size: 32,
 	setter: Ny,
+	rows: 2,
+	cols: 2
+}, G[Bv] = {
+	Type: Float32Array,
+	size: 48,
+	setter: Py,
+	rows: 3,
+	cols: 3
+}, G[Vv] = {
+	Type: Float32Array,
+	size: 64,
+	setter: Fy,
 	rows: 4,
 	cols: 4
-}, G[Wv] = {
-	Type: Float32Array,
-	size: 32,
-	setter: Py,
-	rows: 2,
-	cols: 3
-}, G[Gv] = {
+}, G[Kv] = {
 	Type: Float32Array,
 	size: 32,
 	setter: Iy,
 	rows: 2,
-	cols: 4
-}, G[Kv] = {
-	Type: Float32Array,
-	size: 48,
-	setter: Fy,
-	rows: 3,
-	cols: 2
+	cols: 3
 }, G[qv] = {
 	Type: Float32Array,
-	size: 48,
+	size: 32,
 	setter: Ry,
-	rows: 3,
+	rows: 2,
 	cols: 4
 }, G[Jv] = {
 	Type: Float32Array,
-	size: 64,
+	size: 48,
 	setter: Ly,
-	rows: 4,
+	rows: 3,
 	cols: 2
 }, G[Yv] = {
+	Type: Float32Array,
+	size: 48,
+	setter: By,
+	rows: 3,
+	cols: 4
+}, G[Xv] = {
 	Type: Float32Array,
 	size: 64,
 	setter: zy,
 	rows: 4,
+	cols: 2
+}, G[Zv] = {
+	Type: Float32Array,
+	size: 64,
+	setter: Vy,
+	rows: 4,
 	cols: 3
-}, G[Bv] = {
-	Type: null,
-	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: dy
-}, G[Vv] = {
-	Type: null,
-	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: fy
 }, G[Hv] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
+	setter: Hy,
+	arraySetter: Uy,
 	bindPoint: py
 }, G[Uv] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: dy
-}, G[Xv] = {
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: my
+}, G[Wv] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: my
-}, G[Zv] = {
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: hy
+}, G[Gv] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: my
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: py
 }, G[Qv] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: fy
-}, G[ry] = {
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: gy
+}, G[$v] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: dy
-}, G[iy] = {
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: gy
+}, G[ey] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: py
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: my
 }, G[ay] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: fy
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: py
 }, G[oy] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: my
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: hy
 }, G[sy] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: dy
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: my
 }, G[cy] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: py
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: gy
 }, G[ly] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
-	bindPoint: fy
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: py
 }, G[uy] = {
 	Type: null,
 	size: 0,
-	setter: By,
-	arraySetter: Vy,
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: hy
+}, G[dy] = {
+	Type: null,
+	size: 0,
+	setter: Hy,
+	arraySetter: Uy,
 	bindPoint: my
+}, G[fy] = {
+	Type: null,
+	size: 0,
+	setter: Hy,
+	arraySetter: Uy,
+	bindPoint: gy
 };
-function Hy(e, t) {
+function Wy(e, t) {
 	return function(n) {
 		if (n.value) switch (e.disableVertexAttribArray(t), n.value.length) {
 			case 4:
@@ -7481,104 +7503,104 @@ function Hy(e, t) {
 				break;
 			default: throw Error("the length of a float constant value must be between 1 and 4!");
 		}
-		else e.bindBuffer(mv, n.buffer), e.enableVertexAttribArray(t), e.vertexAttribPointer(t, n.numComponents || n.size, n.type || Tv, n.normalize || !1, n.stride || 0, n.offset || 0), n.divisor !== void 0 && e.vertexAttribDivisor(t, n.divisor);
+		else e.bindBuffer(gv, n.buffer), e.enableVertexAttribArray(t), e.vertexAttribPointer(t, n.numComponents || n.size, n.type || Dv, n.normalize || !1, n.stride || 0, n.offset || 0), n.divisor !== void 0 && e.vertexAttribDivisor(t, n.divisor);
 	};
 }
-function Uy(e, t) {
+function Gy(e, t) {
 	return function(n) {
 		if (n.value) if (e.disableVertexAttribArray(t), n.value.length === 4) e.vertexAttrib4iv(t, n.value);
 		else throw Error("The length of an integer constant value must be 4!");
-		else e.bindBuffer(mv, n.buffer), e.enableVertexAttribArray(t), e.vertexAttribIPointer(t, n.numComponents || n.size, n.type || kv, n.stride || 0, n.offset || 0), n.divisor !== void 0 && e.vertexAttribDivisor(t, n.divisor);
+		else e.bindBuffer(gv, n.buffer), e.enableVertexAttribArray(t), e.vertexAttribIPointer(t, n.numComponents || n.size, n.type || jv, n.stride || 0, n.offset || 0), n.divisor !== void 0 && e.vertexAttribDivisor(t, n.divisor);
 	};
 }
-function Wy(e, t) {
+function Ky(e, t) {
 	return function(n) {
 		if (n.value) if (e.disableVertexAttribArray(t), n.value.length === 4) e.vertexAttrib4uiv(t, n.value);
 		else throw Error("The length of an unsigned integer constant value must be 4!");
-		else e.bindBuffer(mv, n.buffer), e.enableVertexAttribArray(t), e.vertexAttribIPointer(t, n.numComponents || n.size, n.type || $v, n.stride || 0, n.offset || 0), n.divisor !== void 0 && e.vertexAttribDivisor(t, n.divisor);
+		else e.bindBuffer(gv, n.buffer), e.enableVertexAttribArray(t), e.vertexAttribIPointer(t, n.numComponents || n.size, n.type || ty, n.stride || 0, n.offset || 0), n.divisor !== void 0 && e.vertexAttribDivisor(t, n.divisor);
 	};
 }
-function Gy(e, t, n) {
+function qy(e, t, n) {
 	let r = n.size, i = n.count;
 	return function(n) {
-		e.bindBuffer(mv, n.buffer);
-		let a = n.size || n.numComponents || r, o = a / i, s = n.type || Tv, c = G[s].size * a, l = n.normalize || !1, u = n.offset || 0, d = c / i;
+		e.bindBuffer(gv, n.buffer);
+		let a = n.size || n.numComponents || r, o = a / i, s = n.type || Dv, c = G[s].size * a, l = n.normalize || !1, u = n.offset || 0, d = c / i;
 		for (let r = 0; r < i; ++r) e.enableVertexAttribArray(t + r), e.vertexAttribPointer(t + r, o, s, l, c, u + d * r), n.divisor !== void 0 && e.vertexAttribDivisor(t + r, n.divisor);
 	};
 }
 var K = {};
-K[Tv] = {
+K[Dv] = {
 	size: 4,
-	setter: Hy
-}, K[Ev] = {
-	size: 8,
-	setter: Hy
-}, K[Dv] = {
-	size: 12,
-	setter: Hy
+	setter: Wy
 }, K[Ov] = {
-	size: 16,
-	setter: Hy
+	size: 8,
+	setter: Wy
 }, K[kv] = {
-	size: 4,
-	setter: Uy
+	size: 12,
+	setter: Wy
 }, K[Av] = {
-	size: 8,
-	setter: Uy
+	size: 16,
+	setter: Wy
 }, K[jv] = {
-	size: 12,
-	setter: Uy
+	size: 4,
+	setter: Gy
 }, K[Mv] = {
-	size: 16,
-	setter: Uy
-}, K[$v] = {
-	size: 4,
-	setter: Wy
-}, K[ey] = {
 	size: 8,
-	setter: Wy
-}, K[ty] = {
-	size: 12,
-	setter: Wy
-}, K[ny] = {
-	size: 16,
-	setter: Wy
+	setter: Gy
 }, K[Nv] = {
-	size: 4,
-	setter: Uy
-}, K[Pv] = {
-	size: 8,
-	setter: Uy
-}, K[Fv] = {
 	size: 12,
-	setter: Uy
-}, K[Iv] = {
+	setter: Gy
+}, K[Pv] = {
 	size: 16,
-	setter: Uy
-}, K[Lv] = {
+	setter: Gy
+}, K[ty] = {
 	size: 4,
-	setter: Gy,
-	count: 2
-}, K[Rv] = {
-	size: 9,
-	setter: Gy,
-	count: 3
-}, K[zv] = {
+	setter: Ky
+}, K[ny] = {
+	size: 8,
+	setter: Ky
+}, K[ry] = {
+	size: 12,
+	setter: Ky
+}, K[iy] = {
 	size: 16,
-	setter: Gy,
+	setter: Ky
+}, K[Fv] = {
+	size: 4,
+	setter: Gy
+}, K[Iv] = {
+	size: 8,
+	setter: Gy
+}, K[Lv] = {
+	size: 12,
+	setter: Gy
+}, K[Rv] = {
+	size: 16,
+	setter: Gy
+}, K[zv] = {
+	size: 4,
+	setter: qy,
+	count: 2
+}, K[Bv] = {
+	size: 9,
+	setter: qy,
+	count: 3
+}, K[Vv] = {
+	size: 16,
+	setter: qy,
 	count: 4
 };
-function Ky(e) {
+function Jy(e) {
 	let t = e.name;
 	return t.startsWith("gl_") || t.startsWith("webgl_");
 }
-var qy = /(\.|\[|]|\w+)/g, Jy = (e) => e >= "0" && e <= "9";
-function Yy(e, t, n, r) {
-	let i = e.split(qy).filter((e) => e !== ""), a = 0, o = "";
+var Yy = /(\.|\[|]|\w+)/g, Xy = (e) => e >= "0" && e <= "9";
+function Zy(e, t, n, r) {
+	let i = e.split(Yy).filter((e) => e !== ""), a = 0, o = "";
 	for (;;) {
 		let e = i[a++];
 		o += e;
-		let s = Jy(e[0]), c = s ? parseInt(e) : e;
+		let s = Xy(e[0]), c = s ? parseInt(e) : e;
 		if (s && (o += i[a++]), a === i.length) {
 			n[c] = t;
 			break;
@@ -7586,13 +7608,13 @@ function Yy(e, t, n, r) {
 			let e = i[a++], t = e === "[", s = n[c] || (t ? [] : {});
 			n[c] = s, n = s, r[o] = r[o] || function(e) {
 				return function(t) {
-					sb(e, t);
+					lb(e, t);
 				};
 			}(s), o += e;
 		}
 	}
 }
-function Xy(e, t) {
+function Qy(e, t) {
 	let n = 0;
 	function r(t, r, i) {
 		let a = r.name.endsWith("[0]"), o = r.type, s = G[o];
@@ -7604,22 +7626,22 @@ function Xy(e, t) {
 		} else c = s.arraySetter && a ? s.arraySetter(e, i) : s.setter(e, i);
 		return c.location = i, c;
 	}
-	let i = {}, a = {}, o = e.getProgramParameter(t, _v);
+	let i = {}, a = {}, o = e.getProgramParameter(t, yv);
 	for (let n = 0; n < o; ++n) {
 		let o = e.getActiveUniform(t, n);
-		if (Ky(o)) continue;
+		if (Jy(o)) continue;
 		let s = o.name;
 		s.endsWith("[0]") && (s = s.substr(0, s.length - 3));
 		let c = e.getUniformLocation(t, o.name);
 		if (c) {
 			let e = r(t, o, c);
-			i[s] = e, Yy(s, e, a, i);
+			i[s] = e, Zy(s, e, a, i);
 		}
 	}
 	return i;
 }
-function Zy(e, t) {
-	let n = {}, r = e.getProgramParameter(t, yv);
+function $y(e, t) {
+	let n = {}, r = e.getProgramParameter(t, xv);
 	for (let i = 0; i < r; ++i) {
 		let r = e.getTransformFeedbackVarying(t, i);
 		n[r.name] = {
@@ -7630,8 +7652,8 @@ function Zy(e, t) {
 	}
 	return n;
 }
-function Qy(e, t) {
-	let n = e.getProgramParameter(t, _v), r = [], i = [];
+function eb(e, t) {
+	let n = e.getProgramParameter(t, yv), r = [], i = [];
 	for (let a = 0; a < n; ++a) {
 		i.push(a), r.push({});
 		let n = e.getActiveUniform(t, a);
@@ -7648,14 +7670,14 @@ function Qy(e, t) {
 			r[t][o] = e;
 		});
 	});
-	let a = {}, o = e.getProgramParameter(t, bv);
+	let a = {}, o = e.getProgramParameter(t, Sv);
 	for (let n = 0; n < o; ++n) {
 		let r = e.getActiveUniformBlockName(t, n), i = {
 			index: e.getUniformBlockIndex(t, r),
-			usedByVertexShader: e.getActiveUniformBlockParameter(t, n, xv),
-			usedByFragmentShader: e.getActiveUniformBlockParameter(t, n, Sv),
-			size: e.getActiveUniformBlockParameter(t, n, Cv),
-			uniformIndices: e.getActiveUniformBlockParameter(t, n, wv)
+			usedByVertexShader: e.getActiveUniformBlockParameter(t, n, Cv),
+			usedByFragmentShader: e.getActiveUniformBlockParameter(t, n, wv),
+			size: e.getActiveUniformBlockParameter(t, n, Tv),
+			uniformIndices: e.getActiveUniformBlockParameter(t, n, Ev)
 		};
 		i.used = i.usedByVertexShader || i.usedByFragmentShader, a[r] = i;
 	}
@@ -7664,8 +7686,8 @@ function Qy(e, t) {
 		uniformData: r
 	};
 }
-var $y = /\[\d+\]\.$/, eb = (e, t) => ((e + (t - 1)) / t | 0) * t;
-function tb(e, t, n, r) {
+var tb = /\[\d+\]\.$/, nb = (e, t) => ((e + (t - 1)) / t | 0) * t;
+function rb(e, t, n, r) {
 	if (t || n) {
 		r ||= 1;
 		let t = e.length / 4;
@@ -7680,26 +7702,26 @@ function tb(e, t, n, r) {
 		t.length ? e.set(t) : e[0] = t;
 	};
 }
-function nb(e, t, n, r) {
+function ib(e, t, n, r) {
 	let i = n.blockSpecs, a = n.uniformData, o = i[r];
-	if (!o) return dv("no uniform block object named:", r), {
+	if (!o) return pv("no uniform block object named:", r), {
 		name: r,
 		uniforms: {}
 	};
 	let s = new ArrayBuffer(o.size), c = e.createBuffer(), l = o.index;
-	e.bindBuffer(gv, c), e.uniformBlockBinding(t, o.index, l);
+	e.bindBuffer(vv, c), e.uniformBlockBinding(t, o.index, l);
 	let u = r + ".";
-	$y.test(u) && (u = u.replace($y, "."));
+	tb.test(u) && (u = u.replace(tb, "."));
 	let d = {}, f = {}, p = {};
 	return o.uniformIndices.forEach(function(e) {
 		let t = a[e], n = t.name;
 		n.startsWith(u) && (n = n.substr(u.length));
 		let r = n.endsWith("[0]");
 		r && (n = n.substr(0, n.length - 3));
-		let i = G[t.type], o = i.Type, c = r ? eb(i.size, 16) * t.size : i.size * t.size, l = new o(s, t.offset, c / o.BYTES_PER_ELEMENT);
+		let i = G[t.type], o = i.Type, c = r ? nb(i.size, 16) * t.size : i.size * t.size, l = new o(s, t.offset, c / o.BYTES_PER_ELEMENT);
 		d[n] = l;
-		let m = tb(l, r, i.rows, i.cols);
-		f[n] = m, Yy(n, m, p, f);
+		let m = rb(l, r, i.rows, i.cols);
+		f[n] = m, Zy(n, m, p, f);
 	}), {
 		name: r,
 		array: s,
@@ -7709,21 +7731,21 @@ function nb(e, t, n, r) {
 		setters: f
 	};
 }
-function rb(e, t, n) {
-	return nb(e, t.program, t.uniformBlockSpec, n);
+function ab(e, t, n) {
+	return ib(e, t.program, t.uniformBlockSpec, n);
 }
-function ib(e, t, n) {
+function ob(e, t, n) {
 	let r = (t.uniformBlockSpec || t).blockSpecs[n.name];
 	if (r) {
 		let t = r.index;
-		return e.bindBufferRange(gv, t, n.buffer, n.offset || 0, n.array.byteLength), !0;
+		return e.bindBufferRange(vv, t, n.buffer, n.offset || 0, n.array.byteLength), !0;
 	}
 	return !1;
 }
-function ab(e, t, n) {
-	ib(e, t, n) && e.bufferData(gv, n.array, pv);
+function sb(e, t, n) {
+	ob(e, t, n) && e.bufferData(vv, n.array, hv);
 }
-function ob(e, t) {
+function cb(e, t) {
 	let n = e.setters;
 	for (let e in t) {
 		let r = n[e];
@@ -7733,80 +7755,80 @@ function ob(e, t) {
 		}
 	}
 }
-function sb(e, t) {
+function lb(e, t) {
 	for (let n in t) {
 		let r = e[n];
-		typeof r == "function" ? r(t[n]) : sb(e[n], t[n]);
+		typeof r == "function" ? r(t[n]) : lb(e[n], t[n]);
 	}
 }
-function cb(e, ...t) {
+function ub(e, ...t) {
 	let n = e.uniformSetters || e, r = t.length;
 	for (let e = 0; e < r; ++e) {
 		let r = t[e];
 		if (Array.isArray(r)) {
 			let e = r.length;
-			for (let t = 0; t < e; ++t) cb(n, r[t]);
+			for (let t = 0; t < e; ++t) ub(n, r[t]);
 		} else for (let e in r) {
 			let t = n[e];
 			t && t(r[e]);
 		}
 	}
 }
-function lb(e, t) {
-	let n = {}, r = e.getProgramParameter(t, vv);
+function db(e, t) {
+	let n = {}, r = e.getProgramParameter(t, bv);
 	for (let i = 0; i < r; ++i) {
 		let r = e.getActiveAttrib(t, i);
-		if (Ky(r)) continue;
+		if (Jy(r)) continue;
 		let a = e.getAttribLocation(t, r.name), o = K[r.type], s = o.setter(e, a, o);
 		s.location = a, n[r.name] = s;
 	}
 	return n;
 }
-function ub(e, t) {
+function fb(e, t) {
 	for (let n in t) {
 		let r = e[n];
 		r && r(t[n]);
 	}
 }
-function db(e, t, n) {
-	n.vertexArrayObject ? e.bindVertexArray(n.vertexArrayObject) : (ub(t.attribSetters || t, n.attribs), n.indices && e.bindBuffer(hv, n.indices));
+function pb(e, t, n) {
+	n.vertexArrayObject ? e.bindVertexArray(n.vertexArrayObject) : (fb(t.attribSetters || t, n.attribs), n.indices && e.bindBuffer(_v, n.indices));
 }
-function fb(e, t) {
+function mb(e, t) {
 	let n = {
 		program: t,
-		uniformSetters: Xy(e, t),
-		attribSetters: lb(e, t)
+		uniformSetters: Qy(e, t),
+		attribSetters: db(e, t)
 	};
-	return xh(e) && (n.uniformBlockSpec = Qy(e, t), n.transformFeedbackInfo = Zy(e, t)), n;
+	return Ch(e) && (n.uniformBlockSpec = eb(e, t), n.transformFeedbackInfo = $y(e, t)), n;
 }
-var pb = 4, mb = 5123;
-function hb(e, t, n, r, i, a) {
-	n = n === void 0 ? pb : n;
+var hb = 4, gb = 5123;
+function _b(e, t, n, r, i, a) {
+	n = n === void 0 ? hb : n;
 	let o = t.indices, s = t.elementType, c = r === void 0 ? t.numElements : r;
-	i = i === void 0 ? 0 : i, s || o ? a === void 0 ? e.drawElements(n, c, s === void 0 ? mb : t.elementType, i) : e.drawElementsInstanced(n, c, s === void 0 ? mb : t.elementType, i, a) : a === void 0 ? e.drawArrays(n, i, c) : e.drawArraysInstanced(n, i, c, a);
+	i = i === void 0 ? 0 : i, s || o ? a === void 0 ? e.drawElements(n, c, s === void 0 ? gb : t.elementType, i) : e.drawElementsInstanced(n, c, s === void 0 ? gb : t.elementType, i, a) : a === void 0 ? e.drawArrays(n, i, c) : e.drawArraysInstanced(n, i, c, a);
 }
-var gb = 36160, _b = 36161, vb = 3553, yb = 5121, bb = 6402, xb = 6408, Sb = 33190, Cb = 36012, wb = 35056, Tb = 36013, Eb = 32854, Db = 32855, Ob = 36194, kb = 33189, Ab = 6401, jb = 36168, Mb = 34041, Nb = 36064, Pb = 36096, Fb = 36128, Ib = 33306, Lb = 33071, Rb = 9729, zb = [{
-	format: xb,
-	type: yb,
-	min: Rb,
-	wrap: Lb
-}, { format: Mb }], Bb = {};
-Bb[Mb] = Ib, Bb[Ab] = Fb, Bb[jb] = Fb, Bb[bb] = Pb, Bb[kb] = Pb, Bb[Sb] = Pb, Bb[Cb] = Pb, Bb[wb] = Ib, Bb[Tb] = Ib;
-function Vb(e, t) {
-	return Bb[e] || Bb[t];
+var vb = 36160, yb = 36161, bb = 3553, xb = 5121, Sb = 6402, Cb = 6408, wb = 33190, Tb = 36012, Eb = 35056, Db = 36013, Ob = 32854, kb = 32855, Ab = 36194, jb = 33189, Mb = 6401, Nb = 36168, Pb = 34041, Fb = 36064, Ib = 36096, Lb = 36128, Rb = 33306, zb = 33071, Bb = 9729, Vb = [{
+	format: Cb,
+	type: xb,
+	min: Bb,
+	wrap: zb
+}, { format: Pb }], Hb = {};
+Hb[Pb] = Rb, Hb[Mb] = Lb, Hb[Nb] = Lb, Hb[Sb] = Ib, Hb[jb] = Ib, Hb[wb] = Ib, Hb[Tb] = Ib, Hb[Eb] = Rb, Hb[Db] = Rb;
+function Ub(e, t) {
+	return Hb[e] || Hb[t];
 }
-var Hb = {};
-Hb[Eb] = !0, Hb[Db] = !0, Hb[Ob] = !0, Hb[Mb] = !0, Hb[kb] = !0, Hb[Ab] = !0, Hb[jb] = !0;
-function Ub(e) {
-	return Hb[e];
-}
-var Wb = 32;
+var Wb = {};
+Wb[Ob] = !0, Wb[kb] = !0, Wb[Ab] = !0, Wb[Pb] = !0, Wb[jb] = !0, Wb[Mb] = !0, Wb[Nb] = !0;
 function Gb(e) {
-	return e >= Nb && e < Nb + Wb;
+	return Wb[e];
 }
-function Kb(e, t, n, r) {
-	let i = gb, a = e.createFramebuffer();
-	e.bindFramebuffer(i, a), n ||= e.drawingBufferWidth, r ||= e.drawingBufferHeight, t ||= zb;
+var Kb = 32;
+function qb(e) {
+	return e >= Fb && e < Fb + Kb;
+}
+function Jb(e, t, n, r) {
+	let i = vb, a = e.createFramebuffer();
+	e.bindFramebuffer(i, a), n ||= e.drawingBufferWidth, r ||= e.drawingBufferHeight, t ||= Vb;
 	let o = [], s = {
 		framebuffer: a,
 		attachments: [],
@@ -7814,55 +7836,55 @@ function Kb(e, t, n, r) {
 		height: r
 	};
 	return t.forEach(function(t, a) {
-		let c = t.attachment, l = t.samples, u = t.format, d = t.attachmentPoint || Vb(u, t.internalFormat);
-		if (d ||= Nb + a, Gb(d) && o.push(d), !c) if (l !== void 0 || Ub(u)) c = e.createRenderbuffer(), e.bindRenderbuffer(_b, c), l > 1 ? e.renderbufferStorageMultisample(_b, l, u, n, r) : e.renderbufferStorage(_b, u, n, r);
+		let c = t.attachment, l = t.samples, u = t.format, d = t.attachmentPoint || Ub(u, t.internalFormat);
+		if (d ||= Fb + a, qb(d) && o.push(d), !c) if (l !== void 0 || Gb(u)) c = e.createRenderbuffer(), e.bindRenderbuffer(yb, c), l > 1 ? e.renderbufferStorageMultisample(yb, l, u, n, r) : e.renderbufferStorage(yb, u, n, r);
 		else {
 			let i = Object.assign({}, t);
-			i.width = n, i.height = r, i.auto === void 0 && (i.auto = !1, i.min = i.min || i.minMag || Rb, i.mag = i.mag || i.minMag || Rb, i.wrapS = i.wrapS || i.wrap || Lb, i.wrapT = i.wrapT || i.wrap || Lb), c = lv(e, i);
+			i.width = n, i.height = r, i.auto === void 0 && (i.auto = !1, i.min = i.min || i.minMag || Bb, i.mag = i.mag || i.minMag || Bb, i.wrapS = i.wrapS || i.wrap || zb, i.wrapT = i.wrapT || i.wrap || zb), c = dv(e, i);
 		}
-		if (Um(e, c)) e.framebufferRenderbuffer(i, d, _b, c);
-		else if (Wm(e, c)) t.layer === void 0 ? e.framebufferTexture2D(i, d, t.target || vb, c, t.level || 0) : e.framebufferTextureLayer(i, d, c, t.level || 0, t.layer);
+		if (Gm(e, c)) e.framebufferRenderbuffer(i, d, yb, c);
+		else if (Km(e, c)) t.layer === void 0 ? e.framebufferTexture2D(i, d, t.target || bb, c, t.level || 0) : e.framebufferTextureLayer(i, d, c, t.level || 0, t.layer);
 		else throw Error("unknown attachment type");
 		s.attachments.push(c);
 	}), e.drawBuffers && e.drawBuffers(o), s;
 }
-function qb(e, t, n, r, i) {
-	r ||= e.drawingBufferWidth, i ||= e.drawingBufferHeight, t.width = r, t.height = i, n ||= zb, n.forEach(function(n, a) {
+function Yb(e, t, n, r, i) {
+	r ||= e.drawingBufferWidth, i ||= e.drawingBufferHeight, t.width = r, t.height = i, n ||= Vb, n.forEach(function(n, a) {
 		let o = t.attachments[a], s = n.format, c = n.samples;
-		if (c !== void 0 || Um(e, o)) e.bindRenderbuffer(_b, o), c > 1 ? e.renderbufferStorageMultisample(_b, c, s, r, i) : e.renderbufferStorage(_b, s, r, i);
-		else if (Wm(e, o)) uv(e, o, n, r, i);
+		if (c !== void 0 || Gm(e, o)) e.bindRenderbuffer(yb, o), c > 1 ? e.renderbufferStorageMultisample(yb, c, s, r, i) : e.renderbufferStorage(yb, s, r, i);
+		else if (Km(e, o)) fv(e, o, n, r, i);
 		else throw Error("unknown attachment type");
 	});
 }
-function Jb(e, t, n) {
+function Xb(e, t, n) {
 	let r = e.createVertexArray();
 	return e.bindVertexArray(r), t.length || (t = [t]), t.forEach(function(t) {
-		db(e, t, n);
+		pb(e, t, n);
 	}), e.bindVertexArray(null), {
 		numElements: n.numElements,
 		elementType: n.elementType,
 		vertexArrayObject: r
 	};
 }
-var Yb = { addExtensionsToContext: !0 }, Xb = /^(.*?)_/;
-function Zb(e, t) {
-	Sh(e, 0);
+var Zb = { addExtensionsToContext: !0 }, Qb = /^(.*?)_/;
+function $b(e, t) {
+	wh(e, 0);
 	let n = e.getExtension(t);
 	if (n) {
-		let r = {}, i = Xb.exec(t)[1], a = "_" + i;
+		let r = {}, i = Qb.exec(t)[1], a = "_" + i;
 		for (let t in n) {
 			let o = n[t], s = typeof o == "function", c = s ? i : a, l = t;
 			t.endsWith(c) && (l = t.substring(0, t.length - c.length)), e[l] === void 0 ? s ? e[l] = function(e) {
 				return function() {
 					return e.apply(n, arguments);
 				};
-			}(o) : (e[l] = o, r[l] = o) : !s && e[l] !== o && Vm(l, e[l], o, t);
+			}(o) : (e[l] = o, r[l] = o) : !s && e[l] !== o && Um(l, e[l], o, t);
 		}
-		r.constructor = { name: n.constructor.name }, Sh(r, 0);
+		r.constructor = { name: n.constructor.name }, wh(r, 0);
 	}
 	return n;
 }
-var Qb = [
+var ex = [
 	"ANGLE_instanced_arrays",
 	"EXT_blend_minmax",
 	"EXT_color_buffer_float",
@@ -7889,27 +7911,27 @@ var Qb = [
 	"WEBGL_depth_texture",
 	"WEBGL_draw_buffers"
 ];
-function $b(e) {
-	for (let t = 0; t < Qb.length; ++t) Zb(e, Qb[t]);
+function tx(e) {
+	for (let t = 0; t < ex.length; ++t) $b(e, ex[t]);
 }
-function ex(e, t) {
+function nx(e, t) {
 	let n = [
 		"webgl2",
 		"webgl",
 		"experimental-webgl"
 	], r = null;
 	for (let i = 0; i < n.length; ++i) if (r = e.getContext(n[i], t), r) {
-		Yb.addExtensionsToContext && $b(r);
+		Zb.addExtensionsToContext && tx(r);
 		break;
 	}
 	return r;
 }
-function tx(e, t) {
-	return ex(e, t);
+function rx(e, t) {
+	return nx(e, t);
 }
 //#endregion
 //#region src/marks/rect.vertex.glsl
-var nx = "flat out lowp vec4 vFillColor;flat out lowp vec4 vStrokeColor;flat out float vHalfStrokeWidth;flat out vec4 vCornerRadii;\n#if defined(ROUNDED_CORNERS) || defined(STROKED) || defined(SHADOW)\nout vec2 vPosInPixels;\n#endif\nflat out vec2 vHalfSizeInPixels;/***Adjusts the vertex position to ensure that the rectangle is at least `minSpan`*wide or high. Returns a value that reflects the amount of clamping and can be*used to adjust the opacity of the rectangle.**pos: vertex position*frac: vertex position within the rectangle,[0,1]*size: width or height of the rectangle*minSize: minimum width or height of the rectangle*/float clampMinSize(inout float pos,float frac,float size,float minSize){if(minSize>0.0&&size<minSize){pos+=(frac-0.5)*(minSize-size);return size/minSize;}return 1.0;}void sort(inout float a,inout float b){if(a>b){float tmp=b;b=a;a=tmp;}}/***The vertex position wrt the rectangle specified by(x,x2,y,y2).*[0,0]=[x,y],[1,1]=[x2,y2].*The x or y component may contain fractional values if the rectangle*have been tessellated.*/vec2 getVertexPos(){int index=gl_VertexID % 6;return vec2(index==0||index==1||index==3 ? 0.0 : 1.0,index==0||index==1||index==2 ? 0.0 : 1.0);}void main(void){vec2 frac=getVertexPos();vec2 normalizedMinSize=vec2(uMinWidth,uMinHeight)/uViewportSize;vec4 cornerRadii=vec4(uCornerRadiusTopRight,uCornerRadiusBottomRight,uCornerRadiusTopLeft,uCornerRadiusBottomLeft);float x=getScaled_x();float x2=getScaled_x2();float y=getScaled_y();float y2=getScaled_y2();sort(x,x2);sort(y,y2);float clampMargin=1.0;vec2 pos1=vec2(clamp(x,0.0-clampMargin,1.0+clampMargin),y);vec2 pos2=vec2(clamp(x2,0.0-clampMargin,1.0+clampMargin),y2);vec2 size=pos2-pos1;if(size.x<=0.0||size.y<=0.0){gl_Position=vec4(0.0,0.0,0.0,1.0);return;}vec2 pos=pos1+frac*size;size.y*=getSampleFacetHeight(pos);float opaFactor=uViewOpacity*max(uMinOpacity,clampMinSize(pos.x,frac.x,size.x,normalizedMinSize.x)*clampMinSize(pos.y,frac.y,size.y,normalizedMinSize.y));size=max(size,normalizedMinSize);pos=applySampleFacet(pos);\n#if defined(ROUNDED_CORNERS) || defined(STROKED) || defined(SHADOW)\nfloat aaPadding=1.0/uDevicePixelRatio;float shadowPadding=uShadowBlur+max(abs(uShadowOffsetX),abs(uShadowOffsetY));float strokeWidth=getScaled_strokeWidth();float strokeOpacity=getScaled_strokeOpacity()*opaFactor;vec2 centeredFrac=frac-0.5;vec2 expand=centeredFrac*(strokeWidth+aaPadding+shadowPadding*2.0)/uViewportSize;pos+=expand;vec2 sizeInPixels=size*uViewportSize;vPosInPixels=(centeredFrac+expand/size)*sizeInPixels;vHalfSizeInPixels=sizeInPixels/2.0;vCornerRadii=min(cornerRadii,min(vHalfSizeInPixels.x,vHalfSizeInPixels.y));vHalfStrokeWidth=strokeWidth/2.0;vStrokeColor=vec4(getScaled_stroke()*strokeOpacity,strokeOpacity);\n#endif\ngl_Position=unitToNdc(pos);float fillOpacity=getScaled_fillOpacity()*opaFactor;vFillColor=vec4(getScaled_fill()*fillOpacity,fillOpacity);setupPicking();}", rx = "#if defined(ROUNDED_CORNERS) || defined(STROKED) || defined(SHADOW)\nin vec2 vPosInPixels;\n#endif\nflat in vec2 vHalfSizeInPixels;flat in lowp vec4 vFillColor;flat in lowp vec4 vStrokeColor;flat in float vHalfStrokeWidth;flat in vec4 vCornerRadii;out lowp vec4 fragColor;\n#ifdef SHADOW\nfloat gaussian(float x,float sigma){const float pi=3.141592653589793;return exp(-(x*x)/(2.0*sigma*sigma))/(sqrt(2.0*pi)*sigma);}vec2 erf(vec2 x){vec2 s=sign(x),a=abs(x);x=1.0+(0.278393+(0.230389+0.078108*(a*a))*a)*a;x*=x;return s-s/(x*x);}float roundedBoxShadowX(float x,float y,float sigma,float corner,vec2 halfSize){float delta=min(halfSize.y-corner-abs(y),0.0);float curved=halfSize.x-corner+sqrt(max(0.0,corner*corner-delta*delta));vec2 integral=0.5+0.5*erf((x+vec2(-curved,curved))*(sqrt(0.5)/sigma));return integral.y-integral.x;}float roundedBoxShadow(vec2 lower,vec2 upper,vec2 point,float sigma,float corner){vec2 center=(lower+upper)*0.5;vec2 halfSize=(upper-lower)*0.5;point-=center;float low=point.y-halfSize.y;float high=point.y+halfSize.y;float start=clamp(-3.0*sigma,low,high);float end=clamp(3.0*sigma,low,high);float step=(end-start)/4.0;float y=start+step*0.5;float value=0.0;for(int i=0;i<4;i++){value+=roundedBoxShadowX(point.x,point.y-y,sigma,corner,halfSize)*gaussian(y,sigma)*step;y+=step;}return value;}\n#endif\nfloat sdRoundedBox(vec2 p,vec2 b,vec4 r){r.xy=p.x>0.0 ? r.xy : r.zw;r.x=p.y>0.0 ? r.x  : r.y;vec2 q=abs(p)-b+r.x;return min(max(q.x,q.y),0.0)+length(max(q,0.0))-r.x;}float sdSharpBox(vec2 p,vec2 b){vec2 q=abs(p)-b;return max(q.x,q.y);}float diagonalPattern(vec2 uv,float spacing){float divisor=spacing*vHalfStrokeWidth*2.0*1.5;return abs(mod(uv.x-uv.y,divisor)-0.5*divisor)/1.5;}float verticalPattern(float x,float spacing){float divisor=spacing*vHalfStrokeWidth*2.0;return abs(mod(x,divisor))/2.0;}float circle(vec2 p,float r){return length(p)-r;}float masonryCirclePattern(vec2 uv,float spacing,float radius){float halfSpacing=0.5*spacing;float row=floor(uv.y/spacing);float shift=mod(row,2.0)*halfSpacing;vec2 shifted=vec2(uv.x+shift,uv.y+halfSpacing);vec2 cell=mod(shifted+0.5*spacing,spacing)-halfSpacing;return abs(circle(cell,radius));}/***Patterns:*0 none*1 diagonal(/)*2 antiDiagonal(\\)*3 cross(X)*4 vertical(|)*5 horizontal(-)*6 grid(+)*7 dots(.)*8 rings(o)*9 ringsLarge(O)*/float pattern(){\n#ifdef STROKED\nint patternType=uHatchPattern;vec2 uv=vPosInPixels;float spacing=4.0;switch(patternType){case 1:return diagonalPattern(vec2(uv.x,-uv.y),spacing);case 2:return diagonalPattern(uv,spacing);case 3:return min(diagonalPattern(uv,spacing),diagonalPattern(vec2(uv.x,-uv.y),spacing));case 4:return verticalPattern(uv.x,spacing);case 5:return verticalPattern(uv.y,spacing);case 6:return min(verticalPattern(uv.x,spacing),verticalPattern(uv.y,spacing));case 7:case 8:case 9:{float spacing=vHalfStrokeWidth*14.0;float radius=spacing*(patternType==8 ? 0.2 :patternType==9 ? 0.35 :0.07);return masonryCirclePattern(uv,spacing,radius);}default:break;}\n#endif\nreturn 1.0/0.0;}void main(void){\n#if defined(ROUNDED_CORNERS) || defined(STROKED) || defined(SHADOW)\n#ifdef ROUNDED_CORNERS\nfloat d=sdRoundedBox(vPosInPixels,vHalfSizeInPixels,vCornerRadii);\n#else\nfloat d=sdSharpBox(vPosInPixels,vHalfSizeInPixels);\n#endif\nvec4 backgroundColor=vec4(0.0,0.0,0.0,0.0);\n#ifdef SHADOW\nfloat maxCornerRadius=max(vCornerRadii.x,max(vCornerRadii.y,max(vCornerRadii.z,vCornerRadii.w)));float shadow=0.0;if(d>=vHalfStrokeWidth-1.0&&uShadowOpacity>0.0){shadow=roundedBoxShadow(-vHalfSizeInPixels-vHalfStrokeWidth,vHalfSizeInPixels+vHalfStrokeWidth,vPosInPixels-vec2(uShadowOffsetX,-uShadowOffsetY),max(uShadowBlur/2.5,0.25),maxCornerRadius+vHalfStrokeWidth)*uShadowOpacity*uViewOpacity;}backgroundColor=vec4(uShadowColor*shadow,shadow);\n#endif\nif(vHalfStrokeWidth>0.0&&uHatchPattern>0){d=max(d,-pattern());}fragColor=distanceToColor(d,vFillColor,vStrokeColor,backgroundColor,vHalfStrokeWidth);if(uPickingEnabled){if(d<vHalfStrokeWidth){fragColor=vPickingColor;}}else if(fragColor.a==0.0){discard;}\n#else\nfragColor=vFillColor;if(uPickingEnabled){fragColor=vPickingColor;}\n#endif\n}", ix = "layout(std140)uniform Mark{uniform float uMinWidth;uniform float uMinHeight;uniform float uMinOpacity;uniform float uCornerRadiusTopRight;uniform float uCornerRadiusBottomRight;uniform float uCornerRadiusTopLeft;uniform float uCornerRadiusBottomLeft;uniform int uHatchPattern;uniform vec3 uShadowColor;uniform float uShadowOpacity;uniform float uShadowBlur;uniform float uShadowOffsetX;uniform float uShadowOffsetY;\n#pragma markUniforms\n};", ax = 1e4, ox = class {
+var ix = "flat out lowp vec4 vFillColor;flat out lowp vec4 vStrokeColor;flat out float vHalfStrokeWidth;flat out vec4 vCornerRadii;\n#if defined(ROUNDED_CORNERS) || defined(STROKED) || defined(SHADOW)\nout vec2 vPosInPixels;\n#endif\nflat out vec2 vHalfSizeInPixels;/***Adjusts the vertex position to ensure that the rectangle is at least `minSpan`*wide or high. Returns a value that reflects the amount of clamping and can be*used to adjust the opacity of the rectangle.**pos: vertex position*frac: vertex position within the rectangle,[0,1]*size: width or height of the rectangle*minSize: minimum width or height of the rectangle*/float clampMinSize(inout float pos,float frac,float size,float minSize){if(minSize>0.0&&size<minSize){pos+=(frac-0.5)*(minSize-size);return size/minSize;}return 1.0;}void sort(inout float a,inout float b){if(a>b){float tmp=b;b=a;a=tmp;}}/***The vertex position wrt the rectangle specified by(x,x2,y,y2).*[0,0]=[x,y],[1,1]=[x2,y2].*The x or y component may contain fractional values if the rectangle*have been tessellated.*/vec2 getVertexPos(){int index=gl_VertexID % 6;return vec2(index==0||index==1||index==3 ? 0.0 : 1.0,index==0||index==1||index==2 ? 0.0 : 1.0);}void main(void){vec2 frac=getVertexPos();vec2 normalizedMinSize=vec2(uMinWidth,uMinHeight)/uViewportSize;vec4 cornerRadii=vec4(uCornerRadiusTopRight,uCornerRadiusBottomRight,uCornerRadiusTopLeft,uCornerRadiusBottomLeft);float x=getScaled_x();float x2=getScaled_x2();float y=getScaled_y();float y2=getScaled_y2();sort(x,x2);sort(y,y2);float clampMargin=1.0;vec2 pos1=vec2(clamp(x,0.0-clampMargin,1.0+clampMargin),y);vec2 pos2=vec2(clamp(x2,0.0-clampMargin,1.0+clampMargin),y2);vec2 size=pos2-pos1;if(size.x<0.0||size.y<0.0){gl_Position=vec4(0.0,0.0,0.0,1.0);return;}vec2 pos=pos1+frac*size;size.y*=getSampleFacetHeight(pos);float opaFactor=uViewOpacity*max(uMinOpacity,clampMinSize(pos.x,frac.x,size.x,normalizedMinSize.x)*clampMinSize(pos.y,frac.y,size.y,normalizedMinSize.y));size=max(size,normalizedMinSize);pos=applySampleFacet(pos);\n#if defined(ROUNDED_CORNERS) || defined(STROKED) || defined(SHADOW)\nfloat aaPadding=1.0/uDevicePixelRatio;float shadowPadding=uShadowBlur+max(abs(uShadowOffsetX),abs(uShadowOffsetY));float strokeWidth=getScaled_strokeWidth();float strokeOpacity=getScaled_strokeOpacity()*opaFactor;vec2 centeredFrac=frac-0.5;vec2 expand=centeredFrac*(strokeWidth+aaPadding+shadowPadding*2.0)/uViewportSize;pos+=expand;vec2 sizeInPixels=size*uViewportSize;vPosInPixels=(centeredFrac+expand/size)*sizeInPixels;vHalfSizeInPixels=sizeInPixels/2.0;vCornerRadii=min(cornerRadii,min(vHalfSizeInPixels.x,vHalfSizeInPixels.y));vHalfStrokeWidth=strokeWidth/2.0;vStrokeColor=vec4(getScaled_stroke()*strokeOpacity,strokeOpacity);\n#endif\ngl_Position=unitToNdc(pos);float fillOpacity=getScaled_fillOpacity()*opaFactor;vFillColor=vec4(getScaled_fill()*fillOpacity,fillOpacity);setupPicking();}", ax = "#if defined(ROUNDED_CORNERS) || defined(STROKED) || defined(SHADOW)\nin vec2 vPosInPixels;\n#endif\nflat in vec2 vHalfSizeInPixels;flat in lowp vec4 vFillColor;flat in lowp vec4 vStrokeColor;flat in float vHalfStrokeWidth;flat in vec4 vCornerRadii;out lowp vec4 fragColor;\n#ifdef SHADOW\nfloat gaussian(float x,float sigma){const float pi=3.141592653589793;return exp(-(x*x)/(2.0*sigma*sigma))/(sqrt(2.0*pi)*sigma);}vec2 erf(vec2 x){vec2 s=sign(x),a=abs(x);x=1.0+(0.278393+(0.230389+0.078108*(a*a))*a)*a;x*=x;return s-s/(x*x);}float roundedBoxShadowX(float x,float y,float sigma,float corner,vec2 halfSize){float delta=min(halfSize.y-corner-abs(y),0.0);float curved=halfSize.x-corner+sqrt(max(0.0,corner*corner-delta*delta));vec2 integral=0.5+0.5*erf((x+vec2(-curved,curved))*(sqrt(0.5)/sigma));return integral.y-integral.x;}float roundedBoxShadow(vec2 lower,vec2 upper,vec2 point,float sigma,float corner){vec2 center=(lower+upper)*0.5;vec2 halfSize=(upper-lower)*0.5;point-=center;float low=point.y-halfSize.y;float high=point.y+halfSize.y;float start=clamp(-3.0*sigma,low,high);float end=clamp(3.0*sigma,low,high);float step=(end-start)/4.0;float y=start+step*0.5;float value=0.0;for(int i=0;i<4;i++){value+=roundedBoxShadowX(point.x,point.y-y,sigma,corner,halfSize)*gaussian(y,sigma)*step;y+=step;}return value;}\n#endif\nfloat sdRoundedBox(vec2 p,vec2 b,vec4 r){r.xy=p.x>0.0 ? r.xy : r.zw;r.x=p.y>0.0 ? r.x  : r.y;vec2 q=abs(p)-b+r.x;return min(max(q.x,q.y),0.0)+length(max(q,0.0))-r.x;}float sdSharpBox(vec2 p,vec2 b){vec2 q=abs(p)-b;return max(q.x,q.y);}float diagonalPattern(vec2 uv,float spacing){float divisor=spacing*vHalfStrokeWidth*2.0*1.5;return abs(mod(uv.x-uv.y,divisor)-0.5*divisor)/1.5;}float verticalPattern(float x,float spacing){float divisor=spacing*vHalfStrokeWidth*2.0;return abs(mod(x,divisor))/2.0;}float circle(vec2 p,float r){return length(p)-r;}float masonryCirclePattern(vec2 uv,float spacing,float radius){float halfSpacing=0.5*spacing;float row=floor(uv.y/spacing);float shift=mod(row,2.0)*halfSpacing;vec2 shifted=vec2(uv.x+shift,uv.y+halfSpacing);vec2 cell=mod(shifted+0.5*spacing,spacing)-halfSpacing;return abs(circle(cell,radius));}/***Patterns:*0 none*1 diagonal(/)*2 antiDiagonal(\\)*3 cross(X)*4 vertical(|)*5 horizontal(-)*6 grid(+)*7 dots(.)*8 rings(o)*9 ringsLarge(O)*/float pattern(){\n#ifdef STROKED\nint patternType=uHatchPattern;vec2 uv=vPosInPixels;float spacing=4.0;switch(patternType){case 1:return diagonalPattern(vec2(uv.x,-uv.y),spacing);case 2:return diagonalPattern(uv,spacing);case 3:return min(diagonalPattern(uv,spacing),diagonalPattern(vec2(uv.x,-uv.y),spacing));case 4:return verticalPattern(uv.x,spacing);case 5:return verticalPattern(uv.y,spacing);case 6:return min(verticalPattern(uv.x,spacing),verticalPattern(uv.y,spacing));case 7:case 8:case 9:{float spacing=vHalfStrokeWidth*14.0;float radius=spacing*(patternType==8 ? 0.2 :patternType==9 ? 0.35 :0.07);return masonryCirclePattern(uv,spacing,radius);}default:break;}\n#endif\nreturn 1.0/0.0;}void main(void){\n#if defined(ROUNDED_CORNERS) || defined(STROKED) || defined(SHADOW)\n#ifdef ROUNDED_CORNERS\nfloat d=sdRoundedBox(vPosInPixels,vHalfSizeInPixels,vCornerRadii);\n#else\nfloat d=sdSharpBox(vPosInPixels,vHalfSizeInPixels);\n#endif\nvec4 backgroundColor=vec4(0.0,0.0,0.0,0.0);\n#ifdef SHADOW\nfloat maxCornerRadius=max(vCornerRadii.x,max(vCornerRadii.y,max(vCornerRadii.z,vCornerRadii.w)));float shadow=0.0;if(d>=vHalfStrokeWidth-1.0&&uShadowOpacity>0.0){shadow=roundedBoxShadow(-vHalfSizeInPixels-vHalfStrokeWidth,vHalfSizeInPixels+vHalfStrokeWidth,vPosInPixels-vec2(uShadowOffsetX,-uShadowOffsetY),max(uShadowBlur/2.5,0.25),maxCornerRadius+vHalfStrokeWidth)*uShadowOpacity*uViewOpacity;}backgroundColor=vec4(uShadowColor*shadow,shadow);\n#endif\nif(vHalfStrokeWidth>0.0&&uHatchPattern>0){d=max(d,-pattern());}fragColor=distanceToColor(d,vFillColor,vStrokeColor,backgroundColor,vHalfStrokeWidth);if(uPickingEnabled){if(d<vHalfStrokeWidth){fragColor=vPickingColor;}}else if(fragColor.a==0.0){discard;}\n#else\nfragColor=vFillColor;if(uPickingEnabled){fragColor=vPickingColor;}\n#endif\n}", ox = "layout(std140)uniform Mark{uniform float uMinWidth;uniform float uMinHeight;uniform float uMinOpacity;uniform float uCornerRadiusTopRight;uniform float uCornerRadiusBottomRight;uniform float uCornerRadiusTopLeft;uniform float uCornerRadiusBottomLeft;uniform int uHatchPattern;uniform vec3 uShadowColor;uniform float uShadowOpacity;uniform float uShadowBlur;uniform float uShadowOffsetX;uniform float uShadowOffsetY;\n#pragma markUniforms\n};", sx = 1e4, cx = class {
 	#e = !1;
 	constructor(e) {
 		this.size = e, this.arrays = {}, this.pushers = [], this.dataUpdaters = [], this.vertexCount = 0;
@@ -7968,7 +7990,7 @@ var nx = "flat out lowp vec4 vFillColor;flat out lowp vec4 vStrokeColor;flat out
 		throw Error("Call configure() first!");
 	}
 	#t() {
-		if (this.size > ax) {
+		if (this.size > sx) {
 			let e = this.pushers.map((e, t) => `const p${t} = that.pushers[${t}];`).join("\n"), t = this.pushers.map((e, t) => `  p${t}();`).join("\n");
 			this.pushAll = Function("that", `${e}
 return function unrolledPushAll() {
@@ -7981,7 +8003,7 @@ ${t}
 		};
 	}
 	#n() {
-		if (this.size > ax) {
+		if (this.size > sx) {
 			let e = this.dataUpdaters.map((e, t) => `const u${t} = that.dataUpdaters[${t}];`).join("\n"), t = this.dataUpdaters.map((e, t) => `  u${t}(datum);`).join("\n");
 			this.updateFromDatum = Function("that", "datum", `${e}
 return function unrolledUpdateFromDatum(datum) {
@@ -7994,16 +8016,16 @@ ${t}
 	pushFromDatum(e) {
 		this.updateFromDatum(e), this.pushAll();
 	}
-}, sx = 127;
-function cx(e) {
+}, lx = 127;
+function ux(e) {
 	let t = [];
-	for (let e = 0; e <= sx; e++) t.push(void 0);
+	for (let e = 0; e <= lx; e++) t.push(void 0);
 	let n = /* @__PURE__ */ new Map();
-	for (let r of e.chars) r.id <= sx ? t[r.id] = r : n.set(r.id, r);
+	for (let r of e.chars) r.id <= lx ? t[r.id] = r : n.set(r.id, r);
 	let r = 8722;
 	n.has(r) || n.set(r, t[45]);
 	function i(e) {
-		return (e <= sx ? t[e] : n.get(e)) || t[63];
+		return (e <= lx ? t[e] : n.get(e)) || t[63];
 	}
 	function a(e) {
 		return i(e.charCodeAt(0));
@@ -8026,29 +8048,29 @@ function cx(e) {
 }
 //#endregion
 //#region src/utils/scaleNull.js
-function lx() {
+function dx() {
 	let e = (e) => e;
-	return e.invert = (e) => e, e.copy = lx, e.invertRange = () => {}, e.type = "null", e;
+	return e.invert = (e) => e, e.copy = dx, e.invertRange = () => {}, e.type = "null", e;
 }
 //#endregion
 //#region src/gl/hashTable.js
-var ux = 4294967295, dx = 4294967295;
-function fx(e) {
+var fx = 4294967295, px = 4294967295;
+function mx(e) {
 	let t = e >>> 0;
 	return t ^= t >>> 16, t = Math.imul(t, 2146121005), t ^= t >>> 15, t = Math.imul(t, 2221713035), t ^= t >>> 16, t >>> 0;
 }
-function px(e, t = {}) {
-	let n = Array.from(e, (e) => hx(e, "key")), r = n.length, i = t.maxLoadFactor ?? .6;
+function hx(e, t = {}) {
+	let n = Array.from(e, (e) => _x(e, "key")), r = n.length, i = t.maxLoadFactor ?? .6;
 	if (!(i > 0 && i < 1)) throw Error("maxLoadFactor must be between 0 and 1.");
-	let a = t.capacity ?? gx(Math.ceil(r / i));
+	let a = t.capacity ?? vx(Math.ceil(r / i));
 	if (!Number.isSafeInteger(a) || a < 1) throw Error("capacity must be a positive power of two.");
 	if (a & a - 1) throw Error("capacity must be a power of two.");
 	let o = new Uint32Array(a);
-	o.fill(ux);
+	o.fill(fx);
 	let s = a - 1;
 	for (let e of n) {
 		if (e === 4294967295) throw Error("Hash table keys must not equal the empty sentinel (0xffffffff).");
-		let t = fx(e) & s, n = !1;
+		let t = mx(e) & s, n = !1;
 		for (let r = 0; r < a; r += 1) {
 			let r = o[t];
 			if (r === 4294967295 || r === e) {
@@ -8065,7 +8087,7 @@ function px(e, t = {}) {
 		size: r
 	};
 }
-function mx(e, t) {
+function gx(e, t) {
 	if (!Number.isSafeInteger(e) || e < 1) throw Error("capacity must be a positive integer.");
 	if (e & e - 1) throw Error("capacity must be a power of two.");
 	if (!Number.isSafeInteger(t) || t < 1) throw Error("maxTextureSize must be a positive integer.");
@@ -8077,17 +8099,17 @@ function mx(e, t) {
 		height: i
 	};
 }
-function hx(e, t) {
-	if (!Number.isSafeInteger(e) || e < 0 || e > dx) throw Error(t + " must be a non-negative u32.");
+function _x(e, t) {
+	if (!Number.isSafeInteger(e) || e < 0 || e > px) throw Error(t + " must be a non-negative u32.");
 	return e >>> 0;
 }
-function gx(e) {
+function vx(e) {
 	let t = Math.max(1, e);
 	return --t, t |= t >>> 1, t |= t >>> 2, t |= t >>> 4, t |= t >>> 8, t |= t >>> 16, t + 1;
 }
 //#endregion
 //#region src/gl/canvasSizeHelper.js
-var _x = class {
+var yx = class {
 	constructor(e, t, n, r) {
 		this._container = e, this._canvas = t, this._sizeSource = n, this._onPhysicalSizeChange = r ?? (() => {}), this._logicalCanvasSize = void 0, this._devicePixelContentBoxSize = void 0, this._devicePixelContentBoxObserver = void 0, this._observeDevicePixelContentBox();
 	}
@@ -8139,31 +8161,33 @@ var _x = class {
 			e.disconnect();
 		}
 	}
-}, vx = class {
-	constructor(e, t, n = {}) {
-		let r = t ?? (() => ({
+}, bx = class {
+	constructor(e, t, n = {}, r) {
+		let i = t ?? (() => ({
 			width: void 0,
 			height: void 0
 		}));
-		this._canvasSizeHelper = void 0, this._appliedCanvasSize = void 0, this._shaderCache = /* @__PURE__ */ new Map(), this.rangeTextures = /* @__PURE__ */ new WeakMap(), this.selectionTextures = /* @__PURE__ */ new WeakMap();
-		let i = document.createElement("canvas");
-		e.appendChild(i);
-		let a = tx(i, {
+		this._canvasSizeHelper = void 0, this._appliedCanvasSize = void 0, this._onCanvasResize = r ?? (() => {}), this._shaderCache = /* @__PURE__ */ new Map(), this.rangeTextures = /* @__PURE__ */ new WeakMap(), this.selectionTextures = /* @__PURE__ */ new WeakMap();
+		let a = document.createElement("canvas");
+		e.appendChild(a);
+		let o = rx(a, {
 			antialias: !0,
 			depth: !1,
 			premultipliedAlpha: !0,
 			...n
 		});
-		if (!a) throw Error("Unable to initialize WebGL. Your browser or machine may not support it.");
-		if (!xh(a)) throw Error("Your web browser does not support WebGL 2.0. Chrome, Firefox, and Safari Tech Preview should work.");
-		$b(a);
-		let o = a.getExtension("WEBGL_provoking_vertex");
-		o && o.provokingVertexWEBGL(o.FIRST_VERTEX_CONVENTION_WEBGL), a.blendFunc(a.ONE, a.ONE_MINUS_SRC_ALPHA), this.canvas = i, this.gl = a, this._pickingAttachmentOptions = [{
-			format: a.RGBA,
-			type: a.UNSIGNED_BYTE,
-			minMag: a.LINEAR,
-			wrap: a.CLAMP_TO_EDGE
-		}], this._pickingBufferInfo = Kb(a, this._pickingAttachmentOptions), a.bindFramebuffer(a.FRAMEBUFFER, null), this._canvasSizeHelper = new _x(e, i, r, () => this.adjustGl()), this.adjustGl();
+		if (!o) throw Error("Unable to initialize WebGL. Your browser or machine may not support it.");
+		if (!Ch(o)) throw Error("Your web browser does not support WebGL 2.0. Chrome, Firefox, and Safari Tech Preview should work.");
+		tx(o);
+		let s = o.getExtension("WEBGL_provoking_vertex");
+		s && s.provokingVertexWEBGL(s.FIRST_VERTEX_CONVENTION_WEBGL), o.blendFunc(o.ONE, o.ONE_MINUS_SRC_ALPHA), this.canvas = a, this.gl = o, this._pickingAttachmentOptions = [{
+			format: o.RGBA,
+			type: o.UNSIGNED_BYTE,
+			minMag: o.LINEAR,
+			wrap: o.CLAMP_TO_EDGE
+		}], this._pickingBufferInfo = Jb(o, this._pickingAttachmentOptions), o.bindFramebuffer(o.FRAMEBUFFER, null), this._canvasSizeHelper = new yx(e, a, i, () => {
+			this.adjustGl() && this._onCanvasResize();
+		}), this.adjustGl();
 	}
 	invalidateSize() {
 		this._canvasSizeHelper.invalidate(), this.adjustGl();
@@ -8183,12 +8207,12 @@ var _x = class {
 	}
 	adjustGl() {
 		let e = this.getLogicalCanvasSize(), t = this.getPhysicalCanvasSize(e);
-		this._appliedCanvasSize && this._appliedCanvasSize.logicalWidth == e.width && this._appliedCanvasSize.logicalHeight == e.height && this._appliedCanvasSize.physicalWidth == t.width && this._appliedCanvasSize.physicalHeight == t.height || (this.canvas.style.width = `${e.width}px`, this.canvas.style.height = `${e.height}px`, this.canvas.width = t.width, this.canvas.height = t.height, qb(this.gl, this._pickingBufferInfo, this._pickingAttachmentOptions), this._appliedCanvasSize = {
+		return this._appliedCanvasSize && this._appliedCanvasSize.logicalWidth == e.width && this._appliedCanvasSize.logicalHeight == e.height && this._appliedCanvasSize.physicalWidth == t.width && this._appliedCanvasSize.physicalHeight == t.height ? !1 : (this.canvas.style.width = `${e.width}px`, this.canvas.style.height = `${e.height}px`, this.canvas.width = t.width, this.canvas.height = t.height, Yb(this.gl, this._pickingBufferInfo, this._pickingAttachmentOptions), this._appliedCanvasSize = {
 			logicalWidth: e.width,
 			logicalHeight: e.height,
 			physicalWidth: t.width,
 			physicalHeight: t.height
-		});
+		}, !0);
 	}
 	finalize() {
 		this._canvasSizeHelper.finalize(), this.canvas.remove();
@@ -8211,24 +8235,24 @@ var _x = class {
 		let i = e.channel;
 		if (Vf(i)) {
 			let t = e.getScale(), i = t.props, a = t.range(), o;
-			if (i.scheme) if (t.type == "threshold" && a) o = Dx(a, this.gl, t.domain().length, n);
+			if (i.scheme) if (t.type == "threshold" && a) o = kx(a, this.gl, t.domain().length, n);
 			else {
 				let e = O(i.scheme) ? void 0 : i.scheme.count;
-				e = r(e, t), o = wx(i.scheme, this.gl, e, n, !!i.reverse);
+				e = r(e, t), o = Ex(i.scheme, this.gl, e, n, !!i.reverse);
 			}
-			else o = hd(t.type) || R(t.type) && a.length > 1 ? Tx(a, i.interpolate, this.gl, n) : Dx(a, this.gl, t.domain().length, n);
+			else o = hd(t.type) || R(t.type) && a.length > 1 ? Dx(a, i.interpolate, this.gl, n) : kx(a, this.gl, t.domain().length, n);
 			this.rangeTextures.set(t, o);
 		} else {
 			let t = e.getScale();
 			if (t.type === "ordinal" || pd(t.type)) {
 				let e = Hf(i) ? Gf(i) : (e) => e, r = t.range();
-				this.rangeTextures.set(t, Ex(r.map(e), this.gl, t.domain().length, n));
+				this.rangeTextures.set(t, Ox(r.map(e), this.gl, t.domain().length, n));
 			}
 		}
 	}
 	createSelectionTexture(e, t = !0) {
 		if (!$f(e)) throw Error("Not a multi-point selection, cannot create texture");
-		let { table: n, capacity: r } = px(e.data.keys()), { width: i, height: a } = mx(r, this.gl.getParameter(this.gl.MAX_TEXTURE_SIZE)), o = this.selectionTextures.get(e), s = this.gl, c = xx(this.gl, {
+		let { table: n, capacity: r } = hx(e.data.keys()), { width: i, height: a } = gx(r, this.gl.getParameter(this.gl.MAX_TEXTURE_SIZE)), o = this.selectionTextures.get(e), s = this.gl, c = Cx(this.gl, {
 			auto: !1,
 			level: 0,
 			min: s.NEAREST,
@@ -8241,7 +8265,7 @@ var _x = class {
 		s.bindTexture(s.TEXTURE_2D, c), s.texParameteri(s.TEXTURE_2D, s.TEXTURE_BASE_LEVEL, 0), s.texParameteri(s.TEXTURE_2D, s.TEXTURE_MAX_LEVEL, 0), s.bindTexture(s.TEXTURE_2D, null), this.selectionTextures.set(e, c);
 	}
 };
-function yx(e, t = "", n = 0) {
+function xx(e, t = "", n = 0) {
 	let r = [...t.matchAll(/ERROR:\s*\d+:(\d+)/gi)], i = new Map(r.map((e, n) => {
 		let i = parseInt(e[1]), a = r[n + 1], o = a ? a.index : t.length, s = t.substring(e.index, o);
 		return [i - 1, s];
@@ -8251,14 +8275,14 @@ function yx(e, t = "", n = 0) {
 		return `${t + 1 + n}: ${e}${r ? `\n\n^^^ ${r}` : ""}`;
 	}).join("\n");
 }
-function bx(e, t, n) {
+function Sx(e, t, n) {
 	let r = e.createProgram();
 	e.attachShader(r, t), e.attachShader(r, n), e.linkProgram(r);
 	function i() {
 		let i, a;
 		if (!e.getProgramParameter(r, e.LINK_STATUS)) {
 			i = e.getProgramInfoLog(r);
-			for (let r of [t, n]) e.getShaderParameter(r, e.COMPILE_STATUS) || (i = e.getShaderInfoLog(r), a = yx(e.getShaderSource(r), i, 0) + `\nError compiling: ${i}`, e.deleteShader(r));
+			for (let r of [t, n]) e.getShaderParameter(r, e.COMPILE_STATUS) || (i = e.getShaderInfoLog(r), a = xx(e.getShaderSource(r), i, 0) + `\nError compiling: ${i}`, e.deleteShader(r));
 			e.deleteProgram(r);
 		}
 		if (i) return {
@@ -8271,17 +8295,17 @@ function bx(e, t, n) {
 		getProgramErrors: i
 	};
 }
-function xx(e, t, n, r) {
-	return r ? sv(e, r, n, t) : r = lv(e, {
+function Cx(e, t, n, r) {
+	return r ? lv(e, r, n, t) : r = dv(e, {
 		...t,
 		src: n
 	}), r;
 }
-function Sx(e, t, n, r) {
+function wx(e, t, n, r) {
 	let { height: i, framebuffer: a } = t, o = new Uint8Array(4);
 	return e.bindFramebuffer(e.FRAMEBUFFER, a), e.readPixels(n, i - r - 1, 1, 1, e.RGBA, e.UNSIGNED_BYTE, o), e.bindFramebuffer(e.FRAMEBUFFER, null), o;
 }
-function Cx(e, t, n = "image/png") {
+function Tx(e, t, n = "image/png") {
 	let { width: r, height: i } = t, a = new Uint8Array(r * i * 4);
 	e.bindFramebuffer(e.FRAMEBUFFER, t.framebuffer), e.readPixels(0, 0, r, i, e.RGBA, e.UNSIGNED_BYTE, a), e.bindFramebuffer(e.FRAMEBUFFER, null);
 	let o = document.createElement("canvas");
@@ -8295,58 +8319,58 @@ function Cx(e, t, n = "image/png") {
 }
 //#endregion
 //#region src/gl/colorUtils.js
-function wx(e, t, n, r, i = !1) {
+function Ex(e, t, n, r, i = !1) {
 	let a = O(e) ? e : e.name, o = !O(e) && e.extent || [0, 1];
 	if (n === void 0 && !O(e) && (n = e.count), a) {
 		let e = Ed(a);
 		if (gt(e)) {
-			let a = Ox(e, {
+			let a = Ax(e, {
 				extent: o,
 				count: n,
 				reverse: i
 			});
-			return xx(t, {
+			return Cx(t, {
 				minMag: t.LINEAR,
 				format: t.RGB,
 				height: 1,
 				wrap: t.CLAMP_TO_EDGE
 			}, a, r);
-		} else if (E(e)) return Dx(i ? Array.from(e).reverse() : e, t, n, r);
+		} else if (E(e)) return kx(i ? Array.from(e).reverse() : e, t, n, r);
 		else throw Error("Unknown scheme: " + a);
 	}
 }
-function Tx(e, t = "rgb", n, r) {
-	let i = Ox(_d(e, O(t) ? t : t.type, O(t) ? void 0 : t.gamma));
-	return xx(n, {
+function Dx(e, t = "rgb", n, r) {
+	let i = Ax(_d(e, O(t) ? t : t.type, O(t) ? void 0 : t.gamma));
+	return Cx(n, {
 		minMag: n.LINEAR,
 		format: n.RGB,
 		height: 1,
 		wrap: n.CLAMP_TO_EDGE
 	}, i, r);
 }
-function Ex(e, t, n, r) {
+function Ox(e, t, n, r) {
 	let i = Math.max(e.length, n || 0), a = new Float32Array(i);
 	for (let t = 0; t < i; t++) a[t] = e[t % e.length];
-	return xx(t, {
+	return Cx(t, {
 		minMag: t.NEAREST,
 		format: t.RED,
 		internalFormat: t.R32F,
 		height: 1
 	}, a, r);
 }
-function Dx(e, t, n, r) {
-	let i = kx(e, n);
-	return xx(t, {
+function kx(e, t, n, r) {
+	let i = jx(e, n);
+	return Cx(t, {
 		minMag: t.NEAREST,
 		format: t.RGB,
 		height: 1
 	}, i, r);
 }
-function Ox(e, { extent: t = [0, 1], reverse: n = !1, count: r = 256 } = {}) {
+function Ax(e, { extent: t = [0, 1], reverse: n = !1, count: r = 256 } = {}) {
 	let i = t[0], a = Yo(t) - i, o = Kn(r).map((e) => e / (r - 1)).map((e) => i + e / a).map(e);
-	return n && o.reverse(), kx(o);
+	return n && o.reverse(), jx(o);
 }
-function kx(e, t) {
+function jx(e, t) {
 	let n = Math.max(e.length, t || 0), r = new Uint8Array(n * 3);
 	for (let t = 0; t < n; t++) {
 		let n = e[t % e.length], i = xs(n);
@@ -8356,7 +8380,7 @@ function kx(e, t) {
 	}
 	return r;
 }
-function Ax(e) {
+function Mx(e) {
 	let t = xs(e).rgb();
 	return [
 		t.r,
@@ -8366,8 +8390,8 @@ function Ax(e) {
 }
 //#endregion
 //#region src/gl/glslScaleGenerator.js
-var jx = "attr_", Mx = "uDomain_", Nx = "range_", Px = "accessor_", Fx = "scale_", Ix = "getScaled_", Lx = "uRangeTexture_", Rx = "uParam_", zx = "checkSelection_", Bx = 3402823466e29;
-function Vx(e) {
+var Nx = "attr_", Px = "uDomain_", Fx = "range_", Ix = "accessor_", Lx = "scale_", Rx = "getScaled_", zx = "uRangeTexture_", Bx = "uParam_", Vx = "checkSelection_", Hx = 3402823466e29;
+function Ux(e) {
 	let t = e.match(/^(?:(\w+)-)?(\w+)$/);
 	if (!t) throw Error("Not a scale type: " + e);
 	return {
@@ -8375,23 +8399,23 @@ function Vx(e) {
 		transform: t[2]
 	};
 }
-function Hx(e, t) {
-	return `${Px}${e}_${t}`;
+function Wx(e, t) {
+	return `${Ix}${e}_${t}`;
 }
-function Ux(e, t, n) {
+function Gx(e, t, n) {
 	let r;
-	if (Hf(e)) r = Xx(Gf(e)(n));
-	else if (O(n)) if (Vf(e)) r = $x(n);
+	if (Hf(e)) r = Qx(Gf(e)(n));
+	else if (O(n)) if (Vf(e)) r = tS(n);
 	else throw Error(`String values are not supported on the "${e}" channel: ${n}`);
-	else if (Tt(n)) r = Xx(n ? 1 : 0);
-	else if (n === null) if (Vf(e)) r = Xx([
+	else if (Tt(n)) r = Qx(n ? 1 : 0);
+	else if (n === null) if (Vf(e)) r = Qx([
 		0,
 		0,
 		0
 	]);
 	else throw Error(`null value is not supported on the "${e}" chanel.`);
-	else r = Xx(n);
-	let i = Hx(e, t);
+	else r = Qx(n);
+	let i = Wx(e, t);
 	return {
 		channel: e,
 		accessorGlsl: `
@@ -8402,10 +8426,10 @@ ${r.type} ${i}() {
 		accessorFunctionName: i
 	};
 }
-function Wx(e, t) {
+function Kx(e, t) {
 	let n = "float", r = (e) => e;
-	Vf(e) && (n = "vec3", r = (e) => Ax(e));
-	let i = `u${dS(e)}_${t}`, a = `    // Dynamic value\n    uniform ${n} ${i};`, o = Hx(e, t);
+	Vf(e) && (n = "vec3", r = (e) => Mx(e));
+	let i = `u${pS(e)}_${t}`, a = `    // Dynamic value\n    uniform ${n} ${i};`, o = Wx(e, t);
 	return {
 		channel: e,
 		uniformName: i,
@@ -8419,8 +8443,8 @@ ${n} ${o}() {
 		adjuster: r
 	};
 }
-function Gx(e, t, n, r = [e]) {
-	let { attributeType: i } = nS(t, e), a = uS(r), o = `in highp ${i} ${a};`, s = Hx(e, n);
+function qx(e, t, n, r = [e]) {
+	let { attributeType: i } = iS(t, e), a = fS(r), o = `in highp ${i} ${a};`, s = Wx(e, n);
 	return {
 		channel: e,
 		attributeName: a,
@@ -8432,8 +8456,8 @@ ${i} ${s}() {
 		accessorFunctionName: s
 	};
 }
-function Kx(e, t, n) {
-	let { attributeType: r } = nS(t, e), i = uS(e), a = `    uniform highp ${r} ${i};`, o = Hx(e, n);
+function Jx(e, t, n) {
+	let { attributeType: r } = iS(t, e), i = fS(e), a = `    uniform highp ${r} ${i};`, o = Wx(e, n);
 	return {
 		channel: e,
 		uniformName: i,
@@ -8445,11 +8469,11 @@ ${r} ${o}() {
 		accessorFunctionName: o
 	};
 }
-function qx(e, t, n) {
-	t ??= lx();
-	let r = Bf(e), i = Mx + r, a = Nx + r, { hp: o, attributeType: s } = nS(t, e), c = t.domain ? t.domain().length : void 0, l, u = [];
+function Yx(e, t, n) {
+	t ??= dx();
+	let r = Bf(e), i = Px + r, a = Fx + r, { hp: o, attributeType: s } = iS(t, e), c = t.domain ? t.domain().length : void 0, l, u = [];
 	u.push(""), u.push("/".repeat(70)), u.push(`// Channel: ${e}`), u.push("");
-	let { transform: d } = Vx(t.type), f = (e, ...t) => tS.apply(null, [
+	let { transform: d } = Ux(t.type), f = (e, ...t) => rS.apply(null, [
 		e,
 		"value",
 		...t
@@ -8484,25 +8508,25 @@ function qx(e, t, n) {
 		case "threshold": break;
 		default: throw Error(`Unsupported scale type: ${t.type}! ${e}: ${JSON.stringify(n)}`);
 	}
-	let m = fS(t, e), h;
+	let m = mS(t, e), h;
 	if (m && e == r) {
 		let e = t.props.range ?? [];
 		if (V(e) || e.some(V)) {
 			if (m.length < 1 || m.length > 4) throw Error(`A range with ExprRefs must have 1-4 elements, not ${m.length}! Range: ${JSON.stringify(m)}`);
-			h = `    uniform ${Zx(m.length)} ${a};`;
+			h = `    uniform ${$x(m.length)} ${a};`;
 		} else if (m.length && m.every(Ot)) {
-			let e = eS(m);
+			let e = nS(m);
 			u.push(`const ${e.type} ${a} = ${e};`);
 		}
 	}
-	let g = Qx(e), _;
+	let g = eS(e), _;
 	if (Vf(e)) {
-		let n = Lx + r;
+		let n = zx + r;
 		if (e == r && u.push(`uniform sampler2D ${n};`), R(t.type)) _ = `getInterpolatedColor(${n}, transformed)`;
 		else if (fd(t.type) || pd(t.type)) _ = `getDiscreteColor(${n}, int(transformed))`;
 		else throw Error("Problem with color scale!");
 	} else if (t.type === "ordinal" || pd(t.type)) {
-		let t = Lx + r;
+		let t = zx + r;
 		e == r && u.push(`uniform sampler2D ${t};`), _ = `getDiscreteColor(${t}, int(transformed)).r`;
 	}
 	let v = [], y = R(t.type) && c > 2, b = pd(t.type) || y;
@@ -8515,8 +8539,8 @@ function qx(e, t, n) {
 		let e = i;
 		ee && (o ? v.push(`vec3 domain = ${e};`) : v.push(`vec2 domain = vec2(${e}[slot], ${e}[slot + 1]);`)), v.push(`float transformed = ${p};`), y && v.push(`transformed = (float(slot) + transformed) / (float(${e}.length() - 1));`);
 	} else v.push("float transformed = float(slot);");
-	"clamp" in t && t.clamp() && v.push(`transformed = clampToRange(transformed, ${eS(m)});`), v.push(`return ${_ ?? "transformed"};`), u.push(`
-${g} ${Fx}${e}(${s} value) {
+	"clamp" in t && t.clamp() && v.push(`transformed = clampToRange(transformed, ${nS(m)});`), v.push(`return ${_ ?? "transformed"};`), u.push(`
+${g} ${Lx}${e}(${s} value) {
 ${v.map((e) => `    ${e}\n`).join("")}
 }`);
 	let x = u.join("\n");
@@ -8532,38 +8556,38 @@ ${v.map((e) => `    ${e}\n`).join("")}
 		rangeUniform: h
 	};
 }
-function Jx(e, t) {
-	let n = Qx(e), r = [], i = [];
+function Xx(e, t) {
+	let n = eS(e), r = [], i = [];
 	for (let n = 0; n < t.length; n++) {
-		let { accessor: a, predicate: o } = t[n], s = Hx(e, n), { param: c, empty: l } = o;
-		r.push(c ? `${zx}${c}(${!!l})` : null), i.push(a.scaleChannel ? `return ${Fx}${e}(${s}());` : `return ${s}();`);
+		let { accessor: a, predicate: o } = t[n], s = Wx(e, n), { param: c, empty: l } = o;
+		r.push(c ? `${Vx}${c}(${!!l})` : null), i.push(a.scaleChannel ? `return ${Lx}${e}(${s}());` : `return ${s}();`);
 	}
-	return `${n} ${Ix}${e}() {
-${pS(r, i)}
+	return `${n} ${Rx}${e}() {
+${hS(r, i)}
 }
 
 #define ${e}_DEFINED`;
 }
-function Yx(e) {
+function Zx(e) {
 	if (!Ot(e)) throw Error(`Not a number: ${e}`);
-	if (e == Infinity) return "" + Bx;
-	if (e == -Infinity) return "" + -Bx;
+	if (e == Infinity) return "" + Hx;
+	if (e == -Infinity) return "" + -Hx;
 	{
 		let t = `${e}`;
 		return /^(-)?\d+$/.test(t) && (t += ".0"), t;
 	}
 }
-function Xx(e) {
+function Qx(e) {
 	typeof e == "number" && (e = [e]);
 	let t = e.length;
 	if (t < 1 || t > 4) throw Error("Invalid number of components: " + t);
-	let n = Zx(t), r = `${n}(${e.map(Yx).join(", ")})`;
+	let n = $x(t), r = `${n}(${e.map(Zx).join(", ")})`;
 	return Object.assign(r, {
 		type: n,
 		numComponents: t
 	});
 }
-function Zx(e) {
+function $x(e) {
 	switch (e) {
 		case 1: return "float";
 		case 2: return "vec2";
@@ -8572,22 +8596,22 @@ function Zx(e) {
 		default: throw Error("Invalid number of components: " + e);
 	}
 }
-function Qx(e) {
+function eS(e) {
 	return Vf(e) ? "vec3" : e == "uniqueId" ? "uint" : "float";
 }
-function $x(e) {
-	return Xx(Ax(e));
+function tS(e) {
+	return Qx(Mx(e));
 }
-function eS(e) {
-	return Xx([e[0], Yo(e)]);
+function nS(e) {
+	return Qx([e[0], Yo(e)]);
 }
-function tS(e, ...t) {
+function rS(e, ...t) {
 	let n = [];
-	for (let e of t) Ot(e) ? n.push(Yx(e)) : E(e) ? n.push(Xx(e)) : n.push(e);
+	for (let e of t) Ot(e) ? n.push(Zx(e)) : E(e) ? n.push(Qx(e)) : n.push(e);
 	return `${e}(${n.join(", ")})`;
 }
-function nS(e, t) {
-	let n = e && fd(e.type), r = e && rS(e.type), i = r && iS(e.domain()), a = i ? {
+function iS(e, t) {
+	let n = e && fd(e.type), r = e && aS(e.type), i = r && oS(e.domain()), a = i ? {
 		attributeType: "uvec2",
 		arrayConstructor: Uint32Array
 	} : r ? {
@@ -8610,26 +8634,26 @@ function nS(e, t) {
 		largeHp: i
 	});
 }
-function rS(e) {
+function aS(e) {
 	return e == "index" || e == "locus";
 }
-function iS(e) {
+function oS(e) {
 	return e[1] > 2 ** 32;
 }
-var aS = 2 ** 12;
-aS - 1;
-function oS(e, t = []) {
-	let n = e % aS;
-	return t[0] = (e - n) / aS, t[1] = n, t;
-}
-function sS(e) {
-	let t = e % aS;
-	return [e - t, t];
-}
-function cS(e) {
-	return [...sS(e[0]), e[1] - e[0]];
+var sS = 2 ** 12;
+sS - 1;
+function cS(e, t = []) {
+	let n = e % sS;
+	return t[0] = (e - n) / sS, t[1] = n, t;
 }
 function lS(e) {
+	let t = e % sS;
+	return [e - t, t];
+}
+function uS(e) {
+	return [...lS(e[0]), e[1] - e[0]];
+}
+function dS(e) {
 	let t = new bn([], JSON.stringify);
 	for (let [n, r] of Object.entries(e)) {
 		let e = r.channelDef;
@@ -8640,14 +8664,14 @@ function lS(e) {
 	}
 	return t;
 }
-function uS(e) {
-	return jx + N(e).toSorted().join("_");
+function fS(e) {
+	return Nx + N(e).toSorted().join("_");
 }
-function dS(e) {
+function pS(e) {
 	return e[0].toUpperCase() + e.slice(1);
 }
-var fS = (e, t) => hd(e.type) || R(e.type) && Vf(t) ? [0, 1] : e.range ? e.range() : void 0;
-function pS(e, t) {
+var mS = (e, t) => hd(e.type) || R(e.type) && Vf(t) ? [0, 1] : e.range ? e.range() : void 0;
+function hS(e, t) {
 	if (e.length != t.length) throw Error("Unequal array lengths");
 	let n = e.length;
 	if (n == 0) return "";
@@ -8663,7 +8687,7 @@ function pS(e, t) {
 }
 //#endregion
 //#region src/utils/indexer.js
-function mS() {
+function gS() {
 	let e = 0, t, n = 0, r = /* @__PURE__ */ new Map(), i = (i) => i === t ? n : (n = r.get(i), n === void 0 && (n = e++, r.set(i, n)), t = i, n);
 	return i.addAll = (e) => {
 		for (let t of e) i(t);
@@ -8673,22 +8697,22 @@ function mS() {
 }
 //#endregion
 //#region src/utils/clamp.js
-function hS(e, t = 0, n = 1) {
+function _S(e, t = 0, n = 1) {
 	return Math.max(t, Math.min(n, e));
 }
 //#endregion
 //#region src/gl/vertexRangeIndex.js
-var gS = 2 ** 31 - 1, _S = -(2 ** 31);
-function vS(e, t, n, r = n, i = 0, a = i) {
+var vS = 2 ** 31 - 1, yS = -(2 ** 31);
+function bS(e, t, n, r = n, i = 0, a = i) {
 	if (a <= i || t[1] <= t[0]) return;
 	let o = Array(e);
-	o.fill(gS);
+	o.fill(vS);
 	let s = Array(e);
 	s.fill(0);
 	let c = t[0], l = (t[1] - t[0]) / e, u = (t, n) => {
 		let r = (t - c) / l, i = Math.floor(r);
-		return hS(n && i == r ? i - 1 : i, 0, e - 1);
-	}, d = _S, f = -Infinity, p = !1, m = (e, t, n = [0, 0]) => {
+		return _S(n && i == r ? i - 1 : i, 0, e - 1);
+	}, d = yS, f = -Infinity, p = !1, m = (e, t, n = [0, 0]) => {
 		let r = u(e, !1), i = u(t, !0), a = o[r], c = Math.max(s[i], a);
 		return n[0] = a, n[1] = c, n;
 	};
@@ -8711,24 +8735,24 @@ function vS(e, t, n, r = n, i = 0, a = i) {
 	if (p) return;
 	for (let e = 1; e < s.length; e++) s[e] < s[e - 1] && (s[e] = s[e - 1]);
 	let h = !0;
-	for (let e = o.length - 1; e > 0; e--) h && o[e] == gS ? (o[e] = s[e], h = !1) : o[e - 1] > o[e] && (o[e - 1] = o[e]);
+	for (let e = o.length - 1; e > 0; e--) h && o[e] == vS ? (o[e] = s[e], h = !1) : o[e - 1] > o[e] && (o[e - 1] = o[e]);
 	return m;
 }
 //#endregion
 //#region src/gl/dataToVertices.js
-var yS = class {
+var xS = class {
 	constructor({ encoders: e, numVertices: t = void 0, attributes: n = [] }) {
 		this.encoders = e, this.variableEncoders = Object.fromEntries(Object.entries(e).filter(([e, t]) => n.includes(e) && t && !t.constant));
-		let r = [...lS(e).entries()].filter(([e, t]) => e[1] && t.length > 1).map(([e, t]) => t);
-		this.allocatedVertices = t, this.variableBuilder = new ox(t), this.attributeNames = {};
+		let r = [...dS(e).entries()].filter(([e, t]) => e[1] && t.length > 1).map(([e, t]) => t);
+		this.allocatedVertices = t, this.variableBuilder = new cx(t), this.attributeNames = {};
 		for (let [e, t] of Object.entries(this.variableEncoders)) {
 			let n = vf(t);
 			if (!n) continue;
-			let i = r.find((t) => t.find((t) => t == e)), a = n.asNumberAccessor(), o = t.scale, { largeHp: s, arrayConstructor: c, discrete: l, numComponents: u } = nS(o, e), d = [0, 0], f;
+			let i = r.find((t) => t.find((t) => t == e)), a = n.asNumberAccessor(), o = t.scale, { largeHp: s, arrayConstructor: c, discrete: l, numComponents: u } = iS(o, e), d = [0, 0], f;
 			if (o && l) if ("props" in o && o.props.domainIndexer) f = o.props.domainIndexer;
-			else if ("domain" in o) f = mS(), f.addAll(o.domain());
+			else if ("domain" in o) f = gS(), f.addAll(o.domain());
 			else throw Error("Missing domain indexer for discrete scale.");
-			let p = f ? (e) => f(n(e)) : s ? (e) => oS(a(e), d) : a, m = uS(i ?? e);
+			let p = f ? (e) => f(n(e)) : s ? (e) => cS(a(e), d) : a, m = fS(i ?? e);
 			for (let t of i ?? [e]) this.attributeNames[t] = m;
 			i && e != i[0] || this.variableBuilder.addConverter(m, {
 				f: p,
@@ -8775,10 +8799,10 @@ var yS = class {
 			let { data: t, numComponents: n } = this.variableBuilder.arrays[e];
 			return n == 2 ? (e) => {
 				let r = e * n;
-				return t[r] * aS + t[r + 1];
+				return t[r] * sS + t[r + 1];
 			} : (e) => t[e * n];
 		}, i = r(n.xAttributeName), a = n.x2AttributeName == n.xAttributeName ? i : r(n.x2AttributeName);
-		return vS(50, n.domain, i, a, e, t);
+		return bS(50, n.domain, i, a, e, t);
 	}
 	toArrays() {
 		return {
@@ -8788,7 +8812,7 @@ var yS = class {
 			rangeMap: this.rangeMap
 		};
 	}
-}, bS = class extends yS {
+}, SS = class extends xS {
 	constructor({ encoders: e, attributes: t, numItems: n }) {
 		super({
 			encoders: e,
@@ -8809,7 +8833,7 @@ var yS = class {
 			this.registerBatch(e);
 		}
 	}
-}, xS = class extends yS {
+}, CS = class extends xS {
 	constructor({ encoders: e, attributes: t, tessellationThreshold: n = Infinity, visibleRange: r = [-Infinity, Infinity], numItems: i }) {
 		super({
 			encoders: e,
@@ -8826,7 +8850,7 @@ var yS = class {
 		}
 		this.registerBatch(e);
 	}
-}, SS = class extends yS {
+}, wS = class extends xS {
 	constructor({ encoders: e, attributes: t, numItems: n = void 0 }) {
 		super({
 			encoders: e,
@@ -8841,7 +8865,7 @@ var yS = class {
 		}
 		this.registerBatch(e);
 	}
-}, CS = class extends yS {
+}, TS = class extends xS {
 	constructor({ encoders: e, attributes: t, numItems: n = void 0 }) {
 		super({
 			encoders: e,
@@ -8861,7 +8885,7 @@ var yS = class {
 		for (let t of Object.values(e)) t.divisor = 1;
 		return super.toArrays();
 	}
-}, wS = class extends yS {
+}, ES = class extends xS {
 	constructor({ encoders: e, attributes: t, fontMetrics: n, properties: r, numCharacters: i = void 0 }) {
 		super({
 			encoders: e,
@@ -8914,28 +8938,28 @@ var yS = class {
 		}
 		this.registerBatch(e);
 	}
-}, TS = "#define PI 3.141593\nuniform View{mediump vec2 uViewOffset;mediump vec2 uViewScale;mediump vec2 uViewportSize;lowp float uDevicePixelRatio;lowp float uViewOpacity;bool uPickingEnabled;};/***Maps a coordinate on the unit scale to a normalized device coordinate.*(0,0)is at the bottom left corner.*/vec4 unitToNdc(vec2 coord){return vec4((coord*uViewScale+uViewOffset)*2.0-1.0,0.0,1.0);}vec4 unitToNdc(float x,float y){return unitToNdc(vec2(x,y));}vec4 pixelsToNdc(vec2 coord){return unitToNdc(coord/uViewportSize);}vec4 pixelsToNdc(float x,float y){return pixelsToNdc(vec2(x,y));}float linearstep(float edge0,float edge1,float x){return clamp((x-edge0)/(edge1-edge0),0.0,1.0);}const highp uint HASH_EMPTY_KEY=0xffffffffu;highp uint hash32(highp uint key){highp uint v=key;v ^=v>>16u;v*=0x7feb352du;v ^=v>>15u;v*=0x846ca68bu;v ^=v>>16u;return v;}bool isEmptyHashTexture(highp usampler2D s){ivec2 texSize=textureSize(s,0);return texSize.x==1&&texSize.y==1&&texelFetch(s,ivec2(0,0),0).r==HASH_EMPTY_KEY;}bool hashContainsTexture(highp usampler2D s,highp uint value){ivec2 texSize=textureSize(s,0);highp uint width=uint(texSize.x);highp uint size=width*uint(texSize.y);highp uint mask=size-1u;highp uint index=hash32(value)&mask;for(highp uint probe=0u;probe<size;probe+=1u){ivec2 coord=ivec2(int(index % width),int(index/width));highp uint entry=texelFetch(s,coord,0).r;if(entry==value){return true;}if(entry==HASH_EMPTY_KEY){return false;}index=(index+1u)&mask;}return false;}/***Calculates a gamma for antialiasing opacity based on the color.*/float getGammaForColor(vec3 rgb){return mix(1.25,0.75,smoothstep(0.0,1.0,dot(rgb,vec3(0.299,0.587,0.114))));}/***Specialized linearstep for doing antialiasing*/float distanceToRatio(float d){return clamp(d*uDevicePixelRatio+0.5,0.0,1.0);}vec4 distanceToColor(float d,vec4 fill,vec4 stroke,vec4 background,float halfStrokeWidth){if(halfStrokeWidth>0.0){float sd=abs(d)-halfStrokeWidth;return mix(stroke,d<=0.0 ? fill : background,distanceToRatio(sd));}else{return mix(background,fill,distanceToRatio(-d));}}", ES = "uniform highp float uZero;vec3 getDiscreteColor(sampler2D s,int index){return texelFetch(s,ivec2(index % textureSize(s,0).x,0),0).rgb;}vec3 getInterpolatedColor(sampler2D s,float unitValue){return texture(s,vec2(unitValue,0.0)).rgb;}float clampToRange(float value,vec2 range){return clamp(value,min(range[0],range[1]),max(range[0],range[1]));}float scaleIdentity(float value){return value;}float scaleIdentity(uint value){return float(value);}float scaleLinear(float value,vec2 domain,vec2 range){float domainSpan=domain[1]-domain[0];float rangeSpan=range[1]-range[0];return(value-domain[0])/domainSpan*rangeSpan+range[0];}float scaleLog(float value,vec2 domain,vec2 range,float base){return scaleLinear(log(value)/log(base),log(domain)/log(base),range);}float symlog(float value,float constant){return sign(value)*log(abs(value/constant)+1.0);}float scaleSymlog(float value,vec2 domain,vec2 range,float constant){return scaleLinear(symlog(value,constant),vec2(symlog(domain[0],constant),symlog(domain[1],constant)),range);}float scalePow(float value,vec2 domain,vec2 range,float exponent){return scaleLinear(pow(abs(value),exponent)*sign(value),pow(abs(domain),vec2(exponent))*sign(domain),range);}float scaleBand(uint value,vec2 domainExtent,vec2 range,float paddingInner,float paddingOuter,float align,float band){float start=range[0];float stop=range[1];float rangeSpan=stop-start;float n=domainExtent[1]-domainExtent[0];paddingInner=int(n)>1 ? paddingInner : 0.0;float step=rangeSpan/max(1.0,n-paddingInner+paddingOuter*2.0);start+=(rangeSpan-step*(n-paddingInner))*align;float bandwidth=step*(1.0-paddingInner);return start+(float(value)-domainExtent[0])*step+bandwidth*band;}const int lowBits=12;const float lowDivisor=pow(2.0,float(lowBits));const uint lowMask=uint(lowDivisor-1.0);vec2 splitUint(uint value){uint valueLo=value&lowMask;uint valueHi=value-valueLo;return vec2(float(valueHi),float(valueLo));}/***High precision variant of scaleBand for index/locus scales*/float scaleBandHp(uint value,vec3 domainExtent,vec2 range,float paddingInner,float paddingOuter,float align,float band){float start=range[0];float stop=range[1];float rangeSpan=stop-start;vec2 domainStart=domainExtent.xy;float n=domainExtent[2];float step=rangeSpan/max(1.0,n-paddingInner+paddingOuter*2.0);start+=(rangeSpan-step*(n-paddingInner))*align;float bandwidth=step*(1.0-paddingInner);vec2 splitValue=splitUint(value);float inf=1.0/uZero;float hi=max(splitValue[0]-domainStart[0],-inf);float lo=max(splitValue[1]-domainStart[1],-inf);return dot(vec4(start,hi,lo,bandwidth),vec4(1.0,step,step,band));}/***High precision variant of scaleBand for index/locus scales for large*domains where 32bit uints are not sufficient to represent the domain.*/float scaleBandHp(uvec2 value,vec3 domainExtent,vec2 range,float paddingInner,float paddingOuter,float align,float band){float start=range[0];float stop=range[1];float rangeSpan=stop-start;vec2 domainStart=domainExtent.xy;float n=domainExtent[2];float step=rangeSpan/max(1.0,n-paddingInner+paddingOuter*2.0);start+=(rangeSpan-step*(n-paddingInner))*align;float bandwidth=step*(1.0-paddingInner);vec2 splitValue=vec2(float(value[0])*lowDivisor,float(value[1]));float inf=1.0/uZero;float hi=max(splitValue[0]-domainStart[0],-inf);float lo=max(splitValue[1]-domainStart[1],-inf);return dot(vec4(start,hi,lo,bandwidth),vec4(1.0,step,step,band));}", DS = "/***Describes where a sample facet should be shown. Interpolating between the*current and target positions/heights allows for transitioning between facet*configurations.*/struct SampleFacetPosition{float pos;float height;float targetPos;float targetHeight;};/***Trasition fraction[0,1]between the current and target configurations.*/uniform float uTransitionOffset;\n#if !defined(SAMPLE_FACET_UNIFORM) && !defined(SAMPLE_FACET_TEXTURE)\nSampleFacetPosition getSampleFacetPos(){return SampleFacetPosition(0.0,1.0,0.0,1.0);}\n#elif defined(SAMPLE_FACET_UNIFORM)\n/***Location and height of the band on the Y axis on a normalized[0,1]scale.*Elements: curr pos,curr height,target pos,target height*/uniform vec4 uSampleFacet;SampleFacetPosition getSampleFacetPos(){return SampleFacetPosition(1.0-uSampleFacet.x-uSampleFacet.y,uSampleFacet.y,1.0-uSampleFacet.z-uSampleFacet.w,uSampleFacet.w);}\n#elif defined(SAMPLE_FACET_TEXTURE)\nuniform sampler2D uSampleFacetTexture;SampleFacetPosition getSampleFacetPos(){vec4 texel=texelFetch(uSampleFacetTexture,ivec2(int(attr_facetIndex),0),0);return SampleFacetPosition(1.0-texel.r-texel.g,texel.g,1.0-texel.r-texel.g,texel.g);}\n#endif\nbool isFacetedSamples(SampleFacetPosition facetPos){return facetPos!=SampleFacetPosition(0.0,1.0,0.0,1.0);}bool isFacetedSamples(){return isFacetedSamples(getSampleFacetPos());}bool isInTransit(){return uTransitionOffset>0.0;}float getTransitionFraction(float xPos){return smoothstep(0.0,0.7+uTransitionOffset,(xPos-uTransitionOffset)*2.0);}vec2 applySampleFacet(vec2 pos){SampleFacetPosition facetPos=getSampleFacetPos();if(!isFacetedSamples(facetPos)){return pos;}else if(isInTransit()){vec2 interpolated=mix(vec2(facetPos.pos,facetPos.height),vec2(facetPos.targetPos,facetPos.targetHeight),getTransitionFraction(pos.x));return vec2(pos.x,interpolated[0]+pos.y*interpolated[1]);}else{return vec2(pos.x,facetPos.pos+pos.y*facetPos.height);}}float getSampleFacetHeight(vec2 pos){SampleFacetPosition facetPos=getSampleFacetPos();if(!isFacetedSamples(facetPos)){return 1.0;}else if(isInTransit()){return mix(facetPos.height,facetPos.targetHeight,getTransitionFraction(pos.x));}else{return facetPos.height;}}", OS = "/**Based on concepts presented at:*https:*https:*/out highp vec4 vPickingColor;/***Passes the unique id to the fragment shader as a color if picking is enabled.*Returns true if picking is enabled.*/bool setupPicking(){if(uPickingEnabled){\n#ifdef uniqueId_DEFINED\nuint id=attr_uniqueId;vPickingColor=vec4(ivec4(id>>0,id>>8,id>>16,id>>24)&0xFF)/float(0xFF);\n#else\nvPickingColor=vec4(1.0);\n#endif\nreturn true;}return false;}", kS = "in highp vec4 vPickingColor;", AS = Symbol("cacheMap");
-function jS(e, t, n) {
-	let r = FS(e).get(t);
-	return r === void 0 && (r = n(t), FS(e).set(t, r)), r;
+}, DS = "#define PI 3.141593\nuniform View{mediump vec2 uViewOffset;mediump vec2 uViewScale;mediump vec2 uViewportSize;lowp float uDevicePixelRatio;lowp float uViewOpacity;bool uPickingEnabled;};/***Maps a coordinate on the unit scale to a normalized device coordinate.*(0,0)is at the bottom left corner.*/vec4 unitToNdc(vec2 coord){return vec4((coord*uViewScale+uViewOffset)*2.0-1.0,0.0,1.0);}vec4 unitToNdc(float x,float y){return unitToNdc(vec2(x,y));}vec4 pixelsToNdc(vec2 coord){return unitToNdc(coord/uViewportSize);}vec4 pixelsToNdc(float x,float y){return pixelsToNdc(vec2(x,y));}float linearstep(float edge0,float edge1,float x){return clamp((x-edge0)/(edge1-edge0),0.0,1.0);}const highp uint HASH_EMPTY_KEY=0xffffffffu;highp uint hash32(highp uint key){highp uint v=key;v ^=v>>16u;v*=0x7feb352du;v ^=v>>15u;v*=0x846ca68bu;v ^=v>>16u;return v;}bool isEmptyHashTexture(highp usampler2D s){ivec2 texSize=textureSize(s,0);return texSize.x==1&&texSize.y==1&&texelFetch(s,ivec2(0,0),0).r==HASH_EMPTY_KEY;}bool hashContainsTexture(highp usampler2D s,highp uint value){ivec2 texSize=textureSize(s,0);highp uint width=uint(texSize.x);highp uint size=width*uint(texSize.y);highp uint mask=size-1u;highp uint index=hash32(value)&mask;for(highp uint probe=0u;probe<size;probe+=1u){ivec2 coord=ivec2(int(index % width),int(index/width));highp uint entry=texelFetch(s,coord,0).r;if(entry==value){return true;}if(entry==HASH_EMPTY_KEY){return false;}index=(index+1u)&mask;}return false;}/***Calculates a gamma for antialiasing opacity based on the color.*/float getGammaForColor(vec3 rgb){return mix(1.25,0.75,smoothstep(0.0,1.0,dot(rgb,vec3(0.299,0.587,0.114))));}/***Specialized linearstep for doing antialiasing*/float distanceToRatio(float d){return clamp(d*uDevicePixelRatio+0.5,0.0,1.0);}vec4 distanceToColor(float d,vec4 fill,vec4 stroke,vec4 background,float halfStrokeWidth){if(halfStrokeWidth>0.0){float sd=abs(d)-halfStrokeWidth;return mix(stroke,d<=0.0 ? fill : background,distanceToRatio(sd));}else{return mix(background,fill,distanceToRatio(-d));}}", OS = "uniform highp float uZero;vec3 getDiscreteColor(sampler2D s,int index){return texelFetch(s,ivec2(index % textureSize(s,0).x,0),0).rgb;}vec3 getInterpolatedColor(sampler2D s,float unitValue){return texture(s,vec2(unitValue,0.0)).rgb;}float clampToRange(float value,vec2 range){return clamp(value,min(range[0],range[1]),max(range[0],range[1]));}float scaleIdentity(float value){return value;}float scaleIdentity(uint value){return float(value);}float scaleLinear(float value,vec2 domain,vec2 range){float domainSpan=domain[1]-domain[0];float rangeSpan=range[1]-range[0];return(value-domain[0])/domainSpan*rangeSpan+range[0];}float scaleLog(float value,vec2 domain,vec2 range,float base){return scaleLinear(log(value)/log(base),log(domain)/log(base),range);}float symlog(float value,float constant){return sign(value)*log(abs(value/constant)+1.0);}float scaleSymlog(float value,vec2 domain,vec2 range,float constant){return scaleLinear(symlog(value,constant),vec2(symlog(domain[0],constant),symlog(domain[1],constant)),range);}float scalePow(float value,vec2 domain,vec2 range,float exponent){return scaleLinear(pow(abs(value),exponent)*sign(value),pow(abs(domain),vec2(exponent))*sign(domain),range);}float scaleBand(uint value,vec2 domainExtent,vec2 range,float paddingInner,float paddingOuter,float align,float band){float start=range[0];float stop=range[1];float rangeSpan=stop-start;float n=domainExtent[1]-domainExtent[0];paddingInner=int(n)>1 ? paddingInner : 0.0;float step=rangeSpan/max(1.0,n-paddingInner+paddingOuter*2.0);start+=(rangeSpan-step*(n-paddingInner))*align;float bandwidth=step*(1.0-paddingInner);return start+(float(value)-domainExtent[0])*step+bandwidth*band;}const int lowBits=12;const float lowDivisor=pow(2.0,float(lowBits));const uint lowMask=uint(lowDivisor-1.0);vec2 splitUint(uint value){uint valueLo=value&lowMask;uint valueHi=value-valueLo;return vec2(float(valueHi),float(valueLo));}/***High precision variant of scaleBand for index/locus scales*/float scaleBandHp(uint value,vec3 domainExtent,vec2 range,float paddingInner,float paddingOuter,float align,float band){float start=range[0];float stop=range[1];float rangeSpan=stop-start;vec2 domainStart=domainExtent.xy;float n=domainExtent[2];float step=rangeSpan/max(1.0,n-paddingInner+paddingOuter*2.0);start+=(rangeSpan-step*(n-paddingInner))*align;float bandwidth=step*(1.0-paddingInner);vec2 splitValue=splitUint(value);float inf=1.0/uZero;float hi=max(splitValue[0]-domainStart[0],-inf);float lo=max(splitValue[1]-domainStart[1],-inf);return dot(vec4(start,hi,lo,bandwidth),vec4(1.0,step,step,band));}/***High precision variant of scaleBand for index/locus scales for large*domains where 32bit uints are not sufficient to represent the domain.*/float scaleBandHp(uvec2 value,vec3 domainExtent,vec2 range,float paddingInner,float paddingOuter,float align,float band){float start=range[0];float stop=range[1];float rangeSpan=stop-start;vec2 domainStart=domainExtent.xy;float n=domainExtent[2];float step=rangeSpan/max(1.0,n-paddingInner+paddingOuter*2.0);start+=(rangeSpan-step*(n-paddingInner))*align;float bandwidth=step*(1.0-paddingInner);vec2 splitValue=vec2(float(value[0])*lowDivisor,float(value[1]));float inf=1.0/uZero;float hi=max(splitValue[0]-domainStart[0],-inf);float lo=max(splitValue[1]-domainStart[1],-inf);return dot(vec4(start,hi,lo,bandwidth),vec4(1.0,step,step,band));}", kS = "/***Describes where a sample facet should be shown. Interpolating between the*current and target positions/heights allows for transitioning between facet*configurations.*/struct SampleFacetPosition{float pos;float height;float targetPos;float targetHeight;};/***Trasition fraction[0,1]between the current and target configurations.*/uniform float uTransitionOffset;\n#if !defined(SAMPLE_FACET_UNIFORM) && !defined(SAMPLE_FACET_TEXTURE)\nSampleFacetPosition getSampleFacetPos(){return SampleFacetPosition(0.0,1.0,0.0,1.0);}\n#elif defined(SAMPLE_FACET_UNIFORM)\n/***Location and height of the band on the Y axis on a normalized[0,1]scale.*Elements: curr pos,curr height,target pos,target height*/uniform vec4 uSampleFacet;SampleFacetPosition getSampleFacetPos(){return SampleFacetPosition(1.0-uSampleFacet.x-uSampleFacet.y,uSampleFacet.y,1.0-uSampleFacet.z-uSampleFacet.w,uSampleFacet.w);}\n#elif defined(SAMPLE_FACET_TEXTURE)\nuniform sampler2D uSampleFacetTexture;SampleFacetPosition getSampleFacetPos(){vec4 texel=texelFetch(uSampleFacetTexture,ivec2(int(attr_facetIndex),0),0);return SampleFacetPosition(1.0-texel.r-texel.g,texel.g,1.0-texel.r-texel.g,texel.g);}\n#endif\nbool isFacetedSamples(SampleFacetPosition facetPos){return facetPos!=SampleFacetPosition(0.0,1.0,0.0,1.0);}bool isFacetedSamples(){return isFacetedSamples(getSampleFacetPos());}bool isInTransit(){return uTransitionOffset>0.0;}float getTransitionFraction(float xPos){return smoothstep(0.0,0.7+uTransitionOffset,(xPos-uTransitionOffset)*2.0);}vec2 applySampleFacet(vec2 pos){SampleFacetPosition facetPos=getSampleFacetPos();if(!isFacetedSamples(facetPos)){return pos;}else if(isInTransit()){vec2 interpolated=mix(vec2(facetPos.pos,facetPos.height),vec2(facetPos.targetPos,facetPos.targetHeight),getTransitionFraction(pos.x));return vec2(pos.x,interpolated[0]+pos.y*interpolated[1]);}else{return vec2(pos.x,facetPos.pos+pos.y*facetPos.height);}}float getSampleFacetHeight(vec2 pos){SampleFacetPosition facetPos=getSampleFacetPos();if(!isFacetedSamples(facetPos)){return 1.0;}else if(isInTransit()){return mix(facetPos.height,facetPos.targetHeight,getTransitionFraction(pos.x));}else{return facetPos.height;}}", AS = "/**Based on concepts presented at:*https:*https:*/out highp vec4 vPickingColor;/***Passes the unique id to the fragment shader as a color if picking is enabled.*Returns true if picking is enabled.*/bool setupPicking(){if(uPickingEnabled){\n#ifdef uniqueId_DEFINED\nuint id=attr_uniqueId;vPickingColor=vec4(ivec4(id>>0,id>>8,id>>16,id>>24)&0xFF)/float(0xFF);\n#else\nvPickingColor=vec4(1.0);\n#endif\nreturn true;}return false;}", jS = "in highp vec4 vPickingColor;", MS = Symbol("cacheMap");
+function NS(e, t, n) {
+	let r = LS(e).get(t);
+	return r === void 0 && (r = n(t), LS(e).set(t, r)), r;
 }
-function MS(e, t) {
-	FS(e).delete(t);
+function PS(e, t) {
+	LS(e).delete(t);
 }
-function NS(e, t) {
-	let n = FS(e);
+function FS(e, t) {
+	let n = LS(e);
 	for (let e of n.keys()) e.startsWith(t) && n.delete(e);
-	FS(e).delete(t);
+	LS(e).delete(t);
 }
-function PS(e) {
-	e[AS] = /* @__PURE__ */ new Map();
+function IS(e) {
+	e[MS] = /* @__PURE__ */ new Map();
 }
-function FS(e) {
-	return e[AS] || PS(e), e[AS];
+function LS(e) {
+	return e[MS] || IS(e), e[MS];
 }
 //#endregion
 //#region src/utils/propertyCoalescer.js
-function IS(...e) {
+function RS(...e) {
 	return new Proxy({}, {
 		get(t, n, r) {
 			for (let t of e) {
@@ -8951,52 +8975,52 @@ function IS(...e) {
 }
 //#endregion
 //#region src/utils/variableTools.js
-function LS(e) {
+function zS(e) {
 	return O(e) || Ot(e) || Tt(e);
 }
 //#endregion
 //#region src/view/viewError.js
-var RS = class extends Error {
+var BS = class extends Error {
 	constructor(e, t) {
 		super(e), this.name = "ViewError", this.view = t;
 	}
 };
 //#endregion
 //#region src/config/mergeConfig.js
-function zS(e) {
+function VS(e) {
 	return D(e) && !Array.isArray(e);
 }
-function BS(e) {
+function HS(e) {
 	let t = {};
-	for (let [n, r] of Object.entries(e)) t[n] = VS(r);
+	for (let [n, r] of Object.entries(e)) t[n] = US(r);
 	return t;
 }
-function VS(e) {
-	return Array.isArray(e) ? e.map(VS) : zS(e) ? BS(e) : e;
+function US(e) {
+	return Array.isArray(e) ? e.map(US) : VS(e) ? HS(e) : e;
 }
-function HS(e, t) {
+function WS(e, t) {
 	for (let [n, r] of Object.entries(t)) {
 		if (r === void 0) continue;
 		let t = e[n];
-		zS(r) && zS(t) ? HS(t, r) : e[n] = VS(r);
+		VS(r) && VS(t) ? WS(t, r) : e[n] = US(r);
 	}
 	return e;
 }
-function US(e) {
+function GS(e) {
 	let t = {};
-	for (let n of e) n && HS(t, n);
+	for (let n of e) n && WS(t, n);
 	return t;
 }
 //#endregion
 //#region src/config/styleUtils.js
-function WS(e) {
+function KS(e) {
 	return e ? Array.isArray(e) ? e : [e] : [];
 }
 //#endregion
 //#region src/config/markConfig.js
-function GS(e, t, n) {
-	let r = [t, ...WS(n)], i = e.map((e) => e.mark), a = e.map((e) => e[t]);
-	return US([
+function qS(e, t, n) {
+	let r = [t, ...KS(n)], i = e.map((e) => e.mark), a = e.map((e) => e[t]);
+	return GS([
 		...i,
 		...a,
 		...e.flatMap((e) => r.map((t) => e.style?.[t]))
@@ -9004,14 +9028,14 @@ function GS(e, t, n) {
 }
 //#endregion
 //#region src/marks/mark.js
-var KS = "SAMPLE_FACET_UNIFORM", qS = "SAMPLE_FACET_TEXTURE", JS = "uSelectionTexture_", YS = class {
+var JS = "SAMPLE_FACET_UNIFORM", YS = "SAMPLE_FACET_TEXTURE", XS = "uSelectionTexture_", ZS = class {
 	#e = [];
 	constructor(e) {
 		this.unitView = e;
 		let t = this;
-		this.encoders = void 0, this.bufferInfo = void 0, this.bytesPerElement = /* @__PURE__ */ new Map(), this.programInfo = void 0, this.vertexArrayInfo = void 0, this.viewUniformInfo = void 0, this.markUniformInfo = void 0, this.markUniformsAltered = !0, this.selectionTextureOps = [], this.rangeMap = new XS(), this.defaultProperties = {
+		this.encoders = void 0, this.bufferInfo = void 0, this.bytesPerElement = /* @__PURE__ */ new Map(), this.programInfo = void 0, this.vertexArrayInfo = void 0, this.viewUniformInfo = void 0, this.markUniformInfo = void 0, this.markUniformsAltered = !0, this.selectionTextureOps = [], this.rangeMap = new QS(), this.defaultProperties = {
 			get clip() {
-				return jS(t, "defaultClip", () => {
+				return NS(t, "defaultClip", () => {
 					for (let t of ["x", "y"]) if (e.getScaleResolution(t)?.isZoomable()) return !0;
 					return !1;
 				});
@@ -9019,8 +9043,8 @@ var KS = "SAMPLE_FACET_UNIFORM", qS = "SAMPLE_FACET_TEXTURE", JS = "uSelectionTe
 			xOffset: 0,
 			yOffset: 0,
 			minBufferSize: 0,
-			...GS(this.unitView.getConfigScopes(), this.unitView.getMarkType(), typeof this.unitView.spec.mark == "object" ? this.unitView.spec.mark.style : void 0)
-		}, this.properties = IS(typeof this.unitView.spec.mark == "object" ? () => this.unitView.spec.mark : () => ({}), () => this.defaultProperties);
+			...qS(this.unitView.getConfigScopes(), this.unitView.getMarkType(), typeof this.unitView.spec.mark == "object" ? this.unitView.spec.mark.style : void 0)
+		}, this.properties = RS(typeof this.unitView.spec.mark == "object" ? () => this.unitView.spec.mark : () => ({}), () => this.defaultProperties);
 	}
 	augmentDefaultProperties(e) {
 		Object.defineProperties(this.defaultProperties, Object.getOwnPropertyDescriptors(e));
@@ -9084,13 +9108,13 @@ var KS = "SAMPLE_FACET_UNIFORM", qS = "SAMPLE_FACET_TEXTURE", JS = "uSelectionTe
 			}
 		}
 		let r = this.properties;
-		this.properties = IS(() => n, () => r);
+		this.properties = RS(() => n, () => r);
 	}
 	get encoding() {
-		return jS(this, "encoding", () => {
+		return NS(this, "encoding", () => {
 			let e = this.getDefaultEncoding(), t = this.unitView.getEncoding(), n = (e) => {
 				let t = this.properties[e];
-				return LS(t) || V(t) ? { value: t } : void 0;
+				return zS(t) || V(t) ? { value: t } : void 0;
 			}, r = Object.fromEntries(this.getSupportedChannels().map((e) => [e, n(e)]).filter((e) => xf(e[1]))), i = this.fixEncoding({
 				...e,
 				...r,
@@ -9113,38 +9137,38 @@ var KS = "SAMPLE_FACET_UNIFORM", qS = "SAMPLE_FACET_TEXTURE", JS = "uSelectionTe
 	async initializeGraphics() {}
 	updateGraphicsData() {}
 	getSampleFacetMode() {
-		if (this.encoders.facetIndex) return qS;
-		if (this.unitView.getLayoutAncestors().find((e) => "samples" in e.spec)) return KS;
+		if (this.encoders.facetIndex) return YS;
+		if (this.unitView.getLayoutAncestors().find((e) => "samples" in e.spec)) return JS;
 	}
 	createAndLinkShaders(e, t, n = []) {
 		let r = this.getAttributes(), i = this.encoders, a = this.getSampleFacetMode();
 		a && n.push(`#define ${a}`);
-		let o = "// view: " + this.unitView.getPathString(), s = [], c = /* @__PURE__ */ new Set(), l = lS(i), u = [], d = Object.values(i).flatMap((e) => e.branches ?? []).map((e) => e.predicate).filter((e) => e.param), f = /* @__PURE__ */ new Map();
+		let o = "// view: " + this.unitView.getPathString(), s = [], c = /* @__PURE__ */ new Set(), l = dS(i), u = [], d = Object.values(i).flatMap((e) => e.branches ?? []).map((e) => e.predicate).filter((e) => e.param), f = /* @__PURE__ */ new Map();
 		for (let e of d) {
 			let t = e.param, n = this.unitView.paramRuntime, r = n.findValue(t);
 			if (!r) throw Error(`Cannot infer selection type as the parameter "${t}" has no value. Please ensure that the parameter is properly defined!`);
-			let i = uS("uniqueId");
+			let i = fS("uniqueId");
 			if (Qf(r)) {
 				if (!f.has(t)) {
 					f.set(t, "single");
-					let e = Rx + cp(t);
+					let e = Bx + cp(t);
 					u.push("    // Selection parameter"), u.push(`    uniform highp uint ${e};`), this.#e.push(() => {
 						this.registerMarkUniformValue(e, { expr: t }, (e) => e.uniqueId ?? 0);
-					}), s.push(`bool ${zx}${t}(bool empty) {\n    return ${Rx}${t} == ${i} || (empty && ${Rx}${t} == 0u);\n}`);
+					}), s.push(`bool ${Vx}${t}(bool empty) {\n    return ${Bx}${t} == ${i} || (empty && ${Bx}${t} == 0u);\n}`);
 				}
 			} else if ($f(r)) {
 				if (!f.has(t)) {
 					f.set(t, "multi");
-					let e = JS + cp(t);
+					let e = XS + cp(t);
 					s.push(`// Selection texture\nuniform highp usampler2D ${e};`);
 					let a = this.getContext().glHelper, o = a.selectionTextures;
 					this.selectionTextureOps.push(() => {
 						let r = n.getValue(t), i = o.get(r);
 						if (!i) throw Error(`Bug: no selection texture found for "${t}"!`);
-						cb(this.programInfo, { [e]: i });
+						ub(this.programInfo, { [e]: i });
 					});
-					let c = JS + t;
-					s.push(`bool ${zx}${t}(bool empty) {\n   return hashContainsTexture(${c}, ${i}) || (empty && isEmptyHashTexture(${c}));\n}`), a.createSelectionTexture(r), n.watchExpression(t, () => {
+					let c = XS + t;
+					s.push(`bool ${Vx}${t}(bool empty) {\n   return hashContainsTexture(${c}, ${i}) || (empty && isEmptyHashTexture(${c}));\n}`), a.createSelectionTexture(r), n.watchExpression(t, () => {
 						let e = n.getValue(t);
 						a.createSelectionTexture(e), this.getContext().animator.requestRender();
 					});
@@ -9154,69 +9178,69 @@ var KS = "SAMPLE_FACET_UNIFORM", qS = "SAMPLE_FACET_TEXTURE", JS = "uSelectionTe
 				let e = [], n = [];
 				for (let i of Object.keys(r.intervals)) {
 					if (!["x", "y"].includes(i)) continue;
-					let r = Rx + cp(t) + `_${i}`, { attributeType: a } = nS(this.unitView.getScaleResolution(i).getScale(), i);
+					let r = Bx + cp(t) + `_${i}`, { attributeType: a } = iS(this.unitView.getScaleResolution(i).getScale(), i);
 					u.push("    // Selection parameter"), u.push(`    uniform highp ${a}[2] ${r};`), this.#e.push(() => {
 						this.registerMarkUniformValue(r, { expr: t }, (e) => e.intervals[i] ?? [1, 0]);
 					});
 					let o = (e) => {
-						for (let [t, n] of l.entries()) if (t[1] && n.includes(e)) return uS(n);
-						return uS(e);
+						for (let [t, n] of l.entries()) if (t[1] && n.includes(e)) return fS(n);
+						return fS(e);
 					}, s = o(i), c = r + "[0]", d = r + "[1]", f = zf(i);
 					if (this.encoding[f]) {
 						let t = o(f), n = this.defaultHitTestMode;
 						if (n == "endpoints") e.push(`((${c} <= ${s} && ${s} <= ${d}) || (${c} <= ${t} && ${t} <= ${d}))`);
 						else if (n == "encloses") e.push(`(${c} <= ${s} && ${t} <= ${d})`);
 						else if (n == "intersects") e.push(`(${c} <= ${t} && ${s} <= ${d})`);
-						else throw new RS(`Unsupported hit test mode "${n}" for interval selection!`, this.unitView);
+						else throw new BS(`Unsupported hit test mode "${n}" for interval selection!`, this.unitView);
 					} else e.push(`(${c} <= ${s} && ${s} <= ${d})`);
 					n.push(`${c} > ${d}`);
 				}
-				s.push(`bool ${zx}${t}(bool empty) {\n    return ${e.join(" && ")} || (empty && (${n.join(" || ")}));\n}`);
+				s.push(`bool ${Vx}${t}(bool empty) {\n    return ${e.join(" && ")} || (empty && (${n.join(" || ")}));\n}`);
 			}
 		}
 		let p = (e, t, n, r) => {
 			let i = t.channelDef;
 			if (xf(i)) if (V(i.value)) {
-				let { uniformName: t, uniformGlsl: r, accessorGlsl: a, adjuster: o } = Wx(e, n);
+				let { uniformName: t, uniformGlsl: r, accessorGlsl: a, adjuster: o } = Kx(e, n);
 				s.push(a), u.push(r), this.#e.push(() => {
 					this.registerMarkUniformValue(t, i.value, o);
 				});
-			} else s.push(Ux(e, n, i.value).accessorGlsl);
+			} else s.push(Gx(e, n, i.value).accessorGlsl);
 			else if (Cf(i)) {
-				let { uniformName: t, uniformGlsl: a, accessorGlsl: o } = Kx(e, r, n);
+				let { uniformName: t, uniformGlsl: a, accessorGlsl: o } = Jx(e, r, n);
 				u.push(a), s.push(o);
-				let { largeHp: c, discrete: l } = nS(r, e), d = l && "domain" in r ? (e) => r.domain().indexOf(e) : c ? oS : (e) => +e;
+				let { largeHp: c, discrete: l } = iS(r, e), d = l && "domain" in r ? (e) => r.domain().indexOf(e) : c ? cS : (e) => +e;
 				this.#e.push(() => {
 					this.registerMarkUniformValue(t, i.datum, d);
 				});
 			} else if (Sf(i)) {
-				let t = l.get([i.field, !0]), { attributeGlsl: a, accessorGlsl: o } = Gx(e, r, n, t?.includes(e) ? t : void 0);
+				let t = l.get([i.field, !0]), { attributeGlsl: a, accessorGlsl: o } = qx(e, r, n, t?.includes(e) ? t : void 0);
 				c.add(a), s.push(o);
 			} else if (Of(i)) {
-				let { attributeGlsl: t, accessorGlsl: i } = Gx(e, r, n);
+				let { attributeGlsl: t, accessorGlsl: i } = qx(e, r, n);
 				c.add(t), s.push(i);
-			} else throw new RS(`Unsupported channel definition: ${JSON.stringify(i)}`, this.unitView);
+			} else throw new BS(`Unsupported channel definition: ${JSON.stringify(i)}`, this.unitView);
 		};
 		for (let [e, t] of Object.entries(i)) {
 			if (!r.includes(e)) continue;
 			let { branches: n, channelDef: i, scale: a } = t;
 			for (let t = 0; t < n.length; t++) p(e, n[t].accessor, t, a);
 			if (a) {
-				let t = Tf(i), n = t && t.resolutionChannel || e, r = Uf(n) ? this.unitView.getScaleResolution(n) : null, { glsl: o, domainUniform: c, domainUniformName: l, rangeUniform: d, rangeUniformName: f } = qx(e, a, i);
+				let t = Tf(i), n = t && t.resolutionChannel || e, r = Uf(n) ? this.unitView.getScaleResolution(n) : null, { glsl: o, domainUniform: c, domainUniformName: l, rangeUniform: d, rangeUniformName: f } = Yx(e, a, i);
 				s.push(o), u.push(c), u.push(d), d && this.#e.push(() => {
-					let t = this.createMarkUniformSetter(f), n = () => t(fS(a, e));
+					let t = this.createMarkUniformSetter(f), n = () => t(mS(a, e));
 					r.addEventListener("range", n), n();
 				}), c && this.#e.push(() => {
 					let e = this.createMarkUniformSetter(l), t = () => {
 						let t = fd(a.type) ? [0, a.domain().length] : a.domain();
-						e(rS(a.type) ? cS(t) : t);
+						e(aS(a.type) ? uS(t) : t);
 					};
 					r.addEventListener("domain", t), t();
 				});
 			}
-			s.push(Jx(e, n));
+			s.push(Xx(e, n));
 		}
-		let m = [...f.keys()].map((e) => `${zx}${e}(false)`);
+		let m = [...f.keys()].map((e) => `${Vx}${e}(false)`);
 		s.push("bool isPointSelected() {\n" + (this.encoders.uniqueId && m.length > 0 ? `    return ${m.join(" || ")};` : "    return false;") + "\n}");
 		let h = "precision highp float;\nprecision highp int;", g = (e) => e.replace("#pragma markUniforms", u.join("\n"));
 		n = n.map(g), e = g(e), t = g(t);
@@ -9224,22 +9248,22 @@ var KS = "SAMPLE_FACET_UNIFORM", qS = "SAMPLE_FACET_TEXTURE", JS = "uSelectionTe
 			h,
 			o,
 			...n,
-			TS,
-			ES,
-			[...c].join("\n"),
-			...s,
 			DS,
 			OS,
+			[...c].join("\n"),
+			...s,
+			kS,
+			AS,
 			e
 		], v = [
 			h,
 			o,
 			...n,
-			TS,
-			kS,
+			DS,
+			jS,
 			t
 		], y = this.gl;
-		this.programStatus = bx(y, this.glHelper.compileShader(y.VERTEX_SHADER, _), this.glHelper.compileShader(y.FRAGMENT_SHADER, v));
+		this.programStatus = Sx(y, this.glHelper.compileShader(y.VERTEX_SHADER, _), this.glHelper.compileShader(y.FRAGMENT_SHADER, v));
 	}
 	finalizeGraphicsInitialization() {
 		if (this.programInfo) return;
@@ -9250,7 +9274,7 @@ var KS = "SAMPLE_FACET_UNIFORM", qS = "SAMPLE_FACET_TEXTURE", JS = "uSelectionTe
 			let t = /* @__PURE__ */ Error("Cannot create shader program: " + e.message);
 			throw t.view = this.unitView, t;
 		}
-		this.programInfo = fb(this.gl, this.programStatus.program), delete this.programStatus, this.viewUniformInfo = rb(this.gl, this.programInfo, "View"), this.markUniformInfo = rb(this.gl, this.programInfo, "Mark"), this.gl.useProgram(this.programInfo.program), cb(this.programInfo, {
+		this.programInfo = mb(this.gl, this.programStatus.program), delete this.programStatus, this.viewUniformInfo = ab(this.gl, this.programInfo, "View"), this.markUniformInfo = ab(this.gl, this.programInfo, "Mark"), this.gl.useProgram(this.programInfo.program), ub(this.programInfo, {
 			uSampleFacet: [
 				0,
 				1,
@@ -9287,18 +9311,15 @@ var KS = "SAMPLE_FACET_UNIFORM", qS = "SAMPLE_FACET_TEXTURE", JS = "uSelectionTe
 			return;
 		}
 		let t = e.gl;
-		if (this.vertexArrayInfo &&= (this.gl.bindVertexArray(null), t.deleteVertexArray(this.vertexArrayInfo.vertexArrayObject), void 0), this.bufferInfo) {
-			for (let e = 0; e < 8; e++) t.disableVertexAttribArray(e);
-			Object.values(this.bufferInfo.attribs).forEach((e) => this.gl.deleteBuffer(e.buffer)), this.bufferInfo.indices && this.gl.deleteBuffer(this.bufferInfo.indices), this.bufferInfo = void 0;
-		}
+		this.vertexArrayInfo &&= (this.gl.bindVertexArray(null), t.deleteVertexArray(this.vertexArrayInfo.vertexArrayObject), void 0), this.bufferInfo &&= (Object.values(this.bufferInfo.attribs).forEach((e) => this.gl.deleteBuffer(e.buffer)), this.bufferInfo.indices && this.gl.deleteBuffer(this.bufferInfo.indices), void 0);
 	}
 	dispose() {
 		this.deleteGraphicsData();
 	}
 	updateBufferInfo(e) {
-		if (this.gl.bindVertexArray(null), this.bufferInfo && e.vertexCount <= this.bufferInfo.allocatedVertices) for (let [t, n] of Object.entries(e.arrays)) n.data && gh(this.gl, this.bufferInfo.attribs[t], n.data, 0);
+		if (this.gl.bindVertexArray(null), this.bufferInfo && e.vertexCount <= this.bufferInfo.allocatedVertices) for (let [t, n] of Object.entries(e.arrays)) n.data && vh(this.gl, this.bufferInfo.attribs[t], n.data, 0);
 		else {
-			this.deleteGraphicsData(), this.bufferInfo = bh(this.gl, e.arrays, { numElements: e.vertexCount }), this.bufferInfo.allocatedVertices = e.allocatedVertices;
+			this.deleteGraphicsData(), this.bufferInfo = Sh(this.gl, e.arrays, { numElements: e.vertexCount }), this.bufferInfo.allocatedVertices = e.allocatedVertices;
 			for (let [t, n] of Object.entries(e.arrays)) this.bytesPerElement.set(t, n.data.BYTES_PER_ELEMENT);
 		}
 	}
@@ -9317,25 +9338,25 @@ var KS = "SAMPLE_FACET_UNIFORM", qS = "SAMPLE_FACET_TEXTURE", JS = "uSelectionTe
 		return !0;
 	}
 	bindOrSetMarkUniformBlock() {
-		this.markUniformsAltered ? (ab(this.gl, this.programInfo, this.markUniformInfo), this.markUniformsAltered = !1) : ib(this.gl, this.programInfo, this.markUniformInfo);
+		this.markUniformsAltered ? (sb(this.gl, this.programInfo, this.markUniformInfo), this.markUniformsAltered = !1) : ob(this.gl, this.programInfo, this.markUniformInfo);
 	}
 	prepareRender(e) {
 		let t = this.glHelper, n = this.gl, r = [];
 		r.push(() => {
-			this.vertexArrayInfo ||= Jb(this.gl, this.programInfo, this.bufferInfo), n.useProgram(this.programInfo.program);
+			this.vertexArrayInfo ||= Xb(this.gl, this.programInfo, this.bufferInfo), n.useProgram(this.programInfo.program);
 		});
 		for (let [e, n] of Object.entries(this.encoders)) {
 			let i = t.rangeTextures.get(n.scale);
-			i && r.push(() => cb(this.programInfo, { [Lx + e]: i }));
+			i && r.push(() => ub(this.programInfo, { [zx + e]: i }));
 		}
 		r.push(...this.selectionTextureOps), this.getSampleFacetMode() == "SAMPLE_FACET_TEXTURE" && r.push(() => {
 			let e;
 			for (let t of this.unitView.getLayoutAncestors()) if (e = t.getSampleFacetTexture(), e) break;
 			if (!e) throw Error("No facet texture available. This is bug.");
-			cb(this.programInfo, { uSampleFacetTexture: e });
+			ub(this.programInfo, { uSampleFacetTexture: e });
 		});
 		let i = (e.picking ?? !1) && this.isPickingParticipant();
-		return r.push(() => ob(this.viewUniformInfo, {
+		return r.push(() => cb(this.viewUniformInfo, {
 			uViewOpacity: this.unitView.getEffectiveOpacity(),
 			uPickingEnabled: i
 		})), this.opaque || e.picking ? r.push(() => n.disable(n.BLEND)) : r.push(() => n.enable(n.BLEND)), r;
@@ -9392,14 +9413,14 @@ var KS = "SAMPLE_FACET_UNIFORM", qS = "SAMPLE_FACET_TEXTURE", JS = "uSelectionTe
 				uViewScale: [n.width / e.width, n.height / e.height]
 			};
 		}
-		return ob(this.viewUniformInfo, {
+		return cb(this.viewUniformInfo, {
 			...l,
 			uViewportSize: [n.width, n.height],
 			uDevicePixelRatio: t
-		}), ab(this.gl, this.programInfo, this.viewUniformInfo), !0;
+		}), sb(this.gl, this.programInfo, this.viewUniformInfo), !0;
 	}
 	findDatumAt(e, t) {}
-}, XS = class extends bn {
+}, QS = class extends bn {
 	constructor() {
 		super([], JSON.stringify);
 	}
@@ -9418,7 +9439,7 @@ var KS = "SAMPLE_FACET_UNIFORM", qS = "SAMPLE_FACET_TEXTURE", JS = "uSelectionTe
 };
 //#endregion
 //#region src/marks/markUtils.js
-function ZS(e, t) {
+function $S(e, t) {
 	let n = zf(t), r = e[t] && { ...e[t] }, i = e[n] && { ...e[n] };
 	if (!(xf(r) || xf(i))) {
 		if (r) {
@@ -9440,7 +9461,7 @@ function ZS(e, t) {
 		e[t] = r, e[n] = i;
 	}
 }
-function QS(e, t) {
+function eC(e, t) {
 	let n = zf(t), r = e[t], i = e[n];
 	if (!r || !i || xf(r) || xf(i) || !wf(r) || !wf(i) || !["index", "locus"].includes(r.type)) return;
 	let a = r.band, o = i.band, s = a ?? o ?? 0;
@@ -9452,19 +9473,19 @@ function QS(e, t) {
 		band: o ?? s
 	};
 }
-function $S(e, t) {
+function tC(e, t) {
 	let n = Tf(e);
 	n && (n.resolutionChannel = t);
 }
-function eC(e, t) {
-	e.stroke || (t ? e.stroke = { value: null } : (e.stroke = structuredClone(e.color), $S(e.stroke, "color"))), xf(e.stroke) && e.stroke.value === null && (e.strokeWidth = { value: 0 }), e.strokeOpacity || (e.strokeOpacity = structuredClone(e.opacity), $S(e.strokeOpacity, "opacity"));
+function nC(e, t) {
+	e.stroke || (t ? e.stroke = { value: null } : (e.stroke = structuredClone(e.color), tC(e.stroke, "color"))), xf(e.stroke) && e.stroke.value === null && (e.strokeWidth = { value: 0 }), e.strokeOpacity || (e.strokeOpacity = structuredClone(e.opacity), tC(e.strokeOpacity, "opacity"));
 }
-function tC(e, t) {
-	xf(e.fill) && e.fill.value === null ? e.fillOpacity = { value: 0 } : e.fill || (e.fill = structuredClone(e.color), $S(e.fill, "color"), !t && !e.fillOpacity && (e.fillOpacity = { value: 0 })), e.fillOpacity || (t ? (e.fillOpacity = structuredClone(e.opacity), $S(e.fillOpacity, "opacity")) : e.fillOpacity = { value: 0 });
+function rC(e, t) {
+	xf(e.fill) && e.fill.value === null ? e.fillOpacity = { value: 0 } : e.fill || (e.fill = structuredClone(e.color), tC(e.fill, "color"), !t && !e.fillOpacity && (e.fillOpacity = { value: 0 })), e.fillOpacity || (t ? (e.fillOpacity = structuredClone(e.opacity), tC(e.fillOpacity, "opacity")) : e.fillOpacity = { value: 0 });
 }
 //#endregion
 //#region src/marks/rect.js
-var nC = [
+var iC = [
 	"none",
 	"diagonal",
 	"antiDiagonal",
@@ -9475,7 +9496,7 @@ var nC = [
 	"dots",
 	"rings",
 	"ringsLarge"
-], rC = class extends YS {
+], aC = class extends ZS {
 	constructor(e) {
 		super(e);
 	}
@@ -9507,10 +9528,10 @@ var nC = [
 		];
 	}
 	get opaque() {
-		return jS(this, "opaque", () => !this.#e() && !this.#t() && !this.properties.shadowOpacity && xf(this.encoding.fillOpacity) && this.encoding.fillOpacity.value == 1 && this.properties.minOpacity == 1) && this.unitView.getEffectiveOpacity() == 1;
+		return NS(this, "opaque", () => !this.#e() && !this.#t() && !this.properties.shadowOpacity && xf(this.encoding.fillOpacity) && this.encoding.fillOpacity.value == 1 && this.properties.minOpacity == 1) && this.unitView.getEffectiveOpacity() == 1;
 	}
 	fixEncoding(e) {
-		return ZS(e, "x"), ZS(e, "y"), eC(e, this.properties.filled), tC(e, this.properties.filled), delete e.color, delete e.opacity, e;
+		return $S(e, "x"), $S(e, "y"), nC(e, this.properties.filled), rC(e, this.properties.filled), delete e.color, delete e.opacity, e;
 	}
 	#e() {
 		let e = this.properties;
@@ -9523,12 +9544,12 @@ var nC = [
 	async initializeGraphics() {
 		await super.initializeGraphics();
 		let e = [];
-		this.#e() && e.push("ROUNDED_CORNERS"), this.#t() && e.push("STROKED"), this.properties.shadowOpacity && e.push("SHADOW"), this.createAndLinkShaders(nx, rx, [ix, ...e.map((e) => "#define " + e)]);
+		this.#e() && e.push("ROUNDED_CORNERS"), this.#t() && e.push("STROKED"), this.properties.shadowOpacity && e.push("SHADOW"), this.createAndLinkShaders(ix, ax, [ox, ...e.map((e) => "#define " + e)]);
 	}
 	finalizeGraphicsInitialization() {
 		super.finalizeGraphicsInitialization(), this.gl.useProgram(this.programInfo.program);
 		let e = this.properties;
-		this.registerMarkUniformValue("uMinWidth", e.minWidth), this.registerMarkUniformValue("uMinHeight", e.minHeight), this.registerMarkUniformValue("uMinOpacity", e.minOpacity), this.registerMarkUniformValue("uCornerRadiusTopRight", e.cornerRadiusTopRight ?? e.cornerRadius ?? 0), this.registerMarkUniformValue("uCornerRadiusBottomRight", e.cornerRadiusBottomRight ?? e.cornerRadius ?? 0), this.registerMarkUniformValue("uCornerRadiusTopLeft", e.cornerRadiusTopLeft ?? e.cornerRadius ?? 0), this.registerMarkUniformValue("uCornerRadiusBottomLeft", e.cornerRadiusBottomLeft ?? e.cornerRadius ?? 0), this.registerMarkUniformValue("uHatchPattern", e.hatch, (e) => Math.max(0, nC.indexOf(e ?? "none"))), this.registerMarkUniformValue("uShadowBlur", e.shadowBlur ?? 0), this.registerMarkUniformValue("uShadowOpacity", e.shadowOpacity ?? 0), this.registerMarkUniformValue("uShadowOffsetX", e.shadowOffsetX ?? 0), this.registerMarkUniformValue("uShadowOffsetY", e.shadowOffsetY ?? 0), this.registerMarkUniformValue("uShadowColor", e.shadowColor ?? "black", Ax);
+		this.registerMarkUniformValue("uMinWidth", e.minWidth), this.registerMarkUniformValue("uMinHeight", e.minHeight), this.registerMarkUniformValue("uMinOpacity", e.minOpacity), this.registerMarkUniformValue("uCornerRadiusTopRight", e.cornerRadiusTopRight ?? e.cornerRadius ?? 0), this.registerMarkUniformValue("uCornerRadiusBottomRight", e.cornerRadiusBottomRight ?? e.cornerRadius ?? 0), this.registerMarkUniformValue("uCornerRadiusTopLeft", e.cornerRadiusTopLeft ?? e.cornerRadius ?? 0), this.registerMarkUniformValue("uCornerRadiusBottomLeft", e.cornerRadiusBottomLeft ?? e.cornerRadius ?? 0), this.registerMarkUniformValue("uHatchPattern", e.hatch, (e) => Math.max(0, iC.indexOf(e ?? "none"))), this.registerMarkUniformValue("uShadowBlur", e.shadowBlur ?? 0), this.registerMarkUniformValue("uShadowOpacity", e.shadowOpacity ?? 0), this.registerMarkUniformValue("uShadowOffsetX", e.shadowOffsetX ?? 0), this.registerMarkUniformValue("uShadowOffsetY", e.shadowOffsetY ?? 0), this.registerMarkUniformValue("uShadowColor", e.shadowColor ?? "black", Mx);
 	}
 	updateGraphicsData() {
 		let e = this.unitView.getCollector();
@@ -9536,7 +9557,7 @@ var nC = [
 			console.debug("No collector");
 			return;
 		}
-		let t = e.getItemCount(), n = new bS({
+		let t = e.getItemCount(), n = new SS({
 			encoders: this.encoders,
 			attributes: this.getAttributes(),
 			numItems: t
@@ -9547,12 +9568,12 @@ var nC = [
 	}
 	prepareRender(e) {
 		let t = super.prepareRender(e);
-		return t.push(() => this.bindOrSetMarkUniformBlock()), t.push(() => db(this.gl, this.programInfo, this.vertexArrayInfo)), t;
+		return t.push(() => this.bindOrSetMarkUniformBlock()), t.push(() => pb(this.gl, this.programInfo, this.vertexArrayInfo)), t;
 	}
 	render(e) {
 		let t = this.gl;
 		return this.createRenderCallback((e, n) => {
-			hb(t, this.vertexArrayInfo, t.TRIANGLE_STRIP, n, e);
+			_b(t, this.vertexArrayInfo, t.TRIANGLE_STRIP, n, e);
 		}, e);
 	}
 	findDatumAt(e, t) {
@@ -9568,7 +9589,7 @@ var nC = [
 			return !e || !i ? void 0 : n.find((n) => t >= e(n) && t < i(n));
 		}
 	}
-}, iC = "flat out float vRadius;flat out float vRadiusWithPadding;flat out lowp vec4 vFillColor;flat out lowp vec4 vStrokeColor;flat out lowp float vShape;flat out lowp float vHalfStrokeWidth;flat out mat2 vRotationMatrix;const float CIRCLE=0.0;const float SQUARE=1.0;const float CROSS=2.0;const float DIAMOND=3.0;const float TRIANGLE_UP=4.0;const float TRIANGLE_RIGHT=5.0;const float TRIANGLE_DOWN=6.0;const float TRIANGLE_LEFT=7.0;const float TICK_UP=8.0;const float TICK_RIGHT=9.0;const float TICK_DOWN=10.0;const float TICK_LEFT=11.0;float computeSemanticThresholdFactor(){return getScaled_semanticScore()>=uSemanticThreshold ? 1.0 : 0.0;}vec2 getDxDy(){\n#if defined(dx_DEFINED) || defined(dy_DEFINED)\nreturn vec2(getScaled_dx(),getScaled_dy())/uViewportSize;\n#else\nreturn vec2(0.0,0.0);\n#endif\n}void main(void){float shapeAngle=0.0;float semanticThresholdFactor=isPointSelected()? 1.0: computeSemanticThresholdFactor();if(semanticThresholdFactor<=0.0){gl_PointSize=0.0;gl_Position=vec4(100.0,0.0,0.0,0.0);return;}float size=getScaled_size();vec2 pos=vec2(getScaled_x(),getScaled_y())+getDxDy();gl_Position=unitToNdc(applySampleFacet(pos));float strokeWidth=getScaled_strokeWidth();float diameter=sqrt(size)*uScaleFactor*semanticThresholdFactor;float opacity=uViewOpacity;if(strokeWidth<=0.0||uInwardStroke){float minDiameter=1.0/uDevicePixelRatio;if(diameter<minDiameter){opacity*=pow(diameter/minDiameter,2.5);diameter=minDiameter;}}float fillOpa=getScaled_fillOpacity()*opacity;float strokeOpa=getScaled_strokeOpacity()*opacity;vShape=getScaled_shape();bool circle=vShape==0.0;if(vShape>TICK_UP&&vShape<=TICK_LEFT){shapeAngle=(vShape-TICK_UP)*90.0;vShape=TICK_UP;}else if(vShape>TRIANGLE_UP&&vShape<=TRIANGLE_LEFT){shapeAngle=(vShape-TRIANGLE_UP)*90.0;vShape=TRIANGLE_UP;}float angleInDegrees=getScaled_angle();float angle=-(shapeAngle+angleInDegrees)*PI/180.0;float sinTheta=sin(angle);float cosTheta=cos(angle);vRotationMatrix=mat2(cosTheta,sinTheta,-sinTheta,cosTheta);float roomForRotation=circle ? 1.0 : sin(mod(angle,PI/2.0)+PI/4.0)/sin(PI/4.0);float aaPadding=1.0/uDevicePixelRatio;float rotationPadding=(diameter*roomForRotation)-diameter;float strokePadding=uInwardStroke ? 0.0 : strokeWidth*(circle ? 1.0 : sqrt(3.0));float padding=rotationPadding+strokePadding+aaPadding;gl_PointSize=max((diameter+padding),uPickingEnabled ? uMinPickingSize : 0.0)*uDevicePixelRatio;vRadius=diameter/2.0;vRadiusWithPadding=vRadius+padding/2.0;vHalfStrokeWidth=strokeWidth/2.0;vFillColor=vec4(getScaled_fill()*fillOpa,fillOpa);vStrokeColor=vec4(getScaled_stroke()*strokeOpa,strokeOpa);setupPicking();}", aC = "const lowp vec4 white=vec4(1.0);const lowp vec4 black=vec4(0.0,0.0,0.0,1.0);flat in float vRadius;flat in float vRadiusWithPadding;flat in lowp vec4 vFillColor;flat in lowp vec4 vStrokeColor;flat in lowp float vShape;flat in lowp float vHalfStrokeWidth;flat in mat2 vRotationMatrix;out lowp vec4 fragColor;const float CIRCLE=0.0;const float SQUARE=1.0;const float CROSS=2.0;const float DIAMOND=3.0;const float TRIANGLE_UP=4.0;const float TICK_UP=8.0;float circle(vec2 p,float r){return length(p)-r;}float square(vec2 p,float r){p=abs(p);return max(p.x,p.y)-r;}float tickUp(vec2 p,float r){float halfR=r*0.5;p.y+=halfR;p=abs(p);return max(p.x-r*0.15,p.y-halfR);}float equilateralTriangle(vec2 p,float r){p.y=-p.y;float k=sqrt(3.0);float kr=k*r;p.y-=kr/2.0;return max((abs(p.x)*k+p.y)/2.0,-p.y-kr);}float crossShape(vec2 p,float r){p=abs(p);vec2 b=vec2(0.4,1.0)*r;vec2 v=abs(p)-b.xy;vec2 h=abs(p)-b.yx;return min(max(v.x,v.y),max(h.x,h.y));}float diamond(vec2 p,float r){p=abs(p);return(max(abs(p.x-p.y),abs(p.x+p.y))-r)/sqrt(2.0);}void main(){float d;vec2 p=vRotationMatrix*(2.0*gl_PointCoord-1.0)*vRadiusWithPadding;float r=vRadius;if(vShape==CIRCLE){d=circle(p,r);}else if(vShape==SQUARE){d=square(p,r);}else if(vShape==CROSS){d=crossShape(p,r);}else if(vShape==DIAMOND){d=diamond(p,r);}else if(vShape==TRIANGLE_UP){d=equilateralTriangle(p,r);}else if(vShape==TICK_UP){d=tickUp(p,r);}else{d=0.0;}if(!uPickingEnabled){lowp vec4 fillColor=mix(vFillColor,white,-d*uGradientStrength/vRadius);fragColor=distanceToColor(d+(uInwardStroke ? vHalfStrokeWidth : 0.0),fillColor,vStrokeColor,vec4(0.0),vHalfStrokeWidth);}else if(d-vHalfStrokeWidth<=0.0){fragColor=vPickingColor;}else{discard;}}", oC = "layout(std140)uniform Mark{/***The stroke should only grow inwards,e.g,the diameter/outline is not affected by the stroke width.*Thus,a point that has a zero size has no visible stroke. This allows strokes to be used with*geometric zoom,etc.*/uniform bool uInwardStroke;uniform float uMinPickingSize;uniform mediump float uScaleFactor;uniform mediump float uZoomLevel;uniform highp float uSemanticThreshold;uniform mediump float uGradientStrength;\n#pragma markUniforms\n};", sC = class extends z {
+}, oC = "flat out float vRadius;flat out float vRadiusWithPadding;flat out lowp vec4 vFillColor;flat out lowp vec4 vStrokeColor;flat out lowp float vShape;flat out lowp float vHalfStrokeWidth;flat out mat2 vRotationMatrix;const float CIRCLE=0.0;const float SQUARE=1.0;const float CROSS=2.0;const float DIAMOND=3.0;const float TRIANGLE_UP=4.0;const float TRIANGLE_RIGHT=5.0;const float TRIANGLE_DOWN=6.0;const float TRIANGLE_LEFT=7.0;const float TICK_UP=8.0;const float TICK_RIGHT=9.0;const float TICK_DOWN=10.0;const float TICK_LEFT=11.0;float computeSemanticThresholdFactor(){return getScaled_semanticScore()>=uSemanticThreshold ? 1.0 : 0.0;}vec2 getDxDy(){\n#if defined(dx_DEFINED) || defined(dy_DEFINED)\nreturn vec2(getScaled_dx(),getScaled_dy())/uViewportSize;\n#else\nreturn vec2(0.0,0.0);\n#endif\n}void main(void){float shapeAngle=0.0;float semanticThresholdFactor=isPointSelected()? 1.0: computeSemanticThresholdFactor();if(semanticThresholdFactor<=0.0){gl_PointSize=0.0;gl_Position=vec4(100.0,0.0,0.0,0.0);return;}float size=getScaled_size();vec2 pos=vec2(getScaled_x(),getScaled_y())+getDxDy();gl_Position=unitToNdc(applySampleFacet(pos));float strokeWidth=getScaled_strokeWidth();float diameter=sqrt(size)*uScaleFactor*semanticThresholdFactor;float opacity=uViewOpacity;if(strokeWidth<=0.0||uInwardStroke){float minDiameter=1.0/uDevicePixelRatio;if(diameter<minDiameter){opacity*=pow(diameter/minDiameter,2.5);diameter=minDiameter;}}float fillOpa=getScaled_fillOpacity()*opacity;float strokeOpa=getScaled_strokeOpacity()*opacity;vShape=getScaled_shape();bool circle=vShape==0.0;if(vShape>TICK_UP&&vShape<=TICK_LEFT){shapeAngle=(vShape-TICK_UP)*90.0;vShape=TICK_UP;}else if(vShape>TRIANGLE_UP&&vShape<=TRIANGLE_LEFT){shapeAngle=(vShape-TRIANGLE_UP)*90.0;vShape=TRIANGLE_UP;}float angleInDegrees=getScaled_angle();float angle=-(shapeAngle+angleInDegrees)*PI/180.0;float sinTheta=sin(angle);float cosTheta=cos(angle);vRotationMatrix=mat2(cosTheta,sinTheta,-sinTheta,cosTheta);float roomForRotation=circle ? 1.0 : sin(mod(angle,PI/2.0)+PI/4.0)/sin(PI/4.0);float aaPadding=1.0/uDevicePixelRatio;float rotationPadding=(diameter*roomForRotation)-diameter;float strokePadding=uInwardStroke ? 0.0 : strokeWidth*(circle ? 1.0 : sqrt(3.0));float padding=rotationPadding+strokePadding+aaPadding;gl_PointSize=max((diameter+padding),uPickingEnabled ? uMinPickingSize : 0.0)*uDevicePixelRatio;vRadius=diameter/2.0;vRadiusWithPadding=vRadius+padding/2.0;vHalfStrokeWidth=strokeWidth/2.0;vFillColor=vec4(getScaled_fill()*fillOpa,fillOpa);vStrokeColor=vec4(getScaled_stroke()*strokeOpa,strokeOpa);setupPicking();}", sC = "const lowp vec4 white=vec4(1.0);const lowp vec4 black=vec4(0.0,0.0,0.0,1.0);flat in float vRadius;flat in float vRadiusWithPadding;flat in lowp vec4 vFillColor;flat in lowp vec4 vStrokeColor;flat in lowp float vShape;flat in lowp float vHalfStrokeWidth;flat in mat2 vRotationMatrix;out lowp vec4 fragColor;const float CIRCLE=0.0;const float SQUARE=1.0;const float CROSS=2.0;const float DIAMOND=3.0;const float TRIANGLE_UP=4.0;const float TICK_UP=8.0;float circle(vec2 p,float r){return length(p)-r;}float square(vec2 p,float r){p=abs(p);return max(p.x,p.y)-r;}float tickUp(vec2 p,float r){float halfR=r*0.5;p.y+=halfR;p=abs(p);return max(p.x-r*0.15,p.y-halfR);}float equilateralTriangle(vec2 p,float r){p.y=-p.y;float k=sqrt(3.0);float kr=k*r;p.y-=kr/2.0;return max((abs(p.x)*k+p.y)/2.0,-p.y-kr);}float crossShape(vec2 p,float r){p=abs(p);vec2 b=vec2(0.4,1.0)*r;vec2 v=abs(p)-b.xy;vec2 h=abs(p)-b.yx;return min(max(v.x,v.y),max(h.x,h.y));}float diamond(vec2 p,float r){p=abs(p);return(max(abs(p.x-p.y),abs(p.x+p.y))-r)/sqrt(2.0);}void main(){float d;vec2 p=vRotationMatrix*(2.0*gl_PointCoord-1.0)*vRadiusWithPadding;float r=vRadius;if(vShape==CIRCLE){d=circle(p,r);}else if(vShape==SQUARE){d=square(p,r);}else if(vShape==CROSS){d=crossShape(p,r);}else if(vShape==DIAMOND){d=diamond(p,r);}else if(vShape==TRIANGLE_UP){d=equilateralTriangle(p,r);}else if(vShape==TICK_UP){d=tickUp(p,r);}else{d=0.0;}if(!uPickingEnabled){lowp vec4 fillColor=mix(vFillColor,white,-d*uGradientStrength/vRadius);fragColor=distanceToColor(d+(uInwardStroke ? vHalfStrokeWidth : 0.0),fillColor,vStrokeColor,vec4(0.0),vHalfStrokeWidth);}else if(d-vHalfStrokeWidth<=0.0){fragColor=vPickingColor;}else{discard;}}", cC = "layout(std140)uniform Mark{/***The stroke should only grow inwards,e.g,the diameter/outline is not affected by the stroke width.*Thus,a point that has a zero size has no visible stroke. This allows strokes to be used with*geometric zoom,etc.*/uniform bool uInwardStroke;uniform float uMinPickingSize;uniform mediump float uScaleFactor;uniform mediump float uZoomLevel;uniform highp float uSemanticThreshold;uniform mediump float uGradientStrength;\n#pragma markUniforms\n};", lC = class extends z {
 	constructor(e) {
 		super(e), this.params = e, this.k = e.size || 500, this.reset();
 	}
@@ -9592,8 +9613,8 @@ var nC = [
 		super.complete();
 	}
 };
-function cC(e, t, n) {
-	let r = new sC({
+function uC(e, t, n) {
+	let r = new lC({
 		type: "sample",
 		size: e
 	});
@@ -9602,7 +9623,7 @@ function cC(e, t, n) {
 }
 //#endregion
 //#region src/marks/point.js
-var lC = {}, uC = class extends YS {
+var dC = {}, fC = class extends ZS {
 	#e = () => 0;
 	constructor(e) {
 		super(e);
@@ -9647,19 +9668,19 @@ var lC = {}, uC = class extends YS {
 	getDefaultEncoding() {
 		return {
 			...super.getDefaultEncoding(),
-			...lC
+			...dC
 		};
 	}
 	fixEncoding(e) {
-		return eC(e, this.properties.filled), tC(e, this.properties.filled), delete e.color, delete e.opacity, e;
+		return nC(e, this.properties.filled), rC(e, this.properties.filled), delete e.color, delete e.opacity, e;
 	}
 	initializeData() {
 		super.initializeData();
 		let e = this.encoders.semanticScore ? vf(this.encoders.semanticScore)?.asNumberAccessor() : void 0;
-		e && (this.sampledSemanticScores = Float32Array.from(cC(1e4, this.unitView.getCollector().getData(), e)), this.sampledSemanticScores.sort((e, t) => e - t));
+		e && (this.sampledSemanticScores = Float32Array.from(uC(1e4, this.unitView.getCollector().getData(), e)), this.sampledSemanticScores.sort((e, t) => e - t));
 	}
 	async initializeGraphics() {
-		await super.initializeGraphics(), this.createAndLinkShaders(iC, aC, [oC]);
+		await super.initializeGraphics(), this.createAndLinkShaders(oC, sC, [cC]);
 	}
 	finalizeGraphicsInitialization() {
 		super.finalizeGraphicsInitialization(), this.gl.useProgram(this.programInfo.program);
@@ -9672,7 +9693,7 @@ var lC = {}, uC = class extends YS {
 			console.debug("No collector");
 			return;
 		}
-		let t = e.getItemCount(), n = new SS({
+		let t = e.getItemCount(), n = new wS({
 			encoders: this.encoders,
 			attributes: this.getAttributes(),
 			numItems: Math.max(t, this.properties.minBufferSize || 0)
@@ -9699,19 +9720,19 @@ var lC = {}, uC = class extends YS {
 	prepareRender(e) {
 		let t = super.prepareRender(e);
 		return t.push(() => {
-			ob(this.markUniformInfo, {
+			cb(this.markUniformInfo, {
 				uScaleFactor: this.#t(),
 				uSemanticThreshold: this.getSemanticThreshold()
 			}), this.markUniformsAltered = !0;
-		}), t.push(() => this.bindOrSetMarkUniformBlock()), t.push(() => db(this.gl, this.programInfo, this.vertexArrayInfo)), t;
+		}), t.push(() => this.bindOrSetMarkUniformBlock()), t.push(() => pb(this.gl, this.programInfo, this.vertexArrayInfo)), t;
 	}
 	render(e) {
 		let t = this.gl;
 		return this.createRenderCallback((e, n) => {
-			n && hb(t, this.vertexArrayInfo, t.POINTS, n, e);
+			n && _b(t, this.vertexArrayInfo, t.POINTS, n, e);
 		}, e);
 	}
-}, dC = "const int BUTT=0;const int SQUARE=1;const int ROUND=2;in float pos;in float side;flat out vec4 vColor;flat out float vSize;out float vNormalLengthInPixels;out highp vec2 vPosInPixels;void main(void){float pixelSize=1.0/uDevicePixelRatio;float size=getScaled_size();float opacity=getScaled_opacity()*uViewOpacity;if(size<pixelSize){opacity*=size/pixelSize;size=pixelSize;}vec2 a=applySampleFacet(vec2(getScaled_x(),getScaled_y()));vec2 b=applySampleFacet(vec2(getScaled_x2(),getScaled_y2()));vec2 tangent=b-a;float offset=0.0;float relativeDiff=0.0;if(uMinLength>0.0||uStrokeCap!=BUTT){float len=length(tangent*uViewportSize);float diff=max(0.0,uMinLength-len);if(uStrokeCap!=BUTT){diff+=size;}relativeDiff=diff/len;offset=relativeDiff*(pos-0.5);}vec2 p=pos<1.0? a+tangent*(pos+offset): b+tangent*offset;float aaPadding=pixelSize;vec2 normal=normalize(vec2(-tangent.y,tangent.x)/uViewportSize);p+=normal*side*(size+aaPadding)/uViewportSize;gl_Position=unitToNdc(p);vColor=vec4(getScaled_color()*opacity,opacity);vSize=size;vNormalLengthInPixels=side*(size+aaPadding);vPosInPixels=vec2(pos,(1.0-pos))*(1.0+relativeDiff)*length(tangent*uViewportSize)-vec2(uStrokeCap!=BUTT ? size/2.0 : 0.0);setupPicking();}", fC = "const int BUTT=0;const int SQUARE=1;const int ROUND=2;uniform sampler2D uDashTexture;flat in vec4 vColor;flat in float vSize;in vec2 vPosInPixels;in float vNormalLengthInPixels;out lowp vec4 fragColor;void main(void){float dpr=uDevicePixelRatio;float distanceFromEnd=-min(vPosInPixels[0],vPosInPixels[1]);float distance;if(distanceFromEnd>0.0&&uStrokeCap==ROUND){distance=length(vec2(distanceFromEnd,vNormalLengthInPixels));}else{distance=abs(vNormalLengthInPixels);}float opacity=clamp(((vSize/2.0-distance)*dpr),-0.5,0.5)+0.5;if(uDashTextureSize>0.0){float pos=(vPosInPixels[0]+uStrokeDashOffset)*dpr;float floored=floor(pos);vec2 texelPositions=(floored+vec2(0.5,1.5))/dpr/uDashTextureSize;opacity*=mix(texture(uDashTexture,vec2(texelPositions[0],0)).r,texture(uDashTexture,vec2(texelPositions[1],0)).r,clamp((pos-floored),0.0,1.0));}fragColor=vColor*opacity;if(uPickingEnabled){fragColor=vPickingColor;}}", pC = "layout(std140)uniform Mark{uniform mediump float uMinLength;uniform mediump float uDashTextureSize;uniform lowp int uStrokeCap;uniform mediump float uStrokeDashOffset;\n#pragma markUniforms\n};", mC = "horizontal", hC = "vertical", gC = class extends YS {
+}, pC = "const int BUTT=0;const int SQUARE=1;const int ROUND=2;in float pos;in float side;flat out vec4 vColor;flat out float vSize;out float vNormalLengthInPixels;out highp vec2 vPosInPixels;void main(void){float pixelSize=1.0/uDevicePixelRatio;float size=getScaled_size();float opacity=getScaled_opacity()*uViewOpacity;if(size<pixelSize){opacity*=size/pixelSize;size=pixelSize;}vec2 a=applySampleFacet(vec2(getScaled_x(),getScaled_y()));vec2 b=applySampleFacet(vec2(getScaled_x2(),getScaled_y2()));vec2 tangent=b-a;float offset=0.0;float relativeDiff=0.0;if(uMinLength>0.0||uStrokeCap!=BUTT){float len=length(tangent*uViewportSize);float diff=max(0.0,uMinLength-len);if(uStrokeCap!=BUTT){diff+=size;}relativeDiff=diff/len;offset=relativeDiff*(pos-0.5);}vec2 p=pos<1.0? a+tangent*(pos+offset): b+tangent*offset;float aaPadding=pixelSize;vec2 normal=normalize(vec2(-tangent.y,tangent.x)/uViewportSize);p+=normal*side*(size+aaPadding)/uViewportSize;gl_Position=unitToNdc(p);vColor=vec4(getScaled_color()*opacity,opacity);vSize=size;vNormalLengthInPixels=side*(size+aaPadding);vPosInPixels=vec2(pos,(1.0-pos))*(1.0+relativeDiff)*length(tangent*uViewportSize)-vec2(uStrokeCap!=BUTT ? size/2.0 : 0.0);setupPicking();}", mC = "const int BUTT=0;const int SQUARE=1;const int ROUND=2;uniform sampler2D uDashTexture;flat in vec4 vColor;flat in float vSize;in vec2 vPosInPixels;in float vNormalLengthInPixels;out lowp vec4 fragColor;void main(void){float dpr=uDevicePixelRatio;float distanceFromEnd=-min(vPosInPixels[0],vPosInPixels[1]);float distance;if(distanceFromEnd>0.0&&uStrokeCap==ROUND){distance=length(vec2(distanceFromEnd,vNormalLengthInPixels));}else{distance=abs(vNormalLengthInPixels);}float opacity=clamp(((vSize/2.0-distance)*dpr),-0.5,0.5)+0.5;if(uDashTextureSize>0.0){float pos=(vPosInPixels[0]+uStrokeDashOffset)*dpr;float floored=floor(pos);vec2 texelPositions=(floored+vec2(0.5,1.5))/dpr/uDashTextureSize;opacity*=mix(texture(uDashTexture,vec2(texelPositions[0],0)).r,texture(uDashTexture,vec2(texelPositions[1],0)).r,clamp((pos-floored),0.0,1.0));}fragColor=vColor*opacity;if(uPickingEnabled){fragColor=vPickingColor;}}", hC = "layout(std140)uniform Mark{uniform mediump float uMinLength;uniform mediump float uDashTextureSize;uniform lowp int uStrokeCap;uniform mediump float uStrokeDashOffset;\n#pragma markUniforms\n};", gC = "horizontal", _C = "vertical", vC = class extends ZS {
 	constructor(e) {
 		super(e), this.dashTextureSize = 0;
 	}
@@ -9753,14 +9774,14 @@ var lC = {}, uC = class extends YS {
 	fixTickEncoding(e) {
 		let t = this.properties;
 		e.x ??= { value: .5 }, e.y ??= { value: .5 }, e.size = { value: t.thickness };
-		let n = t.orient ?? vC(e);
+		let n = t.orient ?? bC(e);
 		if (!n) throw Error("Cannot infer tick orientation from the encoding. Specify the tick mark's orient explicitly.");
-		return yC(e, n), e;
+		return xC(e, n), e;
 	}
 	async initializeGraphics() {
 		await super.initializeGraphics();
-		let e = this.gl, t = _C(this.properties.strokeDash);
-		this.dashTexture = lv(e, {
+		let e = this.gl, t = yC(this.properties.strokeDash);
+		this.dashTexture = dv(e, {
 			level: 0,
 			mag: e.NEAREST,
 			min: e.NEAREST,
@@ -9768,7 +9789,7 @@ var lC = {}, uC = class extends YS {
 			format: e.RED,
 			src: t,
 			height: 1
-		}), this.dashTextureSize = t.length, this.createAndLinkShaders(dC, fC, [pC]);
+		}), this.dashTextureSize = t.length, this.createAndLinkShaders(pC, mC, [hC]);
 	}
 	finalizeGraphicsInitialization() {
 		super.finalizeGraphicsInitialization(), this.gl.useProgram(this.programInfo.program);
@@ -9777,7 +9798,7 @@ var lC = {}, uC = class extends YS {
 			"butt",
 			"square",
 			"round"
-		].indexOf(e)), ob(this.markUniformInfo, { uDashTextureSize: +this.dashTextureSize }), this.markUniformsAltered = !0;
+		].indexOf(e)), cb(this.markUniformInfo, { uDashTextureSize: +this.dashTextureSize }), this.markUniformsAltered = !0;
 	}
 	updateGraphicsData() {
 		let e = this.unitView.getCollector();
@@ -9785,7 +9806,7 @@ var lC = {}, uC = class extends YS {
 			console.debug("No collector");
 			return;
 		}
-		let t = e.getItemCount(), n = new xS({
+		let t = e.getItemCount(), n = new CS({
 			encoders: this.encoders,
 			attributes: this.getAttributes(),
 			numItems: Math.max(t, this.properties.minBufferSize || 0)
@@ -9796,14 +9817,14 @@ var lC = {}, uC = class extends YS {
 	}
 	prepareRender(e) {
 		let t = super.prepareRender(e);
-		return t.push(() => this.bindOrSetMarkUniformBlock()), t.push(() => cb(this.programInfo, { uDashTexture: this.dashTexture })), t.push(() => db(this.gl, this.programInfo, this.vertexArrayInfo)), t;
+		return t.push(() => this.bindOrSetMarkUniformBlock()), t.push(() => ub(this.programInfo, { uDashTexture: this.dashTexture })), t.push(() => pb(this.gl, this.programInfo, this.vertexArrayInfo)), t;
 	}
 	render(e) {
 		let t = this.gl;
-		return this.createRenderCallback((e, n) => hb(t, this.vertexArrayInfo, t.TRIANGLE_STRIP, n, e), e);
+		return this.createRenderCallback((e, n) => _b(t, this.vertexArrayInfo, t.TRIANGLE_STRIP, n, e), e);
 	}
 };
-function _C(e) {
+function yC(e) {
 	if (!e) return new Uint8Array();
 	if (e.length == 0 || e.length % 2 || e.findIndex((e) => Math.round(e) != e || e < 1 || e > 1e3) >= 0) throw Error("Invalid stroke dash pattern: " + JSON.stringify(e));
 	let t = e.reduce((e, t) => e + t), n = new Uint8Array(t), r = !0, i = 0;
@@ -9813,44 +9834,44 @@ function _C(e) {
 	}
 	return n;
 }
-function vC(e) {
-	if (!e.y) return hC;
-	if (!e.x) return mC;
-	let t = bC(e.x), n = bC(e.y);
-	if (!t && n) return hC;
-	if (t && !n) return mC;
+function bC(e) {
+	if (!e.y) return _C;
+	if (!e.x) return gC;
+	let t = SC(e.x), n = SC(e.y);
+	if (!t && n) return _C;
+	if (t && !n) return gC;
 }
-function yC(e, t) {
-	if (t == hC) if (e.x2 = e.x, bC(e.y)) {
-		let [t, n] = SC(e.y);
+function xC(e, t) {
+	if (t == _C) if (e.x2 = e.x, SC(e.y)) {
+		let [t, n] = wC(e.y);
 		e.y = t, e.y2 = n;
 	} else e.y = { value: 0 }, e.y2 = { value: 1 };
-	else if (e.y2 = e.y, bC(e.x)) {
-		let [t, n] = SC(e.x);
+	else if (e.y2 = e.y, SC(e.x)) {
+		let [t, n] = wC(e.x);
 		e.x = t, e.x2 = n;
 	} else e.x = { value: 0 }, e.x2 = { value: 1 };
 }
-function bC(e) {
+function SC(e) {
 	return wf(e) && (e.type == "ordinal" || e.type == "nominal");
 }
-function xC(e, t) {
+function CC(e, t) {
 	return {
 		...e,
 		band: t
 	};
 }
-function SC(e) {
+function wC(e) {
 	let t = (1 - (e.band ?? 1)) / 2;
-	return [xC(e, t), xC(e, 1 - t)];
+	return [CC(e, t), CC(e, 1 - t)];
 }
 //#endregion
 //#region src/marks/link.vertex.glsl
-var CC = "flat out vec4 vColor;flat out float vSize;out float vNormalLengthInPixels;flat out float vGamma;const int SHAPE_ARC=0;const int SHAPE_DOME=1;const int SHAPE_DIAGONAL=2;const int SHAPE_LINE=3;const int ORIENT_VERTICAL=0;const int ORIENT_HORIZONTAL=1;float distanceFromLine(vec2 pointOnLine1,vec2 pointOnLine2,vec2 point){vec2 a=point-pointOnLine1;vec2 b=pointOnLine2-pointOnLine1;vec2 proj=dot(a,b)/dot(b,b)*b;return length(a-proj);}bool isInsideViewport(vec2 point,float marginFactor){vec2 margin=uViewportSize*vec2(marginFactor);return point.x>=-margin.x&&point.x<=uViewportSize.x+margin.x&&point.y>=-margin.y&&point.y<=uViewportSize.y+margin.y;}float inverseSmoothstep(float t){t=clamp(t,0.0,1.0);return 0.5-sin(asin(1.0-2.0*t)/3.0);}/***Remaps the parameter t to concentrate vertices to the part that is visible in the viewport.*This keeps the tightly bent endpoints smooth even when zooming in very close.*/float remapVisibleChordParameter(float stripT,float chordStart,float chordEnd,float viewportLength){float chordMin=min(chordStart,chordEnd);float chordMax=max(chordStart,chordEnd);float chordSpan=chordMax-chordMin;if(chordSpan<=0.0){return 0.0;}float visibleChordMin=max(chordMin,0.0);float visibleChordMax=min(chordMax,viewportLength);if(visibleChordMax<=visibleChordMin){return stripT;}float visibleTMin=inverseSmoothstep((visibleChordMin-chordMin)/chordSpan);float visibleTMax=inverseSmoothstep((visibleChordMax-chordMin)/chordSpan);float visibleTSpan=visibleTMax-visibleTMin;float offscreenTSpan=visibleTMin+(1.0-visibleTMax);if(offscreenTSpan<=0.0){return stripT;}float visibleShare=clamp(0.75+(1.0-visibleTSpan)*0.2,0.75,0.95);float offscreenShare=1.0-visibleShare;float leftShare=offscreenShare*visibleTMin/offscreenTSpan;float rightShare=offscreenShare*(1.0-visibleTMax)/offscreenTSpan;if(stripT<=leftShare){return leftShare>0.0 ? mix(0.0,visibleTMin,stripT/leftShare): visibleTMin;}float visibleStart=leftShare;float visibleEnd=visibleStart+visibleShare;if(stripT<=visibleEnd){return visibleShare>0.0? mix(visibleTMin,visibleTMax,(stripT-visibleStart)/visibleShare): visibleTMin;}return rightShare>0.0? mix(visibleTMax,1.0,(stripT-visibleEnd)/rightShare): visibleTMax;}void clampChordToViewport(inout vec2 p1,inout vec2 p4,inout float chordLength){if(chordLength>uMaxChordLength){vec2 chordVector=p4-p1;vec2 unitChordVector=normalize(chordVector);if(isInsideViewport(p1,2.0)){chordLength=uMaxChordLength;p4=p1+unitChordVector*uMaxChordLength;}else if(isInsideViewport(p4,2.0)){chordLength=uMaxChordLength;p1=p4-unitChordVector*uMaxChordLength;}}}void clampDomeApex(inout vec2 p1,inout vec2 p4,int orient){if(orient==ORIENT_VERTICAL){if(p4.x>0.0){p1.x=max(p1.x,-p4.x);}if(p1.x<uViewportSize.x){p4.x=min(p4.x,2.0*uViewportSize.x-p1.x);}}else{if(p4.y>0.0){p1.y=max(p1.y,-p4.y);}if(p1.y<uViewportSize.y){p4.y=min(p4.y,2.0*uViewportSize.y-p1.y);}}}void main(void){float pixelSize=1.0/uDevicePixelRatio;float opacity=getScaled_opacity()*uViewOpacity;vec2 p1,p2,p3,p4;vec2 a=applySampleFacet(vec2(getScaled_x(),getScaled_y()))*uViewportSize;vec2 b=applySampleFacet(vec2(getScaled_x2(),getScaled_y2()))*uViewportSize;if(uShape<=SHAPE_DOME){if(uShape==SHAPE_DOME){vec2 height=vec2(0.0);if(uOrient==ORIENT_VERTICAL){p1=vec2(min(a.x,b.x),b.y);p4=vec2(max(a.x,b.x),b.y);height=vec2(0.0,a.y-b.y);float chordLength=length(p4-p1);clampChordToViewport(p1,p4,chordLength);if(uClampApex){clampDomeApex(p1,p4,ORIENT_VERTICAL);}}else{p1=vec2(b.x,min(a.y,b.y));p4=vec2(b.x,max(a.y,b.y));height=vec2(a.x-b.x,0.0);float chordLength=length(p4-p1);clampChordToViewport(p1,p4,chordLength);if(uClampApex){clampDomeApex(p1,p4,ORIENT_HORIZONTAL);}}vec2 controlOffset=height/0.75;p2=p1+controlOffset;p3=p4+controlOffset;}if(uShape==SHAPE_ARC){p1=a;p4=b;vec2 chordVector=p4-p1;vec2 unitChordVector=normalize(chordVector);vec2 chordNormal=vec2(-unitChordVector.y,unitChordVector.x);float chordLength=length(chordVector);clampChordToViewport(p1,p4,chordLength);float height=max(chordLength/2.0*uArcHeightFactor,uMinArcHeight);vec2 controlOffset=chordNormal*height/0.75;p2=p1+controlOffset;p3=p4+controlOffset;}}else if(uShape==SHAPE_DIAGONAL){if(uOrient==ORIENT_VERTICAL){p1=a;p2=vec2(a.x,(a.y+b.y)/2.0);p3=vec2(b.x,(a.y+b.y)/2.0);p4=b;}else{p1=a;p2=vec2((a.x+b.x)/2.0,a.y);p3=vec2((a.x+b.x)/2.0,b.y);p4=b;}}else if(uShape==SHAPE_LINE){p1=a;p2=(a+b)/2.0;p3=p2;p4=b;}vec2 strip=vec2(float(gl_VertexID/2)/float(uSegmentBreaks),float(gl_VertexID % 2)-0.5);float t=strip.x;if(uShape==SHAPE_DOME){if(uOrient==ORIENT_VERTICAL){t=remapVisibleChordParameter(strip.x,p1.x,p4.x,uViewportSize.x);}else{t=remapVisibleChordParameter(strip.x,p1.y,p4.y,uViewportSize.y);}}else if(uShape==SHAPE_ARC){if(a.y==b.y){t=remapVisibleChordParameter(strip.x,p1.x,p4.x,uViewportSize.x);}else if(a.x==b.x){t=remapVisibleChordParameter(strip.x,p1.y,p4.y,uViewportSize.y);}}vec2 p;vec2 tangent;vec2 q1=mix(p1,p2,t);vec2 q2=mix(p2,p3,t);vec2 q3=mix(p3,p4,t);vec2 r1=mix(q1,q2,t);vec2 r2=mix(q2,q3,t);p=mix(r1,r2,t);tangent=3.0*(r2-r1);tangent=normalize(tangent);vec2 normal=vec2(-tangent.y,tangent.x);float size=getScaled_size();if(size<pixelSize){opacity*=size/pixelSize;size=pixelSize;}float paddedSize=uPickingEnabled? max(size,uMinPickingSize): size+pixelSize;vNormalLengthInPixels=strip.y*paddedSize;if(uShape==SHAPE_ARC&&uArcFadingDistance[0]>0.0&&uArcFadingDistance[1]>0.0&&(!uNoFadingOnPointSelection||!isPointSelected())){float d=distanceFromLine(p1,p4,p);float distanceOpacity=smoothstep(uArcFadingDistance[1],uArcFadingDistance[0],d);opacity*=distanceOpacity;if(distanceOpacity<=0.0){vNormalLengthInPixels=0.0;}}p+=normal*vNormalLengthInPixels;gl_Position=pixelsToNdc(p);vec3 color=getScaled_color();vColor=vec4(color*opacity,opacity);vGamma=getGammaForColor(color);vSize=paddedSize;setupPicking();}", wC = "flat in vec4 vColor;flat in float vSize;in float vNormalLengthInPixels;flat in float vGamma;out lowp vec4 fragColor;void main(void){float dpr=uDevicePixelRatio;float distance=abs(vNormalLengthInPixels);float opacity=clamp(((vSize/2.0-distance)*dpr),0.0,1.0);opacity=pow(opacity,vGamma);fragColor=vColor*opacity;if(uPickingEnabled){fragColor=vPickingColor;}}", TC = "layout(std140)uniform Mark{uniform float uArcHeightFactor;uniform float uMinArcHeight;uniform float uMinPickingSize;uniform int uShape;uniform int uOrient;uniform bool uClampApex;uniform float uMaxChordLength;uniform vec2 uArcFadingDistance;uniform bool uNoFadingOnPointSelection;uniform int uSegmentBreaks;\n#pragma markUniforms\n};", EC = [
+var TC = "flat out vec4 vColor;flat out float vSize;out float vNormalLengthInPixels;flat out float vGamma;const int SHAPE_ARC=0;const int SHAPE_DOME=1;const int SHAPE_DIAGONAL=2;const int SHAPE_LINE=3;const int ORIENT_VERTICAL=0;const int ORIENT_HORIZONTAL=1;float distanceFromLine(vec2 pointOnLine1,vec2 pointOnLine2,vec2 point){vec2 a=point-pointOnLine1;vec2 b=pointOnLine2-pointOnLine1;vec2 proj=dot(a,b)/dot(b,b)*b;return length(a-proj);}bool isInsideViewport(vec2 point,float marginFactor){vec2 margin=uViewportSize*vec2(marginFactor);return point.x>=-margin.x&&point.x<=uViewportSize.x+margin.x&&point.y>=-margin.y&&point.y<=uViewportSize.y+margin.y;}float inverseSmoothstep(float t){t=clamp(t,0.0,1.0);return 0.5-sin(asin(1.0-2.0*t)/3.0);}/***Remaps the parameter t to concentrate vertices to the part that is visible in the viewport.*This keeps the tightly bent endpoints smooth even when zooming in very close.*/float remapVisibleChordParameter(float stripT,float chordStart,float chordEnd,float viewportLength){float chordMin=min(chordStart,chordEnd);float chordMax=max(chordStart,chordEnd);float chordSpan=chordMax-chordMin;if(chordSpan<=0.0){return 0.0;}float visibleChordMin=max(chordMin,0.0);float visibleChordMax=min(chordMax,viewportLength);if(visibleChordMax<=visibleChordMin){return stripT;}float visibleTMin=inverseSmoothstep((visibleChordMin-chordMin)/chordSpan);float visibleTMax=inverseSmoothstep((visibleChordMax-chordMin)/chordSpan);float visibleTSpan=visibleTMax-visibleTMin;float offscreenTSpan=visibleTMin+(1.0-visibleTMax);if(offscreenTSpan<=0.0){return stripT;}float visibleShare=clamp(0.75+(1.0-visibleTSpan)*0.2,0.75,0.95);float offscreenShare=1.0-visibleShare;float leftShare=offscreenShare*visibleTMin/offscreenTSpan;float rightShare=offscreenShare*(1.0-visibleTMax)/offscreenTSpan;if(stripT<=leftShare){return leftShare>0.0 ? mix(0.0,visibleTMin,stripT/leftShare): visibleTMin;}float visibleStart=leftShare;float visibleEnd=visibleStart+visibleShare;if(stripT<=visibleEnd){return visibleShare>0.0? mix(visibleTMin,visibleTMax,(stripT-visibleStart)/visibleShare): visibleTMin;}return rightShare>0.0? mix(visibleTMax,1.0,(stripT-visibleEnd)/rightShare): visibleTMax;}void clampChordToViewport(inout vec2 p1,inout vec2 p4,inout float chordLength){if(chordLength>uMaxChordLength){vec2 chordVector=p4-p1;vec2 unitChordVector=normalize(chordVector);if(isInsideViewport(p1,2.0)){chordLength=uMaxChordLength;p4=p1+unitChordVector*uMaxChordLength;}else if(isInsideViewport(p4,2.0)){chordLength=uMaxChordLength;p1=p4-unitChordVector*uMaxChordLength;}}}void clampDomeApex(inout vec2 p1,inout vec2 p4,int orient){if(orient==ORIENT_VERTICAL){if(p4.x>0.0){p1.x=max(p1.x,-p4.x);}if(p1.x<uViewportSize.x){p4.x=min(p4.x,2.0*uViewportSize.x-p1.x);}}else{if(p4.y>0.0){p1.y=max(p1.y,-p4.y);}if(p1.y<uViewportSize.y){p4.y=min(p4.y,2.0*uViewportSize.y-p1.y);}}}void main(void){float pixelSize=1.0/uDevicePixelRatio;float opacity=getScaled_opacity()*uViewOpacity;vec2 p1,p2,p3,p4;vec2 a=applySampleFacet(vec2(getScaled_x(),getScaled_y()))*uViewportSize;vec2 b=applySampleFacet(vec2(getScaled_x2(),getScaled_y2()))*uViewportSize;if(uShape<=SHAPE_DOME){if(uShape==SHAPE_DOME){vec2 height=vec2(0.0);if(uOrient==ORIENT_VERTICAL){p1=vec2(min(a.x,b.x),b.y);p4=vec2(max(a.x,b.x),b.y);height=vec2(0.0,a.y-b.y);float chordLength=length(p4-p1);clampChordToViewport(p1,p4,chordLength);if(uClampApex){clampDomeApex(p1,p4,ORIENT_VERTICAL);}}else{p1=vec2(b.x,min(a.y,b.y));p4=vec2(b.x,max(a.y,b.y));height=vec2(a.x-b.x,0.0);float chordLength=length(p4-p1);clampChordToViewport(p1,p4,chordLength);if(uClampApex){clampDomeApex(p1,p4,ORIENT_HORIZONTAL);}}vec2 controlOffset=height/0.75;p2=p1+controlOffset;p3=p4+controlOffset;}if(uShape==SHAPE_ARC){p1=a;p4=b;vec2 chordVector=p4-p1;vec2 unitChordVector=normalize(chordVector);vec2 chordNormal=vec2(-unitChordVector.y,unitChordVector.x);float chordLength=length(chordVector);clampChordToViewport(p1,p4,chordLength);float height=max(chordLength/2.0*uArcHeightFactor,uMinArcHeight);vec2 controlOffset=chordNormal*height/0.75;p2=p1+controlOffset;p3=p4+controlOffset;}}else if(uShape==SHAPE_DIAGONAL){if(uOrient==ORIENT_VERTICAL){p1=a;p2=vec2(a.x,(a.y+b.y)/2.0);p3=vec2(b.x,(a.y+b.y)/2.0);p4=b;}else{p1=a;p2=vec2((a.x+b.x)/2.0,a.y);p3=vec2((a.x+b.x)/2.0,b.y);p4=b;}}else if(uShape==SHAPE_LINE){p1=a;p2=(a+b)/2.0;p3=p2;p4=b;}vec2 strip=vec2(float(gl_VertexID/2)/float(uSegmentBreaks),float(gl_VertexID % 2)-0.5);float t=strip.x;if(uShape==SHAPE_DOME){if(uOrient==ORIENT_VERTICAL){t=remapVisibleChordParameter(strip.x,p1.x,p4.x,uViewportSize.x);}else{t=remapVisibleChordParameter(strip.x,p1.y,p4.y,uViewportSize.y);}}else if(uShape==SHAPE_ARC){if(a.y==b.y){t=remapVisibleChordParameter(strip.x,p1.x,p4.x,uViewportSize.x);}else if(a.x==b.x){t=remapVisibleChordParameter(strip.x,p1.y,p4.y,uViewportSize.y);}}vec2 p;vec2 tangent;vec2 q1=mix(p1,p2,t);vec2 q2=mix(p2,p3,t);vec2 q3=mix(p3,p4,t);vec2 r1=mix(q1,q2,t);vec2 r2=mix(q2,q3,t);p=mix(r1,r2,t);tangent=3.0*(r2-r1);tangent=normalize(tangent);vec2 normal=vec2(-tangent.y,tangent.x);float size=getScaled_size();if(size<pixelSize){opacity*=size/pixelSize;size=pixelSize;}float paddedSize=uPickingEnabled? max(size,uMinPickingSize): size+pixelSize;vNormalLengthInPixels=strip.y*paddedSize;if(uShape==SHAPE_ARC&&uArcFadingDistance[0]>0.0&&uArcFadingDistance[1]>0.0&&(!uNoFadingOnPointSelection||!isPointSelected())){float d=distanceFromLine(p1,p4,p);float distanceOpacity=smoothstep(uArcFadingDistance[1],uArcFadingDistance[0],d);opacity*=distanceOpacity;if(distanceOpacity<=0.0){vNormalLengthInPixels=0.0;}}p+=normal*vNormalLengthInPixels;gl_Position=pixelsToNdc(p);vec3 color=getScaled_color();vColor=vec4(color*opacity,opacity);vGamma=getGammaForColor(color);vSize=paddedSize;setupPicking();}", EC = "flat in vec4 vColor;flat in float vSize;in float vNormalLengthInPixels;flat in float vGamma;out lowp vec4 fragColor;void main(void){float dpr=uDevicePixelRatio;float distance=abs(vNormalLengthInPixels);float opacity=clamp(((vSize/2.0-distance)*dpr),0.0,1.0);opacity=pow(opacity,vGamma);fragColor=vColor*opacity;if(uPickingEnabled){fragColor=vPickingColor;}}", DC = "layout(std140)uniform Mark{uniform float uArcHeightFactor;uniform float uMinArcHeight;uniform float uMinPickingSize;uniform int uShape;uniform int uOrient;uniform bool uClampApex;uniform float uMaxChordLength;uniform vec2 uArcFadingDistance;uniform bool uNoFadingOnPointSelection;uniform int uSegmentBreaks;\n#pragma markUniforms\n};", OC = [
 	"arc",
 	"dome",
 	"diagonal",
 	"line"
-], DC = ["vertical", "horizontal"], OC = class extends YS {
+], kC = ["vertical", "horizontal"], AC = class extends ZS {
 	constructor(e) {
 		super(e), this._baseInstanceExt = void 0;
 	}
@@ -9882,12 +9903,12 @@ var CC = "flat out vec4 vColor;flat out float vSize;out float vNormalLengthInPix
 		return e.x2 || (wf(e.x) ? e.x2 = { datum: 0 } : e.x2 = e.x), e.y2 || (wf(e.y) ? e.y2 = { datum: 0 } : e.y2 = e.y), e;
 	}
 	async initializeGraphics() {
-		await super.initializeGraphics(), this._baseInstanceExt = this.gl.getExtension("WEBGL_draw_instanced_base_vertex_base_instance"), this.createAndLinkShaders(CC, wC, [TC]);
+		await super.initializeGraphics(), this._baseInstanceExt = this.gl.getExtension("WEBGL_draw_instanced_base_vertex_base_instance"), this.createAndLinkShaders(TC, EC, [DC]);
 	}
 	finalizeGraphicsInitialization() {
 		super.finalizeGraphicsInitialization(), this.gl.useProgram(this.programInfo.program);
 		let e = this.properties;
-		this.registerMarkUniformValue("uArcFadingDistance", e.arcFadingDistance, (e) => e || [0, 0]), this.registerMarkUniformValue("uArcHeightFactor", e.arcHeightFactor), this.registerMarkUniformValue("uMinArcHeight", e.minArcHeight), this.registerMarkUniformValue("uMinPickingSize", e.minPickingSize), this.registerMarkUniformValue("uShape", e.linkShape, (e) => EC.indexOf(e)), this.registerMarkUniformValue("uOrient", e.orient, (e) => DC.indexOf(e)), this.registerMarkUniformValue("uClampApex", e.clampApex, (e) => !!e), this.registerMarkUniformValue("uMaxChordLength", e.maxChordLength), this.registerMarkUniformValue("uSegmentBreaks", e.segments, (e) => e), this.registerMarkUniformValue("uNoFadingOnPointSelection", e.noFadingOnPointSelection, (e) => !!e);
+		this.registerMarkUniformValue("uArcFadingDistance", e.arcFadingDistance, (e) => e || [0, 0]), this.registerMarkUniformValue("uArcHeightFactor", e.arcHeightFactor), this.registerMarkUniformValue("uMinArcHeight", e.minArcHeight), this.registerMarkUniformValue("uMinPickingSize", e.minPickingSize), this.registerMarkUniformValue("uShape", e.linkShape, (e) => OC.indexOf(e)), this.registerMarkUniformValue("uOrient", e.orient, (e) => kC.indexOf(e)), this.registerMarkUniformValue("uClampApex", e.clampApex, (e) => !!e), this.registerMarkUniformValue("uMaxChordLength", e.maxChordLength), this.registerMarkUniformValue("uSegmentBreaks", e.segments, (e) => e), this.registerMarkUniformValue("uNoFadingOnPointSelection", e.noFadingOnPointSelection, (e) => !!e);
 	}
 	updateGraphicsData() {
 		let e = this.unitView.getCollector();
@@ -9895,7 +9916,7 @@ var CC = "flat out vec4 vColor;flat out float vSize;out float vNormalLengthInPix
 			console.debug("No collector");
 			return;
 		}
-		let t = e.getItemCount(), n = new CS({
+		let t = e.getItemCount(), n = new TS({
 			encoders: this.encoders,
 			attributes: this.getAttributes(),
 			numItems: t
@@ -9909,7 +9930,7 @@ var CC = "flat out vec4 vColor;flat out float vSize;out float vNormalLengthInPix
 	}
 	prepareRender(e) {
 		let t = super.prepareRender(e);
-		return t.push(() => this.bindOrSetMarkUniformBlock()), this._baseInstanceExt ? t.push(() => db(this.gl, this.programInfo, this.vertexArrayInfo)) : t.push(() => this.gl.bindVertexArray(null)), t;
+		return t.push(() => this.bindOrSetMarkUniformBlock()), this._baseInstanceExt ? t.push(() => pb(this.gl, this.programInfo, this.vertexArrayInfo)) : t.push(() => this.gl.bindVertexArray(null)), t;
 	}
 	render(e) {
 		let t = this.gl, n = () => (this.markUniformInfo.uniforms.uSegmentBreaks[0] + 1) * 2;
@@ -9920,20 +9941,20 @@ var CC = "flat out vec4 vColor;flat out float vSize;out float vNormalLengthInPix
 				let [n, r] = t;
 				r.buffer && r.numComponents && r.divisor && (r.offset = e * this.arrays[n].numComponents * this.bytesPerElement.get(n));
 			}
-			db(t, this.programInfo, this.bufferInfo), t.drawArraysInstanced(t.TRIANGLE_STRIP, 0, n(), r);
+			pb(t, this.programInfo, this.bufferInfo), t.drawArraysInstanced(t.TRIANGLE_STRIP, 0, n(), r);
 		}, e);
 	}
-}, kC = "in mediump vec2 vertexCoord;in lowp vec2 textureCoord;in float width;out vec2 vTexCoord;out float vEdgeFadeOpacity;flat out vec4 vColor;flat out float vSlope;flat out float vGamma;struct RangeResult{float pos;float scale;};float minValue(vec4 v){return min(min(v.x,v.y),min(v.z,v.w));}float maxValue(vec4 v){return max(max(v.x,v.y),max(v.z,v.w));}/***All measures are in[0,1]*/RangeResult positionInsideRange(float a,float b,float width,float padding,int align,bool flush){float span=b-a;float paddedWidth=width+2.0*padding;if(a>1.0||b<0.0){return RangeResult(0.0,0.0);}float extra=max(0.0,span-paddedWidth);float pos;if(align==0){float centre=a+b;if(flush){float leftOver=max(0.0,paddedWidth-centre);centre+=min(leftOver,extra);float rightOver=max(0.0,paddedWidth+centre-2.0);centre-=min(rightOver,extra);}pos=centre/2.0;}else if(align<0){float edge=a;if(flush){float over=max(0.0,-edge);edge+=min(over,extra);}pos=edge+padding;}else{float edge=b;if(flush){float over=max(0.0,edge-1.0);edge-=min(over,extra);}pos=edge-padding;}float scale=clamp((span-padding)/paddedWidth,0.0,1.0);return RangeResult(pos,scale);}vec2 calculateRotatedDimensions(float width,mat2 rotationMatrix){vec2 a=abs(rotationMatrix*vec2(width/2.0,0.5));vec2 b=abs(rotationMatrix*vec2(width/2.0,-0.5));return vec2(max(a.x,b.x),max(a.y,b.y))*2.0;}ivec2 fixAlignForAngle(ivec2 align,float angleInDegrees){float a=mod(angleInDegrees+45.0,360.0);int x=align.x;int y=-align.y;if(a<90.0){return ivec2(x,y);}else if(a<180.0){return ivec2(y,-x);}else if(a<270.0){return ivec2(-x,y);}else{return ivec2(-y,x);}}void main(void){float opacity=getScaled_opacity()*uViewOpacity;vec2 size=vec2(getScaled_size());float x=getScaled_x();float y=getScaled_y();float scale=1.0;float angleInDegrees=getScaled_angle();float angle=-angleInDegrees*PI/180.0;float sinTheta=sin(angle);float cosTheta=cos(angle);mat2 rotationMatrix=mat2(cosTheta,sinTheta,-sinTheta,cosTheta);vec2 flushSize=calculateRotatedDimensions(width,rotationMatrix);\n#if defined(x2_DEFINED) || defined(y2_DEFINED)\nivec2 align=fixAlignForAngle(uAlign,angleInDegrees);\n#else\nivec2 align=uAlign;\n#endif\n#ifdef x2_DEFINED\nfloat x2=getScaled_x2();if(uLogoLetter){size.x=(x2-x)*uViewportSize.x;x+=(x2-x)/2.0;}else{float x2=getScaled_x2();RangeResult result=positionInsideRange(min(x,x2),max(x,x2),size.x*scale*flushSize.x/uViewportSize.x,uPaddingX/uViewportSize.x,align.x,uFlushX);x=result.pos;scale*=result.scale;}\n#endif\nvec2 pos=applySampleFacet(vec2(x,y));\n#ifdef y2_DEFINED\nfloat y2=getScaled_y2();vec2 pos2=applySampleFacet(vec2(x,y2));if(uLogoLetter){size.y=(pos2.y-pos.y)*uViewportSize.y;pos.y+=(pos2.y-pos.y)/2.0;}else{RangeResult result=positionInsideRange(min(pos.y,pos2.y),max(pos.y,pos2.y),size.y*scale*flushSize.y/uViewportSize.y,uPaddingY/uViewportSize.y,align.y,uFlushY);pos.y=result.pos;scale*=result.scale;}\n#endif\nif(scale<1.0){if(uSqueeze){vec2 scaleFadeExtent=vec2(3.0,6.0)/size;if(scale<scaleFadeExtent[0]){gl_Position=vec4(0.0);return;}size*=scale;opacity*=linearstep(scaleFadeExtent[0],scaleFadeExtent[1],scale);}else if(scale<1.0){gl_Position=vec4(0.0);return;}}vec2 charPos=rotationMatrix*(vertexCoord*size+uD);vec2 unitPos=pos+charPos/uViewportSize;gl_Position=unitToNdc(unitPos);vSlope=max(1.0,min(size.x,size.y)/uSdfNumerator*uDevicePixelRatio);vec3 color=getScaled_color();vColor=vec4(color*opacity,opacity);vGamma=getGammaForColor(color);vTexCoord=textureCoord;if(maxValue(uViewportEdgeFadeDistance)>-pow(10.0,10.0)){vEdgeFadeOpacity=minValue(((vec4(1.0,1.0,0.0,0.0)+vec4(-1.0,-1.0,1.0,1.0)*unitPos.yxyx)*uViewportSize.yxyx-uViewportEdgeFadeDistance)/uViewportEdgeFadeWidth);}else{vEdgeFadeOpacity=1.0;}setupPicking();}", AC = "uniform sampler2D uTexture;in vec2 vTexCoord;in float vEdgeFadeOpacity;flat in vec4 vColor;flat in float vSlope;flat in float vGamma;out lowp vec4 fragColor;float median(float r,float g,float b){return max(min(r,g),min(max(r,g),b));}float getDist(vec2 uv){vec3 c=texture(uTexture,uv).rgb;return 1.0-median(c.r,c.g,c.b);}/***Calculates the super-sampled distance to the edge.*This is used to avoid aliasing when rendering small text,*as mip-mapping cannot be used here.*The distance is averaged over a grid of n x n samples.*/float getSuperDist(vec2 uv){vec2 dx=dFdx(uv);vec2 dy=dFdy(uv);float n=2.0;float sum=0.0;for(float x=0.5;x<n;x++){for(float y=0.5;y<n;y++){sum+=getDist(uv+x/n*dx+y/n*dy);}}return sum/(n*n);}void main(){float sigDist=getSuperDist(vTexCoord);float slope=vSlope;if(uLogoLetter){slope=0.7/length(vec2(dFdy(sigDist),dFdx(sigDist)));}float opa=clamp((sigDist-0.5)*slope+0.5,0.0,1.0);opa*=clamp(vEdgeFadeOpacity,0.0,1.0);opa=pow(opa,vGamma);fragColor=vColor*opa;if(uPickingEnabled){fragColor=vPickingColor;}}", jC = "layout(std140)uniform Mark{uniform mediump float uSdfNumerator;uniform mediump vec2 uD;uniform mediump vec4 uViewportEdgeFadeWidth;uniform mediump vec4 uViewportEdgeFadeDistance;uniform bool uSqueeze;uniform bool uLogoLetter;uniform lowp ivec2 uAlign;uniform mediump float uPaddingX;uniform bool uFlushX;uniform mediump float uPaddingY;uniform bool uFlushY;\n#pragma markUniforms\n};", MC = {
+}, jC = "in mediump vec2 vertexCoord;in lowp vec2 textureCoord;in float width;out vec2 vTexCoord;out float vEdgeFadeOpacity;flat out vec4 vColor;flat out float vSlope;flat out float vGamma;struct RangeResult{float pos;float scale;};float minValue(vec4 v){return min(min(v.x,v.y),min(v.z,v.w));}float maxValue(vec4 v){return max(max(v.x,v.y),max(v.z,v.w));}/***All measures are in[0,1]*/RangeResult positionInsideRange(float a,float b,float width,float padding,int align,bool flush){float span=b-a;float paddedWidth=width+2.0*padding;if(a>1.0||b<0.0){return RangeResult(0.0,0.0);}float extra=max(0.0,span-paddedWidth);float pos;if(align==0){float centre=a+b;if(flush){float leftOver=max(0.0,paddedWidth-centre);centre+=min(leftOver,extra);float rightOver=max(0.0,paddedWidth+centre-2.0);centre-=min(rightOver,extra);}pos=centre/2.0;}else if(align<0){float edge=a;if(flush){float over=max(0.0,-edge);edge+=min(over,extra);}pos=edge+padding;}else{float edge=b;if(flush){float over=max(0.0,edge-1.0);edge-=min(over,extra);}pos=edge-padding;}float scale=clamp((span-padding)/paddedWidth,0.0,1.0);return RangeResult(pos,scale);}vec2 calculateRotatedDimensions(float width,mat2 rotationMatrix){vec2 a=abs(rotationMatrix*vec2(width/2.0,0.5));vec2 b=abs(rotationMatrix*vec2(width/2.0,-0.5));return vec2(max(a.x,b.x),max(a.y,b.y))*2.0;}ivec2 fixAlignForAngle(ivec2 align,float angleInDegrees){float a=mod(angleInDegrees+45.0,360.0);int x=align.x;int y=-align.y;if(a<90.0){return ivec2(x,y);}else if(a<180.0){return ivec2(y,-x);}else if(a<270.0){return ivec2(-x,y);}else{return ivec2(-y,x);}}void main(void){float opacity=getScaled_opacity()*uViewOpacity;vec2 size=vec2(getScaled_size());float x=getScaled_x();float y=getScaled_y();float scale=1.0;float angleInDegrees=getScaled_angle();float angle=-angleInDegrees*PI/180.0;float sinTheta=sin(angle);float cosTheta=cos(angle);mat2 rotationMatrix=mat2(cosTheta,sinTheta,-sinTheta,cosTheta);vec2 flushSize=calculateRotatedDimensions(width,rotationMatrix);\n#if defined(x2_DEFINED) || defined(y2_DEFINED)\nivec2 align=fixAlignForAngle(uAlign,angleInDegrees);\n#else\nivec2 align=uAlign;\n#endif\n#ifdef x2_DEFINED\nfloat x2=getScaled_x2();if(uLogoLetter){size.x=(x2-x)*uViewportSize.x;x+=(x2-x)/2.0;}else{float x2=getScaled_x2();RangeResult result=positionInsideRange(min(x,x2),max(x,x2),size.x*scale*flushSize.x/uViewportSize.x,uPaddingX/uViewportSize.x,align.x,uFlushX);x=result.pos;scale*=result.scale;}\n#endif\nvec2 pos=applySampleFacet(vec2(x,y));\n#ifdef y2_DEFINED\nfloat y2=getScaled_y2();vec2 pos2=applySampleFacet(vec2(x,y2));if(uLogoLetter){size.y=(pos2.y-pos.y)*uViewportSize.y;pos.y+=(pos2.y-pos.y)/2.0;}else{RangeResult result=positionInsideRange(min(pos.y,pos2.y),max(pos.y,pos2.y),size.y*scale*flushSize.y/uViewportSize.y,uPaddingY/uViewportSize.y,align.y,uFlushY);pos.y=result.pos;scale*=result.scale;}\n#endif\nif(scale<1.0){if(uSqueeze){vec2 scaleFadeExtent=vec2(3.0,6.0)/size;if(scale<scaleFadeExtent[0]){gl_Position=vec4(0.0);return;}size*=scale;opacity*=linearstep(scaleFadeExtent[0],scaleFadeExtent[1],scale);}else if(scale<1.0){gl_Position=vec4(0.0);return;}}vec2 charPos=rotationMatrix*(vertexCoord*size+uD);vec2 unitPos=pos+charPos/uViewportSize;gl_Position=unitToNdc(unitPos);vSlope=max(1.0,min(size.x,size.y)/uSdfNumerator*uDevicePixelRatio);vec3 color=getScaled_color();vColor=vec4(color*opacity,opacity);vGamma=getGammaForColor(color);vTexCoord=textureCoord;if(maxValue(uViewportEdgeFadeDistance)>-pow(10.0,10.0)){vEdgeFadeOpacity=minValue(((vec4(1.0,1.0,0.0,0.0)+vec4(-1.0,-1.0,1.0,1.0)*unitPos.yxyx)*uViewportSize.yxyx-uViewportEdgeFadeDistance)/uViewportEdgeFadeWidth);}else{vEdgeFadeOpacity=1.0;}setupPicking();}", MC = "uniform sampler2D uTexture;in vec2 vTexCoord;in float vEdgeFadeOpacity;flat in vec4 vColor;flat in float vSlope;flat in float vGamma;out lowp vec4 fragColor;float median(float r,float g,float b){return max(min(r,g),min(max(r,g),b));}float getDist(vec2 uv){vec3 c=texture(uTexture,uv).rgb;return 1.0-median(c.r,c.g,c.b);}/***Calculates the super-sampled distance to the edge.*This is used to avoid aliasing when rendering small text,*as mip-mapping cannot be used here.*The distance is averaged over a grid of n x n samples.*/float getSuperDist(vec2 uv){vec2 dx=dFdx(uv);vec2 dy=dFdy(uv);float n=2.0;float sum=0.0;for(float x=0.5;x<n;x++){for(float y=0.5;y<n;y++){sum+=getDist(uv+x/n*dx+y/n*dy);}}return sum/(n*n);}void main(){float sigDist=getSuperDist(vTexCoord);float slope=vSlope;if(uLogoLetter){slope=0.7/length(vec2(dFdy(sigDist),dFdx(sigDist)));}float opa=clamp((sigDist-0.5)*slope+0.5,0.0,1.0);opa*=clamp(vEdgeFadeOpacity,0.0,1.0);opa=pow(opa,vGamma);fragColor=vColor*opa;if(uPickingEnabled){fragColor=vPickingColor;}}", NC = "layout(std140)uniform Mark{uniform mediump float uSdfNumerator;uniform mediump vec2 uD;uniform mediump vec4 uViewportEdgeFadeWidth;uniform mediump vec4 uViewportEdgeFadeDistance;uniform bool uSqueeze;uniform bool uLogoLetter;uniform lowp ivec2 uAlign;uniform mediump float uPaddingX;uniform bool uFlushX;uniform mediump float uPaddingY;uniform bool uFlushY;\n#pragma markUniforms\n};", PC = {
 	left: -1,
 	center: 0,
 	right: 1
-}, NC = {
+}, FC = {
 	top: -1,
 	middle: 0,
 	bottom: 1,
 	alphabetic: 1,
 	baseline: 1
-}, PC = class extends YS {
+}, IC = class extends ZS {
 	constructor(e) {
 		super(e), this.font = this.properties.font ? e.context.fontManager.getFont(this.properties.font, this.properties.fontStyle, this.properties.fontWeight) : e.context.fontManager.getDefaultFont(), this.setupExprRefsNeedingGraphicsUpdate([
 			"text",
@@ -9966,17 +9987,17 @@ var CC = "flat out vec4 vColor;flat out float vSize;out float vNormalLengthInPix
 		];
 	}
 	fixEncoding(e) {
-		for (let t of jf) this.properties.fitToBand ? ZS(e, t) : QS(e, t);
+		for (let t of jf) this.properties.fitToBand ? $S(e, t) : eC(e, t);
 		return e;
 	}
 	async initializeGraphics() {
-		await super.initializeGraphics(), this.createAndLinkShaders(kC, AC, [jC]);
+		await super.initializeGraphics(), this.createAndLinkShaders(jC, MC, [NC]);
 	}
 	finalizeGraphicsInitialization() {
 		super.finalizeGraphicsInitialization(), this.gl.useProgram(this.programInfo.program);
 		let e = this.properties, t = this.font.metrics.common.base * .35 * (this.properties.logoLetters ? .5 : 1);
-		this.registerMarkUniformValue("uPaddingX", e.paddingX), this.registerMarkUniformValue("uPaddingY", e.paddingY), this.registerMarkUniformValue("uFlushX", e.flushX, (e) => !!e), this.registerMarkUniformValue("uFlushY", e.flushY, (e) => !!e), this.registerMarkUniformValue("uSqueeze", e.squeeze, (e) => !!e), ob(this.markUniformInfo, {
-			uAlign: [MC[e.align], NC[e.baseline]],
+		this.registerMarkUniformValue("uPaddingX", e.paddingX), this.registerMarkUniformValue("uPaddingY", e.paddingY), this.registerMarkUniformValue("uFlushX", e.flushX, (e) => !!e), this.registerMarkUniformValue("uFlushY", e.flushY, (e) => !!e), this.registerMarkUniformValue("uSqueeze", e.squeeze, (e) => !!e), cb(this.markUniformInfo, {
+			uAlign: [PC[e.align], FC[e.baseline]],
 			uD: [e.dx, -e.dy],
 			uLogoLetter: !!e.logoLetters,
 			uSdfNumerator: t,
@@ -10005,7 +10026,7 @@ var CC = "flat out vec4 vColor;flat out float vSize;out float vNormalLengthInPix
 			let t = a(r(e)), n = O(t) ? t : t === null ? "" : "" + t;
 			i += n && n.length || 0;
 		}
-		let o = new wS({
+		let o = new ES({
 			encoders: this.encoders,
 			attributes: this.getAttributes(),
 			properties: this.properties,
@@ -10019,20 +10040,20 @@ var CC = "flat out vec4 vColor;flat out float vSize;out float vNormalLengthInPix
 	prepareRender(e) {
 		let t = super.prepareRender(e);
 		return t.push(() => {
-			cb(this.programInfo, { uTexture: this.font.texture });
-		}), t.push(() => this.bindOrSetMarkUniformBlock()), t.push(() => db(this.gl, this.programInfo, this.vertexArrayInfo)), t;
+			ub(this.programInfo, { uTexture: this.font.texture });
+		}), t.push(() => this.bindOrSetMarkUniformBlock()), t.push(() => pb(this.gl, this.programInfo, this.vertexArrayInfo)), t;
 	}
 	render(e) {
 		let t = this.gl;
-		return this.createRenderCallback((e, n) => hb(t, this.vertexArrayInfo, t.TRIANGLES, n, e), e);
+		return this.createRenderCallback((e, n) => _b(t, this.vertexArrayInfo, t.TRIANGLES, n, e), e);
 	}
 };
 //#endregion
 //#region src/view/layout/flexLayout.js
-function FC(e, t, { spacing: n, devicePixelRatio: r, offset: i, reverse: a } = {}) {
+function LC(e, t, { spacing: n, devicePixelRatio: r, offset: i, reverse: a } = {}) {
 	n ||= 0, i ||= 0;
 	let o = 0, s = 0;
-	for (let t of e) o += VC(t.px) + (BC(t) ? 0 : n), s += VC(t.grow);
+	for (let t of e) o += UC(t.px) + (HC(t) ? 0 : n), s += UC(t.grow);
 	o -= n;
 	let c = Math.max(0, t - o), l = r === void 0 ? (e) => e : (e) => Math.round(e * r) / r, u = [], d = [], f = (e) => {
 		let t = u.length;
@@ -10045,16 +10066,16 @@ function FC(e, t, { spacing: n, devicePixelRatio: r, offset: i, reverse: a } = {
 		});
 		p += r, u.length = 0;
 	}, p = a ? Math.max(t, o) : 0 + i;
-	if (e.length == 1 && BC(e[0])) return [{
+	if (e.length == 1 && HC(e[0])) return [{
 		location: p,
 		size: 0
 	}];
 	for (let t = 0; t < e.length; t++) {
 		let r = e[t];
-		if (BC(r)) u.push(r);
+		if (HC(r)) u.push(r);
 		else {
 			f(d.length > 0);
-			let e = VC(r.px) + (s ? VC(r.grow) / s * c : 0);
+			let e = UC(r.px) + (s ? UC(r.grow) / s * c : 0);
 			a && (p -= e), d.push({
 				location: l(p),
 				size: l(e)
@@ -10063,7 +10084,7 @@ function FC(e, t, { spacing: n, devicePixelRatio: r, offset: i, reverse: a } = {
 	}
 	return p += a ? n : -n, f(!1), d;
 }
-function IC(e) {
+function RC(e) {
 	let t = 0, n = 0;
 	for (let r of e) t = Math.max(t, r.px ?? 0), n = Math.max(n, r.grow ?? 0);
 	return {
@@ -10071,7 +10092,7 @@ function IC(e) {
 		grow: n
 	};
 }
-var LC = class e {
+var zC = class e {
 	constructor(e, t) {
 		this.width = e, this.height = t;
 	}
@@ -10093,22 +10114,22 @@ var LC = class e {
 	isGrowing() {
 		return !!(this.width.grow || this.height.grow);
 	}
-}, RC = Object.freeze({
+}, BC = Object.freeze({
 	px: 0,
 	grow: 0
-}), zC = new LC(RC, RC);
-function BC(e) {
+}), VC = new zC(BC, BC);
+function HC(e) {
 	return !e.px && !e.grow;
 }
-function VC(e) {
+function UC(e) {
 	return e || 0;
 }
-function HC(e) {
+function WC(e) {
 	return e && (Ot(e.px) || Ot(e.grow));
 }
-function UC(e) {
-	if (zE(e)) throw Error("parseSizeDef does not accept step-based sizes.");
-	if (HC(e)) return e;
+function GC(e) {
+	if (VE(e)) throw Error("parseSizeDef does not accept step-based sizes.");
+	if (WC(e)) return e;
 	if (Ot(e)) return {
 		px: e,
 		grow: 0
@@ -10121,7 +10142,7 @@ function UC(e) {
 }
 //#endregion
 //#region src/view/layout/padding.js
-var WC = class e {
+var KC = class e {
 	constructor(e, t, n, r) {
 		this.top = e || 0, this.right = t || 0, this.bottom = n || 0, this.left = r || 0;
 	}
@@ -10156,31 +10177,31 @@ var WC = class e {
 		return this.top + this.bottom;
 	}
 	static createFromConfig(e) {
-		return typeof e == "number" ? this.createUniformPadding(e) : e ? this.createFromRecord(e) : GC;
+		return typeof e == "number" ? this.createUniformPadding(e) : e ? this.createFromRecord(e) : qC;
 	}
 	static createFromRecord(t) {
 		return new e(t.top, t.right, t.bottom, t.left);
 	}
 	static zero() {
-		return GC;
+		return qC;
 	}
 	static createUniformPadding(t) {
 		return new e(t, t, t, t);
 	}
-}, GC = WC.createUniformPadding(0);
-Object.freeze(GC);
+}, qC = KC.createUniformPadding(0);
+Object.freeze(qC);
 //#endregion
 //#region src/utils/url.js
-var KC = /^([A-Za-z]+:)?\/\//;
-function qC(e, t) {
-	if (t && KC.test(t)) return t;
+var JC = /^([A-Za-z]+:)?\/\//;
+function YC(e, t) {
+	if (t && JC.test(t)) return t;
 	let n = typeof e == "function" ? e() : e;
 	if (!n) return t;
 	if (!t) return n;
 	if (/[#?]/.test(n)) throw Error(`Cannot append to a url with query or hash. Append: ${t}, base: ${n}`);
-	return YC(n) + t;
+	return ZC(n) + t;
 }
-function JC(e, t, n = XC()) {
+function XC(e, t, n = QC()) {
 	let r = typeof e == "function" ? e() : e;
 	if (!t) return r;
 	try {
@@ -10189,19 +10210,19 @@ function JC(e, t, n = XC()) {
 			return new URL(t, e).href;
 		} else if (n) return new URL(t, n).href;
 	} catch {}
-	return qC(r, t);
+	return YC(r, t);
 }
-function YC(e) {
+function ZC(e) {
 	let t = e.replace(/[^/]*$/, "");
 	return t === "" ? void 0 : t.endsWith("://") ? e + "/" : t;
 }
-function XC() {
+function QC() {
 	if (typeof document < "u" && document.baseURI) return document.baseURI;
 	if (typeof window < "u" && window.location?.href) return window.location.href;
 }
 //#endregion
 //#region ../../node_modules/flatqueue/index.js
-var ZC = class {
+var $C = class {
 	constructor() {
 		this.ids = [], this.values = [], this.length = 0;
 	}
@@ -10240,13 +10261,13 @@ var ZC = class {
 	shrink() {
 		this.ids.length = this.values.length = this.length;
 	}
-}, QC = Symbol("runtimeNode"), $C = 1e6;
-function ew(e) {
+}, ew = Symbol("runtimeNode"), tw = 1e6;
+function nw(e) {
 	return e ? (t, n) => {
 		e.addDisposer(t, n);
 	} : () => void 0;
 }
-function tw(e, t) {
+function rw(e, t) {
 	let n = {
 		id: e.id,
 		name: e.name,
@@ -10260,7 +10281,7 @@ function tw(e, t) {
 			};
 		}
 	};
-	return Object.defineProperty(n, QC, {
+	return Object.defineProperty(n, ew, {
 		enumerable: !1,
 		configurable: !1,
 		writable: !1,
@@ -10269,18 +10290,18 @@ function tw(e, t) {
 		t(e);
 	} }) : n;
 }
-function nw(e) {
-	let t = e[QC];
+function iw(e) {
+	let t = e[ew];
 	if (!t) throw Error("ParamRef is not bound to this graph runtime. Expected runtime-created ref.");
 	return t;
 }
-function rw(e) {
-	return typeof e.rank == "number" ? e.rank : nw(e).rank;
+function aw(e) {
+	return typeof e.rank == "number" ? e.rank : iw(e).rank;
 }
-function iw(e) {
+function ow(e) {
 	for (let t of e) t();
 }
-var aw = class {
+var sw = class {
 	#e = 1;
 	#t = 1;
 	#n = 0;
@@ -10288,12 +10309,12 @@ var aw = class {
 	#i = !1;
 	#a = /* @__PURE__ */ new Set();
 	#o = /* @__PURE__ */ new Set();
-	#s = new ZC();
-	#c = new ZC();
+	#s = new $C();
+	#c = new $C();
 	#l = /* @__PURE__ */ new Set();
 	#u;
 	constructor(e = {}) {
-		this.#u = ew(e.lifecycleRegistry);
+		this.#u = nw(e.lifecycleRegistry);
 	}
 	createWritable(e, t, n, r, i = {}) {
 		let a = "n" + this.#e++, o = i.notify ?? !0, s = {
@@ -10312,13 +10333,13 @@ var aw = class {
 		};
 		return this.#u(e, () => {
 			s.disposed = !0, s.listeners.clear();
-		}), tw(s, (e) => {
+		}), rw(s, (e) => {
 			if (s.disposed) throw Error("Cannot set disposed parameter \"" + t + "\" (" + a + ").");
-			e !== s.value && (s.value = e, o && (iw(s.listeners), this.#m()));
+			e !== s.value && (s.value = e, o && (ow(s.listeners), this.#m()));
 		});
 	}
 	computed(e, t, n, r) {
-		let i = n.reduce((e, t) => Math.max(e, rw(t)), 0), a = {
+		let i = n.reduce((e, t) => Math.max(e, aw(t)), 0), a = {
 			id: "n" + this.#e++,
 			name: t,
 			kind: "derived",
@@ -10337,10 +10358,10 @@ var aw = class {
 		}, s = n.map((e) => e.subscribe(o));
 		return this.#u(e, () => {
 			a.disposed || (a.disposed = !0, s.forEach((e) => e()), a.listeners.clear(), this.#a.delete(a));
-		}), tw(a);
+		}), rw(a);
 	}
 	effect(e, t, n) {
-		let r = t.reduce((e, t) => Math.max(e, rw(t)), 0), i = {
+		let r = t.reduce((e, t) => Math.max(e, aw(t)), 0), i = {
 			id: "n" + this.#e++,
 			rank: r + 1,
 			disposed: !1,
@@ -10371,7 +10392,7 @@ var aw = class {
 						let t = this.#s.pop();
 						if (this.#a.delete(t), t.disposed) continue;
 						let n = t.value, r = t.fn();
-						r !== n && (t.value = r, iw(t.listeners));
+						r !== n && (t.value = r, ow(t.listeners));
 					}
 					for (; this.#c.length > 0;) {
 						e = !0;
@@ -10406,8 +10427,8 @@ var aw = class {
 		this.#o.has(e) || (this.#o.add(e), this.#c.push(e, this.#p(e.rank)), this.#m());
 	}
 	#p(e) {
-		let t = this.#t % $C;
-		return this.#t += 1, e * $C + t;
+		let t = this.#t % tw;
+		return this.#t += 1, e * tw + t;
 	}
 	#m() {
 		this.#n > 0 || this.#r || this.#i || (this.#r = !0, queueMicrotask(() => {
@@ -10423,7 +10444,7 @@ var aw = class {
 			this.#l.clear();
 		}
 	}
-}, ow = class {
+}, cw = class {
 	#e = 1;
 	#t = /* @__PURE__ */ new Map();
 	createOwner(e, t) {
@@ -10442,7 +10463,7 @@ var aw = class {
 			t.clear(), this.#t.delete(e);
 		}
 	}
-}, sw = class {
+}, lw = class {
 	#e = 1;
 	#t = /* @__PURE__ */ new Map();
 	createRootScope(e) {
@@ -10489,53 +10510,53 @@ var aw = class {
 			n = e.parentScope;
 		}
 	}
-}, cw = "RawCode", lw = "Literal", uw = "Property", dw = "Identifier", fw = "ArrayExpression", pw = "BinaryExpression", mw = "CallExpression", hw = "ConditionalExpression", gw = "LogicalExpression", _w = "MemberExpression", vw = "ObjectExpression", yw = "UnaryExpression";
-function bw(e) {
+}, uw = "RawCode", dw = "Literal", fw = "Property", pw = "Identifier", mw = "ArrayExpression", hw = "BinaryExpression", gw = "CallExpression", _w = "ConditionalExpression", vw = "LogicalExpression", yw = "MemberExpression", bw = "ObjectExpression", xw = "UnaryExpression";
+function Sw(e) {
 	this.type = e;
 }
-bw.prototype.visit = function(e) {
+Sw.prototype.visit = function(e) {
 	let t, n, r;
 	if (e(this)) return 1;
-	for (t = xw(this), n = 0, r = t.length; n < r; ++n) if (t[n].visit(e)) return 1;
+	for (t = Cw(this), n = 0, r = t.length; n < r; ++n) if (t[n].visit(e)) return 1;
 };
-function xw(e) {
+function Cw(e) {
 	switch (e.type) {
-		case fw: return e.elements;
-		case pw:
-		case gw: return [e.left, e.right];
-		case mw: return [e.callee].concat(e.arguments);
-		case hw: return [
+		case mw: return e.elements;
+		case hw:
+		case vw: return [e.left, e.right];
+		case gw: return [e.callee].concat(e.arguments);
+		case _w: return [
 			e.test,
 			e.consequent,
 			e.alternate
 		];
-		case _w: return [e.object, e.property];
-		case vw: return e.properties;
-		case uw: return [e.key, e.value];
-		case yw: return [e.argument];
+		case yw: return [e.object, e.property];
+		case bw: return e.properties;
+		case fw: return [e.key, e.value];
+		case xw: return [e.argument];
+		case pw:
 		case dw:
-		case lw:
-		case cw:
+		case uw:
 		default: return [];
 	}
 }
-var Sw, q, J, Cw, Y, ww = 1, Tw = 2, Ew = 3, Dw = 4, Ow = 5, kw = 6, Aw = 7, jw = 8, Mw = 9;
-Sw = {}, Sw[ww] = "Boolean", Sw[Tw] = "<end>", Sw[Ew] = "Identifier", Sw[Dw] = "Keyword", Sw[Ow] = "Null", Sw[kw] = "Numeric", Sw[Aw] = "Punctuator", Sw[jw] = "String", Sw[Mw] = "RegularExpression";
-var Nw = "ArrayExpression", Pw = "BinaryExpression", Fw = "CallExpression", Iw = "ConditionalExpression", Lw = "Identifier", Rw = "Literal", zw = "LogicalExpression", Bw = "MemberExpression", Vw = "ObjectExpression", Hw = "Property", Uw = "UnaryExpression", X = "Unexpected token %0", Ww = "Unexpected number", Gw = "Unexpected string", Kw = "Unexpected identifier", qw = "Unexpected reserved word", Jw = "Unexpected end of input", Yw = "Invalid regular expression", Xw = "Invalid regular expression: missing /", Zw = "Octal literals are not allowed in strict mode.", Qw = "Duplicate data property in object literal not allowed in strict mode", $w = "ILLEGAL", eT = "Disabled.", tT = /* @__PURE__ */ RegExp("[\\xAA\\xB5\\xBA\\xC0-\\xD6\\xD8-\\xF6\\xF8-\\u02C1\\u02C6-\\u02D1\\u02E0-\\u02E4\\u02EC\\u02EE\\u0370-\\u0374\\u0376\\u0377\\u037A-\\u037D\\u037F\\u0386\\u0388-\\u038A\\u038C\\u038E-\\u03A1\\u03A3-\\u03F5\\u03F7-\\u0481\\u048A-\\u052F\\u0531-\\u0556\\u0559\\u0561-\\u0587\\u05D0-\\u05EA\\u05F0-\\u05F2\\u0620-\\u064A\\u066E\\u066F\\u0671-\\u06D3\\u06D5\\u06E5\\u06E6\\u06EE\\u06EF\\u06FA-\\u06FC\\u06FF\\u0710\\u0712-\\u072F\\u074D-\\u07A5\\u07B1\\u07CA-\\u07EA\\u07F4\\u07F5\\u07FA\\u0800-\\u0815\\u081A\\u0824\\u0828\\u0840-\\u0858\\u08A0-\\u08B2\\u0904-\\u0939\\u093D\\u0950\\u0958-\\u0961\\u0971-\\u0980\\u0985-\\u098C\\u098F\\u0990\\u0993-\\u09A8\\u09AA-\\u09B0\\u09B2\\u09B6-\\u09B9\\u09BD\\u09CE\\u09DC\\u09DD\\u09DF-\\u09E1\\u09F0\\u09F1\\u0A05-\\u0A0A\\u0A0F\\u0A10\\u0A13-\\u0A28\\u0A2A-\\u0A30\\u0A32\\u0A33\\u0A35\\u0A36\\u0A38\\u0A39\\u0A59-\\u0A5C\\u0A5E\\u0A72-\\u0A74\\u0A85-\\u0A8D\\u0A8F-\\u0A91\\u0A93-\\u0AA8\\u0AAA-\\u0AB0\\u0AB2\\u0AB3\\u0AB5-\\u0AB9\\u0ABD\\u0AD0\\u0AE0\\u0AE1\\u0B05-\\u0B0C\\u0B0F\\u0B10\\u0B13-\\u0B28\\u0B2A-\\u0B30\\u0B32\\u0B33\\u0B35-\\u0B39\\u0B3D\\u0B5C\\u0B5D\\u0B5F-\\u0B61\\u0B71\\u0B83\\u0B85-\\u0B8A\\u0B8E-\\u0B90\\u0B92-\\u0B95\\u0B99\\u0B9A\\u0B9C\\u0B9E\\u0B9F\\u0BA3\\u0BA4\\u0BA8-\\u0BAA\\u0BAE-\\u0BB9\\u0BD0\\u0C05-\\u0C0C\\u0C0E-\\u0C10\\u0C12-\\u0C28\\u0C2A-\\u0C39\\u0C3D\\u0C58\\u0C59\\u0C60\\u0C61\\u0C85-\\u0C8C\\u0C8E-\\u0C90\\u0C92-\\u0CA8\\u0CAA-\\u0CB3\\u0CB5-\\u0CB9\\u0CBD\\u0CDE\\u0CE0\\u0CE1\\u0CF1\\u0CF2\\u0D05-\\u0D0C\\u0D0E-\\u0D10\\u0D12-\\u0D3A\\u0D3D\\u0D4E\\u0D60\\u0D61\\u0D7A-\\u0D7F\\u0D85-\\u0D96\\u0D9A-\\u0DB1\\u0DB3-\\u0DBB\\u0DBD\\u0DC0-\\u0DC6\\u0E01-\\u0E30\\u0E32\\u0E33\\u0E40-\\u0E46\\u0E81\\u0E82\\u0E84\\u0E87\\u0E88\\u0E8A\\u0E8D\\u0E94-\\u0E97\\u0E99-\\u0E9F\\u0EA1-\\u0EA3\\u0EA5\\u0EA7\\u0EAA\\u0EAB\\u0EAD-\\u0EB0\\u0EB2\\u0EB3\\u0EBD\\u0EC0-\\u0EC4\\u0EC6\\u0EDC-\\u0EDF\\u0F00\\u0F40-\\u0F47\\u0F49-\\u0F6C\\u0F88-\\u0F8C\\u1000-\\u102A\\u103F\\u1050-\\u1055\\u105A-\\u105D\\u1061\\u1065\\u1066\\u106E-\\u1070\\u1075-\\u1081\\u108E\\u10A0-\\u10C5\\u10C7\\u10CD\\u10D0-\\u10FA\\u10FC-\\u1248\\u124A-\\u124D\\u1250-\\u1256\\u1258\\u125A-\\u125D\\u1260-\\u1288\\u128A-\\u128D\\u1290-\\u12B0\\u12B2-\\u12B5\\u12B8-\\u12BE\\u12C0\\u12C2-\\u12C5\\u12C8-\\u12D6\\u12D8-\\u1310\\u1312-\\u1315\\u1318-\\u135A\\u1380-\\u138F\\u13A0-\\u13F4\\u1401-\\u166C\\u166F-\\u167F\\u1681-\\u169A\\u16A0-\\u16EA\\u16EE-\\u16F8\\u1700-\\u170C\\u170E-\\u1711\\u1720-\\u1731\\u1740-\\u1751\\u1760-\\u176C\\u176E-\\u1770\\u1780-\\u17B3\\u17D7\\u17DC\\u1820-\\u1877\\u1880-\\u18A8\\u18AA\\u18B0-\\u18F5\\u1900-\\u191E\\u1950-\\u196D\\u1970-\\u1974\\u1980-\\u19AB\\u19C1-\\u19C7\\u1A00-\\u1A16\\u1A20-\\u1A54\\u1AA7\\u1B05-\\u1B33\\u1B45-\\u1B4B\\u1B83-\\u1BA0\\u1BAE\\u1BAF\\u1BBA-\\u1BE5\\u1C00-\\u1C23\\u1C4D-\\u1C4F\\u1C5A-\\u1C7D\\u1CE9-\\u1CEC\\u1CEE-\\u1CF1\\u1CF5\\u1CF6\\u1D00-\\u1DBF\\u1E00-\\u1F15\\u1F18-\\u1F1D\\u1F20-\\u1F45\\u1F48-\\u1F4D\\u1F50-\\u1F57\\u1F59\\u1F5B\\u1F5D\\u1F5F-\\u1F7D\\u1F80-\\u1FB4\\u1FB6-\\u1FBC\\u1FBE\\u1FC2-\\u1FC4\\u1FC6-\\u1FCC\\u1FD0-\\u1FD3\\u1FD6-\\u1FDB\\u1FE0-\\u1FEC\\u1FF2-\\u1FF4\\u1FF6-\\u1FFC\\u2071\\u207F\\u2090-\\u209C\\u2102\\u2107\\u210A-\\u2113\\u2115\\u2119-\\u211D\\u2124\\u2126\\u2128\\u212A-\\u212D\\u212F-\\u2139\\u213C-\\u213F\\u2145-\\u2149\\u214E\\u2160-\\u2188\\u2C00-\\u2C2E\\u2C30-\\u2C5E\\u2C60-\\u2CE4\\u2CEB-\\u2CEE\\u2CF2\\u2CF3\\u2D00-\\u2D25\\u2D27\\u2D2D\\u2D30-\\u2D67\\u2D6F\\u2D80-\\u2D96\\u2DA0-\\u2DA6\\u2DA8-\\u2DAE\\u2DB0-\\u2DB6\\u2DB8-\\u2DBE\\u2DC0-\\u2DC6\\u2DC8-\\u2DCE\\u2DD0-\\u2DD6\\u2DD8-\\u2DDE\\u2E2F\\u3005-\\u3007\\u3021-\\u3029\\u3031-\\u3035\\u3038-\\u303C\\u3041-\\u3096\\u309D-\\u309F\\u30A1-\\u30FA\\u30FC-\\u30FF\\u3105-\\u312D\\u3131-\\u318E\\u31A0-\\u31BA\\u31F0-\\u31FF\\u3400-\\u4DB5\\u4E00-\\u9FCC\\uA000-\\uA48C\\uA4D0-\\uA4FD\\uA500-\\uA60C\\uA610-\\uA61F\\uA62A\\uA62B\\uA640-\\uA66E\\uA67F-\\uA69D\\uA6A0-\\uA6EF\\uA717-\\uA71F\\uA722-\\uA788\\uA78B-\\uA78E\\uA790-\\uA7AD\\uA7B0\\uA7B1\\uA7F7-\\uA801\\uA803-\\uA805\\uA807-\\uA80A\\uA80C-\\uA822\\uA840-\\uA873\\uA882-\\uA8B3\\uA8F2-\\uA8F7\\uA8FB\\uA90A-\\uA925\\uA930-\\uA946\\uA960-\\uA97C\\uA984-\\uA9B2\\uA9CF\\uA9E0-\\uA9E4\\uA9E6-\\uA9EF\\uA9FA-\\uA9FE\\uAA00-\\uAA28\\uAA40-\\uAA42\\uAA44-\\uAA4B\\uAA60-\\uAA76\\uAA7A\\uAA7E-\\uAAAF\\uAAB1\\uAAB5\\uAAB6\\uAAB9-\\uAABD\\uAAC0\\uAAC2\\uAADB-\\uAADD\\uAAE0-\\uAAEA\\uAAF2-\\uAAF4\\uAB01-\\uAB06\\uAB09-\\uAB0E\\uAB11-\\uAB16\\uAB20-\\uAB26\\uAB28-\\uAB2E\\uAB30-\\uAB5A\\uAB5C-\\uAB5F\\uAB64\\uAB65\\uABC0-\\uABE2\\uAC00-\\uD7A3\\uD7B0-\\uD7C6\\uD7CB-\\uD7FB\\uF900-\\uFA6D\\uFA70-\\uFAD9\\uFB00-\\uFB06\\uFB13-\\uFB17\\uFB1D\\uFB1F-\\uFB28\\uFB2A-\\uFB36\\uFB38-\\uFB3C\\uFB3E\\uFB40\\uFB41\\uFB43\\uFB44\\uFB46-\\uFBB1\\uFBD3-\\uFD3D\\uFD50-\\uFD8F\\uFD92-\\uFDC7\\uFDF0-\\uFDFB\\uFE70-\\uFE74\\uFE76-\\uFEFC\\uFF21-\\uFF3A\\uFF41-\\uFF5A\\uFF66-\\uFFBE\\uFFC2-\\uFFC7\\uFFCA-\\uFFCF\\uFFD2-\\uFFD7\\uFFDA-\\uFFDC]"), nT = /* @__PURE__ */ RegExp("[\\xAA\\xB5\\xBA\\xC0-\\xD6\\xD8-\\xF6\\xF8-\\u02C1\\u02C6-\\u02D1\\u02E0-\\u02E4\\u02EC\\u02EE\\u0300-\\u0374\\u0376\\u0377\\u037A-\\u037D\\u037F\\u0386\\u0388-\\u038A\\u038C\\u038E-\\u03A1\\u03A3-\\u03F5\\u03F7-\\u0481\\u0483-\\u0487\\u048A-\\u052F\\u0531-\\u0556\\u0559\\u0561-\\u0587\\u0591-\\u05BD\\u05BF\\u05C1\\u05C2\\u05C4\\u05C5\\u05C7\\u05D0-\\u05EA\\u05F0-\\u05F2\\u0610-\\u061A\\u0620-\\u0669\\u066E-\\u06D3\\u06D5-\\u06DC\\u06DF-\\u06E8\\u06EA-\\u06FC\\u06FF\\u0710-\\u074A\\u074D-\\u07B1\\u07C0-\\u07F5\\u07FA\\u0800-\\u082D\\u0840-\\u085B\\u08A0-\\u08B2\\u08E4-\\u0963\\u0966-\\u096F\\u0971-\\u0983\\u0985-\\u098C\\u098F\\u0990\\u0993-\\u09A8\\u09AA-\\u09B0\\u09B2\\u09B6-\\u09B9\\u09BC-\\u09C4\\u09C7\\u09C8\\u09CB-\\u09CE\\u09D7\\u09DC\\u09DD\\u09DF-\\u09E3\\u09E6-\\u09F1\\u0A01-\\u0A03\\u0A05-\\u0A0A\\u0A0F\\u0A10\\u0A13-\\u0A28\\u0A2A-\\u0A30\\u0A32\\u0A33\\u0A35\\u0A36\\u0A38\\u0A39\\u0A3C\\u0A3E-\\u0A42\\u0A47\\u0A48\\u0A4B-\\u0A4D\\u0A51\\u0A59-\\u0A5C\\u0A5E\\u0A66-\\u0A75\\u0A81-\\u0A83\\u0A85-\\u0A8D\\u0A8F-\\u0A91\\u0A93-\\u0AA8\\u0AAA-\\u0AB0\\u0AB2\\u0AB3\\u0AB5-\\u0AB9\\u0ABC-\\u0AC5\\u0AC7-\\u0AC9\\u0ACB-\\u0ACD\\u0AD0\\u0AE0-\\u0AE3\\u0AE6-\\u0AEF\\u0B01-\\u0B03\\u0B05-\\u0B0C\\u0B0F\\u0B10\\u0B13-\\u0B28\\u0B2A-\\u0B30\\u0B32\\u0B33\\u0B35-\\u0B39\\u0B3C-\\u0B44\\u0B47\\u0B48\\u0B4B-\\u0B4D\\u0B56\\u0B57\\u0B5C\\u0B5D\\u0B5F-\\u0B63\\u0B66-\\u0B6F\\u0B71\\u0B82\\u0B83\\u0B85-\\u0B8A\\u0B8E-\\u0B90\\u0B92-\\u0B95\\u0B99\\u0B9A\\u0B9C\\u0B9E\\u0B9F\\u0BA3\\u0BA4\\u0BA8-\\u0BAA\\u0BAE-\\u0BB9\\u0BBE-\\u0BC2\\u0BC6-\\u0BC8\\u0BCA-\\u0BCD\\u0BD0\\u0BD7\\u0BE6-\\u0BEF\\u0C00-\\u0C03\\u0C05-\\u0C0C\\u0C0E-\\u0C10\\u0C12-\\u0C28\\u0C2A-\\u0C39\\u0C3D-\\u0C44\\u0C46-\\u0C48\\u0C4A-\\u0C4D\\u0C55\\u0C56\\u0C58\\u0C59\\u0C60-\\u0C63\\u0C66-\\u0C6F\\u0C81-\\u0C83\\u0C85-\\u0C8C\\u0C8E-\\u0C90\\u0C92-\\u0CA8\\u0CAA-\\u0CB3\\u0CB5-\\u0CB9\\u0CBC-\\u0CC4\\u0CC6-\\u0CC8\\u0CCA-\\u0CCD\\u0CD5\\u0CD6\\u0CDE\\u0CE0-\\u0CE3\\u0CE6-\\u0CEF\\u0CF1\\u0CF2\\u0D01-\\u0D03\\u0D05-\\u0D0C\\u0D0E-\\u0D10\\u0D12-\\u0D3A\\u0D3D-\\u0D44\\u0D46-\\u0D48\\u0D4A-\\u0D4E\\u0D57\\u0D60-\\u0D63\\u0D66-\\u0D6F\\u0D7A-\\u0D7F\\u0D82\\u0D83\\u0D85-\\u0D96\\u0D9A-\\u0DB1\\u0DB3-\\u0DBB\\u0DBD\\u0DC0-\\u0DC6\\u0DCA\\u0DCF-\\u0DD4\\u0DD6\\u0DD8-\\u0DDF\\u0DE6-\\u0DEF\\u0DF2\\u0DF3\\u0E01-\\u0E3A\\u0E40-\\u0E4E\\u0E50-\\u0E59\\u0E81\\u0E82\\u0E84\\u0E87\\u0E88\\u0E8A\\u0E8D\\u0E94-\\u0E97\\u0E99-\\u0E9F\\u0EA1-\\u0EA3\\u0EA5\\u0EA7\\u0EAA\\u0EAB\\u0EAD-\\u0EB9\\u0EBB-\\u0EBD\\u0EC0-\\u0EC4\\u0EC6\\u0EC8-\\u0ECD\\u0ED0-\\u0ED9\\u0EDC-\\u0EDF\\u0F00\\u0F18\\u0F19\\u0F20-\\u0F29\\u0F35\\u0F37\\u0F39\\u0F3E-\\u0F47\\u0F49-\\u0F6C\\u0F71-\\u0F84\\u0F86-\\u0F97\\u0F99-\\u0FBC\\u0FC6\\u1000-\\u1049\\u1050-\\u109D\\u10A0-\\u10C5\\u10C7\\u10CD\\u10D0-\\u10FA\\u10FC-\\u1248\\u124A-\\u124D\\u1250-\\u1256\\u1258\\u125A-\\u125D\\u1260-\\u1288\\u128A-\\u128D\\u1290-\\u12B0\\u12B2-\\u12B5\\u12B8-\\u12BE\\u12C0\\u12C2-\\u12C5\\u12C8-\\u12D6\\u12D8-\\u1310\\u1312-\\u1315\\u1318-\\u135A\\u135D-\\u135F\\u1380-\\u138F\\u13A0-\\u13F4\\u1401-\\u166C\\u166F-\\u167F\\u1681-\\u169A\\u16A0-\\u16EA\\u16EE-\\u16F8\\u1700-\\u170C\\u170E-\\u1714\\u1720-\\u1734\\u1740-\\u1753\\u1760-\\u176C\\u176E-\\u1770\\u1772\\u1773\\u1780-\\u17D3\\u17D7\\u17DC\\u17DD\\u17E0-\\u17E9\\u180B-\\u180D\\u1810-\\u1819\\u1820-\\u1877\\u1880-\\u18AA\\u18B0-\\u18F5\\u1900-\\u191E\\u1920-\\u192B\\u1930-\\u193B\\u1946-\\u196D\\u1970-\\u1974\\u1980-\\u19AB\\u19B0-\\u19C9\\u19D0-\\u19D9\\u1A00-\\u1A1B\\u1A20-\\u1A5E\\u1A60-\\u1A7C\\u1A7F-\\u1A89\\u1A90-\\u1A99\\u1AA7\\u1AB0-\\u1ABD\\u1B00-\\u1B4B\\u1B50-\\u1B59\\u1B6B-\\u1B73\\u1B80-\\u1BF3\\u1C00-\\u1C37\\u1C40-\\u1C49\\u1C4D-\\u1C7D\\u1CD0-\\u1CD2\\u1CD4-\\u1CF6\\u1CF8\\u1CF9\\u1D00-\\u1DF5\\u1DFC-\\u1F15\\u1F18-\\u1F1D\\u1F20-\\u1F45\\u1F48-\\u1F4D\\u1F50-\\u1F57\\u1F59\\u1F5B\\u1F5D\\u1F5F-\\u1F7D\\u1F80-\\u1FB4\\u1FB6-\\u1FBC\\u1FBE\\u1FC2-\\u1FC4\\u1FC6-\\u1FCC\\u1FD0-\\u1FD3\\u1FD6-\\u1FDB\\u1FE0-\\u1FEC\\u1FF2-\\u1FF4\\u1FF6-\\u1FFC\\u200C\\u200D\\u203F\\u2040\\u2054\\u2071\\u207F\\u2090-\\u209C\\u20D0-\\u20DC\\u20E1\\u20E5-\\u20F0\\u2102\\u2107\\u210A-\\u2113\\u2115\\u2119-\\u211D\\u2124\\u2126\\u2128\\u212A-\\u212D\\u212F-\\u2139\\u213C-\\u213F\\u2145-\\u2149\\u214E\\u2160-\\u2188\\u2C00-\\u2C2E\\u2C30-\\u2C5E\\u2C60-\\u2CE4\\u2CEB-\\u2CF3\\u2D00-\\u2D25\\u2D27\\u2D2D\\u2D30-\\u2D67\\u2D6F\\u2D7F-\\u2D96\\u2DA0-\\u2DA6\\u2DA8-\\u2DAE\\u2DB0-\\u2DB6\\u2DB8-\\u2DBE\\u2DC0-\\u2DC6\\u2DC8-\\u2DCE\\u2DD0-\\u2DD6\\u2DD8-\\u2DDE\\u2DE0-\\u2DFF\\u2E2F\\u3005-\\u3007\\u3021-\\u302F\\u3031-\\u3035\\u3038-\\u303C\\u3041-\\u3096\\u3099\\u309A\\u309D-\\u309F\\u30A1-\\u30FA\\u30FC-\\u30FF\\u3105-\\u312D\\u3131-\\u318E\\u31A0-\\u31BA\\u31F0-\\u31FF\\u3400-\\u4DB5\\u4E00-\\u9FCC\\uA000-\\uA48C\\uA4D0-\\uA4FD\\uA500-\\uA60C\\uA610-\\uA62B\\uA640-\\uA66F\\uA674-\\uA67D\\uA67F-\\uA69D\\uA69F-\\uA6F1\\uA717-\\uA71F\\uA722-\\uA788\\uA78B-\\uA78E\\uA790-\\uA7AD\\uA7B0\\uA7B1\\uA7F7-\\uA827\\uA840-\\uA873\\uA880-\\uA8C4\\uA8D0-\\uA8D9\\uA8E0-\\uA8F7\\uA8FB\\uA900-\\uA92D\\uA930-\\uA953\\uA960-\\uA97C\\uA980-\\uA9C0\\uA9CF-\\uA9D9\\uA9E0-\\uA9FE\\uAA00-\\uAA36\\uAA40-\\uAA4D\\uAA50-\\uAA59\\uAA60-\\uAA76\\uAA7A-\\uAAC2\\uAADB-\\uAADD\\uAAE0-\\uAAEF\\uAAF2-\\uAAF6\\uAB01-\\uAB06\\uAB09-\\uAB0E\\uAB11-\\uAB16\\uAB20-\\uAB26\\uAB28-\\uAB2E\\uAB30-\\uAB5A\\uAB5C-\\uAB5F\\uAB64\\uAB65\\uABC0-\\uABEA\\uABEC\\uABED\\uABF0-\\uABF9\\uAC00-\\uD7A3\\uD7B0-\\uD7C6\\uD7CB-\\uD7FB\\uF900-\\uFA6D\\uFA70-\\uFAD9\\uFB00-\\uFB06\\uFB13-\\uFB17\\uFB1D-\\uFB28\\uFB2A-\\uFB36\\uFB38-\\uFB3C\\uFB3E\\uFB40\\uFB41\\uFB43\\uFB44\\uFB46-\\uFBB1\\uFBD3-\\uFD3D\\uFD50-\\uFD8F\\uFD92-\\uFDC7\\uFDF0-\\uFDFB\\uFE00-\\uFE0F\\uFE20-\\uFE2D\\uFE33\\uFE34\\uFE4D-\\uFE4F\\uFE70-\\uFE74\\uFE76-\\uFEFC\\uFF10-\\uFF19\\uFF21-\\uFF3A\\uFF3F\\uFF41-\\uFF5A\\uFF66-\\uFFBE\\uFFC2-\\uFFC7\\uFFCA-\\uFFCF\\uFFD2-\\uFFD7\\uFFDA-\\uFFDC]");
-function rT(e, t) {
+var ww, q, J, Tw, Y, Ew = 1, Dw = 2, Ow = 3, kw = 4, Aw = 5, jw = 6, Mw = 7, Nw = 8, Pw = 9;
+ww = {}, ww[Ew] = "Boolean", ww[Dw] = "<end>", ww[Ow] = "Identifier", ww[kw] = "Keyword", ww[Aw] = "Null", ww[jw] = "Numeric", ww[Mw] = "Punctuator", ww[Nw] = "String", ww[Pw] = "RegularExpression";
+var Fw = "ArrayExpression", Iw = "BinaryExpression", Lw = "CallExpression", Rw = "ConditionalExpression", zw = "Identifier", Bw = "Literal", Vw = "LogicalExpression", Hw = "MemberExpression", Uw = "ObjectExpression", Ww = "Property", Gw = "UnaryExpression", X = "Unexpected token %0", Kw = "Unexpected number", qw = "Unexpected string", Jw = "Unexpected identifier", Yw = "Unexpected reserved word", Xw = "Unexpected end of input", Zw = "Invalid regular expression", Qw = "Invalid regular expression: missing /", $w = "Octal literals are not allowed in strict mode.", eT = "Duplicate data property in object literal not allowed in strict mode", tT = "ILLEGAL", nT = "Disabled.", rT = /* @__PURE__ */ RegExp("[\\xAA\\xB5\\xBA\\xC0-\\xD6\\xD8-\\xF6\\xF8-\\u02C1\\u02C6-\\u02D1\\u02E0-\\u02E4\\u02EC\\u02EE\\u0370-\\u0374\\u0376\\u0377\\u037A-\\u037D\\u037F\\u0386\\u0388-\\u038A\\u038C\\u038E-\\u03A1\\u03A3-\\u03F5\\u03F7-\\u0481\\u048A-\\u052F\\u0531-\\u0556\\u0559\\u0561-\\u0587\\u05D0-\\u05EA\\u05F0-\\u05F2\\u0620-\\u064A\\u066E\\u066F\\u0671-\\u06D3\\u06D5\\u06E5\\u06E6\\u06EE\\u06EF\\u06FA-\\u06FC\\u06FF\\u0710\\u0712-\\u072F\\u074D-\\u07A5\\u07B1\\u07CA-\\u07EA\\u07F4\\u07F5\\u07FA\\u0800-\\u0815\\u081A\\u0824\\u0828\\u0840-\\u0858\\u08A0-\\u08B2\\u0904-\\u0939\\u093D\\u0950\\u0958-\\u0961\\u0971-\\u0980\\u0985-\\u098C\\u098F\\u0990\\u0993-\\u09A8\\u09AA-\\u09B0\\u09B2\\u09B6-\\u09B9\\u09BD\\u09CE\\u09DC\\u09DD\\u09DF-\\u09E1\\u09F0\\u09F1\\u0A05-\\u0A0A\\u0A0F\\u0A10\\u0A13-\\u0A28\\u0A2A-\\u0A30\\u0A32\\u0A33\\u0A35\\u0A36\\u0A38\\u0A39\\u0A59-\\u0A5C\\u0A5E\\u0A72-\\u0A74\\u0A85-\\u0A8D\\u0A8F-\\u0A91\\u0A93-\\u0AA8\\u0AAA-\\u0AB0\\u0AB2\\u0AB3\\u0AB5-\\u0AB9\\u0ABD\\u0AD0\\u0AE0\\u0AE1\\u0B05-\\u0B0C\\u0B0F\\u0B10\\u0B13-\\u0B28\\u0B2A-\\u0B30\\u0B32\\u0B33\\u0B35-\\u0B39\\u0B3D\\u0B5C\\u0B5D\\u0B5F-\\u0B61\\u0B71\\u0B83\\u0B85-\\u0B8A\\u0B8E-\\u0B90\\u0B92-\\u0B95\\u0B99\\u0B9A\\u0B9C\\u0B9E\\u0B9F\\u0BA3\\u0BA4\\u0BA8-\\u0BAA\\u0BAE-\\u0BB9\\u0BD0\\u0C05-\\u0C0C\\u0C0E-\\u0C10\\u0C12-\\u0C28\\u0C2A-\\u0C39\\u0C3D\\u0C58\\u0C59\\u0C60\\u0C61\\u0C85-\\u0C8C\\u0C8E-\\u0C90\\u0C92-\\u0CA8\\u0CAA-\\u0CB3\\u0CB5-\\u0CB9\\u0CBD\\u0CDE\\u0CE0\\u0CE1\\u0CF1\\u0CF2\\u0D05-\\u0D0C\\u0D0E-\\u0D10\\u0D12-\\u0D3A\\u0D3D\\u0D4E\\u0D60\\u0D61\\u0D7A-\\u0D7F\\u0D85-\\u0D96\\u0D9A-\\u0DB1\\u0DB3-\\u0DBB\\u0DBD\\u0DC0-\\u0DC6\\u0E01-\\u0E30\\u0E32\\u0E33\\u0E40-\\u0E46\\u0E81\\u0E82\\u0E84\\u0E87\\u0E88\\u0E8A\\u0E8D\\u0E94-\\u0E97\\u0E99-\\u0E9F\\u0EA1-\\u0EA3\\u0EA5\\u0EA7\\u0EAA\\u0EAB\\u0EAD-\\u0EB0\\u0EB2\\u0EB3\\u0EBD\\u0EC0-\\u0EC4\\u0EC6\\u0EDC-\\u0EDF\\u0F00\\u0F40-\\u0F47\\u0F49-\\u0F6C\\u0F88-\\u0F8C\\u1000-\\u102A\\u103F\\u1050-\\u1055\\u105A-\\u105D\\u1061\\u1065\\u1066\\u106E-\\u1070\\u1075-\\u1081\\u108E\\u10A0-\\u10C5\\u10C7\\u10CD\\u10D0-\\u10FA\\u10FC-\\u1248\\u124A-\\u124D\\u1250-\\u1256\\u1258\\u125A-\\u125D\\u1260-\\u1288\\u128A-\\u128D\\u1290-\\u12B0\\u12B2-\\u12B5\\u12B8-\\u12BE\\u12C0\\u12C2-\\u12C5\\u12C8-\\u12D6\\u12D8-\\u1310\\u1312-\\u1315\\u1318-\\u135A\\u1380-\\u138F\\u13A0-\\u13F4\\u1401-\\u166C\\u166F-\\u167F\\u1681-\\u169A\\u16A0-\\u16EA\\u16EE-\\u16F8\\u1700-\\u170C\\u170E-\\u1711\\u1720-\\u1731\\u1740-\\u1751\\u1760-\\u176C\\u176E-\\u1770\\u1780-\\u17B3\\u17D7\\u17DC\\u1820-\\u1877\\u1880-\\u18A8\\u18AA\\u18B0-\\u18F5\\u1900-\\u191E\\u1950-\\u196D\\u1970-\\u1974\\u1980-\\u19AB\\u19C1-\\u19C7\\u1A00-\\u1A16\\u1A20-\\u1A54\\u1AA7\\u1B05-\\u1B33\\u1B45-\\u1B4B\\u1B83-\\u1BA0\\u1BAE\\u1BAF\\u1BBA-\\u1BE5\\u1C00-\\u1C23\\u1C4D-\\u1C4F\\u1C5A-\\u1C7D\\u1CE9-\\u1CEC\\u1CEE-\\u1CF1\\u1CF5\\u1CF6\\u1D00-\\u1DBF\\u1E00-\\u1F15\\u1F18-\\u1F1D\\u1F20-\\u1F45\\u1F48-\\u1F4D\\u1F50-\\u1F57\\u1F59\\u1F5B\\u1F5D\\u1F5F-\\u1F7D\\u1F80-\\u1FB4\\u1FB6-\\u1FBC\\u1FBE\\u1FC2-\\u1FC4\\u1FC6-\\u1FCC\\u1FD0-\\u1FD3\\u1FD6-\\u1FDB\\u1FE0-\\u1FEC\\u1FF2-\\u1FF4\\u1FF6-\\u1FFC\\u2071\\u207F\\u2090-\\u209C\\u2102\\u2107\\u210A-\\u2113\\u2115\\u2119-\\u211D\\u2124\\u2126\\u2128\\u212A-\\u212D\\u212F-\\u2139\\u213C-\\u213F\\u2145-\\u2149\\u214E\\u2160-\\u2188\\u2C00-\\u2C2E\\u2C30-\\u2C5E\\u2C60-\\u2CE4\\u2CEB-\\u2CEE\\u2CF2\\u2CF3\\u2D00-\\u2D25\\u2D27\\u2D2D\\u2D30-\\u2D67\\u2D6F\\u2D80-\\u2D96\\u2DA0-\\u2DA6\\u2DA8-\\u2DAE\\u2DB0-\\u2DB6\\u2DB8-\\u2DBE\\u2DC0-\\u2DC6\\u2DC8-\\u2DCE\\u2DD0-\\u2DD6\\u2DD8-\\u2DDE\\u2E2F\\u3005-\\u3007\\u3021-\\u3029\\u3031-\\u3035\\u3038-\\u303C\\u3041-\\u3096\\u309D-\\u309F\\u30A1-\\u30FA\\u30FC-\\u30FF\\u3105-\\u312D\\u3131-\\u318E\\u31A0-\\u31BA\\u31F0-\\u31FF\\u3400-\\u4DB5\\u4E00-\\u9FCC\\uA000-\\uA48C\\uA4D0-\\uA4FD\\uA500-\\uA60C\\uA610-\\uA61F\\uA62A\\uA62B\\uA640-\\uA66E\\uA67F-\\uA69D\\uA6A0-\\uA6EF\\uA717-\\uA71F\\uA722-\\uA788\\uA78B-\\uA78E\\uA790-\\uA7AD\\uA7B0\\uA7B1\\uA7F7-\\uA801\\uA803-\\uA805\\uA807-\\uA80A\\uA80C-\\uA822\\uA840-\\uA873\\uA882-\\uA8B3\\uA8F2-\\uA8F7\\uA8FB\\uA90A-\\uA925\\uA930-\\uA946\\uA960-\\uA97C\\uA984-\\uA9B2\\uA9CF\\uA9E0-\\uA9E4\\uA9E6-\\uA9EF\\uA9FA-\\uA9FE\\uAA00-\\uAA28\\uAA40-\\uAA42\\uAA44-\\uAA4B\\uAA60-\\uAA76\\uAA7A\\uAA7E-\\uAAAF\\uAAB1\\uAAB5\\uAAB6\\uAAB9-\\uAABD\\uAAC0\\uAAC2\\uAADB-\\uAADD\\uAAE0-\\uAAEA\\uAAF2-\\uAAF4\\uAB01-\\uAB06\\uAB09-\\uAB0E\\uAB11-\\uAB16\\uAB20-\\uAB26\\uAB28-\\uAB2E\\uAB30-\\uAB5A\\uAB5C-\\uAB5F\\uAB64\\uAB65\\uABC0-\\uABE2\\uAC00-\\uD7A3\\uD7B0-\\uD7C6\\uD7CB-\\uD7FB\\uF900-\\uFA6D\\uFA70-\\uFAD9\\uFB00-\\uFB06\\uFB13-\\uFB17\\uFB1D\\uFB1F-\\uFB28\\uFB2A-\\uFB36\\uFB38-\\uFB3C\\uFB3E\\uFB40\\uFB41\\uFB43\\uFB44\\uFB46-\\uFBB1\\uFBD3-\\uFD3D\\uFD50-\\uFD8F\\uFD92-\\uFDC7\\uFDF0-\\uFDFB\\uFE70-\\uFE74\\uFE76-\\uFEFC\\uFF21-\\uFF3A\\uFF41-\\uFF5A\\uFF66-\\uFFBE\\uFFC2-\\uFFC7\\uFFCA-\\uFFCF\\uFFD2-\\uFFD7\\uFFDA-\\uFFDC]"), iT = /* @__PURE__ */ RegExp("[\\xAA\\xB5\\xBA\\xC0-\\xD6\\xD8-\\xF6\\xF8-\\u02C1\\u02C6-\\u02D1\\u02E0-\\u02E4\\u02EC\\u02EE\\u0300-\\u0374\\u0376\\u0377\\u037A-\\u037D\\u037F\\u0386\\u0388-\\u038A\\u038C\\u038E-\\u03A1\\u03A3-\\u03F5\\u03F7-\\u0481\\u0483-\\u0487\\u048A-\\u052F\\u0531-\\u0556\\u0559\\u0561-\\u0587\\u0591-\\u05BD\\u05BF\\u05C1\\u05C2\\u05C4\\u05C5\\u05C7\\u05D0-\\u05EA\\u05F0-\\u05F2\\u0610-\\u061A\\u0620-\\u0669\\u066E-\\u06D3\\u06D5-\\u06DC\\u06DF-\\u06E8\\u06EA-\\u06FC\\u06FF\\u0710-\\u074A\\u074D-\\u07B1\\u07C0-\\u07F5\\u07FA\\u0800-\\u082D\\u0840-\\u085B\\u08A0-\\u08B2\\u08E4-\\u0963\\u0966-\\u096F\\u0971-\\u0983\\u0985-\\u098C\\u098F\\u0990\\u0993-\\u09A8\\u09AA-\\u09B0\\u09B2\\u09B6-\\u09B9\\u09BC-\\u09C4\\u09C7\\u09C8\\u09CB-\\u09CE\\u09D7\\u09DC\\u09DD\\u09DF-\\u09E3\\u09E6-\\u09F1\\u0A01-\\u0A03\\u0A05-\\u0A0A\\u0A0F\\u0A10\\u0A13-\\u0A28\\u0A2A-\\u0A30\\u0A32\\u0A33\\u0A35\\u0A36\\u0A38\\u0A39\\u0A3C\\u0A3E-\\u0A42\\u0A47\\u0A48\\u0A4B-\\u0A4D\\u0A51\\u0A59-\\u0A5C\\u0A5E\\u0A66-\\u0A75\\u0A81-\\u0A83\\u0A85-\\u0A8D\\u0A8F-\\u0A91\\u0A93-\\u0AA8\\u0AAA-\\u0AB0\\u0AB2\\u0AB3\\u0AB5-\\u0AB9\\u0ABC-\\u0AC5\\u0AC7-\\u0AC9\\u0ACB-\\u0ACD\\u0AD0\\u0AE0-\\u0AE3\\u0AE6-\\u0AEF\\u0B01-\\u0B03\\u0B05-\\u0B0C\\u0B0F\\u0B10\\u0B13-\\u0B28\\u0B2A-\\u0B30\\u0B32\\u0B33\\u0B35-\\u0B39\\u0B3C-\\u0B44\\u0B47\\u0B48\\u0B4B-\\u0B4D\\u0B56\\u0B57\\u0B5C\\u0B5D\\u0B5F-\\u0B63\\u0B66-\\u0B6F\\u0B71\\u0B82\\u0B83\\u0B85-\\u0B8A\\u0B8E-\\u0B90\\u0B92-\\u0B95\\u0B99\\u0B9A\\u0B9C\\u0B9E\\u0B9F\\u0BA3\\u0BA4\\u0BA8-\\u0BAA\\u0BAE-\\u0BB9\\u0BBE-\\u0BC2\\u0BC6-\\u0BC8\\u0BCA-\\u0BCD\\u0BD0\\u0BD7\\u0BE6-\\u0BEF\\u0C00-\\u0C03\\u0C05-\\u0C0C\\u0C0E-\\u0C10\\u0C12-\\u0C28\\u0C2A-\\u0C39\\u0C3D-\\u0C44\\u0C46-\\u0C48\\u0C4A-\\u0C4D\\u0C55\\u0C56\\u0C58\\u0C59\\u0C60-\\u0C63\\u0C66-\\u0C6F\\u0C81-\\u0C83\\u0C85-\\u0C8C\\u0C8E-\\u0C90\\u0C92-\\u0CA8\\u0CAA-\\u0CB3\\u0CB5-\\u0CB9\\u0CBC-\\u0CC4\\u0CC6-\\u0CC8\\u0CCA-\\u0CCD\\u0CD5\\u0CD6\\u0CDE\\u0CE0-\\u0CE3\\u0CE6-\\u0CEF\\u0CF1\\u0CF2\\u0D01-\\u0D03\\u0D05-\\u0D0C\\u0D0E-\\u0D10\\u0D12-\\u0D3A\\u0D3D-\\u0D44\\u0D46-\\u0D48\\u0D4A-\\u0D4E\\u0D57\\u0D60-\\u0D63\\u0D66-\\u0D6F\\u0D7A-\\u0D7F\\u0D82\\u0D83\\u0D85-\\u0D96\\u0D9A-\\u0DB1\\u0DB3-\\u0DBB\\u0DBD\\u0DC0-\\u0DC6\\u0DCA\\u0DCF-\\u0DD4\\u0DD6\\u0DD8-\\u0DDF\\u0DE6-\\u0DEF\\u0DF2\\u0DF3\\u0E01-\\u0E3A\\u0E40-\\u0E4E\\u0E50-\\u0E59\\u0E81\\u0E82\\u0E84\\u0E87\\u0E88\\u0E8A\\u0E8D\\u0E94-\\u0E97\\u0E99-\\u0E9F\\u0EA1-\\u0EA3\\u0EA5\\u0EA7\\u0EAA\\u0EAB\\u0EAD-\\u0EB9\\u0EBB-\\u0EBD\\u0EC0-\\u0EC4\\u0EC6\\u0EC8-\\u0ECD\\u0ED0-\\u0ED9\\u0EDC-\\u0EDF\\u0F00\\u0F18\\u0F19\\u0F20-\\u0F29\\u0F35\\u0F37\\u0F39\\u0F3E-\\u0F47\\u0F49-\\u0F6C\\u0F71-\\u0F84\\u0F86-\\u0F97\\u0F99-\\u0FBC\\u0FC6\\u1000-\\u1049\\u1050-\\u109D\\u10A0-\\u10C5\\u10C7\\u10CD\\u10D0-\\u10FA\\u10FC-\\u1248\\u124A-\\u124D\\u1250-\\u1256\\u1258\\u125A-\\u125D\\u1260-\\u1288\\u128A-\\u128D\\u1290-\\u12B0\\u12B2-\\u12B5\\u12B8-\\u12BE\\u12C0\\u12C2-\\u12C5\\u12C8-\\u12D6\\u12D8-\\u1310\\u1312-\\u1315\\u1318-\\u135A\\u135D-\\u135F\\u1380-\\u138F\\u13A0-\\u13F4\\u1401-\\u166C\\u166F-\\u167F\\u1681-\\u169A\\u16A0-\\u16EA\\u16EE-\\u16F8\\u1700-\\u170C\\u170E-\\u1714\\u1720-\\u1734\\u1740-\\u1753\\u1760-\\u176C\\u176E-\\u1770\\u1772\\u1773\\u1780-\\u17D3\\u17D7\\u17DC\\u17DD\\u17E0-\\u17E9\\u180B-\\u180D\\u1810-\\u1819\\u1820-\\u1877\\u1880-\\u18AA\\u18B0-\\u18F5\\u1900-\\u191E\\u1920-\\u192B\\u1930-\\u193B\\u1946-\\u196D\\u1970-\\u1974\\u1980-\\u19AB\\u19B0-\\u19C9\\u19D0-\\u19D9\\u1A00-\\u1A1B\\u1A20-\\u1A5E\\u1A60-\\u1A7C\\u1A7F-\\u1A89\\u1A90-\\u1A99\\u1AA7\\u1AB0-\\u1ABD\\u1B00-\\u1B4B\\u1B50-\\u1B59\\u1B6B-\\u1B73\\u1B80-\\u1BF3\\u1C00-\\u1C37\\u1C40-\\u1C49\\u1C4D-\\u1C7D\\u1CD0-\\u1CD2\\u1CD4-\\u1CF6\\u1CF8\\u1CF9\\u1D00-\\u1DF5\\u1DFC-\\u1F15\\u1F18-\\u1F1D\\u1F20-\\u1F45\\u1F48-\\u1F4D\\u1F50-\\u1F57\\u1F59\\u1F5B\\u1F5D\\u1F5F-\\u1F7D\\u1F80-\\u1FB4\\u1FB6-\\u1FBC\\u1FBE\\u1FC2-\\u1FC4\\u1FC6-\\u1FCC\\u1FD0-\\u1FD3\\u1FD6-\\u1FDB\\u1FE0-\\u1FEC\\u1FF2-\\u1FF4\\u1FF6-\\u1FFC\\u200C\\u200D\\u203F\\u2040\\u2054\\u2071\\u207F\\u2090-\\u209C\\u20D0-\\u20DC\\u20E1\\u20E5-\\u20F0\\u2102\\u2107\\u210A-\\u2113\\u2115\\u2119-\\u211D\\u2124\\u2126\\u2128\\u212A-\\u212D\\u212F-\\u2139\\u213C-\\u213F\\u2145-\\u2149\\u214E\\u2160-\\u2188\\u2C00-\\u2C2E\\u2C30-\\u2C5E\\u2C60-\\u2CE4\\u2CEB-\\u2CF3\\u2D00-\\u2D25\\u2D27\\u2D2D\\u2D30-\\u2D67\\u2D6F\\u2D7F-\\u2D96\\u2DA0-\\u2DA6\\u2DA8-\\u2DAE\\u2DB0-\\u2DB6\\u2DB8-\\u2DBE\\u2DC0-\\u2DC6\\u2DC8-\\u2DCE\\u2DD0-\\u2DD6\\u2DD8-\\u2DDE\\u2DE0-\\u2DFF\\u2E2F\\u3005-\\u3007\\u3021-\\u302F\\u3031-\\u3035\\u3038-\\u303C\\u3041-\\u3096\\u3099\\u309A\\u309D-\\u309F\\u30A1-\\u30FA\\u30FC-\\u30FF\\u3105-\\u312D\\u3131-\\u318E\\u31A0-\\u31BA\\u31F0-\\u31FF\\u3400-\\u4DB5\\u4E00-\\u9FCC\\uA000-\\uA48C\\uA4D0-\\uA4FD\\uA500-\\uA60C\\uA610-\\uA62B\\uA640-\\uA66F\\uA674-\\uA67D\\uA67F-\\uA69D\\uA69F-\\uA6F1\\uA717-\\uA71F\\uA722-\\uA788\\uA78B-\\uA78E\\uA790-\\uA7AD\\uA7B0\\uA7B1\\uA7F7-\\uA827\\uA840-\\uA873\\uA880-\\uA8C4\\uA8D0-\\uA8D9\\uA8E0-\\uA8F7\\uA8FB\\uA900-\\uA92D\\uA930-\\uA953\\uA960-\\uA97C\\uA980-\\uA9C0\\uA9CF-\\uA9D9\\uA9E0-\\uA9FE\\uAA00-\\uAA36\\uAA40-\\uAA4D\\uAA50-\\uAA59\\uAA60-\\uAA76\\uAA7A-\\uAAC2\\uAADB-\\uAADD\\uAAE0-\\uAAEF\\uAAF2-\\uAAF6\\uAB01-\\uAB06\\uAB09-\\uAB0E\\uAB11-\\uAB16\\uAB20-\\uAB26\\uAB28-\\uAB2E\\uAB30-\\uAB5A\\uAB5C-\\uAB5F\\uAB64\\uAB65\\uABC0-\\uABEA\\uABEC\\uABED\\uABF0-\\uABF9\\uAC00-\\uD7A3\\uD7B0-\\uD7C6\\uD7CB-\\uD7FB\\uF900-\\uFA6D\\uFA70-\\uFAD9\\uFB00-\\uFB06\\uFB13-\\uFB17\\uFB1D-\\uFB28\\uFB2A-\\uFB36\\uFB38-\\uFB3C\\uFB3E\\uFB40\\uFB41\\uFB43\\uFB44\\uFB46-\\uFBB1\\uFBD3-\\uFD3D\\uFD50-\\uFD8F\\uFD92-\\uFDC7\\uFDF0-\\uFDFB\\uFE00-\\uFE0F\\uFE20-\\uFE2D\\uFE33\\uFE34\\uFE4D-\\uFE4F\\uFE70-\\uFE74\\uFE76-\\uFEFC\\uFF10-\\uFF19\\uFF21-\\uFF3A\\uFF3F\\uFF41-\\uFF5A\\uFF66-\\uFFBE\\uFFC2-\\uFFC7\\uFFCA-\\uFFCF\\uFFD2-\\uFFD7\\uFFDA-\\uFFDC]");
+function aT(e, t) {
 	/* istanbul ignore next */
 	if (!e) throw Error("ASSERT: " + t);
 }
-function iT(e) {
+function oT(e) {
 	return e >= 48 && e <= 57;
 }
-function aT(e) {
+function sT(e) {
 	return "0123456789abcdefABCDEF".includes(e);
 }
-function oT(e) {
+function cT(e) {
 	return "01234567".includes(e);
 }
-function sT(e) {
+function lT(e) {
 	return e === 32 || e === 9 || e === 11 || e === 12 || e === 160 || e >= 5760 && [
 		5760,
 		6158,
@@ -10556,16 +10577,16 @@ function sT(e) {
 		65279
 	].includes(e);
 }
-function cT(e) {
+function uT(e) {
 	return e === 10 || e === 13 || e === 8232 || e === 8233;
 }
-function lT(e) {
-	return e === 36 || e === 95 || e >= 65 && e <= 90 || e >= 97 && e <= 122 || e === 92 || e >= 128 && tT.test(String.fromCharCode(e));
+function dT(e) {
+	return e === 36 || e === 95 || e >= 65 && e <= 90 || e >= 97 && e <= 122 || e === 92 || e >= 128 && rT.test(String.fromCharCode(e));
 }
-function uT(e) {
-	return e === 36 || e === 95 || e >= 65 && e <= 90 || e >= 97 && e <= 122 || e >= 48 && e <= 57 || e === 92 || e >= 128 && nT.test(String.fromCharCode(e));
+function fT(e) {
+	return e === 36 || e === 95 || e >= 65 && e <= 90 || e >= 97 && e <= 122 || e >= 48 && e <= 57 || e === 92 || e >= 128 && iT.test(String.fromCharCode(e));
 }
-var dT = {
+var pT = {
 	if: 1,
 	in: 1,
 	do: 1,
@@ -10609,46 +10630,46 @@ var dT = {
 	instanceof: 1,
 	implements: 1
 };
-function fT() {
-	for (; J < Cw;) {
+function mT() {
+	for (; J < Tw;) {
 		let e = q.charCodeAt(J);
-		if (sT(e) || cT(e)) ++J;
+		if (lT(e) || uT(e)) ++J;
 		else break;
 	}
 }
-function pT(e) {
+function hT(e) {
 	var t, n, r, i = 0;
-	for (n = e === "u" ? 4 : 2, t = 0; t < n; ++t) J < Cw && aT(q[J]) ? (r = q[J++], i = i * 16 + "0123456789abcdef".indexOf(r.toLowerCase())) : Z({}, X, $w);
+	for (n = e === "u" ? 4 : 2, t = 0; t < n; ++t) J < Tw && sT(q[J]) ? (r = q[J++], i = i * 16 + "0123456789abcdef".indexOf(r.toLowerCase())) : Z({}, X, tT);
 	return String.fromCharCode(i);
 }
-function mT() {
+function gT() {
 	var e = q[J], t = 0, n, r;
-	for (e === "}" && Z({}, X, $w); J < Cw && (e = q[J++], aT(e));) t = t * 16 + "0123456789abcdef".indexOf(e.toLowerCase());
-	return (t > 1114111 || e !== "}") && Z({}, X, $w), t <= 65535 ? String.fromCharCode(t) : (n = (t - 65536 >> 10) + 55296, r = (t - 65536 & 1023) + 56320, String.fromCharCode(n, r));
+	for (e === "}" && Z({}, X, tT); J < Tw && (e = q[J++], sT(e));) t = t * 16 + "0123456789abcdef".indexOf(e.toLowerCase());
+	return (t > 1114111 || e !== "}") && Z({}, X, tT), t <= 65535 ? String.fromCharCode(t) : (n = (t - 65536 >> 10) + 55296, r = (t - 65536 & 1023) + 56320, String.fromCharCode(n, r));
 }
-function hT() {
+function _T() {
 	var e = q.charCodeAt(J++), t = String.fromCharCode(e);
-	for (e === 92 && (q.charCodeAt(J) !== 117 && Z({}, X, $w), ++J, e = pT("u"), (!e || e === "\\" || !lT(e.charCodeAt(0))) && Z({}, X, $w), t = e); J < Cw && (e = q.charCodeAt(J), uT(e));) ++J, t += String.fromCharCode(e), e === 92 && (t = t.substr(0, t.length - 1), q.charCodeAt(J) !== 117 && Z({}, X, $w), ++J, e = pT("u"), (!e || e === "\\" || !uT(e.charCodeAt(0))) && Z({}, X, $w), t += e);
+	for (e === 92 && (q.charCodeAt(J) !== 117 && Z({}, X, tT), ++J, e = hT("u"), (!e || e === "\\" || !dT(e.charCodeAt(0))) && Z({}, X, tT), t = e); J < Tw && (e = q.charCodeAt(J), fT(e));) ++J, t += String.fromCharCode(e), e === 92 && (t = t.substr(0, t.length - 1), q.charCodeAt(J) !== 117 && Z({}, X, tT), ++J, e = hT("u"), (!e || e === "\\" || !fT(e.charCodeAt(0))) && Z({}, X, tT), t += e);
 	return t;
 }
-function gT() {
-	for (var e = J++, t; J < Cw;) {
-		if (t = q.charCodeAt(J), t === 92) return J = e, hT();
-		if (uT(t)) ++J;
+function vT() {
+	for (var e = J++, t; J < Tw;) {
+		if (t = q.charCodeAt(J), t === 92) return J = e, _T();
+		if (fT(t)) ++J;
 		else break;
 	}
 	return q.slice(e, J);
 }
-function _T() {
-	var e = J, t = q.charCodeAt(J) === 92 ? hT() : gT();
+function yT() {
+	var e = J, t = q.charCodeAt(J) === 92 ? _T() : vT();
 	return {
-		type: t.length === 1 ? Ew : dT.hasOwnProperty(t) ? Dw : t === "null" ? Ow : t === "true" || t === "false" ? ww : Ew,
+		type: t.length === 1 ? Ow : pT.hasOwnProperty(t) ? kw : t === "null" ? Aw : t === "true" || t === "false" ? Ew : Ow,
 		value: t,
 		start: e,
 		end: J
 	};
 }
-function vT() {
+function bT() {
 	var e = J, t = q.charCodeAt(J), n, r = q[J], i, a, o;
 	switch (t) {
 		case 46:
@@ -10663,7 +10684,7 @@ function vT() {
 		case 58:
 		case 63:
 		case 126: return ++J, {
-			type: Aw,
+			type: Mw,
 			value: String.fromCharCode(t),
 			start: e,
 			end: J
@@ -10679,14 +10700,14 @@ function vT() {
 			case 37:
 			case 38:
 			case 42: return J += 2, {
-				type: Aw,
+				type: Mw,
 				value: String.fromCharCode(t) + String.fromCharCode(n),
 				start: e,
 				end: J
 			};
 			case 33:
 			case 61: return J += 2, q.charCodeAt(J) === 61 && ++J, {
-				type: Aw,
+				type: Mw,
 				value: q.slice(e, J),
 				start: e,
 				end: J
@@ -10694,85 +10715,85 @@ function vT() {
 		}
 	}
 	if (o = q.substr(J, 4), o === ">>>=") return J += 4, {
-		type: Aw,
+		type: Mw,
 		value: o,
 		start: e,
 		end: J
 	};
 	if (a = o.substr(0, 3), a === ">>>" || a === "<<=" || a === ">>=") return J += 3, {
-		type: Aw,
+		type: Mw,
 		value: a,
 		start: e,
 		end: J
 	};
 	if (i = a.substr(0, 2), r === i[1] && "+-<>&|".includes(r) || i === "=>") return J += 2, {
-		type: Aw,
+		type: Mw,
 		value: i,
 		start: e,
 		end: J
 	};
-	if (i === "//" && Z({}, X, $w), "<>=!+-*%&|^/".includes(r)) return ++J, {
-		type: Aw,
+	if (i === "//" && Z({}, X, tT), "<>=!+-*%&|^/".includes(r)) return ++J, {
+		type: Mw,
 		value: r,
 		start: e,
 		end: J
 	};
-	Z({}, X, $w);
+	Z({}, X, tT);
 }
-function yT(e) {
+function xT(e) {
 	let t = "";
-	for (; J < Cw && aT(q[J]);) t += q[J++];
-	return t.length === 0 && Z({}, X, $w), lT(q.charCodeAt(J)) && Z({}, X, $w), {
-		type: kw,
+	for (; J < Tw && sT(q[J]);) t += q[J++];
+	return t.length === 0 && Z({}, X, tT), dT(q.charCodeAt(J)) && Z({}, X, tT), {
+		type: jw,
 		value: parseInt("0x" + t, 16),
 		start: e,
 		end: J
 	};
 }
-function bT(e) {
+function ST(e) {
 	let t = "0" + q[J++];
-	for (; J < Cw && oT(q[J]);) t += q[J++];
-	return (lT(q.charCodeAt(J)) || iT(q.charCodeAt(J))) && Z({}, X, $w), {
-		type: kw,
+	for (; J < Tw && cT(q[J]);) t += q[J++];
+	return (dT(q.charCodeAt(J)) || oT(q.charCodeAt(J))) && Z({}, X, tT), {
+		type: jw,
 		value: parseInt(t, 8),
 		octal: !0,
 		start: e,
 		end: J
 	};
 }
-function xT() {
+function CT() {
 	var e, t, n = q[J];
-	if (rT(iT(n.charCodeAt(0)) || n === ".", "Numeric literal must start with a decimal digit or a decimal point"), t = J, e = "", n !== ".") {
+	if (aT(oT(n.charCodeAt(0)) || n === ".", "Numeric literal must start with a decimal digit or a decimal point"), t = J, e = "", n !== ".") {
 		if (e = q[J++], n = q[J], e === "0") {
-			if (n === "x" || n === "X") return ++J, yT(t);
-			if (oT(n)) return bT(t);
-			n && iT(n.charCodeAt(0)) && Z({}, X, $w);
+			if (n === "x" || n === "X") return ++J, xT(t);
+			if (cT(n)) return ST(t);
+			n && oT(n.charCodeAt(0)) && Z({}, X, tT);
 		}
-		for (; iT(q.charCodeAt(J));) e += q[J++];
+		for (; oT(q.charCodeAt(J));) e += q[J++];
 		n = q[J];
 	}
 	if (n === ".") {
-		for (e += q[J++]; iT(q.charCodeAt(J));) e += q[J++];
+		for (e += q[J++]; oT(q.charCodeAt(J));) e += q[J++];
 		n = q[J];
 	}
-	if (n === "e" || n === "E") if (e += q[J++], n = q[J], (n === "+" || n === "-") && (e += q[J++]), iT(q.charCodeAt(J))) for (; iT(q.charCodeAt(J));) e += q[J++];
-	else Z({}, X, $w);
-	return lT(q.charCodeAt(J)) && Z({}, X, $w), {
-		type: kw,
+	if (n === "e" || n === "E") if (e += q[J++], n = q[J], (n === "+" || n === "-") && (e += q[J++]), oT(q.charCodeAt(J))) for (; oT(q.charCodeAt(J));) e += q[J++];
+	else Z({}, X, tT);
+	return dT(q.charCodeAt(J)) && Z({}, X, tT), {
+		type: jw,
 		value: parseFloat(e),
 		start: t,
 		end: J
 	};
 }
-function ST() {
+function wT() {
 	var e = "", t, n, r, i, a = !1;
-	for (t = q[J], rT(t === "'" || t === "\"", "String literal must starts with a quote"), n = J, ++J; J < Cw;) if (r = q[J++], r === t) {
+	for (t = q[J], aT(t === "'" || t === "\"", "String literal must starts with a quote"), n = J, ++J; J < Tw;) if (r = q[J++], r === t) {
 		t = "";
 		break;
-	} else if (r === "\\") if (r = q[J++], !r || !cT(r.charCodeAt(0))) switch (r) {
+	} else if (r === "\\") if (r = q[J++], !r || !uT(r.charCodeAt(0))) switch (r) {
 		case "u":
 		case "x":
-			q[J] === "{" ? (++J, e += mT()) : e += pT(r);
+			q[J] === "{" ? (++J, e += gT()) : e += hT(r);
 			break;
 		case "n":
 			e += "\n";
@@ -10793,30 +10814,30 @@ function ST() {
 			e += "\v";
 			break;
 		default:
-			oT(r) ? (i = "01234567".indexOf(r), i !== 0 && (a = !0), J < Cw && oT(q[J]) && (a = !0, i = i * 8 + "01234567".indexOf(q[J++]), "0123".includes(r) && J < Cw && oT(q[J]) && (i = i * 8 + "01234567".indexOf(q[J++]))), e += String.fromCharCode(i)) : e += r;
+			cT(r) ? (i = "01234567".indexOf(r), i !== 0 && (a = !0), J < Tw && cT(q[J]) && (a = !0, i = i * 8 + "01234567".indexOf(q[J++]), "0123".includes(r) && J < Tw && cT(q[J]) && (i = i * 8 + "01234567".indexOf(q[J++]))), e += String.fromCharCode(i)) : e += r;
 			break;
 	}
 	else r === "\r" && q[J] === "\n" && ++J;
-	else if (cT(r.charCodeAt(0))) break;
+	else if (uT(r.charCodeAt(0))) break;
 	else e += r;
-	return t !== "" && Z({}, X, $w), {
-		type: jw,
+	return t !== "" && Z({}, X, tT), {
+		type: Nw,
 		value: e,
 		octal: a,
 		start: n,
 		end: J
 	};
 }
-function CT(e, t) {
+function TT(e, t) {
 	let n = e;
 	t.includes("u") && (n = n.replace(/\\u\{([0-9a-fA-F]+)\}/g, (e, t) => {
 		if (parseInt(t, 16) <= 1114111) return "x";
-		Z({}, Yw);
+		Z({}, Zw);
 	}).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "x"));
 	try {
 		new RegExp(n);
 	} catch {
-		Z({}, Yw);
+		Z({}, Zw);
 	}
 	try {
 		return new RegExp(e, t);
@@ -10824,30 +10845,30 @@ function CT(e, t) {
 		return null;
 	}
 }
-function wT() {
+function ET() {
 	var e = q[J], t, n, r, i;
-	for (rT(e === "/", "Regular expression literal must start with a slash"), t = q[J++], n = !1, r = !1; J < Cw;) if (e = q[J++], t += e, e === "\\") e = q[J++], cT(e.charCodeAt(0)) && Z({}, Xw), t += e;
-	else if (cT(e.charCodeAt(0))) Z({}, Xw);
+	for (aT(e === "/", "Regular expression literal must start with a slash"), t = q[J++], n = !1, r = !1; J < Tw;) if (e = q[J++], t += e, e === "\\") e = q[J++], uT(e.charCodeAt(0)) && Z({}, Qw), t += e;
+	else if (uT(e.charCodeAt(0))) Z({}, Qw);
 	else if (n) e === "]" && (n = !1);
 	else if (e === "/") {
 		r = !0;
 		break;
 	} else e === "[" && (n = !0);
-	return r || Z({}, Xw), i = t.substr(1, t.length - 2), {
+	return r || Z({}, Qw), i = t.substr(1, t.length - 2), {
 		value: i,
 		literal: t
 	};
 }
-function TT() {
-	for (var e, t = "", n = ""; J < Cw && (e = q[J], uT(e.charCodeAt(0)));) ++J, e === "\\" && J < Cw ? Z({}, X, $w) : (n += e, t += e);
-	return n.search(/[^gimuy]/g) >= 0 && Z({}, Yw, n), {
+function DT() {
+	for (var e, t = "", n = ""; J < Tw && (e = q[J], fT(e.charCodeAt(0)));) ++J, e === "\\" && J < Tw ? Z({}, X, tT) : (n += e, t += e);
+	return n.search(/[^gimuy]/g) >= 0 && Z({}, Zw, n), {
 		value: n,
 		literal: t
 	};
 }
-function ET() {
+function OT() {
 	var e, t, n, r;
-	return Y = null, fT(), e = J, t = wT(), n = TT(), r = CT(t.value, n.value), {
+	return Y = null, mT(), e = J, t = ET(), n = DT(), r = TT(t.value, n.value), {
 		literal: t.literal + n.literal,
 		value: r,
 		regex: {
@@ -10858,163 +10879,163 @@ function ET() {
 		end: J
 	};
 }
-function DT(e) {
-	return e.type === Ew || e.type === Dw || e.type === ww || e.type === Ow;
+function kT(e) {
+	return e.type === Ow || e.type === kw || e.type === Ew || e.type === Aw;
 }
-function OT() {
-	if (fT(), J >= Cw) return {
-		type: Tw,
+function AT() {
+	if (mT(), J >= Tw) return {
+		type: Dw,
 		start: J,
 		end: J
 	};
 	let e = q.charCodeAt(J);
-	return lT(e) ? _T() : e === 40 || e === 41 || e === 59 ? vT() : e === 39 || e === 34 ? ST() : e === 46 ? iT(q.charCodeAt(J + 1)) ? xT() : vT() : iT(e) ? xT() : vT();
+	return dT(e) ? yT() : e === 40 || e === 41 || e === 59 ? bT() : e === 39 || e === 34 ? wT() : e === 46 ? oT(q.charCodeAt(J + 1)) ? CT() : bT() : oT(e) ? CT() : bT();
 }
-function kT() {
+function jT() {
 	let e = Y;
-	return J = e.end, Y = OT(), J = e.end, e;
+	return J = e.end, Y = AT(), J = e.end, e;
 }
-function AT() {
+function MT() {
 	let e = J;
-	Y = OT(), J = e;
+	Y = AT(), J = e;
 }
-function jT(e) {
-	let t = new bw(Nw);
+function NT(e) {
+	let t = new Sw(Fw);
 	return t.elements = e, t;
 }
-function MT(e, t, n) {
-	let r = new bw(e === "||" || e === "&&" ? zw : Pw);
+function PT(e, t, n) {
+	let r = new Sw(e === "||" || e === "&&" ? Vw : Iw);
 	return r.operator = e, r.left = t, r.right = n, r;
 }
-function NT(e, t) {
-	let n = new bw(Fw);
+function FT(e, t) {
+	let n = new Sw(Lw);
 	return n.callee = e, n.arguments = t, n;
 }
-function PT(e, t, n) {
-	let r = new bw(Iw);
+function IT(e, t, n) {
+	let r = new Sw(Rw);
 	return r.test = e, r.consequent = t, r.alternate = n, r;
 }
-function FT(e) {
-	let t = new bw(Lw);
+function LT(e) {
+	let t = new Sw(zw);
 	return t.name = e, t;
 }
-function IT(e) {
-	let t = new bw(Rw);
+function RT(e) {
+	let t = new Sw(Bw);
 	return t.value = e.value, t.raw = q.slice(e.start, e.end), e.regex && (t.raw === "//" && (t.raw = "/(?:)/"), t.regex = e.regex), t;
 }
-function LT(e, t, n) {
-	let r = new bw(Bw);
+function zT(e, t, n) {
+	let r = new Sw(Hw);
 	return r.computed = e === "[", r.object = t, r.property = n, r.computed || (n.member = !0), r;
 }
-function RT(e) {
-	let t = new bw(Vw);
+function BT(e) {
+	let t = new Sw(Uw);
 	return t.properties = e, t;
 }
-function zT(e, t, n) {
-	let r = new bw(Hw);
+function VT(e, t, n) {
+	let r = new Sw(Ww);
 	return r.key = t, r.value = n, r.kind = e, r;
 }
-function BT(e, t) {
-	let n = new bw(Uw);
+function HT(e, t) {
+	let n = new Sw(Gw);
 	return n.operator = e, n.argument = t, n.prefix = !0, n;
 }
 function Z(e, t) {
-	var n, r = Array.prototype.slice.call(arguments, 2), i = t.replace(/%(\d)/g, (e, t) => (rT(t < r.length, "Message reference must be in range"), r[t]));
+	var n, r = Array.prototype.slice.call(arguments, 2), i = t.replace(/%(\d)/g, (e, t) => (aT(t < r.length, "Message reference must be in range"), r[t]));
 	throw n = Error(i), n.index = J, n.description = i, n;
 }
-function VT(e) {
-	e.type === Tw && Z(e, Jw), e.type === kw && Z(e, Ww), e.type === jw && Z(e, Gw), e.type === Ew && Z(e, Kw), e.type === Dw && Z(e, qw), Z(e, X, e.value);
+function UT(e) {
+	e.type === Dw && Z(e, Xw), e.type === jw && Z(e, Kw), e.type === Nw && Z(e, qw), e.type === Ow && Z(e, Jw), e.type === kw && Z(e, Yw), Z(e, X, e.value);
 }
-function HT(e) {
-	let t = kT();
-	(t.type !== Aw || t.value !== e) && VT(t);
+function WT(e) {
+	let t = jT();
+	(t.type !== Mw || t.value !== e) && UT(t);
 }
 function Q(e) {
-	return Y.type === Aw && Y.value === e;
+	return Y.type === Mw && Y.value === e;
 }
-function UT(e) {
-	return Y.type === Dw && Y.value === e;
-}
-function WT() {
-	let e = [];
-	for (J = Y.start, HT("["); !Q("]");) Q(",") ? (kT(), e.push(null)) : (e.push(oE()), Q("]") || HT(","));
-	return kT(), jT(e);
-}
-function GT() {
-	J = Y.start;
-	let e = kT();
-	return e.type === jw || e.type === kw ? (e.octal && Z(e, Zw), IT(e)) : FT(e.value);
+function GT(e) {
+	return Y.type === kw && Y.value === e;
 }
 function KT() {
-	var e, t, n, r;
-	if (J = Y.start, e = Y, e.type === Ew) return n = GT(), HT(":"), r = oE(), zT("init", n, r);
-	if (e.type === Tw || e.type === Aw) VT(e);
-	else return t = GT(), HT(":"), r = oE(), zT("init", t, r);
+	let e = [];
+	for (J = Y.start, WT("["); !Q("]");) Q(",") ? (jT(), e.push(null)) : (e.push(cE()), Q("]") || WT(","));
+	return jT(), NT(e);
 }
 function qT() {
-	var e = [], t, n, r, i = {}, a = String;
-	for (J = Y.start, HT("{"); !Q("}");) t = KT(), n = t.key.type === Lw ? t.key.name : a(t.key.value), r = "$" + n, Object.prototype.hasOwnProperty.call(i, r) ? Z({}, Qw) : i[r] = !0, e.push(t), Q("}") || HT(",");
-	return HT("}"), RT(e);
+	J = Y.start;
+	let e = jT();
+	return e.type === Nw || e.type === jw ? (e.octal && Z(e, $w), RT(e)) : LT(e.value);
 }
 function JT() {
-	HT("(");
-	let e = sE();
-	return HT(")"), e;
+	var e, t, n, r;
+	if (J = Y.start, e = Y, e.type === Ow) return n = qT(), WT(":"), r = cE(), VT("init", n, r);
+	if (e.type === Dw || e.type === Mw) UT(e);
+	else return t = qT(), WT(":"), r = cE(), VT("init", t, r);
 }
-var YT = { if: 1 };
+function YT() {
+	var e = [], t, n, r, i = {}, a = String;
+	for (J = Y.start, WT("{"); !Q("}");) t = JT(), n = t.key.type === zw ? t.key.name : a(t.key.value), r = "$" + n, Object.prototype.hasOwnProperty.call(i, r) ? Z({}, eT) : i[r] = !0, e.push(t), Q("}") || WT(",");
+	return WT("}"), BT(e);
+}
 function XT() {
+	WT("(");
+	let e = lE();
+	return WT(")"), e;
+}
+var ZT = { if: 1 };
+function QT() {
 	var e, t, n;
-	if (Q("(")) return JT();
-	if (Q("[")) return WT();
-	if (Q("{")) return qT();
-	if (e = Y.type, J = Y.start, e === Ew || YT[Y.value]) n = FT(kT().value);
-	else if (e === jw || e === kw) Y.octal && Z(Y, Zw), n = IT(kT());
-	else if (e === Dw) throw Error(eT);
-	else e === ww ? (t = kT(), t.value = t.value === "true", n = IT(t)) : e === Ow ? (t = kT(), t.value = null, n = IT(t)) : Q("/") || Q("/=") ? (n = IT(ET()), AT()) : VT(kT());
+	if (Q("(")) return XT();
+	if (Q("[")) return KT();
+	if (Q("{")) return YT();
+	if (e = Y.type, J = Y.start, e === Ow || ZT[Y.value]) n = LT(jT().value);
+	else if (e === Nw || e === jw) Y.octal && Z(Y, $w), n = RT(jT());
+	else if (e === kw) throw Error(nT);
+	else e === Ew ? (t = jT(), t.value = t.value === "true", n = RT(t)) : e === Aw ? (t = jT(), t.value = null, n = RT(t)) : Q("/") || Q("/=") ? (n = RT(OT()), MT()) : UT(jT());
 	return n;
 }
-function ZT() {
-	let e = [];
-	if (HT("("), !Q(")")) for (; J < Cw && (e.push(oE()), !Q(")"));) HT(",");
-	return HT(")"), e;
-}
-function QT() {
-	J = Y.start;
-	let e = kT();
-	return DT(e) || VT(e), FT(e.value);
-}
 function $T() {
-	return HT("."), QT();
+	let e = [];
+	if (WT("("), !Q(")")) for (; J < Tw && (e.push(cE()), !Q(")"));) WT(",");
+	return WT(")"), e;
 }
 function eE() {
-	HT("[");
-	let e = sE();
-	return HT("]"), e;
+	J = Y.start;
+	let e = jT();
+	return kT(e) || UT(e), LT(e.value);
 }
 function tE() {
-	for (var e = XT(), t, n;;) if (Q(".")) n = $T(), e = LT(".", e, n);
-	else if (Q("(")) t = ZT(), e = NT(e, t);
-	else if (Q("[")) n = eE(), e = LT("[", e, n);
+	return WT("."), eE();
+}
+function nE() {
+	WT("[");
+	let e = lE();
+	return WT("]"), e;
+}
+function rE() {
+	for (var e = QT(), t, n;;) if (Q(".")) n = tE(), e = zT(".", e, n);
+	else if (Q("(")) t = $T(), e = FT(e, t);
+	else if (Q("[")) n = nE(), e = zT("[", e, n);
 	else break;
 	return e;
 }
-function nE() {
-	let e = tE();
-	if (Y.type === Aw && (Q("++") || Q("--"))) throw Error(eT);
+function iE() {
+	let e = rE();
+	if (Y.type === Mw && (Q("++") || Q("--"))) throw Error(nT);
 	return e;
 }
-function rE() {
+function aE() {
 	var e, t;
-	if (Y.type !== Aw && Y.type !== Dw) t = nE();
-	else if (Q("++") || Q("--")) throw Error(eT);
-	else if (Q("+") || Q("-") || Q("~") || Q("!")) e = kT(), t = rE(), t = BT(e.value, t);
-	else if (UT("delete") || UT("void") || UT("typeof")) throw Error(eT);
-	else t = nE();
+	if (Y.type !== Mw && Y.type !== kw) t = iE();
+	else if (Q("++") || Q("--")) throw Error(nT);
+	else if (Q("+") || Q("-") || Q("~") || Q("!")) e = jT(), t = aE(), t = HT(e.value, t);
+	else if (GT("delete") || GT("void") || GT("typeof")) throw Error(nT);
+	else t = iE();
 	return t;
 }
-function iE(e) {
+function oE(e) {
 	let t = 0;
-	if (e.type !== Aw && e.type !== Dw) return 0;
+	if (e.type !== Mw && e.type !== kw) return 0;
 	switch (e.value) {
 		case "||":
 			t = 1;
@@ -11062,36 +11083,36 @@ function iE(e) {
 	}
 	return t;
 }
-function aE() {
-	var e = Y, t, n, r, i, a, o, s, c = rE(), l;
-	if (r = Y, i = iE(r), i === 0) return c;
-	for (r.prec = i, kT(), t = [e, Y], o = rE(), a = [
+function sE() {
+	var e = Y, t, n, r, i, a, o, s, c = aE(), l;
+	if (r = Y, i = oE(r), i === 0) return c;
+	for (r.prec = i, jT(), t = [e, Y], o = aE(), a = [
 		c,
 		r,
 		o
-	]; (i = iE(Y)) > 0;) {
-		for (; a.length > 2 && i <= a[a.length - 2].prec;) o = a.pop(), s = a.pop().value, c = a.pop(), t.pop(), n = MT(s, c, o), a.push(n);
-		r = kT(), r.prec = i, a.push(r), t.push(Y), n = rE(), a.push(n);
+	]; (i = oE(Y)) > 0;) {
+		for (; a.length > 2 && i <= a[a.length - 2].prec;) o = a.pop(), s = a.pop().value, c = a.pop(), t.pop(), n = PT(s, c, o), a.push(n);
+		r = jT(), r.prec = i, a.push(r), t.push(Y), n = aE(), a.push(n);
 	}
-	for (l = a.length - 1, n = a[l], t.pop(); l > 1;) t.pop(), n = MT(a[l - 1].value, a[l - 2], n), l -= 2;
+	for (l = a.length - 1, n = a[l], t.pop(); l > 1;) t.pop(), n = PT(a[l - 1].value, a[l - 2], n), l -= 2;
 	return n;
 }
-function oE() {
-	var e = aE(), t, n;
-	return Q("?") && (kT(), t = oE(), HT(":"), n = oE(), e = PT(e, t, n)), e;
+function cE() {
+	var e = sE(), t, n;
+	return Q("?") && (jT(), t = cE(), WT(":"), n = cE(), e = IT(e, t, n)), e;
 }
-function sE() {
-	let e = oE();
-	if (Q(",")) throw Error(eT);
+function lE() {
+	let e = cE();
+	if (Q(",")) throw Error(nT);
 	return e;
 }
-function cE(e) {
-	q = e, J = 0, Cw = q.length, Y = null, AT();
-	let t = sE();
-	if (Y.type !== Tw) throw Error("Unexpect token after expression.");
+function uE(e) {
+	q = e, J = 0, Tw = q.length, Y = null, MT();
+	let t = lE();
+	if (Y.type !== Dw) throw Error("Unexpect token after expression.");
 	return t;
 }
-var lE = {
+var dE = {
 	NaN: "NaN",
 	E: "Math.E",
 	LN2: "Math.LN2",
@@ -11104,7 +11125,7 @@ var lE = {
 	MIN_VALUE: "Number.MIN_VALUE",
 	MAX_VALUE: "Number.MAX_VALUE"
 };
-function uE(e) {
+function fE(e) {
 	function t(t, n, r, i) {
 		let a = e(n[0]);
 		return r && (a = r + "(" + a + ")", r.lastIndexOf("new ", 0) === 0 && (a = "(" + a + ")")), a + "." + t + (i < 0 ? "" : i === 0 ? "()" : "(" + n.slice(1).map(e).join(",") + ")");
@@ -11180,13 +11201,13 @@ function uE(e) {
 		}
 	};
 }
-function dE(e) {
+function pE(e) {
 	let t = e && e.length - 1;
 	return t && (e[0] === "\"" && e[t] === "\"" || e[0] === "'" && e[t] === "'") ? e.slice(1, -1) : e;
 }
-function fE(e) {
+function mE(e) {
 	e ||= {};
-	let t = e.allowed ? Lt(e.allowed) : {}, n = e.forbidden ? Lt(e.forbidden) : {}, r = e.constants || lE, i = (e.functions || uE)(d), a = e.globalvar, o = e.fieldvar, s = gt(a) ? a : (e) => `${a}["${e}"]`;
+	let t = e.allowed ? Lt(e.allowed) : {}, n = e.forbidden ? Lt(e.forbidden) : {}, r = e.constants || dE, i = (e.functions || fE)(d), a = e.globalvar, o = e.fieldvar, s = gt(a) ? a : (e) => `${a}["${e}"]`;
 	new Set([...Object.getOwnPropertyNames(Object.prototype).filter((e) => typeof Object.prototype[e] == "function"), "__proto__"]);
 	let c = {}, l = {}, u = 0;
 	function d(e) {
@@ -11204,7 +11225,7 @@ function fE(e) {
 			let t = !e.computed, n = d(e.object);
 			t && (u += 1);
 			let r = d(e.property);
-			return n === o && (l[dE(r)] = 1), t && --u, n + (t ? "." + r : "[" + r + "]");
+			return n === o && (l[pE(r)] = 1), t && --u, n + (t ? "." + r : "[" + r + "]");
 		},
 		CallExpression: (e) => {
 			e.callee.type !== "Identifier" && T("Illegal callee type: " + e.callee.type);
@@ -11241,36 +11262,36 @@ function fE(e) {
 }
 //#endregion
 //#region src/utils/linearstep.js
-function pE(e, t, n) {
-	return hS((n - e) / (t - e), 0, 1);
+function hE(e, t, n) {
+	return _S((n - e) / (t - e), 0, 1);
 }
 //#endregion
 //#region src/utils/expression.js
-function mE(e) {
+function gE(e) {
 	return E(e) || ArrayBuffer.isView(e) ? e : null;
 }
-function hE(e) {
-	return mE(e) || (O(e) ? e : null);
+function _E(e) {
+	return gE(e) || (O(e) ? e : null);
 }
-var gE = {
-	clamp: hS,
+var vE = {
+	clamp: _S,
 	format(e, t) {
 		return k(t)(e);
 	},
 	join(e, t) {
-		return mE(e).join(t);
+		return gE(e).join(t);
 	},
 	indexof(e, t, n) {
-		return hE(e).indexOf(t, n);
+		return _E(e).indexOf(t, n);
 	},
 	lastindexof(e, t, n) {
-		return hE(e).lastIndexOf(t, n);
+		return _E(e).lastIndexOf(t, n);
 	},
 	reverse(e) {
-		return mE(e).slice().reverse();
+		return gE(e).slice().reverse();
 	},
 	slice(e, t, n) {
-		return hE(e).slice(t, n);
+		return _E(e).slice(t, n);
 	},
 	mapHasKey(e, t) {
 		return e.has(t);
@@ -11288,15 +11309,15 @@ var gE = {
 		return e != null && e === e;
 	},
 	lerp: At,
-	linearstep: pE,
+	linearstep: hE,
 	replace(e, t, n) {
 		return String(e).replace(t, n);
 	},
 	sort(e) {
-		return mE(e).slice().sort(yt);
+		return gE(e).slice().sort(yt);
 	},
 	center(e) {
-		let t = mE(e);
+		let t = gE(e);
 		return (t[0] + t[t.length - 1]) / 2;
 	},
 	span(e) {
@@ -11304,49 +11325,49 @@ var gE = {
 	},
 	smoothstep: Xo
 };
-function _E(e, t) {
-	let n = uE(e);
-	for (let e in gE) n[e] = `this.${e}`;
+function yE(e, t) {
+	let n = fE(e);
+	for (let e in vE) n[e] = `this.${e}`;
 	for (let r of [
 		"scale",
 		"invert",
 		"domain",
 		"range"
-	]) n[r] = (n) => vE(e, t, r, n);
+	]) n[r] = (n) => bE(e, t, r, n);
 	return n;
 }
-function vE(e, t, n, r) {
+function bE(e, t, n, r) {
 	if (r.length === 0) throw Error(`Scale helper "${n}" requires a literal channel name.`);
 	if ((n === "scale" || n === "invert") && r.length < 2) throw Error(`Scale helper "${n}" requires a channel name and a value.`);
-	let i = yE(r[0]);
+	let i = xE(r[0]);
 	if (!i) throw Error(`Scale helper "${n}" requires a literal channel name.`);
 	let a = t.resolveScaleResolution?.(i);
 	if (!a) throw Error(`Unknown scale channel "${i}" in expression helper "${n}".`);
 	let o = t.getScaleHelper(n, i, a), s = r.slice(1).map((t) => e(t)).join(",");
 	return `${t.globalvar}["${o.codeName}"](${s})`;
 }
-function yE(e) {
+function xE(e) {
 	return e?.type === "Literal" && typeof e.value == "string" ? e.value : void 0;
 }
-function bE(e, t) {
-	let n = (n) => SE(t, e, n);
+function SE(e, t) {
+	let n = (n) => wE(t, e, n);
 	if (e === "domain") return () => n(() => t.getDomain());
 	if (e === "range") return () => n(() => t.getScale().range());
 	if (e === "scale") return (e) => n(() => t.getScale()(e));
 	if (e === "invert") return (e) => n(() => t.getScale().invert(e));
 	throw Error("Unknown scale helper: " + e);
 }
-var xE = /* @__PURE__ */ new WeakSet();
-function SE(e, t, n) {
-	if (xE.has(e)) throw Error(`Scale helper cycle detected while evaluating ${t}("${e.channel}").`);
-	xE.add(e);
+var CE = /* @__PURE__ */ new WeakSet();
+function wE(e, t, n) {
+	if (CE.has(e)) throw Error(`Scale helper cycle detected while evaluating ${t}("${e.channel}").`);
+	CE.add(e);
 	try {
 		return n();
 	} finally {
-		xE.delete(e);
+		CE.delete(e);
 	}
 }
-function CE(e, t, n, r) {
+function TE(e, t, n, r) {
 	let i = /* @__PURE__ */ new Set(), a = () => {
 		for (let e of i) e();
 	}, o = () => {
@@ -11370,7 +11391,7 @@ function CE(e, t, n, r) {
 		}
 	};
 }
-function wE(e, t = {}, n = {}) {
+function EE(e, t = {}, n = {}) {
 	try {
 		let r = /* @__PURE__ */ new Map(), i = /* @__PURE__ */ new Map(), a = 1, o = {
 			...n,
@@ -11380,38 +11401,38 @@ function wE(e, t = {}, n = {}) {
 				let s = e + ":" + n, c = i.get(s);
 				if (c) return c;
 				let l = r.get(n);
-				l || (l = CE(e, n, o, "__scale_dependency_" + a++), r.set(n, l));
+				l || (l = TE(e, n, o, "__scale_dependency_" + a++), r.set(n, l));
 				let u = "__scale_helper_" + a++, d = {
 					codeName: u,
 					dependency: l
 				};
-				return i.set(s, d), t[u] = bE(e, o), d;
+				return i.set(s, d), t[u] = SE(e, o), d;
 			}
-		}, s = fE({
+		}, s = mE({
 			forbidden: [],
 			allowed: ["datum", "undefined"],
 			globalvar: "globalObject",
 			fieldvar: "datum",
-			functions: (e) => _E(e, o)
-		})(cE(e)), c = Function("datum", "globalObject", `"use strict";
+			functions: (e) => yE(e, o)
+		})(uE(e)), c = Function("datum", "globalObject", `"use strict";
             try {
                 return (${s.code});
             } catch (e) {
                 throw new Error("Error evaluating expression: " + ${JSON.stringify(e)} + ", " + e.message, e);
-            }`).bind(gE), l = (e) => c(e, t);
+            }`).bind(vE), l = (e) => c(e, t);
 		return l.fields = s.fields, l.globals = s.globals, l.code = s.code, l.scaleDependencies = Array.from(r.values()), l;
 	} catch (t) {
 		throw Error(`Invalid expression: ${e}, ${t.message}`, { cause: t });
 	}
 }
-var TE = fE({
+var DE = mE({
 	forbidden: [],
 	allowed: ["event"],
 	globalvar: "globalObject"
 });
-function EE(e) {
+function OE(e) {
 	try {
-		let t = TE(cE(e));
+		let t = DE(uE(e));
 		return Function("event", "globalObject", `"use strict";
             try {
                 return !!(${t.code});
@@ -11424,13 +11445,13 @@ function EE(e) {
 }
 //#endregion
 //#region src/paramRuntime/expressionCompiler.js
-function DE(e, t = {}, n = {}) {
-	return wE(e, t, n);
+function kE(e, t = {}, n = {}) {
+	return EE(e, t, n);
 }
 //#endregion
 //#region src/paramRuntime/expressionRef.js
-function OE(e, t, n = {}) {
-	let r = {}, i = DE(e, r, n), a = /* @__PURE__ */ new Map();
+function AE(e, t, n = {}) {
+	let r = {}, i = kE(e, r, n), a = /* @__PURE__ */ new Map();
 	for (let n of i.globals) {
 		if (a.has(n)) continue;
 		let i = t(n);
@@ -11461,10 +11482,10 @@ function OE(e, t, n = {}) {
 }
 //#endregion
 //#region src/paramRuntime/paramRuntime.js
-var kE = class {
-	#e = new ow();
-	#t = new aw({ lifecycleRegistry: this.#e });
-	#n = new sw();
+var jE = class {
+	#e = new cw();
+	#t = new sw({ lifecycleRegistry: this.#e });
+	#n = new lw();
 	createScope(e) {
 		let t = this.#e.createOwner("scope", e ?? "root");
 		return e ? this.#n.createChildScope(t, e) : this.#n.createRootScope(t);
@@ -11486,11 +11507,11 @@ var kE = class {
 		return this.#n.register(e, t, a);
 	}
 	registerDerived(e, t, n, r) {
-		let { expression: i, dependencies: a } = OE(n, (t) => this.resolve(e, t), r), o = this.#n.getOwnerId(e), s = this.#t.computed(o, t, a, () => i(null));
+		let { expression: i, dependencies: a } = AE(n, (t) => this.resolve(e, t), r), o = this.#n.getOwnerId(e), s = this.#t.computed(o, t, a, () => i(null));
 		return this.#n.register(e, t, s);
 	}
 	createExpression(e, t, n) {
-		let { expression: r } = OE(t, (t) => this.resolve(e, t), n);
+		let { expression: r } = AE(t, (t) => this.resolve(e, t), n);
 		return r;
 	}
 	resolve(e, t) {
@@ -11505,7 +11526,7 @@ var kE = class {
 	whenPropagated(e) {
 		return this.#t.whenPropagated(e);
 	}
-}, AE = class {
+}, ME = class {
 	#e;
 	#t;
 	#n = /* @__PURE__ */ new Map();
@@ -11517,7 +11538,7 @@ var kE = class {
 	constructor(e, t) {
 		this.#a = e ?? (() => void 0), this.#o = t ?? (() => void 0);
 		let n = this.#a();
-		n ? (this.#e = n.#e, this.#t = this.#e.createScope(n.#t)) : (this.#e = new kE(), this.#t = this.#e.createScope());
+		n ? (this.#e = n.#e, this.#t = this.#e.createScope(n.#t)) : (this.#e = new jE(), this.#t = this.#e.createScope());
 	}
 	registerParam(e) {
 		let t = e.name;
@@ -11631,7 +11652,7 @@ var kE = class {
 		}
 		return !1;
 	}
-}, jE = "VISIT_SKIP", ME = "VISIT_STOP", NE = (e) => e, PE = class {
+}, NE = "VISIT_SKIP", PE = "VISIT_STOP", FE = (e) => e, IE = class {
 	spec;
 	#e;
 	#t;
@@ -11641,7 +11662,7 @@ var kE = class {
 	#a;
 	#o;
 	#s = !1;
-	opacityFunction = NE;
+	opacityFunction = FE;
 	#c = [];
 	#l = "none";
 	facetCoords = new bn([], JSON.stringify);
@@ -11652,14 +11673,14 @@ var kE = class {
 		if (this.#e = [...o, s].filter((e) => !!e), this.resolutions = {
 			scale: {},
 			axis: {}
-		}, PS(this), this.options = {
+		}, IS(this), this.options = {
 			blockEncodingInheritance: !1,
 			layoutSizeParams: "own",
 			...a
 		}, this.flowHandle = void 0, this.needsAxes = {
 			x: !1,
 			y: !1
-		}, this.paramRuntime = new AE(() => this.dataParent?.paramRuntime, (e) => this.getScaleResolution(e)), e.params) for (let t of e.params) this.paramRuntime.registerParam(t);
+		}, this.paramRuntime = new ME(() => this.dataParent?.paramRuntime, (e) => this.getScaleResolution(e)), e.params) for (let t of e.params) this.paramRuntime.registerParam(t);
 		this.options.layoutSizeParams !== "inherit" && (this.#a = this.#u("width"), this.#o = this.#u("height"));
 	}
 	#u(e) {
@@ -11675,7 +11696,7 @@ var kE = class {
 		return this.#t;
 	}
 	getConfig() {
-		return US(this.#e);
+		return GS(this.#e);
 	}
 	getCursorSpec() {
 		return this.spec.cursor;
@@ -11698,27 +11719,27 @@ var kE = class {
 		return this.facetCoords.values().next().value;
 	}
 	getPadding() {
-		return this._cache("size/padding", () => WC.createFromConfig(this.spec.padding));
+		return this._cache("size/padding", () => KC.createFromConfig(this.spec.padding));
 	}
 	getOverhang() {
-		return WC.zero();
+		return KC.zero();
 	}
 	isScrollable() {
 		return this.spec.viewportWidth != null || this.spec.viewportHeight != null;
 	}
 	getSize() {
-		return this._cache("size/size", () => this.isConfiguredVisible() ? new LC(this.#d("width"), this.#d("height")) : zC);
+		return this._cache("size/size", () => this.isConfiguredVisible() ? new zC(this.#d("width"), this.#d("height")) : VC);
 	}
 	getViewportSize() {
 		if (!this.isScrollable()) return this.getSize();
-		if (!this.isConfiguredVisible()) return zC;
+		if (!this.isConfiguredVisible()) return VC;
 		let e = this.getSize();
-		return new LC(this.#d("viewportWidth") ?? e.width, this.#d("viewportHeight") ?? e.height);
+		return new zC(this.#d("viewportWidth") ?? e.width, this.#d("viewportHeight") ?? e.height);
 	}
 	#d(e) {
-		let t = this.spec[e], n = zE(t), r = e == "viewportWidth" || e == "viewportHeight";
+		let t = this.spec[e], n = VE(t), r = e == "viewportWidth" || e == "viewportHeight";
 		if (n) {
-			if (r) throw new RS(`Cannot use step-based size with "${e}"!`, this);
+			if (r) throw new BS(`Cannot use step-based size with "${e}"!`, this);
 			let n = t.step, i = this.getScaleResolution(e == "width" ? "x" : "y")?.getScale();
 			if (i) {
 				let e;
@@ -11726,14 +11747,14 @@ var kE = class {
 				else if (["locus", "index"].includes(i.type)) {
 					let t = i.domain();
 					e = Yo(t) - t[0];
-				} else throw new RS(`Cannot use step-based size with "${i.type}" scale!`, this);
+				} else throw new BS(`Cannot use step-based size with "${i.type}" scale!`, this);
 				let t = i;
 				return e = Mu(e, t.paddingInner(), t.paddingOuter()), {
 					px: e * n,
 					grow: 0
 				};
-			} else throw new RS(`Cannot use step-based size with "${e}"!`, this);
-		} else return (t && UC(t)) ?? (r ? void 0 : {
+			} else throw new BS(`Cannot use step-based size with "${e}"!`, this);
+		} else return (t && GC(t)) ?? (r ? void 0 : {
 			px: 0,
 			grow: 1
 		});
@@ -11743,9 +11764,9 @@ var kE = class {
 	}
 	#f(e, t) {
 		let n = this.spec[e];
-		if (!zE(n)) return;
+		if (!VE(n)) return;
 		let r = this.getScaleResolution(t);
-		if (!r) throw new RS("Cannot use 'step' size without a scale!", this);
+		if (!r) throw new BS("Cannot use 'step' size without a scale!", this);
 		let i = () => this.invalidateSizeCache();
 		r.addEventListener("domain", i), this.registerDisposer(() => r.removeEventListener("domain", i));
 	}
@@ -11848,7 +11869,7 @@ var kE = class {
 		}, this.visit(e);
 	}
 	configureViewOpacity() {
-		(!this.opacityFunction || this.opacityFunction === NE) && (this.opacityFunction = IE(this));
+		(!this.opacityFunction || this.opacityFunction === FE) && (this.opacityFunction = RE(this));
 	}
 	onBeforeRender() {
 		this.#s ||= !0;
@@ -11893,7 +11914,7 @@ var kE = class {
 		return "independent";
 	}
 	getBaseUrl() {
-		return qC(() => this.dataParent?.getBaseUrl(), Qd(this.spec.baseUrl));
+		return YC(() => this.dataParent?.getBaseUrl(), Qd(this.spec.baseUrl));
 	}
 	isPickingSupported() {
 		return !0;
@@ -11903,35 +11924,35 @@ var kE = class {
 		if (e) return O(e) ? e : V(e.text) ? this.paramRuntime.evaluateAndGet(e.text.expr) : e.text;
 	}
 	_cache(e, t) {
-		return jS(this, e, t);
+		return NS(this, e, t);
 	}
 	_invalidateCacheByPrefix(e, t = "self") {
 		switch (t) {
 			case "self":
-				NS(this, e);
+				FS(this, e);
 				break;
 			case "ancestors":
-				for (let t of this.getLayoutAncestors()) NS(t, e);
+				for (let t of this.getLayoutAncestors()) FS(t, e);
 				break;
 			case "progeny":
-				this.visit((t) => NS(t, e));
+				this.visit((t) => FS(t, e));
 				break;
 			default:
 		}
 	}
 	invalidateSizeCache() {
-		NS(this, "size"), this._invalidateCacheByPrefix("size", "ancestors");
+		FS(this, "size"), this._invalidateCacheByPrefix("size", "ancestors");
 	}
 	propagateInteraction(e) {}
 };
-function FE(e) {
+function LE(e) {
 	return "unitsPerPixel" in e;
 }
-function IE(e) {
+function RE(e) {
 	let t = "opacity" in e.spec ? e.spec.opacity : void 0;
 	if (t !== void 0) {
 		if (Ot(t)) return (e) => e * t;
-		if (FE(t)) {
+		if (LE(t)) {
 			let n = (t) => {
 				let n = e.getScaleResolution(t), r = n?.getScale();
 				if ([
@@ -11942,10 +11963,10 @@ function IE(e) {
 					scale: r,
 					scaleResolution: n
 				};
-			}, r = RE(t.values, "opacity.values", e);
-			if (!E(t.unitsPerPixel)) throw new RS("\"opacity.unitsPerPixel\" must be an array.", e);
+			}, r = BE(t.values, "opacity.values", e);
+			if (!E(t.unitsPerPixel)) throw new BS("\"opacity.unitsPerPixel\" must be an array.", e);
 			let i = () => 1, a = [], o = () => {
-				let t = LE(RE(a.map((e) => e()), "opacity.unitsPerPixel", e), r, e), n = Ul().domain(t.unitsPerPixel).range(t.values).clamp(!0);
+				let t = zE(BE(a.map((e) => e()), "opacity.unitsPerPixel", e), r, e), n = Ul().domain(t.unitsPerPixel).range(t.values).clamp(!0);
 				i = (e) => n(e);
 			};
 			a = t.unitsPerPixel.map((t) => {
@@ -11965,10 +11986,10 @@ function IE(e) {
 				if (t && r) c = () => (s(t) + s(r)) / 2;
 				else if (t) c = () => s(t);
 				else if (r) c = () => s(r);
-				else throw new RS("Cannot find a resolved quantitative x or y scale for dynamic opacity!", e);
+				else throw new BS("Cannot find a resolved quantitative x or y scale for dynamic opacity!", e);
 			} else {
 				let r = t.channel ? n(t.channel) : n("x") ?? n("y");
-				if (!r) throw new RS("Cannot find a resolved quantitative scale for dynamic opacity!", e);
+				if (!r) throw new BS("Cannot find a resolved quantitative scale for dynamic opacity!", e);
 				c = () => s(r);
 			}
 			return (e) => i(c()) * e;
@@ -11979,11 +12000,11 @@ function IE(e) {
 	}
 	return (e) => e;
 }
-function LE(e, t, n) {
-	if (!e.length) throw new RS("\"opacity.unitsPerPixel\" must contain at least one stop.", n);
-	if (e.length !== t.length) throw new RS("\"opacity.unitsPerPixel\" and \"opacity.values\" must have the same length.", n);
+function zE(e, t, n) {
+	if (!e.length) throw new BS("\"opacity.unitsPerPixel\" must contain at least one stop.", n);
+	if (e.length !== t.length) throw new BS("\"opacity.unitsPerPixel\" and \"opacity.values\" must have the same length.", n);
 	e.forEach((e, t) => {
-		if (e <= 0) throw new RS("Invalid opacity.unitsPerPixel value at index " + t + ". Stop values must be positive.", n);
+		if (e <= 0) throw new BS("Invalid opacity.unitsPerPixel value at index " + t + ". Stop values must be positive.", n);
 	});
 	let r = e.map((e, n) => ({
 		stop: e,
@@ -11991,26 +12012,26 @@ function LE(e, t, n) {
 	}));
 	r.sort((e, t) => t.stop - e.stop);
 	let i = r.map((e) => e.stop), a = r.map((e) => e.value);
-	for (let t = 1; t < e.length; t++) if (i[t - 1] <= i[t]) throw new RS("\"opacity.unitsPerPixel\" must be strictly decreasing.", n);
+	for (let t = 1; t < e.length; t++) if (i[t - 1] <= i[t]) throw new BS("\"opacity.unitsPerPixel\" must be strictly decreasing.", n);
 	return {
 		unitsPerPixel: i,
 		values: a
 	};
 }
-function RE(e, t, n) {
-	if (!E(e)) throw new RS("\"" + t + "\" must evaluate to an array.", n);
+function BE(e, t, n) {
+	if (!E(e)) throw new BS("\"" + t + "\" must evaluate to an array.", n);
 	return e.map((e, r) => {
-		if (!Ot(e) || !Number.isFinite(e)) throw new RS("Invalid " + t + " value at index " + r + ". Expected a finite number.", n);
+		if (!Ot(e) || !Number.isFinite(e)) throw new BS("Invalid " + t + " value at index " + r + ". Expected a finite number.", n);
 		return e;
 	});
 }
-var zE = (e) => !!e?.step;
+var VE = (e) => !!e?.step;
 //#endregion
 //#region src/encoder/metadataChannels.js
-function BE(e) {
-	return VE(e?.search, "search");
+function HE(e) {
+	return UE(e?.search, "search");
 }
-function VE(e, t) {
+function UE(e, t) {
 	if (!e) return;
 	let n = Array.isArray(e) ? e : [e];
 	if (n.length === 0) throw Error("The " + t + " channel array must not be empty.");
@@ -12025,15 +12046,15 @@ function VE(e, t) {
 }
 //#endregion
 //#region src/genome/scaleIndex.js
-var HE = 1;
-function UE() {
+var WE = 1;
+function GE() {
 	let e = [0, 1], t = [0, 1], n = 1, r = 1, i = 0, a = 0, o = .5, s = 0, c = (i) => (i + o - e[0]) / n * r + t[0];
 	return c.invert = (i) => (i - t[0]) / r * n + e[0] - o, c.domain = function(t) {
 		if (arguments.length) {
 			e = yn(t), n = e[1] - e[0];
 			let r = e[0] === 0 && e[0] === 0;
-			if (n < HE && !r) {
-				n = HE;
+			if (n < WE && !r) {
+				n = WE;
 				let t = (e[0] + e[1]) / 2;
 				e[0] = t - n / 2, e[1] = t + n / 2;
 			}
@@ -12058,20 +12079,20 @@ function UE() {
 		if (r) throw Error("Index scale's tickFormat does not support a specifier!");
 		let i = Ln(e[0], e[1], Math.min(t, Math.ceil(n))) < 1e5 ? k(",") : k(".3s");
 		return (e) => i(e + s);
-	}, c.copy = () => UE().domain(e).range(t).paddingInner(i).paddingOuter(a).numberingOffset(s), c;
+	}, c.copy = () => GE().domain(e).range(t).paddingInner(i).paddingOuter(a).numberingOffset(s), c;
 }
 //#endregion
 //#region src/genome/locusFormat.js
-var WE = k(",d");
-function GE(e) {
-	return e.chrom + ":" + WE(Math.floor(e.pos + 1));
+var KE = k(",d");
+function qE(e) {
+	return e.chrom + ":" + KE(Math.floor(e.pos + 1));
 }
-function KE(e, t) {
-	return e.chrom + ":" + WE(Math.floor(e.pos + 1)) + "-" + (e.chrom == t.chrom ? "" : t.chrom + ":") + WE(Math.ceil(t.pos));
+function JE(e, t) {
+	return e.chrom + ":" + KE(Math.floor(e.pos + 1)) + "-" + (e.chrom == t.chrom ? "" : t.chrom + ":") + KE(Math.ceil(t.pos));
 }
 //#endregion
 //#region src/genome/genomes.js
-var qE = {
+var YE = {
 	dm6: "chr3R	32079331\nchr3L	28110227\nchr2R	25286936\nchrX	23542271\nchr2L	23513712\nchrY	3667352\nchr4	1348131\nchrM	19524",
 	hg18: "chr1	247249719\nchr2	242951149\nchr3	199501827\nchr4	191273063\nchr5	180857866\nchr6	170899992\nchr7	158821424\nchr8	146274826\nchr9	140273252\nchr10	135374737\nchr11	134452384\nchr12	132349534\nchr13	114142980\nchr14	106368585\nchr15	100338915\nchr16	88827254\nchr17	78774742\nchr18	76117153\nchr19	63811651\nchr20	62435964\nchr21	46944323\nchr22	49691432\nchrX	154913754\nchrY	57772954\nchrM	16571",
 	hg19: "chr1	249250621\nchr2	243199373\nchr3	198022430\nchr4	191154276\nchr5	180915260\nchr6	171115067\nchr7	159138663\nchr8	146364022\nchr9	141213431\nchr10	135534747\nchr11	135006516\nchr12	133851895\nchr13	115169878\nchr14	107349540\nchr15	102531392\nchr16	90354753\nchr17	81195210\nchr18	78077248\nchr19	59128983\nchr20	63025520\nchr21	48129895\nchr22	51304566\nchrX	155270560\nchrY	59373566\nchrM	16571",
@@ -12079,9 +12100,9 @@ var qE = {
 	mm9: "chr1	197195432\nchr2	181748087\nchr3	159599783\nchr4	155630120\nchr5	152537259\nchr6	149517037\nchr7	152524553\nchr8	131738871\nchr9	124076172\nchr10	129993255\nchr11	121843856\nchr12	121257530\nchr13	120284312\nchr14	125194864\nchr15	103494974\nchr16	98319150\nchr17	95272651\nchr18	90772031\nchr19	61342430\nchrX	166650296\nchrY	15902555\nchrM	16299",
 	mm10: "chr1	195471971\nchr2	182113224\nchr3	160039680\nchr4	156508116\nchr5	151834684\nchr6	149736546\nchr7	145441459\nchr8	129401213\nchr9	124595110\nchr10	130694993\nchr11	122082543\nchr12	120129022\nchr13	120421639\nchr14	124902244\nchr15	104043685\nchr16	98207768\nchr17	94987271\nchr18	90702639\nchr19	61431566\nchrX	171031299\nchrY	91744698\nchrM	16299"
 };
-function JE(e) {
-	if (!(e in qE)) throw Error(`Unknown assembly: ${e}`);
-	return qE[e].split("\n").map((e) => {
+function XE(e) {
+	if (!(e in YE)) throw Error(`Unknown assembly: ${e}`);
+	return YE[e].split("\n").map((e) => {
 		let t = e.split("	");
 		return {
 			name: t[0],
@@ -12091,16 +12112,16 @@ function JE(e) {
 }
 //#endregion
 //#region src/genome/genome.js
-var YE = class {
+var ZE = class {
 	constructor(e) {
 		if (this.config = {
 			name: "custom",
 			...e
 		}, "baseUrl" in e) throw Error("The `baseUrl` property in genome config has been removed in GenomeSpy v0.52.0. Use `url` instead. See https://genomespy.app/docs/genomic-data/genomic-coordinates/.");
-		if (!eD(e)) throw Error("Not a genome configuration: " + JSON.stringify(e));
-		if (this.chromosomes = [], this.cumulativeChromPositions = /* @__PURE__ */ new Map(), this.chromosomesByName = /* @__PURE__ */ new Map(), this.startByIndex = [], this.totalSize = 0, nD(this.config)) this.setChromSizes(this.config.contigs);
-		else if (!tD(this.config)) {
-			let e = JE(this.config.name);
+		if (!nD(e)) throw Error("Not a genome configuration: " + JSON.stringify(e));
+		if (this.chromosomes = [], this.cumulativeChromPositions = /* @__PURE__ */ new Map(), this.chromosomesByName = /* @__PURE__ */ new Map(), this.startByIndex = [], this.totalSize = 0, iD(this.config)) this.setChromSizes(this.config.contigs);
+		else if (!rD(this.config)) {
+			let e = XE(this.config.name);
 			if (e) this.setChromSizes(e);
 			else throw Error(`Unknown genome: ${this.config.name}. Please provide contigs or a URL. See https://genomespy.app/docs/genomic-data/genomic-coordinates/.`);
 		}
@@ -12109,10 +12130,10 @@ var YE = class {
 		return this.config.name;
 	}
 	async load(e) {
-		if (tD(this.config)) try {
-			let t = qC(e, this.config.url), n = await fetch(t);
+		if (rD(this.config)) try {
+			let t = YC(e, this.config.url), n = await fetch(t);
 			if (!n.ok) throw Error(`${n.status} ${n.statusText}`);
-			this.setChromSizes(XE(await n.text()));
+			this.setChromSizes(QE(await n.text()));
 		} catch (e) {
 			throw Error(`Could not load chrom sizes: ${this.config.url}. Reason: ${e.message}`, { cause: e });
 		}
@@ -12175,11 +12196,11 @@ var YE = class {
 		return this.chromosomesByName.get(e);
 	}
 	formatInterval(e) {
-		return KE(...this.toChromosomalInterval(e));
+		return JE(...this.toChromosomalInterval(e));
 	}
 	formatLocus(e) {
 		let t = this.toChromosomal(e);
-		if (t) return GE(t);
+		if (t) return qE(t);
 	}
 	toChromosomalInterval(e) {
 		let t = this.toChromosomal(e[0] + .5), n = this.toChromosomal(e[1] - .5);
@@ -12232,41 +12253,41 @@ var YE = class {
 		}
 	}
 };
-function XE(e) {
+function QE(e) {
 	return Zt(e).map(([e, t]) => ({
 		name: e,
 		size: parseInt(t)
 	}));
 }
-function ZE(e) {
+function $E(e) {
 	return D(e) && "chrom" in e;
 }
-function QE(e) {
-	return e.every(ZE);
-}
-function $E(e) {
-	return QE(e) && (e[1] ?? e[0]).pos !== void 0;
-}
 function eD(e) {
-	return D(e) && ("name" in e || tD(e) || nD(e));
+	return e.every($E);
 }
 function tD(e) {
-	return eD(e) && "url" in e;
+	return eD(e) && (e[1] ?? e[0]).pos !== void 0;
 }
 function nD(e) {
-	return eD(e) && "contigs" in e;
+	return D(e) && ("name" in e || rD(e) || iD(e));
+}
+function rD(e) {
+	return nD(e) && "url" in e;
+}
+function iD(e) {
+	return nD(e) && "contigs" in e;
 }
 //#endregion
 //#region src/genome/scaleLocus.js
-var rD = 1e6, iD = .65;
-function aD() {
-	let e = UE().numberingOffset(1), t;
+var aD = 1e6, oD = .65;
+function sD() {
+	let e = GE().numberingOffset(1), t;
 	e.genome = function(n) {
 		return arguments.length ? (t = n, e) : t;
 	}, e.ticks = (n) => {
 		if (!t) return [];
 		let r = e.domain(), i = r[1] - r[0], a = e.numberingOffset(), o = t.toChromosome(Math.max(r[0], 0)), s = t.toChromosome(Math.min(r[1], t.totalSize - 1)), c = Math.max(1, Math.min(n ?? 10, Math.floor(i))), l = Ln(r[0], r[1], c);
-		l < rD && (l = Ln(r[0], r[1], c * iD)), l = Math.max(1, l);
+		l < aD && (l = Ln(r[0], r[1], c * oD)), l = Math.max(1, l);
 		let u = [];
 		for (let e = o.index; e <= s.index; e++) {
 			let n = t.chromosomes[e], i = Math.max(n.continuousStart + l, r[0] - (r[0] - n.continuousStart) % l), o = Math.min(n.continuousEnd - l / 4, r[1] + 1);
@@ -12279,7 +12300,7 @@ function aD() {
 	}, e.tickFormat = (n, r) => {
 		if (!t) return;
 		if (r) throw Error("Locus scale's tickFormat does not support a specifier!");
-		let i = e.domain(), a = i[1] - i[0], o = e.numberingOffset(), s = Ln(i[0], i[1], Math.max(1, Math.min(n ?? 10, Math.floor(a)))) < rD ? k(",") : k(".3s"), c = (e) => e - t.toChromosome(e).continuousStart;
+		let i = e.domain(), a = i[1] - i[0], o = e.numberingOffset(), s = Ln(i[0], i[1], Math.max(1, Math.min(n ?? 10, Math.floor(a)))) < aD ? k(",") : k(".3s"), c = (e) => e - t.toChromosome(e).continuousStart;
 		return (e) => s(c(e) + o);
 	};
 	let n = e.copy;
@@ -12290,101 +12311,101 @@ function aD() {
 		}, e.genome(t);
 	}, e;
 }
-function oD(e) {
+function cD(e) {
 	return e.type == "locus";
 }
-function sD(e, t) {
-	let n = fD(e);
+function lD(e, t) {
+	let n = mD(e);
 	return n ? n.toChromosomal(t) : t;
 }
-function cD(e, t) {
-	let n = fD(e);
-	return n && ZE(t) ? n.toContinuous(t.chrom, t.pos) : t;
-}
-function lD(e, t) {
-	let n = fD(e);
-	return n && QE(t) ? n.toContinuousInterval(t) : t;
-}
 function uD(e, t) {
-	let n = fD(e);
+	let n = mD(e);
+	return n && $E(t) ? n.toContinuous(t.chrom, t.pos) : t;
+}
+function dD(e, t) {
+	let n = mD(e);
+	return n && eD(t) ? n.toContinuousInterval(t) : t;
+}
+function fD(e, t) {
+	let n = mD(e);
 	return n ? n.toChromosomalInterval(t) : t;
 }
-function dD(e) {
-	let t = fD(e);
+function pD(e) {
+	let t = mD(e);
 	if (!t) throw Error("No genome has been defined!");
 	return t.getExtent();
 }
-function fD(e) {
+function mD(e) {
 	if (e && "toChromosomal" in e) return e;
 	if (e && "genome" in e) return e.genome();
 }
 //#endregion
 //#region src/scale/scale.js
-var pD = "locus", mD = "index", hD = 5;
-function gD(e) {
+var hD = "locus", gD = "index", _D = 5;
+function vD(e) {
 	let t = e.type;
 	return !e.bins && (t === "linear" || t === "pow" || t === "sqrt");
 }
-function _D(e) {
+function yD(e) {
 	return R(e) && ![
 		"sequential",
-		mD,
-		pD
+		gD,
+		hD
 	].includes(e);
 }
-function vD(e) {
+function bD(e) {
 	return e || { warn: (e, ...t) => console.warn(e, ...t) };
 }
-var yD = Lt(/* @__PURE__ */ "set.modified.clear.type.scheme.schemeExtent.schemeCount.domain.domainMin.domainMid.domainMax.domainRaw.domainImplicit.domainTransition.nice.zero.bins.range.rangeStep.round.reverse.interpolate.interpolateGamma.zoom.fp64.name".split("."));
-function bD(e, t, n) {
-	n = vD(n);
-	for (let r in e) if (!yD[r]) {
-		if (r === "padding" && _D(t.type)) continue;
+var xD = Lt(/* @__PURE__ */ "set.modified.clear.type.scheme.schemeExtent.schemeCount.domain.domainMin.domainMid.domainMax.domainRaw.domainImplicit.domainTransition.nice.zero.bins.range.rangeStep.round.reverse.interpolate.interpolateGamma.zoom.fp64.name".split("."));
+function SD(e, t, n) {
+	n = bD(n);
+	for (let r in e) if (!xD[r]) {
+		if (r === "padding" && yD(t.type)) continue;
 		gt(t[r]) ? t[r](e[r]) : n.warn("Unsupported scale property: " + r);
 	}
-	let r = TD(t, e, n);
-	r.domain && t.domain(r.domain), r.applyOrdinalUnknown && t.unknown(r.ordinalUnknown), AD(t, e, kD(t, e, r.count));
+	let r = DD(t, e, n);
+	r.domain && t.domain(r.domain), r.applyOrdinalUnknown && t.unknown(r.ordinalUnknown), MD(t, e, jD(t, e, r.count));
 }
-function xD(e, t) {
+function CD(e, t) {
 	let n = !e.domain && R(e.type) ? {
 		...e,
 		domain: [0, 0]
-	} : e, r = SD(n), i = L(r);
+	} : e, r = wD(n), i = L(r);
 	if (!i) throw Error("Unknown scale type: " + r);
 	let a = i();
-	return bD(n, a, t), a;
+	return SD(n, a, t), a;
 }
-function SD(e) {
+function wD(e) {
 	var t = e.type, n = "", r;
-	return t === "sequential" ? Ru + "-" + Pu : (CD(e) && (r = e.rawDomain ? e.rawDomain.length : e.domain ? e.domain.length + +(e.domainMid != null) : 0, n = r === 2 ? Ru + "-" : r === 3 ? zu + "-" : ""), (n + t || "linear").toLowerCase());
+	return t === "sequential" ? Ru + "-" + Pu : (TD(e) && (r = e.rawDomain ? e.rawDomain.length : e.domain ? e.domain.length + +(e.domainMid != null) : 0, n = r === 2 ? Ru + "-" : r === 3 ? zu + "-" : ""), (n + t || "linear").toLowerCase());
 }
-function CD(e) {
+function TD(e) {
 	let t = e.type;
 	return R(t) && t !== "time" && t !== "utc" && (e.scheme || e.range && e.range.length && e.range.every(O));
 }
-function wD(e) {
+function ED(e) {
 	if (!e.copy) return e;
 	let t = e.copy();
 	return t.type == null && e.type != null && (t.type = e.type), t;
 }
-function TD(e, t, n) {
+function DD(e, t, n) {
 	if (!e.domain) return {
 		domain: null,
 		count: 0,
 		ordinalUnknown: void 0,
 		applyOrdinalUnknown: !1
 	};
-	n = vD(n);
-	let r = wD(e);
-	var i = ED(r, t.domainRaw, n);
+	n = bD(n);
+	let r = ED(e);
+	var i = OD(r, t.domainRaw, n);
 	if (i > -1) return {
 		domain: r.domain(),
 		count: i,
 		ordinalUnknown: r.type === "ordinal" && t.domainImplicit ? $o : void 0,
 		applyOrdinalUnknown: !1
 	};
-	var a = t.domain, o = r.type, s = t.zero || t.zero === void 0 && gD(r), c, l;
-	return a ? (_D(o) && t.padding && a[0] !== Qe(a) && (a = DD(o, a, t.range, t.padding, t.exponent, t.constant)), (s || t.domainMin != null || t.domainMax != null || t.domainMid != null) && (c = (a = a.slice()).length - 1 || 1, s && (a[0] > 0 && (a[0] = 0), a[c] < 0 && (a[c] = 0)), t.domainMin != null && (a[0] = t.domainMin), t.domainMax != null && (a[c] = t.domainMax), t.domainMid != null && (l = t.domainMid, (l < a[0] || l > a[c]) && n.warn("Scale domainMid exceeds domain min or max.", l), a.splice(c, 0, l))), r.domain(OD(o, a, n)), t.nice && r.nice && r.nice(t.nice !== !0 && Dd(r, t.nice) || null), {
+	var a = t.domain, o = r.type, s = t.zero || t.zero === void 0 && vD(r), c, l;
+	return a ? (yD(o) && t.padding && a[0] !== Qe(a) && (a = kD(o, a, t.range, t.padding, t.exponent, t.constant)), (s || t.domainMin != null || t.domainMax != null || t.domainMid != null) && (c = (a = a.slice()).length - 1 || 1, s && (a[0] > 0 && (a[0] = 0), a[c] < 0 && (a[c] = 0)), t.domainMin != null && (a[0] = t.domainMin), t.domainMax != null && (a[c] = t.domainMax), t.domainMid != null && (l = t.domainMid, (l < a[0] || l > a[c]) && n.warn("Scale domainMid exceeds domain min or max.", l), a.splice(c, 0, l))), r.domain(AD(o, a, n)), t.nice && r.nice && r.nice(t.nice !== !0 && Dd(r, t.nice) || null), {
 		domain: r.domain(),
 		count: a.length,
 		ordinalUnknown: o === "ordinal" && t.domainImplicit ? $o : void 0,
@@ -12396,20 +12417,20 @@ function TD(e, t, n) {
 		applyOrdinalUnknown: !1
 	};
 }
-function ED(e, t, n) {
-	return t ? (e.domain(OD(e.type, t, n)), t.length) : -1;
+function OD(e, t, n) {
+	return t ? (e.domain(AD(e.type, t, n)), t.length) : -1;
 }
-function DD(e, t, n, r, i, a) {
+function kD(e, t, n, r, i, a) {
 	n ??= [0, 1];
 	var o = Math.abs(Qe(n) - n[0]), s = o / (o - 2 * r), c = e === "log" ? dt(t, null, s) : e === "sqrt" ? ft(t, null, s, .5) : e === "pow" ? ft(t, null, s, i || 1) : e === "symlog" ? pt(t, null, s, a || 1) : ut(t, null, s);
 	return t = t.slice(), t[0] = c[0], t[t.length - 1] = c[1], t;
 }
-function OD(e, t, n) {
+function AD(e, t, n) {
 	return md(e) && Math.abs(t.reduce(function(e, t) {
 		return e + (t < 0 ? -1 : t > 0 ? 1 : 0);
 	}, 0)) !== t.length && n.warn("Log scale domain includes zero: " + Mt(t)), t;
 }
-function kD(e, t, n) {
+function jD(e, t, n) {
 	let r = t.bins;
 	if (r && !E(r)) {
 		let t = (r.start == null || r.stop == null) && e.domain(), n = r.start == null ? t[0] : r.start, i = r.stop == null ? Qe(t) : r.stop, a = r.step;
@@ -12417,34 +12438,34 @@ function kD(e, t, n) {
 	}
 	return r ? e.bins = r : e.bins && delete e.bins, e.type === "bin-ordinal" && (r ? !t.domain && !t.domainRaw && (e.domain(r), n = r.length) : e.bins = e.domain()), n;
 }
-function AD(e, t, n) {
+function MD(e, t, n) {
 	var r = e.type, i = t.round || !1, a = t.range;
-	if (t.rangeStep != null) a = jD(r, t, n);
-	else if (t.scheme && (a = MD(r, t, n), gt(a))) {
+	if (t.rangeStep != null) a = ND(r, t, n);
+	else if (t.scheme && (a = PD(r, t, n), gt(a))) {
 		if (e.interpolator) return e.interpolator(a);
 		T(`Scale type ${r} does not support interpolating color schemes.`);
 	}
-	if (a && hd(r)) return e.interpolator(_d(PD(a, t.reverse), t.interpolate, t.interpolateGamma));
-	a && t.interpolate && e.interpolate ? e.interpolate(yd(t.interpolate, t.interpolateGamma)) : gt(e.round) ? e.round(i) : gt(e.rangeRound) && e.interpolate(i ? Wc : Vc), a && e.range(PD(a, t.reverse));
+	if (a && hd(r)) return e.interpolator(_d(ID(a, t.reverse), t.interpolate, t.interpolateGamma));
+	a && t.interpolate && e.interpolate ? e.interpolate(yd(t.interpolate, t.interpolateGamma)) : gt(e.round) ? e.round(i) : gt(e.rangeRound) && e.interpolate(i ? Wc : Vc), a && e.range(ID(a, t.reverse));
 }
-function jD(e, t, n) {
+function ND(e, t, n) {
 	e !== "band" && e !== "point" && T("Only band and point scales support rangeStep.");
 	var r = (t.paddingOuter == null ? t.padding : t.paddingOuter) || 0, i = e === "point" ? 1 : (t.paddingInner == null ? t.padding : t.paddingInner) || 0;
 	return [0, t.rangeStep * Mu(n, i, r)];
 }
-function MD(e, t, n) {
-	var r = t.schemeExtent, i, a;
-	return E(t.scheme) ? a = _d(t.scheme, t.interpolate, t.interpolateGamma) : (i = t.scheme.toLowerCase(), a = Ed(i), a || T(`Unrecognized scheme name: ${t.scheme}`)), n = e === "threshold" ? n + 1 : e === "bin-ordinal" ? n - 1 : e === "quantile" || e === "quantize" ? +t.schemeCount || hD : n, hd(e) ? ND(a, r, t.reverse) : gt(a) ? vd(ND(a, r), n) : e === "ordinal" ? a : a.slice(0, n);
+function PD(e, t, n) {
+	var r = t.schemeExtent, i = t.schemeCount, a, o;
+	return E(t.scheme) ? o = _d(t.scheme, t.interpolate, t.interpolateGamma) : (O(t.scheme) ? a = t.scheme.toLowerCase() : (a = t.scheme.name.toLowerCase(), r = t.scheme.extent ?? r, i = t.scheme.count ?? i), o = Ed(a), o || T(`Unrecognized scheme name: ${t.scheme}`)), n = e === "threshold" ? n + 1 : e === "bin-ordinal" ? n - 1 : e === "quantile" || e === "quantize" ? +i || _D : n, hd(e) ? FD(o, r, t.reverse) : gt(o) ? vd(FD(o, r), n) : e === "ordinal" ? o : o.slice(0, n);
 }
-function ND(e, t, n) {
-	return gt(e) && (t || n) ? gd(e, PD(t || [0, 1], n)) : e;
+function FD(e, t, n) {
+	return gt(e) && (t || n) ? gd(e, ID(t || [0, 1], n)) : e;
 }
-function PD(e, t) {
+function ID(e, t) {
 	return t ? e.slice().reverse() : e;
 }
 //#endregion
 //#region src/scales/scaleInstanceManager.js
-var FD = class {
+var LD = class {
 	#e;
 	#t = /* @__PURE__ */ new Set();
 	#n;
@@ -12464,7 +12485,7 @@ var FD = class {
 		return e ? t.getGenome(e) : t.getGenome();
 	}
 	createScale(e) {
-		let t = xD({
+		let t = CD({
 			...this.#c(e),
 			range: void 0
 		});
@@ -12472,11 +12493,11 @@ var FD = class {
 	}
 	#s(e) {
 		let t = this.#e;
-		!t || !oD(t) || t.genome(this.getLocusGenome(e.assembly));
+		!t || !cD(t) || t.genome(this.getLocusGenome(e.assembly));
 	}
 	reconfigureScale(e) {
 		let t = this.#e;
-		!t || t.type == "null" || (bD({
+		!t || t.type == "null" || (SD({
 			...this.#c(e),
 			range: void 0
 		}, t), t.props = e, this.#l());
@@ -12498,7 +12519,7 @@ var FD = class {
 		if (!e) return;
 		let t = e.props;
 		this.#t.forEach((e) => e.invalidate()), this.#t.clear();
-		let n = t.__rangeExprScope?.paramRuntime ?? this.#n(), r = LD({
+		let n = t.__rangeExprScope?.paramRuntime ?? this.#n(), r = zD({
 			range: t.range,
 			reverse: t.reverse,
 			createExpression: (e) => n.createExpression(e),
@@ -12516,7 +12537,7 @@ var FD = class {
 		let e = this.#e;
 		if (!e) return;
 		let t = e.range, n = e.domain, r = () => this.#r?.();
-		ID(e, {
+		RD(e, {
 			onRangeChange: r,
 			onDomainChange: () => {
 				this.#o > 0 || this.#i?.();
@@ -12529,7 +12550,7 @@ var FD = class {
 		this.#t.forEach((e) => e.invalidate()), this.#t.clear();
 	}
 };
-function ID(e, { onRangeChange: t, onDomainChange: n, range: r, domain: i }) {
+function RD(e, { onRangeChange: t, onDomainChange: n, range: r, domain: i }) {
 	typeof r == "function" && (e.range = (function(e) {
 		if (arguments.length) r(e), t?.();
 		else return r();
@@ -12538,7 +12559,7 @@ function ID(e, { onRangeChange: t, onDomainChange: n, range: r, domain: i }) {
 		else return i();
 	}));
 }
-function LD({ range: e, reverse: t, createExpression: n, registerExpr: r }) {
+function zD({ range: e, reverse: t, createExpression: n, registerExpr: r }) {
 	if (!e || !E(e)) return null;
 	let i = (e, t) => t ? e.slice().reverse() : e;
 	if (e.some(V)) {
@@ -12564,21 +12585,21 @@ function LD({ range: e, reverse: t, createExpression: n, registerExpr: r }) {
 }
 //#endregion
 //#region src/utils/mergeObjects.js
-function RD(e, t, n) {
+function BD(e, t, n) {
 	if (n ||= [], e.some((e) => e === null)) {
 		if (e.every((e) => e === null)) return null;
 		throw console.warn(e), Error("Cannot merge objects with nulls!");
 	}
-	let r = {}, i = (e, t) => e === t || zD(e) && zD(t) || zD(e) && t === !0 || e === !0 && D(t) || Array.isArray(e) && Array.isArray(t) && e.length === t.length && e.every((e, n) => e === t[n]), a = (e) => {
+	let r = {}, i = (e, t) => e === t || VD(e) && VD(t) || VD(e) && t === !0 || e === !0 && D(t) || Array.isArray(e) && Array.isArray(t) && e.length === t.length && e.every((e, n) => e === t[n]), a = (e) => {
 		for (let a in e) {
 			let o = e[a];
 			if (!n.includes(a) && o !== void 0) if (r[a] !== void 0 && !i(r[a], o)) console.warn(`Conflicting property ${a} of ${t}: (${JSON.stringify(r[a])} and ${JSON.stringify(e[a])}). Using ${JSON.stringify(r[a])}.`);
 			else {
 				let e = r[a];
-				if (zD(e)) zD(o) && (r[a] = RD([e, o], a));
-				else if (zD(o)) {
+				if (VD(e)) VD(o) && (r[a] = BD([e, o], a));
+				else if (VD(o)) {
 					if (!(e === !0 || e === void 0)) throw Error("Bug in merge! Target is: " + e);
-					r[a] = RD([{}, o], a);
+					r[a] = BD([{}, o], a);
 				} else r[a] = o;
 			}
 		}
@@ -12586,16 +12607,16 @@ function RD(e, t, n) {
 	for (let t of e) a(t);
 	return r;
 }
-function zD(e) {
+function VD(e) {
 	return D(e) && !Array.isArray(e);
 }
 //#endregion
 //#region src/config/scaleConfig.js
-var BD = {
+var HD = {
 	nominal: "nominalColorScheme",
 	ordinal: "ordinalColorScheme",
 	quantitative: "quantitativeColorScheme"
-}, VD = new Set(["rect"]), HD = new Set([
+}, UD = new Set(["rect"]), WD = new Set([
 	"shape",
 	"size",
 	"angle",
@@ -12603,16 +12624,16 @@ var BD = {
 	"ramp",
 	"diverging"
 ]);
-function UD(e) {
+function GD(e) {
 	return typeof e == "string" || typeof e == "object" && !!e;
 }
-function WD(e) {
-	return HD.has(e);
-}
-function GD(e, t) {
-	if (WD(t)) return YD(e)[t];
-}
 function KD(e) {
+	return WD.has(e);
+}
+function qD(e, t) {
+	if (KD(t)) return ZD(e)[t];
+}
+function JD(e) {
 	if ([
 		"nominal",
 		"ordinal",
@@ -12621,7 +12642,7 @@ function KD(e) {
 		"locus"
 	].includes(e)) return e;
 }
-function qD(e) {
+function YD(e) {
 	if (!e) return {};
 	let t = { ...e };
 	for (let e of [
@@ -12638,34 +12659,34 @@ function qD(e) {
 	]) delete t[e];
 	return t;
 }
-function JD(e, t) {
-	let n = KD(t);
-	return US(e.flatMap((e) => {
+function XD(e, t) {
+	let n = JD(t);
+	return GS(e.flatMap((e) => {
 		let t = e.scale;
 		return [t, t && n ? t[n] : void 0];
 	}));
 }
-function YD(e) {
-	return US(e.map((e) => e.range));
+function ZD(e) {
+	return GS(e.map((e) => e.range));
 }
-function XD(e, { channel: t, dataType: n, isExplicitDomain: r, markTypes: i, hasDomainMid: a }) {
-	let o = JD(e, n), s = YD(e), c = { ...qD(o) };
+function QD(e, { channel: t, dataType: n, isExplicitDomain: r, markTypes: i, hasDomainMid: a }) {
+	let o = XD(e, n), s = ZD(e), c = { ...YD(o) };
 	if (r ? c.zero = !1 : c.zero === void 0 && o.zero !== void 0 && (c.zero = o.zero), Ff(t) && c.nice === void 0 && (c.nice = o.nice === void 0 ? !r : o.nice), Vf(t) && c.scheme === void 0) if (n == "quantitative") {
-		let e = a || o.domainMid !== void 0 ? s.diverging : i?.length && i.every((e) => VD.has(e)) ? s.heatmap : s.ramp, t = UD(e) ? e : o.quantitativeColorScheme;
-		UD(t) && (c.scheme = t);
+		let e = a || o.domainMid !== void 0 ? s.diverging : i?.length && i.every((e) => UD.has(e)) ? s.heatmap : s.ramp, t = GD(e) ? e : o.quantitativeColorScheme;
+		GD(t) && (c.scheme = t);
 	} else {
-		let e = o[BD[n] ?? BD.quantitative];
-		UD(e) && (c.scheme = e);
+		let e = o[HD[n] ?? HD.quantitative];
+		GD(e) && (c.scheme = e);
 	}
 	else Hf(t) && c.range === void 0 ? c.range = t == "shape" ? s.shape ?? [] : [] : t == "size" && c.range === void 0 ? c.range = s.size : t == "angle" && c.range === void 0 && (c.range = s.angle);
 	return c;
 }
 //#endregion
 //#region src/scales/scaleResolutionConstants.js
-var ZD = "quantitative", QD = "ordinal", $D = "nominal";
+var $D = "quantitative", eO = "ordinal", tO = "nominal";
 //#endregion
 //#region src/scales/scaleRules.js
-function eO(e, t) {
+function nO(e, t) {
 	if (t == "index" || t == "locus") {
 		if (Pf(e)) return t;
 		throw Error(e + " does not support " + t + " data type. Only positional channels do.");
@@ -12747,23 +12768,23 @@ function eO(e, t) {
 			void 0
 		]
 	}, r = ["sample"].includes(e) ? "null" : n[e] ? n[e][[
-		$D,
-		QD,
-		ZD
+		tO,
+		eO,
+		$D
 	].indexOf(t)] : t == "quantitative" ? "linear" : "ordinal";
 	if (r === void 0) throw Error("Channel \"" + e + "\" is not compatible with \"" + t + "\" data type. Use of a proper scale may be needed.");
 	return r;
 }
-function tO(e, t) {
+function rO(e, t) {
 	Ff(t) && e.type !== "ordinal" && (e.range = [0, 1]), t == "opacity" && R(e.type) && e.clamp === void 0 && (e.clamp = !0);
 }
 //#endregion
 //#region src/scales/scalePropsResolver.js
-function nO({ channel: e, dataType: t, orderedMembers: n, isExplicitDomain: r, configScopes: i }) {
-	let a = n, o = a.map((e) => typeof e.view.getMarkType == "function" ? e.view.getMarkType() : void 0).filter((e) => !!e), s = RD(a.map((e) => e.channelDef.scale).filter((e) => e !== void 0), "scale", ["domain"]);
+function iO({ channel: e, dataType: t, orderedMembers: n, isExplicitDomain: r, configScopes: i }) {
+	let a = n, o = a.map((e) => typeof e.view.getMarkType == "function" ? e.view.getMarkType() : void 0).filter((e) => !!e), s = BD(a.map((e) => e.channelDef.scale).filter((e) => e !== void 0), "scale", ["domain"]);
 	if (s === null || s.type == "null") return { type: "null" };
 	let c = {
-		...XD(i, {
+		...QD(i, {
 			channel: e,
 			dataType: t,
 			isExplicitDomain: r,
@@ -12772,9 +12793,9 @@ function nO({ channel: e, dataType: t, orderedMembers: n, isExplicitDomain: r, c
 		}),
 		...s
 	};
-	if (c.type ||= eO(e, t), typeof c.range == "string") {
-		if (!WD(c.range)) throw Error("Unknown named scale range \"" + c.range + "\". Supported names: shape, size, angle, heatmap, ramp, diverging.");
-		let t = GD(i, c.range);
+	if (c.type ||= nO(e, t), typeof c.range == "string") {
+		if (!KD(c.range)) throw Error("Unknown named scale range \"" + c.range + "\". Supported names: shape, size, angle, heatmap, ramp, diverging.");
+		let t = qD(i, c.range);
 		if (t === void 0) throw Error("Named scale range \"" + c.range + "\" is not configured in config.range.");
 		Vf(e) && (typeof t == "string" || typeof t == "object" && t && !Array.isArray(t)) ? (c.scheme = t, delete c.range) : c.range = t;
 	}
@@ -12783,55 +12804,55 @@ function nO({ channel: e, dataType: t, orderedMembers: n, isExplicitDomain: r, c
 		e && (c.__rangeExprScope = e);
 	}
 	if (!("zoom" in c)) {
-		let e = JD(i, t);
+		let e = XD(i, t);
 		e.zoom === void 0 ? ["index", "locus"].includes(c.type) && (c.zoom = !0) : c.zoom = e.zoom;
 	}
-	return tO(c, e), c;
+	return rO(c, e), c;
 }
 //#endregion
 //#region src/scales/indexLikeDomainUtils.js
-function rO(e) {
+function aO(e) {
 	return e === "index" || e === "locus";
 }
-function iO(e, t) {
-	return rO(e) ? sO(t) : t;
-}
-function aO(e, t) {
-	return rO(e) ? cO(t) : t;
-}
 function oO(e, t) {
-	return t && rO(e) ? sO(t) : t;
+	return aO(e) ? lO(t) : t;
 }
-function sO(e) {
-	return [e[0], e[1] + lO(e)];
+function sO(e, t) {
+	return aO(e) ? uO(t) : t;
 }
-function cO(e) {
-	return [e[0], e[1] - lO(e)];
+function cO(e, t) {
+	return t && aO(e) ? lO(t) : t;
 }
 function lO(e) {
+	return [e[0], e[1] + dO(e)];
+}
+function uO(e) {
+	return [e[0], e[1] - dO(e)];
+}
+function dO(e) {
 	return e[1] >= e[0] ? 1 : -1;
 }
 //#endregion
 //#region src/scales/selectionDomainUtils.js
-function uO(e, t) {
+function fO(e, t) {
 	let n = e.findRuntimeForParam(t);
 	if (!n) throw Error(`Selection domain parameter "${t}" was not found.`);
 	return n;
 }
-function dO(e, t) {
+function pO(e, t) {
 	if (e) {
 		if (!Zf(e)) throw Error(`Selection domain parameter "${t}" must be an interval selection.`);
 		return e;
 	}
 }
-function fO(e, t, n) {
-	let r = e.paramRuntime.findRuntimeForParam ? uO(e.paramRuntime, t) : e.paramRuntime;
+function mO(e, t, n) {
+	let r = e.paramRuntime.findRuntimeForParam ? fO(e.paramRuntime, t) : e.paramRuntime;
 	return {
 		runtime: r,
-		selection: dO(r.getValue ? r.getValue(t) : e.paramRuntime.findValue(t), t)
+		selection: pO(r.getValue ? r.getValue(t) : e.paramRuntime.findValue(t), t)
 	};
 }
-function pO(e, t, n, r) {
+function hO(e, t, n, r) {
 	let i = [];
 	return e.visit((e) => {
 		let a = e.paramRuntime?.paramConfigs?.get(n);
@@ -12843,7 +12864,7 @@ function pO(e, t, n, r) {
 		});
 	}), i;
 }
-function mO(e, t, n, r) {
+function gO(e, t, n, r) {
 	let i = /* @__PURE__ */ new Set(), a = [
 		e.getLayoutAncestors?.(),
 		e.getDataAncestors?.(),
@@ -12859,7 +12880,7 @@ function mO(e, t, n, r) {
 	}
 	return !1;
 }
-function hO(e, t, n = {}) {
+function _O(e, t, n = {}) {
 	if (!e || e.length !== 2) return;
 	let r = Number(e[0]), i = Number(e[1]);
 	if (!Number.isFinite(r) || !Number.isFinite(i)) return;
@@ -12868,7 +12889,7 @@ function hO(e, t, n = {}) {
 }
 //#endregion
 //#region src/utils/domainArray.js
-var gO = class e extends Array {
+var vO = class e extends Array {
 	constructor() {
 		super(), this.type = void 0;
 	}
@@ -12884,25 +12905,25 @@ var gO = class e extends Array {
 		for (let n of e) this.extend(t(n));
 		return this;
 	}
-}, _O = class extends gO {
+}, yO = class extends vO {
 	constructor() {
 		super(), this.type = "quantitative";
 	}
 	extend(e) {
 		return e == null || Number.isNaN(e) ? this : (e = +e, this.length ? e < this[0] ? this[0] = e : e > this[1] && (this[1] = e) : (this.push(e), this.push(e)), this);
 	}
-}, vO = class extends gO {
+}, bO = class extends vO {
 	constructor() {
 		super(), this.type = "ordinal", this.uniqueValues = /* @__PURE__ */ new Set();
 	}
 	extend(e) {
 		return e == null || Number.isNaN(e) || this.uniqueValues.has(e) || (this.uniqueValues.add(e), this.push(e)), this;
 	}
-}, yO = class extends vO {
+}, xO = class extends bO {
 	constructor() {
 		super(), this.type = "nominal";
 	}
-}, bO = class extends gO {
+}, SO = class extends vO {
 	constructor(e) {
 		super();
 		let t = 0;
@@ -12914,29 +12935,29 @@ var gO = class e extends Array {
 		if (this.includes(e)) return this;
 		throw Error("Piecewise domains are immutable and cannot be unioned!");
 	}
-}, xO = {
-	quantitative: _O,
-	index: _O,
-	locus: _O,
-	nominal: yO,
-	ordinal: vO
+}, CO = {
+	quantitative: yO,
+	index: yO,
+	locus: yO,
+	nominal: xO,
+	ordinal: bO
 };
-function SO(e, t) {
-	if (e == "quantitative" && CO(t)) {
-		let n = new bO(t);
+function wO(e, t) {
+	if (e == "quantitative" && TO(t)) {
+		let n = new SO(t);
 		return n.type = e, n;
-	} else if (xO[e]) {
-		let n = new xO[e]();
+	} else if (CO[e]) {
+		let n = new CO[e]();
 		return n.type = e, t && n.extendAll(t), n;
 	}
 	throw Error("Unknown type: " + e);
 }
-function CO(e) {
+function TO(e) {
 	return e && e.length > 0 && e.length != 2 && e.every((e) => typeof e == "number");
 }
 //#endregion
 //#region src/scales/domainPlanner.js
-var wO = class {
+var EO = class {
 	#e;
 	#t;
 	#n;
@@ -12975,7 +12996,7 @@ var wO = class {
 	}
 	getDefaultDomain(e = !1, t) {
 		let n = this.#r();
-		return IO(n, this.#i, e && n !== "locus" ? this.getDataDomain() : void 0, t);
+		return RO(n, this.#i, e && n !== "locus" ? this.getDataDomain() : void 0, t);
 	}
 	getConfiguredOrDefaultDomain(e = !1, t, n = {}) {
 		return this.getConfiguredDomain(n) ?? this.getDefaultDomain(e, t);
@@ -12983,11 +13004,11 @@ var wO = class {
 	getConfiguredDomain(e = {}) {
 		let t = e.includeSelectionInitial ?? !0;
 		if (!this.#c && this.#l.has(t)) return this.#l.get(t);
-		let n = TO(this.#e(), this.#a, t);
-		return MO(this.#t(), n.selectionRef), this.#s = n.selectionRef, this.#l.set(t, n.domain), this.#c = !1, n.domain;
+		let n = DO(this.#e(), this.#a, t);
+		return PO(this.#t(), n.selectionRef), this.#s = n.selectionRef, this.#l.set(t, n.domain), this.#c = !1, n.domain;
 	}
 	getDataDomain() {
-		return FO(this.#n(), this.#r, (e) => this.#d(e));
+		return LO(this.#n(), this.#r, (e) => this.#d(e));
 	}
 	captureInitialDomain(e, t, n) {
 		if (!this.#o && R(e.type)) {
@@ -13009,7 +13030,7 @@ var wO = class {
 		return this.#u.set(e, a), a;
 	}
 };
-function TO(e, t, n) {
+function DO(e, t, n) {
 	let r = Array.from(e).filter((e) => e.contributesToDomain).filter((e) => e.channelDef.scale?.domain), i = {
 		domains: [],
 		selectionRef: void 0,
@@ -13018,29 +13039,29 @@ function TO(e, t, n) {
 		hasLiteralDomain: !1
 	};
 	for (let e of r) {
-		let r = EO(e, t, n);
+		let r = OO(e, t, n);
 		if (r.kind === "selection") {
-			DO(i, r);
+			kO(i, r);
 			continue;
 		}
-		OO(i, r);
+		AO(i, r);
 	}
-	return kO(i);
+	return jO(i);
 }
-function EO(e, t, n) {
+function OO(e, t, n) {
 	let r = e.channelDef.scale.domain;
-	return PO(r) ? {
+	return IO(r) ? {
 		kind: "selection",
-		...AO(e, r, t, n)
+		...MO(e, r, t, n)
 	} : V(r) ? {
 		kind: "literal",
-		domain: jO(e.channelDef.type, e.view.paramRuntime.createExpression(r.expr)(), t)
+		domain: NO(e.channelDef.type, e.view.paramRuntime.createExpression(r.expr)(), t)
 	} : {
 		kind: "literal",
-		domain: jO(e.channelDef.type, r, t)
+		domain: NO(e.channelDef.type, r, t)
 	};
 }
-function DO(e, t) {
+function kO(e, t) {
 	if (e.hasLiteralDomain) throw Error("Cannot mix selection-driven and literal configured domains on a shared scale.");
 	if (e.selectionRef && (e.selectionRef.runtime !== t.runtime || e.selectionRef.param !== t.param || e.selectionRef.encoding !== t.encoding)) throw Error("Conflicting selection domain references on a shared scale: " + e.selectionDescription + " vs " + t.description + ".");
 	e.selectionRuntime = t.runtime, e.selectionDescription = t.description, e.selectionRef = {
@@ -13050,11 +13071,11 @@ function DO(e, t) {
 		runtime: t.runtime
 	}, t.domain && e.domains.push(t.domain);
 }
-function OO(e, t) {
+function AO(e, t) {
 	if (e.selectionRuntime) throw Error("Cannot mix literal configured domains with selection-driven domains on a shared scale.");
 	e.hasLiteralDomain = !0, e.domains.push(t.domain);
 }
-function kO(e) {
+function jO(e) {
 	return e.domains.length > 0 ? {
 		domain: e.domains.reduce((e, t) => e.extendAll(t)),
 		selectionRef: e.selectionRef
@@ -13066,17 +13087,17 @@ function kO(e) {
 		selectionRef: void 0
 	};
 }
-function AO(e, t, n, r) {
-	let i = t.param, a = NO(e.channel, t, i), o = fO(e.view, i, a), s = t.initial !== void 0, c = o.selection?.intervals[a], l = i + "." + a;
+function MO(e, t, n, r) {
+	let i = t.param, a = FO(e.channel, t, i), o = mO(e.view, i, a), s = t.initial !== void 0, c = o.selection?.intervals[a], l = i + "." + a;
 	return !c || c.length !== 2 ? {
-		domain: r && t.initial ? jO(e.channelDef.type, t.initial, n) : void 0,
+		domain: r && t.initial ? NO(e.channelDef.type, t.initial, n) : void 0,
 		description: l,
 		param: i,
 		encoding: a,
 		hasInitial: s,
 		runtime: o.runtime
 	} : {
-		domain: SO(e.channelDef.type, n(c)),
+		domain: wO(e.channelDef.type, n(c)),
 		description: l,
 		param: i,
 		encoding: a,
@@ -13084,25 +13105,25 @@ function AO(e, t, n, r) {
 		runtime: o.runtime
 	};
 }
-function jO(e, t, n) {
+function NO(e, t, n) {
 	let r = n(t);
-	return SO(e, e === "locus" && QE(t) && !$E(t) ? r : iO(e, r));
+	return wO(e, e === "locus" && eD(t) && !tD(t) ? r : oO(e, r));
 }
-function MO(e, t) {
-	if (!t || e.size < 2 || !Array.from(e).some((e) => mO(e.view, t.runtime, t.param, t.encoding))) return;
+function PO(e, t) {
+	if (!t || e.size < 2 || !Array.from(e).some((e) => gO(e.view, t.runtime, t.param, t.encoding))) return;
 	let n = Array.from(new Set(Array.from(e).filter((e) => e.contributesToDomain).map((e) => e.view.getPathString?.() ?? e.view.name ?? "(unknown)")));
 	throw Error(`Selection domain reference "${t.param}.${t.encoding}" cannot use a shared ${t.encoding} scale when the same interval selection is defined in that shared view group (${n.join(", ")}). This creates a feedback loop between brushing and the scale domain. Make the linked ${t.encoding} scale independent, for example with "resolve": { "scale": { "${t.encoding}": "independent" } } on the common ancestor.`);
 }
-function NO(e, t, n) {
+function FO(e, t, n) {
 	if (t.encoding) return t.encoding;
 	let r = Bf(e);
 	if (r === "x" || r === "y") return r;
 	throw Error(`Selection domain reference "${n}" on channel "${e}" requires an explicit "encoding" ("x" or "y").`);
 }
-function PO(e) {
+function IO(e) {
 	return typeof e == "object" && !!e && !Array.isArray(e) && typeof e.param == "string";
 }
-function FO(e, t, n) {
+function LO(e, t, n) {
 	let r = t(), i = /* @__PURE__ */ new Map();
 	for (let t of e) {
 		if (!t.contributesToDomain) continue;
@@ -13114,36 +13135,36 @@ function FO(e, t, n) {
 			if (o || (o = /* @__PURE__ */ new Map(), i.set(n, o)), o.has(e)) continue;
 			let s;
 			if (a) s = a.getDomain(e, r, t);
-			else if (t.constant) s = SO(r), s.extend(t({}));
+			else if (t.constant) s = wO(r), s.extend(t({}));
 			else continue;
 			o.set(e, s);
 		}
 	}
 	if (i.size === 0) return;
-	let a = SO(r);
+	let a = wO(r);
 	for (let e of i.values()) for (let t of e.values()) a.extendAll(t);
 	return a;
 }
-function IO(e, t, n, r) {
-	return e == "locus" ? t(r) : e == "index" ? oO(e, n) ?? [] : n ?? [];
+function RO(e, t, n, r) {
+	return e == "locus" ? t(r) : e == "index" ? cO(e, n) ?? [] : n ?? [];
 }
 //#endregion
 //#region ../../node_modules/d3-ease/src/cubic.js
-function LO(e) {
+function zO(e) {
 	return ((e *= 2) <= 1 ? e * e * e : (e -= 2) * e * e + 2) / 2;
 }
 //#endregion
 //#region src/utils/eerp.js
-function RO(e, t, n) {
+function BO(e, t, n) {
 	return e * (t / e) ** +n;
 }
 //#endregion
 //#region src/utils/transition.js
-var zO = (e) => new Promise((t) => setTimeout(t, e));
-function BO() {
+var VO = (e) => new Promise((t) => setTimeout(t, e));
+function HO() {
 	return { canceled: !1 };
 }
-function VO(e) {
+function UO(e) {
 	let t = e.requestAnimationFrame || window.requestAnimationFrame, n = e.signal, r = e.cancelToken, i = () => new Promise((i, a) => {
 		if (r?.canceled) return i();
 		if (n?.aborted) return a("aborted");
@@ -13156,11 +13177,11 @@ function VO(e) {
 		};
 		t(m);
 	});
-	return e.delay ? r?.canceled ? Promise.resolve() : n?.aborted ? Promise.reject("aborted") : zO(e.delay).then(i) : i();
+	return e.delay ? r?.canceled ? Promise.resolve() : n?.aborted ? Promise.reject("aborted") : VO(e.delay).then(i) : i();
 }
 //#endregion
 //#region src/scales/zoomDomainUtils.js
-function HO(e, t, n, r, i = {}) {
+function WO(e, t, n, r, i = {}) {
 	let a = i.onUnsupported ?? "throw";
 	switch (e.type) {
 		case "linear":
@@ -13177,20 +13198,21 @@ function HO(e, t, n, r, i = {}) {
 }
 //#endregion
 //#region src/scales/scaleInteractionController.js
-var UO = class {
+var GO = class {
 	#e;
 	#t;
 	#n;
 	#r;
 	#i;
 	#a;
-	#o = null;
-	constructor({ getScale: e, getAnimator: t, getInitialDomainSnapshot: n, getResetDomain: r, fromComplexInterval: i, getGenomeExtent: a }) {
-		this.#e = e, this.#t = t, this.#n = n, this.#r = r, this.#i = i, this.#a = a;
+	#o;
+	#s = null;
+	constructor({ getScale: e, getAnimator: t, renderImmediately: n, getInitialDomainSnapshot: r, getResetDomain: i, fromComplexInterval: a, getGenomeExtent: o }) {
+		this.#e = e, this.#t = t, this.#n = n, this.#r = r, this.#i = i, this.#a = a, this.#o = o;
 	}
 	getZoomExtent() {
 		let e = this.#e(), t = e.props.zoom;
-		return WO(e, t, this.#i, this.#a, this.#n);
+		return qO(e, t, this.#a, this.#o, this.#r);
 	}
 	isZoomable() {
 		return this.isZoomingSupported() && !!this.#e().props.zoom;
@@ -13203,47 +13225,68 @@ var UO = class {
 		return Jo(t, e) ? "none" : this.isZoomable() ? "restore" : this.isZoomingSupported() ? "animate" : "notify";
 	}
 	isZoomed() {
-		return this.isZoomingSupported() && !Jo(this.#r(), this.#e().domain());
+		return this.isZoomingSupported() && !Jo(this.#i(), this.#e().domain());
 	}
 	zoom(e, t, n) {
 		if (!this.isZoomingSupported()) return !1;
-		let r = this.#e(), i = r.domain(), a = GO(r, i, e, t, n), o = this.getZoomExtent();
+		let r = this.#e(), i = r.domain(), a = JO(r, i, e, t, n), o = this.getZoomExtent();
 		return a = ht(a, o[0], o[1]), [0, 1].some((e) => a[e] != i[e]) ? (r.domain(a), !0) : !1;
 	}
 	async zoomTo(e, t = !1) {
-		if (Tt(t) && (t = t ? 700 : 0), !this.isZoomingSupported()) throw Error("Not a zoomable scale!");
-		let n = this.#e(), r = KO(n.type, e, this.#i), i = this.#t(), a = n.domain();
-		if (t > 0 && a.length == 2) {
-			let e = a[1] - a[0], o = r[1] - r[0], s = a[0] + e / 2, c = r[0] + o / 2, l = a[0] == r[0], u = a[1] == r[1];
-			this.#s();
-			let d = BO();
-			this.#o = d, await i.transition({
-				duration: t,
-				easingFunction: LO,
-				cancelToken: d,
-				onUpdate: (t) => {
-					let r = RO(e, o, t), i = e == o ? t : (e - r) / (e - o), d = i * c + (1 - i) * s, f = [l ? a[0] : d - r / 2, u ? a[1] : d + r / 2];
-					n.domain(f);
+		let { duration: n, renderImmediately: r } = KO(t);
+		if (!this.isZoomingSupported()) throw Error("Not a zoomable scale!");
+		let i = this.#e(), a = YO(i.type, e, this.#a), o = this.#t(), s = i.domain();
+		if (n > 0 && s.length == 2) {
+			if (r) throw Error("renderImmediately is not supported for animated zooms.");
+			let e = s[1] - s[0], t = a[1] - a[0], c = s[0] + e / 2, l = a[0] + t / 2, u = s[0] == a[0], d = s[1] == a[1];
+			this.#c();
+			let f = HO();
+			this.#s = f, await o.transition({
+				duration: n,
+				easingFunction: zO,
+				cancelToken: f,
+				onUpdate: (n) => {
+					let r = BO(e, t, n), a = e == t ? n : (e - r) / (e - t), o = a * l + (1 - a) * c, f = [u ? s[0] : o - r / 2, d ? s[1] : o + r / 2];
+					i.domain(f);
 				}
-			}), this.#o === d && (this.#o = null), n.domain(r);
-		} else this.#s(), n.domain(r), i?.requestRender();
+			}), this.#s === f && (this.#s = null), i.domain(a);
+		} else this.#c(), i.domain(a), r ? this.#n() : o?.requestRender();
 	}
-	#s() {
-		this.#o &&= (this.#o.canceled = !0, null);
+	#c() {
+		this.#s &&= (this.#s.canceled = !0, null);
 	}
 	resetZoom() {
 		if (!this.isZoomingSupported()) throw Error("Not a zoomable scale!");
-		let e = this.#e(), t = e.domain(), n = this.#r();
+		let e = this.#e(), t = e.domain(), n = this.#i();
 		return [0, 1].some((e) => n[e] != t[e]) ? (e.domain(n), !0) : !1;
 	}
 	getZoomLevel() {
 		return this.isZoomable() ? jt(this.getZoomExtent()) / jt(this.#e().domain()) : 1;
 	}
 };
-function WO(e, t, n, r, i) {
-	return qO(t) && E(t.extent) ? KO(e.props.type, t.extent, n) : t && e.props.type == "locus" ? r() : i();
+function KO(e) {
+	if (e === void 0) return {
+		duration: 0,
+		renderImmediately: !1
+	};
+	if (Tt(e)) return {
+		duration: e ? 700 : 0,
+		renderImmediately: !1
+	};
+	if (typeof e == "number") return {
+		duration: e,
+		renderImmediately: !1
+	};
+	let t = e.duration ?? 0;
+	return {
+		duration: Tt(t) ? t ? 700 : 0 : t,
+		renderImmediately: e.renderImmediately === !0
+	};
 }
-function GO(e, t, n, r, i) {
+function qO(e, t, n, r, i) {
+	return XO(t) && E(t.extent) ? YO(e.props.type, t.extent, n) : t && e.props.type == "locus" ? r() : i();
+}
+function JO(e, t, n, r, i) {
 	let a = [...t], o = e.invert(r);
 	switch (e.props.reverse && (i = -i), "align" in e && (o += e.align()), e.type) {
 		case "linear":
@@ -13263,26 +13306,26 @@ function GO(e, t, n, r, i) {
 			break;
 		default: throw Error("Zooming is not implemented for: " + e.type);
 	}
-	return HO(e, a, o, n);
+	return WO(e, a, o, n);
 }
-function KO(e, t, n) {
+function YO(e, t, n) {
 	let r = e === "locus" ? n(t) : t;
-	return e === "locus" && QE(t) && !$E(t) ? r : iO(e, r);
+	return e === "locus" && eD(t) && !tD(t) ? r : oO(e, r);
 }
-function qO(e) {
+function XO(e) {
 	return D(e);
 }
 //#endregion
 //#region src/scales/resolutionMemberOrder.js
-function JO(e) {
+function ZO(e) {
 	let t = e.view.getPathString(), n = e.channel ?? "";
 	return t + "|" + n;
 }
-function YO(e) {
-	return Array.from(e).sort((e, t) => JO(e).localeCompare(JO(t)));
+function QO(e) {
+	return Array.from(e).sort((e, t) => ZO(e).localeCompare(ZO(t)));
 }
-L("index", UE, ["continuous"]), L("locus", aD, ["continuous"]), L("null", lx, []);
-var XO = class {
+L("index", GE, ["continuous"]), L("locus", sD, ["continuous"]), L("null", dx, []);
+var $O = class {
 	#e = /* @__PURE__ */ new Set();
 	#t = /* @__PURE__ */ new Set();
 	#n;
@@ -13305,21 +13348,22 @@ var XO = class {
 	#g = 0;
 	#_ = !1;
 	constructor(e, t) {
-		this.channel = e, this.type = null, this.name = void 0, this.#m = t, this.#a = new wO({
+		this.channel = e, this.type = null, this.name = void 0, this.#m = t, this.#a = new EO({
 			getActiveMembers: () => this.#b(),
 			getAllMembers: () => this.#e,
 			getDataMembers: () => this.#b(this.#t),
 			getType: () => this.type,
 			getLocusExtent: (e) => this.#S(e),
 			fromComplexInterval: this.fromComplexInterval.bind(this)
-		}), this.#i = new FD({
+		}), this.#i = new LD({
 			getParamRuntime: () => this.#y.paramRuntime,
 			onRangeChange: () => this.#w("range"),
 			onDomainChange: () => this.#w("domain"),
 			getGenomeStore: () => this.#x.genomeStore
-		}), this.#o = new UO({
+		}), this.#o = new GO({
 			getScale: () => this.getScale(),
 			getAnimator: () => this.#x.animator,
+			renderImmediately: () => this.#x.renderImmediately(),
 			getInitialDomainSnapshot: () => this.#a.initialDomainSnapshot,
 			getResetDomain: () => this.#k(),
 			fromComplexInterval: this.fromComplexInterval.bind(this),
@@ -13349,7 +13393,7 @@ var XO = class {
 		return (this.#i.scale && R(this.#i.scale.type) && this.#o.getZoomExtent()) ?? [-Infinity, Infinity];
 	}
 	#S(e) {
-		return dD(this.#C(e));
+		return pD(this.#C(e));
 	}
 	#C(e) {
 		if (this.type === "locus") return this.#i.scale ?? this.#i.getLocusGenome(e);
@@ -13378,12 +13422,12 @@ var XO = class {
 	syncLinkedSelectionFromDomain() {
 		let e = this.#a.getSelectionConfiguredDomainBindingInfo();
 		if (!e || !this.isZoomable()) return;
-		let t = dO(e.runtime.getValue(e.param), e.param);
+		let t = pO(e.runtime.getValue(e.param), e.param);
 		if (!t) return;
 		let n = this.#E(this.getScale().domain());
 		if (!n) return;
 		let r = this.#E(this.#a.getDefaultDomain(!0)), i = r && Jo(n, r) ? null : n;
-		ZO(t.intervals[e.encoding] ?? null, i) || e.runtime.setValue(e.param, {
+		ek(t.intervals[e.encoding] ?? null, i) || e.runtime.setValue(e.param, {
 			...t,
 			type: "interval",
 			intervals: {
@@ -13393,7 +13437,7 @@ var XO = class {
 		});
 	}
 	#E(e) {
-		return hO(e, this.zoomExtent);
+		return _O(e, this.zoomExtent);
 	}
 	#D() {
 		return this.#a.getSelectionConfiguredDomainBindingInfo();
@@ -13409,7 +13453,7 @@ var XO = class {
 		return !1;
 	}
 	#j(e) {
-		let t = dO(e.runtime.getValue(e.param), e.param);
+		let t = pO(e.runtime.getValue(e.param), e.param);
 		if (!t) return null;
 		let n = t.intervals[e.encoding];
 		return n && n.length === 2 ? n : null;
@@ -13418,7 +13462,7 @@ var XO = class {
 		t ? this.#f = !1 : e && (this.#f = !0);
 	}
 	#N(e) {
-		let t = QO(e), { channel: n, channelDef: r } = t, i = r.type == null && this.type;
+		let t = tk(e), { channel: n, channelDef: r } = t, i = r.type == null && this.type;
 		if (n != "sample" && !r.type && !Rf(n) && !i) throw Error(`The "type" property must be defined in channel definition: "${n}": ${JSON.stringify(r)}. Must be one of: "quantitative", "ordinal", "nominal", "locus", "index"`);
 		let a = n == "sample" ? "nominal" : r.type, o = r?.scale?.name, s = r.scale?.type ?? (a === "index" || a === "locus" ? a : void 0);
 		if (s && ["index", "locus"].includes(s) && !Pf(this.channel)) throw Error(`Index and locus scales are only supported on positional channels (x/y). Channel "${this.channel}" resolves to scale type "${s}".`);
@@ -13512,8 +13556,8 @@ var XO = class {
 		return R(e.type) ? t.length > 2 || t.length == 2 && (t[0] !== 0 || t[1] !== 0) : t.length > 0;
 	}
 	#V() {
-		return jS(this, "mergedScaleProps", () => {
-			let e = nO({
+		return NS(this, "mergedScaleProps", () => {
+			let e = iO({
 				channel: this.channel,
 				dataType: this.type,
 				orderedMembers: this.#W(),
@@ -13524,13 +13568,13 @@ var XO = class {
 		});
 	}
 	#H() {
-		MS(this, "mergedScaleProps");
+		PS(this, "mergedScaleProps");
 	}
 	#U() {
 		this.#n = void 0;
 	}
 	#W() {
-		return this.#n ||= YO(this.#e), this.#n;
+		return this.#n ||= QO(this.#e), this.#n;
 	}
 	#G() {
 		this.#a.invalidateConfiguredDomain(), this.#H();
@@ -13572,17 +13616,17 @@ var XO = class {
 				if (t && i.domain().length > 0 && !Jo(i.domain(), r)) return this.#s = void 0, this.#q(e);
 				i.addAll(r);
 				let a = new Set(r), o = i.domain().filter((e) => a.has(e));
-				n.domain = o.length > 0 ? o : new yO();
+				n.domain = o.length > 0 ? o : new xO();
 			} else {
 				let e = i.domain();
-				n.domain = e.length > 0 ? e : new yO();
+				n.domain = e.length > 0 ? e : new xO();
 			}
 			n.domainIndexer = i;
 		} else r && r.length > 0 && (n.domain = r);
 		return !n.domain && n.domainMid !== void 0 && (n.domain = [n.domainMin ?? 0, n.domainMax ?? 1]), n;
 	}
 	#J(e) {
-		return (!this.#s || this.#c !== e) && (this.#s = mS(), this.#c = e), this.#s;
+		return (!this.#s || this.#c !== e) && (this.#s = gS(), this.#c = e), this.#s;
 	}
 	reconfigure() {
 		this.#T(() => {
@@ -13612,7 +13656,7 @@ var XO = class {
 			hasSelectionConfiguredDomain: this.#a.hasSelectionConfiguredDomain()
 		};
 		if (t) {
-			let e = TD(n, r.props);
+			let e = DD(n, r.props);
 			return {
 				...r,
 				domainConfig: e,
@@ -13664,12 +13708,12 @@ var XO = class {
 		return this.#a.getDataDomain();
 	}
 	getComplexDomain() {
-		return uD(this.#C(), aO(this.type, this.getDomain()));
+		return fD(this.#C(), sO(this.type, this.getDomain()));
 	}
 	getLinkedSelectionDomainInfo() {
 		let e = this.#D();
 		if (!e) return;
-		let t = this.#y.getLayoutAncestors().at(-1), n = t ? pO(t, e.runtime, e.param, e.encoding).some((e) => e.param.persist !== !1) : !1;
+		let t = this.#y.getLayoutAncestors().at(-1), n = t ? hO(t, e.runtime, e.param, e.encoding).some((e) => e.param.persist !== !1) : !1;
 		return {
 			param: e.param,
 			encoding: e.encoding,
@@ -13708,22 +13752,22 @@ var XO = class {
 		} else throw Error("The scale does not support inverting!");
 	}
 	toComplex(e) {
-		return sD(this.#C(), e);
+		return lD(this.#C(), e);
 	}
 	fromComplex(e) {
-		return cD(this.#C(), e);
+		return uD(this.#C(), e);
 	}
 	fromComplexInterval(e) {
-		return this.type == "locus" ? lD(this.#C(), e) : e;
+		return this.type == "locus" ? dD(this.#C(), e) : e;
 	}
 };
-function ZO(e, t) {
+function ek(e, t) {
 	return e === t ? !0 : !e || !t ? !1 : e.length === t.length && Jo(e, t);
 }
-function QO(e) {
+function tk(e) {
 	let t = e.channelDef.scale, n = t?.assembly;
 	if (!t || !n || typeof n != "object" || !("url" in n)) return e;
-	let r = JC(e.view.getBaseUrl(), n.url);
+	let r = XC(e.view.getBaseUrl(), n.url);
 	return r === n.url ? e : {
 		...e,
 		channelDef: {
@@ -13740,12 +13784,12 @@ function QO(e) {
 }
 //#endregion
 //#region src/utils/coalesce.js
-function $O(...e) {
+function nk(...e) {
 	for (let t of e) if (t !== void 0) return t;
 }
 //#endregion
 //#region src/scales/axisResolution.js
-var ek = class {
+var rk = class {
 	#e = /* @__PURE__ */ new Set();
 	constructor(e) {
 		this.channel = e;
@@ -13757,32 +13801,32 @@ var ek = class {
 		let { view: t } = e, n = t.getScaleResolution(this.channel);
 		if (!n) throw Error("Cannot find a scale resolution!");
 		if (this.scaleResolution && n !== this.scaleResolution) throw Error(`Shared axes must have a shared scale! Channel: ${this.channel}, existing views: [${Array.from(this.#e).map((e) => e.view.getPathString()).join(", ")}], new view: ${t.getPathString()}.`);
-		this.#e.add(e), MS(this, "axisProps");
+		this.#e.add(e), PS(this, "axisProps");
 	}
 	registerMember(e) {
 		return this.#t(e), () => this.removeMember(e) && this.#e.size === 0;
 	}
 	removeMember(e) {
 		let t = this.#e.delete(e);
-		return t && MS(this, "axisProps"), t;
+		return t && PS(this, "axisProps"), t;
 	}
 	getAxisProps() {
-		return jS(this, "axisProps", () => {
-			let e = YO(this.#e).map((e) => {
+		return NS(this, "axisProps", () => {
+			let e = QO(this.#e).map((e) => {
 				let t = e.view.mark.encoding[e.channel];
 				return "axis" in t && t.axis;
 			});
-			return e.length > 0 && e.some((e) => e === null) ? null : RD(e.filter((e) => e !== void 0), "axis", ["title"]);
+			return e.length > 0 && e.some((e) => e === null) ? null : BD(e.filter((e) => e !== void 0), "axis", ["title"]);
 		});
 	}
 	getTitle() {
-		let e = YO(this.#e).map((e) => {
+		let e = QO(this.#e).map((e) => {
 			let t = Ef(e.view, e.channel);
 			if (!xf(t)) return {
 				member: e,
 				axisTitle: "axis" in t ? t.axis?.title : void 0,
-				explicitTitle: $O("axis" in t ? t.axis?.title : void 0, t.title),
-				implicitTitle: $O(Sf(t) ? t.field : void 0, Of(t) ? t.expr : void 0)
+				explicitTitle: nk("axis" in t ? t.axis?.title : void 0, t.title),
+				implicitTitle: nk(Sf(t) ? t.field : void 0, Of(t) ? t.expr : void 0)
 			};
 		}), t = e.map((e) => e.axisTitle).find((e) => e !== void 0);
 		if (t !== void 0) return t;
@@ -13792,16 +13836,16 @@ var ek = class {
 				return e.find((e) => e.member.view == t.member.view && e.member.channel == n)?.explicitTitle === void 0;
 			}
 			return !0;
-		}), r = new Set(n.map((e) => $O(e.explicitTitle, e.implicitTitle)).filter(O));
+		}), r = new Set(n.map((e) => nk(e.explicitTitle, e.implicitTitle)).filter(O));
 		return r.size ? [...r].join(", ") : null;
 	}
-}, tk = (e) => {
+}, ik = (e) => {
 	if (wf(e)) return e;
 	if (Af(e)) {
 		let t = e.condition;
 		if (!Array.isArray(t) && wf(t)) return t;
 	}
-}, nk = (e, t, n) => {
+}, ak = (e, t, n) => {
 	let r = e;
 	for (; (r.getConfiguredOrDefaultResolution(n, t) == "forced" || r.dataParent && [
 		"shared",
@@ -13809,9 +13853,9 @@ var ek = class {
 		"forced"
 	].includes(r.dataParent.getConfiguredOrDefaultResolution(n, t))) && r.getConfiguredOrDefaultResolution(n, t) != "excluded";) r = r.dataParent;
 	return r;
-}, rk = (e, t, n) => {
+}, ok = (e, t, n) => {
 	if (!t.resolutions.scale[n]) {
-		let r = new XO(n, t);
+		let r = new $O(n, t);
 		t.resolutions.scale[n] = r;
 		let i = (t) => {
 			e.context.glHelper?.createRangeTexture(t.scaleResolution, !0);
@@ -13821,36 +13865,36 @@ var ek = class {
 		});
 	}
 	return t.resolutions.scale[n];
-}, ik = (e, t, n, r) => {
-	let i = tk(r);
+}, sk = (e, t, n, r) => {
+	let i = ik(r);
 	if (!i) return;
 	let a = Bf(i.resolutionChannel ?? n);
 	if (Uf(a) && !(t == "axis" && !Ff(a))) return {
-		view: nk(e, t, a),
+		view: ak(e, t, a),
 		channel: n,
 		channelDef: i,
 		targetChannel: a
 	};
-}, ak = (e, t) => {
+}, ck = (e, t) => {
 	for (let [n, r] of Object.entries(e.mark.encoding)) !r || Array.isArray(r) || t(n, r);
-}, ok = (e) => {
+}, lk = (e) => {
 	let t = [];
-	return ak(e, (n, r) => {
-		let i = ik(e, "axis", n, r);
+	return ck(e, (n, r) => {
+		let i = sk(e, "axis", n, r);
 		i && Ff(i.channel) && t.push(i);
 	}), t;
-}, sk = (e) => {
+}, uk = (e) => {
 	let t = /* @__PURE__ */ new Map();
-	return ak(e, (n, r) => {
-		let i = ik(e, "scale", n, r);
+	return ck(e, (n, r) => {
+		let i = sk(e, "scale", n, r);
 		if (!i) return;
-		let a = rk(e, i.view, i.targetChannel), o = t.get(a);
+		let a = ok(e, i.view, i.targetChannel), o = t.get(a);
 		o ? o.push(i) : t.set(a, [i]);
 	}), t;
-}, ck = (e, t) => {
+}, dk = (e, t) => {
 	for (let { view: n, channel: r, channelDef: i, targetChannel: a } of t) {
 		if (!Ff(r) || !Pf(a)) continue;
-		n.resolutions.axis[a] || (n.resolutions.axis[a] = new ek(a));
+		n.resolutions.axis[a] || (n.resolutions.axis[a] = new rk(a));
 		let t = n.resolutions.axis[a], o = t.registerMember({
 			view: e,
 			channel: r,
@@ -13860,8 +13904,8 @@ var ek = class {
 			o() && n.resolutions.axis[a] === t && delete n.resolutions.axis[a];
 		});
 	}
-}, lk = (e, t) => {
-	XO.registerInBatch(t.keys(), () => {
+}, fk = (e, t) => {
+	$O.registerInBatch(t.keys(), () => {
 		for (let [n, r] of t) for (let { view: t, channel: i, channelDef: a, targetChannel: o } of r) {
 			let r = o, s = !e.isDomainInert(), c = n.registerMember({
 				view: e,
@@ -13874,26 +13918,26 @@ var ek = class {
 			});
 		}
 	});
-}, uk = (e, t) => {
+}, pk = (e, t) => {
 	if (!t) {
-		uk(e, "scale"), uk(e, "axis");
+		pk(e, "scale"), pk(e, "axis");
 		return;
 	}
-	t == "axis" ? ck(e, ok(e)) : lk(e, sk(e));
-}, dk = {
-	point: uC,
-	rect: rC,
-	rule: gC,
-	tick: gC,
-	link: OC,
-	text: PC
-}, $ = class extends PE {
+	t == "axis" ? dk(e, lk(e)) : fk(e, uk(e));
+}, mk = {
+	point: fC,
+	rect: aC,
+	rule: vC,
+	tick: vC,
+	link: AC,
+	text: IC
+}, $ = class extends IE {
 	#e;
 	#t = !1;
 	#n = null;
 	constructor(e, t, n, r, i, a) {
 		super(e, t, n, r, i, a), this.spec = e;
-		let o = dk[this.getMarkType()];
+		let o = mk[this.getMarkType()];
 		if (o) this.mark = new o(this);
 		else throw Error(`No such mark: ${this.getMarkType()}`);
 		this.#e = this.paramRuntime.allocateSetter("zoomLevel", 1), this.resolve();
@@ -13923,13 +13967,13 @@ var ek = class {
 				}, o = () => {
 					let e = this.context.getCurrentHover();
 					return e?.mark?.unitView === this ? e.datum : null;
-				}, s = r.filter ? EE(r.filter) : () => !0;
+				}, s = r.filter ? OE(r.filter) : () => !0;
 				if (this.addInteractionListener(["mouseover", "pointerover"].includes(r.type) ? "mousemove" : r.type, (r) => {
 					if (!s(r.proxiedMouseEvent)) return;
 					let i = o(), c = i ? i[$d] : 0, l;
 					n.toggle ? r.mouseEvent.shiftKey ? i && (l = Yf(this.paramRuntime.getValue(e), { toggle: [i] })) : l = qf(i ? [i] : null) : c != t && (t = c, l = Kf(i)), l !== void 0 && a(l);
 				}), i) {
-					let e = i.filter ? EE(i.filter) : () => !0;
+					let e = i.filter ? OE(i.filter) : () => !0;
 					this.addInteractionListener(i.type, (r) => {
 						e(r.proxiedMouseEvent) && (t = 0, a(n.toggle ? qf() : Kf(null)));
 					});
@@ -13953,7 +13997,7 @@ var ek = class {
 			this.resolve("scale"), this.resolve("axis");
 			return;
 		}
-		uk(this, e);
+		pk(this, e);
 	}
 	dispose() {
 		super.dispose(), this.mark.dispose();
@@ -13963,7 +14007,7 @@ var ek = class {
 		if (t) return t[e] ? vf(t[e]) : void 0;
 	}
 	getSearchAccessors() {
-		return this.#n ||= (BE(this.getEncoding()) ?? []).map((e) => B(e)), this.#n;
+		return this.#n ||= (HE(this.getEncoding()) ?? []).map((e) => B(e)), this.#n;
 	}
 	getFacetAccessor(e) {
 		return this.getDataAccessor("sample") || super.getFacetAccessor(this);
@@ -13986,7 +14030,7 @@ var ek = class {
 				if (!of(e)) continue;
 				let t = this.getScaleResolution(e.scaleChannel);
 				if (!t) throw Error("Missing scale resolution for channel: " + e.scaleChannel);
-				if (e.channelDef.domainInert || fk(e, t, n)) continue;
+				if (e.channelDef.domainInert || hk(e, t, n)) continue;
 				let i = r.get(t);
 				i || (i = /* @__PURE__ */ new Set(), r.set(t, i)), i.add(e);
 			}
@@ -14007,33 +14051,33 @@ var ek = class {
 		return e == "x" ? "shared" : "independent";
 	}
 };
-function fk(e, t, n) {
+function hk(e, t, n) {
 	return !t.isDomainDefinedExplicitly() && n.has(Bf(e.scaleChannel));
 }
 //#endregion
 //#region src/utils/fetchUtils.js
-var pk = class extends Error {
+var gk = class extends Error {
 	constructor(e, t) {
 		super(t), this.kind = e;
 	}
 };
-async function mk(e, t = {}) {
+async function _k(e, t = {}) {
 	let n;
 	try {
 		n = await fetch(e, { signal: t.signal });
 	} catch (e) {
-		throw new pk("network", String(e));
+		throw new gk("network", String(e));
 	}
-	if (!n.ok) throw new pk("http", String(n.status) + " " + n.statusText);
+	if (!n.ok) throw new gk("http", String(n.status) + " " + n.statusText);
 	try {
 		return await n.json();
 	} catch (e) {
-		throw new pk("json", String(e));
+		throw new gk("json", String(e));
 	}
 }
 //#endregion
 //#region src/view/viewUtils.js
-function hk(e) {
+function vk(e) {
 	let t = /* @__PURE__ */ new Set();
 	e.visit((e) => {
 		for (let n of Object.values(e.resolutions.scale)) {
@@ -14043,30 +14087,30 @@ function hk(e) {
 		}
 	});
 }
-function gk(e) {
+function yk(e) {
 	for (let t of jf) {
 		let n = e.getScaleResolution(t);
 		n && !n.name && n.isZoomable() && (n.name = `${t}_at_root`);
 	}
 }
-function _k(e, t = () => !0) {
+function bk(e, t = () => !0) {
 	return Promise.allSettled(e).then((e) => {
 		if (t()) for (let t of e) "value" in t ? t.value.finalizeGraphicsInitialization() : "reason" in t && console.error(t.reason);
 	});
 }
-async function vk(e, t, n) {
+async function xk(e, t, n) {
 	let r = e.import;
 	if (!("url" in r)) throw Error("Not an url import: " + JSON.stringify(r));
-	let i = qC(t, r.url), a;
+	let i = YC(t, r.url), a;
 	try {
-		a = await mk(i);
+		a = await _k(i);
 	} catch (e) {
 		throw Error(`Could not load imported view spec: ${i}. Reason: ${e.message}`, { cause: e });
 	}
-	if (n.isViewSpec(a)) return a.baseUrl = qC(YC(r.url), a.baseUrl), a;
+	if (n.isViewSpec(a)) return a.baseUrl = YC(ZC(r.url), a.baseUrl), a;
 	throw Error(`The imported spec "${i}" is not a view spec: ${JSON.stringify(e)}`);
 }
-function yk(e) {
+function Sk(e) {
 	let t = e.getSize(), n = e.getPadding(), r = (e, t) => e.grow > 0 ? void 0 : e.px + t;
 	return {
 		width: r(t.width, n.horizontalTotal),
@@ -14075,31 +14119,31 @@ function yk(e) {
 }
 //#endregion
 //#region src/utils/iterateNestedMaps.js
-function* bk(e, t = []) {
-	for (let [n, r] of e.entries()) if (r instanceof Map) for (let e of bk(r, [...t, n])) yield e;
+function* Ck(e, t = []) {
+	for (let [n, r] of e.entries()) if (r instanceof Map) for (let e of Ck(r, [...t, n])) yield e;
 	else yield [[...t, n], r];
 }
 //#endregion
 //#region src/utils/radixSort.js
-var xk = 2147483647, Sk = wk([xk]);
-function Ck(e) {
+var wk = 2147483647, Tk = Dk([wk]);
+function Ek(e) {
 	for (let t = 1; t < e.length; t++) if (e[t] < e[t - 1]) return !1;
 	return !0;
 }
-function wk(e) {
+function Dk(e) {
 	let t = 0;
 	for (let n = 0, r = e.length; n < r; n++) e[n] > t && (t = e[n]);
 	return Math.floor(Math.log2(t) / 4) + 1;
 }
-function Tk(e) {
-	let t = wk(e), n = Array.from({ length: e.length }, (e, t) => t);
-	if (Ck(e)) return n;
+function Ok(e) {
+	let t = Dk(e), n = Array.from({ length: e.length }, (e, t) => t);
+	if (Ek(e)) return n;
 	let r = Array(e.length), i = Array(16);
 	for (let a = 0; a < t; a++) {
 		i.fill(0);
 		let t = a * 4, o = 16 ** a, s = (r) => {
 			let i = e[n[r]];
-			return a >= Sk ? i > xk ? Math.floor(i / o) % 16 : 0 : i >> t & 15;
+			return a >= Tk ? i > wk ? Math.floor(i / o) % 16 : 0 : i >> t & 15;
 		};
 		for (let t = 0; t < e.length; t++) i[s(t)]++;
 		for (let e = 1; e < 16; e++) i[e] += i[e - 1];
@@ -14110,7 +14154,7 @@ function Tk(e) {
 }
 //#endregion
 //#region src/data/keyIndex.js
-var Ek = "|", Dk = "\\", Ok = class {
+var kk = "|", Ak = "\\", jk = class {
 	#e = null;
 	#t = null;
 	#n = !1;
@@ -14126,14 +14170,14 @@ var Ek = "|", Dk = "\\", Ok = class {
 		if (this.#n) {
 			let e = "";
 			for (let n = 0; n < t.length; n++) {
-				n > 0 && (e += Ek);
-				let r = i[n], a = kk(t[n], r);
-				e += jk(a);
+				n > 0 && (e += kk);
+				let r = i[n], a = Mk(t[n], r);
+				e += Pk(a);
 			}
 			a = e;
 		} else {
 			let e = i[0];
-			a = kk(t[0], e);
+			a = Mk(t[0], e);
 		}
 		return this.#e.get(a);
 	}
@@ -14142,9 +14186,9 @@ var Ek = "|", Dk = "\\", Ok = class {
 		if (a) for (let a of t) for (let t = 0, o = a.length; t < o; t++) {
 			let o = a[t], s = "";
 			for (let t = 0; t < n.length; t++) {
-				t > 0 && (s += Ek);
-				let r = e[t], i = kk(n[t](o), r);
-				s += jk(i);
+				t > 0 && (s += kk);
+				let r = e[t], i = Mk(n[t](o), r);
+				s += Pk(i);
 			}
 			if (r.get(s) !== void 0) {
 				let e = n.map((e) => e(o));
@@ -14155,7 +14199,7 @@ var Ek = "|", Dk = "\\", Ok = class {
 		else {
 			let a = n[0], o = e[0];
 			for (let e of t) for (let t = 0, n = e.length; t < n; t++) {
-				let n = e[t], s = kk(a(n), o);
+				let n = e[t], s = Mk(a(n), o);
 				if (r.get(s) !== void 0) throw Error(`Duplicate key detected for fields [${i}]: ${JSON.stringify(s)}`);
 				r.set(s, n);
 			}
@@ -14168,34 +14212,34 @@ var Ek = "|", Dk = "\\", Ok = class {
 		return !0;
 	}
 };
-function kk(e, t) {
+function Mk(e, t) {
 	if (e === void 0) throw Error(`Key field "${t}" is undefined. Ensure all key fields are present in the data.`);
 	if (e === null) throw Error(`Key field "${t}" is null. Ensure all key fields are present in the data.`);
 	if (typeof e != "string" && typeof e != "number" && typeof e != "boolean") throw Error(`Key field "${t}" must be a scalar value (string, number, or boolean).`);
 	return e;
 }
-function Ak(e) {
-	if (!(e.indexOf(Dk) !== -1 || e.indexOf(Ek) !== -1)) return e;
+function Nk(e) {
+	if (!(e.indexOf(Ak) !== -1 || e.indexOf(kk) !== -1)) return e;
 	let t = "";
 	for (let n = 0; n < e.length; n++) {
 		let r = e[n];
-		(r === Dk || r === Ek) && (t += Dk), t += r;
+		(r === Ak || r === kk) && (t += Ak), t += r;
 	}
 	return t;
 }
-function jk(e) {
-	return typeof e == "string" ? Ak(e) : String(e);
+function Pk(e) {
+	return typeof e == "string" ? Nk(e) : String(e);
 }
 //#endregion
 //#region src/data/collector.js
-var Mk = class extends Bd {
+var Fk = class extends Bd {
 	#e = [];
 	#t = B($d);
 	#n = [];
-	#r = new Ok();
+	#r = new jk();
 	#i;
 	#a;
-	#o = new Nk();
+	#o = new Ik();
 	get behavior() {
 		return 4;
 	}
@@ -14203,7 +14247,7 @@ var Mk = class extends Bd {
 		return "collect";
 	}
 	constructor(e) {
-		super(), this.params = e ?? { type: "collect" }, this.observers = /* @__PURE__ */ new Set(), this.facetBatches = new bn([], JSON.stringify), this.#a = Fk(this.params?.sort), this.#s();
+		super(), this.params = e ?? { type: "collect" }, this.observers = /* @__PURE__ */ new Set(), this.facetBatches = new bn([], JSON.stringify), this.#a = Rk(this.params?.sort), this.#s();
 	}
 	#s() {
 		this.#e = [], this.#n = [], this.#r.invalidate(), this.facetBatches.clear(), this.facetBatches.set(void 0, this.#e);
@@ -14220,9 +14264,9 @@ var Mk = class extends Bd {
 	complete() {
 		if (this.#e = [], this.params.groupby?.length) {
 			if (this.facetBatches.size > 1) throw Error("TODO: Support faceted data!");
-			let e = this.facetBatches.get(void 0), t = this.params.groupby.map((e) => B(e)), n = t.length > 1 ? En(e, ...t) : Pk(e, t[0]);
+			let e = this.facetBatches.get(void 0), t = this.params.groupby.map((e) => B(e)), n = t.length > 1 ? En(e, ...t) : Lk(e, t[0]);
 			this.facetBatches.clear();
-			for (let [e, t] of bk(n)) this.facetBatches.set(e, t);
+			for (let [e, t] of Ck(n)) this.facetBatches.set(e, t);
 		}
 		if (this.#a) for (let e of this.facetBatches.values()) e.sort(this.#a);
 		this.#d(), this.#c(), super.complete(), this.#u();
@@ -14253,7 +14297,7 @@ var Mk = class extends Bd {
 	}
 	getDomain(e, t, n) {
 		return this.#o.getDomain(e, () => {
-			let e = SO(t);
+			let e = wO(t);
 			if (n.constant) e.extend(n({}));
 			else if (this.completed) for (let t of this.facetBatches.values()) for (let r = 0, i = t.length; r < i; r++) e.extend(n(t[r]));
 			return e;
@@ -14302,7 +14346,7 @@ var Mk = class extends Bd {
 			}), t += i.length;
 			for (let e = 0, t = i.length; e < t; e++) n.push(r(i[e]));
 		}
-		this.#n = Tk(n);
+		this.#n = Ok(n);
 	}
 	findDatumByUniqueId(e) {
 		if (!this.#n.length) return;
@@ -14318,7 +14362,7 @@ var Mk = class extends Bd {
 	findDatumByKey(e, t) {
 		return this.#l(), this.#r.findDatum(e, t, this.facetBatches.values());
 	}
-}, Nk = class {
+}, Ik = class {
 	#e = /* @__PURE__ */ new Map();
 	#t = /* @__PURE__ */ new Map();
 	hasCachedDomains() {
@@ -14349,7 +14393,7 @@ var Mk = class extends Bd {
 		for (let t of e) t();
 	}
 };
-function Pk(e, t) {
+function Lk(e, t) {
 	let n = /* @__PURE__ */ new Map();
 	for (let r = 0, i = e.length; r < i; r++) {
 		let i = e[r], a = t(i), o = n.get(a);
@@ -14357,7 +14401,7 @@ function Pk(e, t) {
 	}
 	return n;
 }
-function Fk(e) {
+function Rk(e) {
 	if (e?.field) {
 		let t = N(e.field);
 		if (t.length == 1 && !t[0].includes(".")) {
@@ -14369,7 +14413,7 @@ function Fk(e) {
 }
 //#endregion
 //#region src/data/transforms/coverage.js
-var Ik = class extends z {
+var zk = class extends z {
 	get behavior() {
 		return 1;
 	}
@@ -14379,7 +14423,7 @@ var Ik = class extends z {
 			start: e.asStart ?? e.start,
 			end: e.asEnd ?? e.end,
 			chrom: e.asChrom ?? e.chrom
-		}, this.createSegment = Function("start", "end", "coverage", "chrom", "return {" + Object.entries(this.as).filter(([e, t]) => t).map(([e, t]) => `${JSON.stringify(t)}: ${e}`).join(", ") + "};"), this.ends = new ZC();
+		}, this.createSegment = Function("start", "end", "coverage", "chrom", "return {" + Object.entries(this.as).filter(([e, t]) => t).map(([e, t]) => `${JSON.stringify(t)}: ${e}`).join(", ") + "};"), this.ends = new $C();
 	}
 	reset() {
 		super.reset(), this.initialize();
@@ -14417,8 +14461,8 @@ var Ik = class extends z {
 };
 //#endregion
 //#region src/utils/topK.js
-function Lk(e, t, n = (e) => +e, r = 0, i = e.length) {
-	let a = new ZC(), o = i - r, s;
+function Bk(e, t, n = (e) => +e, r = 0, i = e.length) {
+	let a = new $C(), o = i - r, s;
 	for (s = 0; s < t && s < o; s++) a.push(s, n(e[r + s]));
 	for (; s < o; s++) {
 		let t = n(e[r + s]);
@@ -14430,7 +14474,7 @@ function Lk(e, t, n = (e) => +e, r = 0, i = e.length) {
 }
 //#endregion
 //#region src/utils/reservationMap.js
-var Rk = class {
+var Vk = class {
 	constructor(e, t = -Infinity, n = Infinity) {
 		this.maxSize = e, this.lowerLimit = t, this.upperLimit = n;
 		let r = this.maxSize * 2 + 1;
@@ -14456,7 +14500,7 @@ var Rk = class {
 		let r = this.n++, i = this.n++;
 		return this.lowerLimits[r] = this.lowerLimits[n], this.upperLimits[r] = e, this.lowerLimits[i] = t, this.upperLimits[i] = this.upperLimits[n], this.lowerChildren[n] = r, this.upperChildren[n] = i, !0;
 	}
-}, zk = class extends z {
+}, Hk = class extends z {
 	get behavior() {
 		return 4;
 	}
@@ -14468,7 +14512,7 @@ var Rk = class {
 		this.startPosAccessor = B(this.params.pos), this.endPosAccessor = B(this.params.pos2 ?? this.params.pos), this.startPosBisector = dn(this.startPosAccessor), this.endPosBisector = dn(this.endPosAccessor), this.scoreAccessor = B(this.params.score), this.widthAccessor = B(this.params.width), this.laneAccessor = this.params.lane ? B(this.params.lane) : (e) => 0, this.padding = this.params.padding ?? 0, this.reservationMaps = /* @__PURE__ */ new Map(), this.resolution = t.getScaleResolution(this.channel);
 		let n = () => this._filterAndPropagate();
 		this.schedule = () => t.context.animator.requestTransition(n);
-		let r = () => this.schedule();
+		let r = () => this._filterAndPropagate();
 		this.resolution.addEventListener("domain", r), this.registerDisposer(() => this.resolution.removeEventListener("domain", r));
 		let i = t._addBroadcastHandler("layoutComputed", () => this.schedule());
 		this.registerDisposer(i);
@@ -14476,7 +14520,7 @@ var Rk = class {
 	complete() {
 		let e = this.startPosAccessor;
 		this._data.sort((t, n) => e(t) - e(n));
-		for (let e of new Set(this._data.map(this.laneAccessor))) this.reservationMaps.set(e, new Rk(200));
+		for (let e of new Set(this._data.map(this.laneAccessor))) this.reservationMaps.set(e, new Vk(200));
 		this.schedule(), super.complete();
 	}
 	_filterAndPropagate() {
@@ -14484,7 +14528,7 @@ var Rk = class {
 		let e = this.resolution.getScale(), t = this.resolution.getAxisLength();
 		if (!t) return;
 		for (let e of this.reservationMaps.values()) e.reset();
-		let n = e.domain(), r = Lk(this._data, 70, this.scoreAccessor, this.endPosBisector.left(this._data, n[0]), this.startPosBisector.right(this._data, n[1]));
+		let n = e.domain(), r = Bk(this._data, 70, this.scoreAccessor, this.endPosBisector.left(this._data, n[0]), this.startPosBisector.right(this._data, n[1]));
 		for (let n of r) {
 			let r = e(this.startPosAccessor(n)) * t, i = e(this.endPosAccessor(n)) * t, a = i - r, o = this.widthAccessor(n) + this.padding * 2, s = (r + i) / 2, c = Math.max(0, (a - o) / 2);
 			if (c > 0) {
@@ -14506,14 +14550,14 @@ var Rk = class {
 	handle(e) {
 		this._data.push(e);
 	}
-}, Bk = class extends z {
+}, Uk = class extends z {
 	constructor(e, t) {
 		super(e, t), this.params = e, this.predicate = void 0;
 	}
 	initialize() {
 		let e;
-		if (Vk(this.params)) e = this.params.expr;
-		else if (Hk(this.params)) {
+		if (Wk(this.params)) e = this.params.expr;
+		else if (Gk(this.params)) {
 			let t = this.paramRuntime.findValue(this.params.param);
 			if (!t) throw Error(`Cannot initialize filter transform. Selection parameter "${this.params.param}" not found!`);
 			e = Xf(this.params, t);
@@ -14527,15 +14571,15 @@ var Rk = class {
 		this.predicate(e) && this._propagate(e);
 	}
 };
-function Vk(e) {
+function Wk(e) {
 	return "expr" in e;
 }
-function Hk(e) {
+function Gk(e) {
 	return "param" in e;
 }
 //#endregion
 //#region src/data/transforms/flatten.js
-var Uk = class extends z {
+var Kk = class extends z {
 	get behavior() {
 		return 1;
 	}
@@ -14560,18 +14604,18 @@ var Uk = class extends z {
 			}
 		};
 	}
-}, Wk = 48;
-function* Gk(e, t = ",") {
+}, qk = 48;
+function* Jk(e, t = ",") {
 	let n = t.charCodeAt(0), r = 0;
 	for (let t = 0; t < e.length; t++) {
 		let i = e.charCodeAt(t);
-		i == n ? (yield r, r = 0) : r = r * 10 + i - Wk;
+		i == n ? (yield r, r = 0) : r = r * 10 + i - qk;
 	}
 	yield r;
 }
 //#endregion
 //#region src/data/transforms/flattenCompressedExons.js
-var Kk = class extends z {
+var Yk = class extends z {
 	get behavior() {
 		return 1;
 	}
@@ -14580,7 +14624,7 @@ var Kk = class extends z {
 		let t = B(e.exons ?? "exons"), n = B(e.start ?? "start"), [r, i] = e.as || ["exonStart", "exonEnd"];
 		this.handle = (e) => {
 			let a = n(e), o = a, s = !0, c = t(e);
-			for (let t of Gk(c)) {
+			for (let t of Jk(c)) {
 				if (s) o = a + t;
 				else {
 					a = o + t;
@@ -14591,7 +14635,7 @@ var Kk = class extends z {
 			}
 		};
 	}
-}, qk = class extends z {
+}, Xk = class extends z {
 	get behavior() {
 		return 1;
 	}
@@ -14602,7 +14646,7 @@ var Kk = class extends z {
 		this.handle = (e) => {
 			if (t.some((t) => !t(e))) return;
 			let i = t.map((t, r) => t(e).split(n[r]));
-			Jk(i, e);
+			Zk(i, e);
 			let a = i[0].length;
 			for (let n = 0; n < a; n++) {
 				let a = Object.assign({}, e);
@@ -14612,13 +14656,13 @@ var Kk = class extends z {
 		};
 	}
 };
-function Jk(e, t) {
+function Zk(e, t) {
 	let n = e.map((e) => e.length);
 	if (!n.every((e) => e == n[0])) throw Error("Mismatching number of elements in the fields to be split: " + JSON.stringify(t));
 }
 //#endregion
 //#region src/data/transforms/formula.js
-var Yk = class extends z {
+var Qk = class extends z {
 	get behavior() {
 		return 2;
 	}
@@ -14634,7 +14678,7 @@ var Yk = class extends z {
 	handle(e) {
 		e[this.as] = this.fn(e), this._propagate(e);
 	}
-}, Xk = class extends z {
+}, $k = class extends z {
 	get behavior() {
 		return 2;
 	}
@@ -14667,7 +14711,7 @@ var Yk = class extends z {
 			u(e, n, o), this._propagate(e);
 		};
 	}
-}, Zk = class extends z {
+}, eA = class extends z {
 	get behavior() {
 		return 2;
 	}
@@ -14692,7 +14736,7 @@ var Yk = class extends z {
 		let e = this.paramRuntimeProvider.context.fontManager;
 		this.font = this.params.font ? e.getFont(this.params.font, this.params.fontStyle, this.params.fontWeight) : e.getDefaultFont();
 	}
-}, Qk = 65536, $k = class extends z {
+}, tA = 65536, nA = class extends z {
 	get behavior() {
 		return 2;
 	}
@@ -14706,7 +14750,7 @@ var Yk = class extends z {
 		let e = this.params, t = e.as || "lane", n = Ot(e.spacing) ? e.spacing : 1, r = B(e.start), i = B(e.end);
 		if (!e.preference != !e.preferredOrder) throw Error("Must specify both \"preference\" and \"preferredOrder\"");
 		if (e.preference) {
-			let a = new Float64Array(Qk), o = B(e.preference), s = e.preferredOrder, c = Infinity;
+			let a = new Float64Array(tA), o = B(e.preference), s = e.preferredOrder, c = Infinity;
 			this.handle = (e) => {
 				let l = r(e);
 				l < c && a.fill(-Infinity), c = l;
@@ -14720,7 +14764,7 @@ var Yk = class extends z {
 				a[d] = i(e) + n, e[t] = d, this._propagate(e);
 			};
 		} else {
-			let e = new ZC(), a = new ZC(), o = -Infinity, s = 0;
+			let e = new $C(), a = new $C(), o = -Infinity, s = 0;
 			this.handle = (c) => {
 				let l = r(c);
 				for (; e.length && (e.peekValue() <= l || l < o);) {
@@ -14733,7 +14777,7 @@ var Yk = class extends z {
 			};
 		}
 	}
-}, eA = class extends z {
+}, rA = class extends z {
 	get behavior() {
 		return 1;
 	}
@@ -14746,7 +14790,7 @@ var Yk = class extends z {
 			this._propagate(r);
 		};
 	}
-}, tA = class extends z {
+}, iA = class extends z {
 	get behavior() {
 		return 2;
 	}
@@ -14766,7 +14810,7 @@ var Yk = class extends z {
 			this._propagate(i);
 		};
 	}
-}, nA = class extends z {
+}, aA = class extends z {
 	get behavior() {
 		return 1;
 	}
@@ -14807,7 +14851,7 @@ var Yk = class extends z {
 			Hd(e) && (this.handle = u), super.beginBatch(e);
 		};
 	}
-}, rA = class extends z {
+}, oA = class extends z {
 	get behavior() {
 		return 2;
 	}
@@ -14862,7 +14906,7 @@ var Yk = class extends z {
 		}
 		super.complete();
 	}
-}, iA = class extends z {
+}, sA = class extends z {
 	get behavior() {
 		return 1;
 	}
@@ -14880,7 +14924,7 @@ var Yk = class extends z {
 			}
 		};
 	}
-}, aA = {
+}, cA = {
 	count: (e) => e.length,
 	valid: _n,
 	sum: qn,
@@ -14891,7 +14935,7 @@ var Yk = class extends z {
 	median: Gn,
 	q3: (e, t) => Hn(e, .75, t),
 	variance: vn
-}, oA = {
+}, lA = {
 	aggregate: class extends z {
 		get behavior() {
 			return 1;
@@ -14901,10 +14945,10 @@ var Yk = class extends z {
 				if (e.fields.length != e.ops.length) throw Error("Fields and ops must have the same length!");
 				if (e.as && e.as.length != e.ops.length) throw Error("If \"as\" is defined, \"fields\" and \"as\" must have the same length!");
 				e.fields.forEach((t, n) => {
-					let r = B(t), i = aA[e.ops[n]];
+					let r = B(t), i = cA[e.ops[n]];
 					this.ops.push((e) => i(e, r)), this.as.push(e.as ? e.as[n] : `${e.ops[n]}_${e.fields[n]}`);
 				});
-			} else this.ops.push((e) => aA.count(e)), this.as.push("count");
+			} else this.ops.push((e) => cA.count(e)), this.as.push("count");
 		}
 		reset() {
 			super.reset(), this.buffer = [];
@@ -14913,7 +14957,7 @@ var Yk = class extends z {
 			let e = this.params?.groupby;
 			if (e?.length > 0) {
 				let t = e.map((e) => B(e)), n = En(this.buffer, ...t);
-				for (let [t, r] of bk(n)) {
+				for (let [t, r] of Ck(n)) {
 					let n = {};
 					for (let r = 0; r < e.length; r++) n[e[r]] = t[r];
 					this.ops.forEach((e, t) => {
@@ -14937,33 +14981,33 @@ var Yk = class extends z {
 			this.buffer.length > 0 && this.#e(), super.complete();
 		}
 	},
-	collect: Mk,
-	coverage: Ik,
-	filterScoredLabels: zk,
-	filter: Bk,
-	flatten: Uk,
-	flattenCompressedExons: Kk,
-	flattenDelimited: qk,
-	flattenSequence: iA,
-	formula: Yk,
+	collect: Fk,
+	coverage: zk,
+	filterScoredLabels: Hk,
+	filter: Uk,
+	flatten: Kk,
+	flattenCompressedExons: Yk,
+	flattenDelimited: Xk,
+	flattenSequence: sA,
+	formula: Qk,
 	identifier: nf,
-	linearizeGenomicCoordinate: Xk,
-	measureText: Zk,
-	pileup: $k,
-	project: eA,
-	regexExtract: tA,
-	regexFold: nA,
-	sample: sC,
-	stack: rA
+	linearizeGenomicCoordinate: $k,
+	measureText: eA,
+	pileup: nA,
+	project: rA,
+	regexExtract: iA,
+	regexFold: aA,
+	sample: lC,
+	stack: oA
 };
-function sA(e, t) {
-	let n = oA[e.type];
+function uA(e, t) {
+	let n = lA[e.type];
 	if (n) return new n(e, t);
 	throw Error("Unknown transform: " + e.type);
 }
 //#endregion
 //#region src/data/sources/urlSource.js
-var cA = new Set(["application/gzip", "application/x-gzip"]), lA = new TextDecoder(), uA = class extends Wd {
+var dA = new Set(["application/gzip", "application/x-gzip"]), fA = new TextDecoder(), pA = class extends Wd {
 	constructor(e, t) {
 		super(t), this.params = up(t.paramRuntime, e, () => this.load(), (e) => this.registerDisposer(e), { batchMode: "whenPropagated" }), this.baseUrl = t?.getBaseUrl();
 	}
@@ -14977,12 +15021,12 @@ var cA = new Set(["application/gzip", "application/x-gzip"]), lA = new TextDecod
 		return "urlSource";
 	}
 	async #e(e) {
-		let t = qC(this.baseUrl, e.urlsFromFile), n = { type: e.type ?? "tsv" }, r = await fetch(t);
+		let t = YC(this.baseUrl, e.urlsFromFile), n = { type: e.type ?? "tsv" }, r = await fetch(t);
 		if (!r.ok) throw Error(`Cannot load "${t}": ${r.status} ${r.statusText}`);
-		return Do(await _A(r, t, jp(n.type)), Ap(n)).map((e) => typeof e == "string" ? e : e.url).map((e) => qC(t, e));
+		return Do(await bA(r, t, Mp(n.type)), jp(n)).map((e) => typeof e == "string" ? e : e.url).map((e) => YC(t, e));
 	}
 	async load() {
-		let e = H(this.params.url), t = typeof e == "object" && "urlsFromFile" in e ? await this.#e(e) : (Array.isArray(e) ? e : [e]).map((e) => qC(this.baseUrl, e)), n = kp(this.params, t), r = jp(n.type);
+		let e = H(this.params.url), t = typeof e == "object" && "urlsFromFile" in e ? await this.#e(e) : (Array.isArray(e) ? e : [e]).map((e) => YC(this.baseUrl, e)), n = Ap(this.params, t), r = Mp(n.type);
 		if (t.length === 0 || !t[0]) {
 			this.reset(), this.complete();
 			return;
@@ -14991,13 +15035,13 @@ var cA = new Set(["application/gzip", "application/x-gzip"]), lA = new TextDecod
 			try {
 				let t = await fetch(e);
 				if (!t.ok) throw Error(`${t.status} ${t.statusText}`);
-				return await _A(t, e, r);
+				return await bA(t, e, r);
 			} catch (t) {
 				throw Error(`Could not load data: ${e}. Reason: ${t.message}`, { cause: t });
 			}
 		}, a = async (e, t) => {
 			try {
-				let r = Do(e, Ap(n)), i = r instanceof Promise ? await r : r;
+				let r = Do(e, jp(n)), i = r instanceof Promise ? await r : r;
 				this.beginBatch({
 					type: "file",
 					url: t
@@ -15016,45 +15060,45 @@ var cA = new Set(["application/gzip", "application/x-gzip"]), lA = new TextDecod
 		this.complete();
 	}
 };
-function dA(e) {
+function mA(e) {
 	return "url" in e;
 }
-function fA(e) {
+function hA(e) {
 	return e.length >= 10 && e[0] == 31 && e[1] == 139 && e[2] == 8 && (e[3] & 224) == 0;
 }
-function pA(e) {
-	return e ? cA.has(e.split(";")[0].trim().toLowerCase()) : !1;
+function gA(e) {
+	return e ? dA.has(e.split(";")[0].trim().toLowerCase()) : !1;
 }
-function mA(e) {
+function _A(e) {
 	return e ? e.toLowerCase().split(",").some((e) => e.trim() == "gzip") : !1;
 }
-function hA(e) {
+function vA(e) {
 	return new Uint8Array(e).buffer;
 }
-async function gA(e) {
+async function yA(e) {
 	if (typeof DecompressionStream != "function") throw Error("Gzip-compressed URL data requires DecompressionStream support.");
-	let t = new Response(hA(e)).body;
+	let t = new Response(vA(e)).body;
 	if (!t) throw Error("Cannot create a readable stream for gzip decompression.");
 	let n = t.pipeThrough(new DecompressionStream("gzip"));
 	return new Uint8Array(await new Response(n).arrayBuffer());
 }
-async function _A(e, t, n) {
-	if (!(Np(t) || pA(e.headers.get("content-type")) || mA(e.headers.get("content-encoding")))) return vA(e, n);
+async function bA(e, t, n) {
+	if (!(Pp(t) || gA(e.headers.get("content-type")) || _A(e.headers.get("content-encoding")))) return xA(e, n);
 	let r = new Uint8Array(await e.arrayBuffer());
-	return yA(fA(r) ? await gA(r) : r, n);
+	return SA(hA(r) ? await yA(r) : r, n);
 }
-function vA(e, t) {
+function xA(e, t) {
 	return typeof e[t] == "function" ? e[t]() : e.text();
 }
-function yA(e, t) {
-	return t == "arrayBuffer" ? hA(e) : lA.decode(e);
+function SA(e, t) {
+	return t == "arrayBuffer" ? vA(e) : fA.decode(e);
 }
 //#endregion
 //#region src/data/sources/sequenceSource.js
-function bA(e) {
+function CA(e) {
 	return "sequence" in e;
 }
-var xA = class extends Wd {
+var wA = class extends Wd {
 	constructor(e, t) {
 		if (super(t), this.sequence = up(t.paramRuntime, e.sequence, () => this.loadSynchronously(), (e) => this.registerDisposer(e), { batchMode: "whenPropagated" }), !("start" in this.sequence)) throw Error("'start' is missing from sequence parameters!");
 		if (!("stop" in this.sequence)) throw Error("'stop' is missing from sequence parameters!");
@@ -15074,23 +15118,23 @@ var xA = class extends Wd {
 };
 //#endregion
 //#region src/data/sources/dataSourceFactory.js
-function SA(e, t) {
-	if (Tp(e)) return new Ep(e, t);
-	if (dA(e)) return new uA(e, t);
-	if (bA(e)) return new xA(e, t);
-	if (CA(e)) return zd(e.lazy, t);
+function TA(e, t) {
+	if (Ep(e)) return new Dp(e, t);
+	if (mA(e)) return new pA(e, t);
+	if (CA(e)) return new wA(e, t);
+	if (EA(e)) return zd(e.lazy, t);
 	throw Error("Cannot figure out the data source type: " + JSON.stringify(e));
 }
-function CA(e) {
+function EA(e) {
 	return "lazy" in e;
 }
 //#endregion
 //#region src/utils/cloner.js
-function wA(e) {
-	let t = TA(e).filter((e) => typeof e == "string"), n = Function("source", "return { " + t.map((e) => JSON.stringify(e)).map((e) => `${e}: source[${e}]`).join(",\n") + " };");
+function DA(e) {
+	let t = OA(e).filter((e) => typeof e == "string"), n = Function("source", "return { " + t.map((e) => JSON.stringify(e)).map((e) => `${e}: source[${e}]`).join(",\n") + " };");
 	return n.properties = t, n;
 }
-function TA(e) {
+function OA(e) {
 	let t = [];
 	do
 		t = t.concat(Object.keys(e)), e = Object.getPrototypeOf(e);
@@ -15099,7 +15143,7 @@ function TA(e) {
 }
 //#endregion
 //#region src/data/transforms/clone.js
-var EA = class extends z {
+var kA = class extends z {
 	get behavior() {
 		return 1;
 	}
@@ -15108,8 +15152,8 @@ var EA = class extends z {
 	constructor() {
 		super({ type: "clone" });
 		let e = (e) => {
-			let t = TA(e);
-			(!this.#e || !Jo(t, this.#e)) && (this.#e = t, this.#t = wA(e));
+			let t = OA(e);
+			(!this.#e || !Jo(t, this.#e)) && (this.#e = t, this.#t = DA(e));
 			let n = this.#t;
 			this.handle = (e) => this._propagate(n(e)), this.handle(e);
 		};
@@ -15120,10 +15164,10 @@ var EA = class extends z {
 };
 //#endregion
 //#region src/data/sources/namedSource.js
-function DA(e) {
+function AA(e) {
 	return "name" in e;
 }
-var OA = class extends Wd {
+var jA = class extends Wd {
 	#e;
 	constructor(e, t, n) {
 		super(t), this.provider = n, this.params = e;
@@ -15139,7 +15183,7 @@ var OA = class extends Wd {
 	}
 	loadSynchronously() {
 		let e = this.#e ?? this.provider(this.params.name) ?? [], t = (e) => e;
-		if (Array.isArray(e)) e.length > 0 && (t = Fp(e[0]));
+		if (Array.isArray(e)) e.length > 0 && (t = Ip(e[0]));
 		else throw Error(`Named data "${this.params.name}" is not an array!`);
 		this.reset(), this.beginBatch({ type: "file" });
 		for (let n of e) this._propagate(t(n));
@@ -15148,12 +15192,12 @@ var OA = class extends Wd {
 	async load() {
 		this.loadSynchronously();
 	}
-}, kA = class {
+}, MA = class {
 	#e;
 	#t;
 	loadingStatusRegistry;
 	constructor() {
-		this.#e = /* @__PURE__ */ new Set(), this.#t = /* @__PURE__ */ new Set(), this.loadingStatusRegistry = new pm();
+		this.#e = /* @__PURE__ */ new Set(), this.#t = /* @__PURE__ */ new Set(), this.loadingStatusRegistry = new hm();
 	}
 	get dataSources() {
 		return [...this.#e];
@@ -15185,7 +15229,7 @@ var OA = class extends Wd {
 	}
 	findNamedDataSource(e) {
 		let t;
-		for (let n of this.#e.values()) if (n instanceof OA && e == n.identifier) {
+		for (let n of this.#e.values()) if (n instanceof jA && e == n.identifier) {
 			if (t && t !== n) throw Error(`Found multiple instances of named data: ${e}. Data flow optimization is broken (it's a bug).`);
 			t = n;
 		}
@@ -15194,7 +15238,7 @@ var OA = class extends Wd {
 };
 //#endregion
 //#region src/utils/trees.js
-function AA(e, t) {
+function NA(e, t) {
 	let n = /* @__PURE__ */ new Map(), r = [];
 	for (let t of e) n.set(t, {
 		ref: t,
@@ -15206,22 +15250,22 @@ function AA(e, t) {
 	}
 	return r;
 }
-function jA(e, t, n) {
+function PA(e, t, n) {
 	let r = t.preOrder?.(e);
 	if (r) return r;
 	for (let r of n(e)) {
-		let e = jA(r, t, n);
+		let e = PA(r, t, n);
 		if (e === "stop") return e;
 	}
 	return t.postOrder?.(e);
 }
-function MA(e, t) {
-	return jA(e, t, (e) => e.children);
+function FA(e, t) {
+	return PA(e, t, (e) => e.children);
 }
 //#endregion
 //#region src/view/flowBuilder.js
-function NA(e, t, n, r) {
-	let i = [], a = [], o, s = t ?? new kA(), c = [], l = r ?? (() => !0);
+function IA(e, t, n, r) {
+	let i = [], a = [], o, s = t ?? new MA(), c = [], l = r ?? (() => !0);
 	function u(e, t = () => void 0) {
 		if (!o) throw t() || /* @__PURE__ */ Error("Cannot append data flow node, no parent exist!");
 		return o.addChild(e), o = e, i.push(e), e;
@@ -15233,11 +15277,11 @@ function NA(e, t, n, r) {
 		for (let n of e) {
 			let e;
 			try {
-				e = sA(n, t);
+				e = uA(n, t);
 			} catch (e) {
 				throw console.warn(e), Error(`Cannot initialize "${n.type}" transform: ${e}`, { cause: e });
 			}
-			e.behavior & 2 && d(new EA()), d(e);
+			e.behavior & 2 && d(new kA()), d(e);
 		}
 	}
 	function p() {
@@ -15256,29 +15300,29 @@ function NA(e, t, n, r) {
 		if (e.spec.data) {
 			let t = e.flowHandle?.dataSource;
 			t && t.view === e && !t.identifier && s.removeDataSource(t);
-			let n = DA(e.spec.data) ? new OA(e.spec.data, e, e.context.getNamedDataFromProvider) : SA(e.spec.data, e);
+			let n = AA(e.spec.data) ? new jA(e.spec.data, e, e.context.getNamedDataFromProvider) : TA(e.spec.data, e);
 			o = n, i.push(n), s.addDataSource(n), e.flowHandle ??= {}, e.flowHandle.dataSource = n;
 		}
 		if (e.spec.transform && f(e.spec.transform, e), e instanceof $) {
 			if (!o) throw Error(`A unit view (${e.getPathString()}) has no (inherited) data source`);
-			let t = FA(e);
+			let t = RA(e);
 			if (t) {
 				c.push(t.rewrite);
 				for (let e of t.transforms) d(e);
 			}
-			e.mark.isPickingParticipant() && !p() && (d(new EA()), d(new nf({ type: "identifier" })));
-			let n = new Mk({
+			e.mark.isPickingParticipant() && !p() && (d(new kA()), d(new nf({ type: "identifier" })));
+			let n = new Fk({
 				type: "collect",
 				groupby: e.getFacetFields(),
-				sort: IA(e, t?.rewrittenEncoding)
+				sort: zA(e, t?.rewrittenEncoding)
 			});
 			u(n);
 			let r = e.flowHandle?.collector;
 			r && s.removeCollector(r), s.addCollector(n), e.flowHandle ??= {}, e.flowHandle.collector = n;
 		}
 		o && (e.flowHandle ??= {}, e.flowHandle.node = o);
-	}, h = AA(PA(e, n), (e) => e.dataParent);
-	for (let e of h) MA(e, {
+	}, h = NA(LA(e, n), (e) => e.dataParent);
+	for (let e of h) FA(e, {
 		preOrder: (e) => {
 			a.push({
 				view: e.ref,
@@ -15292,15 +15336,15 @@ function NA(e, t, n, r) {
 	});
 	return c.forEach((e) => e()), s;
 }
-function PA(e, t) {
+function LA(e, t) {
 	if (!t) return e.getDescendants();
 	let n = [];
 	return e.visit((e) => {
-		if (!t(e)) return jE;
+		if (!t(e)) return NE;
 		n.push(e);
 	}), n;
 }
-function FA(e) {
+function RA(e) {
 	let t = [], n = {}, r = e.mark.encoding, i = e.getEncoding(), a = [];
 	for (let [e, t] of Object.entries(r)) {
 		let n = e;
@@ -15324,7 +15368,7 @@ function FA(e) {
 			};
 			delete d.chrom, delete d.pos, !d.type && a.type && (d.type = a.type), n[t] = d, s.push(a.pos), u.push(a.offset ?? 0), l.push(c);
 		}
-		t.push(new EA()), t.push(new Xk({
+		t.push(new kA()), t.push(new $k({
 			type: "linearizeGenomicCoordinate",
 			channel: a,
 			chrom: o,
@@ -15340,11 +15384,11 @@ function FA(e) {
 			e.spec.encoding = {
 				...e.spec.encoding,
 				...n
-			}, MS(e.mark, "encoding");
+			}, PS(e.mark, "encoding");
 		}
 	} : void 0;
 }
-function IA(e, t) {
+function zA(e, t) {
 	let n = {
 		...e.getEncoding(),
 		...t
@@ -15356,22 +15400,22 @@ function IA(e, t) {
 }
 //#endregion
 //#region src/data/flowOptimizer.js
-function LA(e, t = void 0) {
+function BA(e, t = void 0) {
 	if (e.parent !== t) return !1;
-	for (let t of e.children) if (!LA(t, e)) return !1;
+	for (let t of e.children) if (!BA(t, e)) return !1;
 	return !0;
 }
-function RA(e, t = !1) {
-	if (e.behavior & 4 && (t = !0), e instanceof EA) if (t) t = !1;
+function VA(e, t = !1) {
+	if (e.behavior & 4 && (t = !0), e instanceof kA) if (t) t = !1;
 	else {
 		let n = e.children[0];
-		e.excise(), n && RA(n, t);
+		e.excise(), n && VA(n, t);
 		return;
 	}
 	e.behavior & 1 && (t = !1);
-	for (let n = 0, r = e.children.length; n < r; n++) RA(e.children[n], t || r > 1);
+	for (let n = 0, r = e.children.length; n < r; n++) VA(e.children[n], t || r > 1);
 }
-function zA(e) {
+function HA(e) {
 	let t = e.dataSources, n = /* @__PURE__ */ new Map();
 	for (let e of t) e.identifier && !n.has(e.identifier) && n.set(e.identifier, e);
 	let r = /* @__PURE__ */ new Set(), i = /* @__PURE__ */ new Map();
@@ -15381,34 +15425,34 @@ function zA(e) {
 	} else r.add(e), i.set(e, e);
 	return e.replaceDataSources(r), i;
 }
-function BA(e) {
-	if (RA(e), !LA(e)) throw Error("Encountered a bug! There's a problem in the data flow structure.");
+function UA(e) {
+	if (VA(e), !BA(e)) throw Error("Encountered a bug! There's a problem in the data flow structure.");
 }
-function VA(e) {
-	let t = zA(e);
-	for (let t of e.dataSources) BA(t);
+function WA(e) {
+	let t = HA(e);
+	for (let t of e.dataSources) UA(t);
 	return t;
 }
 //#endregion
 //#region src/data/flowInit.js
-var HA = /* @__PURE__ */ new WeakMap(), UA = /* @__PURE__ */ new WeakMap();
-function WA(e, t) {
-	let n = HA.get(e);
+var GA = /* @__PURE__ */ new WeakMap(), KA = /* @__PURE__ */ new WeakMap();
+function qA(e, t) {
+	let n = GA.get(e);
 	if (n) {
 		if (!t?.queueReload) return n;
-		let r = UA.get(e);
+		let r = KA.get(e);
 		if (r) return r;
-		let i = n.catch(() => {}).then(() => WA(e)).finally(() => {
-			UA.delete(e);
+		let i = n.catch(() => {}).then(() => qA(e)).finally(() => {
+			KA.delete(e);
 		});
-		return UA.set(e, i), i;
+		return KA.set(e, i), i;
 	}
 	let r = Promise.resolve().then(() => e.load()).finally(() => {
-		HA.delete(e);
+		GA.delete(e);
 	});
-	return HA.set(e, r), r;
+	return GA.set(e, r), r;
 }
-function GA(e, t) {
+function JA(e, t) {
 	for (let n of e.getDescendants()) {
 		let e = n.flowHandle;
 		if (!e) continue;
@@ -15416,8 +15460,8 @@ function GA(e, t) {
 		r && (e.dataSource = t.get(r) ?? r);
 	}
 }
-function KA(e, t, n, r) {
-	let i = r ?? (() => !0), a = XA(e, n).filter(i);
+function YA(e, t, n, r) {
+	let i = r ?? (() => !0), a = $A(e, n).filter(i);
 	if (a.length === 0) return {
 		dataFlow: t,
 		unitViews: [],
@@ -15428,12 +15472,12 @@ function KA(e, t, n, r) {
 	for (let e of a) e._setDataInitializationState("pending");
 	let s;
 	try {
-		s = NA(e, t, n, (e) => o.has(e)), GA(e, VA(s));
+		s = IA(e, t, n, (e) => o.has(e)), JA(e, WA(s));
 	} catch (e) {
 		for (let e of a) e._setDataInitializationState("none");
 		throw e;
 	}
-	let c = qA(a);
+	let c = XA(a);
 	for (let e of c) e.visit((e) => e.initializeOnce());
 	let l = a.filter((e) => e instanceof $), u = [], d = !!e.context.glHelper;
 	for (let e of l) {
@@ -15455,8 +15499,8 @@ function KA(e, t, n, r) {
 		graphicsPromises: u
 	};
 }
-function qA(e, t) {
-	let n = Array.isArray(e) ? e : XA(e, t), r = /* @__PURE__ */ new Set();
+function XA(e, t) {
+	let n = Array.isArray(e) ? e : $A(e, t), r = /* @__PURE__ */ new Set();
 	for (let e of n) {
 		if (t && !t(e)) continue;
 		let n = e;
@@ -15465,24 +15509,24 @@ function qA(e, t) {
 	}
 	return r;
 }
-function JA(e, t) {
+function ZA(e, t) {
 	let n = /* @__PURE__ */ new Set();
 	return e.visit((e) => {
-		if (t && !t(e)) return jE;
-		if (e.flowHandle?.dataSource) return n.add(e.flowHandle.dataSource), jE;
+		if (t && !t(e)) return NE;
+		if (e.flowHandle?.dataSource) return n.add(e.flowHandle.dataSource), NE;
 	}), n;
 }
-function YA(e, t, n, r) {
-	return t ||= JA(e, n), Promise.all(Array.from(t).map((e) => WA(e, r))).then((t) => (ZA(e), t));
+function QA(e, t, n, r) {
+	return t ||= ZA(e, n), Promise.all(Array.from(t).map((e) => qA(e, r))).then((t) => (ej(e), t));
 }
-function XA(e, t) {
+function $A(e, t) {
 	let n = [];
 	return t ? (e.visit((e) => {
-		if (!t(e)) return jE;
+		if (!t(e)) return NE;
 		n.push(e);
 	}), n) : e.getDescendants();
 }
-function ZA(e) {
+function ej(e) {
 	let t = {
 		type: "subtreeDataReady",
 		payload: { subtreeRoot: e }
@@ -15491,12 +15535,12 @@ function ZA(e) {
 }
 //#endregion
 //#region src/genomeSpy/viewDataInit.js
-async function QA(e, t, n, r) {
-	let i = (e) => e.isConfiguredVisible(), { dataFlow: a, graphicsPromises: o } = KA(e, t, i);
-	return r(a), await n.waitUntilReady(), await YA(e, new Set(a.dataSources), i), await _k(o), a;
+async function tj(e, t, n, r) {
+	let i = (e) => e.isConfiguredVisible(), { dataFlow: a, graphicsPromises: o } = YA(e, t, i);
+	return r(a), await n.waitUntilReady(), await QA(e, new Set(a.dataSources), i), await bk(o), a;
 }
-async function $A(e, t, n) {
-	let r = (e) => e.isConfiguredVisible(), i = ej(e, r).filter((e) => e.getDataInitializationState() === "none");
+async function nj(e, t, n) {
+	let r = (e) => e.isConfiguredVisible(), i = rj(e, r).filter((e) => e.getDataInitializationState() === "none");
 	if (i.length === 0) return t;
 	let a = new Set(i), o = (e) => a.has(e), s = /* @__PURE__ */ new Set(), c = [];
 	for (let e of i) {
@@ -15504,26 +15548,26 @@ async function $A(e, t, n) {
 			c.push(e);
 			continue;
 		}
-		let t = nj(e);
+		let t = aj(e);
 		t ? s.add(t) : c.push(e);
 	}
-	let { dataFlow: l, graphicsPromises: u } = KA(e, t, r, o);
+	let { dataFlow: l, graphicsPromises: u } = YA(e, t, r, o);
 	await n.waitUntilReady();
 	for (let e of s) e.repropagate();
 	if (c.length) {
-		let e = tj(c);
-		await Promise.all(Array.from(e.entries()).map(([e, t]) => YA(e, t, void 0, { queueReload: !0 })));
+		let e = ij(c);
+		await Promise.all(Array.from(e.entries()).map(([e, t]) => QA(e, t, void 0, { queueReload: !0 })));
 	}
-	return await _k(u), l;
+	return await bk(u), l;
 }
-function ej(e, t) {
+function rj(e, t) {
 	let n = [];
 	return e.visit((e) => {
-		if (!t(e)) return jE;
+		if (!t(e)) return NE;
 		n.push(e);
 	}), n;
 }
-function tj(e) {
+function ij(e) {
 	let t = /* @__PURE__ */ new Map();
 	for (let n of e) {
 		let e = n;
@@ -15537,7 +15581,7 @@ function tj(e) {
 	}
 	return t;
 }
-function nj(e) {
+function aj(e) {
 	let t = e.dataParent;
 	for (; t;) {
 		let e = t.flowHandle?.collector;
@@ -15547,7 +15591,7 @@ function nj(e) {
 }
 //#endregion
 //#region src/utils/animator.js
-var rj = class {
+var oj = class {
 	constructor(e) {
 		this._renderCallback = e, this._renderRequested = !1, this._warn = !1, this.transitions = [];
 	}
@@ -15569,13 +15613,13 @@ var rj = class {
 		}));
 	}
 	transition(e) {
-		return VO({
+		return UO({
 			requestAnimationFrame: (e) => this.requestTransition(e),
 			...e
 		});
 	}
 };
-function ij(e, t, n, r, i) {
+function sj(e, t, n, r, i) {
 	let a = 0, o = !0, s = structuredClone(i), c = s;
 	function l(e, t, n, r) {
 		return t + (e - t) * 2 ** (-n / r);
@@ -15599,7 +15643,7 @@ function ij(e, t, n, r, i) {
 }
 //#endregion
 //#region src/genome/genomeStore.js
-var aj = class {
+var cj = class {
 	constructor(e) {
 		this.genomes = /* @__PURE__ */ new Map(), this.#e = /* @__PURE__ */ new Map(), this.#t = /* @__PURE__ */ new Map(), this.#n = /* @__PURE__ */ new Map(), this.#r = 0, this.#i = void 0, this.baseUrl = e;
 	}
@@ -15624,7 +15668,7 @@ var aj = class {
 		let t = [], n = /* @__PURE__ */ new Set();
 		for (let r of e) {
 			if (!r) continue;
-			let e = oj(r);
+			let e = lj(r);
 			n.has(e) || (n.add(e), t.push(this.ensureAssembly(r)));
 		}
 		await Promise.all(t);
@@ -15659,7 +15703,7 @@ var aj = class {
 	}
 	#a(e) {
 		try {
-			return new YE({ name: e });
+			return new ZE({ name: e });
 		} catch {
 			return;
 		}
@@ -15695,7 +15739,7 @@ var aj = class {
 		let n = this.genomes.get(e);
 		if (n) return this.#t.has(e) ? this.#c(e, `Loading genome ${e} failed before it became available.`) : n;
 		if (this.#t.has(e)) return this.#c(e, `Loading genome ${e} failed before it became available.`);
-		let r = new YE({
+		let r = new ZE({
 			name: e,
 			...t
 		});
@@ -15707,13 +15751,13 @@ var aj = class {
 		if (n) return this.#t.has(t) ? this.#c(t, `Loading inline assembly ${t} failed before it became available.`) : n;
 		if (this.#t.has(t)) return this.#c(t, `Loading inline assembly ${t} failed before it became available.`);
 		if ("contigs" in e) {
-			let n = new YE({
+			let n = new ZE({
 				name: t,
 				contigs: e.contigs
 			});
 			return this.genomes.set(t, n), n;
 		}
-		let r = new YE({
+		let r = new ZE({
 			name: t,
 			url: e.url
 		});
@@ -15727,7 +15771,7 @@ var aj = class {
 			return n;
 		}
 		if ("url" in e) throw Error("Inline URL assemblies must be loaded first. Call ensureAssembly() before accessing it.");
-		let r = new YE({
+		let r = new ZE({
 			name: t,
 			contigs: e.contigs
 		});
@@ -15744,10 +15788,10 @@ var aj = class {
 		return this.#n.set(t, r), r;
 	}
 };
-function oj(e) {
+function lj(e) {
 	return typeof e == "string" ? `name:${e}` : `inline:${JSON.stringify(e)}`;
 }
-var sj = {
+var uj = {
 	pages: ["Lato-Regular.png"],
 	chars: [
 		{
@@ -16922,7 +16966,7 @@ var sj = {
 		blueChnl: 0
 	},
 	kernings: []
-}, cj = "data:image/png;base64,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", lj = {
+}, dj = "data:image/png;base64,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", fj = {
 	thin: 100,
 	light: 300,
 	regular: 400,
@@ -16930,18 +16974,18 @@ var sj = {
 	medium: 500,
 	bold: 700,
 	black: 900
-}, uj = class {
+}, pj = class {
 	constructor(e) {
 		this._webGLHelper = e, this.fontRepository = "https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/", this._fonts = new bn([], JSON.stringify), this._metadataPromises = /* @__PURE__ */ new Map(), this._fontPromises = /* @__PURE__ */ new Map(), this._promises = [], this._defaultFontEntry = {
-			metrics: cx(sj),
-			texture: e ? this._createTextureNow(cj) : void 0
+			metrics: ux(uj),
+			texture: e ? this._createTextureNow(dj) : void 0
 		};
 	}
 	async waitUntilReady() {
 		await Promise.all(this._promises);
 	}
 	getFont(e, t = "normal", n = "regular") {
-		if (O(n) && (n = lj[n.toLowerCase()], !n)) throw Error("Unknown font weight: " + n);
+		if (O(n) && (n = fj[n.toLowerCase()], !n)) throw Error("Unknown font weight: " + n);
 		let r = {
 			family: e,
 			style: t,
@@ -16954,7 +16998,7 @@ var sj = {
 	}
 	async _loadFontEntry(e, t) {
 		try {
-			let n = pj(await this._loadMetadata(t.family), t), r = this.fontRepository + dj(t.family) + "/" + n.replace(/\.\w+/, ""), i = this._createTexture(r + ".png"), a = this._loadFont(r + ".json");
+			let n = gj(await this._loadMetadata(t.family), t), r = this.fontRepository + mj(t.family) + "/" + n.replace(/\.\w+/, ""), i = this._createTexture(r + ".png"), a = this._loadFont(r + ".json");
 			e.texture = await i, e.metrics = await a;
 		} catch {
 			console.warn(`Cannot load font: "${t.family}". Using the embedded default font.`), e.metrics = this._defaultFontEntry.metrics, e.texture = this._defaultFontEntry.texture;
@@ -16965,16 +17009,16 @@ var sj = {
 		return t || (t = fetch(e).then((e) => {
 			if (!e.ok) throw Error("Could not load font: " + e.status);
 			return e;
-		}).then((e) => e.json()).then((e) => cx(e)), this._fontPromises.set(e, t)), t;
+		}).then((e) => e.json()).then((e) => ux(e)), this._fontPromises.set(e, t)), t;
 	}
 	_loadMetadata(e) {
-		let t = dj(e), n = this._metadataPromises.get(t);
+		let t = mj(e), n = this._metadataPromises.get(t);
 		if (!n) {
 			let e = this.fontRepository + t + "/METADATA.pb";
 			n = fetch(e).then((t) => {
 				if (!t.ok) throw Error("Could not load font metadata. Response status: " + t.status + ", url: " + e);
 				return t;
-			}).then((e) => e.text()).then((e) => fj(e)).catch((e) => {
+			}).then((e) => e.text()).then((e) => hj(e)).catch((e) => {
 				console.warn(e.message);
 			}), this._metadataPromises.set(t, n);
 		}
@@ -16986,7 +17030,7 @@ var sj = {
 	_createTexture(e) {
 		let t = this._webGLHelper.gl;
 		return new Promise((n, r) => {
-			lv(t, {
+			dv(t, {
 				src: e,
 				min: t.LINEAR
 			}, (e, t, i) => {
@@ -16996,7 +17040,7 @@ var sj = {
 	}
 	_createTextureNow(e) {
 		let t = this._webGLHelper.gl, n, r = new Promise((r, i) => {
-			n = lv(t, {
+			n = dv(t, {
 				src: e,
 				min: t.LINEAR
 			}, (e, t, n) => {
@@ -17006,10 +17050,10 @@ var sj = {
 		return this._promises.push(r), n;
 	}
 };
-function dj(e) {
+function mj(e) {
 	return e.toLowerCase().replaceAll(/[^\w]/g, "");
 }
-function fj(e) {
+function hj(e) {
 	let t = e.split("\n"), n = [], r;
 	for (let e of t) if (e.startsWith("fonts {") && (r = {
 		name: void 0,
@@ -17032,7 +17076,7 @@ function fj(e) {
 	}
 	return n;
 }
-function pj(e, t) {
+function gj(e, t) {
 	let n, r = Infinity;
 	for (let i of e) if (t.family.localeCompare(i.name, void 0, { sensitivity: "accent" }) == 0 && t.style == i.style) {
 		let e = Math.abs(t.weight - i.weight);
@@ -17042,15 +17086,15 @@ function pj(e, t) {
 }
 //#endregion
 //#region src/tooltip/refseqGeneTooltipHandler.js
-var mj = /* @__PURE__ */ new Map(), hj = { Organism: "Homo sapiens" };
-async function gj(e, t, n = {}) {
+var _j = /* @__PURE__ */ new Map(), vj = { Organism: "Homo sapiens" };
+async function yj(e, t, n = {}) {
 	let r = e.symbol, i = {
-		...hj,
+		...vj,
 		GENE: r
 	};
 	for (let [e, t] of Object.entries(n)) typeof t == "string" && (i[e] = t);
-	let a = mj.get(r) ?? await yj(i);
-	return a ? (mj.set(r, a), C`
+	let a = _j.get(r) ?? await Sj(i);
+	return a ? (_j.set(r, a), C`
             <div class="title">
                 <strong>${a.name}</strong>
                 ${a.description}
@@ -17059,11 +17103,11 @@ async function gj(e, t, n = {}) {
             <p class="source">Source: NCBI RefSeq Gene</p>
         `) : null;
 }
-async function _j(e) {
+async function bj(e) {
 	let t = { mode: "cors" }, n = new URL("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi");
 	n.search = new URLSearchParams({
 		db: "gene",
-		term: bj(e),
+		term: Cj(e),
 		sort: "relevance",
 		retmax: "1",
 		retmode: "json"
@@ -17078,94 +17122,94 @@ async function _j(e) {
 		}).toString(), (await fetch(e.toString(), t).then((e) => e.json())).result[r];
 	} else return null;
 }
-var vj = fp(_j, 500);
-function yj(e) {
-	return vj(e);
+var xj = fp(bj, 500);
+function Sj(e) {
+	return xj(e);
 }
-function bj(e) {
+function Cj(e) {
 	return Object.entries(e).filter(([e, t]) => t && t.length > 0).map(([e, t]) => `("${t}"[${e}])`).join(" AND ");
 }
 //#endregion
 //#region src/utils/formatObject.js
-var xj = k(".4~r"), Sj = k(".4~e");
-function Cj(e) {
-	return e == null ? C` <span class="na">NA</span> ` : O(e) ? e.substring(0, 30) : Number.isInteger(e) ? "" + e : Ot(e) ? Math.abs(e) > 10 ** 8 || Math.abs(e) < 10 ** -8 ? Sj(e) : xj(e) : Tt(e) ? e ? "True" : "False" : E(e) ? C`${e.map((t, n) => [Cj(t), n < e.length - 1 ? ", " : w])}` : "?" + typeof e + " " + e;
+var wj = k(".4~r"), Tj = k(".4~e");
+function Ej(e) {
+	return e == null ? C` <span class="na">NA</span> ` : O(e) ? e.substring(0, 30) : Number.isInteger(e) ? "" + e : Ot(e) ? Math.abs(e) > 10 ** 8 || Math.abs(e) < 10 ** -8 ? Tj(e) : wj(e) : Tt(e) ? e ? "True" : "False" : E(e) ? C`${e.map((t, n) => [Ej(t), n < e.length - 1 ? ", " : w])}` : "?" + typeof e + " " + e;
 }
 //#endregion
 //#region src/tooltip/flattenDatumRows.js
-function wj(e) {
+function Dj(e) {
 	let t = [];
-	return Tj(Object.entries(e), t), t;
+	return Oj(Object.entries(e), t), t;
 }
-function Tj(e, t, n) {
-	for (let [r, i] of e) r.startsWith("_") || (typeof i == "object" && i && !Array.isArray(i) ? Tj(Object.entries(i), t, (n || "") + r + ".") : t.push({
+function Oj(e, t, n) {
+	for (let [r, i] of e) r.startsWith("_") || (typeof i == "object" && i && !Array.isArray(i) ? Oj(Object.entries(i), t, (n || "") + r + ".") : t.push({
 		key: (n || "") + r,
 		value: i
 	}));
 }
 //#endregion
 //#region src/tooltip/tooltipContext.js
-var Ej = {
+var kj = {
 	x: "x2",
 	y: "y2"
-}, Dj = new Set([
+}, Aj = new Set([
 	"auto",
 	"locus",
 	"interval",
 	"endpoints",
 	"disabled"
-]), Oj = /* @__PURE__ */ new WeakMap();
-function kj(e, t, n) {
-	let r = Aj(t), i = Mj("x", e, t, r, Wj(n, "x")), a = Mj("y", e, t, r, Wj(n, "y")), o = i.rows.length > 0 && a.rows.length > 0, s = [...o ? jj("x", i.rows) : i.rows, ...o ? jj("y", a.rows) : a.rows], c = /* @__PURE__ */ new Set();
+]), jj = /* @__PURE__ */ new WeakMap();
+function Mj(e, t, n) {
+	let r = Nj(t), i = Fj("x", e, t, r, qj(n, "x")), a = Fj("y", e, t, r, qj(n, "y")), o = i.rows.length > 0 && a.rows.length > 0, s = [...o ? Pj("x", i.rows) : i.rows, ...o ? Pj("y", a.rows) : a.rows], c = /* @__PURE__ */ new Set();
 	for (let n of [i, a]) for (let i of n.usedLinearizedFields) {
 		let n = r.get(i);
-		!n || n.ambiguous || Gj(e, i, n, t) && (c.add(n.chrom), c.add(n.pos));
+		!n || n.ambiguous || Jj(e, i, n, t) && (c.add(n.chrom), c.add(n.pos));
 	}
 	return {
 		hiddenRowKeys: [...c],
 		genomicRows: s,
-		flattenDatumRows: () => wj(e),
-		formatGenomicLocus: (e, n) => Vj(t, e, n),
-		formatGenomicInterval: (e, n) => Hj(t, e, n)
+		flattenDatumRows: () => Dj(e),
+		formatGenomicLocus: (e, n) => Wj(t, e, n),
+		formatGenomicInterval: (e, n) => Gj(t, e, n)
 	};
 }
-function Aj(e) {
-	let t = Oj.get(e);
+function Nj(e) {
+	let t = jj.get(e);
 	if (t) return t;
-	let n = zj(e);
-	return Oj.set(e, n), n;
+	let n = Hj(e);
+	return jj.set(e, n), n;
 }
-function jj(e, t) {
+function Pj(e, t) {
 	let n = e.toUpperCase() + " ";
 	return t.map((e) => ({
 		key: n + e.key,
 		value: e.value
 	}));
 }
-function Mj(e, t, n, r, i) {
+function Fj(e, t, n, r, i) {
 	let a = /* @__PURE__ */ new Set();
 	if (i === "disabled") return {
 		rows: [],
 		usedLinearizedFields: a
 	};
-	let o = Rj(n, e, t);
+	let o = Vj(n, e, t);
 	if (!o) return {
 		rows: [],
 		usedLinearizedFields: a
 	};
 	o.field && a.add(o.field);
-	let s = Rj(n, Ej[e], t);
+	let s = Vj(n, kj[e], t);
 	s?.field && a.add(s.field);
-	let c = i === "auto" ? Nj(o, s, r) : i;
+	let c = i === "auto" ? Ij(o, s, r) : i;
 	if (c === "endpoints" && s) {
-		let [t, i] = Fj(o, s, r);
+		let [t, i] = Rj(o, s, r);
 		return {
 			rows: [{
 				key: "Endpoint 1",
-				value: Vj(n, e, t.value) ?? String(t.value)
+				value: Wj(n, e, t.value) ?? String(t.value)
 			}, {
 				key: "Endpoint 2",
-				value: Vj(n, e, i.value) ?? String(i.value)
+				value: Wj(n, e, i.value) ?? String(i.value)
 			}],
 			usedLinearizedFields: a
 		};
@@ -17173,38 +17217,38 @@ function Mj(e, t, n, r, i) {
 	return c === "interval" && s ? {
 		rows: [{
 			key: "Interval",
-			value: Hj(n, e, [o.value, s.value]) ?? o.value + " - " + s.value
+			value: Gj(n, e, [o.value, s.value]) ?? o.value + " - " + s.value
 		}],
 		usedLinearizedFields: a
 	} : {
 		rows: [{
 			key: "Coordinate",
-			value: Vj(n, e, o.value) ?? String(o.value)
+			value: Wj(n, e, o.value) ?? String(o.value)
 		}],
 		usedLinearizedFields: a
 	};
 }
-function Nj(e, t, n) {
+function Ij(e, t, n) {
 	if (!t) return "locus";
-	let r = Pj(e.field, n), i = Pj(t.field, n);
+	let r = Lj(e.field, n), i = Lj(t.field, n);
 	return r && i && r !== i ? "endpoints" : "interval";
 }
-function Pj(e, t) {
+function Lj(e, t) {
 	let n = e ? t.get(e) : void 0;
 	return n && !n.ambiguous ? n.groupId : void 0;
 }
-function Fj(e, t, n) {
-	let r = Ij(e.field, n), i = Ij(t.field, n);
+function Rj(e, t, n) {
+	let r = zj(e.field, n), i = zj(t.field, n);
 	return r === 2 && i !== 2 || i === 1 && r !== 1 || r === 2 && i === 1 ? [t, e] : [e, t];
 }
-function Ij(e, t) {
+function zj(e, t) {
 	let n = e ? t.get(e) : void 0, r = [
 		n?.pos,
 		n?.chrom,
 		e
 	], i;
 	for (let e of r) {
-		let t = Lj(e);
+		let t = Bj(e);
 		if (t !== void 0) {
 			if (i === void 0) i = t;
 			else if (i !== t) return;
@@ -17212,14 +17256,14 @@ function Ij(e, t) {
 	}
 	return i;
 }
-function Lj(e) {
+function Bj(e) {
 	if (!e) return;
 	let t = e.toLowerCase(), n = t.match(/(?:^|[^0-9])(1|2)$/);
 	if (n) return n[1] === "1" ? 1 : 2;
 	let r = t.match(/(?:^|[_-])(first|second)(?:[_-]|$)/);
 	if (r) return r[1] === "first" ? 1 : 2;
 }
-function Rj(e, t, n) {
+function Vj(e, t, n) {
 	let r = e.encoders?.[t];
 	if (r?.scale?.type !== "locus") return;
 	let i = vf(r);
@@ -17230,12 +17274,12 @@ function Rj(e, t, n) {
 		field: i.fields?.length === 1 ? i.fields[0] : void 0
 	};
 }
-function zj(e) {
+function Hj(e) {
 	let t = /* @__PURE__ */ new Map(), n = 0, r = e.unitView?.getCollector?.()?.parent;
 	for (; r;) {
 		let e = r.params;
 		if (e?.type === "linearizeGenomicCoordinate") {
-			let r = N(e.as), i = N(e.pos), a = Bj(e.offset, i.length), o = "g" + n++, s = e.channel === "y" ? "y" : "x";
+			let r = N(e.as), i = N(e.pos), a = Uj(e.offset, i.length), o = "g" + n++, s = e.channel === "y" ? "y" : "x";
 			for (let n = 0; n < r.length; n++) {
 				if (n >= i.length) continue;
 				let c = t.get(r[n]);
@@ -17253,27 +17297,27 @@ function zj(e) {
 	}
 	return t;
 }
-function Bj(e, t) {
+function Uj(e, t) {
 	let n = N(e);
 	return n.length === 0 ? Array(t).fill(0) : n.length === 1 ? Array(t).fill(n[0]) : n.length === t ? n : Array(t).fill(0);
 }
-function Vj(e, t, n) {
-	return Uj(e, t)?.formatLocus(n);
+function Wj(e, t, n) {
+	return Kj(e, t)?.formatLocus(n);
 }
-function Hj(e, t, n) {
-	return Uj(e, t)?.formatInterval(n);
+function Gj(e, t, n) {
+	return Kj(e, t)?.formatInterval(n);
 }
-function Uj(e, t) {
+function Kj(e, t) {
 	let n = e.encoders?.[t]?.scale;
 	return n?.type === "locus" && "genome" in n ? n.genome() : void 0;
 }
-function Wj(e, t) {
+function qj(e, t) {
 	let n = e?.genomicCoordinates?.[t], r = typeof n == "string" ? n : n?.mode ?? "auto";
-	if (!Dj.has(r)) throw Error("Unknown genomic coordinate display mode: \"" + r + "\"");
+	if (!Aj.has(r)) throw Error("Unknown genomic coordinate display mode: \"" + r + "\"");
 	return r;
 }
-function Gj(e, t, n, r) {
-	let i = Uj(r, n.channel);
+function Jj(e, t, n, r) {
+	let i = Kj(r, n.channel);
 	if (!i) return !1;
 	let a = e[n.chrom], o = e[n.pos], s = e[t];
 	if (a === void 0 || o === void 0 || s === void 0) return !1;
@@ -17289,7 +17333,7 @@ function Gj(e, t, n, r) {
 }
 //#endregion
 //#region src/tooltip/dataTooltipHandler.js
-async function Kj(e, t, n, r) {
+async function Yj(e, t, n, r) {
 	let i = (e) => Je(e).join("."), a = (e) => e != null && !(typeof e == "number" && Number.isNaN(e)), o = (e, n, r) => {
 		for (let [o, s] of Object.entries(t.encoders)) {
 			let t = s ? vf(s)?.fields : void 0;
@@ -17313,12 +17357,12 @@ async function Kj(e, t, n, r) {
 			}
 		}
 		return "";
-	}, s = r ?? kj(e, t, n), c = s.flattenDatumRows ? s.flattenDatumRows() : wj(e), l = s.genomicRows ?? [], u = new Set(s.hiddenRowKeys ?? []), d = c.filter((t) => !u.has(t.key) || o(t.key, t.value, e)), f = [...l, ...d];
+	}, s = r ?? Mj(e, t, n), c = s.flattenDatumRows ? s.flattenDatumRows() : Dj(e), l = s.genomicRows ?? [], u = new Set(s.hiddenRowKeys ?? []), d = c.filter((t) => !u.has(t.key) || o(t.key, t.value, e)), f = [...l, ...d];
 	if (!f.length) return;
 	let p = C`
         <table class="attributes">
             ${f.map((t) => {
-		let n = Cj(t.value), r = o(t.key, t.value, e);
+		let n = Ej(t.value), r = o(t.key, t.value, e);
 		return C`
             <tr>
                 <th>${t.key}</th>
@@ -17336,7 +17380,7 @@ async function Kj(e, t, n, r) {
 }
 //#endregion
 //#region src/view/containerView.js
-var qj = class e extends PE {
+var Xj = class e extends IE {
 	#e = /* @__PURE__ */ new Map();
 	constructor(e, t, n, r, i, a) {
 		super(e, t, n, r, i, a), this.spec = e;
@@ -17380,7 +17424,7 @@ var qj = class e extends PE {
 	findDescendantByName(e) {
 		let t;
 		return this.visit((n) => {
-			if (n.name == e) return t = n, ME;
+			if (n.name == e) return t = n, PE;
 		}), t;
 	}
 	getDefaultResolution(e, t) {
@@ -17389,67 +17433,71 @@ var qj = class e extends PE {
 };
 //#endregion
 //#region src/genomeSpy/viewHierarchyConfig.js
-function Jj(e) {
-	hk(e), gk(e);
+function Zj(e) {
+	vk(e), yk(e);
 }
-function Yj(e) {
+function Qj(e) {
 	e.getDescendants().forEach((e) => e.configureViewOpacity());
 }
 //#endregion
 //#region src/view/viewSelectors.js
-var Xj = /* @__PURE__ */ new WeakMap(), Zj = /* @__PURE__ */ new WeakMap();
-function Qj(e, t) {
+var $j = /* @__PURE__ */ new WeakMap(), eM = /* @__PURE__ */ new WeakMap(), tM = /* @__PURE__ */ new WeakMap();
+function nM(e, t) {
 	if (t !== null && typeof t != "string") throw Error("Import scope name must be a string or null.");
-	Xj.set(e, { name: t });
+	$j.set(e, { name: t });
 }
-function $j(e, t = {}) {
+function rM(e, t = {}) {
 	let n = t.skipSubtree ?? !1 ? "excludeSubtree" : "exclude";
-	Zj.set(e, n);
+	eM.set(e, n);
 }
-function eM(e) {
+function iM(e, t = {}) {
+	let n = t.skipSubtree ?? !1 ? "excludeSubtree" : "exclude";
+	tM.set(e, n);
+}
+function aM(e) {
 	let t = e.getDataAncestors(), n = [];
 	for (let e = t.length - 1; e >= 0; --e) {
-		let r = Xj.get(t[e]);
+		let r = $j.get(t[e]);
 		r && typeof r.name == "string" && n.push(r.name);
 	}
 	return n;
 }
-function tM(e, t) {
+function oM(e, t) {
 	e.visit((e) => {
-		let n = Zj.get(e);
-		if (n === "excludeSubtree") return jE;
+		let n = eM.get(e);
+		if (n === "excludeSubtree") return NE;
 		if (n !== "exclude") return t(e);
 	});
 }
-function nM(e) {
+function sM(e) {
 	let t = [];
-	for (let n of iM(e)) {
-		let r = aM(n);
-		sM(e, r, t), cM(e, r, t);
+	for (let n of lM(e)) {
+		let r = uM(n);
+		fM(e, r, t), pM(e, r, t);
 	}
 	return t;
 }
-function rM(e) {
+function cM(e) {
 	return e.persist === !1 ? !1 : sp(e) ? !0 : op(e) ? !!e.bind : !1;
 }
-function iM(e) {
+function lM(e) {
 	let t = new Set([e]);
 	return e.visit((e) => {
-		let n = Xj.get(e);
+		let n = $j.get(e);
 		n && typeof n.name == "string" && t.add(e);
 	}), Array.from(t);
 }
-function aM(e) {
-	return eM(e);
+function uM(e) {
+	return aM(e);
 }
-function oM(e) {
+function dM(e) {
 	return e.length ? "import scope [" + e.join(" / ") + "]" : "import scope (root)";
 }
-function sM(e, t, n) {
+function fM(e, t, n) {
 	let r = /* @__PURE__ */ new Map();
-	dM(e, t, (e) => {
+	gM(e, t, (e) => {
 		for (let [t, n] of e.paramRuntime.paramConfigs) {
-			if (!rM(n)) continue;
+			if (!cM(n)) continue;
 			let i = r.get(t);
 			i ? i.push(e) : r.set(t, [e]);
 		}
@@ -17458,68 +17506,68 @@ function sM(e, t, n) {
 		if (i.length <= 1) continue;
 		let r = i.map((e) => e.getPathString()).join(", ");
 		n.push({
-			message: "Bookmarkable parameter \"" + e + "\" is not unique within " + oM(t) + ". Found in: " + r + ".",
+			message: "Bookmarkable parameter \"" + e + "\" is not unique within " + dM(t) + ". Found in: " + r + ".",
 			scope: t
 		});
 	}
 }
-function cM(e, t, n) {
-	let r = lM(e, t);
+function pM(e, t, n) {
+	let r = mM(e, t);
 	if (!r.length) return;
-	let i = r.filter((e) => uM(e));
+	let i = r.filter((e) => hM(e));
 	if (i.length <= 1) return;
 	let a = /* @__PURE__ */ new Map();
 	for (let e of i) {
-		let t = Xj.get(e), n = t ? t.name : void 0;
+		let t = $j.get(e), n = t ? t.name : void 0;
 		typeof n != "string" || !n.length || a.set(n, (a.get(n) ?? 0) + 1);
 	}
 	for (let [e, r] of a) r > 1 && n.push({
-		message: "Import instance name \"" + e + "\" is used multiple times for addressable instances in " + oM(t) + ".",
+		message: "Import instance name \"" + e + "\" is used multiple times for addressable instances in " + dM(t) + ".",
 		scope: t
 	});
 }
-function lM(e, t) {
+function mM(e, t) {
 	let n = [];
-	return dM(e, t, (e) => {
-		if (eM(e).length !== t.length + 1) return;
-		let r = Xj.get(e);
+	return gM(e, t, (e) => {
+		if (aM(e).length !== t.length + 1) return;
+		let r = $j.get(e);
 		!r || typeof r.name != "string" || n.push(e);
 	}, { includeNamedImportRoots: !0 }), n;
 }
-function uM(e) {
+function hM(e) {
 	let t = !1;
 	return e.visit((e) => {
-		let n = Zj.get(e);
-		if (n === "excludeSubtree") return jE;
+		let n = eM.get(e);
+		if (n === "excludeSubtree") return NE;
 		if (n !== "exclude") {
-			for (let n of e.paramRuntime.paramConfigs.values()) if (rM(n)) return t = !0, ME;
+			for (let n of e.paramRuntime.paramConfigs.values()) if (cM(n)) return t = !0, PE;
 		}
 	}), t;
 }
-function dM(e, t, n, r = {}) {
+function gM(e, t, n, r = {}) {
 	let i = r.includeNamedImportRoots ?? !1;
 	e.visit((e) => {
-		let r = Xj.get(e), a = Zj.get(e);
-		if (a === "excludeSubtree") return jE;
-		if (a !== "exclude" && fM(e, t, r, i)) return n(e);
+		let r = $j.get(e), a = eM.get(e);
+		if (a === "excludeSubtree") return NE;
+		if (a !== "exclude" && _M(e, t, r, i)) return n(e);
 	});
 }
-function fM(e, t, n, r) {
-	let i = eM(e);
-	return pM(i, t) ? !0 : !r || !n || typeof n.name != "string" || i.length !== t.length + 1 ? !1 : mM(t, i);
+function _M(e, t, n, r) {
+	let i = aM(e);
+	return vM(i, t) ? !0 : !r || !n || typeof n.name != "string" || i.length !== t.length + 1 ? !1 : yM(t, i);
 }
-function pM(e, t) {
-	return e.length === t.length ? mM(e, t) : !1;
+function vM(e, t) {
+	return e.length === t.length ? yM(e, t) : !1;
 }
-function mM(e, t) {
+function yM(e, t) {
 	if (e.length > t.length) return !1;
 	for (let n = 0; n < e.length; n++) if (e[n] !== t[n]) return !1;
 	return !0;
 }
 //#endregion
 //#region src/genome/assemblyPreflight.js
-function hM(e) {
-	let t = [], n = !1, r = _M(e);
+function bM(e) {
+	let t = [], n = !1, r = SM(e);
 	for (let e of r) {
 		let r = e.getAssemblyRequirement();
 		r.assembly && t.push(r.assembly), r.needsDefaultAssembly && (n = !0);
@@ -17529,8 +17577,8 @@ function hM(e) {
 		needsDefaultAssembly: n
 	};
 }
-async function gM(e, t) {
-	let { assemblies: n, needsDefaultAssembly: r } = hM(e);
+async function xM(e, t) {
+	let { assemblies: n, needsDefaultAssembly: r } = bM(e);
 	if (r) {
 		let e = t.getDefaultAssemblyName();
 		if (!e) throw Error("No default assembly has been configured. Set root `assembly`, define exactly one entry in root `genomes`, or set `scale.assembly` on each locus scale.");
@@ -17538,41 +17586,41 @@ async function gM(e, t) {
 	}
 	await t.ensureAssemblies(n);
 }
-function _M(e) {
+function SM(e) {
 	let t = /* @__PURE__ */ new Set(), n = ["x", "y"], r = (e) => {
 		for (let r of n) {
 			let n = e.getScaleResolution(r);
 			n && t.add(n);
 		}
 	};
-	return r(e), tM(e, r), t;
+	return r(e), oM(e, r), t;
 }
 //#endregion
 //#region src/view/containerMutationHelper.js
-var vM = class {
+var CM = class {
 	constructor(e, t) {
 		this.container = e, this.options = t;
 	}
 	async addChildSpec(e, t) {
 		let { specs: n, insertAt: r } = this.options.getChildSpecs(), i = t ?? n.length, a = this.options.defaultName?.(i, e) ?? this.container.getNextAutoName("child"), o = await this.container.context.createOrImportView(e, this.container, this.container, a, void 0, this.options.createViewOptions);
-		await gM(o, this.container.context.genomeStore), r(i, e);
+		await xM(o, this.container.context.genomeStore), r(i, e);
 		let s = this.options.insertView(o, i);
-		this.options.prepareView && await this.options.prepareView(o, i, s), Yj(o);
-		let { dataSources: c, graphicsPromises: l } = KA(o, this.container.context.dataFlow, (e) => e.isConfiguredVisible());
-		return await YA(o, c), await _k(l), this.options.requestLayout !== !1 && (this.container.invalidateSizeCache(), this.container.context.requestLayoutReflow()), o;
+		this.options.prepareView && await this.options.prepareView(o, i, s), Qj(o);
+		let { dataSources: c, graphicsPromises: l } = YA(o, this.container.context.dataFlow, (e) => e.isConfiguredVisible());
+		return await QA(o, c), await bk(l), this.options.requestLayout !== !1 && (this.container.invalidateSizeCache(), this.container.context.requestLayoutReflow()), o;
 	}
 	async removeChildAt(e) {
 		let { removeAt: t } = this.options.getChildSpecs();
 		this.options.removeView(e), t(e), this.options.afterRemove && await this.options.afterRemove(e), this.options.requestLayout !== !1 && (this.container.invalidateSizeCache(), this.container.context.requestLayoutReflow());
 	}
-}, yM = .5;
-function bM(e) {
+}, wM = .5;
+function TM(e) {
 	return "multiscale" in e && E(e.multiscale);
 }
-function xM(e) {
+function EM(e) {
 	if (!e.multiscale.length) throw Error("\"multiscale\" must contain at least one child view.");
-	let t = SM(e.stops, e.multiscale.length), n = e.multiscale.map((n, r) => e.multiscale.length === 1 ? n : {
-		opacity: wM(r, e.multiscale.length, t),
+	let t = DM(e.stops, e.multiscale.length), n = e.multiscale.map((n, r) => e.multiscale.length === 1 ? n : {
+		opacity: kM(r, e.multiscale.length, t),
 		layer: [n]
 	}), r = { ...e };
 	return delete r.multiscale, delete r.stops, {
@@ -17580,10 +17628,10 @@ function xM(e) {
 		layer: n
 	};
 }
-function SM(e, t) {
-	let n = "unitsPerPixel", r, i = "auto", a = yM;
-	if (E(e)) r = CM(e, t, "stops");
-	else if (D(e)) n = e.metric ?? "unitsPerPixel", r = CM(e.values, t, "stops.values"), i = e.channel ?? "auto", a = e.fade ?? yM;
+function DM(e, t) {
+	let n = "unitsPerPixel", r, i = "auto", a = wM;
+	if (E(e)) r = OM(e, t, "stops");
+	else if (D(e)) n = e.metric ?? "unitsPerPixel", r = OM(e.values, t, "stops.values"), i = e.channel ?? "auto", a = e.fade ?? wM;
 	else throw Error("\"stops\" must be an array or an object with \"values\".");
 	if (n !== "unitsPerPixel") throw Error("Only \"unitsPerPixel\" is supported for \"stops.metric\" in multiscale.");
 	if (![
@@ -17606,17 +17654,17 @@ function SM(e, t) {
 		fade: a
 	};
 }
-function CM(e, t, n) {
+function OM(e, t, n) {
 	if (!E(e)) throw Error("\"" + n + "\" must be an array of numbers or ExprRefs.");
 	let r = t - 1;
 	if (e.length !== r) throw Error("Invalid stop count for multiscale. Expected " + r + ", got " + e.length + ".");
 	for (let t of e) if (!V(t) && !Number.isFinite(t)) throw Error("\"" + n + "\" must contain only numbers or ExprRefs.");
 	return e;
 }
-function wM(e, t, n) {
+function kM(e, t, n) {
 	let r, i, a = n.values.map((e) => ({
-		hi: TM(e, 1 + n.fade),
-		lo: TM(e, 1 - n.fade)
+		hi: AM(e, 1 + n.fade),
+		lo: AM(e, 1 - n.fade)
 	}));
 	if (e === 0) r = [a[0].hi, a[0].lo];
 	else if (e === t - 1) {
@@ -17642,32 +17690,32 @@ function wM(e, t, n) {
 		values: i
 	};
 }
-function TM(e, t) {
+function AM(e, t) {
 	return V(e) ? { expr: "(" + e.expr + ") * " + t } : e * t;
 }
 //#endregion
 //#region src/view/viewSpecGuards.js
-function EM(e) {
+function jM(e) {
 	return "mark" in e && (O(e.mark) || D(e.mark));
 }
-function DM(e) {
+function MM(e) {
 	return "layer" in e && D(e.layer);
 }
-function OM(e) {
+function NM(e) {
 	return "import" in e;
 }
-function kM(e) {
+function PM(e) {
 	return "vconcat" in e && E(e.vconcat);
 }
-function AM(e) {
+function FM(e) {
 	return "hconcat" in e && E(e.hconcat);
 }
-function jM(e) {
+function IM(e) {
 	return "concat" in e && E(e.concat);
 }
 //#endregion
 //#region src/view/layerView.js
-var MM = class extends qj {
+var LM = class extends Xj {
 	#e = [];
 	constructor(e, t, n, r, i, a) {
 		super(e, t, n, r, i, a), this.spec = e, this.needsAxes = {
@@ -17677,7 +17725,7 @@ var MM = class extends qj {
 	}
 	async initializeChildren() {
 		this.#e = await Promise.all(this.spec.layer.map((e) => this.context.createOrImportView(e, this, this, this.getNextAutoName("layer"), (e) => {
-			if (!DM(e) && !EM(e) && !bM(e)) throw new RS("LayerView accepts only unit, layer, or multiscale specs as children!", this);
+			if (!MM(e) && !jM(e) && !TM(e)) throw new BS("LayerView accepts only unit, layer, or multiscale specs as children!", this);
 		}, { layoutSizeParams: "inherit" })));
 	}
 	async addChildSpec(e, t) {
@@ -17687,7 +17735,7 @@ var MM = class extends qj {
 		await this.#t().removeChildAt(e);
 	}
 	#t() {
-		return new vM(this, {
+		return new CM(this, {
 			getChildSpecs: () => ({
 				specs: this.spec.layer,
 				insertAt: (e, t) => {
@@ -17725,7 +17773,7 @@ var MM = class extends qj {
 		for (let t = this.#e.length - 1; t >= 0; t--) if (this.#e[t].propagateInteraction(e), e.stopped) return;
 		this.handleInteraction(e, !1);
 	}
-}, NM = class {
+}, RM = class {
 	constructor(e, t) {
 		this.n = e, this.maxCols = t ?? Infinity;
 	}
@@ -17772,12 +17820,12 @@ var MM = class extends qj {
 };
 //#endregion
 //#region src/view/layout/rectangle.js
-function PM(e) {
+function zM(e) {
 	return () => e;
 }
-var FM = class e {
+var BM = class e {
 	static create(t, n, r, i) {
-		return new e(PM(t), PM(n), PM(r), PM(i));
+		return new e(zM(t), zM(n), zM(r), zM(i));
 	}
 	static ZERO = e.create(0, 0, 0, 0);
 	_offset(e, t) {
@@ -17820,7 +17868,7 @@ var FM = class e {
 		if (!Object.keys(t).length) return this;
 		let n = (e) => {
 			let n = t[e];
-			return typeof n == "number" ? PM(n) : typeof n == "function" ? n : this._passThrough(e);
+			return typeof n == "number" ? zM(n) : typeof n == "function" ? n : this._passThrough(e);
 		};
 		return new e(n("x"), n("y"), n("width"), n("height"));
 	}
@@ -17846,7 +17894,7 @@ var FM = class e {
 		return this.width >= 0 && this.height >= 0;
 	}
 	flatten() {
-		return new e(PM(this.x), PM(this.y), PM(this.width), PM(this.height));
+		return new e(zM(this.x), zM(this.y), zM(this.width), zM(this.height));
 	}
 	containsPoint(e, t) {
 		return e >= this.x && e < this.x2 && t >= this.y && t < this.y2;
@@ -17870,32 +17918,32 @@ var FM = class e {
 	toRoundedString() {
 		return `Rectangle: x: ${Math.round(this.x)}, y: ${Math.round(this.y)}, width: ${Math.round(this.width)}, height: ${Math.round(this.height)}`;
 	}
-}, IM = {
+}, VM = {
 	x: "axisX",
 	y: "axisY"
-}, LM = {
+}, HM = {
 	top: "axisTop",
 	bottom: "axisBottom",
 	left: "axisLeft",
 	right: "axisRight"
-}, RM = {
+}, UM = {
 	nominal: "axisNominal",
 	ordinal: "axisOrdinal",
 	quantitative: "axisQuantitative",
 	index: "axisIndex",
 	locus: "axisLocus"
 };
-function zM(e, { channel: t, orient: n, type: r, style: i }) {
-	let a = WS(i);
-	return US(e.flatMap((e) => {
-		let i = IM[t], o = n ? LM[n] : void 0, s = r ? RM[r] : void 0, c = [
+function WM(e, { channel: t, orient: n, type: r, style: i }) {
+	let a = KS(i);
+	return GS(e.flatMap((e) => {
+		let i = VM[t], o = n ? HM[n] : void 0, s = r ? UM[r] : void 0, c = [
 			e.axis,
 			i ? e[i] : void 0,
 			o ? e[o] : void 0,
 			s ? e[s] : void 0
 		];
 		return [
-			...c.flatMap((e) => WS(e?.style)).map((t) => e.style?.[t]),
+			...c.flatMap((e) => KS(e?.style)).map((t) => e.style?.[t]),
 			...c,
 			...a.map((t) => e.style?.[t])
 		];
@@ -17903,25 +17951,25 @@ function zM(e, { channel: t, orient: n, type: r, style: i }) {
 }
 //#endregion
 //#region src/view/axisView.js
-var BM = "chromosome_ticks_and_labels", VM = "labels_main", HM = "ticks_and_labels", UM = "axisExtent", WM = "_labelWidth", GM = 10, KM = 2;
-function qM(e) {
+var GM = "chromosome_ticks_and_labels", KM = "labels_main", qM = "ticks_and_labels", JM = "axisExtent", YM = "_labelWidth", XM = 10, ZM = 2;
+function QM(e) {
 	return e == "x" ? "y" : "x";
 }
-var JM = {
+var $M = {
 	x: ["bottom", "top"],
 	y: ["left", "right"]
-}, YM = Object.fromEntries(Object.entries(JM).map(([e, t]) => t.map((t) => [t, e])).flat(1));
-function XM(e) {
-	return YM[e];
+}, eN = Object.fromEntries(Object.entries($M).map(([e, t]) => t.map((t) => [t, e])).flat(1));
+function tN(e) {
+	return eN[e];
 }
-var ZM = class extends MM {
+var nN = class extends LM {
 	#e;
 	#t;
 	#n;
 	#r = !1;
 	#i = !1;
 	constructor(e, t, n, r, i, a) {
-		let o = XM(e.orient), s = zM(i.getConfigScopes(), {
+		let o = tN(e.orient), s = WM(i.getConfigScopes(), {
 			channel: o,
 			orient: e.orient,
 			type: t,
@@ -17931,22 +17979,22 @@ var ZM = class extends MM {
 			...e
 		}, l = {
 			...s,
-			...rN(t, c),
+			...cN(t, c),
 			...e
 		};
-		super(t == "locus" ? aN(l, t) : iN(l, t), n, r, i, `axis_${e.orient}`, {
+		super(t == "locus" ? uN(l, t) : lN(l, t), n, r, i, `axis_${e.orient}`, {
 			blockEncodingInheritance: !0,
 			...a
-		}), this.axisProps = l, this.#e = QM(l), this.#t = this.paramRuntime.allocateSetter(UM, this.#e), $j(this, { skipSubtree: !0 });
+		}), this.axisProps = l, this.#e = rN(l), this.#t = this.paramRuntime.allocateSetter(JM, this.#e), rM(this, { skipSubtree: !0 }), iM(this, { skipSubtree: !0 });
 	}
 	async initializeChildren() {
 		await super.initializeChildren();
-		let e = this.getDescendants().find((e) => e instanceof $ && e.name === VM);
+		let e = this.getDescendants().find((e) => e instanceof $ && e.name === KM);
 		e instanceof $ && (this.#n = e), !(!this.axisProps.labels || !this.#n) && this.registerDisposer(this._addBroadcastHandler("subtreeDataReady", () => this.#o()));
 	}
 	getSize() {
 		let e = { px: this.getPerpendicularSize() }, t = { grow: 1 };
-		return YM[this.axisProps.orient] == "x" ? new LC(t, e) : new LC(e, t);
+		return eN[this.axisProps.orient] == "x" ? new zC(t, e) : new zC(e, t);
 	}
 	getPerpendicularSize() {
 		return this.#e;
@@ -17965,41 +18013,41 @@ var ZM = class extends MM {
 		e && (this.#r = !0, this.registerDisposer(e.observe(() => this.#a())), e.completed && this.#a());
 	}
 	#s() {
-		let e = XM(this.axisProps.orient), t = this.dataParent.getScaleResolution(e);
+		let e = tN(this.axisProps.orient), t = this.dataParent.getScaleResolution(e);
 		if (t && !t.isDomainDefinedExplicitly() && !t.isDomainInitialized()) return;
-		let n = nN(this.axisProps, this.context, this.#n);
+		let n = sN(this.axisProps, this.context, this.#n);
 		if (n === void 0) return;
-		let r = QM(this.axisProps, n);
-		r >= this.#e + KM && (this.#e = r, this.#t(r), this.invalidateSizeCache(), this.context.requestLayoutReflow());
+		let r = rN(this.axisProps, n);
+		r >= this.#e + ZM && (this.#e = r, this.#t(r), this.invalidateSizeCache(), this.context.requestLayoutReflow());
 	}
 };
-function QM(e, t) {
-	let n = $M(e);
-	return e.labels && (n += t ?? eN(e)), tN(e, n);
+function rN(e, t) {
+	let n = iN(e);
+	return e.labels && (n += t ?? aN(e)), oN(e, n);
 }
-function $M(e) {
+function iN(e) {
 	let t = e.ticks && e.tickSize || 0;
 	return e.labels && (t += e.labelPadding), e.title && (t += e.titlePadding + e.titleFontSize), t;
 }
-function eN(e) {
-	return XM(e.orient) == "x" ? e.labelFontSize : GM;
+function aN(e) {
+	return tN(e.orient) == "x" ? e.labelFontSize : XM;
 }
-function tN(e, t) {
+function oN(e, t) {
 	return Math.min(e.maxExtent || Infinity, Math.max(e.minExtent || 0, t));
 }
-function nN(e, t, n) {
+function sN(e, t, n) {
 	let r = n?.getCollector();
 	if (!r?.completed) return;
 	let i = 0;
 	r.visitData((e) => {
-		i = Math.max(i, Number(e[WM]) || 0);
+		i = Math.max(i, Number(e[YM]) || 0);
 	});
 	let a = (e.labelFont ? t.fontManager.getFont(e.labelFont, e.labelFontStyle, e.labelFontWeight) : t.fontManager.getDefaultFont()).metrics;
 	if (!a) return;
-	let o = (a.capHeight + a.descent) / a.common.base * e.labelFontSize, s = e.labelAngle * Math.PI / 180, c = Math.abs(Math.sin(s)), l = Math.abs(Math.cos(s)), u = XM(e.orient) == "x" ? i * c + o * l : i * l + o * c;
+	let o = (a.capHeight + a.descent) / a.common.base * e.labelFontSize, s = e.labelAngle * Math.PI / 180, c = Math.abs(Math.sin(s)), l = Math.abs(Math.cos(s)), u = tN(e.orient) == "x" ? i * c + o * l : i * l + o * c;
 	return Math.ceil(u);
 }
-function rN(e, t) {
+function cN(e, t) {
 	let n = t.orient, r = e == "nominal" || e == "ordinal", i = "center", a = "middle", o = t.labelAngle ?? ((n == "top" || n == "bottom") && r ? -90 : 0);
 	switch (n) {
 		case "left":
@@ -18020,8 +18068,8 @@ function rN(e, t) {
 		labelBaseline: a
 	};
 }
-function iN(e, t) {
-	let n = e, r = XM(n.orient), i = qM(r), a = n.orient == "bottom" || n.orient == "right" ? 1 : -1, o = n.orient == "bottom" || n.orient == "left" ? 1 : 0, s = () => ({
+function lN(e, t) {
+	let n = e, r = tN(n.orient), i = QM(r), a = n.orient == "bottom" || n.orient == "right" ? 1 : -1, o = n.orient == "bottom" || n.orient == "left" ? 1 : 0, s = () => ({
 		field: "value",
 		type: t
 	}), c = () => ({
@@ -18037,11 +18085,11 @@ function iN(e, t) {
 			size: n.domainWidth
 		}
 	}), l = () => ({
-		name: VM,
+		name: KM,
 		transform: [{
 			type: "measureText",
 			field: "label",
-			as: WM,
+			as: YM,
 			fontSize: n.labelFontSize,
 			font: n.labelFont,
 			fontStyle: n.labelFontStyle,
@@ -18079,7 +18127,7 @@ function iN(e, t) {
 		},
 		encoding: {
 			[i]: { value: o },
-			[i + "2"]: { value: { expr: `${o} - ${n.tickSize} / ${UM} * ${o ? 1 : -1}` } }
+			[i + "2"]: { value: { expr: `${o} - ${n.tickSize} / ${JM} * ${o ? 1 : -1}` } }
 		}
 	}), d = () => ({
 		name: "title",
@@ -18107,7 +18155,7 @@ function iN(e, t) {
 		}
 	}), f = () => {
 		let e = {
-			name: HM,
+			name: qM,
 			encoding: { [r]: s() },
 			layer: []
 		};
@@ -18124,15 +18172,15 @@ function iN(e, t) {
 	};
 	return n.domain && p.layer.push(c()), (n.ticks || n.labels) && p.layer.push(f()), n.title && p.layer.push(d()), p;
 }
-function aN(e, t) {
-	let n = e, r = XM(n.orient), i = qM(r), a = n.orient == "bottom" || n.orient == "left" ? 1 : 0, o = () => ({
+function uN(e, t) {
+	let n = e, r = tN(n.orient), i = QM(r), a = n.orient == "bottom" || n.orient == "left" ? 1 : 0, o = () => ({
 		name: "chromosome_ticks",
 		mark: {
 			type: "rule",
 			strokeDash: e.chromTickDash,
 			strokeDashOffset: e.chromTickDashOffset,
 			[i]: a,
-			[i + "2"]: { expr: `${a} - ${n.chromTickSize} / ${UM} * ${a ? 1 : -1}` },
+			[i + "2"]: { expr: `${a} - ${n.chromTickSize} / ${JM} * ${a ? 1 : -1}` },
 			color: e.chromTickColor,
 			size: n.chromTickWidth
 		}
@@ -18230,16 +18278,16 @@ function aN(e, t) {
 			break;
 		default: c = {};
 	}
-	let l = iN({
+	let l = lN({
 		...e,
 		...c
 	}, t);
 	if (e.chromTicks || e.chromLabels) {
 		let i = {
-			name: BM,
+			name: GM,
 			data: { lazy: {
 				type: "axisGenome",
-				channel: XM(n.orient)
+				channel: tN(n.orient)
 			} },
 			encoding: { [r]: {
 				field: "continuousStart",
@@ -18251,7 +18299,7 @@ function aN(e, t) {
 		if (e.chromTicks && i.layer.push(o()), e.chromLabels) {
 			i.layer.push(s());
 			let e;
-			l.layer.filter((e) => e.name == HM).forEach((t) => t.layer.filter((e) => e.name == VM).forEach((t) => {
+			l.layer.filter((e) => e.name == qM).forEach((t) => t.layer.filter((e) => e.name == KM).forEach((t) => {
 				e = t.mark;
 			})), e && (n.orient == "top" || n.orient == "bottom" ? (e.viewportEdgeFadeWidthLeft = 30, e.viewportEdgeFadeDistanceLeft = 40) : (e.viewportEdgeFadeWidthBottom = 30, e.viewportEdgeFadeDistanceBottom = 40));
 		}
@@ -18261,15 +18309,15 @@ function aN(e, t) {
 }
 //#endregion
 //#region src/view/interactionRouting.js
-function oN(e, t, n) {
+function dN(e, t, n) {
 	e.handleInteraction(t, !0), !t.stopped && (n(), !t.stopped && e.handleInteraction(t, !1));
 }
-function sN(e, t, n, r) {
+function fN(e, t, n, r) {
 	return t() ? (n(), e.stopped || r?.(), !0) : !1;
 }
 //#endregion
 //#region src/utils/ringBuffer.js
-var cN = class {
+var pN = class {
 	#e;
 	#t = 0;
 	#n = 0;
@@ -18292,17 +18340,17 @@ var cN = class {
 };
 //#endregion
 //#region src/utils/interactionEvent.js
-function lN(e) {
+function mN(e) {
 	if (!e || typeof e != "object") return !1;
 	let t = e;
 	return t.type === "touchgesture" && (t.phase === "move" || t.phase === "end") && (t.pointerCount === 1 || t.pointerCount === 2) && Number.isFinite(t.xDelta) && Number.isFinite(t.yDelta) && Number.isFinite(t.zDelta);
 }
-function uN(e) {
+function hN(e) {
 	if (!e || typeof e != "object") return !1;
 	let t = e;
 	return t.type === "wheel" && Number.isFinite(t.deltaX) && Number.isFinite(t.deltaY) && Number.isFinite(t.deltaMode) && typeof t.preventDefault == "function";
 }
-function dN(e, t, n) {
+function gN(e, t, n) {
 	return new Proxy(e, { get(e, r) {
 		if (r === "deltaX") return t;
 		if (r === "deltaY") return n;
@@ -18310,7 +18358,7 @@ function dN(e, t, n) {
 		return typeof i == "function" ? i.bind(e) : i;
 	} });
 }
-function fN(e) {
+function _N(e) {
 	let t = (e) => e === null || typeof e != "object" && typeof e != "function";
 	return new Proxy(e, {
 		get(e, n, r) {
@@ -18340,7 +18388,7 @@ function fN(e) {
 }
 //#endregion
 //#region src/view/layout/point.js
-var pN = class e {
+var vN = class e {
 	static fromMouseEvent(t) {
 		return new e(t.clientX, t.clientY);
 	}
@@ -18362,32 +18410,32 @@ var pN = class e {
 	equals(e) {
 		return e ? e === this || e.x === this.x && e.y === this.y : !1;
 	}
-}, mN = 0, hN = /* @__PURE__ */ new WeakMap(), gN = TN(), _N = 6;
-function vN() {
-	mN = performance.now();
+}, yN = 0, bN = /* @__PURE__ */ new WeakMap(), xN = AN(), SN = 6;
+function CN() {
+	yN = performance.now();
 }
-function yN() {
-	return performance.now() - mN < 50;
+function wN() {
+	return performance.now() - yN < 50;
 }
-function bN(e) {
+function TN(e) {
 	return function(...t) {
-		return vN(), e(...t);
+		return CN(), e(...t);
 	};
 }
-function xN(e, t, n, r, i) {
-	n = bN(n);
-	let a = EN(i);
+function EN(e, t, n, r, i) {
+	n = TN(n);
+	let a = jN(i);
 	if (e.type == "wheel") {
 		let i = e.wheelEvent, o = i.deltaMode ? 120 : 1;
 		if (!i.deltaX && !i.deltaY) return;
 		a.smoother?.stop();
 		let { x: s, y: c } = e.point;
 		if (r) {
-			let n = SN(e.point, t, r);
+			let n = DN(e.point, t, r);
 			if (n) n.x !== void 0 && (s = n.x), n.y !== void 0 && (c = n.y);
 			else {
 				let e = r.mark.encoders;
-				e.x && !e.x2 && !e.x.constant && (s = CN(e.x, r.datum) * t.width + t.x), e.y && !e.y2 && !e.y.constant && (c = (1 - CN(e.y, r.datum)) * t.height + t.y);
+				e.x && !e.x2 && !e.x.constant && (s = ON(e.x, r.datum) * t.width + t.x), e.y && !e.y2 && !e.y.constant && (c = (1 - ON(e.y, r.datum)) * t.height + t.y);
 			}
 		}
 		(Math.abs(i.deltaX) < Math.abs(i.deltaY) ? n({
@@ -18405,10 +18453,10 @@ function xN(e, t, n, r, i) {
 		}) === !0) && i.preventDefault();
 	} else if (e.type == "mousedown" && e.mouseEvent.button === 0) {
 		a.smoother && a.smoother.stop();
-		let t = new cN(30), r = e.mouseEvent;
+		let t = new pN(30), r = e.mouseEvent;
 		r.preventDefault(), e.target?.context.suspendHoverTracking();
-		let o = pN.fromMouseEvent(r), s = (e) => {
-			let r = pN.fromMouseEvent(e);
+		let o = vN.fromMouseEvent(r), s = (e) => {
+			let r = vN.fromMouseEvent(e);
 			t.push({
 				point: r,
 				timestamp: performance.now()
@@ -18422,21 +18470,21 @@ function xN(e, t, n, r, i) {
 				zDelta: 0
 			}), o = r;
 		}, c = (r) => {
-			document.removeEventListener("mousemove", s), document.removeEventListener("mouseup", c), e.target?.context.resumeHoverTracking(r), ON(a, t, o, n, i, { minSampleCount: 5 });
+			document.removeEventListener("mousemove", s), document.removeEventListener("mouseup", c), e.target?.context.resumeHoverTracking(r), NN(a, t, o, n, i, { minSampleCount: 5 });
 		};
 		document.addEventListener("mouseup", c, !1), document.addEventListener("mousemove", s, !1);
 	} else if (e.type == "touchgesture") {
-		if (!lN(e.uiEvent)) return;
+		if (!mN(e.uiEvent)) return;
 		let t = e.uiEvent, { xDelta: r, yDelta: o, zDelta: s } = t;
 		if (t.phase === "end") {
-			t.pointerCount === 1 && ON(a, a.touchPanEventBuffer, a.touchPanLastPoint, n, i, {
+			t.pointerCount === 1 && NN(a, a.touchPanEventBuffer, a.touchPanLastPoint, n, i, {
 				minSampleCount: 2,
 				minVelocityPxPerMs: .03
-			}), DN(a);
+			}), MN(a);
 			return;
 		}
-		a.touchPanPointerCount !== t.pointerCount && (DN(a), a.touchPanPointerCount = t.pointerCount);
-		let c = new pN(e.point.x + r, e.point.y + o);
+		a.touchPanPointerCount !== t.pointerCount && (MN(a), a.touchPanPointerCount = t.pointerCount);
+		let c = new vN(e.point.x + r, e.point.y + o);
 		if (a.touchPanLastPoint = c, t.pointerCount === 1 && (r !== 0 || o !== 0) && a.touchPanEventBuffer.push({
 			point: c,
 			timestamp: performance.now()
@@ -18450,15 +18498,15 @@ function xN(e, t, n, r, i) {
 		});
 	}
 }
-function SN(e, t, n) {
+function DN(e, t, n) {
 	if (n.mark.getType() !== "link") return;
 	let r = n.mark.encoders;
 	if (!(r.x && r.y && r.x2 && r.y2)) return;
 	let i = !r.x.constant && !r.x2.constant, a = !r.y.constant && !r.y2.constant;
 	if (!i && !a) return;
-	let o = CN(r.x, n.datum) * t.width + t.x, s = (1 - CN(r.y, n.datum)) * t.height + t.y, c = CN(r.x2, n.datum) * t.width + t.x, l = (1 - CN(r.y2, n.datum)) * t.height + t.y, u = 0, d = 0;
+	let o = ON(r.x, n.datum) * t.width + t.x, s = (1 - ON(r.y, n.datum)) * t.height + t.y, c = ON(r.x2, n.datum) * t.width + t.x, l = (1 - ON(r.y2, n.datum)) * t.height + t.y, u = 0, d = 0;
 	i && (u += (e.x - o) ** 2, d += (e.x - c) ** 2), a && (u += (e.y - s) ** 2, d += (e.y - l) ** 2);
-	let f = r.size ? +r.size(n.datum) : 0, p = Number.isFinite(f) ? Math.max(f, _N) : _N, m = p * p;
+	let f = r.size ? +r.size(n.datum) : 0, p = Number.isFinite(f) ? Math.max(f, SN) : SN, m = p * p;
 	if (!(Math.min(u, d) > m)) return u <= d ? {
 		x: i ? o : void 0,
 		y: a ? s : void 0
@@ -18467,10 +18515,10 @@ function SN(e, t, n) {
 		y: a ? l : void 0
 	};
 }
-function CN(e, t) {
+function ON(e, t) {
 	let n = +e(t), r = e.scale;
 	if (!r) return n;
-	let i = wN(e.channelDef);
+	let i = kN(e.channelDef);
 	if (r.type === "band" || r.type === "point") return Number.isFinite(i) ? n + r.bandwidth() * i : n;
 	if (r.type === "index" || r.type === "locus") {
 		if (!Number.isFinite(i)) return n;
@@ -18478,33 +18526,33 @@ function CN(e, t) {
 		return n + e.step() * (i - e.align());
 	} else return n;
 }
-function wN(e) {
+function kN(e) {
 	return e && "band" in e ? e.band ?? .5 : .5;
 }
-function TN() {
+function AN() {
 	return {
 		smoother: void 0,
-		touchPanEventBuffer: new cN(30),
+		touchPanEventBuffer: new pN(30),
 		touchPanLastPoint: void 0,
 		touchPanPointerCount: 0
 	};
 }
-function EN(e) {
-	if (!e) return gN;
-	let t = hN.get(e);
-	return t || (t = TN(), hN.set(e, t)), t;
+function jN(e) {
+	if (!e) return xN;
+	let t = bN.get(e);
+	return t || (t = AN(), bN.set(e, t)), t;
 }
-function DN(e) {
-	e.touchPanEventBuffer = new cN(30), e.touchPanLastPoint = void 0, e.touchPanPointerCount = 0;
+function MN(e) {
+	e.touchPanEventBuffer = new pN(30), e.touchPanLastPoint = void 0, e.touchPanPointerCount = 0;
 }
-function ON(e, t, n, r, i, a = {}) {
+function NN(e, t, n, r, i, a = {}) {
 	if (!i || !n) return;
 	let o = a.minSampleCount ?? 5, s = a.minVelocityPxPerMs ?? 0, c = performance.now(), l = t.get().filter((e) => c - e.timestamp < 160);
-	if (l.length < o || l.length >= 5 && kN(l)) return;
+	if (l.length < o || l.length >= 5 && PN(l)) return;
 	let u = l.at(-1), d = l[0], f = u.point.subtract(d.point).multiply(1 / (u.timestamp - d.timestamp));
 	if (!Number.isFinite(f.x) || !Number.isFinite(f.y) || f.length < s) return;
 	let p = n.x, m = n.y;
-	e.smoother = ij(i, (e) => {
+	e.smoother = sj(i, (e) => {
 		r({
 			x: e.x,
 			y: e.y,
@@ -18520,18 +18568,18 @@ function ON(e, t, n, r, i, a = {}) {
 		y: n.y - f.y * 250
 	});
 }
-function kN(e) {
+function PN(e) {
 	let t = e[Math.floor(e.length / 2)], n = t.point.subtract(e[0].point).multiply(t.timestamp - e[0].timestamp), r = e.at(-1).point.subtract(t.point).multiply(e.at(-1).timestamp - t.timestamp), i = n.length;
 	return r.length / i < .4;
 }
 //#endregion
 //#region src/view/axisGridView.js
-var AN = class extends MM {
+var FN = class extends LM {
 	constructor(e, t, n, r, i, a) {
-		super(PN(e, t), n, r, i, `axisGrid_${e.orient}`, {
+		super(zN(e, t), n, r, i, `axisGrid_${e.orient}`, {
 			blockEncodingInheritance: !0,
 			...a
-		}), this.axisProps = e, $j(this, { skipSubtree: !0 });
+		}), this.axisProps = e, rM(this, { skipSubtree: !0 }), iM(this, { skipSubtree: !0 });
 	}
 	getOrient() {
 		return this.axisProps.orient;
@@ -18540,8 +18588,8 @@ var AN = class extends MM {
 		return !1;
 	}
 };
-function jN(e, t) {
-	let n = e, r = XM(n.orient);
+function IN(e, t) {
+	let n = e, r = tN(n.orient);
 	return {
 		name: "grid_lines",
 		data: { lazy: {
@@ -18564,8 +18612,8 @@ function jN(e, t) {
 		} }
 	};
 }
-function MN(e, t) {
-	let n = e, r = XM(n.orient);
+function LN(e, t) {
+	let n = e, r = tN(n.orient);
 	return {
 		name: "chromosome_lines",
 		data: { lazy: {
@@ -18587,8 +18635,8 @@ function MN(e, t) {
 		} }
 	};
 }
-function NN(e, t) {
-	let n = e, r = XM(n.orient);
+function RN(e, t) {
+	let n = e, r = tN(n.orient);
 	return {
 		name: "chromosome_fill",
 		data: { lazy: {
@@ -18626,12 +18674,12 @@ function NN(e, t) {
 		}
 	};
 }
-function PN(e, t) {
+function zN(e, t) {
 	let n = { ...e }, r = [];
-	return n.chromGrid && (n.chromGridFillOdd || n.chromGridFillEven) && r.push(NN(n, t)), n.chromGrid && n.chromGridOpacity > 0 && r.push(MN(n, t)), n.grid && n.gridOpacity > 0 && r.push(jN(n, t)), {
+	return n.chromGrid && (n.chromGridFillOdd || n.chromGridFillEven) && r.push(RN(n, t)), n.chromGrid && n.chromGridOpacity > 0 && r.push(LN(n, t)), n.grid && n.gridOpacity > 0 && r.push(IN(n, t)), {
 		name: "grid_layers",
 		resolve: { scale: {
-			[XM(e.orient)]: "forced",
+			[tN(e.orient)]: "forced",
 			fill: "independent",
 			opacity: "independent"
 		} },
@@ -18641,29 +18689,29 @@ function PN(e, t) {
 }
 //#endregion
 //#region src/config/titleConfig.js
-function FN(e) {
-	return US(e.map((e) => e.title));
+function BN(e) {
+	return GS(e.map((e) => e.title));
 }
-function IN(e, t) {
-	let n = WS(t);
-	return n.length == 0 ? {} : US(e.flatMap((e) => n.map((t) => e.style?.[t])));
+function VN(e, t) {
+	let n = KS(t);
+	return n.length == 0 ? {} : GS(e.flatMap((e) => n.map((t) => e.style?.[t])));
 }
 //#endregion
 //#region src/view/title.js
-var LN = {
+var HN = {
 	start: 0,
 	middle: .5,
 	end: 1
-}, RN = {
+}, UN = {
 	start: "left",
 	middle: "center",
 	end: "right"
-}, zN = "group-title";
-function BN(e) {
+}, WN = "group-title";
+function GN(e) {
 	let t = {}, n = {
 		x: 0,
 		y: 0
-	}, r = LN[e.anchor ?? "middle"];
+	}, r = HN[e.anchor ?? "middle"];
 	switch (e.orient) {
 		case "top":
 			n = {
@@ -18708,11 +18756,11 @@ function BN(e) {
 		xy: n
 	};
 }
-function VN(e, t = []) {
+function KN(e, t = []) {
 	if (!e) return;
 	let n = O(e) ? { text: e } : e;
 	if (!n.text || n.orient == "none") return;
-	let r = FN(t), i = IN(t, n.style ?? zN), { orientConfig: a } = BN({
+	let r = BN(t), i = VN(t, n.style ?? WN), { orientConfig: a } = GN({
 		...r,
 		...i,
 		...n
@@ -18724,10 +18772,10 @@ function VN(e, t = []) {
 		...n
 	};
 }
-function HN(e, t = []) {
-	let n = VN(e, t);
+function qN(e, t = []) {
+	let n = KN(e, t);
 	if (!n) return;
-	let { xy: r } = BN(n), i = {
+	let { xy: r } = GN(n), i = {
 		xOffset: 0,
 		yOffset: 0
 	};
@@ -18755,7 +18803,7 @@ function HN(e, t = []) {
 			...r,
 			...i,
 			text: n.text,
-			align: n.align ?? RN[n.anchor],
+			align: n.align ?? UN[n.anchor],
 			angle: n.angle,
 			baseline: n.baseline,
 			dx: n.dx,
@@ -18770,11 +18818,11 @@ function HN(e, t = []) {
 }
 //#endregion
 //#region src/view/gridView/scrollbar.js
-var UN = class extends $ {
+var JN = class extends $ {
 	#e;
-	#t = FM.ZERO;
-	#n = FM.ZERO;
-	#r = FM.ZERO;
+	#t = BM.ZERO;
+	#n = BM.ZERO;
+	#r = BM.ZERO;
 	viewportOffset = 0;
 	#i;
 	constructor(e, t, n = {}) {
@@ -18795,20 +18843,20 @@ var UN = class extends $ {
 				cornerRadius: 5,
 				clip: !1
 			}
-		}, e.layoutParent.context, e.layoutParent, e.view, "scrollbar-" + t, { blockEncodingInheritance: !0 }), $j(this, { skipSubtree: !0 }), this.config = {
+		}, e.layoutParent.context, e.layoutParent, e.view, "scrollbar-" + t, { blockEncodingInheritance: !0 }), rM(this, { skipSubtree: !0 }), iM(this, { skipSubtree: !0 }), this.config = {
 			scrollbarSize: 8,
 			scrollbarPadding: 2,
 			scrollbarMinLength: 20
 		}, this.#e = t, this.#i = n.onViewportOffsetChange;
 		let r = this.config.scrollbarPadding, i = this.config.scrollbarSize;
-		this.#t = this.#e == "vertical" ? new FM(() => this.#n.x + this.#n.width - i - r, () => this.#n.y + r + this.scrollOffset, () => i, () => this.#s()) : new FM(() => this.#n.x + r + this.scrollOffset, () => this.#n.y + this.#n.height - i - r, () => this.#s(), () => i), this.#f(this.viewportOffset), this.addInteractionListener("mousedown", (e) => {
+		this.#t = this.#e == "vertical" ? new BM(() => this.#n.x + this.#n.width - i - r, () => this.#n.y + r + this.scrollOffset, () => i, () => this.#s()) : new BM(() => this.#n.x + r + this.scrollOffset, () => this.#n.y + this.#n.height - i - r, () => this.#s(), () => i), this.#f(this.viewportOffset), this.addInteractionListener("mousedown", (e) => {
 			if (e.stopPropagation(), this.#c() <= 0) return;
 			let n = (e) => t == "vertical" ? e.clientY : e.clientX;
 			e.mouseEvent.preventDefault(), this.context.suspendHoverTracking();
 			let r = this.scrollOffset, i = n(e.mouseEvent), a = (e) => {
 				let t = this.#c();
 				if (t <= 0) return;
-				let a = hS(n(e) - i + r, 0, t);
+				let a = _S(n(e) - i + r, 0, t);
 				this.interpolateViewportOffset({ x: this.#u(a) });
 			}, o = (e) => {
 				document.removeEventListener("mousemove", a), document.removeEventListener("mouseup", o), this.context.resumeHoverTracking(e);
@@ -18820,7 +18868,7 @@ var UN = class extends $ {
 		return this.#l(this.viewportOffset);
 	}
 	setViewportOffset(e, { notify: t = !0, syncSmoother: n = !1 } = {}) {
-		this.viewportOffset = hS(e, 0, this.#d()), n && this.#f(this.viewportOffset), t && this.#i && this.#i(this.viewportOffset);
+		this.viewportOffset = _S(e, 0, this.#d()), n && this.#f(this.viewportOffset), t && this.#i && this.#i(this.viewportOffset);
 	}
 	#a() {
 		let e = this.#e == "horizontal" ? "width" : "height", t = this.#n[e], n = this.#r[e];
@@ -18859,14 +18907,14 @@ var UN = class extends $ {
 		});
 	}
 	#f(e) {
-		this.interpolateViewportOffset = ij(this.context.animator, (e) => {
+		this.interpolateViewportOffset = sj(this.context.animator, (e) => {
 			this.setViewportOffset(e.x, {
 				notify: !0,
 				syncSmoother: !1
 			});
 		}, 35, .4, { x: e });
 	}
-}, WN = "intervalDragActive", GN = class extends MM {
+}, YN = "intervalDragActive", XN = class extends LM {
 	constructor(e, t, n = {}) {
 		let r = t(), i = Object.keys(r.intervals), { zindex: a = 1, ...o } = n;
 		if (jf.every((e) => !i.includes(e))) throw Error("SelectionRect requires at least one of the channels 'x' or 'y' to be present in the selection.");
@@ -18874,14 +18922,14 @@ var UN = class extends $ {
 			name: "selectionRect",
 			domainInert: !0,
 			params: [{
-				name: WN,
+				name: YN,
 				value: !1
 			}],
 			resolve: { scale: {
 				x: "forced",
 				y: "forced"
 			} },
-			data: { values: KN(t()) },
+			data: { values: ZN(t()) },
 			encoding: {},
 			layer: []
 		};
@@ -18943,17 +18991,17 @@ var UN = class extends $ {
 				text: { expr: c("y") },
 				x2: null
 			}
-		}), super(s, e.layoutParent.context, e.layoutParent, e.view, "selectionRect", { blockEncodingInheritance: !0 }), this._zindex = a, $j(this, { skipSubtree: !0 }), this.registerDisposer(t.subscribe(() => {
+		}), super(s, e.layoutParent.context, e.layoutParent, e.view, "selectionRect", { blockEncodingInheritance: !0 }), this._zindex = a, rM(this, { skipSubtree: !0 }), iM(this, { skipSubtree: !0 }), this.registerDisposer(t.subscribe(() => {
 			let e = t(), n = this.flowHandle?.dataSource;
 			if (!n) throw Error("Cannot find selection rect data source handle!");
-			n.updateDynamicData(KN(e));
+			n.updateDynamicData(ZN(e));
 		}));
 	}
 	getZindex() {
 		return this._zindex;
 	}
 };
-function KN(e) {
+function ZN(e) {
 	let t = e.intervals.x, n = e.intervals.y;
 	return !t && !n ? [] : [{
 		_x: t?.[0],
@@ -18964,27 +19012,27 @@ function KN(e) {
 }
 //#endregion
 //#region src/config/viewConfig.js
-function qN(e, t) {
-	let n = ["cell", ...WS(t?.style)];
-	return US(e.flatMap((e) => [e.view, ...n.map((t) => e.style?.[t])]).concat([t]));
+function QN(e, t) {
+	let n = ["cell", ...KS(t?.style)];
+	return GS(e.flatMap((e) => [e.view, ...n.map((t) => e.style?.[t])]).concat([t]));
 }
 //#endregion
 //#region src/view/gridView/gridChild.js
-var JN = class {
+var $N = class {
 	constructor(e, t, n) {
-		if (this.layoutParent = t, this.view = e, this.serial = n, this.background = void 0, this.backgroundStroke = void 0, this.axes = {}, this.gridLines = {}, this.scrollbars = {}, this.selectionRect = void 0, this.title = void 0, this.backgroundZindex = 0, this.backgroundStrokeZindex = void 0, this.titleZindex = 1, this.coords = FM.ZERO, e.needsAxes.x || e.needsAxes.y) {
-			let r = e.spec, i = qN(e.getConfigScopes(), "view" in r ? r.view : void 0);
+		if (this.layoutParent = t, this.view = e, this.serial = n, this.background = void 0, this.backgroundStroke = void 0, this.axes = {}, this.gridLines = {}, this.scrollbars = {}, this.selectionRect = void 0, this.title = void 0, this.backgroundZindex = 0, this.backgroundStrokeZindex = void 0, this.titleZindex = 1, this.coords = BM.ZERO, e.needsAxes.x || e.needsAxes.y) {
+			let r = e.spec, i = QN(e.getConfigScopes(), "view" in r ? r.view : void 0);
 			this.backgroundZindex = i?.zindex ?? 0, this.backgroundStrokeZindex = i?.strokeZindex;
-			let a = ZN(i);
-			a && (this.background = new $(a, t.context, t, e, "background" + n, { blockEncodingInheritance: !0 }), $j(this.background, { skipSubtree: !0 }));
-			let o = QN(i);
-			o && (this.backgroundStroke = new $(o, t.context, t, e, "backgroundStroke" + n, { blockEncodingInheritance: !0 }), $j(this.backgroundStroke, { skipSubtree: !0 }));
-			let s = VN(e.spec.title, e.getConfigScopes());
+			let a = nP(i);
+			a && (this.background = new $(a, t.context, t, e, "background" + n, { blockEncodingInheritance: !0 }), rM(this.background, { skipSubtree: !0 }), iM(this.background, { skipSubtree: !0 }));
+			let o = rP(i);
+			o && (this.backgroundStroke = new $(o, t.context, t, e, "backgroundStroke" + n, { blockEncodingInheritance: !0 }), rM(this.backgroundStroke, { skipSubtree: !0 }), iM(this.backgroundStroke, { skipSubtree: !0 }));
+			let s = KN(e.spec.title, e.getConfigScopes());
 			this.titleZindex = s?.zindex ?? 1;
-			let c = HN(s);
-			c && (this.title = new $(c, t.context, t, e, "title" + n, { blockEncodingInheritance: !0 }), $j(this.title, { skipSubtree: !0 }));
+			let c = qN(s);
+			c && (this.title = new $(c, t.context, t, e, "title" + n, { blockEncodingInheritance: !0 }), rM(this.title, { skipSubtree: !0 }), iM(this.title, { skipSubtree: !0 }));
 		}
-		e.spec.viewportWidth != null && (this.scrollbars.horizontal = new UN(this, "horizontal")), e.spec.viewportHeight != null && (this.scrollbars.vertical = new UN(this, "vertical")), this.#e();
+		e.spec.viewportWidth != null && (this.scrollbars.horizontal = new JN(this, "horizontal")), e.spec.viewportHeight != null && (this.scrollbars.vertical = new JN(this, "vertical")), this.#e();
 	}
 	#e() {
 		let e = this.view;
@@ -19001,7 +19049,7 @@ var JN = class {
 				filter: "event.shiftKey"
 			} : { type: "mousedown" });
 			if (s.type !== "mousedown") throw Error(`Interval selection param "${t}" currently supports only "mousedown" in "on".`);
-			let c = s.filter ? EE(s.filter) : () => !0, l = YN(r.zoom, o, t), u = l?.filter ? EE(l.filter) : () => !0;
+			let c = s.filter ? OE(s.filter) : () => !0, l = eP(r.zoom, o, t), u = l?.filter ? OE(l.filter) : () => !0;
 			if (this.selectionRect) throw Error("Only one interval selection per container is currently allowed!");
 			let d = !1, f = !1, p = !1, m = null, h = (e, t) => Object.fromEntries(i.map((n) => [n, [Math.min(e[n], t[n]), Math.max(e[n], t[n])]])), g = e.paramRuntime.createExpression(t), _ = (n) => {
 				e.paramRuntime.setValue(t, n);
@@ -19013,9 +19061,9 @@ var JN = class {
 			let v = () => {
 				_(Jf(i));
 			};
-			this.selectionRect = new GN(this, g, r.mark);
+			this.selectionRect = new XN(this, g, r.mark);
 			let y = (e) => {
-				this.selectionRect.paramRuntime.setValue(WN, e);
+				this.selectionRect.paramRuntime.setValue(YN, e);
 			};
 			this.selectionRect.initializeChildren();
 			let b = (t) => {
@@ -19033,7 +19081,7 @@ var JN = class {
 					let i = (e, t) => t == null ? null : a[e].getScale()(t), o = i("x", t) ?? r, s = i("y", n) ?? r;
 					return e.coords.denormalizePoint(o, s, !0);
 				}, i = r(n.x?.[0], n.y?.[0], 0), o = r(n.x?.[1], n.y?.[1], 1);
-				return FM.create(i.x, i.y, o.x - i.x, o.y - i.y);
+				return BM.create(i.x, i.y, o.x - i.x, o.y - i.y);
 			};
 			e.addInteractionListener("mousedown", (t) => {
 				if (t.mouseEvent.button != 0) return;
@@ -19052,11 +19100,11 @@ var JN = class {
 					} else return;
 				}
 				t.stopPropagation(), e.context.suspendHoverTracking();
-				let n = t.point, r = pN.fromMouseEvent(t.mouseEvent).subtract(n), o = (e) => {
-					let t = pN.fromMouseEvent(e).subtract(r), o;
+				let n = t.point, r = vN.fromMouseEvent(t.mouseEvent).subtract(n), o = (e) => {
+					let t = vN.fromMouseEvent(e).subtract(r), o;
 					if (m) {
 						let e = t.subtract(n), r = m.translate(e.x, e.y);
-						o = h(b(new pN(r.x, r.y)), b(new pN(r.x2, r.y2)));
+						o = h(b(new vN(r.x, r.y)), b(new vN(r.x2, r.y2)));
 					} else o = h(b(n), b(t));
 					for (let e of i) {
 						let t = a[e], { zoomExtent: n } = t, r = o[e];
@@ -19064,7 +19112,7 @@ var JN = class {
 							let e = r[1] - r[0], t = n[0], i = n[1];
 							r[0] < t && (r[0] = t, r[1] = t + e), r[1] > i && (r[1] = i, r[0] = i - e);
 						}
-						let i = XN(t, r);
+						let i = tP(t, r);
 						i ? (r[0] = i[0], r[1] = i[1]) : (r[0] = n[0], r[1] = n[0]);
 					}
 					_({
@@ -19083,14 +19131,14 @@ var JN = class {
 				x(e.point) && (v(), e.stopPropagation());
 			}, !0), e.addInteractionListener("wheel", (e) => {
 				let t = e.wheelEvent;
-				if (!l || !u(fN(t)) || Math.abs(t.deltaX) >= Math.abs(t.deltaY) || !x(e.point)) return;
+				if (!l || !u(_N(t)) || Math.abs(t.deltaX) >= Math.abs(t.deltaY) || !x(e.point)) return;
 				let n = g();
 				if (!rp(n)) return;
 				let r = t.deltaMode ? 120 : 1, o = 2 ** (t.deltaY * r / 300), s = b(e.point), c = { ...n.intervals }, d = !1;
 				for (let e of i) {
 					let t = c[e];
 					if (!t || t.length !== 2) continue;
-					let n = a[e], r = XN(n, HO(n.getScale(), [...t], s[e], o, { onUnsupported: "identity" }));
+					let n = a[e], r = tP(n, WO(n.getScale(), [...t], s[e], o, { onUnsupported: "identity" }));
 					r && (r[0] !== t[0] || r[1] !== t[1]) && (c[e] = r, d = !0);
 				}
 				d && (_({
@@ -19113,26 +19161,26 @@ var JN = class {
 			if (r === null) return;
 			let i = r ? { ...r } : {};
 			if (!i.orient) {
-				for (let e of JM[n]) if (!t[e]) {
+				for (let e of $M[n]) if (!t[e]) {
 					i.orient = e;
 					break;
 				}
 				if (!i.orient) throw Error("No slots available for an axis! Perhaps a LayerView has more than two children?");
 			}
-			if (i.title ??= e.getTitle(), !JM[n].includes(i.orient)) throw Error(`Invalid axis orientation "${i.orient}" on channel "${n}"!`);
+			if (i.title ??= e.getTitle(), !$M[n].includes(i.orient)) throw Error(`Invalid axis orientation "${i.orient}" on channel "${n}"!`);
 			return i;
 		}, i = async (e, n, i) => {
 			let a = r(e, n);
 			if (a) {
 				if (t[a.orient]) throw Error(`An axis with the orient "${a.orient}" already exists!`);
-				let n = new ZM(a, e.scaleResolution.type, this.layoutParent.context, this.layoutParent, i);
+				let n = new nN(a, e.scaleResolution.type, this.layoutParent.context, this.layoutParent, i);
 				t[a.orient] = n, await n.initializeChildren();
 			}
 		}, a = async (e, t, i) => {
 			let a = r(e, t);
 			if (!a) return;
 			let o = {
-				...zM(i.getConfigScopes(), {
+				...WM(i.getConfigScopes(), {
 					channel: t,
 					orient: a.orient,
 					type: e.scaleResolution.type,
@@ -19141,7 +19189,7 @@ var JN = class {
 				...a
 			};
 			if (o.grid || o.chromGrid) {
-				let t = new AN(o, e.scaleResolution.type, this.layoutParent.context, this.layoutParent, i);
+				let t = new FN(o, e.scaleResolution.type, this.layoutParent.context, this.layoutParent, i);
 				n[a.orient] = t, await t.initializeChildren();
 			}
 		};
@@ -19155,7 +19203,7 @@ var JN = class {
 			if (!n) continue;
 			await a(n, t, e);
 		}
-		if (e instanceof MM) {
+		if (e instanceof LM) {
 			for (let t of e) for (let [e, n] of Object.entries(t.resolutions.axis)) {
 				let r = n.getAxisProps();
 				r && r.orient && await i(n, e, t);
@@ -19179,13 +19227,13 @@ var JN = class {
 			let t = this.axes[e];
 			return t ? Math.max(t.getPerpendicularSize() + (t.axisProps.offset ?? 0), 0) : 0;
 		};
-		return new WC(e("top"), e("right"), e("bottom"), e("left")).add(this.view.getOverhang());
+		return new KC(e("top"), e("right"), e("bottom"), e("left")).add(this.view.getOverhang());
 	}
 	getOverhangAndPadding() {
 		return this.getOverhang().add(this.view.getPadding());
 	}
 };
-function YN(e, t, n) {
+function eP(e, t, n) {
 	let r = e === void 0 ? !t : e;
 	if (r === !1) return;
 	if (r === !0) return { type: "wheel" };
@@ -19193,11 +19241,11 @@ function YN(e, t, n) {
 	if (i.type !== "wheel") throw Error(`Interval selection param "${n}" currently supports only "wheel" in "zoom".`);
 	return i;
 }
-function XN(e, t) {
+function tP(e, t) {
 	let n = e.getScale();
-	return hO(t, e.zoomExtent, { roundToIntegers: n.type === "index" || n.type === "locus" });
+	return _O(t, e.zoomExtent, { roundToIntegers: n.type === "index" || n.type === "locus" });
 }
-function ZN(e) {
+function nP(e) {
 	if (e?.fill || e?.fillOpacity || e?.shadowOpacity) return {
 		data: { values: [{}] },
 		mark: {
@@ -19216,7 +19264,7 @@ function ZN(e) {
 		}
 	};
 }
-function QN(e) {
+function rP(e) {
 	if (!(!e || !e.stroke || e.strokeWidth === 0 || e.strokeOpacity === 0)) return {
 		resolve: {
 			scale: {
@@ -19281,7 +19329,7 @@ function QN(e) {
 }
 //#endregion
 //#region src/utils/keyboardZoomMotion.js
-var $N = {
+var iP = {
 	pan: {
 		baseSpeed: 1,
 		maxExtraSpeed: 3,
@@ -19298,13 +19346,13 @@ var $N = {
 		holdGrowthHalfLifeMs: 600,
 		stopVelocity: .01
 	}
-}, eP = class {
+}, aP = class {
 	#e;
 	#t;
 	#n;
 	#r;
 	#i;
-	constructor(e = $N) {
+	constructor(e = iP) {
 		this.#r = e.pan, this.#i = e.zoom, this.#e = {
 			KeyW: !1,
 			KeyA: !1,
@@ -19339,7 +19387,7 @@ var $N = {
 			active: this.isActive()
 		};
 		{
-			let t = tP(this.#e.KeyD, this.#e.KeyA), n = tP(this.#e.KeyW, this.#e.KeyS), r = nP(this.#t, t, e, this.#r), i = nP(this.#n, n, e, this.#i), a = e / 1e3;
+			let t = oP(this.#e.KeyD, this.#e.KeyA), n = oP(this.#e.KeyW, this.#e.KeyS), r = sP(this.#t, t, e, this.#r), i = sP(this.#n, n, e, this.#i), a = e / 1e3;
 			return {
 				panDelta: r * a,
 				zoomDelta: i * a,
@@ -19357,23 +19405,23 @@ var $N = {
 		} else return !1;
 	}
 };
-function tP(e, t) {
+function oP(e, t) {
 	return e === t ? 0 : t ? 1 : -1;
 }
-function nP(e, t, n, r) {
+function sP(e, t, n, r) {
 	if (t !== 0) {
 		e.direction !== t && (e.holdMs = 0), e.holdMs += n;
 		let i = r.maxExtraSpeed * (1 - 2 ** (-e.holdMs / r.holdGrowthHalfLifeMs)), a = t * (r.baseSpeed + i);
-		e.velocity = rP(e.velocity, a, n, r.pressHalfLifeMs);
-	} else e.holdMs = 0, e.velocity = rP(e.velocity, 0, n, r.releaseHalfLifeMs), Math.abs(e.velocity) < r.stopVelocity && (e.velocity = 0);
+		e.velocity = cP(e.velocity, a, n, r.pressHalfLifeMs);
+	} else e.holdMs = 0, e.velocity = cP(e.velocity, 0, n, r.releaseHalfLifeMs), Math.abs(e.velocity) < r.stopVelocity && (e.velocity = 0);
 	return e.direction = t, e.velocity;
 }
-function rP(e, t, n, r) {
+function cP(e, t, n, r) {
 	return t + (e - t) * 2 ** (-n / r);
 }
 //#endregion
 //#region src/view/gridView/zoomNavigationUtils.js
-function iP(e) {
+function lP(e) {
 	let t = {
 		x: /* @__PURE__ */ new Set(),
 		y: /* @__PURE__ */ new Set()
@@ -19385,8 +19433,8 @@ function iP(e) {
 		}
 	}), t;
 }
-function aP(e) {
-	let t = iP(e).x;
+function uP(e) {
+	let t = lP(e).x;
 	if (t.size === 1) {
 		let n = t.values().next().value, r = e.getScaleResolution("x");
 		return !r || r !== n ? void 0 : n;
@@ -19394,16 +19442,16 @@ function aP(e) {
 }
 //#endregion
 //#region src/view/gridView/keyboardZoomController.js
-var oP = class {
+var dP = class {
 	#e;
 	#t;
 	#n = .5;
-	#r = new eP();
+	#r = new aP();
 	#i = !1;
 	#a = 0;
 	#o = (e) => {
 		if (!this.#i) return;
-		let t = aP(this.#t);
+		let t = uP(this.#t);
 		if (!t) {
 			this.#r.reset(), this.#i = !1, this.#a = 0;
 			return;
@@ -19411,7 +19459,7 @@ var oP = class {
 		let n = Math.max(0, e - this.#a);
 		this.#a = e;
 		let r = this.#r.step(n);
-		(r.panDelta !== 0 || r.zoomDelta !== 0) && t.zoom(2 ** r.zoomDelta, this.#n, r.panDelta) && (vN(), this.#e.animator.requestRender()), r.active ? this.#e.animator.requestTransition(this.#o) : (this.#i = !1, this.#a = 0);
+		(r.panDelta !== 0 || r.zoomDelta !== 0) && t.zoom(2 ** r.zoomDelta, this.#n, r.panDelta) && (CN(), this.#e.animator.requestRender()), r.active ? this.#e.animator.requestTransition(this.#o) : (this.#i = !1, this.#a = 0);
 	};
 	constructor({ context: e, viewRoot: t }) {
 		this.#e = e, this.#t = t, this.#s();
@@ -19428,19 +19476,19 @@ var oP = class {
 	#s() {
 		let e = this.#e.addKeyboardListener;
 		typeof e == "function" && (e("keydown", (e) => {
-			sP(e) || this.#r.isNavigationKey(e.code) && aP(this.#t) && this.#r.handleKeyDown(e.code) && (e.preventDefault(), this.#c());
+			fP(e) || this.#r.isNavigationKey(e.code) && uP(this.#t) && this.#r.handleKeyDown(e.code) && (e.preventDefault(), this.#c());
 		}), e("keyup", (e) => {
-			this.#r.isNavigationKey(e.code) && this.#r.handleKeyUp(e.code) && aP(this.#t) && (e.preventDefault(), this.#c());
+			this.#r.isNavigationKey(e.code) && this.#r.handleKeyUp(e.code) && uP(this.#t) && (e.preventDefault(), this.#c());
 		}));
 	}
 	#c() {
 		this.#i || (this.#i = !0, this.#a = performance.now(), this.#e.animator.requestTransition(this.#o));
 	}
 };
-function sP(e) {
-	return !!(e.altKey || e.ctrlKey || e.metaKey || cP(e.target));
+function fP(e) {
+	return !!(e.altKey || e.ctrlKey || e.metaKey || pP(e.target));
 }
-function cP(e) {
+function pP(e) {
 	if (!e || typeof e != "object") return !1;
 	let t = e;
 	if (t.isContentEditable) return !0;
@@ -19452,13 +19500,13 @@ function cP(e) {
 }
 //#endregion
 //#region src/view/gridView/separatorView.js
-var lP = Object.freeze({
+var mP = Object.freeze({
 	size: 1,
 	color: "#ccc",
 	opacity: 1,
 	strokeDash: [4, 4],
 	strokeCap: "butt"
-}), uP = class {
+}), hP = class {
 	#e;
 	#t;
 	#n;
@@ -19515,19 +19563,19 @@ var lP = Object.freeze({
 		c && c.domain(this.#o.y);
 	}
 	#l(e, t, n, r, i) {
-		let a = new $(fP(e), t, n, r, this.#e === "horizontal" ? i("separatorHorizontal") : i("separatorVertical"), { blockEncodingInheritance: !0 });
-		return $j(a, { skipSubtree: !0 }), a;
+		let a = new $(_P(e), t, n, r, this.#e === "horizontal" ? i("separatorHorizontal") : i("separatorVertical"), { blockEncodingInheritance: !0 });
+		return rM(a, { skipSubtree: !0 }), iM(a, { skipSubtree: !0 }), a;
 	}
 };
-function dP(e) {
+function gP(e) {
 	if (!e) return null;
-	let t = e === !0 ? { ...lP } : {
-		...lP,
+	let t = e === !0 ? { ...mP } : {
+		...mP,
 		...e
 	};
-	return t.strokeDash === lP.strokeDash && (t.strokeDash = lP.strokeDash.slice()), t;
+	return t.strokeDash === mP.strokeDash && (t.strokeDash = mP.strokeDash.slice()), t;
 }
-function fP(e) {
+function _P(e) {
 	return {
 		domainInert: !0,
 		data: { values: [] },
@@ -19571,7 +19619,7 @@ function fP(e) {
 }
 //#endregion
 //#region src/view/gridView/gridView.js
-var pP = Object.freeze({
+var vP = Object.freeze({
 	background: 0,
 	separator: 10,
 	grid: 20,
@@ -19580,7 +19628,7 @@ var pP = Object.freeze({
 	selectionRect: 80,
 	scrollbar: 90,
 	title: 100
-}), mP = 10, hP = class extends qj {
+}), yP = 10, bP = class extends Xj {
 	#e = Infinity;
 	#t = 10;
 	#n = [];
@@ -19590,8 +19638,8 @@ var pP = Object.freeze({
 	#o = null;
 	constructor(e, t, n, r, i, a, o) {
 		super(e, t, n, r, i, o), this.spec = e, this.#t = e.spacing ?? 10, this.#e = a, this.#n = [], this.wrappingFacet = !1;
-		let s = dP(e.separator);
-		if (s) for (let t of xP(e)) this.#a[t] = new uP({
+		let s = gP(e.separator);
+		if (s) for (let t of EP(e)) this.#a[t] = new hP({
 			direction: t,
 			props: s,
 			context: this.context,
@@ -19599,7 +19647,7 @@ var pP = Object.freeze({
 			dataParent: this,
 			getName: (e) => this.getNextAutoName(e)
 		});
-		this.layoutParent || (this.#o = new oP({
+		this.layoutParent || (this.#o = new dP({
 			context: this.context,
 			viewRoot: this
 		}));
@@ -19612,7 +19660,7 @@ var pP = Object.freeze({
 	}
 	insertChildViewAt(e, t) {
 		e.layoutParent ??= this;
-		let n = new JN(e, this, this.#i);
+		let n = new $N(e, this, this.#i);
 		return this.#i++, this.#n.splice(t, 0, n), this.invalidateSizeCache(), n;
 	}
 	removeChildView(e) {
@@ -19629,7 +19677,7 @@ var pP = Object.freeze({
 		return this.#n.filter((e) => e.view.isConfiguredVisible());
 	}
 	get #c() {
-		return new NM(this.#s.length, this.#e ?? Infinity);
+		return new RM(this.#s.length, this.#e ?? Infinity);
 	}
 	setChildren(e) {
 		for (let e of this.#n) this.#l(e);
@@ -19659,9 +19707,9 @@ var pP = Object.freeze({
 			if (!n) continue;
 			let r = n.getAxisProps();
 			if (!r) continue;
-			let i = new ZM({
+			let i = new nN({
 				title: n.getTitle(),
-				orient: JM[t][0],
+				orient: $M[t][0],
 				...r
 			}, n.scaleResolution.type, this.context, this, this);
 			e.push(i.initializeChildren()), this.#r[t] = i;
@@ -19681,27 +19729,27 @@ var pP = Object.freeze({
 		return this._cache(`size/directionSizes/${e}`, () => this.#c[e == "column" ? "colIndices" : "rowIndices"].map((e) => ({
 			axisBefore: n(e, 0),
 			axisAfter: n(e, 1),
-			view: IC(e.map((e) => this.#s[e].view.getViewportSize()[t]))
+			view: RC(e.map((e) => this.#s[e].view.getViewportSize()[t]))
 		})));
 	}
 	#d(e) {
 		let t = this.#u(e), n = [];
-		n.push(RC);
+		n.push(BC);
 		for (let [e, r] of t.entries()) e > 0 && n.push({
 			px: this.#t,
 			grow: 0
-		}), (e == 0 || this.wrappingFacet) && n.push(RC), n.push({
+		}), (e == 0 || this.wrappingFacet) && n.push(BC), n.push({
 			px: r.axisBefore,
 			grow: 0
 		}), n.push(r.view), n.push({
 			px: r.axisAfter,
 			grow: 0
-		}), (e == t.length - 1 || this.wrappingFacet) && n.push(RC);
+		}), (e == t.length - 1 || this.wrappingFacet) && n.push(BC);
 		return n;
 	}
 	#f(e) {
 		let t = 0, n = 0, r = e == "row" ? this.spec.height : this.spec.width;
-		if (r || r === 0) return UC(r);
+		if (r || r === 0) return GC(r);
 		let i = this.#u(e);
 		for (let [e, r] of i.entries()) e > 0 && (n += this.#t), (e == 0 || this.wrappingFacet) && (n += 0), n += r.axisBefore, n += r.view.px ?? 0, t += r.view.grow ?? 0, n += r.axisAfter, (e == i.length - 1 || this.wrappingFacet) && (n += 0);
 		return {
@@ -19717,24 +19765,24 @@ var pP = Object.freeze({
 	}
 	#m() {
 		let e = this.#u("column"), t = this.#u("row");
-		return !e.length || !t.length ? WC.zero() : new WC(t.at(0).axisBefore, e.at(-1).axisAfter, t.at(-1).axisAfter, e.at(0).axisBefore);
+		return !e.length || !t.length ? KC.zero() : new KC(t.at(0).axisBefore, e.at(-1).axisAfter, t.at(-1).axisAfter, e.at(0).axisBefore);
 	}
 	#h() {
 		let e = (e) => {
-			let t = YM[e], n = this.#r[t];
+			let t = eN[e], n = this.#r[t];
 			return n?.axisProps.orient === e ? Math.max(n.getPerpendicularSize() + (n.axisProps.offset ?? 0), 0) : 0;
 		};
-		return new WC(e("top"), e("right"), e("bottom"), e("left"));
+		return new KC(e("top"), e("right"), e("bottom"), e("left"));
 	}
 	getSize() {
-		return this._cache("size", () => new LC(this.#f("column"), this.#f("row")).addPadding(this.#h()));
+		return this._cache("size", () => new zC(this.#f("column"), this.#f("row")).addPadding(this.#h()));
 	}
 	render(e, t, n = {}) {
 		if (super.render(e, t, n), !this.isConfiguredVisible()) return;
 		this.layoutParent || (t = t.shrink(this.getPadding())), t = t.shrink(this.#h()), e.pushView(this, t);
-		let r = e.getDevicePixelRatio(), i = { devicePixelRatio: r }, a = FC(this.#d("column"), t.width, i), o = FC(this.#d("row"), t.height, i), s = new NM(this.#s.length, this.#e ?? Infinity), c = (e) => Math.round(e * r) / r, l = [];
+		let r = e.getDevicePixelRatio(), i = { devicePixelRatio: r }, a = LC(this.#d("column"), t.width, i), o = LC(this.#d("row"), t.height, i), s = new RM(this.#s.length, this.#e ?? Infinity), c = (e) => Math.round(e * r) / r, l = [];
 		for (let [e, r] of this.#s.entries()) {
-			let { view: i, axes: u, gridLines: d, background: f, backgroundStroke: p, title: m, selectionRect: h } = r, [g, _] = s.getCellCoords(e), v = a[this.#p("column", g)], y = o[this.#p("row", _)], b = i.getViewportSize(), ee = i.getSize(), x = i.getOverhang(), te = v.location - x.left, S = y.location - x.top, ne = (e, t) => (e[t].grow ? (t == "width" ? v : y).size : e[t].px) + x[t], re = ne(b, "width"), ie = ne(b, "height"), ae = ne(ee, "width"), oe = ne(ee, "height"), se = r.scrollbars.horizontal, ce = r.scrollbars.vertical, le = se ? () => c(se.viewportOffset) : () => 0, ue = ce ? () => c(ce.viewportOffset) : () => 0, de = new FM(() => t.x + te, () => t.y + S, () => re, () => ie), fe = i.isScrollable(), pe = fe ? new FM(() => t.x + te - le(), () => t.y + S - ue(), () => ae, () => oe) : de;
+			let { view: i, axes: u, gridLines: d, background: f, backgroundStroke: p, title: m, selectionRect: h } = r, [g, _] = s.getCellCoords(e), v = a[this.#p("column", g)], y = o[this.#p("row", _)], b = i.getViewportSize(), ee = i.getSize(), x = i.getOverhang(), te = v.location - x.left, S = y.location - x.top, ne = (e, t) => (e[t].grow ? (t == "width" ? v : y).size : e[t].px) + x[t], re = ne(b, "width"), ie = ne(b, "height"), ae = ne(ee, "width"), oe = ne(ee, "height"), se = r.scrollbars.horizontal, ce = r.scrollbars.vertical, le = se ? () => c(se.viewportOffset) : () => 0, ue = ce ? () => c(ce.viewportOffset) : () => 0, de = new BM(() => t.x + te, () => t.y + S, () => re, () => ie), fe = i.isScrollable(), pe = fe ? new BM(() => t.x + te - le(), () => t.y + S - ue(), () => ae, () => oe) : de;
 			r.coords = de;
 			let me = n.clipRect ? de.intersect(n.clipRect) : de;
 			l.push({
@@ -19767,26 +19815,26 @@ var pP = Object.freeze({
 			e.sort((e, t) => e.zindex - t.zindex || e.order - t.order || e.sequence - t.sequence);
 			for (let t of e) t.render();
 		};
-		for (let t of l) t.background && h(t.gridChild.backgroundZindex, pP.background, () => t.background?.render(e, t.clippedChildCoords, {
+		for (let t of l) t.background && h(t.gridChild.backgroundZindex, vP.background, () => t.background?.render(e, t.clippedChildCoords, {
 			...n,
 			clipRect: void 0
 		}));
 		let _ = this.#a.vertical;
-		_ && (_.update(a, s.nCols, t, (e, t) => this.#p(e, t), this.wrappingFacet, u), h(_.getZindex(), pP.separator, () => _.render(e, t, n)));
+		_ && (_.update(a, s.nCols, t, (e, t) => this.#p(e, t), this.wrappingFacet, u), h(_.getZindex(), vP.separator, () => _.render(e, t, n)));
 		let v = this.#a.horizontal;
-		v && (v.update(o, s.nRows, t, (e, t) => this.#p(e, t), this.wrappingFacet, u), h(v.getZindex(), pP.separator, () => v.render(e, t, n)));
+		v && (v.update(o, s.nRows, t, (e, t) => this.#p(e, t), this.wrappingFacet, u), h(v.getZindex(), vP.separator, () => v.render(e, t, n)));
 		for (let r of l) {
-			let { view: i, axes: a, gridLines: o, backgroundStroke: c, title: l, selectionRect: u, viewportCoords: d, viewCoords: f, clippedChildCoords: m, viewWidth: g, viewHeight: _, scrollable: v, gridChild: y, col: b, row: ee } = r, x = vP(i) || v;
-			for (let t of Object.values(o)) h(t.axisProps.zindex ?? 0, pP.grid, () => t.render(e, d, n));
+			let { view: i, axes: a, gridLines: o, backgroundStroke: c, title: l, selectionRect: u, viewportCoords: d, viewCoords: f, clippedChildCoords: m, viewWidth: g, viewHeight: _, scrollable: v, gridChild: y, col: b, row: ee } = r, x = CP(i) || v;
+			for (let t of Object.values(o)) h(t.axisProps.zindex ?? 0, vP.grid, () => t.render(e, d, n));
 			p.push(() => i.render(e, f, x ? {
 				...n,
 				clipRect: m
-			} : n)), c && h(CP(y.backgroundStrokeZindex, x), pP.backgroundStroke, () => c?.render(e, m, {
+			} : n)), c && h(OP(y.backgroundStrokeZindex, x), vP.backgroundStroke, () => c?.render(e, m, {
 				...n,
 				clipRect: void 0
 			}));
 			for (let [t, r] of Object.entries(a)) {
-				let i = t == "left" || t == "right" ? "vertical" : "horizontal", a = y.scrollbars[i], o = wP(a ? d.modify(i == "vertical" ? {
+				let i = t == "left" || t == "right" ? "vertical" : "horizontal", a = y.scrollbars[i], o = kP(a ? d.modify(i == "vertical" ? {
 					y: () => f.y,
 					height: _
 				} : {
@@ -19799,43 +19847,43 @@ var pP = Object.freeze({
 				} : {
 					y: -1e5,
 					height: 2e5
-				}) : void 0)), h(SP(r.axisProps.zindex, x), pP.axis, () => r.render(e, o, {
+				}) : void 0)), h(DP(r.axisProps.zindex, x), vP.axis, () => r.render(e, o, {
 					...n,
 					clipRect: s
 				}));
 			}
 			for (let t of Object.values(this.#r)) {
 				let r = t.axisProps.orient;
-				(r == "left" && b == 0 || r == "right" && b == s.nCols - 1 || r == "top" && ee == 0 || r == "bottom" && ee == s.nRows - 1) && h(SP(t.axisProps.zindex, x), pP.axis, () => t.render(e, wP(d.shrink(y.view.getOverhang()), r, t), n));
+				(r == "left" && b == 0 || r == "right" && b == s.nCols - 1 || r == "top" && ee == 0 || r == "bottom" && ee == s.nRows - 1) && h(DP(t.axisProps.zindex, x), vP.axis, () => t.render(e, kP(d.shrink(y.view.getOverhang()), r, t), n));
 			}
-			u && h(u.getZindex(), pP.selectionRect, () => u?.render(e, f, n));
-			for (let r of Object.values(y.scrollbars)) h(1, pP.scrollbar, () => {
+			u && h(u.getZindex(), vP.selectionRect, () => u?.render(e, f, n));
+			for (let r of Object.values(y.scrollbars)) h(1, vP.scrollbar, () => {
 				r.updateScrollbar(d, f), r.render(e, t, n);
 			});
-			l && h(y.titleZindex, pP.title, () => l?.render(e, d, n));
+			l && h(y.titleZindex, vP.title, () => l?.render(e, d, n));
 		}
 		g(d);
 		for (let e of p) e();
 		g(f), e.popView(this);
 	}
 	propagateInteraction(e) {
-		oN(this, e, () => {
+		dN(this, e, () => {
 			let t = this.#s.find((t) => t.coords.containsPoint(e.point.x, e.point.y)), n = t?.view, r = t ? void 0 : this.#g(e.point);
 			if (e.type === "wheelclaimprobe") {
 				if (!n) {
 					r && e.claimWheel();
 					return;
 				}
-				bP(n) ? yP(n) && e.claimWheel() : n.propagateInteraction(e);
+				TP(n) ? wP(n) && e.claimWheel() : n.propagateInteraction(e);
 				return;
 			}
 			this.#o?.handlePointerEvent(t, e);
-			for (let n of Object.values(t?.scrollbars ?? {})) if (sN(e, () => n.coords.containsPoint(e.point.x, e.point.y), () => n.propagateInteraction(e)), e.stopped) return;
+			for (let n of Object.values(t?.scrollbars ?? {})) if (fN(e, () => n.coords.containsPoint(e.point.x, e.point.y), () => n.propagateInteraction(e)), e.stopped) return;
 			if (!n) {
 				r && this.#y(e, r);
 				return;
 			}
-			sN(e, () => !0, () => n.propagateInteraction(e), bP(n) ? () => xN(e, t.coords, (e) => this.#b(t.coords, t.view, e), this.context.getCurrentHover(), this.context.animator) : void 0);
+			fN(e, () => !0, () => n.propagateInteraction(e), TP(n) ? () => EN(e, t.coords, (e) => this.#b(t.coords, t.view, e), this.context.getCurrentHover(), this.context.animator) : void 0);
 		});
 	}
 	#g(e) {
@@ -19846,12 +19894,12 @@ var pP = Object.freeze({
 		let r = this.#v(t);
 		if (r && r.containsPoint(e.x, e.y)) return {
 			coords: r,
-			zoomableResolutions: gP(t, n)
+			zoomableResolutions: xP(t, n)
 		};
 	}
 	#_() {
-		if (kM(this.spec)) return "x";
-		if (AM(this.spec)) return "y";
+		if (PM(this.spec)) return "x";
+		if (FM(this.spec)) return "y";
 	}
 	#v(e) {
 		let t = this.#s[0];
@@ -19867,26 +19915,26 @@ var pP = Object.freeze({
 			let r = t.axisProps.orient;
 			e == "x" && (r == "top" || r == "bottom") ? (a = Math.min(a, n.y), s = Math.max(s, n.y2)) : e == "y" && (r == "left" || r == "right") && (i = Math.min(i, n.x), o = Math.max(o, n.x2));
 		}
-		if (!(i >= o || a >= s)) return FM.create(i, a, o - i, s - a);
+		if (!(i >= o || a >= s)) return BM.create(i, a, o - i, s - a);
 	}
 	#y(e, t) {
-		e.target = this, xN(e, t.coords, (e) => _P(t.coords, e, t.zoomableResolutions, this.context.animator), this.context.getCurrentHover(), this.context.animator);
+		e.target = this, EN(e, t.coords, (e) => SP(t.coords, e, t.zoomableResolutions, this.context.animator), this.context.getCurrentHover(), this.context.animator);
 	}
 	#b(e, t, n) {
-		return _P(e, n, iP(t), this.context.animator);
+		return SP(e, n, lP(t), this.context.animator);
 	}
 	getDefaultResolution(e, t) {
 		return "independent";
 	}
 };
-function gP(e, t) {
+function xP(e, t) {
 	let n = {
 		x: /* @__PURE__ */ new Set(),
 		y: /* @__PURE__ */ new Set()
 	};
 	return n[e].add(t), n;
 }
-function _P(e, t, n, r) {
+function SP(e, t, n, r) {
 	let i = !1, a = !1, o = e.normalizePoint(t.x, t.y), s = e.normalizePoint(t.x + t.xDelta, t.y + t.yDelta), c = {
 		x: s.x - o.x,
 		y: s.y - o.y
@@ -19897,29 +19945,29 @@ function _P(e, t, n, r) {
 	}
 	return a && r.requestRender(), i;
 }
-function vP(e) {
+function CP(e) {
 	let t = !0;
 	return e.visit((e) => {
 		e instanceof $ && (t &&= e.mark.properties.clip === !0);
 	}), t;
 }
-function yP(e) {
-	let t = iP(e);
+function wP(e) {
+	let t = lP(e);
 	return t.x.size > 0 || t.y.size > 0;
 }
-function bP(e) {
-	return e instanceof $ || e instanceof MM;
+function TP(e) {
+	return e instanceof $ || e instanceof LM;
 }
-function xP(e) {
+function EP(e) {
 	return "vconcat" in e ? ["horizontal"] : "hconcat" in e ? ["vertical"] : ["horizontal", "vertical"];
 }
-function SP(e, t) {
-	return e ?? (t ? mP : 0);
+function DP(e, t) {
+	return e ?? (t ? yP : 0);
 }
-function CP(e, t) {
-	return e ?? (t ? mP : 0);
+function OP(e, t) {
+	return e ?? (t ? yP : 0);
 }
-function wP(e, t, n) {
+function kP(e, t, n) {
 	let r = n.axisProps, i = n.getPerpendicularSize();
 	if (t == "bottom") return e.translate(0, e.height + r.offset).modify({ height: i });
 	if (t == "top") return e.translate(0, -i - r.offset).modify({ height: i });
@@ -19928,12 +19976,12 @@ function wP(e, t, n) {
 }
 //#endregion
 //#region src/view/concatView.js
-var TP = class extends hP {
+var AP = class extends bP {
 	constructor(e, t, n, r, i, a) {
-		super(e, t, n, r, i, jM(e) ? e.columns : kM(e) ? 1 : Infinity, a), this.spec = e;
+		super(e, t, n, r, i, IM(e) ? e.columns : PM(e) ? 1 : Infinity, a), this.spec = e;
 	}
 	async initializeChildren() {
-		let e = this.spec, t = jM(e) ? e.concat : kM(e) ? e.vconcat : e.hconcat;
+		let e = this.spec, t = IM(e) ? e.concat : PM(e) ? e.vconcat : e.hconcat;
 		this.setChildren(await Promise.all(t.map((e) => this.context.createOrImportView(e, this, this, this.getNextAutoName("grid"))))), await this.createAxes();
 	}
 	async addChildSpec(e, t) {
@@ -19943,11 +19991,11 @@ var TP = class extends hP {
 		await this.#t().removeChildAt(e);
 	}
 	getDefaultResolution(e, t) {
-		return t == "axis" ? "independent" : kM(this.spec) && e === "x" || AM(this.spec) && e === "y" ? "shared" : "independent";
+		return t == "axis" ? "independent" : PM(this.spec) && e === "x" || FM(this.spec) && e === "y" ? "shared" : "independent";
 	}
 	#e() {
 		let e = this.spec, t;
-		return t = jM(e) ? e.concat : kM(e) ? e.vconcat : e.hconcat, {
+		return t = IM(e) ? e.concat : PM(e) ? e.vconcat : e.hconcat, {
 			specs: t,
 			insertAt: (e, n) => {
 				t.splice(e, 0, n);
@@ -19958,7 +20006,7 @@ var TP = class extends hP {
 		};
 	}
 	#t() {
-		return new vM(this, {
+		return new CM(this, {
 			getChildSpecs: this.#e.bind(this),
 			insertView: (e, t) => this.insertChildViewAt(e, t),
 			removeView: (e) => super.removeChildAt(e),
@@ -19974,19 +20022,19 @@ var TP = class extends hP {
 };
 //#endregion
 //#region src/config/resolveConfig.js
-function EP({ defaultConfig: e, builtInTheme: t, theme: n }) {
-	return US([
+function jP({ defaultConfig: e, builtInTheme: t, theme: n }) {
+	return GS([
 		e,
 		t,
 		n
 	]);
 }
-function DP(e, t) {
-	if (!(!e && !t)) return US([e, t]);
+function MP(e, t) {
+	if (!(!e && !t)) return GS([e, t]);
 }
 //#endregion
 //#region src/view/viewFactory.js
-var OP = "viewRoot", kP = class {
+var NP = "viewRoot", PP = class {
 	#e = /* @__PURE__ */ new Map();
 	constructor(e = {}) {
 		this.options = {
@@ -19995,14 +20043,14 @@ var OP = "viewRoot", kP = class {
 			...e
 		};
 		let t = (e) => (t, n, r, i, a, o) => new e(t, n, r, i, a, o);
-		this.addViewType(DM, t(MM)), this.addViewType(bM, ((e, t, n, r, i, a) => new MM(xM(e), t, n, r, i, a))), this.addViewType(EM, t($)), this.addViewType(kM, t(TP)), this.addViewType(AM, t(TP)), this.addViewType(jM, t(TP));
+		this.addViewType(MM, t(LM)), this.addViewType(TM, ((e, t, n, r, i, a) => new LM(EM(e), t, n, r, i, a))), this.addViewType(jM, t($)), this.addViewType(PM, t(AP)), this.addViewType(FM, t(AP)), this.addViewType(IM, t(AP));
 	}
 	addViewType(e, t) {
 		this.#e.set(e, t);
 	}
 	createView(e, t, n, r, i, a) {
 		for (let [o, s] of this.#e) if (o(e)) return s(e, t, n, r, i, a);
-		throw MP(e) ? Error("SampleView is not supported by the @genome-spy/core package. Use @genome-spy/app instead!") : Error("Invalid spec, cannot figure out the view type from the properties: " + JSON.stringify([...Object.keys(e)]));
+		throw LP(e) ? Error("SampleView is not supported by the @genome-spy/core package. Use @genome-spy/app instead!") : Error("Invalid spec, cannot figure out the view type from the properties: " + JSON.stringify([...Object.keys(e)]));
 	}
 	isViewSpec(e) {
 		let t = [...this.#e.keys()].filter((t) => t(e));
@@ -20010,17 +20058,17 @@ var OP = "viewRoot", kP = class {
 		return t.length == 1;
 	}
 	async createOrImportView(e, t, n, r, i, a, o) {
-		let s, c = OM(e) ? e.name ?? null : void 0;
-		if (OM(e)) {
+		let s, c = NM(e) ? e.name ?? null : void 0;
+		if (NM(e)) {
 			let i;
-			if ("url" in e.import) if (this.options.allowImport) i = await vk(e, r.getBaseUrl(), t);
-			else throw new RS("Importing views is not allowed!", n);
-			else if ("template" in e.import) i = AP(e.import.template, r);
+			if ("url" in e.import) if (this.options.allowImport) i = await xk(e, r.getBaseUrl(), t);
+			else throw new BS("Importing views is not allowed!", n);
+			else if ("template" in e.import) i = FP(e.import.template, r);
 			else throw Error("Invalid import: " + JSON.stringify(e));
-			a?.(i), jP(i, e), s = i;
+			a?.(i), IP(i, e), s = i;
 		} else s = e;
 		let l = (e) => e?.params?.some((e) => sp(e) && ep(e.select).type == "interval"), u = !1;
-		if (!r && this.options.wrapRoot && (EM(s) || DM(s) || bM(s) || l(s)) && i === "viewRoot") {
+		if (!r && this.options.wrapRoot && (jM(s) || MM(s) || TM(s) || l(s)) && i === "viewRoot") {
 			let e = { ...s };
 			delete e.theme, s = {
 				name: "implicitRoot",
@@ -20028,17 +20076,17 @@ var OP = "viewRoot", kP = class {
 			}, u = !0;
 		}
 		let d = this.createView(s, t, n, r, i, o);
-		return c !== void 0 && Qj(d, c), u && $j(d), d instanceof qj && await d.initializeChildren(), d.registerStepSizeInvalidation(), d;
+		return c !== void 0 && nM(d, c), u && rM(d), d instanceof Xj && await d.initializeChildren(), d.registerStepSizeInvalidation(), d;
 	}
 };
-function AP(e, t) {
+function FP(e, t) {
 	let n = t.spec?.templates?.[e];
 	if (n) return structuredClone(n);
-	if (t.dataParent) return AP(e, t.dataParent);
+	if (t.dataParent) return FP(e, t.dataParent);
 	throw Error(`Cannot find template "${e}" in current view or its ancestors!`);
 }
-function jP(e, t) {
-	t.name != null && (e.name = t.name), t.visible != null && (e.visible = t.visible), e.config = DP(t.config, e.config);
+function IP(e, t) {
+	t.name != null && (e.name = t.name), t.visible != null && (e.visible = t.visible), e.config = MP(t.config, e.config);
 	let n = E(t.params) ? t.params : D(t.params) ? Object.entries(t.params).map(([e, t]) => ({
 		name: e,
 		value: t
@@ -20052,14 +20100,14 @@ function jP(e, t) {
 		for (let t of n) e.params.some((e) => e.name == t.name) || e.params.push(t);
 	}
 }
-function MP(e) {
+function LP(e) {
 	return "samples" in e && D(e.samples) && "spec" in e && D(e.spec);
 }
 //#endregion
 //#region src/utils/inertia.js
-var NP = class {
+var RP = class {
 	constructor(e, t) {
-		this.animator = e, this.disabled = !!t, this.maxDistance = 500, this.callback = null, this.targetValue = 0, this.lastValue = 0, this.smoother = ij(e, (e) => {
+		this.animator = e, this.disabled = !!t, this.maxDistance = 500, this.callback = null, this.targetValue = 0, this.lastValue = 0, this.smoother = sj(e, (e) => {
 			let t = e.x - this.lastValue;
 			this.lastValue = e.x, this.callback?.(t);
 		}, 40, .1, { x: 0 });
@@ -20073,11 +20121,11 @@ var NP = class {
 			return;
 		}
 		this.callback = t;
-		let n = hS(this.targetValue + e - this.lastValue, -this.maxDistance, this.maxDistance);
+		let n = _S(this.targetValue + e - this.lastValue, -this.maxDistance, this.maxDistance);
 		this.targetValue = this.lastValue + n, this.smoother({ x: this.targetValue });
 	}
 };
-function PP(e) {
+function zP(e) {
 	let t = {}, n = [
 		"string",
 		"number",
@@ -20095,7 +20143,7 @@ function PP(e) {
 }
 //#endregion
 //#region src/utils/interaction.js
-var FP = class {
+var BP = class {
 	#e;
 	#t;
 	constructor(e, t, n) {
@@ -20118,7 +20166,7 @@ var FP = class {
 		this.wheelClaimed = !0;
 	}
 	setWheelDeltas(e, t) {
-		if (!uN(this.uiEvent)) throw Error("Not a WheelEvent!");
+		if (!hN(this.uiEvent)) throw Error("Not a WheelEvent!");
 		this.#i = {
 			deltaX: e,
 			deltaY: t
@@ -20131,17 +20179,17 @@ var FP = class {
 		this.#r = e;
 	}
 	get proxiedMouseEvent() {
-		return this.#e ||= fN(this.mouseEvent), this.#e;
+		return this.#e ||= _N(this.mouseEvent), this.#e;
 	}
 	get mouseEvent() {
 		if (this.uiEvent instanceof MouseEvent) return this.uiEvent;
 		throw Error("Not a MouseEvent!");
 	}
 	get wheelEvent() {
-		if (!uN(this.uiEvent)) throw Error("Not a WheelEvent!");
-		return this.#i ? (this.#t ||= dN(this.uiEvent, this.#i.deltaX, this.#i.deltaY), this.#t) : this.uiEvent;
+		if (!hN(this.uiEvent)) throw Error("Not a WheelEvent!");
+		return this.#i ? (this.#t ||= gN(this.uiEvent, this.#i.deltaX, this.#i.deltaY), this.#t) : this.uiEvent;
 	}
-}, IP = class {
+}, VP = class {
 	#e;
 	#t;
 	#n;
@@ -20151,7 +20199,7 @@ var FP = class {
 	}
 	dispatch(e, t) {
 		this.#t = e;
-		let n = new FP(e, t);
+		let n = new BP(e, t);
 		return this.#e.propagateInteraction(n), this.#n = n.target, n.type === "mousemove" && this.#i(n), n;
 	}
 	handlePointerLeave(e) {
@@ -20159,7 +20207,7 @@ var FP = class {
 			this.#r = [], this.#n = void 0;
 			return;
 		}
-		let t = new FP(this.#t, e, "mouseleave");
+		let t = new BP(this.#t, e, "mouseleave");
 		this.#a(t, this.#r, void 0), this.#r = [], this.#n = void 0;
 	}
 	getCurrentTarget() {
@@ -20172,13 +20220,13 @@ var FP = class {
 	}
 	#a(e, t, n) {
 		for (let r = t.length - 1; r >= 0; r--) {
-			let i = new FP(e.point, e.uiEvent, "mouseleave"), a = t[r];
+			let i = new BP(e.point, e.uiEvent, "mouseleave"), a = t[r];
 			if (i.target = a, i.currentTarget = a, i.relatedTarget = n, this.#c(a, i), i.stopped) return;
 		}
 	}
 	#o(e, t, n) {
 		for (let r of t) {
-			let t = new FP(e.point, e.uiEvent, "mouseenter");
+			let t = new BP(e.point, e.uiEvent, "mouseenter");
 			if (t.target = r, t.currentTarget = r, t.relatedTarget = n, this.#c(r, t), t.stopped) return;
 		}
 	}
@@ -20188,7 +20236,7 @@ var FP = class {
 	#c(e, t) {
 		e.handleInteraction(t, !0), !t.stopped && e.handleInteraction(t, !1);
 	}
-}, LP = class {
+}, HP = class {
 	#e;
 	#t;
 	#n;
@@ -20196,13 +20244,13 @@ var FP = class {
 		this.#e = e;
 	}
 	update({ target: e, hover: t }) {
-		this.#r(RP(e, t));
+		this.#r(UP(e, t));
 	}
 	clear() {
 		this.#r(void 0);
 	}
 	#r(e) {
-		if (zP(this.#t, e)) {
+		if (WP(this.#t, e)) {
 			this.#i();
 			return;
 		}
@@ -20215,7 +20263,7 @@ var FP = class {
 		this.#e.style.cursor = typeof e == "string" ? e : "";
 	}
 };
-function RP(e, t) {
+function UP(e, t) {
 	let n = t?.mark, r = n?.getCursorSpec?.();
 	if (r !== void 0) return {
 		owner: n,
@@ -20233,12 +20281,12 @@ function RP(e, t) {
 		};
 	}
 }
-function zP(e, t) {
+function WP(e, t) {
 	return !e || !t ? e === t : e.owner === t.owner && e.raw === t.raw;
 }
 //#endregion
 //#region src/genomeSpy/interactionController.js
-var BP = class {
+var GP = class {
 	#e;
 	#t;
 	#n;
@@ -20259,7 +20307,7 @@ var BP = class {
 	#_ = 0;
 	#v = !1;
 	constructor({ viewRoot: e, glHelper: t, tooltip: n, animator: r, emitEvent: i, tooltipHandlers: a, renderPickingFramebuffer: o, getDevicePixelRatio: s }) {
-		this.#e = e, this.#t = t, this.#n = n, this.#r = r, this.#i = i, this.#a = a, this.#o = o, this.#s = s, this.#c = new IP({ viewRoot: e }), this.#l = new LP({ canvas: t.canvas }), this.#u = void 0, this.#d = new NP(this.#r), this.#f = void 0, this.#p = void 0;
+		this.#e = e, this.#t = t, this.#n = n, this.#r = r, this.#i = i, this.#a = a, this.#o = o, this.#s = s, this.#c = new VP({ viewRoot: e }), this.#l = new HP({ canvas: t.canvas }), this.#u = void 0, this.#d = new RP(this.#r), this.#f = void 0, this.#p = void 0;
 	}
 	getCurrentHover() {
 		return this.#u;
@@ -20301,17 +20349,17 @@ var BP = class {
 			if (e instanceof MouseEvent) {
 				if (e.type !== "contextmenu" && this.#C()) return;
 				let o = this.#y(e);
-				this.#p = o, e.type == "mousemove" && !a && this.#_ === 0 && (this.#g = !1, this.#n.handleMouseMove(e), this.#m = !1, e.buttons == 0 && !yN() && (this.#o(), this.#w(o.x, o.y)));
+				this.#p = o, e.type == "mousemove" && !a && this.#_ === 0 && (this.#g = !1, this.#n.handleMouseMove(e), this.#m = !1, e.buttons == 0 && !wN() && (this.#o(), this.#w(o.x, o.y)));
 				let s = (e) => {
 					i(o, e);
 				};
-				if (e.type != "wheel" && this.#d.cancel(), (e.type == "mousedown" || e.type == "mouseup") && !yN()) this.#o();
+				if (e.type != "wheel" && this.#d.cancel(), (e.type == "mousedown" || e.type == "mouseup") && !wN()) this.#o();
 				else if (e.type == "wheel") {
 					t = r, this.#m = !1;
 					let n = e;
 					if (Math.abs(n.deltaX) > Math.abs(n.deltaY)) this.#u = null, this.#d.cancel();
 					else if (i(o, { type: "wheelclaimprobe" }).wheelClaimed) {
-						let e = PP(n);
+						let e = zP(n);
 						this.#d.setMomentum(n.deltaY * (n.deltaMode ? 80 : 1), (t) => {
 							s(new WheelEvent("wheel", {
 								...e,
@@ -20336,14 +20384,14 @@ var BP = class {
 					};
 					this.#i("click", t);
 				}
-				if (e.type != "click" || this.#f?.subtract(pN.fromMouseEvent(e)).length < 3) {
+				if (e.type != "click" || this.#f?.subtract(vN.fromMouseEvent(e)).length < 3) {
 					let t = i(o, e);
 					return e.type == "dblclick" && this.#_ === 0 && this.#b(o) && this.#S(), t;
 				}
 			}
 		};
 		e.addEventListener("mousedown", (e) => {
-			this.#f = pN.fromMouseEvent(e), this.#h = !1;
+			this.#f = vN.fromMouseEvent(e), this.#h = !1;
 			let t = e.shiftKey || e.ctrlKey || e.metaKey;
 			this.#n.sticky ? (this.#n.sticky = !1, this.#g = !0, this.#n.clear(), n = !0) : n = !1;
 			let r = () => {
@@ -20375,7 +20423,7 @@ var BP = class {
 		].forEach((t) => e.addEventListener(t, a));
 		let o = (t, n) => {
 			let r = e.getBoundingClientRect();
-			return new pN(t - r.left - e.clientLeft, n - r.top - e.clientTop);
+			return new vN(t - r.left - e.clientLeft, n - r.top - e.clientTop);
 		}, s = (e) => {
 			if (e.length <= 0) return;
 			let t = e[0];
@@ -20390,7 +20438,7 @@ var BP = class {
 				pointerCount: 2,
 				centerX: (t.clientX + n.clientX) / 2,
 				centerY: (t.clientY + n.clientY) / 2,
-				distance: VP(t, n)
+				distance: KP(t, n)
 			};
 		}, c = (e, t, n, r, a, s, c) => {
 			i(o(e, t), {
@@ -20412,7 +20460,7 @@ var BP = class {
 				r = t;
 				return;
 			}
-			let n = t.centerX - r.centerX, i = t.centerY - r.centerY, a = t.pointerCount === 2 ? HP(r.distance, t.distance) : 0;
+			let n = t.centerX - r.centerX, i = t.centerY - r.centerY, a = t.pointerCount === 2 ? qP(r.distance, t.distance) : 0;
 			(n !== 0 || i !== 0 || a !== 0) && Number.isFinite(n) && Number.isFinite(i) && Number.isFinite(a) && c(r.centerX, r.centerY, "move", t.pointerCount, n, i, a), r = t;
 		}, u = (e) => {
 			e.preventDefault(), this.#m = !1, r && e.touches.length === 0 && c(r.centerX, r.centerY, "end", r.pointerCount, 0, 0, 0), r = s(e.touches);
@@ -20429,14 +20477,14 @@ var BP = class {
 	}
 	#y(e) {
 		let t = this.#t.canvas, n = t.getBoundingClientRect();
-		return new pN(e.clientX - n.left - t.clientLeft, e.clientY - n.top - t.clientTop);
+		return new vN(e.clientX - n.left - t.clientLeft, e.clientY - n.top - t.clientTop);
 	}
 	#b(e) {
 		let t = this.#t.canvas;
 		return e.x >= 0 && e.y >= 0 && e.x <= t.clientWidth && e.y <= t.clientHeight;
 	}
 	#x(e) {
-		yN() || (this.#o(), this.#w(e.x, e.y));
+		wN() || (this.#o(), this.#w(e.x, e.y));
 	}
 	#S() {
 		this.#v || (this.#v = !0, this.#r.requestRender(), window.requestAnimationFrame(() => {
@@ -20456,7 +20504,7 @@ var BP = class {
 		return typeof document < "u" && !!document.body && document.body.classList.contains("gs-freeze-interaction");
 	}
 	#w(e, t) {
-		let n = this.#s(), r = Sx(this.#t.gl, this.#t._pickingBufferInfo, e * n, t * n), i = r[0] | r[1] << 8 | r[2] << 16 | r[3] << 24;
+		let n = this.#s(), r = wx(this.#t.gl, this.#t._pickingBufferInfo, e * n, t * n), i = r[0] | r[1] << 8 | r[2] << 16 | r[3] << 24;
 		if (i == 0) {
 			this.#u = null;
 			return;
@@ -20471,7 +20519,7 @@ var BP = class {
 						uniqueId: i
 					});
 				}
-				if (this.#u) return ME;
+				if (this.#u) return PE;
 			}
 		}), this.#u) {
 			let e = this.#u.mark;
@@ -20481,7 +20529,7 @@ var BP = class {
 				if (n !== null && n !== !1) {
 					let r = n?.handler ?? "default", i = this.#a[r];
 					if (!i) throw Error("No such tooltip handler: " + r);
-					let a = kj(t, e, n?.params);
+					let a = Mj(t, e, n?.params);
 					return i(t, e, n?.params, a);
 				}
 			});
@@ -20492,16 +20540,16 @@ var BP = class {
 		else throw Error("Tooltip has already been updated! Duplicate event handler?");
 	}
 };
-function VP(e, t) {
+function KP(e, t) {
 	let n = t.clientX - e.clientX, r = t.clientY - e.clientY;
 	return Math.hypot(n, r);
 }
-function HP(e, t) {
+function qP(e, t) {
 	return e <= 0 || t <= 0 ? 0 : Math.log2(e / t);
 }
 //#endregion
 //#region src/view/renderingContext/viewRenderingContext.js
-var UP = class {
+var JP = class {
 	constructor(e) {
 		this.globalOptions = e;
 	}
@@ -20511,7 +20559,7 @@ var UP = class {
 	getDevicePixelRatio() {
 		return 1;
 	}
-}, WP = class extends UP {
+}, YP = class extends JP {
 	#e = [
 		0,
 		0,
@@ -20585,7 +20633,7 @@ var UP = class {
 			}
 		}
 	}
-}, GP = class extends UP {
+}, XP = class extends JP {
 	constructor(...e) {
 		super({}), this.contexts = e;
 	}
@@ -20598,7 +20646,7 @@ var UP = class {
 	renderMark(e, t) {
 		for (let n of this.contexts) n.renderMark(e, t);
 	}
-}, KP = class {
+}, ZP = class {
 	#e;
 	#t;
 	#n;
@@ -20624,13 +20672,13 @@ var UP = class {
 			canvasSize: t,
 			devicePixelRatio: this.#t.getDevicePixelRatio(t)
 		};
-		this.#a = new WP({ picking: !1 }, {
+		this.#a = new YP({ picking: !1 }, {
 			...n,
 			clearColor: this.#n()
-		}), this.#o = new WP({ picking: !0 }, {
+		}), this.#o = new YP({ picking: !0 }, {
 			...n,
 			framebufferInfo: this.#t._pickingBufferInfo
-		}), e.render(new GP(this.#a, this.#o), FM.create(0, 0, t.width, t.height)), this.#i(), this.#r("layoutComputed");
+		}), e.render(new XP(this.#a, this.#o), BM.create(0, 0, t.width, t.height)), this.#i(), this.#r("layoutComputed");
 	}
 	renderAll() {
 		this.#a?.render(), this.#s = !0;
@@ -20641,7 +20689,7 @@ var UP = class {
 };
 //#endregion
 //#region src/genomeSpy/viewContextFactory.js
-function qP(e) {
+function QP(e) {
 	let t = (e) => {
 		throw Error("ViewContext." + e + " is not configured.");
 	}, n = {
@@ -20656,6 +20704,7 @@ function qP(e) {
 		}
 	}, r = [
 		"requestLayoutReflow",
+		"renderImmediately",
 		"updateTooltip",
 		"getNamedDataFromProvider",
 		"getCurrentHover",
@@ -20674,7 +20723,7 @@ function qP(e) {
 }
 //#endregion
 //#region src/config/defaultConfig.js
-var JP = {
+var $P = {
 	view: {},
 	mark: {
 		xOffset: 0,
@@ -20847,7 +20896,8 @@ var JP = {
 			"diamond"
 		],
 		size: [0, 400],
-		angle: [0, 360]
+		angle: [0, 360],
+		heatmap: "yellowgreenblue"
 	},
 	title: {
 		anchor: "middle",
@@ -20896,19 +20946,19 @@ var JP = {
 };
 //#endregion
 //#region src/genomeSpy/headlessBootstrap.js
-function YP(e) {
-	Jj(e), Yj(e);
+function eF(e) {
+	Zj(e), Qj(e);
 }
 //#endregion
 //#region src/genomeSpy/canvasExport.js
-function XP({ glHelper: e, viewRoot: t, logicalWidth: n, logicalHeight: r, devicePixelRatio: i, clearColor: a = "white" }) {
+function tF({ glHelper: e, viewRoot: t, logicalWidth: n, logicalHeight: r, devicePixelRatio: i, clearColor: a = "white" }) {
 	n ??= e.getLogicalCanvasSize().width, r ??= e.getLogicalCanvasSize().height, i ??= window.devicePixelRatio ?? 1;
-	let o = e.gl, s = Math.floor(n * i), c = Math.floor(r * i), l = Kb(o, [{
+	let o = e.gl, s = Math.floor(n * i), c = Math.floor(r * i), l = Jb(o, [{
 		format: o.RGBA,
 		type: o.UNSIGNED_BYTE,
 		minMag: o.LINEAR,
 		wrap: o.CLAMP_TO_EDGE
-	}], s, c), u = new WP({ picking: !1 }, {
+	}], s, c), u = new YP({ picking: !1 }, {
 		webGLHelper: e,
 		canvasSize: {
 			width: n,
@@ -20918,50 +20968,101 @@ function XP({ glHelper: e, viewRoot: t, logicalWidth: n, logicalHeight: r, devic
 		clearColor: a,
 		framebufferInfo: l
 	});
-	return t.render(u, FM.create(0, 0, n, r)), u.render(), Cx(o, l, "image/png");
+	return t.render(u, BM.create(0, 0, n, r)), u.render(), Tx(o, l, "image/png");
+}
+//#endregion
+//#region src/paramRuntime/embedParamApi.js
+function nF(e, t) {
+	let n = aF(e, t);
+	if (!n.length) throw Error("Parameter \"" + t + "\" not found.");
+	let r = /* @__PURE__ */ new Map();
+	for (let e of n) {
+		let n = e.view.paramRuntime.findRuntimeForParam(t);
+		if (!n) throw Error("Parameter \"" + t + "\" has no runtime value.");
+		r.set(n, {
+			runtime: n,
+			readOnly: rF(r.get(n), e),
+			pointSelection: iF(r.get(n), e)
+		});
+	}
+	if (r.size > 1) throw Error("Parameter \"" + t + "\" is ambiguous.");
+	let { runtime: i, readOnly: a, pointSelection: o } = r.values().next().value;
+	return {
+		getValue() {
+			return i.getValue(t);
+		},
+		setValue(n) {
+			if (a) throw Error("Cannot set computed parameter \"" + t + "\".");
+			if (o) throw Error("Cannot set point selection parameter \"" + t + "\" through the embed API.");
+			i.setValue(t, n), e.context.animator.requestRender();
+		},
+		subscribe(e) {
+			return i.subscribe(t, () => {
+				e(i.getValue(t));
+			});
+		}
+	};
+}
+function rF(e, t) {
+	return !!(e?.readOnly || "expr" in t.param);
+}
+function iF(e, t) {
+	if (e?.pointSelection) return !0;
+	let n = t.param;
+	return "select" in n && tp(ep(n.select));
+}
+function aF(e, t) {
+	let n = [];
+	return e.visit((e) => {
+		let r = e.paramRuntime.paramConfigs.get(t);
+		r && n.push({
+			view: e,
+			param: r
+		});
+	}), n;
 }
 //#endregion
 //#region src/genome/rootGenomeConfig.js
-function ZP(e) {
+function oF(e) {
 	if (e.genome && e.genomes) throw Error("Do not mix deprecated `genome` with `genomes`. Use only `genomes` and `assembly`.");
 	if (e.genome && e.assembly) throw Error("Do not mix deprecated `genome` with root `assembly`. Use `genomes` and `assembly`.");
 	if (e.genome) {
 		let { name: t, ...n } = e.genome;
 		return {
-			genomesByName: !(Object.keys(n).length > 0) && $P(t) ? /* @__PURE__ */ new Map() : new Map([[t, n]]),
+			genomesByName: !(Object.keys(n).length > 0) && cF(t) ? /* @__PURE__ */ new Map() : new Map([[t, n]]),
 			defaultAssembly: t,
-			deprecationWarning: QP()
+			deprecationWarning: sF()
 		};
 	}
 	let t = /* @__PURE__ */ new Map();
 	for (let [n, r] of Object.entries(e.genomes ?? {})) t.set(n, r ?? {});
 	let n = e.assembly;
-	if (!n && t.size === 1 && (n = t.keys().next().value), n && !t.has(n) && !$P(n)) throw Error(`Root assembly "${n}" is neither defined in \`genomes\` nor a built-in assembly.`);
+	if (!n && t.size === 1 && (n = t.keys().next().value), n && !t.has(n) && !cF(n)) throw Error(`Root assembly "${n}" is neither defined in \`genomes\` nor a built-in assembly.`);
 	return {
 		genomesByName: t,
 		defaultAssembly: n,
 		deprecationWarning: void 0
 	};
 }
-function QP() {
+function sF() {
 	return "Root `genome` is deprecated and will be removed in a future version. Use root `genomes` and `assembly` instead. Built-in migration example: {\"genome\":{\"name\":\"hg38\"}} -> {\"assembly\":\"hg38\"}.";
 }
-function $P(e) {
+function cF(e) {
 	try {
-		return JE(e), !0;
+		return XE(e), !0;
 	} catch {
 		return !1;
 	}
 }
 //#endregion
 //#region src/view/dataReadiness.js
-function eF(e, t, n) {
-	let r = nF(e, n);
+function lF(e, t, n) {
+	let r = dF(e, n);
 	if (!r.size) return !0;
-	for (let e of r) if (!rF(e, t)) return !1;
+	for (let e of r) if (!fF(e, t)) return !1;
 	return !0;
 }
-function tF(e, t, n, r, i) {
+function uF(e, t, n, r, i) {
 	let a = i ?? ((e) => e.isConfiguredVisible());
 	return new Promise((i, o) => {
 		let s = /* @__PURE__ */ new Set(), c = /* @__PURE__ */ new Set(), l = () => {
@@ -20970,7 +21071,7 @@ function tF(e, t, n, r, i) {
 			for (let e of s) e();
 			s.clear(), e.removeBroadcastListener("subtreeDataReady", l), r && r.removeEventListener("abort", p);
 		}, d = () => {
-			eF(t, n, a) && (u(), i());
+			lF(t, n, a) && (u(), i());
 		}, f = () => {
 			t.visit((e) => {
 				if (!(e instanceof $) || !a(e)) return;
@@ -20989,7 +21090,7 @@ function tF(e, t, n, r, i) {
 		}
 	});
 }
-function nF(e, t) {
+function dF(e, t) {
 	let n = t ?? ((e) => e.isConfiguredVisible()), r = /* @__PURE__ */ new Set();
 	return e.visit((e) => {
 		if (!(e instanceof $) || !n(e)) return;
@@ -21000,13 +21101,13 @@ function nF(e, t) {
 		i instanceof Gd && r.add(i);
 	}), r;
 }
-function rF(e, t) {
+function fF(e, t) {
 	let n = t ?? { [e.channel]: Array.from(e.scaleResolution.getDomain()) };
 	return e.isDataReadyForDomain(n);
 }
 //#endregion
 //#region src/config/themes.js
-var iF = {
+var pF = {
 	mark: { color: "#4c78a8" },
 	point: {
 		filled: !1,
@@ -21036,19 +21137,19 @@ var iF = {
 		quantitativeColorScheme: "blues"
 	},
 	range: {
-		heatmap: "viridis",
+		heatmap: "yellowgreenblue",
 		ramp: "blues",
 		diverging: "blueorange"
 	}
-}, aF = {
+}, mF = {
 	genomespy: {
 		mark: { color: "#4c78a8" },
 		rule: { color: "black" },
 		text: { color: "black" },
 		link: { color: "black" }
 	},
-	vegalite: iF,
-	quartz: US([iF, {
+	vegalite: pF,
+	quartz: GS([pF, {
 		background: "#f9f9f9",
 		view: { fill: "#f9f9f9" },
 		mark: { color: "#ab5787" },
@@ -21072,7 +21173,7 @@ var iF = {
 			tickSize: 0
 		}
 	}]),
-	dark: US([iF, {
+	dark: GS([pF, {
 		background: "#333",
 		view: {
 			fill: "#333",
@@ -21089,7 +21190,7 @@ var iF = {
 		text: { color: "#fff" },
 		rule: { color: "#fff" }
 	}]),
-	fivethirtyeight: US([iF, {
+	fivethirtyeight: GS([pF, {
 		background: "#f0f0f0",
 		view: { fill: "#f0f0f0" },
 		mark: { color: "#30a2da" },
@@ -21120,7 +21221,7 @@ var iF = {
 			offset: 20
 		}
 	}]),
-	urbaninstitute: US([iF, {
+	urbaninstitute: GS([pF, {
 		background: "#FFFFFF",
 		view: {
 			fill: "#FFFFFF",
@@ -21170,28 +21271,28 @@ var iF = {
 			titleFont: "Lato"
 		}
 	}])
-}, oF = Object.keys(aF);
-function sF(e) {
-	let t = { ...aF[e] };
+}, hF = Object.keys(mF);
+function gF(e) {
+	let t = { ...mF[e] };
 	return delete t.background, t;
 }
-function cF(e) {
+function _F(e) {
 	if (!e) return [];
-	let t = Array.isArray(e) ? e : [e], n = t.filter((e) => !(e in aF));
-	if (n.length > 0) throw Error("Unknown theme \"" + n[0] + "\". Available themes: " + oF.join(", "));
+	let t = Array.isArray(e) ? e : [e], n = t.filter((e) => !(e in mF));
+	if (n.length > 0) throw Error("Unknown theme \"" + n[0] + "\". Available themes: " + hF.join(", "));
 	return t;
 }
-var lF = "genomespy";
-function uF(e) {
-	return aF[e].background;
+var vF = "genomespy";
+function yF(e) {
+	return mF[e].background;
 }
-function dF(e) {
-	let t = cF(e);
-	if (t.length != 0) return US(t.map((e) => sF(e)));
+function bF(e) {
+	let t = _F(e);
+	if (t.length != 0) return GS(t.map((e) => gF(e)));
 }
 //#endregion
 //#region src/genomeSpyBase.js
-var fF = class {
+var xF = class {
 	#e = [];
 	#t;
 	#n;
@@ -21199,15 +21300,15 @@ var fF = class {
 	#i;
 	#a;
 	#o;
-	#s = new hm();
-	#c = new gm();
-	#l = new gm();
+	#s = new _m();
+	#c = new vm();
+	#l = new vm();
 	constructor(e, t, n = {}) {
-		this.container = e, this.options = n, n.inputBindingContainer ??= "default", this.spec = t, this.viewFactory = new kP(), this.namedDataProviders = [], this.animator = new rj(() => this.renderAll()), this.genomeStore = void 0, this.viewVisibilityPredicate = (e) => e.isVisibleInSpec(), this.tooltipHandlers = {
-			default: Kj,
-			refseqgene: gj,
+		this.container = e, this.options = n, n.inputBindingContainer ??= "default", this.spec = t, this.viewFactory = new PP(), this.namedDataProviders = [], this.animator = new oj(() => this.renderAll()), this.genomeStore = void 0, this.viewVisibilityPredicate = (e) => e.isVisibleInSpec(), this.tooltipHandlers = {
+			default: Yj,
+			refseqgene: yj,
 			...n.tooltipHandlers ?? {}
-		}, this.viewRoot = void 0, this.#i = new vm(e, n), this.dpr = window.devicePixelRatio;
+		}, this.viewRoot = void 0, this.#i = new bm(e, n), this.dpr = window.devicePixelRatio;
 	}
 	get #u() {
 		return this.container.querySelector(".canvas-wrapper");
@@ -21228,6 +21329,9 @@ var fF = class {
 		let n = this.viewRoot.context.dataFlow.findNamedDataSource(e);
 		if (!n) throw Error("No such named data source: " + e);
 		n.dataSource.updateDynamicData(t), this.animator.requestRender();
+	}
+	getParam(e) {
+		return nF(this.viewRoot, e);
 	}
 	addEventListener(e, t) {
 		this.#c.add(e, t);
@@ -21261,11 +21365,11 @@ var fF = class {
 		r(), n && this.#e.push(n);
 	}
 	#p() {
-		let { canvasWrapper: e, loadingIndicatorsElement: t, tooltip: n } = nm(this.container);
-		this.#o = new vx(e, () => this.viewRoot ? yk(this.viewRoot) : {
+		let { canvasWrapper: e, loadingIndicatorsElement: t, tooltip: n } = im(this.container);
+		this.#o = new bx(e, () => this.viewRoot ? Sk(this.viewRoot) : {
 			width: void 0,
 			height: void 0
-		}, { powerPreference: this.options.powerPreference ?? "default" }), e.appendChild(t), this.tooltip = n, this.#r = new pm(), this.#n = new fm(t, this.#r);
+		}, { powerPreference: this.options.powerPreference ?? "default" }, () => this.#t?.renderAll()), e.appendChild(t), this.tooltip = n, this.#r = new hm(), this.#n = new mm(t, this.#r);
 	}
 	destroy() {
 		let e = this.#u;
@@ -21274,27 +21378,27 @@ var fF = class {
 	async #m() {
 		await this.#h();
 		let e = this.#g();
-		await this.#v(e), await QA(this.viewRoot, e.dataFlow, e.fontManager, (e) => this.broadcast("dataFlowBuilt", e)), this.#b(e);
+		await this.#v(e), await tj(this.viewRoot, e.dataFlow, e.fontManager, (e) => this.broadcast("dataFlowBuilt", e)), this.#b(e);
 	}
 	async #h() {
-		this.genomeStore = new aj(this.spec.baseUrl);
-		let { genomesByName: e, defaultAssembly: t, deprecationWarning: n } = ZP(this.spec);
+		this.genomeStore = new cj(this.spec.baseUrl);
+		let { genomesByName: e, defaultAssembly: t, deprecationWarning: n } = oF(this.spec);
 		this.genomeStore.configureGenomes(e, t), n && console.warn(n);
 	}
 	#g() {
-		let e = new kA();
+		let e = new MA();
 		e.loadingStatusRegistry = this.#r;
-		let t = EP({
-			defaultConfig: JP,
-			builtInTheme: dF(lF),
-			theme: US([this.options.theme, dF(this.spec.theme)])
+		let t = jP({
+			defaultConfig: $P,
+			builtInTheme: bF(vF),
+			theme: GS([this.options.theme, bF(this.spec.theme)])
 		});
-		return qP({
+		return QP({
 			dataFlow: e,
 			glHelper: this.#o,
 			animator: this.animator,
 			genomeStore: this.genomeStore,
-			fontManager: new uj(this.#o),
+			fontManager: new pj(this.#o),
 			updateTooltip: this.updateTooltip.bind(this),
 			getNamedDataFromProvider: this.getNamedDataFromProvider.bind(this),
 			getCurrentHover: () => this.#a.getCurrentHover(),
@@ -21307,11 +21411,12 @@ var fF = class {
 			},
 			addBroadcastListener: (e, t) => this.#l.add(e, t),
 			removeBroadcastListener: (e, t) => this.#l.remove(e, t),
+			renderImmediately: this.renderAll.bind(this),
 			isViewConfiguredVisible: this.viewVisibilityPredicate,
 			isViewSpec: (e) => this.viewFactory.isViewSpec(e),
 			getBaseConfig: () => t,
 			createOrImportViewWithContext: (e, t, n, r, i, a, o) => this.viewFactory.createOrImportView(t, e, n, r, i, a, o),
-			highlightView: mm(this.container)
+			highlightView: gm(this.container)
 		});
 	}
 	#_(e, t) {
@@ -21321,16 +21426,16 @@ var fF = class {
 	}
 	async #v(e) {
 		let t = this.spec;
-		t.datasets && this.registerNamedDataProvider((e) => t.datasets[e]), this.viewRoot = await e.createOrImportView(t, null, null, OP), await gM(this.viewRoot, this.genomeStore), this.#r.set(this.viewRoot, "loading"), this.#u.style.flexGrow = this.viewRoot.getSize().height.grow > 0 ? "1" : "0", this.#d(), YP(this.viewRoot), this.#y(), this.#o.invalidateSize();
+		t.datasets && this.registerNamedDataProvider((e) => t.datasets[e]), this.viewRoot = await e.createOrImportView(t, null, null, NP), await xM(this.viewRoot, this.genomeStore), this.#r.set(this.viewRoot, "loading"), this.#u.style.flexGrow = this.viewRoot.getSize().height.grow > 0 ? "1" : "0", this.#d(), eF(this.viewRoot), this.#y(), this.#o.invalidateSize();
 		let n = this.spec.theme ? Array.isArray(this.spec.theme) ? this.spec.theme : [this.spec.theme] : [];
-		this.#t = new KP({
+		this.#t = new ZP({
 			viewRoot: this.viewRoot,
 			glHelper: this.#o,
 			getBackground: () => {
 				if (this.spec.background !== void 0) return this.spec.background;
 				let e;
 				for (let t of n) {
-					let n = uF(t);
+					let n = yF(t);
 					n !== void 0 && (e = n);
 				}
 				return e;
@@ -21340,11 +21445,11 @@ var fF = class {
 		}), e.requestLayoutReflow = this.computeLayout.bind(this), this.#f();
 	}
 	#y() {
-		let e = nM(this.viewRoot);
+		let e = sM(this.viewRoot);
 		if (e.length) for (let t of e) console.warn("Selector constraints warning:", t.message);
 	}
 	#b(e) {
-		e.requestLayoutReflow = this.computeLayout.bind(this), this.viewRoot.visit((e) => NS(e, "size")), this.#o.invalidateSize(), this.#a = new BP({
+		e.requestLayoutReflow = this.computeLayout.bind(this), this.viewRoot.visit((e) => FS(e, "size")), this.#o.invalidateSize(), this.#a = new GP({
 			viewRoot: this.viewRoot,
 			glHelper: this.#o,
 			tooltip: this.tooltip,
@@ -21361,22 +21466,22 @@ var fF = class {
 			return this.#p(), await this.#m(), this.#a.registerInteractionEvents(), this.computeLayout(), this.animator.requestRender(), e = !0, !0;
 		} catch (e) {
 			let t = `${e.view ? `At "${e.view.getPathString()}": ` : ""}${e.toString()}`;
-			return console.error(e.stack), this.options.onError?.(e, this.container) || rm(this.container, t), this.viewRoot && this.#r.set(this.viewRoot, "error", t), !1;
+			return console.error(e.stack), this.options.onError?.(e, this.container) || am(this.container, t), this.viewRoot && this.#r.set(this.viewRoot, "error", t), !1;
 		} finally {
 			this.#u.classList.remove("loading"), e && this.viewRoot && this.#r.set(this.viewRoot, "complete");
 		}
 	}
 	async initializeVisibleViewData() {
-		this.viewRoot && (await $A(this.viewRoot, this.viewRoot.context.dataFlow, this.viewRoot.context.fontManager), this.viewRoot._invalidateCacheByPrefix("size", "progeny"), this.#o.invalidateSize(), this.computeLayout(), this.animator.requestRender());
+		this.viewRoot && (await nj(this.viewRoot, this.viewRoot.context.dataFlow, this.viewRoot.context.fontManager), this.viewRoot._invalidateCacheByPrefix("size", "progeny"), this.#o.invalidateSize(), this.computeLayout(), this.animator.requestRender());
 	}
 	async awaitVisibleLazyData(e) {
-		this.viewRoot && await tF(this.viewRoot.context, this.viewRoot, void 0, e, (e) => e.isConfiguredVisible() && pF(e));
+		this.viewRoot && await uF(this.viewRoot.context, this.viewRoot, void 0, e, (e) => e.isConfiguredVisible() && SF(e));
 	}
 	updateTooltip(e, t) {
 		this.#a.updateTooltip(e, t);
 	}
 	exportCanvas(e, t, n, r = "white") {
-		let i = XP({
+		let i = tF({
 			glHelper: this.#o,
 			viewRoot: this.viewRoot,
 			logicalWidth: e,
@@ -21420,7 +21525,7 @@ var fF = class {
 		}), e;
 	}
 };
-function pF(e) {
+function SF(e) {
 	let t = e;
 	for (; t;) {
 		let e = t.flowHandle?.dataSource;
@@ -21431,31 +21536,31 @@ function pF(e) {
 }
 //#endregion
 //#region src/img/bowtie.svg
-var mF = "data:image/svg+xml,%3csvg%20viewBox='0%200%2032%2032'%20xmlns='http://www.w3.org/2000/svg'%20fill-rule='evenodd'%20clip-rule='evenodd'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-miterlimit='1.5'%3e%3cpath%20d='M4.7%2021.2s.4%202.3%201.3%203.6C7%2026%209.8%2028%209.8%2028s3.4-2.6%206.4-8.5c0%200%201%20.1%201.9-.4.9-.6.8-.4%201-1.2%200%200%202.9.5%206.6%200%202.1-.3%204.3-1%206.2-2.5%200%200-1.1-1.7-2.5-5.1-.5-1.3-2-1.8-4.6-4.6l-8.2%208.6-11.9%206.9z'%20fill-opacity='.1'/%3e%3cpath%20d='M12.7%2014.8s-4-1.8-12%202.7c0%200%201%203.7%202.5%205.3%201.4%201.5%202.3%203.6%204.6%204.6%200%200%204.7-3%206.9-9.2l3-2s4.7%202.8%2012.6-1.6c0%200-.6-3.3-3-6-2.6-3-3.8-4.7-3.8-4.7s-4.1%202.3-7.5%209.3l-3.3%201.6z'%20fill='%237fbbdd'/%3e%3cpath%20d='M12.4%2015.5c-.7-.5-2.4-.8-4.4-.4-2%20.4-4%201.3-4.8%201.8-.5.3-1.2%201-1.2%201.4%200%20.7.3%201.8.8%202.4.3.3.7.5%201.4.6.8%200%202.5-1.4%203.5-2%201-.6%201.6-.8%202.7-1.2l-2.9%202.4c-1.3%201.2-2.2%201.5-2.4%202.3%200%20.5%200%201.4.5%201.8.4.5.6.8%201.6.8.6%200%201%200%202.6-1.5.9-.9%202.3-3%202.7-3.7.6-1.1%201-2.2.7-3-.2-1-.4-1.4-.8-1.7zM17.4%2014.2c-.3-.5-.9-1.2-.2-2.5l1.9-3c.5-.8%202-2.3%202.6-2.6.6-.4%201.5-.6%202-.2.6.4%201%201%201.3%201.5.4.6.7%201.3.2%202-.7%201-1.6.9-2.8%201.7-1.2.8-1.9%201.2-2.5%201.9l3.8-1.8c1.3-.6%202.7-1.1%203.4-.7.8.5.8.7%201%201.4.3%201-.2%201.9-.8%202.4-.5.6-1.5.9-2.6%201.2-1.4.4-4.5%201-5.8.5-1.3-.5-1.3-1.4-1.5-1.8z'%20fill='%23fff'/%3e%3cpath%20d='M12.7%2014.8s-4-1.8-12%202.7c0%200%201%203.7%202.5%205.3%201.4%201.5%202.3%203.6%204.6%204.6%200%200%204.7-3%206.9-9.2l3-2s4.7%202.8%2012.6-1.6c0%200-.6-3.3-3-6-2.6-3-3.8-4.7-3.8-4.7s-4.1%202.3-7.5%209.3l-3.3%201.6z'%20fill='none'%20stroke='%23000'%20stroke-width='.5'/%3e%3cpath%20d='M12.4%2014.9s2.1-2%203-2c1.1%200%202.3%202.7%202.3%203.5%200%20.8-2.1%202.4-3.1%202.3%200%200%200-1.2-.7-2.6-.8-1.3-1.5-1.2-1.5-1.2z'%20fill='%237fbbdd'/%3e%3cpath%20d='M13.8%2015.3c.9.8.6%202%201.4%201.8%201-.2%201.4-.8%201.3-1.5%200-.7%200-.8-.4-1.6-.3-.7-1-1.1-2-.5-.7.5-1.4%201.3-1.4%201.3s.2-.3%201.1.5z'%20fill='%23fff'/%3e%3cpath%20d='M12.4%2014.9s2.1-2%203-2c1.1%200%202.3%202.7%202.3%203.5%200%20.8-2.1%202.4-3.1%202.3%200%200%200-1.2-.7-2.6-.8-1.3-1.5-1.2-1.5-1.2z'%20fill='none'%20stroke='%23000'%20stroke-width='.5'/%3e%3c/svg%3e", hF = "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20style='fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5'%20viewBox='0%200%2064%2064'%3e%3cpath%20d='M208.6%20548.2s11.2%2046.2%2031.2%2071c20%2024.9%2079.3%2061.6%2079.3%2061.6S385.6%20623%20438%20498.3c0%200%2018.1%201%2036-11.9%2017.7-12.7%2016.3-7.9%2021-24.8%200%200%2057%206.3%20131-9.7%2041.7-9.1%2084.3-26.3%20121.5-58.8%200%200-25.4-32.9-58-101.7-12.4-26.1-41.9-34.3-98.7-88L438.1%20391.2%20208.6%20548.2Z'%20style='fill-opacity:.11'%20transform='matrix(.10221%20.00684%20-.00671%20.10035%20-8%20-13.2)'/%3e%3cg%20transform='rotate(-35.4%2034.2%2080.8)%20scale(.10057)'%3e%3cpath%20d='M561.6%20349.2s-45.3-77.9-232.8-97.2c0%200-26.5%2073.2-21.1%20116%205.3%2043-4.7%2088.1%2021.4%20133.2%200%200%20114%205.5%20225.5-72.7l74.6%203.6S673.8%20534.4%20857%20554.4c0%200%2029.7-62.6%2022.2-137-8-78.7-7.5-124-7.5-124s-96.2-9.5-236.3%2068.4l-73.8-12.6Z'%20style='fill:%237fbbdd'/%3e%3cclipPath%20id='a'%3e%3cpath%20d='M561.6%20349.2s-45.3-77.9-232.8-97.2c0%200-26.5%2073.2-21.1%20116%205.3%2043-4.7%2088.1%2021.4%20133.2%200%200%20114%205.5%20225.5-72.7l74.6%203.6S673.8%20534.4%20857%20554.4c0%200%2029.7-62.6%2022.2-137-8-78.7-7.5-124-7.5-124s-96.2-9.5-236.3%2068.4l-73.8-12.6Z'/%3e%3c/clipPath%3e%3cg%20clip-path='url(%23a)'%3e%3cpath%20d='M386.9%20397.2c-15.6-13.6-51.8-22.4-96.3-16.7-44.5%205.8-93.8%2021.8-111.8%2031.6-10.6%205.7-27.3%2017.3-28.1%2027.2-1.2%2014.2%202.9%2037.8%2015%2052%206%207.2%2014.2%2012.1%2028.1%2014.1%2017.9%202.6%2059-24.8%2081.6-36.2%2024-12%2038.6-14.6%2063-22.2%200%200-47%2031.6-68.2%2047.4-30.6%2022.9-51.6%2028-57.3%2045.5-3.1%209.4-.7%2027.9%207.5%2037.6%209%2011%2012.8%2017.6%2034.2%2020.1%2012.7%201.5%2022%201.2%2059.8-28.6%2021.7-17.2%2055.9-59.2%2067-74.4%2016.2-22%2023.8-43.1%2021.3-59.6-3.7-23.6-8.4-31.3-15.8-37.8Z'%20style='fill:%23fff'%20transform='scale(.88664)%20rotate(31.2%20485%20792.2)'/%3e%3cpath%20d='M484.7%20379c-5.4-11.1-17.6-28.5-.8-53.8a739%20739%200%200%201%2044.2-60.6c13.2-16.3%2046.7-46.2%2059.6-52%2013-6%2033.3-8.7%2044.2.2%2011%209.1%2016.5%2020.6%2023%2032.7%207.4%2013.8%2012.4%2029.3%201.6%2042.8-15.4%2019.2-34.3%2017-61.6%2031.5-27.7%2014.8-42.3%2023.1-55.7%2035.9%200%200%2052.2-21.6%2082-31.2%2029.8-9.7%2059.8-20%2074.8-8.5s14.6%2015.5%2018.4%2031.2c4.7%2019.4-7.2%2038-20.1%2048.6-13%2010.7-34.3%2016-57.4%2021-30.5%206.8-96.6%2015.1-124%202.6-27.5-12.6-24.4-32.8-28.2-40.5Z'%20style='fill:%23fff'%20transform='scale(.87906)%20rotate(31.2%20487.2%20893.5)'/%3e%3c/g%3e%3cpath%20d='M561.6%20349.2s-45.3-77.9-232.8-97.2c0%200-26.5%2073.2-21.1%20116%205.3%2043-4.7%2088.1%2021.4%20133.2%200%200%20114%205.5%20225.5-72.7l74.6%203.6S673.8%20534.4%20857%20554.4c0%200%2029.7-62.6%2022.2-137-8-78.7-7.5-124-7.5-124s-96.2-9.5-236.3%2068.4l-73.8-12.6Z'%20style='fill:none;stroke:%23000;stroke-width:16.57px'/%3e%3c/g%3e%3cg%20transform='rotate(-4.2%20-78%20211)%20scale(.10057)'%3e%3cpath%20d='M385%20385.5s45.8-37.6%2065-35.4c21.7%202.5%2040.5%2057.6%2040.2%2074.3-.3%2016.7-47.3%2045.5-67.7%2041.8%200%200%203-24-10.4-52.9-13.4-28.8-27.2-27.8-27.2-27.8Z'%20style='fill:%237fbbdd'/%3e%3cclipPath%20id='b'%3e%3cpath%20d='M385%20385.5s45.8-37.6%2065-35.4c21.7%202.5%2040.5%2057.6%2040.2%2074.3-.3%2016.7-47.3%2045.5-67.7%2041.8%200%200%203-24-10.4-52.9-13.4-28.8-27.2-27.8-27.2-27.8Z'/%3e%3c/clipPath%3e%3cg%20clip-path='url(%23b)'%3e%3cpath%20d='M413.3%20402.7c17.5%2018.9%2010%2045.7%2028.4%2043.4%2021.7-2.7%2030.9-15.7%2031.6-32.7.7-17-1-19.5-7.1-38-6.1-18.7-18.2-23.2-43.4-18.2-20.8%204.1-17.8%203-24%2010-6.4%207-14.5%2026-14.5%2026s8.4-12.7%2029%209.5Z'%20style='fill:%23fff'%20transform='matrix(.90907%200%200%20.85852%2037%2052.2)'/%3e%3c/g%3e%3cpath%20d='M385%20385.5s45.8-37.6%2065-35.4c21.7%202.5%2040.5%2057.6%2040.2%2074.3-.3%2016.7-47.3%2045.5-67.7%2041.8%200%200%203-24-10.4-52.9-13.4-28.8-27.2-27.8-27.2-27.8Z'%20style='fill:none;stroke:%23000;stroke-width:16.57px'/%3e%3c/g%3e%3c/svg%3e", gF = [
+var CF = "data:image/svg+xml,%3csvg%20viewBox='0%200%2032%2032'%20xmlns='http://www.w3.org/2000/svg'%20fill-rule='evenodd'%20clip-rule='evenodd'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-miterlimit='1.5'%3e%3cpath%20d='M4.7%2021.2s.4%202.3%201.3%203.6C7%2026%209.8%2028%209.8%2028s3.4-2.6%206.4-8.5c0%200%201%20.1%201.9-.4.9-.6.8-.4%201-1.2%200%200%202.9.5%206.6%200%202.1-.3%204.3-1%206.2-2.5%200%200-1.1-1.7-2.5-5.1-.5-1.3-2-1.8-4.6-4.6l-8.2%208.6-11.9%206.9z'%20fill-opacity='.1'/%3e%3cpath%20d='M12.7%2014.8s-4-1.8-12%202.7c0%200%201%203.7%202.5%205.3%201.4%201.5%202.3%203.6%204.6%204.6%200%200%204.7-3%206.9-9.2l3-2s4.7%202.8%2012.6-1.6c0%200-.6-3.3-3-6-2.6-3-3.8-4.7-3.8-4.7s-4.1%202.3-7.5%209.3l-3.3%201.6z'%20fill='%237fbbdd'/%3e%3cpath%20d='M12.4%2015.5c-.7-.5-2.4-.8-4.4-.4-2%20.4-4%201.3-4.8%201.8-.5.3-1.2%201-1.2%201.4%200%20.7.3%201.8.8%202.4.3.3.7.5%201.4.6.8%200%202.5-1.4%203.5-2%201-.6%201.6-.8%202.7-1.2l-2.9%202.4c-1.3%201.2-2.2%201.5-2.4%202.3%200%20.5%200%201.4.5%201.8.4.5.6.8%201.6.8.6%200%201%200%202.6-1.5.9-.9%202.3-3%202.7-3.7.6-1.1%201-2.2.7-3-.2-1-.4-1.4-.8-1.7zM17.4%2014.2c-.3-.5-.9-1.2-.2-2.5l1.9-3c.5-.8%202-2.3%202.6-2.6.6-.4%201.5-.6%202-.2.6.4%201%201%201.3%201.5.4.6.7%201.3.2%202-.7%201-1.6.9-2.8%201.7-1.2.8-1.9%201.2-2.5%201.9l3.8-1.8c1.3-.6%202.7-1.1%203.4-.7.8.5.8.7%201%201.4.3%201-.2%201.9-.8%202.4-.5.6-1.5.9-2.6%201.2-1.4.4-4.5%201-5.8.5-1.3-.5-1.3-1.4-1.5-1.8z'%20fill='%23fff'/%3e%3cpath%20d='M12.7%2014.8s-4-1.8-12%202.7c0%200%201%203.7%202.5%205.3%201.4%201.5%202.3%203.6%204.6%204.6%200%200%204.7-3%206.9-9.2l3-2s4.7%202.8%2012.6-1.6c0%200-.6-3.3-3-6-2.6-3-3.8-4.7-3.8-4.7s-4.1%202.3-7.5%209.3l-3.3%201.6z'%20fill='none'%20stroke='%23000'%20stroke-width='.5'/%3e%3cpath%20d='M12.4%2014.9s2.1-2%203-2c1.1%200%202.3%202.7%202.3%203.5%200%20.8-2.1%202.4-3.1%202.3%200%200%200-1.2-.7-2.6-.8-1.3-1.5-1.2-1.5-1.2z'%20fill='%237fbbdd'/%3e%3cpath%20d='M13.8%2015.3c.9.8.6%202%201.4%201.8%201-.2%201.4-.8%201.3-1.5%200-.7%200-.8-.4-1.6-.3-.7-1-1.1-2-.5-.7.5-1.4%201.3-1.4%201.3s.2-.3%201.1.5z'%20fill='%23fff'/%3e%3cpath%20d='M12.4%2014.9s2.1-2%203-2c1.1%200%202.3%202.7%202.3%203.5%200%20.8-2.1%202.4-3.1%202.3%200%200%200-1.2-.7-2.6-.8-1.3-1.5-1.2-1.5-1.2z'%20fill='none'%20stroke='%23000'%20stroke-width='.5'/%3e%3c/svg%3e", wF = "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20style='fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5'%20viewBox='0%200%2064%2064'%3e%3cpath%20d='M208.6%20548.2s11.2%2046.2%2031.2%2071c20%2024.9%2079.3%2061.6%2079.3%2061.6S385.6%20623%20438%20498.3c0%200%2018.1%201%2036-11.9%2017.7-12.7%2016.3-7.9%2021-24.8%200%200%2057%206.3%20131-9.7%2041.7-9.1%2084.3-26.3%20121.5-58.8%200%200-25.4-32.9-58-101.7-12.4-26.1-41.9-34.3-98.7-88L438.1%20391.2%20208.6%20548.2Z'%20style='fill-opacity:.11'%20transform='matrix(.10221%20.00684%20-.00671%20.10035%20-8%20-13.2)'/%3e%3cg%20transform='rotate(-35.4%2034.2%2080.8)%20scale(.10057)'%3e%3cpath%20d='M561.6%20349.2s-45.3-77.9-232.8-97.2c0%200-26.5%2073.2-21.1%20116%205.3%2043-4.7%2088.1%2021.4%20133.2%200%200%20114%205.5%20225.5-72.7l74.6%203.6S673.8%20534.4%20857%20554.4c0%200%2029.7-62.6%2022.2-137-8-78.7-7.5-124-7.5-124s-96.2-9.5-236.3%2068.4l-73.8-12.6Z'%20style='fill:%237fbbdd'/%3e%3cclipPath%20id='a'%3e%3cpath%20d='M561.6%20349.2s-45.3-77.9-232.8-97.2c0%200-26.5%2073.2-21.1%20116%205.3%2043-4.7%2088.1%2021.4%20133.2%200%200%20114%205.5%20225.5-72.7l74.6%203.6S673.8%20534.4%20857%20554.4c0%200%2029.7-62.6%2022.2-137-8-78.7-7.5-124-7.5-124s-96.2-9.5-236.3%2068.4l-73.8-12.6Z'/%3e%3c/clipPath%3e%3cg%20clip-path='url(%23a)'%3e%3cpath%20d='M386.9%20397.2c-15.6-13.6-51.8-22.4-96.3-16.7-44.5%205.8-93.8%2021.8-111.8%2031.6-10.6%205.7-27.3%2017.3-28.1%2027.2-1.2%2014.2%202.9%2037.8%2015%2052%206%207.2%2014.2%2012.1%2028.1%2014.1%2017.9%202.6%2059-24.8%2081.6-36.2%2024-12%2038.6-14.6%2063-22.2%200%200-47%2031.6-68.2%2047.4-30.6%2022.9-51.6%2028-57.3%2045.5-3.1%209.4-.7%2027.9%207.5%2037.6%209%2011%2012.8%2017.6%2034.2%2020.1%2012.7%201.5%2022%201.2%2059.8-28.6%2021.7-17.2%2055.9-59.2%2067-74.4%2016.2-22%2023.8-43.1%2021.3-59.6-3.7-23.6-8.4-31.3-15.8-37.8Z'%20style='fill:%23fff'%20transform='scale(.88664)%20rotate(31.2%20485%20792.2)'/%3e%3cpath%20d='M484.7%20379c-5.4-11.1-17.6-28.5-.8-53.8a739%20739%200%200%201%2044.2-60.6c13.2-16.3%2046.7-46.2%2059.6-52%2013-6%2033.3-8.7%2044.2.2%2011%209.1%2016.5%2020.6%2023%2032.7%207.4%2013.8%2012.4%2029.3%201.6%2042.8-15.4%2019.2-34.3%2017-61.6%2031.5-27.7%2014.8-42.3%2023.1-55.7%2035.9%200%200%2052.2-21.6%2082-31.2%2029.8-9.7%2059.8-20%2074.8-8.5s14.6%2015.5%2018.4%2031.2c4.7%2019.4-7.2%2038-20.1%2048.6-13%2010.7-34.3%2016-57.4%2021-30.5%206.8-96.6%2015.1-124%202.6-27.5-12.6-24.4-32.8-28.2-40.5Z'%20style='fill:%23fff'%20transform='scale(.87906)%20rotate(31.2%20487.2%20893.5)'/%3e%3c/g%3e%3cpath%20d='M561.6%20349.2s-45.3-77.9-232.8-97.2c0%200-26.5%2073.2-21.1%20116%205.3%2043-4.7%2088.1%2021.4%20133.2%200%200%20114%205.5%20225.5-72.7l74.6%203.6S673.8%20534.4%20857%20554.4c0%200%2029.7-62.6%2022.2-137-8-78.7-7.5-124-7.5-124s-96.2-9.5-236.3%2068.4l-73.8-12.6Z'%20style='fill:none;stroke:%23000;stroke-width:16.57px'/%3e%3c/g%3e%3cg%20transform='rotate(-4.2%20-78%20211)%20scale(.10057)'%3e%3cpath%20d='M385%20385.5s45.8-37.6%2065-35.4c21.7%202.5%2040.5%2057.6%2040.2%2074.3-.3%2016.7-47.3%2045.5-67.7%2041.8%200%200%203-24-10.4-52.9-13.4-28.8-27.2-27.8-27.2-27.8Z'%20style='fill:%237fbbdd'/%3e%3cclipPath%20id='b'%3e%3cpath%20d='M385%20385.5s45.8-37.6%2065-35.4c21.7%202.5%2040.5%2057.6%2040.2%2074.3-.3%2016.7-47.3%2045.5-67.7%2041.8%200%200%203-24-10.4-52.9-13.4-28.8-27.2-27.8-27.2-27.8Z'/%3e%3c/clipPath%3e%3cg%20clip-path='url(%23b)'%3e%3cpath%20d='M413.3%20402.7c17.5%2018.9%2010%2045.7%2028.4%2043.4%2021.7-2.7%2030.9-15.7%2031.6-32.7.7-17-1-19.5-7.1-38-6.1-18.7-18.2-23.2-43.4-18.2-20.8%204.1-17.8%203-24%2010-6.4%207-14.5%2026-14.5%2026s8.4-12.7%2029%209.5Z'%20style='fill:%23fff'%20transform='matrix(.90907%200%200%20.85852%2037%2052.2)'/%3e%3c/g%3e%3cpath%20d='M385%20385.5s45.8-37.6%2065-35.4c21.7%202.5%2040.5%2057.6%2040.2%2074.3-.3%2016.7-47.3%2045.5-67.7%2041.8%200%200%203-24-10.4-52.9-13.4-28.8-27.2-27.8-27.2-27.8Z'%20style='fill:none;stroke:%23000;stroke-width:16.57px'/%3e%3c/g%3e%3c/svg%3e", TF = [
 	["/docs/examples/", "/docs/examples/"],
 	["/examples/core/", "/examples/"],
 	["/examples/docs/", "/examples/"],
 	["/examples/app/", "/examples/"]
-], _F = /^(?:[a-z]+:)?\/\//i, vF = "https://example.invalid";
-function yF(e) {
-	return _F.test(e) ? "external" : e.startsWith("/") ? "root" : "relative";
+], EF = /^(?:[a-z]+:)?\/\//i, DF = "https://example.invalid";
+function OF(e) {
+	return EF.test(e) ? "external" : e.startsWith("/") ? "root" : "relative";
 }
-function bF(e) {
-	let t = new URL(e, vF), n = gF.find(([e]) => t.pathname.startsWith(e));
-	if (n) return SF(n[1], t, yF(e));
+function kF(e) {
+	let t = new URL(e, DF), n = TF.find(([e]) => t.pathname.startsWith(e));
+	if (n) return jF(n[1], t, OF(e));
 }
-function xF(e) {
-	let t = bF(e);
+function AF(e) {
+	let t = kF(e);
 	if (t) return t;
-	let n = new URL(e, vF);
-	return SF(new URL("./", n).pathname, n, yF(e));
+	let n = new URL(e, DF);
+	return jF(new URL("./", n).pathname, n, OF(e));
 }
-function SF(e, t, n) {
+function jF(e, t, n) {
 	return n === "external" ? t.origin + e : n === "root" ? e : e.slice(1);
 }
 //#endregion
 //#region src/embedFactory.js
-function CF(e) {
+function MF(e) {
 	return async function(t, n, r = {}) {
 		let i;
 		if (O(t)) {
@@ -21464,12 +21569,12 @@ function CF(e) {
 		else throw Error(`Invalid element: ${t}`);
 		let a;
 		try {
-			let t = D(n) ? n : await TF(n);
+			let t = D(n) ? n : await PF(n);
 			if (t.baseUrl ??= "", t.width ??= "container", t.padding ??= 10, i == document.body) {
 				let e = document.createElement("div");
 				e.style.position = "fixed", e.style.inset = "0", e.style.overflow = "hidden", i.appendChild(e), i = e;
 			}
-			a = new e(i, t, r), wF(a, r), await a.launch();
+			a = new e(i, t, r), NF(a, r), await a.launch();
 		} catch (e) {
 			i.innerText = e.toString(), console.error(e);
 		}
@@ -21486,6 +21591,7 @@ function CF(e) {
 			getScaleResolutionByName(e) {
 				return a.getNamedScaleResolutions().get(e);
 			},
+			getParam: a.getParam.bind(a),
 			awaitVisibleLazyData: a.awaitVisibleLazyData.bind(a),
 			getRenderedBounds: a.getRenderedBounds.bind(a),
 			updateNamedData: a.updateNamedData.bind(a),
@@ -21494,20 +21600,28 @@ function CF(e) {
 		};
 	};
 }
-function wF(e, t) {
+function NF(e, t) {
 	t.namedDataProvider && e.registerNamedDataProvider(t.namedDataProvider);
 }
-async function TF(e) {
+async function PF(e) {
 	let t;
 	try {
-		t = await mk(e);
+		t = await _k(e);
 	} catch (t) {
 		throw Error(`Could not load or parse configuration: ${e}, reason: ${t.message}`, { cause: t });
 	}
-	return t.baseUrl ||= xF(e), t;
+	return t.baseUrl ||= AF(e), t;
+}
+//#endregion
+//#region src/selection/index.js
+function FF(e) {
+	return {
+		type: "interval",
+		intervals: { ...e }
+	};
 }
 //#endregion
 //#region src/index.js
-var EF = CF(fF);
+var IF = MF(xF);
 //#endregion
-export { fF as GenomeSpy, EF as embed, hF as favIcon, C as html, mF as icon, TF as loadSpec };
+export { xF as GenomeSpy, IF as embed, wF as favIcon, C as html, CF as icon, FF as intervalSelection, PF as loadSpec };

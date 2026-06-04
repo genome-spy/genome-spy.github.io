@@ -1,6 +1,6 @@
 import { n as e, r as t } from "./esm-C49STiCR.js";
 import { t as n } from "./esm-CuVa5T98.js";
-import { r, t as i } from "./browser-BTgw5ieH.js";
+import { r, t as i } from "./browser-KWU9rWZT.js";
 import { t as a } from "./AbortablePromiseCache-3gHJdF3E.js";
 //#region ../../node_modules/@gmod/tabix/esm/chunk.js
 var o = class {
