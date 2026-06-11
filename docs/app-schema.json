@@ -357,6 +357,63 @@
           },
           "type": "object"
         },
+        "scales": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Scale"
+          },
+          "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+          "properties": {
+            "angle": {
+              "$ref": "#/definitions/Scale"
+            },
+            "color": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dx": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dy": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fill": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fillOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "opacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "shape": {
+              "$ref": "#/definitions/Scale"
+            },
+            "size": {
+              "$ref": "#/definitions/Scale"
+            },
+            "stroke": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeWidth": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y2": {
+              "$ref": "#/definitions/Scale"
+            }
+          },
+          "type": "object"
+        },
         "separator": {
           "anyOf": [
             {
@@ -723,6 +780,63 @@
                 }
               },
               "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "scales": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Scale"
+          },
+          "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+          "properties": {
+            "angle": {
+              "$ref": "#/definitions/Scale"
+            },
+            "color": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dx": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dy": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fill": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fillOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "opacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "shape": {
+              "$ref": "#/definitions/Scale"
+            },
+            "size": {
+              "$ref": "#/definitions/Scale"
+            },
+            "stroke": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeWidth": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y2": {
+              "$ref": "#/definitions/Scale"
             }
           },
           "type": "object"
@@ -1113,6 +1227,63 @@
           },
           "type": "object"
         },
+        "scales": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Scale"
+          },
+          "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+          "properties": {
+            "angle": {
+              "$ref": "#/definitions/Scale"
+            },
+            "color": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dx": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dy": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fill": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fillOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "opacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "shape": {
+              "$ref": "#/definitions/Scale"
+            },
+            "size": {
+              "$ref": "#/definitions/Scale"
+            },
+            "stroke": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeWidth": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y2": {
+              "$ref": "#/definitions/Scale"
+            }
+          },
+          "type": "object"
+        },
         "templates": {
           "additionalProperties": {
             "$ref": "#/definitions/AppNestedViewSpec"
@@ -1483,6 +1654,63 @@
                 }
               },
               "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "scales": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Scale"
+          },
+          "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+          "properties": {
+            "angle": {
+              "$ref": "#/definitions/Scale"
+            },
+            "color": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dx": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dy": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fill": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fillOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "opacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "shape": {
+              "$ref": "#/definitions/Scale"
+            },
+            "size": {
+              "$ref": "#/definitions/Scale"
+            },
+            "stroke": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeWidth": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y2": {
+              "$ref": "#/definitions/Scale"
             }
           },
           "type": "object"
@@ -1916,6 +2144,63 @@
               },
               "type": "object"
             },
+            "scales": {
+              "additionalProperties": {
+                "$ref": "#/definitions/Scale"
+              },
+              "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+              "properties": {
+                "angle": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "color": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dx": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dy": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fill": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "shape": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "size": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y2": {
+                  "$ref": "#/definitions/Scale"
+                }
+              },
+              "type": "object"
+            },
             "specId": {
               "description": "A unique identifier that is used in storing state bookmarks to browser's IndexedDB. This is needed to make distinction between visualizations that are served from the same origin, i.e., the same host and port.",
               "type": "string"
@@ -2339,6 +2624,63 @@
                     }
                   },
                   "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "scales": {
+              "additionalProperties": {
+                "$ref": "#/definitions/Scale"
+              },
+              "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+              "properties": {
+                "angle": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "color": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dx": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dy": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fill": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "shape": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "size": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y2": {
+                  "$ref": "#/definitions/Scale"
                 }
               },
               "type": "object"
@@ -2769,6 +3111,63 @@
               },
               "type": "object"
             },
+            "scales": {
+              "additionalProperties": {
+                "$ref": "#/definitions/Scale"
+              },
+              "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+              "properties": {
+                "angle": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "color": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dx": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dy": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fill": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "shape": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "size": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y2": {
+                  "$ref": "#/definitions/Scale"
+                }
+              },
+              "type": "object"
+            },
             "specId": {
               "description": "A unique identifier that is used in storing state bookmarks to browser's IndexedDB. This is needed to make distinction between visualizations that are served from the same origin, i.e., the same host and port.",
               "type": "string"
@@ -3166,6 +3565,63 @@
                     }
                   },
                   "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "scales": {
+              "additionalProperties": {
+                "$ref": "#/definitions/Scale"
+              },
+              "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+              "properties": {
+                "angle": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "color": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dx": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dy": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fill": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "shape": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "size": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y2": {
+                  "$ref": "#/definitions/Scale"
                 }
               },
               "type": "object"
@@ -3604,6 +4060,63 @@
               },
               "type": "object"
             },
+            "scales": {
+              "additionalProperties": {
+                "$ref": "#/definitions/Scale"
+              },
+              "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+              "properties": {
+                "angle": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "color": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dx": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dy": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fill": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "shape": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "size": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y2": {
+                  "$ref": "#/definitions/Scale"
+                }
+              },
+              "type": "object"
+            },
             "separator": {
               "anyOf": [
                 {
@@ -4029,6 +4542,63 @@
               },
               "type": "object"
             },
+            "scales": {
+              "additionalProperties": {
+                "$ref": "#/definitions/Scale"
+              },
+              "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+              "properties": {
+                "angle": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "color": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dx": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dy": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fill": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "shape": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "size": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y2": {
+                  "$ref": "#/definitions/Scale"
+                }
+              },
+              "type": "object"
+            },
             "separator": {
               "anyOf": [
                 {
@@ -4450,6 +5020,63 @@
               "$ref": "#/definitions/SampleDef",
               "description": "Sample identity and label configuration.\n\nIf `identity` is omitted, sample identifiers are inferred from the data."
             },
+            "scales": {
+              "additionalProperties": {
+                "$ref": "#/definitions/Scale"
+              },
+              "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+              "properties": {
+                "angle": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "color": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dx": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "dy": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fill": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "fillOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "opacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "shape": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "size": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "stroke": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeOpacity": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "strokeWidth": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "x2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "y2": {
+                  "$ref": "#/definitions/Scale"
+                }
+              },
+              "type": "object"
+            },
             "spec": {
               "anyOf": [
                 {
@@ -4853,6 +5480,63 @@
           },
           "type": "object"
         },
+        "scales": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Scale"
+          },
+          "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+          "properties": {
+            "angle": {
+              "$ref": "#/definitions/Scale"
+            },
+            "color": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dx": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dy": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fill": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fillOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "opacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "shape": {
+              "$ref": "#/definitions/Scale"
+            },
+            "size": {
+              "$ref": "#/definitions/Scale"
+            },
+            "stroke": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeWidth": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y2": {
+              "$ref": "#/definitions/Scale"
+            }
+          },
+          "type": "object"
+        },
         "templates": {
           "additionalProperties": {
             "$ref": "#/definitions/AppNestedViewSpec"
@@ -5194,6 +5878,63 @@
                 }
               },
               "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "scales": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Scale"
+          },
+          "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+          "properties": {
+            "angle": {
+              "$ref": "#/definitions/Scale"
+            },
+            "color": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dx": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dy": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fill": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fillOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "opacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "shape": {
+              "$ref": "#/definitions/Scale"
+            },
+            "size": {
+              "$ref": "#/definitions/Scale"
+            },
+            "stroke": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeWidth": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y2": {
+              "$ref": "#/definitions/Scale"
             }
           },
           "type": "object"
@@ -7406,6 +8147,28 @@
           "type": "string"
         }
       ]
+    },
+    "DomainValue": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "$ref": "#/definitions/ExprRef"
+        }
+      ]
+    },
+    "DomainValueArray": {
+      "items": {
+        "$ref": "#/definitions/DomainValue"
+      },
+      "type": "array"
     },
     "DsvDataFormat": {
       "additionalProperties": false,
@@ -13814,6 +14577,63 @@
           "$ref": "#/definitions/SampleDef",
           "description": "Sample identity and label configuration.\n\nIf `identity` is omitted, sample identifiers are inferred from the data."
         },
+        "scales": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Scale"
+          },
+          "description": "Configures scale resolutions used by this view subtree.\n\nUse this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding.",
+          "properties": {
+            "angle": {
+              "$ref": "#/definitions/Scale"
+            },
+            "color": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dx": {
+              "$ref": "#/definitions/Scale"
+            },
+            "dy": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fill": {
+              "$ref": "#/definitions/Scale"
+            },
+            "fillOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "opacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "shape": {
+              "$ref": "#/definitions/Scale"
+            },
+            "size": {
+              "$ref": "#/definitions/Scale"
+            },
+            "stroke": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeOpacity": {
+              "$ref": "#/definitions/Scale"
+            },
+            "strokeWidth": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x": {
+              "$ref": "#/definitions/Scale"
+            },
+            "x2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y": {
+              "$ref": "#/definitions/Scale"
+            },
+            "y2": {
+              "$ref": "#/definitions/Scale"
+            }
+          },
+          "type": "object"
+        },
         "spec": {
           "anyOf": [
             {
@@ -13992,9 +14812,12 @@
             },
             {
               "$ref": "#/definitions/ExprRef"
+            },
+            {
+              "$ref": "#/definitions/DomainValueArray"
             }
           ],
-          "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
+          "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values.\n\nThe domain can also be defined by an expression reference that evaluates to the domain array. Array elements may also be expression references."
         },
         "domainMax": {
           "description": "Sets the maximum value in the scale domain, overriding the `domain` property. This property is only intended for use with scales having continuous domains.",
@@ -14018,7 +14841,7 @@
               "type": "object"
             }
           ],
-          "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
+          "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains that include `ExprRef`s, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for `ExprRef`-driven domains."
         },
         "exponent": {
           "description": "The exponent of the `pow` scale.",
@@ -14091,27 +14914,25 @@
           "anyOf": [
             {
               "items": {
-                "type": "number"
-              },
-              "type": "array"
-            },
-            {
-              "items": {
-                "type": "string"
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/definitions/ExprRef"
+                  }
+                ]
               },
               "type": "array"
             },
             {
               "type": "string"
-            },
-            {
-              "items": {
-                "$ref": "#/definitions/ExprRef"
-              },
-              "type": "array"
             }
           ],
-          "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating  minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise).\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
+          "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise). Array elements may also be expression references.\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values. Array elements may also be expression references.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
         },
         "reverse": {
           "description": "If true, reverses the order of the scale range.\n\n__Default value:__ `false`.",
@@ -14204,9 +15025,12 @@
             },
             {
               "$ref": "#/definitions/ExprRef"
+            },
+            {
+              "$ref": "#/definitions/DomainValueArray"
             }
           ],
-          "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
+          "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values.\n\nThe domain can also be defined by an expression reference that evaluates to the domain array. Array elements may also be expression references."
         },
         "domainMax": {
           "description": "Sets the maximum value in the scale domain, overriding the `domain` property. This property is only intended for use with scales having continuous domains.",
@@ -14230,7 +15054,7 @@
               "type": "object"
             }
           ],
-          "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
+          "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains that include `ExprRef`s, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for `ExprRef`-driven domains."
         },
         "exponent": {
           "description": "The exponent of the `pow` scale.",
@@ -14287,9 +15111,12 @@
                 },
                 {
                   "$ref": "#/definitions/ExprRef"
+                },
+                {
+                  "$ref": "#/definitions/DomainValueArray"
                 }
               ],
-              "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
+              "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values.\n\nThe domain can also be defined by an expression reference that evaluates to the domain array. Array elements may also be expression references."
             },
             "domainMax": {
               "description": "Sets the maximum value in the scale domain, overriding the `domain` property. This property is only intended for use with scales having continuous domains.",
@@ -14313,7 +15140,7 @@
                   "type": "object"
                 }
               ],
-              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
+              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains that include `ExprRef`s, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for `ExprRef`-driven domains."
             },
             "exponent": {
               "description": "The exponent of the `pow` scale.",
@@ -14386,27 +15213,25 @@
               "anyOf": [
                 {
                   "items": {
-                    "type": "number"
-                  },
-                  "type": "array"
-                },
-                {
-                  "items": {
-                    "type": "string"
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "$ref": "#/definitions/ExprRef"
+                      }
+                    ]
                   },
                   "type": "array"
                 },
                 {
                   "type": "string"
-                },
-                {
-                  "items": {
-                    "$ref": "#/definitions/ExprRef"
-                  },
-                  "type": "array"
                 }
               ],
-              "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating  minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise).\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
+              "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise). Array elements may also be expression references.\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values. Array elements may also be expression references.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
             },
             "reverse": {
               "description": "If true, reverses the order of the scale range.\n\n__Default value:__ `false`.",
@@ -14511,9 +15336,12 @@
                 },
                 {
                   "$ref": "#/definitions/ExprRef"
+                },
+                {
+                  "$ref": "#/definitions/DomainValueArray"
                 }
               ],
-              "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
+              "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values.\n\nThe domain can also be defined by an expression reference that evaluates to the domain array. Array elements may also be expression references."
             },
             "domainMax": {
               "description": "Sets the maximum value in the scale domain, overriding the `domain` property. This property is only intended for use with scales having continuous domains.",
@@ -14537,7 +15365,7 @@
                   "type": "object"
                 }
               ],
-              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
+              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains that include `ExprRef`s, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for `ExprRef`-driven domains."
             },
             "exponent": {
               "description": "The exponent of the `pow` scale.",
@@ -14610,27 +15438,25 @@
               "anyOf": [
                 {
                   "items": {
-                    "type": "number"
-                  },
-                  "type": "array"
-                },
-                {
-                  "items": {
-                    "type": "string"
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "$ref": "#/definitions/ExprRef"
+                      }
+                    ]
                   },
                   "type": "array"
                 },
                 {
                   "type": "string"
-                },
-                {
-                  "items": {
-                    "$ref": "#/definitions/ExprRef"
-                  },
-                  "type": "array"
                 }
               ],
-              "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating  minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise).\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
+              "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise). Array elements may also be expression references.\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values. Array elements may also be expression references.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
             },
             "reverse": {
               "description": "If true, reverses the order of the scale range.\n\n__Default value:__ `false`.",
@@ -14755,9 +15581,12 @@
                 },
                 {
                   "$ref": "#/definitions/ExprRef"
+                },
+                {
+                  "$ref": "#/definitions/DomainValueArray"
                 }
               ],
-              "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
+              "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values.\n\nThe domain can also be defined by an expression reference that evaluates to the domain array. Array elements may also be expression references."
             },
             "domainMax": {
               "description": "Sets the maximum value in the scale domain, overriding the `domain` property. This property is only intended for use with scales having continuous domains.",
@@ -14781,7 +15610,7 @@
                   "type": "object"
                 }
               ],
-              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
+              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains that include `ExprRef`s, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for `ExprRef`-driven domains."
             },
             "exponent": {
               "description": "The exponent of the `pow` scale.",
@@ -14854,27 +15683,25 @@
               "anyOf": [
                 {
                   "items": {
-                    "type": "number"
-                  },
-                  "type": "array"
-                },
-                {
-                  "items": {
-                    "type": "string"
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "$ref": "#/definitions/ExprRef"
+                      }
+                    ]
                   },
                   "type": "array"
                 },
                 {
                   "type": "string"
-                },
-                {
-                  "items": {
-                    "$ref": "#/definitions/ExprRef"
-                  },
-                  "type": "array"
                 }
               ],
-              "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating  minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise).\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
+              "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise). Array elements may also be expression references.\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values. Array elements may also be expression references.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
             },
             "reverse": {
               "description": "If true, reverses the order of the scale range.\n\n__Default value:__ `false`.",
@@ -14976,9 +15803,12 @@
                 },
                 {
                   "$ref": "#/definitions/ExprRef"
+                },
+                {
+                  "$ref": "#/definitions/DomainValueArray"
                 }
               ],
-              "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
+              "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values.\n\nThe domain can also be defined by an expression reference that evaluates to the domain array. Array elements may also be expression references."
             },
             "domainMax": {
               "description": "Sets the maximum value in the scale domain, overriding the `domain` property. This property is only intended for use with scales having continuous domains.",
@@ -15002,7 +15832,7 @@
                   "type": "object"
                 }
               ],
-              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
+              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains that include `ExprRef`s, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for `ExprRef`-driven domains."
             },
             "exponent": {
               "description": "The exponent of the `pow` scale.",
@@ -15075,27 +15905,25 @@
               "anyOf": [
                 {
                   "items": {
-                    "type": "number"
-                  },
-                  "type": "array"
-                },
-                {
-                  "items": {
-                    "type": "string"
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "$ref": "#/definitions/ExprRef"
+                      }
+                    ]
                   },
                   "type": "array"
                 },
                 {
                   "type": "string"
-                },
-                {
-                  "items": {
-                    "$ref": "#/definitions/ExprRef"
-                  },
-                  "type": "array"
                 }
               ],
-              "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating  minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise).\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
+              "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise). Array elements may also be expression references.\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values. Array elements may also be expression references.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
             },
             "reverse": {
               "description": "If true, reverses the order of the scale range.\n\n__Default value:__ `false`.",
@@ -15210,9 +16038,12 @@
                 },
                 {
                   "$ref": "#/definitions/ExprRef"
+                },
+                {
+                  "$ref": "#/definitions/DomainValueArray"
                 }
               ],
-              "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values."
+              "description": "Customized domain values.\n\nFor _quantitative_ fields, `domain` can take the form of a two-element array with minimum and maximum values.  [Piecewise scales](https://vega.github.io/vega-lite/docs/scale.html#piecewise) can be created by providing a `domain` with more than two entries.\n\nFor _temporal_ fields, `domain` can be a two-element array minimum and maximum values, in the form of either timestamps or the [DateTime definition objects](https://vega.github.io/vega-lite/docs/types.html#datetime).\n\nFor _ordinal_ and _nominal_ fields, `domain` can be an array that lists valid input values.\n\nThe domain can also be defined by an expression reference that evaluates to the domain array. Array elements may also be expression references."
             },
             "domainMax": {
               "description": "Sets the maximum value in the scale domain, overriding the `domain` property. This property is only intended for use with scales having continuous domains.",
@@ -15236,7 +16067,7 @@
                   "type": "object"
                 }
               ],
-              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains defined by an `ExprRef`, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for ExprRef-driven domains."
+              "description": "Controls whether domain updates are applied immediately or with a smooth transition.\n\nSet this to `false` to apply domain updates immediately. The default is `true`, except for domains that include `ExprRef`s, which default to `false` unless overridden.\n\n__Default value:__ `true`, except `false` for `ExprRef`-driven domains."
             },
             "exponent": {
               "description": "The exponent of the `pow` scale.",
@@ -15309,27 +16140,25 @@
               "anyOf": [
                 {
                   "items": {
-                    "type": "number"
-                  },
-                  "type": "array"
-                },
-                {
-                  "items": {
-                    "type": "string"
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "$ref": "#/definitions/ExprRef"
+                      }
+                    ]
                   },
                   "type": "array"
                 },
                 {
                   "type": "string"
-                },
-                {
-                  "items": {
-                    "$ref": "#/definitions/ExprRef"
-                  },
-                  "type": "array"
                 }
               ],
-              "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating  minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise).\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
+              "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise). Array elements may also be expression references.\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values. Array elements may also be expression references.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
             },
             "reverse": {
               "description": "If true, reverses the order of the scale range.\n\n__Default value:__ `false`.",
@@ -15380,27 +16209,25 @@
           "anyOf": [
             {
               "items": {
-                "type": "number"
-              },
-              "type": "array"
-            },
-            {
-              "items": {
-                "type": "string"
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/definitions/ExprRef"
+                  }
+                ]
               },
               "type": "array"
             },
             {
               "type": "string"
-            },
-            {
-              "items": {
-                "$ref": "#/definitions/ExprRef"
-              },
-              "type": "array"
             }
           ],
-          "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating  minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise).\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
+          "description": "The range of the scale. One of:\n\n- A string indicating a [pre-defined named scale range](https://vega.github.io/vega-lite/docs/scale.html#range-config) (e.g., example, `\"symbol\"`, or `\"diverging\"`).\n\n- For [continuous scales](https://vega.github.io/vega-lite/docs/scale.html#continuous), two-element array indicating minimum and maximum values, or an array with more than two entries for specifying a [piecewise scale](https://vega.github.io/vega-lite/docs/scale.html#piecewise). Array elements may also be expression references.\n\n- For [discrete](https://vega.github.io/vega-lite/docs/scale.html#discrete) and [discretizing](https://vega.github.io/vega-lite/docs/scale.html#discretizing) scales, an array of desired output values. Array elements may also be expression references.\n\n__Notes:__\n\n1) For color scales you can also specify a color [`scheme`](https://vega.github.io/vega-lite/docs/scale.html#scheme) instead of `range`.\n\n2) Any directly specified `range` for `x` and `y` channels will be ignored. Range can be customized via the view's corresponding [size](https://vega.github.io/vega-lite/docs/size.html) (`width` and `height`)."
         },
         "reverse": {
           "description": "If true, reverses the order of the scale range.\n\n__Default value:__ `false`.",
