@@ -6,11 +6,13 @@
   <body>
     <script
       type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/@genome-spy/core@0.78.0"
+      src="https://cdn.jsdelivr.net/npm/@genome-spy/core@0.79.0"
     ></script>
 
     <script>
-      genomeSpyEmbed.embed(document.body, "spec.json", {});
+      genomeSpyEmbed.embed(document.body, "spec.json", {}).then((api) => {
+        // Call API methods here.
+      });
     </script>
   </body>
 </html>

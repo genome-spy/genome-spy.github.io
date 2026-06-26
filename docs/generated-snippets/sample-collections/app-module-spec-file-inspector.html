@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GenomeSpy</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@genome-spy/app@0.79.0/dist/style.css"
+    />
+  </head>
+  <body>
+    <script type="module">
+      import { embed } from "https://cdn.jsdelivr.net/npm/@genome-spy/app@0.79.0/dist/index.es.js";
+      import { genomeSpyInspector } from "https://cdn.jsdelivr.net/npm/@genome-spy/inspector@0.79.0/dist/index.es.js";
+
+      await embed(document.body, "spec.json", {
+        plugins: [genomeSpyInspector()],
+      });
+    </script>
+  </body>
+</html>

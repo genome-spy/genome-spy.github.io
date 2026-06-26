@@ -117,6 +117,32 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/axis/genome-axis",
+    "title": "Genome axis styling example for locus scales.",
+    "description": "Genome axis styling example for locus scales.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Axis",
+    "specPath": "examples/docs/grammar/axis/genome-axis.json",
+    "specUrl": "/docs/examples/docs/grammar/axis/genome-axis.json",
+    "screenshotPath": "examples/docs/grammar/axis/genome-axis.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/axis/genome-axis.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/axis/inside-axis",
+    "title": "Inside axis placement example.",
+    "description": "Inside axis placement example.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Axis",
+    "specPath": "examples/docs/grammar/axis/inside-axis.json",
+    "specUrl": "/docs/examples/docs/grammar/axis/inside-axis.json",
+    "screenshotPath": "examples/docs/grammar/axis/inside-axis.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/axis/inside-axis.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/composition/index/independent-resolution",
     "title": "Independent scale resolution example.",
     "description": "Independent scale resolution example.",
@@ -299,19 +325,6 @@
     "sourceMode": "shared-example"
   },
   {
-    "id": "docs/grammar/config/title-styles",
-    "title": "Built-in title style examples.",
-    "description": "Built-in title style examples.",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Grammar / Config",
-    "specPath": "examples/docs/grammar/config/title-styles.json",
-    "specUrl": "/docs/examples/docs/grammar/config/title-styles.json",
-    "screenshotPath": "examples/docs/grammar/config/title-styles.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/config/title-styles.png",
-    "sourceMode": "shared-example"
-  },
-  {
     "id": "docs/grammar/config/config-overview",
     "title": "Configuration overview example.",
     "description": "Configuration overview example.",
@@ -478,6 +491,58 @@
     "specUrl": "/docs/examples/docs/grammar/import/named-template-repeat.json",
     "screenshotPath": "examples/docs/grammar/import/named-template-repeat.png",
     "screenshotUrl": "/docs/examples/docs/grammar/import/named-template-repeat.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/legend/reactive-disable",
+    "title": "A Palmer penguins scatter plot with a checkbox for showing and hiding the legend.",
+    "description": "A Palmer penguins scatter plot with a checkbox for showing and hiding the legend.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Legend",
+    "specPath": "examples/docs/grammar/legend/reactive-disable.json",
+    "specUrl": "/docs/examples/docs/grammar/legend/reactive-disable.json",
+    "screenshotPath": "examples/docs/grammar/legend/reactive-disable.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/legend/reactive-disable.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/legend/symbol-legend",
+    "title": "A Palmer penguins scatter plot with a nominal species legend.",
+    "description": "A Palmer penguins scatter plot with a nominal species legend.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Legend",
+    "specPath": "examples/docs/grammar/legend/symbol-legend.json",
+    "specUrl": "/docs/examples/docs/grammar/legend/symbol-legend.json",
+    "screenshotPath": "examples/docs/grammar/legend/symbol-legend.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/legend/symbol-legend.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/legend/gradient-legend",
+    "title": "A Palmer penguins scatter plot with a quantitative body mass legend.",
+    "description": "A Palmer penguins scatter plot with a quantitative body mass legend.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Legend",
+    "specPath": "examples/docs/grammar/legend/gradient-legend.json",
+    "specUrl": "/docs/examples/docs/grammar/legend/gradient-legend.json",
+    "screenshotPath": "examples/docs/grammar/legend/gradient-legend.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/legend/gradient-legend.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/legend/shared-hconcat-legend",
+    "title": "Palmer penguins scatter plots with a shared legend.",
+    "description": "Palmer penguins scatter plots with a shared legend.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Legend",
+    "specPath": "examples/docs/grammar/legend/shared-hconcat-legend.json",
+    "specUrl": "/docs/examples/docs/grammar/legend/shared-hconcat-legend.json",
+    "screenshotPath": "examples/docs/grammar/legend/shared-hconcat-legend.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/legend/shared-hconcat-legend.png",
     "sourceMode": "shared-example"
   },
   {
@@ -832,19 +897,6 @@
     "sourceMode": "shared-example"
   },
   {
-    "id": "docs/grammar/scale/genome-axis",
-    "title": "Genome axis styling example for locus scales.",
-    "description": "Genome axis styling example for locus scales.",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Grammar / Scale",
-    "specPath": "examples/docs/grammar/scale/genome-axis.json",
-    "specUrl": "/docs/examples/docs/grammar/scale/genome-axis.json",
-    "screenshotPath": "examples/docs/grammar/scale/genome-axis.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/scale/genome-axis.png",
-    "sourceMode": "shared-example"
-  },
-  {
     "id": "docs/grammar/scale/point-indices-bands",
     "title": "Index scale example with band-filling marks.",
     "description": "Index scale example with band-filling marks.",
@@ -907,6 +959,32 @@
     "specUrl": "/docs/examples/docs/grammar/scale/locus-scale-domain.json",
     "screenshotPath": "examples/docs/grammar/scale/locus-scale-domain.png",
     "screenshotUrl": "/docs/examples/docs/grammar/scale/locus-scale-domain.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/title/basic-title",
+    "title": "Basic title and subtitle example.",
+    "description": "Basic title and subtitle example.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Title",
+    "specPath": "examples/docs/grammar/title/basic-title.json",
+    "specUrl": "/docs/examples/docs/grammar/title/basic-title.json",
+    "screenshotPath": "examples/docs/grammar/title/basic-title.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/title/basic-title.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/title/title-styles",
+    "title": "Built-in title style examples.",
+    "description": "Built-in title style examples.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Title",
+    "specPath": "examples/docs/grammar/title/title-styles.json",
+    "specUrl": "/docs/examples/docs/grammar/title/title-styles.json",
+    "screenshotPath": "examples/docs/grammar/title/title-styles.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/title/title-styles.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1170,6 +1248,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "core/layout/title_bounds",
+    "title": "Acid test for title bounds in composed layouts.",
+    "description": "Acid test for title bounds in composed layouts.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Layout",
+    "specPath": "examples/core/layout/title_bounds.json",
+    "specUrl": "/docs/examples/core/layout/title_bounds.json",
+    "screenshotPath": "examples/core/layout/title_bounds.png",
+    "screenshotUrl": "/docs/examples/core/layout/title_bounds.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "core/layout/size_expr",
     "title": "Displaying view dimensions.",
     "description": "Displaying view dimensions.",
@@ -1287,6 +1378,32 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "core/layout/grid/vconcat_width_child_chrome",
+    "title": "Demonstrates explicit width on a vconcat.",
+    "description": "Demonstrates explicit width on a vconcat.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Layout / Grid",
+    "specPath": "examples/core/layout/grid/vconcat_width_child_chrome.json",
+    "specUrl": "/docs/examples/core/layout/grid/vconcat_width_child_chrome.json",
+    "screenshotPath": "examples/core/layout/grid/vconcat_width_child_chrome.png",
+    "screenshotUrl": "/docs/examples/core/layout/grid/vconcat_width_child_chrome.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/layout/grid/hconcat_width_child_minimums",
+    "title": "Demonstrates explicit width on an hconcat.",
+    "description": "Demonstrates explicit width on an hconcat.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Layout / Grid",
+    "specPath": "examples/core/layout/grid/hconcat_width_child_minimums.json",
+    "specUrl": "/docs/examples/core/layout/grid/hconcat_width_child_minimums.json",
+    "screenshotPath": "examples/core/layout/grid/hconcat_width_child_minimums.png",
+    "screenshotUrl": "/docs/examples/core/layout/grid/hconcat_width_child_minimums.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "core/layout/grid/shared_axis_at_root",
     "title": "Shared x-axis and scale, fixed view heights.",
     "description": "Shared x-axis and scale, fixed view heights.",
@@ -1375,6 +1492,110 @@
     "specUrl": "/docs/examples/core/lazy-data/indexed_fasta.json",
     "screenshotPath": null,
     "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/legends/bubble-health-income",
+    "title": "Bubble plot testbed for a quantitative size legend, adapted from the Vega-Lite health and income example.",
+    "description": "Bubble plot testbed for a quantitative size legend, adapted from the Vega-Lite health and income example.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/bubble-health-income.json",
+    "specUrl": "/docs/examples/core/legends/bubble-health-income.json",
+    "screenshotPath": "examples/core/legends/bubble-health-income.png",
+    "screenshotUrl": "/docs/examples/core/legends/bubble-health-income.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/legends/horizontal-stacked-bar",
+    "title": "Legend test case adapted from Vega-Lite's horizontal stacked barley bar chart.",
+    "description": "Legend test case adapted from Vega-Lite's horizontal stacked barley bar chart.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/horizontal-stacked-bar.json",
+    "specUrl": "/docs/examples/core/legends/horizontal-stacked-bar.json",
+    "screenshotPath": "examples/core/legends/horizontal-stacked-bar.png",
+    "screenshotUrl": "/docs/examples/core/legends/horizontal-stacked-bar.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/legends/linear-gradient",
+    "title": "Legend test case for a linear color scale.",
+    "description": "Legend test case for a linear color scale.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/linear-gradient.json",
+    "specUrl": "/docs/examples/core/legends/linear-gradient.json",
+    "screenshotPath": "examples/core/legends/linear-gradient.png",
+    "screenshotUrl": "/docs/examples/core/legends/linear-gradient.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/legends/log-gradient",
+    "title": "Legend test case for a logarithmic color scale.",
+    "description": "Legend test case for a logarithmic color scale.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/log-gradient.json",
+    "specUrl": "/docs/examples/core/legends/log-gradient.json",
+    "screenshotPath": "examples/core/legends/log-gradient.png",
+    "screenshotUrl": "/docs/examples/core/legends/log-gradient.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/legends/quantize-gradient",
+    "title": "Legend test case for a quantize color scale.",
+    "description": "Legend test case for a quantize color scale.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/quantize-gradient.json",
+    "specUrl": "/docs/examples/core/legends/quantize-gradient.json",
+    "screenshotPath": "examples/core/legends/quantize-gradient.png",
+    "screenshotUrl": "/docs/examples/core/legends/quantize-gradient.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/legends/threshold-gradient",
+    "title": "Legend test case for a threshold color scale.",
+    "description": "Legend test case for a threshold color scale.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/threshold-gradient.json",
+    "specUrl": "/docs/examples/core/legends/threshold-gradient.json",
+    "screenshotPath": "examples/core/legends/threshold-gradient.png",
+    "screenshotUrl": "/docs/examples/core/legends/threshold-gradient.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/legends/layered-legend-regions",
+    "title": "Legend test case for layered plots with inside-corner and outside-side legend regions.",
+    "description": "Legend test case for layered plots with inside-corner and outside-side legend regions.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/layered-legend-regions.json",
+    "specUrl": "/docs/examples/core/legends/layered-legend-regions.json",
+    "screenshotPath": "examples/core/legends/layered-legend-regions.png",
+    "screenshotUrl": "/docs/examples/core/legends/layered-legend-regions.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/legends/redundant-encoding",
+    "title": "Legend test case for redundant nominal color and shape encodings.",
+    "description": "Legend test case for redundant nominal color and shape encodings.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/redundant-encoding.json",
+    "specUrl": "/docs/examples/core/legends/redundant-encoding.json",
+    "screenshotPath": "examples/core/legends/redundant-encoding.png",
+    "screenshotUrl": "/docs/examples/core/legends/redundant-encoding.png",
     "sourceMode": "shared-example"
   },
   {

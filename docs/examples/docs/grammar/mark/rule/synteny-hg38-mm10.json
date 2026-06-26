@@ -6,8 +6,7 @@
     "Data source: http://bioinfo.konkuk.ac.kr/synteny_portal/"
   ],
 
-  "width": 400,
-  "height": 400,
+  "title": "Human-mouse synteny",
 
   "view": { "stroke": "lightgray" },
 
@@ -38,6 +37,6 @@
       "title": "mm10"
     },
     "y2": { "chrom": "mm10_chrom", "pos": "mm10_end" },
-    "color": { "field": "mm10_chrom", "type": "nominal" }
+    "color": { "field": "mm10_chrom", "type": "nominal", "legend": null }
   }
 }

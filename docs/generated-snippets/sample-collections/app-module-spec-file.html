@@ -5,17 +5,14 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="https://cdn.jsdelivr.net/npm/@genome-spy/app@0.78.0/dist/style.css"
+      href="https://cdn.jsdelivr.net/npm/@genome-spy/app@0.79.0/dist/style.css"
     />
   </head>
   <body>
     <script type="module">
-      import { embed } from "https://cdn.jsdelivr.net/npm/@genome-spy/app@0.78.0/dist/index.es.js";
+      import { embed } from "https://cdn.jsdelivr.net/npm/@genome-spy/app@0.79.0/dist/index.es.js";
 
-      await embed(document.body, "spec.json", {
-        // Show the dataflow inspector button in the toolbar (default: true)
-        showInspectorButton: true,
-      });
+      await embed(document.body, "spec.json");
     </script>
   </body>
 </html>

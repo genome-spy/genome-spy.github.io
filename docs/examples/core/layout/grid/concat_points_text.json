@@ -104,7 +104,14 @@
           }
         }
       },
-      "mark": { "type": "text", "align": "center", "baseline": "middle" }
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "clip": true
+      }
     }
-  ]
+  ],
+
+  "config": { "legend": { "disable": true } }
 }
