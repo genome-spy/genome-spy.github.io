@@ -1521,6 +1521,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "core/legends/corner-horizontal",
+    "title": "Legend test case for a horizontal inside-corner legend.",
+    "description": "Legend test case for a horizontal inside-corner legend.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/corner-horizontal.json",
+    "specUrl": "/docs/examples/core/legends/corner-horizontal.json",
+    "screenshotPath": "examples/core/legends/corner-horizontal.png",
+    "screenshotUrl": "/docs/examples/core/legends/corner-horizontal.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "core/legends/linear-gradient",
     "title": "Legend test case for a linear color scale.",
     "description": "Legend test case for a linear color scale.",
