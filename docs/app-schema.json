@@ -367,9 +367,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -735,9 +742,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -1656,9 +1670,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -2024,9 +2045,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -2947,9 +2975,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -3315,9 +3350,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -4236,9 +4278,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -4604,9 +4653,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -5561,9 +5617,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -5929,9 +5992,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -6895,9 +6965,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -7263,9 +7340,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -8236,9 +8320,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -8604,9 +8695,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -9575,9 +9673,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -9943,9 +10048,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -10911,9 +11023,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -11279,9 +11398,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -12247,9 +12373,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -12615,9 +12748,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -13588,9 +13728,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -13956,9 +14103,16 @@
                       "type": "string"
                     },
                     "tickCount": {
-                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                      "minimum": 0,
-                      "type": "number"
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "$ref": "#/definitions/ExprRef"
+                        }
+                      ],
+                      "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                      "minimum": 0
                     },
                     "tickDash": {
                       "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -14941,9 +15095,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -15309,9 +15470,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -16216,9 +16384,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -16584,9 +16759,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -17434,9 +17616,16 @@
           "type": "string"
         },
         "tickCount": {
-          "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-          "minimum": 0,
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+          "minimum": 0
         },
         "tickDash": {
           "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -17802,9 +17991,16 @@
           "type": "string"
         },
         "tickCount": {
-          "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-          "minimum": 0,
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+          "minimum": 0
         },
         "tickDash": {
           "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -21033,9 +21229,16 @@
           "type": "string"
         },
         "tickCount": {
-          "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-          "minimum": 0,
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+          "minimum": 0
         },
         "tickDash": {
           "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -21616,6 +21819,7 @@
         "mouseenter",
         "mouseleave",
         "mouseover",
+        "mousemove",
         "mousedown",
         "wheel"
       ],
@@ -21647,6 +21851,10 @@
             "$ref": "#/definitions/PrimaryPositionalChannel"
           },
           "type": "array"
+        },
+        "extent": {
+          "$ref": "#/definitions/SelectionExtent",
+          "description": "Visual extent of the interval selection rectangle.\n\n`\"auto\"` draws one spanning rectangle when the selected channel can span a concat safely. `\"view\"` draws one rectangle per participating view. `\"container\"` requires one spanning rectangle.\n\n__Default value:__ `\"auto\"`"
         },
         "mark": {
           "$ref": "#/definitions/BrushConfig",
@@ -23703,6 +23911,9 @@
         },
         {
           "$ref": "#/definitions/SelectionParameter"
+        },
+        {
+          "$ref": "#/definitions/RulerParameter"
         }
       ]
     },
@@ -26273,6 +26484,278 @@
       ],
       "type": "object"
     },
+    "RulerChannelValue": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/Scalar"
+        },
+        {
+          "$ref": "#/definitions/ChromosomalLocus"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "RulerClear": {
+      "enum": [
+        "mouseleave",
+        "mouseup",
+        false
+      ],
+      "type": [
+        "string",
+        "boolean"
+      ]
+    },
+    "RulerConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "clear": {
+          "$ref": "#/definitions/RulerClear",
+          "description": "Event that clears the ruler, or `false` to keep the current value.\n\n__Default value:__ `\"mouseleave\"` for `on: \"mousemove\"`, otherwise `false`."
+        },
+        "display": {
+          "$ref": "#/definitions/RulerDisplay",
+          "description": "How the ruler is drawn for snapped index or locus coordinates.\n\n`\"line\"` draws at the coordinate. `\"center\"` draws at the center of the coordinate band. `\"band\"` draws a rectangle covering the coordinate band. `\"none\"` tracks the ruler value without drawing a guide.\n\n__Default value:__ `\"center\"` for snapped index and locus scales, otherwise `\"line\"`."
+        },
+        "encodings": {
+          "description": "Positional channels whose domain coordinates are tracked by the ruler.\n\n__Default value:__ `[\"x\"]`",
+          "items": {
+            "$ref": "#/definitions/PrimaryPositionalChannel"
+          },
+          "type": "array"
+        },
+        "extent": {
+          "$ref": "#/definitions/RulerExtent",
+          "description": "Visual extent of the ruler.\n\n`\"view\"` draws one guide per participating view. `\"container\"` draws one spanning guide when participating projections align. `\"auto\"` chooses a spanning guide only when it is safe.\n\n__Default value:__ `\"auto\"`"
+        },
+        "mark": {
+          "$ref": "#/definitions/RulerMarkConfig",
+          "description": "Rule or band appearance. Has no effect when `display` is `\"none\"`."
+        },
+        "on": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/RulerEventType"
+            },
+            {
+              "$ref": "#/definitions/RulerEventConfig"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "Event that updates a pointer-driven ruler.\n\n`\"mousemove\"` follows the pointer. `\"mousedown\"` updates on press and continues while dragging. Event filters can require modifier keys.\n\n__Default value:__ `\"mousemove\"`"
+        },
+        "snap": {
+          "$ref": "#/definitions/RulerSnap",
+          "description": "Quantization applied before writing the ruler value.\n\n`\"auto\"` snaps index and locus scales to integer coordinates. `\"integer\"` snaps all numeric coordinates. `false` keeps the original coordinate.\n\n__Default value:__ `\"auto\"` for index and locus scales, otherwise `false`."
+        },
+        "source": {
+          "$ref": "#/definitions/RulerSource",
+          "description": "Source of the ruler coordinate. `\"pointer\"` uses pointer events configured by `on`. `\"viewport\"` tracks the center of the current viewport.\n\n__Default value:__ `\"pointer\"`"
+        }
+      },
+      "type": "object"
+    },
+    "RulerDisplay": {
+      "enum": [
+        "line",
+        "center",
+        "band",
+        "none"
+      ],
+      "type": "string"
+    },
+    "RulerEventConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "filter": {
+          "description": "Optional filter expression that must evaluate to true before the event updates the ruler.",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/RulerEventType",
+          "description": "Event that updates a pointer-driven ruler."
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "RulerEventType": {
+      "enum": [
+        "mousemove",
+        "mousedown"
+      ],
+      "type": "string"
+    },
+    "RulerExtent": {
+      "enum": [
+        "auto",
+        "view",
+        "container"
+      ],
+      "type": "string"
+    },
+    "RulerInitMapping": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "$ref": "#/definitions/RulerChannelValue"
+        },
+        "y": {
+          "$ref": "#/definitions/RulerChannelValue"
+        }
+      },
+      "type": "object"
+    },
+    "RulerMarkConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "fill": {
+          "description": "Fill color for `display: \"band\"`.",
+          "type": "string"
+        },
+        "fillOpacity": {
+          "description": "Fill opacity for `display: \"band\"`.",
+          "type": "number"
+        },
+        "opacity": {
+          "description": "Opacity of ruler lines and bands.",
+          "type": "number"
+        },
+        "shadowBlur": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The blur radius of the drop shadow in pixels. Higher values produce a more diffuse shadow.\n\n**Default value:** `0`"
+        },
+        "shadowColor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The color of the drop shadow. Any valid CSS color string is allowed.\n\n**Default value:** `\"black\"`"
+        },
+        "shadowOffsetX": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The horizontal offset of the drop shadow in pixels. Positive values move the shadow to the right.\n\n**Default value:** `0`"
+        },
+        "shadowOffsetY": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The vertical offset of the drop shadow in pixels. Positive values move the shadow downward.\n\n**Default value:** `0`"
+        },
+        "shadowOpacity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The opacity of the drop shadow. Value between `0` (fully transparent) and `1` (fully opaque).\n\n**Default value:** `0` (disabled)"
+        },
+        "stroke": {
+          "description": "Stroke color of ruler lines and band outlines.",
+          "type": "string"
+        },
+        "strokeDash": {
+          "description": "Alternating stroke and gap lengths for dashed ruler lines and band outlines.",
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "strokeWidth": {
+          "description": "Stroke width of ruler lines and band outlines, in pixels.",
+          "type": "number"
+        },
+        "zindex": {
+          "description": "Z-order relative to the view content.\n\nValues greater than `0` render after the view marks. Values less than or equal to `0` render before the marks. The default value depends on the element type.",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "RulerParameter": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "description": "A description of the parameter. Can be used for documentation and to explain the meaning of the control or selection.",
+          "type": "string"
+        },
+        "name": {
+          "description": "A unique name for the variable parameter. Parameter names should be valid JavaScript identifiers: they should contain only alphanumeric characters (or \"$\", or \"_\") and may not start with a digit. Reserved keywords that may not be used as parameter names are: \"datum\".",
+          "type": "string"
+        },
+        "persist": {
+          "description": "Whether the parameter should be persisted in bookmarks and provenance.\n\nThis primarily affects GenomeSpy App behavior. Set to `false` for ephemeral params (e.g., hover selections) or when the selection cannot be persisted due to missing `encoding.key`.\n\n__Default value:__ `true`",
+          "type": "boolean"
+        },
+        "push": {
+          "const": "outer",
+          "type": "string"
+        },
+        "ruler": {
+          "$ref": "#/definitions/RulerConfig",
+          "description": "Tracks a domain coordinate and displays it as a ruler in compatible views."
+        },
+        "value": {
+          "$ref": "#/definitions/RulerInitMapping",
+          "description": "Initial ruler value."
+        }
+      },
+      "required": [
+        "name",
+        "ruler"
+      ],
+      "type": "object"
+    },
+    "RulerSnap": {
+      "enum": [
+        "auto",
+        "integer",
+        false
+      ],
+      "type": [
+        "string",
+        "boolean"
+      ]
+    },
+    "RulerSource": {
+      "enum": [
+        "pointer",
+        "viewport"
+      ],
+      "type": "string"
+    },
     "SampleAttributeDef": {
       "additionalProperties": false,
       "properties": {
@@ -26729,9 +27212,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -27097,9 +27587,16 @@
                   "type": "string"
                 },
                 "tickCount": {
-                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-                  "minimum": 0,
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "$ref": "#/definitions/ExprRef"
+                    }
+                  ],
+                  "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+                  "minimum": 0
                 },
                 "tickDash": {
                   "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",
@@ -29481,6 +29978,14 @@
       ],
       "type": "object"
     },
+    "SelectionExtent": {
+      "enum": [
+        "auto",
+        "view",
+        "container"
+      ],
+      "type": "string"
+    },
     "SelectionFilterParams": {
       "additionalProperties": false,
       "properties": {
@@ -31551,9 +32056,16 @@
           "type": "string"
         },
         "tickCount": {
-          "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.",
-          "minimum": 0,
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are \"nice\" (multiples of `2`, `5`, `10`) and lie within the underlying scale's range.\n\nAn expression reference can use `axisLength` for the current length of the axis in pixels. For example, `{ \"expr\": \"ceil(axisLength / 40)\" }` requests one tick per 40 pixels.\n\n__Default value:__ an expression based on `axisLength`",
+          "minimum": 0
         },
         "tickDash": {
           "description": "An array of alternating [stroke, space] lengths for dashed tick mark lines.",

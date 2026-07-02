@@ -2355,6 +2355,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -2439,6 +2445,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../genomic-data/examples/indexed-fasta-sequence-track/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indexed FASTA Sequence Track
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../genomic-data/examples/refseq-genes/" class="md-nav__link">
         
   
@@ -2447,6 +2481,34 @@
     
   
     RefSeq Gene Annotations with Scored Labels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../genomic-data/examples/gencode-gff3-gene-annotations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GENCODE Gene Annotations from GFF3
   
 
     
@@ -2531,6 +2593,34 @@
     
   
     Sashimi plot from splice junctions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../genomic-data/examples/clinvar-variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ClinVar Small-Variant Classifications
   
 
     
@@ -3495,18 +3585,16 @@ The chunks are provided as data objects with the following fields: <code>chrom</
 </dd>
 </dl>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
-<p>The visualization below shows how to specify a sequence track using an indexed FASTA
-file. The sequence chunks are split into separate data objects using the
-<a href="../../transform/flatten-sequence/"><code>"flattenSequence"</code></a> transform, and the final
-position of each nucleotide is computed using the
-<a href="../../transform/formula/"><code>"formula"</code></a> transform. Please note that new data are
-fetched only when the user zooms into a region smaller than the window size
-(default: 7000 bp).</p>
-<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.json" height="60" spechidden="true">
+<p>The visualization below shows a sequence track backed by an indexed FASTA
+source. GenomeSpy fetches new sequence only when the visible region is smaller
+than the source window size (default: 7000 bp). For a fuller explanation of the
+track, see <a href="../../../genomic-data/examples/indexed-fasta-sequence-track/">Indexed FASTA Sequence Track</a>.</p>
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/genomic-data/examples/indexed-fasta-sequence-track.json" height="60" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;Indexed FASTA sequence track example.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Indexed FASTA Sequence Track&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Shows reference bases from an indexed UCSC hg38 FASTA by loading visible sequence chunks, splitting them into base-level rows, and drawing colored nucleotide labels.&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="s2">&quot;Data source: UCSC hg38 / GRCh38 reference FASTA (`goldenPath/hg38/bigZips/latest/hg38.fa.gz`). Terms: UCSC downloadable data files are freely reusable.&quot;</span>
 <span class="w">  </span><span class="p">],</span>
 
@@ -3929,17 +4017,15 @@ multi-sample VCF row shaping may still require additional transforms.</p>
 </dd>
 </dl>
 <h3 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h3>
-<p>The visualization below replicates the small-variant classification view
-described in NCBI's
-<a href="https://ncbiinsights.ncbi.nlm.nih.gov/2022/08/30/clinvar-graphical-view/">"New ClinVar graphical display"</a>
-post. It places ClinVar variants by genomic position and germline
-classification and uses color to distinguish the classification categories.</p>
-<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/vcf-clinvar.json" height="100" spechidden="true">
+<p>The visualization below shows ClinVar variants loaded from a tabix-indexed VCF
+file and reshaped for a small-variant classification track. For a fuller
+explanation of the track, see <a href="../../../genomic-data/examples/clinvar-variants/">ClinVar Small-Variant Classifications</a>.</p>
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/genomic-data/examples/clinvar-variants.json" height="130" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;ClinVar variants track example.&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;Replicates the small-variant classification view described in NCBI&#39;s \&quot;New ClinVar graphical display\&quot; post.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;ClinVar Small-Variant Classifications&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Recreates NCBI&#39;s ClinVar graphical classification view for small variants in a DSG2 region, using genomic position, row placement, and color to show germline classifications.&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="s2">&quot;Data source: mirrored copy of the ClinVar GRCh38 VCF release from NCBI FTP (`/pub/clinvar/vcf_GRCh38/`). Terms: attribute ClinVar as the data source.&quot;</span>
 <span class="w">  </span><span class="p">],</span>
 
@@ -3954,6 +4040,15 @@ classification and uses color to distinguish the classification categories.</p>
 <span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="w"> </span><span class="p">},</span>
 
 <span class="w">  </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;fill&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#f8f8f8&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;scales&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr18&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">31524101</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr18&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">31525003</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
 
 <span class="w">  </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
@@ -3976,14 +4071,6 @@ classification and uses color to distinguish the classification categories.</p>
 <span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://data.genomespy.app/sample-data/clinvar_20241215.vcf.gz&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;addChrPrefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;windowSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;scales&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr18&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">31524101</span><span class="w"> </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr18&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">31525003</span><span class="w"> </span><span class="p">}</span>
-<span class="w">          </span><span class="p">]</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -4033,8 +4120,7 @@ classification and uses color to distinguish the classification categories.</p>
 <span class="w">          </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CHROM&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POS&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">          </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Germline classification&quot;</span><span class="p">,</span>
@@ -4151,15 +4237,16 @@ visualization below.</p>
 </dd>
 </dl>
 <h3 id="example_4">Example<a class="headerlink" href="#example_4" title="Permanent link">&para;</a></h3>
-<p>The visualization below displays the human (GRCh38.p13)
-<a href="https://www.gencodegenes.org/">GENCODE</a> v43 annotation dataset. Please note
-that the example shows a maximum of ten overlapping features per locus as
-vertical scrolling is currently not supported properly.</p>
-<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/gff3-gene-annotations.json" height="360" spechidden="true">
+<p>The visualization below loads the human (GRCh38.p13)
+<a href="https://www.gencodegenes.org/">GENCODE</a> v43 annotation dataset from a
+tabix-indexed GFF3 file. For a fuller explanation of the track, see <a href="../../../genomic-data/examples/gencode-gff3-gene-annotations/">GENCODE
+Gene Annotations from GFF3</a>.</p>
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/genomic-data/examples/gff3-gene-annotations.json" height="360" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;GFF3 gene annotation example.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;GENCODE Gene Annotations from GFF3&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Displays GENCODE release 43 transcript annotations from a tabix-indexed GFF3 file with packed transcript lanes, exons, UTR/CDS intervals, and transcript labels.&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="s2">&quot;Data source: sorted and bgzip-compressed copy of the GENCODE human release 43 (GRCh38.p13) comprehensive gene annotation GFF3. Terms: GENCODE project data are open access.&quot;</span>
 <span class="w">  </span><span class="p">],</span>
 
@@ -4701,7 +4788,7 @@ The data source generates data objects with the following fields: <code>name</co
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 23, 2026 17:49:46 UTC">June 23, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 2, 2026 08:41:27 UTC">July 2, 2026</span>
   </span>
 
     

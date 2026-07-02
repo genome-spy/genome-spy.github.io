@@ -1958,6 +1958,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ruler-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ruler Parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ruler Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ruler-guides-in-descendant-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ruler Guides in Descendant Views
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushing-ruler-values-to-ancestor-scopes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pushing Ruler Values to Ancestor Scopes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2119,6 +2169,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -2203,6 +2259,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../genomic-data/examples/indexed-fasta-sequence-track/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indexed FASTA Sequence Track
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../genomic-data/examples/refseq-genes/" class="md-nav__link">
         
   
@@ -2211,6 +2295,34 @@
     
   
     RefSeq Gene Annotations with Scored Labels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/gencode-gff3-gene-annotations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GENCODE Gene Annotations from GFF3
   
 
     
@@ -2295,6 +2407,34 @@
     
   
     Sashimi plot from splice junctions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/clinvar-variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ClinVar Small-Variant Classifications
   
 
     
@@ -2920,6 +3060,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ruler-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ruler Parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ruler Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ruler-guides-in-descendant-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ruler Guides in Descendant Views
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushing-ruler-values-to-ancestor-scopes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pushing Ruler Values to Ancestor Scopes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3144,6 +3334,11 @@ By default, <code>select.zoom</code> is:</p>
 </ul>
 <p>You can override the behavior with <code>select.zoom: true/false</code> or an explicit
 wheel event definition such as <code>"zoom": "wheel[event.altKey]"</code>.</p>
+<p>In concatenated views, <code>select.extent</code> controls where the selection rectangle is
+drawn. The default <code>"auto"</code> draws one rectangle across the concat container when
+the selected channel uses aligned projections in the child views. Otherwise, it
+draws a rectangle in each participating view. <code>"container"</code> requires the
+spanning rectangle, and <code>"view"</code> always draws per-view rectangles.</p>
 <div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/parameters/interval-selection.json" height="240">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -3600,6 +3795,198 @@ visually connects the selected region in the overview to the detail view.</p>
 
 </genome-spy-doc-embed></div>
 
+<h2 id="ruler-parameters">Ruler Parameters<a class="headerlink" href="#ruler-parameters" title="Permanent link">&para;</a></h2>
+<p>Ruler parameters track one domain coordinate per configured positional channel
+and display it as a guide in compatible views. They are useful for cursor
+readouts, genome-browser-style center coordinates, and sibling views that
+compute from a shared cursor coordinate.</p>
+<p>Rulers are not selections. They store a tagged parameter value such as:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ruler&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">values</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">12.5</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Rulers can be pointer-driven, following the mouse pointer, or viewport-driven,
+following the center of the current scale viewport.</p>
+<p>Pointer-driven rulers use <code>ruler.on</code>:</p>
+<ul>
+<li><code>"mousemove"</code> follows the pointer and clears on mouse leave by default.</li>
+<li><code>"mousedown"</code> updates on press and continues while dragging. Use an event
+  filter such as <code>"mousedown[event.shiftKey]"</code> when plain drag is used for zoom
+  or pan gestures.</li>
+</ul>
+<p>Viewport-driven rulers use <code>"source": "viewport"</code> and track the center of the
+current scale viewport. A viewport ruler must not define <code>on</code> and does not clear
+on mouse leave.</p>
+<h3 id="ruler-guides-in-descendant-views">Ruler Guides in Descendant Views<a class="headerlink" href="#ruler-guides-in-descendant-views" title="Permanent link">&para;</a></h3>
+<p>Rulers can be shown separately in each view with a compatible scale or drawn
+across a container (<code>hconcat</code> or <code>vconcat</code>) when the participating views share
+the relevant scale and layout alignment.</p>
+<p>The example below shows a pointer-driven ruler drawn inside two views with
+independent x scales.</p>
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/parameters/ruler.json" height="240">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ruler parameter example.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cursor&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;persist&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ruler&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;encodings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x2&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ordinal&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;resolve&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;independent&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;vconcat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Move your mouse over the plot!&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;ordinal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;padding&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<h3 id="pushing-ruler-values-to-ancestor-scopes">Pushing Ruler Values to Ancestor Scopes<a class="headerlink" href="#pushing-ruler-values-to-ancestor-scopes" title="Permanent link">&para;</a></h3>
+<p>Like selection parameters, ruler parameters can use <code>push: "outer"</code> to update a
+parameter declared in an ancestor scope. This allows one view to provide the
+coordinate while a sibling view reads the same parameter in expressions,
+transforms, or encodings.</p>
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/parameters/ruler-push-outer.json" height="240">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A child ruler pushes a coordinate to an outer parameter used by a sibling view.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cursor&quot;</span><span class="w"> </span><span class="p">}],</span>
+
+<span class="w">  </span><span class="nt">&quot;vconcat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{}]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;x = &#39; + cursor.values.x&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Move your mouse here!&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;style&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;overlay-title&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cursor&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;push&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;outer&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;ruler&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;encodings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gray&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;strokeDash&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<p><code>ruler</code> supports the following properties:</p>
+<dl>
+<dt><code>clear</code></dt>
+<dd>
+<p>Type: <code>mouseleave</code> | <code>mouseup</code> | <code>False</code></p>
+<p>Event that clears the ruler, or <code>false</code> to keep the current value.</p>
+<p><strong>Default value:</strong> <code>"mouseleave"</code> for <code>on: "mousemove"</code>, otherwise <code>false</code>.</p>
+</dd>
+<dt><code>display</code></dt>
+<dd>
+<p>Type: <code>"line"</code> | <code>"center"</code> | <code>"band"</code> | <code>"none"</code></p>
+<p>How the ruler is drawn for snapped index or locus coordinates.</p>
+<p><code>"line"</code> draws at the coordinate. <code>"center"</code> draws at the center of the coordinate band. <code>"band"</code> draws a rectangle covering the coordinate band. <code>"none"</code> tracks the ruler value without drawing a guide.</p>
+<p><strong>Default value:</strong> <code>"center"</code> for snapped index and locus scales, otherwise <code>"line"</code>.</p>
+</dd>
+<dt><code>encodings</code></dt>
+<dd>
+<p>Type: array</p>
+<p>Positional channels whose domain coordinates are tracked by the ruler.</p>
+<p><strong>Default value:</strong> <code>["x"]</code></p>
+</dd>
+<dt><code>extent</code></dt>
+<dd>
+<p>Type: <code>"auto"</code> | <code>"view"</code> | <code>"container"</code></p>
+<p>Visual extent of the ruler.</p>
+<p><code>"view"</code> draws one guide per participating view. <code>"container"</code> draws one spanning guide when participating projections align. <code>"auto"</code> chooses a spanning guide only when it is safe.</p>
+<p><strong>Default value:</strong> <code>"auto"</code></p>
+</dd>
+<dt><code>mark</code></dt>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/">RulerMarkConfig</a></p>
+<p>Rule or band appearance. Has no effect when <code>display</code> is <code>"none"</code>.</p>
+</dd>
+<dt><code>on</code></dt>
+<dd>
+<p>Type: <code>"mousemove"</code> | <code>"mousedown"</code> | <a href="https://genomespy.app/docs/grammar/types/">RulerEventConfig</a> | string</p>
+<p>Event that updates a pointer-driven ruler.</p>
+<p><code>"mousemove"</code> follows the pointer. <code>"mousedown"</code> updates on press and continues while dragging. Event filters can require modifier keys.</p>
+<p><strong>Default value:</strong> <code>"mousemove"</code></p>
+</dd>
+<dt><code>snap</code></dt>
+<dd>
+<p>Type: <code>auto</code> | <code>integer</code> | <code>False</code></p>
+<p>Quantization applied before writing the ruler value.</p>
+<p><code>"auto"</code> snaps index and locus scales to integer coordinates. <code>"integer"</code> snaps all numeric coordinates. <code>false</code> keeps the original coordinate.</p>
+<p><strong>Default value:</strong> <code>"auto"</code> for index and locus scales, otherwise <code>false</code>.</p>
+</dd>
+<dt><code>source</code></dt>
+<dd>
+<p>Type: <code>"pointer"</code> | <code>"viewport"</code></p>
+<p>Source of the ruler coordinate. <code>"pointer"</code> uses pointer events configured by <code>on</code>. <code>"viewport"</code> tracks the center of the current viewport.</p>
+<p><strong>Default value:</strong> <code>"pointer"</code></p>
+</dd>
+</dl>
+
 
 
 
@@ -3619,7 +4006,7 @@ visually connects the selected region in the overview to the detail view.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 12, 2026 10:52:32 UTC">June 12, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 1, 2026 14:17:07 UTC">July 1, 2026</span>
   </span>
 
     

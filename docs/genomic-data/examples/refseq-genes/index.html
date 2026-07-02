@@ -11,10 +11,10 @@
         <link rel="canonical" href="https://genomespy.app/docs/genomic-data/examples/refseq-genes/">
       
       
-        <link rel="prev" href="../cytobands/">
+        <link rel="prev" href="../indexed-fasta-sequence-track/">
       
       
-        <link rel="next" href="../ascat/">
+        <link rel="next" href="../gencode-gff3-gene-annotations/">
       
       
         
@@ -1968,6 +1968,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -2032,6 +2038,34 @@
     
   
     Chromosome Ideogram from Cytobands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../indexed-fasta-sequence-track/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indexed FASTA Sequence Track
   
 
     
@@ -2166,6 +2200,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../gencode-gff3-gene-annotations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GENCODE Gene Annotations from GFF3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ascat/" class="md-nav__link">
         
   
@@ -2230,6 +2292,34 @@
     
   
     Sashimi plot from splice junctions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clinvar-variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ClinVar Small-Variant Classifications
   
 
     
@@ -2824,7 +2914,11 @@ visible at high zoom levels indicate transcript direction.</p>
 <div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/genomic-data/examples/scored-refSeq-genes.json" height="110" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A track showing RefSeq gene annotations across the human genome, with labels scored and filtered to avoid overlap.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;RefSeq Gene Annotations with Scored Labels&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Shows hg38 RefSeq gene annotations with transcript bodies, exon rectangles, scored gene labels, and strand arrows that appear at detailed zoom levels.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Data source: RefSeq gene annotations from NCBI, mirrored as a preprocessed GenomeSpy TSV with citation-count scores and compressed exon intervals.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
 
 <span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
 

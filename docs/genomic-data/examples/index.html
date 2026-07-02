@@ -25,7 +25,7 @@
     
     
       
-        <title>Practical Genomic Data Examples - GenomeSpy Docs</title>
+        <title>Genomic Data Examples - GenomeSpy Docs</title>
       
     
     
@@ -63,14 +63,14 @@
 
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Practical Genomic Data Examples - GenomeSpy Docs" />
+<meta property="og:title" content="Genomic Data Examples - GenomeSpy Docs" />
 <meta property="og:image" content="https://genomespy.app/docs/assets/images/social/genomic-data/examples/index.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://genomespy.app/docs/genomic-data/examples/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Practical Genomic Data Examples - GenomeSpy Docs" />
+<meta property="twitter:title" content="Genomic Data Examples - GenomeSpy Docs" />
 <meta property="twitter:image" content="https://genomespy.app/docs/assets/images/social/genomic-data/examples/index.png" />
 </head>
   
@@ -89,7 +89,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#practical-genomic-data-examples" class="md-skip">
+        <a href="#genomic-data-examples" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Practical Genomic Data Examples
+              Genomic Data Examples
             
           </span>
         </div>
@@ -1968,6 +1968,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -2052,6 +2058,34 @@
   
   
     <li class="md-nav__item">
+      <a href="indexed-fasta-sequence-track/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indexed FASTA Sequence Track
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="refseq-genes/" class="md-nav__link">
         
   
@@ -2060,6 +2094,34 @@
     
   
     RefSeq Gene Annotations with Scored Labels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gencode-gff3-gene-annotations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GENCODE Gene Annotations from GFF3
   
 
     
@@ -2144,6 +2206,34 @@
     
   
     Sashimi plot from splice junctions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="clinvar-variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ClinVar Small-Variant Classifications
   
 
     
@@ -2732,28 +2822,55 @@
   
 
 
-<h1 id="practical-genomic-data-examples">Practical Genomic Data Examples<a class="headerlink" href="#practical-genomic-data-examples" title="Permanent link">&para;</a></h1>
+<h1 id="genomic-data-examples">Genomic Data Examples<a class="headerlink" href="#genomic-data-examples" title="Permanent link">&para;</a></h1>
 <p>This page collects a few non-trivial genomic examples that are useful as
 reference material.</p>
 <h2 id="linked-examples">Linked examples<a class="headerlink" href="#linked-examples" title="Permanent link">&para;</a></h2>
 <p>The example specs below are self-contained and focus on a single track or
 layout.</p>
-<ul>
-<li><a href="cytobands/">Chromosome Ideogram from Cytobands</a> shows a compact ideogram
-  built from UCSC cytoband data with layered rectangles, ranged text labels, and
-  dashed chromosome separators.</li>
-<li><a href="refseq-genes/">RefSeq Gene Annotations with Scored Labels</a> shows a gene
-  annotation track with transcript bodies, exon rectangles, scored labels, and
-  strand arrows.</li>
-<li><a href="ascat/">ASCAT Copy-Number Segmentation</a> shows vertically concatenated
-  views for allele-specific copy numbers, LogR, and B-allele frequency, with
-  ideogram and RefSeq gene annotation tracks.</li>
-<li><a href="ascat-algorithm/">ASCAT Algorithm in GenomeSpy</a> visualizes the core ASCAT
-  fit and shows how the estimates change when <code>rho</code> and <code>psi</code> are adjusted.</li>
-<li><a href="sashimi-plot/">Sashimi Plot from Splice Junctions</a> shows IGV's
-  splice-junction demo data as a lazy BigWig coverage track plus dome-shaped
-  splice arcs from a BED file.</li>
-</ul>
+<div class="example-gallery">
+  <a class="example-gallery-card" href="cytobands/">
+    <img src="../../examples/docs/genomic-data/examples/cytobands.png" alt="" loading="lazy" decoding="async" />
+    <span class="example-gallery-title">Chromosome Ideogram from Cytobands</span>
+    <span class="example-gallery-description">Shows a compact hg38 ideogram built from UCSC cytoband intervals with layered rectangles, ranged band labels, and dashed chromosome separators.</span>
+  </a>
+  <a class="example-gallery-card" href="refseq-genes/">
+    <img src="../../examples/docs/genomic-data/examples/scored-refSeq-genes.png" alt="" loading="lazy" decoding="async" />
+    <span class="example-gallery-title">RefSeq Gene Annotations with Scored Labels</span>
+    <span class="example-gallery-description">Shows hg38 RefSeq gene annotations with transcript bodies, exon rectangles, scored gene labels, and strand arrows that appear at detailed zoom levels.</span>
+  </a>
+  <a class="example-gallery-card" href="ascat/">
+    <img src="../../examples/docs/genomic-data/examples/ASCAT.png" alt="" loading="lazy" decoding="async" />
+    <span class="example-gallery-title">ASCAT Copy-Number Segmentation</span>
+    <span class="example-gallery-description">Shows simulated ASCAT sample S96 as aligned allele-specific copy-number, LogR, and B-allele-frequency tracks with segment estimates over raw probe values.</span>
+  </a>
+  <a class="example-gallery-card" href="ascat-algorithm/">
+    <img src="../../examples/docs/genomic-data/examples/ASCAT-algorithm.png" alt="" loading="lazy" decoding="async" />
+    <span class="example-gallery-title">ASCAT Algorithm in GenomeSpy</span>
+    <span class="example-gallery-description">Visualizes the ASCAT purity/ploidy fit for simulated sample S96 and shows how rounded allele-specific copy-number estimates change when rho and psi are adjusted.</span>
+  </a>
+  <a class="example-gallery-card" href="sashimi-plot/">
+    <img src="../../examples/docs/genomic-data/examples/sashimi-plot.png" alt="" loading="lazy" decoding="async" />
+    <span class="example-gallery-title">Sashimi Plot from Splice Junctions</span>
+    <span class="example-gallery-description">Recreates IGV&#x27;s splice-junction demo as a lazy BigWig coverage track with dome-shaped BED splice arcs, score labels, and a minimum-read threshold control.</span>
+  </a>
+  <a class="example-gallery-card" href="clinvar-variants/">
+    <img src="../../examples/docs/genomic-data/examples/clinvar-variants.png" alt="" loading="lazy" decoding="async" />
+    <span class="example-gallery-title">ClinVar Small-Variant Classifications</span>
+    <span class="example-gallery-description">Recreates NCBI&#x27;s ClinVar graphical classification view for small variants in a DSG2 region, using genomic position, row placement, and color to show germline classifications.</span>
+  </a>
+  <a class="example-gallery-card" href="gencode-gff3-gene-annotations/">
+    <img src="../../examples/docs/genomic-data/examples/gff3-gene-annotations.png" alt="" loading="lazy" decoding="async" />
+    <span class="example-gallery-title">GENCODE Gene Annotations from GFF3</span>
+    <span class="example-gallery-description">Displays GENCODE release 43 transcript annotations from a tabix-indexed GFF3 file with packed transcript lanes, exons, UTR/CDS intervals, and transcript labels.</span>
+  </a>
+  <a class="example-gallery-card" href="indexed-fasta-sequence-track/">
+    <img src="../../examples/docs/genomic-data/examples/indexed-fasta-sequence-track.png" alt="" loading="lazy" decoding="async" />
+    <span class="example-gallery-title">Indexed FASTA Sequence Track</span>
+    <span class="example-gallery-description">Shows reference bases from an indexed UCSC hg38 FASTA by loading visible sequence chunks, splitting them into base-level rows, and drawing colored nucleotide labels.</span>
+  </a>
+</div>
+
 <h2 id="more-examples">More examples<a class="headerlink" href="#more-examples" title="Permanent link">&para;</a></h2>
 <p>For many more examples of visualizing genomic data, see
 <a href="../../grammar/data/lazy/">Lazy data sources</a>.</p>
@@ -2791,7 +2908,7 @@ examples, some of which focus on genomic data.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 26, 2026 11:48:25 UTC">June 26, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 2, 2026 08:41:27 UTC">July 2, 2026</span>
   </span>
 
     

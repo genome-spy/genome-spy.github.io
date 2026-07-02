@@ -2140,6 +2140,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -2224,6 +2230,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../genomic-data/examples/indexed-fasta-sequence-track/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indexed FASTA Sequence Track
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../genomic-data/examples/refseq-genes/" class="md-nav__link">
         
   
@@ -2232,6 +2266,34 @@
     
   
     RefSeq Gene Annotations with Scored Labels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/gencode-gff3-gene-annotations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GENCODE Gene Annotations from GFF3
   
 
     
@@ -2316,6 +2378,34 @@
     
   
     Sashimi plot from splice junctions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/clinvar-variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ClinVar Small-Variant Classifications
   
 
     
@@ -3092,8 +3182,10 @@ titles are squeezed when space is scarce and stay visible longer inside
 scrollable viewports, but cannot extend outside the axis span.</p>
 <h2 id="ticks-labels-and-grid-lines">Ticks, Labels, and Grid Lines<a class="headerlink" href="#ticks-labels-and-grid-lines" title="Permanent link">&para;</a></h2>
 <p>Use <code>tickCount</code> to set the desired number of ticks on quantitative axes. The
-actual number may differ when GenomeSpy chooses nice tick values. Use
-<code>tickMinStep</code> to set the minimum step between ticks in domain units.</p>
+actual number may differ when GenomeSpy chooses nice tick values. <code>tickCount</code>
+can also be an expression reference. In tick-count expressions, <code>axisLength</code> is
+the current length of the axis in pixels. Use <code>tickMinStep</code> to set the minimum
+step between ticks in domain units.</p>
 <p>Use <code>values</code> to set explicit tick and label values. Use <code>format</code> to format
 numeric labels with a
 <a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
@@ -3373,8 +3465,10 @@ chromosome ticks, bands, or grids.</p>
 </dd>
 <dt><code>tickCount</code></dt>
 <dd>
-<p>Type: number</p>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 <p>A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are "nice" (multiples of <code>2</code>, <code>5</code>, <code>10</code>) and lie within the underlying scale's range.</p>
+<p>An expression reference can use <code>axisLength</code> for the current length of the axis in pixels. For example, <code>{ "expr": "ceil(axisLength / 40)" }</code> requests one tick per 40 pixels.</p>
+<p><strong>Default value:</strong> an expression based on <code>axisLength</code></p>
 </dd>
 <dt><code>tickDash</code></dt>
 <dd>
@@ -3791,8 +3885,10 @@ chromosome ticks, bands, or grids.</p>
 </dd>
 <dt><code>tickCount</code></dt>
 <dd>
-<p>Type: number</p>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 <p>A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are "nice" (multiples of <code>2</code>, <code>5</code>, <code>10</code>) and lie within the underlying scale's range.</p>
+<p>An expression reference can use <code>axisLength</code> for the current length of the axis in pixels. For example, <code>{ "expr": "ceil(axisLength / 40)" }</code> requests one tick per 40 pixels.</p>
+<p><strong>Default value:</strong> an expression based on <code>axisLength</code></p>
 </dd>
 <dt><code>tickDash</code></dt>
 <dd>
@@ -4231,8 +4327,10 @@ channel-level axis object overrides the configured defaults for that axis.</p>
 </dd>
 <dt><code>tickCount</code></dt>
 <dd>
-<p>Type: number</p>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 <p>A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are "nice" (multiples of <code>2</code>, <code>5</code>, <code>10</code>) and lie within the underlying scale's range.</p>
+<p>An expression reference can use <code>axisLength</code> for the current length of the axis in pixels. For example, <code>{ "expr": "ceil(axisLength / 40)" }</code> requests one tick per 40 pixels.</p>
+<p><strong>Default value:</strong> an expression based on <code>axisLength</code></p>
 </dd>
 <dt><code>tickDash</code></dt>
 <dd>
@@ -4346,7 +4444,7 @@ channel-level axis object overrides the configured defaults for that axis.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 23, 2026 17:24:53 UTC">June 23, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 26, 2026 21:06:52 UTC">June 26, 2026</span>
   </span>
 
     
