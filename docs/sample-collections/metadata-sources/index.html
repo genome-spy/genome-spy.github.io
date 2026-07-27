@@ -11,17 +11,17 @@
         <link rel="canonical" href="https://genomespy.app/docs/sample-collections/metadata-sources/">
       
       
-        <link rel="prev" href="../visualizing/">
+        <link rel="prev" href="../aggregating-samples/">
       
       
-        <link rel="next" href="../analyzing/">
+        <link rel="next" href="../app-features/">
       
       
         
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="zensical-0.0.51">
     
     
       
@@ -29,10 +29,15 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.62c9b9cc.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
       
       
 
@@ -46,14 +51,14 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Lato";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"JetBrains Mono"}</style>
       
     
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -61,21 +66,12 @@
      
 <meta name="base_url" content="../.." />
 
-  
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Configuring Metadata Sources - GenomeSpy Docs" />
-<meta property="og:image" content="https://genomespy.app/docs/assets/images/social/sample-collections/metadata-sources.png" />
-<meta property="og:image:type" content="image/png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://genomespy.app/docs/sample-collections/metadata-sources/" />
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Configuring Metadata Sources - GenomeSpy Docs" />
-<meta property="twitter:image" content="https://genomespy.app/docs/assets/images/social/sample-collections/metadata-sources.png" />
-</head>
+  </head>
   
   
     
+    
+      
     
     
     
@@ -85,7 +81,7 @@
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
     <div data-md-component="skip">
       
         
@@ -107,12 +103,12 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="GenomeSpy Docs" class="md-header__button md-logo" aria-label="GenomeSpy Docs" data-md-component="logo">
       
-  <img src="../../img/bowtie.svg" alt="logo">
+  <img src="../../img/bowtie.svg" alt="GenomeSpy Docs">
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -132,63 +128,48 @@
     </div>
     
       
+        <form class="md-header__option" data-md-component="palette">
+  
     
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
       
       
-        <label class="md-header__button md-icon" for="__search">
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
         </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
 </div>
       
     
-    
-      <div class="md-header__source">
+    <div class="md-header__source">
+      
         <a href="https://github.com/genome-spy/genome-spy" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
   </div>
 </a>
-      </div>
-    
+      
+    </div>
   </nav>
   
 </header>
@@ -216,7 +197,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="GenomeSpy Docs" class="md-nav__button md-logo" aria-label="GenomeSpy Docs" data-md-component="logo">
       
-  <img src="../../img/bowtie.svg" alt="logo">
+  <img src="../../img/bowtie.svg" alt="GenomeSpy Docs">
 
     </a>
     GenomeSpy Docs
@@ -226,7 +207,7 @@
       <a href="https://github.com/genome-spy/genome-spy" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -250,8 +231,7 @@
   <span class="md-ellipsis">
     
   
-    Introduction
-  
+  Introduction
 
     
   </span>
@@ -277,8 +257,7 @@
   <span class="md-ellipsis">
     
   
-    Getting Started
-  
+  Getting Started
 
     
   </span>
@@ -350,8 +329,7 @@
   <span class="md-ellipsis">
     
   
-    Visualization Grammar
-  
+  Visualization Grammar
 
     
   </span>
@@ -372,8 +350,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Visualization Grammar
-  
+  Visualization Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -418,8 +395,7 @@
   <span class="md-ellipsis">
     
   
-    Data Input
-  
+  Data Input
 
     
   </span>
@@ -440,8 +416,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Data Input
-  
+  Data Input
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -462,8 +437,7 @@
   <span class="md-ellipsis">
     
   
-    Eager Data Sources
-  
+  Eager Data Sources
 
     
   </span>
@@ -490,8 +464,7 @@
   <span class="md-ellipsis">
     
   
-    Lazy Data Sources
-  
+  Lazy Data Sources
 
     
   </span>
@@ -518,8 +491,7 @@
   <span class="md-ellipsis">
     
   
-    URL Templates and Multiple Files
-  
+  URL Templates and Multiple Files
 
     
   </span>
@@ -551,6 +523,16 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -608,8 +590,7 @@
   <span class="md-ellipsis">
     
   
-    Transform
-  
+  Transform
 
     
   </span>
@@ -630,8 +611,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Transform
-  
+  Transform
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -652,8 +632,34 @@
   <span class="md-ellipsis">
     
   
-    Aggregate
+  Aggregate
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/alignment-mismatches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AlignmentMismatches
 
     
   </span>
@@ -680,8 +686,7 @@
   <span class="md-ellipsis">
     
   
-    Collect
-  
+  Collect
 
     
   </span>
@@ -708,8 +713,7 @@
   <span class="md-ellipsis">
     
   
-    Coverage
-  
+  Coverage
 
     
   </span>
@@ -736,8 +740,7 @@
   <span class="md-ellipsis">
     
   
-    Filter
-  
+  Filter
 
     
   </span>
@@ -764,8 +767,7 @@
   <span class="md-ellipsis">
     
   
-    FilterScoredLabels
-  
+  FilterScoredLabels
 
     
   </span>
@@ -792,8 +794,34 @@
   <span class="md-ellipsis">
     
   
-    Flatten
+  Flatten
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/flatten-cigar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  FlattenCigar
 
     
   </span>
@@ -820,8 +848,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenCompressedExons
-  
+  FlattenCompressedExons
 
     
   </span>
@@ -848,8 +875,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenDelimited
-  
+  FlattenDelimited
 
     
   </span>
@@ -876,8 +902,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenSequence
-  
+  FlattenSequence
 
     
   </span>
@@ -904,8 +929,7 @@
   <span class="md-ellipsis">
     
   
-    Formula
-  
+  Formula
 
     
   </span>
@@ -932,8 +956,61 @@
   <span class="md-ellipsis">
     
   
-    LinearizeGenomicCoordinate
+  LinearizeGenomicCoordinate
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lookup
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/coordinate-lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CoordinateLookup
 
     
   </span>
@@ -960,8 +1037,7 @@
   <span class="md-ellipsis">
     
   
-    MeasureText
-  
+  MeasureText
 
     
   </span>
@@ -988,8 +1064,7 @@
   <span class="md-ellipsis">
     
   
-    Pileup
-  
+  Pileup
 
     
   </span>
@@ -1016,8 +1091,7 @@
   <span class="md-ellipsis">
     
   
-    Project
-  
+  Project
 
     
   </span>
@@ -1044,8 +1118,7 @@
   <span class="md-ellipsis">
     
   
-    RegexExtract
-  
+  RegexExtract
 
     
   </span>
@@ -1072,8 +1145,7 @@
   <span class="md-ellipsis">
     
   
-    RegexFold
-  
+  RegexFold
 
     
   </span>
@@ -1100,8 +1172,7 @@
   <span class="md-ellipsis">
     
   
-    Sample
-  
+  Sample
 
     
   </span>
@@ -1128,8 +1199,34 @@
   <span class="md-ellipsis">
     
   
-    Stack
+  Stack
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Window
 
     
   </span>
@@ -1175,6 +1272,8 @@
       
         
       
+        
+      
     
     
     
@@ -1194,8 +1293,7 @@
   <span class="md-ellipsis">
     
   
-    Graphical Marks
-  
+  Graphical Marks
 
     
   </span>
@@ -1216,12 +1314,38 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Graphical Marks
-  
+  Graphical Marks
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/mark/arrow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Arrow
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1238,8 +1362,7 @@
   <span class="md-ellipsis">
     
   
-    Link
-  
+  Link
 
     
   </span>
@@ -1266,8 +1389,7 @@
   <span class="md-ellipsis">
     
   
-    Point
-  
+  Point
 
     
   </span>
@@ -1294,8 +1416,7 @@
   <span class="md-ellipsis">
     
   
-    Rect
-  
+  Rect
 
     
   </span>
@@ -1322,8 +1443,7 @@
   <span class="md-ellipsis">
     
   
-    Rule
-  
+  Rule
 
     
   </span>
@@ -1350,8 +1470,7 @@
   <span class="md-ellipsis">
     
   
-    Tick
-  
+  Tick
 
     
   </span>
@@ -1378,8 +1497,7 @@
   <span class="md-ellipsis">
     
   
-    Text
-  
+  Text
 
     
   </span>
@@ -1414,8 +1532,7 @@
   <span class="md-ellipsis">
     
   
-    Conditional Encoding
-  
+  Conditional Encoding
 
     
   </span>
@@ -1466,8 +1583,7 @@
   <span class="md-ellipsis">
     
   
-    View Composition
-  
+  View Composition
 
     
   </span>
@@ -1488,8 +1604,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    View Composition
-  
+  View Composition
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1510,8 +1625,7 @@
   <span class="md-ellipsis">
     
   
-    Concat
-  
+  Concat
 
     
   </span>
@@ -1538,8 +1652,7 @@
   <span class="md-ellipsis">
     
   
-    Layer
-  
+  Layer
 
     
   </span>
@@ -1566,8 +1679,7 @@
   <span class="md-ellipsis">
     
   
-    Multiscale
-  
+  Multiscale
 
     
   </span>
@@ -1602,8 +1714,7 @@
   <span class="md-ellipsis">
     
   
-    Scales
-  
+  Scales
 
     
   </span>
@@ -1630,8 +1741,7 @@
   <span class="md-ellipsis">
     
   
-    Axes
-  
+  Axes
 
     
   </span>
@@ -1658,8 +1768,7 @@
   <span class="md-ellipsis">
     
   
-    Titles
-  
+  Titles
 
     
   </span>
@@ -1686,8 +1795,7 @@
   <span class="md-ellipsis">
     
   
-    Legends
-  
+  Legends
 
     
   </span>
@@ -1714,8 +1822,7 @@
   <span class="md-ellipsis">
     
   
-    Config And Themes
-  
+  Config And Themes
 
     
   </span>
@@ -1742,8 +1849,7 @@
   <span class="md-ellipsis">
     
   
-    Importing Views
-  
+  Importing Views
 
     
   </span>
@@ -1770,8 +1876,7 @@
   <span class="md-ellipsis">
     
   
-    Expressions
-  
+  Expressions
 
     
   </span>
@@ -1798,8 +1903,7 @@
   <span class="md-ellipsis">
     
   
-    Parameters
-  
+  Parameters
 
     
   </span>
@@ -1826,8 +1930,7 @@
   <span class="md-ellipsis">
     
   
-    Types
-  
+  Types
 
     
   </span>
@@ -1883,8 +1986,7 @@
   <span class="md-ellipsis">
     
   
-    Working with Genomic Data
-  
+  Working with Genomic Data
 
     
   </span>
@@ -1905,8 +2007,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Working with Genomic Data
-  
+  Working with Genomic Data
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1927,8 +2028,7 @@
   <span class="md-ellipsis">
     
   
-    Genomic Coordinates
-  
+  Genomic Coordinates
 
     
   </span>
@@ -1952,6 +2052,18 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -1989,8 +2101,7 @@
   <span class="md-ellipsis">
     
   
-    Examples
-  
+  Examples
 
     
   </span>
@@ -2011,8 +2122,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Examples
-  
+  Examples
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2033,8 +2143,7 @@
   <span class="md-ellipsis">
     
   
-    Chromosome Ideogram from Cytobands
-  
+  Chromosome Ideogram from Cytobands
 
     
   </span>
@@ -2054,15 +2163,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../genomic-data/examples/indexed-fasta-sequence-track/" class="md-nav__link">
+      <a href="../../genomic-data/examples/indexed-fasta-six-frame-translation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Indexed FASTA Sequence Track
-  
+  Indexed FASTA Six-Frame Translation
 
     
   </span>
@@ -2089,8 +2197,7 @@
   <span class="md-ellipsis">
     
   
-    RefSeq Gene Annotations with Scored Labels
-  
+  RefSeq Gene Annotations with Scored Labels
 
     
   </span>
@@ -2117,8 +2224,7 @@
   <span class="md-ellipsis">
     
   
-    GENCODE Gene Annotations from GFF3
-  
+  GENCODE Gene Annotations from GFF3
 
     
   </span>
@@ -2145,8 +2251,7 @@
   <span class="md-ellipsis">
     
   
-    ASCAT Copy-Number Segmentation
-  
+  ASCAT Copy-Number Segmentation
 
     
   </span>
@@ -2173,8 +2278,61 @@
   <span class="md-ellipsis">
     
   
-    ASCAT Algorithm in GenomeSpy
+  ASCAT Algorithm in GenomeSpy
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/hcc1954-sv-cnv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  HCC1954 Structural Variants and Copy Number
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/tcga-ov-gistic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  TCGA Ovarian Cancer GISTIC2 Copy-Number Landscape
 
     
   </span>
@@ -2201,8 +2359,34 @@
   <span class="md-ellipsis">
     
   
-    Sashimi plot from splice junctions
+  Sashimi plot from splice junctions
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/dynseq-spi1-bqtl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SPI1 Binding-QTL Dynseq Track
 
     
   </span>
@@ -2229,8 +2413,88 @@
   <span class="md-ellipsis">
     
   
-    ClinVar Small-Variant Classifications
+  ClinVar Small-Variant Classifications
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/bam-read-alignments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  BAM Read Alignments
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/multiple-sequence-alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Multiple Sequence Alignment
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/genome-browser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Composing a Genome Browser
 
     
   </span>
@@ -2271,6 +2535,12 @@
       
         
           
+        
+      
+        
+      
+        
+      
         
       
         
@@ -2300,8 +2570,7 @@
   <span class="md-ellipsis">
     
   
-    Working with Sample Collections
-  
+  Working with Sample Collections
 
     
   </span>
@@ -2322,8 +2591,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Working with Sample Collections
-  
+  Working with Sample Collections
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2344,8 +2612,61 @@
   <span class="md-ellipsis">
     
   
-    Visualizing
+  Visualizing
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sample-view-parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sample View Parameters
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aggregating-samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Aggregating Samples
 
     
   </span>
@@ -2368,7 +2689,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
       
       
         
@@ -2381,8 +2702,7 @@
   <span class="md-ellipsis">
     
   
-    Configuring Metadata Sources
-  
+  Configuring Metadata Sources
 
     
   </span>
@@ -2392,15 +2712,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    Configuring Metadata Sources
-  
+  Configuring Metadata Sources
 
     
   </span>
@@ -2411,7 +2730,8 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -2420,16 +2740,16 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Overview
-      
+      </span>
     </span>
   </a>
   
@@ -2438,20 +2758,37 @@
         <li class="md-nav__item">
   <a href="#quick-example" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Quick example
-      
+      </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Quick example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inline-data-backend-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Inline data backend example
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#splitting-configuration-into-files" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Splitting configuration into files
-      
+      </span>
     </span>
   </a>
   
@@ -2460,9 +2797,9 @@
         <li class="md-nav__item">
   <a href="#configuring-attribute-types-and-scales" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Configuring attribute types and scales
-      
+      </span>
     </span>
   </a>
   
@@ -2471,9 +2808,9 @@
         <li class="md-nav__item">
   <a href="#grouping-and-hierarchy" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Grouping and hierarchy
-      
+      </span>
     </span>
   </a>
   
@@ -2483,9 +2820,9 @@
           <li class="md-nav__item">
   <a href="#placement-with-grouppath" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        Placement with groupPath
-      
+      <span class="md-typeset">
+        Placement with <code>groupPath</code>
+      </span>
     </span>
   </a>
   
@@ -2494,9 +2831,9 @@
           <li class="md-nav__item">
   <a href="#hierarchy-with-attributegroupseparator" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        Hierarchy with attributeGroupSeparator
-      
+      <span class="md-typeset">
+        Hierarchy with <code>attributeGroupSeparator</code>
+      </span>
     </span>
   </a>
   
@@ -2505,9 +2842,20 @@
           <li class="md-nav__item">
   <a href="#using-both-together" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Using both together
-      
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Example
+      </span>
     </span>
   </a>
   
@@ -2521,9 +2869,9 @@
         <li class="md-nav__item">
   <a href="#schema-reference" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Schema reference
-      
+      </span>
     </span>
   </a>
   
@@ -2533,9 +2881,9 @@
           <li class="md-nav__item">
   <a href="#metadata-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        metadata configuration
-      
+      <span class="md-typeset">
+        <code>metadata</code> configuration
+      </span>
     </span>
   </a>
   
@@ -2544,9 +2892,9 @@
           <li class="md-nav__item">
   <a href="#metadata-source-definitions" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Metadata source definitions
-      
+      </span>
     </span>
   </a>
   
@@ -2556,9 +2904,9 @@
           <li class="md-nav__item">
   <a href="#source-entries" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Source entries
-      
+      </span>
     </span>
   </a>
   
@@ -2567,9 +2915,9 @@
           <li class="md-nav__item">
   <a href="#inline-source-objects" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Inline source objects
-      
+      </span>
     </span>
   </a>
   
@@ -2588,9 +2936,9 @@
         <li class="md-nav__item">
   <a href="#backends" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Backends
-      
+      </span>
     </span>
   </a>
   
@@ -2600,9 +2948,9 @@
           <li class="md-nav__item">
   <a href="#data-backend" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        data backend
-      
+      <span class="md-typeset">
+        <code>data</code> backend
+      </span>
     </span>
   </a>
   
@@ -2611,9 +2959,9 @@
           <li class="md-nav__item">
   <a href="#zarr-backend" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        zarr backend
-      
+      <span class="md-typeset">
+        <code>zarr</code> backend
+      </span>
     </span>
   </a>
   
@@ -2623,9 +2971,9 @@
           <li class="md-nav__item">
   <a href="#anndata-context-and-current-scope" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         AnnData context and current scope
-      
+      </span>
     </span>
   </a>
   
@@ -2634,9 +2982,9 @@
           <li class="md-nav__item">
   <a href="#zarr-backend-schema" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Zarr backend schema
-      
+      </span>
     </span>
   </a>
   
@@ -2645,9 +2993,9 @@
           <li class="md-nav__item">
   <a href="#zarr-layout-details" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Zarr layout details
-      
+      </span>
     </span>
   </a>
   
@@ -2656,9 +3004,9 @@
           <li class="md-nav__item">
   <a href="#zarr-identifier-helpers" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Zarr identifier helpers
-      
+      </span>
     </span>
   </a>
   
@@ -2667,9 +3015,9 @@
           <li class="md-nav__item">
   <a href="#background-references" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Background references
-      
+      </span>
     </span>
   </a>
   
@@ -2701,6 +3049,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../app-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuring App Features
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../analyzing/" class="md-nav__link">
         
   
@@ -2708,8 +3083,7 @@
   <span class="md-ellipsis">
     
   
-    Analyzing
-  
+  Analyzing
 
     
   </span>
@@ -2736,8 +3110,7 @@
   <span class="md-ellipsis">
     
   
-    Importing Metadata
-  
+  Importing Metadata
 
     
   </span>
@@ -2801,8 +3174,7 @@
   <span class="md-ellipsis">
     
   
-    JavaScript API
-  
+  JavaScript API
 
     
   </span>
@@ -2823,8 +3195,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    JavaScript API
-  
+  JavaScript API
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2845,8 +3216,7 @@
   <span class="md-ellipsis">
     
   
-    Embedding and Entry Points
-  
+  Embedding and Entry Points
 
     
   </span>
@@ -2873,8 +3243,7 @@
   <span class="md-ellipsis">
     
   
-    View Hierarchy
-  
+  View Hierarchy
 
     
   </span>
@@ -2901,8 +3270,7 @@
   <span class="md-ellipsis">
     
   
-    Runtime State
-  
+  Runtime State
 
     
   </span>
@@ -2929,8 +3297,7 @@
   <span class="md-ellipsis">
     
   
-    Inspector
-  
+  Inspector
 
     
   </span>
@@ -2957,8 +3324,7 @@
   <span class="md-ellipsis">
     
   
-    Instance, Events, and Export
-  
+  Instance, Events, and Export
 
     
   </span>
@@ -2985,8 +3351,7 @@
   <span class="md-ellipsis">
     
   
-    Embed Options
-  
+  Embed Options
 
     
   </span>
@@ -3020,8 +3385,7 @@
   <span class="md-ellipsis">
     
   
-    License
-  
+  License
 
     
   </span>
@@ -3043,10 +3407,24 @@
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -3055,16 +3433,16 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Overview
-      
+      </span>
     </span>
   </a>
   
@@ -3073,20 +3451,37 @@
         <li class="md-nav__item">
   <a href="#quick-example" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Quick example
-      
+      </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Quick example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inline-data-backend-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Inline data backend example
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#splitting-configuration-into-files" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Splitting configuration into files
-      
+      </span>
     </span>
   </a>
   
@@ -3095,9 +3490,9 @@
         <li class="md-nav__item">
   <a href="#configuring-attribute-types-and-scales" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Configuring attribute types and scales
-      
+      </span>
     </span>
   </a>
   
@@ -3106,9 +3501,9 @@
         <li class="md-nav__item">
   <a href="#grouping-and-hierarchy" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Grouping and hierarchy
-      
+      </span>
     </span>
   </a>
   
@@ -3118,9 +3513,9 @@
           <li class="md-nav__item">
   <a href="#placement-with-grouppath" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        Placement with groupPath
-      
+      <span class="md-typeset">
+        Placement with <code>groupPath</code>
+      </span>
     </span>
   </a>
   
@@ -3129,9 +3524,9 @@
           <li class="md-nav__item">
   <a href="#hierarchy-with-attributegroupseparator" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        Hierarchy with attributeGroupSeparator
-      
+      <span class="md-typeset">
+        Hierarchy with <code>attributeGroupSeparator</code>
+      </span>
     </span>
   </a>
   
@@ -3140,9 +3535,20 @@
           <li class="md-nav__item">
   <a href="#using-both-together" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Using both together
-      
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Example
+      </span>
     </span>
   </a>
   
@@ -3156,9 +3562,9 @@
         <li class="md-nav__item">
   <a href="#schema-reference" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Schema reference
-      
+      </span>
     </span>
   </a>
   
@@ -3168,9 +3574,9 @@
           <li class="md-nav__item">
   <a href="#metadata-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        metadata configuration
-      
+      <span class="md-typeset">
+        <code>metadata</code> configuration
+      </span>
     </span>
   </a>
   
@@ -3179,9 +3585,9 @@
           <li class="md-nav__item">
   <a href="#metadata-source-definitions" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Metadata source definitions
-      
+      </span>
     </span>
   </a>
   
@@ -3191,9 +3597,9 @@
           <li class="md-nav__item">
   <a href="#source-entries" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Source entries
-      
+      </span>
     </span>
   </a>
   
@@ -3202,9 +3608,9 @@
           <li class="md-nav__item">
   <a href="#inline-source-objects" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Inline source objects
-      
+      </span>
     </span>
   </a>
   
@@ -3223,9 +3629,9 @@
         <li class="md-nav__item">
   <a href="#backends" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Backends
-      
+      </span>
     </span>
   </a>
   
@@ -3235,9 +3641,9 @@
           <li class="md-nav__item">
   <a href="#data-backend" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        data backend
-      
+      <span class="md-typeset">
+        <code>data</code> backend
+      </span>
     </span>
   </a>
   
@@ -3246,9 +3652,9 @@
           <li class="md-nav__item">
   <a href="#zarr-backend" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        zarr backend
-      
+      <span class="md-typeset">
+        <code>zarr</code> backend
+      </span>
     </span>
   </a>
   
@@ -3258,9 +3664,9 @@
           <li class="md-nav__item">
   <a href="#anndata-context-and-current-scope" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         AnnData context and current scope
-      
+      </span>
     </span>
   </a>
   
@@ -3269,9 +3675,9 @@
           <li class="md-nav__item">
   <a href="#zarr-backend-schema" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Zarr backend schema
-      
+      </span>
     </span>
   </a>
   
@@ -3280,9 +3686,9 @@
           <li class="md-nav__item">
   <a href="#zarr-layout-details" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Zarr layout details
-      
+      </span>
     </span>
   </a>
   
@@ -3291,9 +3697,9 @@
           <li class="md-nav__item">
   <a href="#zarr-identifier-helpers" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Zarr identifier helpers
-      
+      </span>
     </span>
   </a>
   
@@ -3302,9 +3708,9 @@
           <li class="md-nav__item">
   <a href="#background-references" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Background references
-      
+      </span>
     </span>
   </a>
   
@@ -3334,12 +3740,10 @@
               <article class="md-content__inner md-typeset">
                 
                   
-
-
   
     <a href="https://github.com/genome-spy/genome-spy/edit/master/docs/sample-collections/metadata-sources.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
     </a>
   
   
@@ -3417,6 +3821,73 @@ expression columns under the <code>Expression</code> group.</p>
 means load all columns by default. The backend excludes <code>sampleIdField</code>
 automatically; use <code>excludeColumns</code> for other helper fields such as
 <code>displayName</code>.</p>
+<h3 id="inline-data-backend-example">Inline data backend example<a class="headerlink" href="#inline-data-backend-example" title="Permanent link">&para;</a></h3>
+<p>This example defines three samples and a metadata source entirely with inline
+data using the <a href="#data-backend"><code>data</code> backend</a>. Optional properties are omitted
+to keep the configuration simple. The data backend loads all three metadata
+columns by default. It infers <code>purity</code> as quantitative and <code>response</code> and
+<code>subtype</code> as categorical, including their default scales.</p>
+<div><genome-spy-doc-embed base-url="examples/" height="220" runtime="app">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Three samples with inline metadata.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;identity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Control&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Treatment A&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S3&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Treatment B&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;displayNameField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;displayName&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S1&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;purity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.32</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;response&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;subtype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S2&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;purity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.58</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;response&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Partial&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;subtype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B&quot;</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S3&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;purity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.76</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;response&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Complete&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;subtype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;titleReserve&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;spec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;fill&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#f8f8f8&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{}]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Data&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
 <h2 id="splitting-configuration-into-files">Splitting configuration into files<a class="headerlink" href="#splitting-configuration-into-files" title="Permanent link">&para;</a></h2>
 <p>When source definitions become long, you can keep <code>metadata.sources</code>
 compact by importing each source from a separate JSON file.</p>
@@ -3597,6 +4068,92 @@ group and <code>attributeGroupSeparator</code> defines how grouped names are int
   is treated as one group name (for example <code>"Expression/RNA"</code> stays one group
   id).</li>
 </ul>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>This inline data example creates the hierarchy described above. The separator
+turns the dotted column names into the <code>clinical</code> and <code>signature</code> groups, whose
+definitions provide shared type and scale defaults to their child attributes.
+No visibility overrides are configured, so both groups and all five attributes
+are visible when the view opens. The toolbar button lets users toggle the
+visibility of each group.</p>
+<div><genome-spy-doc-embed base-url="examples/" height="220" spechidden="true" runtime="app">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Inline metadata with grouped attribute names.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;identity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Control&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Treatment A&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S3&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Treatment B&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;displayNameField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;displayName&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;attributeGroupSeparator&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;patientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;clinical&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;scheme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;blues&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;signature&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;scheme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;yelloworangered&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S1&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;patientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;P1&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;clinical.PFI&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;clinical.OS&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;signature.HRD&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;signature.APOBEC&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S2&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;patientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;P2&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;clinical.PFI&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;clinical.OS&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;signature.HRD&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;signature.APOBEC&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S3&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;patientId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;P3&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;clinical.PFI&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;clinical.OS&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;signature.HRD&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;signature.APOBEC&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;titleReserve&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;spec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;fill&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#f8f8f8&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{}]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Data&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
 <h2 id="schema-reference">Schema reference<a class="headerlink" href="#schema-reference" title="Permanent link">&para;</a></h2>
 <h3 id="metadata-configuration"><code>metadata</code> configuration<a class="headerlink" href="#metadata-configuration" title="Permanent link">&para;</a></h3>
 <p>These properties are nested under <code>metadata</code>. Sample identity and sample label
@@ -3604,58 +4161,40 @@ configuration are documented in
 <a href="../visualizing/">Visualizing Sample Collections</a>.</p>
 <dl>
 <dt><code>sources</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Metadata source definitions used for startup and on-demand imports.</p>
+<dd>Type: array<p>Metadata source definitions used for startup and on-demand imports.</p>
 <p>Source order is significant for startup loading: eager startup imports are applied in declaration order.</p>
 </dd>
 <dt><code>attributeWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Default width of metadata columns in pixels.</p>
+<dd>Type: number<p>Default width of metadata columns in pixels.</p>
 <p><strong>Default value:</strong> <code>10</code></p>
 </dd>
 <dt><code>missingValueColor</code></dt>
-<dd>
-<p>Type: string | null</p>
-<p>Default color for metadata cells whose value is missing.</p>
+<dd>Type: string | null<p>Default color for metadata cells whose value is missing.</p>
 <p>If <code>null</code>, missing-value colors are disabled unless overridden by an attribute definition.</p>
 <p><strong>Default value:</strong> <code>"#f0f0f0"</code></p>
 </dd>
 <dt><code>spacing</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Spacing between metadata columns in pixels.</p>
+<dd>Type: number<p>Spacing between metadata columns in pixels.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>labelFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Font typeface for metadata attribute labels.</p>
+<dd>Type: string<p>Font typeface for metadata attribute labels.</p>
 <p><strong>Default value:</strong> <code>"Lato"</code></p>
 </dd>
 <dt><code>labelFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Font size for metadata attribute labels in pixels.</p>
+<dd>Type: number<p>Font size for metadata attribute labels in pixels.</p>
 <p><strong>Default value:</strong> <code>11</code></p>
 </dd>
 <dt><code>labelFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>Font weight for metadata attribute labels.</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight for metadata attribute labels.</p>
 <p><strong>Default value:</strong> <code>"regular"</code></p>
 </dd>
 <dt><code>labelFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>Font style for metadata attribute labels.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style for metadata attribute labels.</p>
 <p><strong>Default value:</strong> <code>"normal"</code></p>
 </dd>
 <dt><code>labelAngle</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Angle of metadata attribute labels in degrees.</p>
+<dd>Type: number<p>Angle of metadata attribute labels in degrees.</p>
 <p><strong>Default value:</strong> <code>-90</code></p>
 </dd>
 </dl>
@@ -3668,63 +4207,43 @@ array entry shape, while <code>MetadataSourceDef</code> describes an inline sour
 <h4 id="inline-source-objects">Inline source objects<a class="headerlink" href="#inline-source-objects" title="Permanent link">&para;</a></h4>
 <dl>
 <dt><code>attributeGroupSeparator</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Separator used by source-side attribute names to express hierarchy.</p>
+<dd>Type: string<p>Separator used by source-side attribute names to express hierarchy.</p>
 <p>Example: if separator is <code>"."</code>, column <code>clinical.OS</code> is interpreted as group <code>clinical</code> and attribute <code>OS</code>.</p>
 </dd>
 <dt><code>attributes</code></dt>
-<dd>
-<p>Type: object</p>
-<p>Attribute definitions keyed by attribute/column id (and optionally by group path).</p>
+<dd>Type: object<p>Attribute definitions keyed by attribute/column id (and optionally by group path).</p>
 <p>Special key <code>""</code> defines source-level defaults for all imported columns. Path splitting is applied only when <code>attributeGroupSeparator</code> is defined.</p>
 </dd>
 <dt><code>backend</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">DataBackendDef</a> | <a href="https://genomespy.app/docs/grammar/types/">ZarrBackendDef</a> | <a href="https://genomespy.app/docs/grammar/types/">ParquetBackendDef</a> | <a href="https://genomespy.app/docs/grammar/types/">ArrowBackendDef</a></p>
-<p>Source backend configuration.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">DataBackendDef</a> | <a href="https://genomespy.app/docs/grammar/types/">ZarrBackendDef</a> | <a href="https://genomespy.app/docs/grammar/types/">ParquetBackendDef</a> | <a href="https://genomespy.app/docs/grammar/types/">ArrowBackendDef</a><p>Source backend configuration.</p>
 </dd>
 <dt><code>description</code></dt>
-<dd>
-<p>Type: string</p>
-<p>User-facing description of what this source contains.</p>
+<dd>Type: string<p>User-facing description of what this source contains.</p>
 <p>Can be shown in UI and can help automated agents choose the correct source.</p>
 </dd>
 <dt><code>excludeColumns</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Column ids that must never be imported from this source.</p>
+<dd>Type: array<p>Column ids that must never be imported from this source.</p>
 <p>The data backend always excludes its <code>sampleIdField</code> automatically, so this property is only needed for other helper columns such as display labels.</p>
 </dd>
 <dt><code>groupPath</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Default destination group path for imported attributes.</p>
+<dd>Type: string<p>Default destination group path for imported attributes.</p>
 <p>Imported column names are placed under this path, which effectively creates (or reuses) a metadata hierarchy node.</p>
 <p>This value is parsed as a path using <code>attributeGroupSeparator</code> when that separator is defined for the source. Without an explicit separator, the whole value is treated as one group name (including any <code>/</code> characters).</p>
 <p>Users can override this per import in the dialog.</p>
 </dd>
 <dt><code>id</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Stable source identifier.</p>
+<dd>Type: string<p>Stable source identifier.</p>
 <p>Should remain stable across spec revisions if bookmarks/provenance replay must keep working.</p>
 </dd>
 <dt><code>initialLoad</code></dt>
-<dd>
-<p>Type: boolean | <code>"*"</code> | string[]</p>
-<p>Startup loading behavior.</p>
-<ul>
-<li><code>false</code>: do not load at startup</li>
-<li><code>"*"</code>: load all columns allowed by this source</li>
-<li><code>string[]</code>: resolve and load only the listed columns</li>
-</ul>
+<dd>Type: boolean | <code>"*"</code> | string[]<p>Startup loading behavior.</p>
+<p>- <code>false</code>: do not load at startup
+  - <code>"*"</code>: load all columns allowed by this source
+  - <code>string[]</code>: resolve and load only the listed columns</p>
 <p>If omitted, data backends load all columns and other backends do not load columns at startup.</p>
 </dd>
 <dt><code>name</code></dt>
-<dd>
-<p>Type: string</p>
-<p>User-facing label shown in menus and dialogs.</p>
+<dd>Type: string<p>User-facing label shown in menus and dialogs.</p>
 <p>If omitted, UI falls back to <code>id</code>.</p>
 </dd>
 </dl>
@@ -3732,15 +4251,11 @@ array entry shape, while <code>MetadataSourceDef</code> describes an inline sour
 <h3 id="data-backend"><code>data</code> backend<a class="headerlink" href="#data-backend" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>data</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a></p>
-<p>Eager tabular metadata source.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a><p>Eager tabular metadata source.</p>
 <p>Supports <code>UrlData</code> and <code>InlineData</code>.</p>
 </dd>
 <dt><code>sampleIdField</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Field name in the table that matches sample ids in the view.</p>
+<dd>Type: string<p>Field name in the table that matches sample ids in the view.</p>
 <p><strong>Default value:</strong> <code>"sample"</code></p>
 </dd>
 </dl>
@@ -3819,20 +4334,14 @@ arrays/chunks over HTTP.</p>
 <h4 id="zarr-backend-schema">Zarr backend schema<a class="headerlink" href="#zarr-backend-schema" title="Permanent link">&para;</a></h4>
 <dl>
 <dt><code>identifiers</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Identifier arrays used to resolve user queries to columns.</p>
+<dd>Type: array<p>Identifier arrays used to resolve user queries to columns.</p>
 <p>If omitted, only primary column ids are used for lookup.</p>
 </dd>
 <dt><code>matrix</code></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">ZarrMatrixLayoutDef</a></p>
-<p>Path overrides for the matrix layout.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">ZarrMatrixLayoutDef</a><p>Path overrides for the matrix layout.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string</p>
-<p>URL to the root of the Zarr store.</p>
+<dd>Type: string<p>URL to the root of the Zarr store.</p>
 </dd>
 </dl>
 <h4 id="zarr-layout-details">Zarr layout details<a class="headerlink" href="#zarr-layout-details" title="Permanent link">&para;</a></h4>
@@ -3840,21 +4349,15 @@ arrays/chunks over HTTP.</p>
 Use these path overrides for expression-style sample-by-feature arrays.</p>
 <dl>
 <dt><code>columnIdsPath</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Path to matrix column identifiers.</p>
+<dd>Type: string<p>Path to matrix column identifiers.</p>
 <p><strong>Default value:</strong> <code>"var_names"</code></p>
 </dd>
 <dt><code>rowIdsPath</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Path to matrix row identifiers (sample ids).</p>
+<dd>Type: string<p>Path to matrix row identifiers (sample ids).</p>
 <p><strong>Default value:</strong> <code>"obs_names"</code></p>
 </dd>
 <dt><code>valuesPath</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Path to matrix values, arranged as sample rows by metadata columns.</p>
+<dd>Type: string<p>Path to matrix values, arranged as sample rows by metadata columns.</p>
 <p><strong>Default value:</strong> <code>"X"</code></p>
 </dd>
 </dl>
@@ -3863,31 +4366,21 @@ Use these path overrides for expression-style sample-by-feature arrays.</p>
 <code>identifiers</code> for aligned identifier arrays (for example symbol and Ensembl).</p>
 <dl>
 <dt><code>caseInsensitive</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Enables case-insensitive matching for this identifier field.</p>
+<dd>Type: boolean<p>Enables case-insensitive matching for this identifier field.</p>
 </dd>
 <dt><code>name</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string</p>
-<p>Name of the identifier field shown in UI and diagnostics.</p>
+<dd>Type: string<p>Name of the identifier field shown in UI and diagnostics.</p>
 <p>Example values: <code>"symbol"</code>, <code>"ensembl"</code>, <code>"entrez"</code>.</p>
 </dd>
 <dt><code>path</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string</p>
-<p>Backend path to identifier values aligned to matrix columns.</p>
+<dd>Type: string<p>Backend path to identifier values aligned to matrix columns.</p>
 <p>The array length must equal the number of columns in the matrix.</p>
 </dd>
 <dt><code>primary</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Marks this identifier as the primary, canonical identifier.</p>
+<dd>Type: boolean<p>Marks this identifier as the primary, canonical identifier.</p>
 </dd>
 <dt><code>stripVersionSuffix</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Remove version suffixes during matching (for example, ENSG...<code>.12</code>).</p>
+<dd>Type: boolean<p>Remove version suffixes during matching (for example, ENSG...<code>.12</code>).</p>
 <p>Useful for identifiers such as Ensembl ids that may contain version suffixes in some datasets but not in user queries.</p>
 </dd>
 </dl>
@@ -3904,27 +4397,8 @@ Use these path overrides for expression-style sample-by-feature arrays.</p>
 
 
 
-  
-    
-  
-  
 
 
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 29, 2026 15:26:08 UTC">May 29, 2026</span>
-  </span>
-
-    
-    
-    
-    
-  </aside>
 
 
 
@@ -3948,8 +4422,8 @@ Use these path overrides for expression-style sample-by-feature arrays.</p>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
     </a>
   
 </div>
@@ -3967,12 +4441,12 @@ Use these path overrides for expression-style sample-by-feature arrays.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["navigation.indexes","content.action.edit"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7f30b55.min.js"></script>
       
-        <script src="../../app/index.js"></script>
+        <script src="../../app/index.js" type="module"></script>
       
     
   </body>

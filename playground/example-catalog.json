@@ -13,6 +13,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/genomic-data/examples/genome-browser",
+    "title": "A genome-browser-like view with multiple tracks",
+    "description": "A genome-browser-like view with multiple tracks",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Genomic Data / Examples",
+    "specPath": "examples/docs/genomic-data/examples/genome-browser.json",
+    "specUrl": "/docs/examples/docs/genomic-data/examples/genome-browser.json",
+    "screenshotPath": "examples/docs/genomic-data/examples/genome-browser.png",
+    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/genome-browser.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/genomic-data/examples/ASCAT-algorithm",
     "title": "ASCAT Algorithm in GenomeSpy",
     "description": "ASCAT Algorithm in GenomeSpy",
@@ -36,6 +49,19 @@
     "specUrl": "/docs/examples/docs/genomic-data/examples/ASCAT.json",
     "screenshotPath": "examples/docs/genomic-data/examples/ASCAT.png",
     "screenshotUrl": "/docs/examples/docs/genomic-data/examples/ASCAT.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/genomic-data/examples/bam-read-alignments",
+    "title": "BAM read alignment example using a downsampled GIAB HG002 chr20 slice.",
+    "description": "BAM read alignment example using a downsampled GIAB HG002 chr20 slice.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Genomic Data / Examples",
+    "specPath": "examples/docs/genomic-data/examples/bam-read-alignments.json",
+    "specUrl": "/docs/examples/docs/genomic-data/examples/bam-read-alignments.json",
+    "screenshotPath": "examples/docs/genomic-data/examples/bam-read-alignments.png",
+    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/bam-read-alignments.png",
     "sourceMode": "shared-example"
   },
   {
@@ -78,16 +104,42 @@
     "sourceMode": "shared-example"
   },
   {
-    "id": "docs/genomic-data/examples/indexed-fasta-sequence-track",
-    "title": "Indexed FASTA Sequence Track",
-    "description": "Indexed FASTA Sequence Track",
+    "id": "docs/genomic-data/examples/hcc1954-sv-cnv",
+    "title": "HCC1954 Structural Variants and Copy Number",
+    "description": "HCC1954 Structural Variants and Copy Number",
     "sourceGroup": "docs",
     "sourceLabel": "Docs",
     "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/indexed-fasta-sequence-track.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/indexed-fasta-sequence-track.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/indexed-fasta-sequence-track.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/indexed-fasta-sequence-track.png",
+    "specPath": "examples/docs/genomic-data/examples/hcc1954-sv-cnv.json",
+    "specUrl": "/docs/examples/docs/genomic-data/examples/hcc1954-sv-cnv.json",
+    "screenshotPath": "examples/docs/genomic-data/examples/hcc1954-sv-cnv.png",
+    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/hcc1954-sv-cnv.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/genomic-data/examples/indexed-fasta-six-frame-translation",
+    "title": "Indexed FASTA Six-Frame Translation",
+    "description": "Indexed FASTA Six-Frame Translation",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Genomic Data / Examples",
+    "specPath": "examples/docs/genomic-data/examples/indexed-fasta-six-frame-translation.json",
+    "specUrl": "/docs/examples/docs/genomic-data/examples/indexed-fasta-six-frame-translation.json",
+    "screenshotPath": "examples/docs/genomic-data/examples/indexed-fasta-six-frame-translation.png",
+    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/indexed-fasta-six-frame-translation.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/genomic-data/examples/msa",
+    "title": "Multiple Sequence Alignment",
+    "description": "Multiple Sequence Alignment",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Genomic Data / Examples",
+    "specPath": "examples/docs/genomic-data/examples/msa.json",
+    "specUrl": "/docs/examples/docs/genomic-data/examples/msa.json",
+    "screenshotPath": "examples/docs/genomic-data/examples/msa.png",
+    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/msa.png",
     "sourceMode": "shared-example"
   },
   {
@@ -114,6 +166,32 @@
     "specUrl": "/docs/examples/docs/genomic-data/examples/sashimi-plot.json",
     "screenshotPath": "examples/docs/genomic-data/examples/sashimi-plot.png",
     "screenshotUrl": "/docs/examples/docs/genomic-data/examples/sashimi-plot.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/genomic-data/examples/dynseq-spi1-bqtl",
+    "title": "SPI1 Binding-QTL Dynseq Track",
+    "description": "SPI1 Binding-QTL Dynseq Track",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Genomic Data / Examples",
+    "specPath": "examples/docs/genomic-data/examples/dynseq-spi1-bqtl.json",
+    "specUrl": "/docs/examples/docs/genomic-data/examples/dynseq-spi1-bqtl.json",
+    "screenshotPath": "examples/docs/genomic-data/examples/dynseq-spi1-bqtl.png",
+    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/dynseq-spi1-bqtl.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/genomic-data/examples/tcga-ov-gistic",
+    "title": "TCGA Ovarian Cancer GISTIC2 Copy-Number Landscape",
+    "description": "TCGA Ovarian Cancer GISTIC2 Copy-Number Landscape",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Genomic Data / Examples",
+    "specPath": "examples/docs/genomic-data/examples/tcga-ov-gistic.json",
+    "specUrl": "/docs/examples/docs/genomic-data/examples/tcga-ov-gistic.json",
+    "screenshotPath": "examples/docs/genomic-data/examples/tcga-ov-gistic.png",
+    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/tcga-ov-gistic.png",
     "sourceMode": "shared-example"
   },
   {
@@ -338,6 +416,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/composition/multiscale/multiscale-transition",
+    "title": "A three-stage semantic zoom that cross-fades after selecting a discrete multiscale level.",
+    "description": "A three-stage semantic zoom that cross-fades after selecting a discrete multiscale level.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Composition / Multiscale",
+    "specPath": "examples/docs/grammar/composition/multiscale/multiscale-transition.json",
+    "specUrl": "/docs/examples/docs/grammar/composition/multiscale/multiscale-transition.json",
+    "screenshotPath": "examples/docs/grammar/composition/multiscale/multiscale-transition.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/composition/multiscale/multiscale-transition.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/composition/multiscale/multiscale-composition",
     "title": "A three-stage semantic zoom using the multiscale composition operator.",
     "description": "A three-stage semantic zoom using the multiscale composition operator.",
@@ -468,6 +559,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/data/lazy/indexed-fasta-sequence-track",
+    "title": "Indexed FASTA Sequence Track",
+    "description": "Indexed FASTA Sequence Track",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Data / Lazy",
+    "specPath": "examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.json",
+    "specUrl": "/docs/examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.json",
+    "screenshotPath": "examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/import/named-template-repeat-config",
     "title": "Template import example with import-site config overrides.",
     "description": "Template import example with import-site config overrides.",
@@ -543,6 +647,45 @@
     "specUrl": "/docs/examples/docs/grammar/legend/shared-hconcat-legend.json",
     "screenshotPath": "examples/docs/grammar/legend/shared-hconcat-legend.png",
     "screenshotUrl": "/docs/examples/docs/grammar/legend/shared-hconcat-legend.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/mark/arrow/arrow-styles",
+    "title": "Built-in arrow mark styles.",
+    "description": "Built-in arrow mark styles.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Mark / Arrow",
+    "specPath": "examples/docs/grammar/mark/arrow/arrow-styles.json",
+    "specUrl": "/docs/examples/docs/grammar/mark/arrow/arrow-styles.json",
+    "screenshotPath": "examples/docs/grammar/mark/arrow/arrow-styles.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/mark/arrow/arrow-styles.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/mark/arrow/arrow-mark",
+    "title": "Directional segments rendered with the arrow mark.",
+    "description": "Directional segments rendered with the arrow mark.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Mark / Arrow",
+    "specPath": "examples/docs/grammar/mark/arrow/arrow-mark.json",
+    "specUrl": "/docs/examples/docs/grammar/mark/arrow/arrow-mark.json",
+    "screenshotPath": "examples/docs/grammar/mark/arrow/arrow-mark.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/mark/arrow/arrow-mark.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/mark/arrow/arrow-playground",
+    "title": "Interactive playground for the arrow mark shape parameters.",
+    "description": "Interactive playground for the arrow mark shape parameters.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Mark / Arrow",
+    "specPath": "examples/docs/grammar/mark/arrow/arrow-playground.json",
+    "specUrl": "/docs/examples/docs/grammar/mark/arrow/arrow-playground.json",
+    "screenshotPath": "examples/docs/grammar/mark/arrow/arrow-playground.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/mark/arrow/arrow-playground.png",
     "sourceMode": "shared-example"
   },
   {
@@ -827,8 +970,8 @@
     "category": "Grammar / Parameters",
     "specPath": "examples/docs/grammar/parameters/ruler-push-outer.json",
     "specUrl": "/docs/examples/docs/grammar/parameters/ruler-push-outer.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/docs/grammar/parameters/ruler-push-outer.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/parameters/ruler-push-outer.png",
     "sourceMode": "shared-example"
   },
   {
@@ -905,8 +1048,8 @@
     "category": "Grammar / Parameters",
     "specPath": "examples/docs/grammar/parameters/ruler.json",
     "specUrl": "/docs/examples/docs/grammar/parameters/ruler.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/docs/grammar/parameters/ruler.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/parameters/ruler.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1141,6 +1284,19 @@
     "specUrl": "/docs/examples/docs/grammar/transform/stack/stacked-bar-plot.json",
     "screenshotPath": "examples/docs/grammar/transform/stack/stacked-bar-plot.png",
     "screenshotUrl": "/docs/examples/docs/grammar/transform/stack/stacked-bar-plot.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/transform/window/window-transform",
+    "title": "Window transform showing lead arrows and a two-row moving mean.",
+    "description": "Window transform showing lead arrows and a two-row moving mean.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Transform / Window",
+    "specPath": "examples/docs/grammar/transform/window/window-transform.json",
+    "specUrl": "/docs/examples/docs/grammar/transform/window/window-transform.json",
+    "screenshotPath": "examples/docs/grammar/transform/window/window-transform.png",
+    "screenshotUrl": "/docs/examples/docs/grammar/transform/window/window-transform.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1638,6 +1794,58 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "core/marks/arrow/arrow_direction",
+    "title": "Arrow direction encoded through a discrete scale.",
+    "description": "Arrow direction encoded through a discrete scale.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Marks / Arrow",
+    "specPath": "examples/core/marks/arrow/arrow_direction.json",
+    "specUrl": "/docs/examples/core/marks/arrow/arrow_direction.json",
+    "screenshotPath": "examples/core/marks/arrow/arrow_direction.png",
+    "screenshotUrl": "/docs/examples/core/marks/arrow/arrow_direction.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/marks/arrow/arrow_band_size",
+    "title": "Arrow size relative to a band or the perpendicular view span.",
+    "description": "Arrow size relative to a band or the perpendicular view span.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Marks / Arrow",
+    "specPath": "examples/core/marks/arrow/arrow_band_size.json",
+    "specUrl": "/docs/examples/core/marks/arrow/arrow_band_size.json",
+    "screenshotPath": "examples/core/marks/arrow/arrow_band_size.png",
+    "screenshotUrl": "/docs/examples/core/marks/arrow/arrow_band_size.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/marks/arrow/arrow_block_bands",
+    "title": "Block arrows on categorical bands with quantitative x positions.",
+    "description": "Block arrows on categorical bands with quantitative x positions.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Marks / Arrow",
+    "specPath": "examples/core/marks/arrow/arrow_block_bands.json",
+    "specUrl": "/docs/examples/core/marks/arrow/arrow_block_bands.json",
+    "screenshotPath": "examples/core/marks/arrow/arrow_block_bands.png",
+    "screenshotUrl": "/docs/examples/core/marks/arrow/arrow_block_bands.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/marks/arrow/arrow_diagonal",
+    "title": "Diagonal arrows rendered from rule-style endpoints.",
+    "description": "Diagonal arrows rendered from rule-style endpoints.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Marks / Arrow",
+    "specPath": "examples/core/marks/arrow/arrow_diagonal.json",
+    "specUrl": "/docs/examples/core/marks/arrow/arrow_diagonal.json",
+    "screenshotPath": "examples/core/marks/arrow/arrow_diagonal.png",
+    "screenshotUrl": "/docs/examples/core/marks/arrow/arrow_diagonal.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "core/marks/link/link",
     "title": "Link",
     "description": "",
@@ -1841,8 +2049,8 @@
     "category": "Ruler",
     "specPath": "examples/core/ruler/hconcat-push-outer.json",
     "specUrl": "/docs/examples/core/ruler/hconcat-push-outer.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/ruler/hconcat-push-outer.png",
+    "screenshotUrl": "/docs/examples/core/ruler/hconcat-push-outer.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1854,8 +2062,8 @@
     "category": "Ruler",
     "specPath": "examples/core/ruler/crosshair.json",
     "specUrl": "/docs/examples/core/ruler/crosshair.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/ruler/crosshair.png",
+    "screenshotUrl": "/docs/examples/core/ruler/crosshair.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1867,8 +2075,8 @@
     "category": "Ruler",
     "specPath": "examples/core/ruler/vconcat-independent.json",
     "specUrl": "/docs/examples/core/ruler/vconcat-independent.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/ruler/vconcat-independent.png",
+    "screenshotUrl": "/docs/examples/core/ruler/vconcat-independent.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1880,8 +2088,8 @@
     "category": "Ruler",
     "specPath": "examples/core/ruler/vconcat-spanning.json",
     "specUrl": "/docs/examples/core/ruler/vconcat-spanning.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/ruler/vconcat-spanning.png",
+    "screenshotUrl": "/docs/examples/core/ruler/vconcat-spanning.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1893,8 +2101,8 @@
     "category": "Ruler",
     "specPath": "examples/core/ruler/viewport-index.json",
     "specUrl": "/docs/examples/core/ruler/viewport-index.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/ruler/viewport-index.png",
+    "screenshotUrl": "/docs/examples/core/ruler/viewport-index.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1906,8 +2114,8 @@
     "category": "Ruler",
     "specPath": "examples/core/ruler/mouse-events.json",
     "specUrl": "/docs/examples/core/ruler/mouse-events.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/ruler/mouse-events.png",
+    "screenshotUrl": "/docs/examples/core/ruler/mouse-events.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2185,8 +2393,8 @@
   },
   {
     "id": "core/techniques/multiscale",
-    "title": "A three-stage semantic zoom using the multiscale composition operator.",
-    "description": "A three-stage semantic zoom using the multiscale composition operator.",
+    "title": "A three-stage semantic zoom using persistent opacity ramps between multiscale levels.",
+    "description": "A three-stage semantic zoom using persistent opacity ramps between multiscale levels.",
     "sourceGroup": "core",
     "sourceLabel": "Core",
     "category": "Techniques",
@@ -2263,8 +2471,8 @@
   },
   {
     "id": "app/samples",
-    "title": "A trivial example showing how to display multiple samples in the App.",
-    "description": "A trivial example showing how to display multiple samples in the App.",
+    "title": "A simple segmented view of three samples.",
+    "description": "A simple segmented view of three samples.",
     "sourceGroup": "app",
     "sourceLabel": "App",
     "category": "General",
@@ -2283,6 +2491,45 @@
     "category": "General",
     "specPath": "examples/app/copy-numbers.json",
     "specUrl": "/docs/examples/app/copy-numbers.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "app/metadata-hierarchy",
+    "title": "Inline metadata with grouped attribute names.",
+    "description": "Inline metadata with grouped attribute names.",
+    "sourceGroup": "app",
+    "sourceLabel": "App",
+    "category": "General",
+    "specPath": "examples/app/metadata-hierarchy.json",
+    "specUrl": "/docs/examples/app/metadata-hierarchy.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "app/samples-identity",
+    "title": "Three samples with display names defined by inline identity data.",
+    "description": "Three samples with display names defined by inline identity data.",
+    "sourceGroup": "app",
+    "sourceLabel": "App",
+    "category": "General",
+    "specPath": "examples/app/samples-identity.json",
+    "specUrl": "/docs/examples/app/samples-identity.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "app/metadata-data-source",
+    "title": "Three samples with inline metadata.",
+    "description": "Three samples with inline metadata.",
+    "sourceGroup": "app",
+    "sourceLabel": "App",
+    "category": "General",
+    "specPath": "examples/app/metadata-data-source.json",
+    "specUrl": "/docs/examples/app/metadata-data-source.json",
     "screenshotPath": null,
     "screenshotUrl": null,
     "sourceMode": "shared-example"

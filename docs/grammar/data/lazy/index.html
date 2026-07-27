@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="zensical-0.0.51">
     
     
       
@@ -29,10 +29,15 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.62c9b9cc.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.dfe2e883.min.css">
       
       
 
@@ -46,14 +51,14 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Lato";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"JetBrains Mono"}</style>
       
     
     
       <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -61,21 +66,12 @@
      
 <meta name="base_url" content="../../.." />
 
-  
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Lazy Data Sources - GenomeSpy Docs" />
-<meta property="og:image" content="https://genomespy.app/docs/assets/images/social/grammar/data/lazy.png" />
-<meta property="og:image:type" content="image/png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://genomespy.app/docs/grammar/data/lazy/" />
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Lazy Data Sources - GenomeSpy Docs" />
-<meta property="twitter:image" content="https://genomespy.app/docs/assets/images/social/grammar/data/lazy.png" />
-</head>
+  </head>
   
   
     
+    
+      
     
     
     
@@ -85,7 +81,7 @@
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
     <div data-md-component="skip">
       
         
@@ -107,12 +103,12 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="GenomeSpy Docs" class="md-header__button md-logo" aria-label="GenomeSpy Docs" data-md-component="logo">
       
-  <img src="../../../img/bowtie.svg" alt="logo">
+  <img src="../../../img/bowtie.svg" alt="GenomeSpy Docs">
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -132,63 +128,48 @@
     </div>
     
       
+        <form class="md-header__option" data-md-component="palette">
+  
     
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
       
       
-        <label class="md-header__button md-icon" for="__search">
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
         </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
 </div>
       
     
-    
-      <div class="md-header__source">
+    <div class="md-header__source">
+      
         <a href="https://github.com/genome-spy/genome-spy" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
   </div>
 </a>
-      </div>
-    
+      
+    </div>
   </nav>
   
 </header>
@@ -216,7 +197,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="GenomeSpy Docs" class="md-nav__button md-logo" aria-label="GenomeSpy Docs" data-md-component="logo">
       
-  <img src="../../../img/bowtie.svg" alt="logo">
+  <img src="../../../img/bowtie.svg" alt="GenomeSpy Docs">
 
     </a>
     GenomeSpy Docs
@@ -226,7 +207,7 @@
       <a href="https://github.com/genome-spy/genome-spy" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -250,8 +231,7 @@
   <span class="md-ellipsis">
     
   
-    Introduction
-  
+  Introduction
 
     
   </span>
@@ -277,8 +257,7 @@
   <span class="md-ellipsis">
     
   
-    Getting Started
-  
+  Getting Started
 
     
   </span>
@@ -352,8 +331,7 @@
   <span class="md-ellipsis">
     
   
-    Visualization Grammar
-  
+  Visualization Grammar
 
     
   </span>
@@ -374,8 +352,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Visualization Grammar
-  
+  Visualization Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -422,8 +399,7 @@
   <span class="md-ellipsis">
     
   
-    Data Input
-  
+  Data Input
 
     
   </span>
@@ -444,8 +420,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Data Input
-  
+  Data Input
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -466,8 +441,7 @@
   <span class="md-ellipsis">
     
   
-    Eager Data Sources
-  
+  Eager Data Sources
 
     
   </span>
@@ -490,7 +464,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
       
       
         
@@ -503,8 +477,7 @@
   <span class="md-ellipsis">
     
   
-    Lazy Data Sources
-  
+  Lazy Data Sources
 
     
   </span>
@@ -514,15 +487,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    Lazy Data Sources
-  
+  Lazy Data Sources
 
     
   </span>
@@ -533,7 +505,8 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -542,16 +515,16 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#indexed-fasta" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Indexed FASTA
-      
+      </span>
     </span>
   </a>
   
@@ -561,9 +534,9 @@
           <li class="md-nav__item">
   <a href="#parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -572,9 +545,9 @@
           <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -588,9 +561,9 @@
         <li class="md-nav__item">
   <a href="#bigwig" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         BigWig
-      
+      </span>
     </span>
   </a>
   
@@ -600,9 +573,9 @@
           <li class="md-nav__item">
   <a href="#parameters_1" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -611,9 +584,9 @@
           <li class="md-nav__item">
   <a href="#example_1" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -627,9 +600,9 @@
         <li class="md-nav__item">
   <a href="#bigbed" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         BigBed
-      
+      </span>
     </span>
   </a>
   
@@ -639,9 +612,9 @@
           <li class="md-nav__item">
   <a href="#parameters_2" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -650,9 +623,9 @@
           <li class="md-nav__item">
   <a href="#example_2" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -666,9 +639,9 @@
         <li class="md-nav__item">
   <a href="#tabix-tsv" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Tabix TSV
-      
+      </span>
     </span>
   </a>
   
@@ -678,9 +651,9 @@
           <li class="md-nav__item">
   <a href="#parameters_3" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -694,9 +667,9 @@
         <li class="md-nav__item">
   <a href="#vcf" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         VCF
-      
+      </span>
     </span>
   </a>
   
@@ -706,9 +679,9 @@
           <li class="md-nav__item">
   <a href="#parameters_4" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -717,9 +690,9 @@
           <li class="md-nav__item">
   <a href="#example_3" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -733,9 +706,9 @@
         <li class="md-nav__item">
   <a href="#gff3" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         GFF3
-      
+      </span>
     </span>
   </a>
   
@@ -745,9 +718,9 @@
           <li class="md-nav__item">
   <a href="#parameters_5" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -756,9 +729,9 @@
           <li class="md-nav__item">
   <a href="#example_4" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -772,9 +745,9 @@
         <li class="md-nav__item">
   <a href="#bam" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         BAM
-      
+      </span>
     </span>
   </a>
   
@@ -784,9 +757,9 @@
           <li class="md-nav__item">
   <a href="#parameters_6" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -795,9 +768,9 @@
           <li class="md-nav__item">
   <a href="#example_5" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -811,9 +784,9 @@
         <li class="md-nav__item">
   <a href="#axis-ticks" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Axis ticks
-      
+      </span>
     </span>
   </a>
   
@@ -823,9 +796,9 @@
           <li class="md-nav__item">
   <a href="#parameters_7" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -834,9 +807,9 @@
           <li class="md-nav__item">
   <a href="#example_6" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -850,9 +823,9 @@
         <li class="md-nav__item">
   <a href="#axis-genome" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Axis genome
-      
+      </span>
     </span>
   </a>
   
@@ -862,9 +835,9 @@
           <li class="md-nav__item">
   <a href="#parameters_8" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -873,9 +846,9 @@
           <li class="md-nav__item">
   <a href="#example_7" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -909,8 +882,7 @@
   <span class="md-ellipsis">
     
   
-    URL Templates and Multiple Files
-  
+  URL Templates and Multiple Files
 
     
   </span>
@@ -942,6 +914,16 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -999,8 +981,7 @@
   <span class="md-ellipsis">
     
   
-    Transform
-  
+  Transform
 
     
   </span>
@@ -1021,8 +1002,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Transform
-  
+  Transform
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1043,8 +1023,34 @@
   <span class="md-ellipsis">
     
   
-    Aggregate
+  Aggregate
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/alignment-mismatches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AlignmentMismatches
 
     
   </span>
@@ -1071,8 +1077,7 @@
   <span class="md-ellipsis">
     
   
-    Collect
-  
+  Collect
 
     
   </span>
@@ -1099,8 +1104,7 @@
   <span class="md-ellipsis">
     
   
-    Coverage
-  
+  Coverage
 
     
   </span>
@@ -1127,8 +1131,7 @@
   <span class="md-ellipsis">
     
   
-    Filter
-  
+  Filter
 
     
   </span>
@@ -1155,8 +1158,7 @@
   <span class="md-ellipsis">
     
   
-    FilterScoredLabels
-  
+  FilterScoredLabels
 
     
   </span>
@@ -1183,8 +1185,34 @@
   <span class="md-ellipsis">
     
   
-    Flatten
+  Flatten
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/flatten-cigar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  FlattenCigar
 
     
   </span>
@@ -1211,8 +1239,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenCompressedExons
-  
+  FlattenCompressedExons
 
     
   </span>
@@ -1239,8 +1266,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenDelimited
-  
+  FlattenDelimited
 
     
   </span>
@@ -1267,8 +1293,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenSequence
-  
+  FlattenSequence
 
     
   </span>
@@ -1295,8 +1320,7 @@
   <span class="md-ellipsis">
     
   
-    Formula
-  
+  Formula
 
     
   </span>
@@ -1323,8 +1347,61 @@
   <span class="md-ellipsis">
     
   
-    LinearizeGenomicCoordinate
+  LinearizeGenomicCoordinate
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lookup
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/coordinate-lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CoordinateLookup
 
     
   </span>
@@ -1351,8 +1428,7 @@
   <span class="md-ellipsis">
     
   
-    MeasureText
-  
+  MeasureText
 
     
   </span>
@@ -1379,8 +1455,7 @@
   <span class="md-ellipsis">
     
   
-    Pileup
-  
+  Pileup
 
     
   </span>
@@ -1407,8 +1482,7 @@
   <span class="md-ellipsis">
     
   
-    Project
-  
+  Project
 
     
   </span>
@@ -1435,8 +1509,7 @@
   <span class="md-ellipsis">
     
   
-    RegexExtract
-  
+  RegexExtract
 
     
   </span>
@@ -1463,8 +1536,7 @@
   <span class="md-ellipsis">
     
   
-    RegexFold
-  
+  RegexFold
 
     
   </span>
@@ -1491,8 +1563,7 @@
   <span class="md-ellipsis">
     
   
-    Sample
-  
+  Sample
 
     
   </span>
@@ -1519,8 +1590,34 @@
   <span class="md-ellipsis">
     
   
-    Stack
+  Stack
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Window
 
     
   </span>
@@ -1566,6 +1663,8 @@
       
         
       
+        
+      
     
     
     
@@ -1585,8 +1684,7 @@
   <span class="md-ellipsis">
     
   
-    Graphical Marks
-  
+  Graphical Marks
 
     
   </span>
@@ -1607,12 +1705,38 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Graphical Marks
-  
+  Graphical Marks
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mark/arrow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Arrow
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1629,8 +1753,7 @@
   <span class="md-ellipsis">
     
   
-    Link
-  
+  Link
 
     
   </span>
@@ -1657,8 +1780,7 @@
   <span class="md-ellipsis">
     
   
-    Point
-  
+  Point
 
     
   </span>
@@ -1685,8 +1807,7 @@
   <span class="md-ellipsis">
     
   
-    Rect
-  
+  Rect
 
     
   </span>
@@ -1713,8 +1834,7 @@
   <span class="md-ellipsis">
     
   
-    Rule
-  
+  Rule
 
     
   </span>
@@ -1741,8 +1861,7 @@
   <span class="md-ellipsis">
     
   
-    Tick
-  
+  Tick
 
     
   </span>
@@ -1769,8 +1888,7 @@
   <span class="md-ellipsis">
     
   
-    Text
-  
+  Text
 
     
   </span>
@@ -1805,8 +1923,7 @@
   <span class="md-ellipsis">
     
   
-    Conditional Encoding
-  
+  Conditional Encoding
 
     
   </span>
@@ -1857,8 +1974,7 @@
   <span class="md-ellipsis">
     
   
-    View Composition
-  
+  View Composition
 
     
   </span>
@@ -1879,8 +1995,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    View Composition
-  
+  View Composition
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1901,8 +2016,7 @@
   <span class="md-ellipsis">
     
   
-    Concat
-  
+  Concat
 
     
   </span>
@@ -1929,8 +2043,7 @@
   <span class="md-ellipsis">
     
   
-    Layer
-  
+  Layer
 
     
   </span>
@@ -1957,8 +2070,7 @@
   <span class="md-ellipsis">
     
   
-    Multiscale
-  
+  Multiscale
 
     
   </span>
@@ -1993,8 +2105,7 @@
   <span class="md-ellipsis">
     
   
-    Scales
-  
+  Scales
 
     
   </span>
@@ -2021,8 +2132,7 @@
   <span class="md-ellipsis">
     
   
-    Axes
-  
+  Axes
 
     
   </span>
@@ -2049,8 +2159,7 @@
   <span class="md-ellipsis">
     
   
-    Titles
-  
+  Titles
 
     
   </span>
@@ -2077,8 +2186,7 @@
   <span class="md-ellipsis">
     
   
-    Legends
-  
+  Legends
 
     
   </span>
@@ -2105,8 +2213,7 @@
   <span class="md-ellipsis">
     
   
-    Config And Themes
-  
+  Config And Themes
 
     
   </span>
@@ -2133,8 +2240,7 @@
   <span class="md-ellipsis">
     
   
-    Importing Views
-  
+  Importing Views
 
     
   </span>
@@ -2161,8 +2267,7 @@
   <span class="md-ellipsis">
     
   
-    Expressions
-  
+  Expressions
 
     
   </span>
@@ -2189,8 +2294,7 @@
   <span class="md-ellipsis">
     
   
-    Parameters
-  
+  Parameters
 
     
   </span>
@@ -2217,8 +2321,7 @@
   <span class="md-ellipsis">
     
   
-    Types
-  
+  Types
 
     
   </span>
@@ -2274,8 +2377,7 @@
   <span class="md-ellipsis">
     
   
-    Working with Genomic Data
-  
+  Working with Genomic Data
 
     
   </span>
@@ -2296,8 +2398,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Working with Genomic Data
-  
+  Working with Genomic Data
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2318,8 +2419,7 @@
   <span class="md-ellipsis">
     
   
-    Genomic Coordinates
-  
+  Genomic Coordinates
 
     
   </span>
@@ -2343,6 +2443,18 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -2380,8 +2492,7 @@
   <span class="md-ellipsis">
     
   
-    Examples
-  
+  Examples
 
     
   </span>
@@ -2402,8 +2513,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Examples
-  
+  Examples
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2424,8 +2534,7 @@
   <span class="md-ellipsis">
     
   
-    Chromosome Ideogram from Cytobands
-  
+  Chromosome Ideogram from Cytobands
 
     
   </span>
@@ -2445,15 +2554,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../genomic-data/examples/indexed-fasta-sequence-track/" class="md-nav__link">
+      <a href="../../../genomic-data/examples/indexed-fasta-six-frame-translation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Indexed FASTA Sequence Track
-  
+  Indexed FASTA Six-Frame Translation
 
     
   </span>
@@ -2480,8 +2588,7 @@
   <span class="md-ellipsis">
     
   
-    RefSeq Gene Annotations with Scored Labels
-  
+  RefSeq Gene Annotations with Scored Labels
 
     
   </span>
@@ -2508,8 +2615,7 @@
   <span class="md-ellipsis">
     
   
-    GENCODE Gene Annotations from GFF3
-  
+  GENCODE Gene Annotations from GFF3
 
     
   </span>
@@ -2536,8 +2642,7 @@
   <span class="md-ellipsis">
     
   
-    ASCAT Copy-Number Segmentation
-  
+  ASCAT Copy-Number Segmentation
 
     
   </span>
@@ -2564,8 +2669,61 @@
   <span class="md-ellipsis">
     
   
-    ASCAT Algorithm in GenomeSpy
+  ASCAT Algorithm in GenomeSpy
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../genomic-data/examples/hcc1954-sv-cnv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  HCC1954 Structural Variants and Copy Number
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../genomic-data/examples/tcga-ov-gistic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  TCGA Ovarian Cancer GISTIC2 Copy-Number Landscape
 
     
   </span>
@@ -2592,8 +2750,34 @@
   <span class="md-ellipsis">
     
   
-    Sashimi plot from splice junctions
+  Sashimi plot from splice junctions
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../genomic-data/examples/dynseq-spi1-bqtl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SPI1 Binding-QTL Dynseq Track
 
     
   </span>
@@ -2620,8 +2804,88 @@
   <span class="md-ellipsis">
     
   
-    ClinVar Small-Variant Classifications
+  ClinVar Small-Variant Classifications
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../genomic-data/examples/bam-read-alignments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  BAM Read Alignments
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../genomic-data/examples/multiple-sequence-alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Multiple Sequence Alignment
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../genomic-data/examples/genome-browser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Composing a Genome Browser
 
     
   </span>
@@ -2660,6 +2924,12 @@
       
         
           
+        
+      
+        
+      
+        
+      
         
       
         
@@ -2689,8 +2959,7 @@
   <span class="md-ellipsis">
     
   
-    Working with Sample Collections
-  
+  Working with Sample Collections
 
     
   </span>
@@ -2711,8 +2980,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Working with Sample Collections
-  
+  Working with Sample Collections
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2733,8 +3001,61 @@
   <span class="md-ellipsis">
     
   
-    Visualizing
+  Visualizing
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sample-collections/sample-view-parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sample View Parameters
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sample-collections/aggregating-samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Aggregating Samples
 
     
   </span>
@@ -2761,8 +3082,34 @@
   <span class="md-ellipsis">
     
   
-    Configuring Metadata Sources
+  Configuring Metadata Sources
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sample-collections/app-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuring App Features
 
     
   </span>
@@ -2789,8 +3136,7 @@
   <span class="md-ellipsis">
     
   
-    Analyzing
-  
+  Analyzing
 
     
   </span>
@@ -2817,8 +3163,7 @@
   <span class="md-ellipsis">
     
   
-    Importing Metadata
-  
+  Importing Metadata
 
     
   </span>
@@ -2882,8 +3227,7 @@
   <span class="md-ellipsis">
     
   
-    JavaScript API
-  
+  JavaScript API
 
     
   </span>
@@ -2904,8 +3248,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    JavaScript API
-  
+  JavaScript API
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2926,8 +3269,7 @@
   <span class="md-ellipsis">
     
   
-    Embedding and Entry Points
-  
+  Embedding and Entry Points
 
     
   </span>
@@ -2954,8 +3296,7 @@
   <span class="md-ellipsis">
     
   
-    View Hierarchy
-  
+  View Hierarchy
 
     
   </span>
@@ -2982,8 +3323,7 @@
   <span class="md-ellipsis">
     
   
-    Runtime State
-  
+  Runtime State
 
     
   </span>
@@ -3010,8 +3350,7 @@
   <span class="md-ellipsis">
     
   
-    Inspector
-  
+  Inspector
 
     
   </span>
@@ -3038,8 +3377,7 @@
   <span class="md-ellipsis">
     
   
-    Instance, Events, and Export
-  
+  Instance, Events, and Export
 
     
   </span>
@@ -3066,8 +3404,7 @@
   <span class="md-ellipsis">
     
   
-    Embed Options
-  
+  Embed Options
 
     
   </span>
@@ -3101,8 +3438,7 @@
   <span class="md-ellipsis">
     
   
-    License
-  
+  License
 
     
   </span>
@@ -3124,10 +3460,24 @@
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -3136,16 +3486,16 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#indexed-fasta" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Indexed FASTA
-      
+      </span>
     </span>
   </a>
   
@@ -3155,9 +3505,9 @@
           <li class="md-nav__item">
   <a href="#parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -3166,9 +3516,9 @@
           <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -3182,9 +3532,9 @@
         <li class="md-nav__item">
   <a href="#bigwig" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         BigWig
-      
+      </span>
     </span>
   </a>
   
@@ -3194,9 +3544,9 @@
           <li class="md-nav__item">
   <a href="#parameters_1" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -3205,9 +3555,9 @@
           <li class="md-nav__item">
   <a href="#example_1" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -3221,9 +3571,9 @@
         <li class="md-nav__item">
   <a href="#bigbed" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         BigBed
-      
+      </span>
     </span>
   </a>
   
@@ -3233,9 +3583,9 @@
           <li class="md-nav__item">
   <a href="#parameters_2" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -3244,9 +3594,9 @@
           <li class="md-nav__item">
   <a href="#example_2" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -3260,9 +3610,9 @@
         <li class="md-nav__item">
   <a href="#tabix-tsv" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Tabix TSV
-      
+      </span>
     </span>
   </a>
   
@@ -3272,9 +3622,9 @@
           <li class="md-nav__item">
   <a href="#parameters_3" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -3288,9 +3638,9 @@
         <li class="md-nav__item">
   <a href="#vcf" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         VCF
-      
+      </span>
     </span>
   </a>
   
@@ -3300,9 +3650,9 @@
           <li class="md-nav__item">
   <a href="#parameters_4" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -3311,9 +3661,9 @@
           <li class="md-nav__item">
   <a href="#example_3" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -3327,9 +3677,9 @@
         <li class="md-nav__item">
   <a href="#gff3" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         GFF3
-      
+      </span>
     </span>
   </a>
   
@@ -3339,9 +3689,9 @@
           <li class="md-nav__item">
   <a href="#parameters_5" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -3350,9 +3700,9 @@
           <li class="md-nav__item">
   <a href="#example_4" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -3366,9 +3716,9 @@
         <li class="md-nav__item">
   <a href="#bam" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         BAM
-      
+      </span>
     </span>
   </a>
   
@@ -3378,9 +3728,9 @@
           <li class="md-nav__item">
   <a href="#parameters_6" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -3389,9 +3739,9 @@
           <li class="md-nav__item">
   <a href="#example_5" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -3405,9 +3755,9 @@
         <li class="md-nav__item">
   <a href="#axis-ticks" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Axis ticks
-      
+      </span>
     </span>
   </a>
   
@@ -3417,9 +3767,9 @@
           <li class="md-nav__item">
   <a href="#parameters_7" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -3428,9 +3778,9 @@
           <li class="md-nav__item">
   <a href="#example_6" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -3444,9 +3794,9 @@
         <li class="md-nav__item">
   <a href="#axis-genome" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Axis genome
-      
+      </span>
     </span>
   </a>
   
@@ -3456,9 +3806,9 @@
           <li class="md-nav__item">
   <a href="#parameters_8" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -3467,9 +3817,9 @@
           <li class="md-nav__item">
   <a href="#example_7" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Example
-      
+      </span>
     </span>
   </a>
   
@@ -3494,12 +3844,10 @@
               <article class="md-content__inner md-typeset">
                 
                   
-
-
   
     <a href="https://github.com/genome-spy/genome-spy/edit/master/docs/grammar/data/lazy.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
     </a>
   
   
@@ -3543,53 +3891,40 @@ The chunks are provided as data objects with the following fields: <code>chrom</
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
-<dd>
-<p>Type: <code>"x"</code> | <code>"y"</code></p>
-<p>Which channel's scale domain to monitor.</p>
+<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>
-<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">IndexUrlTemplate</a></p>
-<p>URL of the index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">IndexUrlTemplate</a><p>URL of the index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".fai"</code>.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a></p>
-<p>URL of the fasta file. URL templates must resolve to one URL.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a><p>URL of the fasta file. URL templates must resolve to one URL.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Size of each chunk when fetching the fasta file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>Type: number<p>Size of each chunk when fetching the fasta file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>7000</code></p>
 </dd>
 </dl>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <p>The visualization below shows a sequence track backed by an indexed FASTA
 source. GenomeSpy fetches new sequence only when the visible region is smaller
-than the source window size (default: 7000 bp). For a fuller explanation of the
-track, see <a href="../../../genomic-data/examples/indexed-fasta-sequence-track/">Indexed FASTA Sequence Track</a>.</p>
-<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/genomic-data/examples/indexed-fasta-sequence-track.json" height="60" spechidden="true">
+than the source window size (default: 7000 bp). The <a href="../../../genomic-data/examples/indexed-fasta-six-frame-translation/">Indexed FASTA Six-Frame
+Translation</a>
+example builds on this source with reference bases and translated reading frames.</p>
+<div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.json" height="60" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -3647,7 +3982,8 @@ track, see <a href="../../../genomic-data/examples/indexed-fasta-sequence-track/
 <span class="w">          </span><span class="s2">&quot;#FFC56C&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="s2">&quot;#E0E0E0&quot;</span>
 <span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 
@@ -3699,39 +4035,27 @@ sample identifier to each returned row.</p>
 <h3 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
-<dd>
-<p>Type: <code>"x"</code> | <code>"y"</code></p>
-<p>Which channel's scale domain to monitor.</p>
+<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>pixelsPerBin</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>The approximate minimum width of each data bin, in pixels.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The approximate minimum width of each data bin, in pixels.</p>
 <p><strong>Default value:</strong> <code>2</code></p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a></p>
-<p>URL of the BigWig file. URL templates load multiple BigWig files and attach the template field to loaded rows.</p>
+<dd>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a><p>URL of the BigWig file. URL templates load multiple BigWig files and attach the template field to loaded rows.</p>
 </dd>
 </dl>
 <h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
@@ -3788,38 +4112,26 @@ genomic regions stored in BigBed files.</p>
 <h3 id="parameters_2">Parameters<a class="headerlink" href="#parameters_2" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
-<dd>
-<p>Type: <code>"x"</code> | <code>"y"</code></p>
-<p>Which channel's scale domain to monitor.</p>
+<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a></p>
-<p>URL of the BigBed file. URL templates load multiple BigBed files and attach the template field to loaded rows.</p>
+<dd>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a><p>URL of the BigBed file. URL templates load multiple BigBed files and attach the template field to loaded rows.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>1000000</code></p>
 </dd>
 </dl>
@@ -3901,118 +4213,86 @@ for the supported syntax). If the file uses bare chromosome names, set
 <h3 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>addChrPrefix</code></dt>
-<dd>
-<p>Type: boolean | string</p>
-<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
+<dd>Type: boolean | string<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>channel</code></dt>
-<dd>
-<p>Type: <code>"x"</code> | <code>"y"</code></p>
-<p>Which channel's scale domain to monitor.</p>
+<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>columns</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Ordered list of field names for headerless tabix TSV input. If omitted, the source tries to read a commented header line from the tabix file header or the first row of a plain TSV header.</p>
+<dd>Type: array<p>Ordered list of field names for headerless tabix TSV input. If omitted, the source tries to read a commented header line from the tabix file header or the first row of a plain TSV header.</p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>
-<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">IndexUrlTemplate</a></p>
-<p>URL of the tabix index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">IndexUrlTemplate</a><p>URL of the tabix index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".tbi"</code>.</p>
 </dd>
 <dt><code>parse</code></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">Parse</a> | null</p>
-<p>Optional type parsing for TSV fields. When omitted, field types are inferred automatically. Set to <code>null</code> to disable spec-based type inference and rely on data inference, or provide a field-to-type map to override selected columns.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">Parse</a> | null<p>Optional type parsing for TSV fields. When omitted, field types are inferred automatically. Set to <code>null</code> to disable spec-based type inference and rely on data inference, or provide a field-to-type map to override selected columns.</p>
 <p><strong>Default value:</strong> <code>"auto"</code></p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a></p>
-<p>URL of the bgzip-compressed file. URL templates load multiple files and attach the template field to loaded rows.</p>
+<dd>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a><p>URL of the bgzip-compressed file. URL templates load multiple files and attach the template field to loaded rows.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>Type: number<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>30000000</code></p>
 </dd>
 </dl>
 <h2 id="vcf">VCF<a class="headerlink" href="#vcf" title="Permanent link">&para;</a></h2>
-<p>The tabix-based <code>"vcf"</code> source enables the retrieval of variant data stored in
-VCF files. The object format GenomeSpy uses is described in
-<a href="https://github.com/GMOD/vcf-js/tree/master?tab=readme-ov-file#methods">vcf-js</a>'s
-documentation.</p>
+<p><a href="https://samtools.github.io/hts-specs/VCFv4.3.pdf">VCF</a> parsing is based on
+GMOD's <a href="https://github.com/GMOD/vcf-js">vcf-js</a> library. Each VCF row produces
+an object with fields such as <code>CHROM</code>, <code>POS</code>, <code>ID</code>, <code>REF</code>, <code>ALT</code>, <code>QUAL</code>,
+<code>FILTER</code>, and <code>INFO</code>. Sample columns are materialized in the <code>SAMPLES</code> object.</p>
+<p>The tabix-based <code>"vcf"</code> source retrieves variant data from bgzip-compressed,
+tabix-indexed VCF files based on the visible genomic region.</p>
 <p>For partitioned VCF files, use the same multi-file mechanism as Tabix. Complex
 multi-sample VCF row shaping may still require additional transforms.</p>
+<p>Small VCF files that do not need indexed region queries can also be loaded
+directly with the eager <a href="../eager/#vcf"><code>url</code> data source</a>.</p>
 <h3 id="parameters_4">Parameters<a class="headerlink" href="#parameters_4" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>addChrPrefix</code></dt>
-<dd>
-<p>Type: boolean | string</p>
-<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
+<dd>Type: boolean | string<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>channel</code></dt>
-<dd>
-<p>Type: <code>"x"</code> | <code>"y"</code></p>
-<p>Which channel's scale domain to monitor.</p>
+<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>
-<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">IndexUrlTemplate</a></p>
-<p>URL of the tabix index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">IndexUrlTemplate</a><p>URL of the tabix index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".tbi"</code>.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a></p>
-<p>URL of the bgzip-compressed file. URL templates load multiple files and attach the template field to loaded rows.</p>
+<dd>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a><p>URL of the bgzip-compressed file. URL templates load multiple files and attach the template field to loaded rows.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>Type: number<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>30000000</code></p>
 </dd>
 </dl>
@@ -4159,7 +4439,8 @@ explanation of the track, see <a href="../../../genomic-data/examples/clinvar-va
 <span class="w">              </span><span class="s2">&quot;darkgreen&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="s2">&quot;gray&quot;</span>
 <span class="w">            </span><span class="p">]</span>
-<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -4176,8 +4457,6 @@ from NCBI's
 ClinVar asks that redistributed data be attributed to ClinVar as the data
 source.</p>
 </div>
-<p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
-<a href="https://github.com/GMOD/vcf-js">vcf-js</a> library.</p>
 <h2 id="gff3">GFF3<a class="headerlink" href="#gff3" title="Permanent link">&para;</a></h2>
 <p>The tabix-based <code>"gff3"</code> source enables the retrieval of hierarchical data, such
 as genomic annotations stored in GFF3 files. The object format GenomeSpy uses
@@ -4189,50 +4468,34 @@ visualization below.</p>
 <h3 id="parameters_5">Parameters<a class="headerlink" href="#parameters_5" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>addChrPrefix</code></dt>
-<dd>
-<p>Type: boolean | string</p>
-<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
+<dd>Type: boolean | string<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>channel</code></dt>
-<dd>
-<p>Type: <code>"x"</code> | <code>"y"</code></p>
-<p>Which channel's scale domain to monitor.</p>
+<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>
-<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">IndexUrlTemplate</a></p>
-<p>URL of the tabix index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">IndexUrlTemplate</a><p>URL of the tabix index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".tbi"</code>.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a></p>
-<p>URL of the bgzip-compressed file. URL templates load multiple files and attach the template field to loaded rows.</p>
+<dd>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a><p>URL of the bgzip-compressed file. URL templates load multiple files and attach the template field to loaded rows.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>Type: number<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>30000000</code></p>
 </dd>
 </dl>
@@ -4507,52 +4770,140 @@ that all project data are open access.</p>
 <p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
 <a href="https://github.com/GMOD/tabix-js">tabix-js</a> and <a href="https://github.com/GMOD/gff-js">gff-js</a> libraries.</p>
 <h2 id="bam">BAM<a class="headerlink" href="#bam" title="Permanent link">&para;</a></h2>
-<p>The <code>"bam"</code> source is very much work in progress but has a low priority. It
-currently exposes the reads but provides no handling for variants alleles,
-CIGARs, etc. Please send a message to <a href="https://github.com/genome-spy/genome-spy/discussions">GitHub
-Discussions</a> if you are
-interested in this feature.</p>
+<p>The <code>"bam"</code> source loads read alignments from indexed BAM files for the visible
+genomic region. It returns one row per read with alignment coordinates, CIGAR,
+MAPQ, sequence, base qualities, selected SAM tags, and selected SAM flag
+booleans.</p>
+<p>Returned fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chrom</code></td>
+<td>string</td>
+<td>Chromosome name, normalized to the active genome's chromosome naming convention.</td>
+</tr>
+<tr>
+<td><code>start</code></td>
+<td>number</td>
+<td>Alignment start position.</td>
+</tr>
+<tr>
+<td><code>end</code></td>
+<td>number</td>
+<td>Alignment end position.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Read name.</td>
+</tr>
+<tr>
+<td><code>cigar</code></td>
+<td>string</td>
+<td>CIGAR string, or <code>"*"</code> when unavailable.</td>
+</tr>
+<tr>
+<td><code>mapq</code></td>
+<td>number</td>
+<td>Mapping quality.</td>
+</tr>
+<tr>
+<td><code>strand</code></td>
+<td>string</td>
+<td>Read strand: <code>"+"</code> or <code>"-"</code>.</td>
+</tr>
+<tr>
+<td><code>seq</code></td>
+<td>string</td>
+<td>Read sequence.</td>
+</tr>
+<tr>
+<td><code>qual</code></td>
+<td>number[]</td>
+<td>Base quality values, when available.</td>
+</tr>
+<tr>
+<td><code>md</code></td>
+<td>string</td>
+<td><code>MD</code> tag value, when available.</td>
+</tr>
+<tr>
+<td><code>flags</code></td>
+<td>number</td>
+<td>Raw SAM flag value.</td>
+</tr>
+<tr>
+<td><code>isPaired</code></td>
+<td>boolean</td>
+<td>Whether the read is paired.</td>
+</tr>
+<tr>
+<td><code>isProperPair</code></td>
+<td>boolean</td>
+<td>Whether the read is mapped as a proper pair.</td>
+</tr>
+<tr>
+<td><code>isDuplicate</code></td>
+<td>boolean</td>
+<td>Whether the read is marked as duplicate.</td>
+</tr>
+<tr>
+<td><code>isQcFail</code></td>
+<td>boolean</td>
+<td>Whether the read failed vendor quality checks.</td>
+</tr>
+<tr>
+<td><code>isSecondary</code></td>
+<td>boolean</td>
+<td>Whether the alignment is secondary.</td>
+</tr>
+<tr>
+<td><code>isSupplementary</code></td>
+<td>boolean</td>
+<td>Whether the alignment is supplementary.</td>
+</tr>
+</tbody>
+</table>
+<p>Use <a href="../../transform/flatten-cigar/"><code>flattenCigar</code></a> and
+<a href="../../transform/alignment-mismatches/"><code>alignmentMismatches</code></a> when reshaping BAM
+rows for custom alignment views. See <a href="../../../genomic-data/examples/bam-read-alignments/">BAM Read
+Alignments</a> example for a
+fuller alignment visualization with coverage, CIGAR annotations, insertions, and
+mismatch evidence.</p>
 <h3 id="parameters_6">Parameters<a class="headerlink" href="#parameters_6" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
-<dd>
-<p>Type: <code>"x"</code> | <code>"y"</code></p>
-<p>Which channel's scale domain to monitor.</p>
+<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>
-<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">IndexUrlTemplate</a></p>
-<p>URL of the index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">IndexUrlTemplate</a><p>URL of the index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".bai"</code>.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a></p>
-<p>URL of the BAM file. URL templates must resolve to one URL.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/">UrlTemplate</a><p>URL of the BAM file. URL templates must resolve to one URL.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Size of each chunk when fetching the BAM file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>10000</code></p>
 </dd>
 </dl>
@@ -4575,10 +4926,6 @@ interested in this feature.</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 
-<span class="w">  </span><span class="nt">&quot;resolve&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shared&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-
 <span class="w">  </span><span class="nt">&quot;scales&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -4588,7 +4935,17 @@ interested in this feature.</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 
+<span class="w">  </span><span class="nt">&quot;resolve&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shared&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+
 <span class="w">  </span><span class="nt">&quot;spacing&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;laneHeight&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;bind&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;range&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
 
 <span class="w">  </span><span class="nt">&quot;vconcat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
@@ -4604,17 +4961,19 @@ interested in this feature.</p>
 <span class="w">      </span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
-<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">        </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;coverage&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;coverage&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;tickCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;laneHeight&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;viewportHeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;container&quot;</span><span class="p">,</span>
+
 <span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pileup&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_lane&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">      </span><span class="p">],</span>
@@ -4630,8 +4989,7 @@ interested in this feature.</p>
 <span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;_lane&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;padding&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;padding&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;reverse&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;zoom&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">          </span><span class="p">}</span>
@@ -4640,9 +4998,18 @@ interested in this feature.</p>
 <span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;strand&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;crimson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;orange&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;direction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;strand&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;reverse&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arrow&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;style&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arrow-block&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;minStemLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">],</span>
 
@@ -4673,14 +5040,10 @@ according to your requirements. The data source generates data objects with
 <h3 id="parameters_7">Parameters<a class="headerlink" href="#parameters_7" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>axis</code></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">Axis</a></p>
-<p>Optional axis properties</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">Axis</a><p>Optional axis properties</p>
 </dd>
 <dt><code>channel</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: <code>"x"</code> | <code>"y"</code></p>
-<p>Which channel's scale domain to listen to</p>
+<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to listen to</p>
 </dd>
 </dl>
 <h3 id="example_6">Example<a class="headerlink" href="#example_6" title="Permanent link">&para;</a></h3>
@@ -4723,9 +5086,7 @@ The data source generates data objects with the following fields: <code>name</co
 <h3 id="parameters_8">Parameters<a class="headerlink" href="#parameters_8" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: <code>"x"</code> | <code>"y"</code></p>
-<p>Which channel's scale domain to use</p>
+<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to use</p>
 </dd>
 </dl>
 <h3 id="example_7">Example<a class="headerlink" href="#example_7" title="Permanent link">&para;</a></h3>
@@ -4775,27 +5136,8 @@ The data source generates data objects with the following fields: <code>name</co
 
 
 
-  
-    
-  
-  
 
 
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 2, 2026 08:41:27 UTC">July 2, 2026</span>
-  </span>
-
-    
-    
-    
-    
-  </aside>
 
 
 
@@ -4819,8 +5161,8 @@ The data source generates data objects with the following fields: <code>name</co
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
     </a>
   
 </div>
@@ -4838,12 +5180,12 @@ The data source generates data objects with the following fields: <code>name</co
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["navigation.indexes","content.action.edit"],"search":"../../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7f30b55.min.js"></script>
       
-        <script src="../../../app/index.js"></script>
+        <script src="../../../app/index.js" type="module"></script>
       
     
   </body>

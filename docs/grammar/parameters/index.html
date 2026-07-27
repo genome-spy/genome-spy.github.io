@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="zensical-0.0.51">
     
     
       
@@ -29,10 +29,15 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.62c9b9cc.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
       
       
 
@@ -46,14 +51,14 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Lato";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"JetBrains Mono"}</style>
       
     
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -61,21 +66,12 @@
      
 <meta name="base_url" content="../.." />
 
-  
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Parameters - GenomeSpy Docs" />
-<meta property="og:image" content="https://genomespy.app/docs/assets/images/social/grammar/parameters.png" />
-<meta property="og:image:type" content="image/png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://genomespy.app/docs/grammar/parameters/" />
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Parameters - GenomeSpy Docs" />
-<meta property="twitter:image" content="https://genomespy.app/docs/assets/images/social/grammar/parameters.png" />
-</head>
+  </head>
   
   
     
+    
+      
     
     
     
@@ -85,7 +81,7 @@
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
     <div data-md-component="skip">
       
         
@@ -107,12 +103,12 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="GenomeSpy Docs" class="md-header__button md-logo" aria-label="GenomeSpy Docs" data-md-component="logo">
       
-  <img src="../../img/bowtie.svg" alt="logo">
+  <img src="../../img/bowtie.svg" alt="GenomeSpy Docs">
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -132,63 +128,48 @@
     </div>
     
       
+        <form class="md-header__option" data-md-component="palette">
+  
     
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
       
       
-        <label class="md-header__button md-icon" for="__search">
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
         </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
 </div>
       
     
-    
-      <div class="md-header__source">
+    <div class="md-header__source">
+      
         <a href="https://github.com/genome-spy/genome-spy" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
   </div>
 </a>
-      </div>
-    
+      
+    </div>
   </nav>
   
 </header>
@@ -216,7 +197,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="GenomeSpy Docs" class="md-nav__button md-logo" aria-label="GenomeSpy Docs" data-md-component="logo">
       
-  <img src="../../img/bowtie.svg" alt="logo">
+  <img src="../../img/bowtie.svg" alt="GenomeSpy Docs">
 
     </a>
     GenomeSpy Docs
@@ -226,7 +207,7 @@
       <a href="https://github.com/genome-spy/genome-spy" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -250,8 +231,7 @@
   <span class="md-ellipsis">
     
   
-    Introduction
-  
+  Introduction
 
     
   </span>
@@ -277,8 +257,7 @@
   <span class="md-ellipsis">
     
   
-    Getting Started
-  
+  Getting Started
 
     
   </span>
@@ -352,8 +331,7 @@
   <span class="md-ellipsis">
     
   
-    Visualization Grammar
-  
+  Visualization Grammar
 
     
   </span>
@@ -374,8 +352,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Visualization Grammar
-  
+  Visualization Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -420,8 +397,7 @@
   <span class="md-ellipsis">
     
   
-    Data Input
-  
+  Data Input
 
     
   </span>
@@ -442,8 +418,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Data Input
-  
+  Data Input
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -464,8 +439,7 @@
   <span class="md-ellipsis">
     
   
-    Eager Data Sources
-  
+  Eager Data Sources
 
     
   </span>
@@ -492,8 +466,7 @@
   <span class="md-ellipsis">
     
   
-    Lazy Data Sources
-  
+  Lazy Data Sources
 
     
   </span>
@@ -520,8 +493,7 @@
   <span class="md-ellipsis">
     
   
-    URL Templates and Multiple Files
-  
+  URL Templates and Multiple Files
 
     
   </span>
@@ -553,6 +525,16 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -610,8 +592,7 @@
   <span class="md-ellipsis">
     
   
-    Transform
-  
+  Transform
 
     
   </span>
@@ -632,8 +613,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Transform
-  
+  Transform
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -654,8 +634,34 @@
   <span class="md-ellipsis">
     
   
-    Aggregate
+  Aggregate
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/alignment-mismatches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AlignmentMismatches
 
     
   </span>
@@ -682,8 +688,7 @@
   <span class="md-ellipsis">
     
   
-    Collect
-  
+  Collect
 
     
   </span>
@@ -710,8 +715,7 @@
   <span class="md-ellipsis">
     
   
-    Coverage
-  
+  Coverage
 
     
   </span>
@@ -738,8 +742,7 @@
   <span class="md-ellipsis">
     
   
-    Filter
-  
+  Filter
 
     
   </span>
@@ -766,8 +769,7 @@
   <span class="md-ellipsis">
     
   
-    FilterScoredLabels
-  
+  FilterScoredLabels
 
     
   </span>
@@ -794,8 +796,34 @@
   <span class="md-ellipsis">
     
   
-    Flatten
+  Flatten
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/flatten-cigar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  FlattenCigar
 
     
   </span>
@@ -822,8 +850,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenCompressedExons
-  
+  FlattenCompressedExons
 
     
   </span>
@@ -850,8 +877,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenDelimited
-  
+  FlattenDelimited
 
     
   </span>
@@ -878,8 +904,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenSequence
-  
+  FlattenSequence
 
     
   </span>
@@ -906,8 +931,7 @@
   <span class="md-ellipsis">
     
   
-    Formula
-  
+  Formula
 
     
   </span>
@@ -934,8 +958,61 @@
   <span class="md-ellipsis">
     
   
-    LinearizeGenomicCoordinate
+  LinearizeGenomicCoordinate
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lookup
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/coordinate-lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CoordinateLookup
 
     
   </span>
@@ -962,8 +1039,7 @@
   <span class="md-ellipsis">
     
   
-    MeasureText
-  
+  MeasureText
 
     
   </span>
@@ -990,8 +1066,7 @@
   <span class="md-ellipsis">
     
   
-    Pileup
-  
+  Pileup
 
     
   </span>
@@ -1018,8 +1093,7 @@
   <span class="md-ellipsis">
     
   
-    Project
-  
+  Project
 
     
   </span>
@@ -1046,8 +1120,7 @@
   <span class="md-ellipsis">
     
   
-    RegexExtract
-  
+  RegexExtract
 
     
   </span>
@@ -1074,8 +1147,7 @@
   <span class="md-ellipsis">
     
   
-    RegexFold
-  
+  RegexFold
 
     
   </span>
@@ -1102,8 +1174,7 @@
   <span class="md-ellipsis">
     
   
-    Sample
-  
+  Sample
 
     
   </span>
@@ -1130,8 +1201,34 @@
   <span class="md-ellipsis">
     
   
-    Stack
+  Stack
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Window
 
     
   </span>
@@ -1177,6 +1274,8 @@
       
         
       
+        
+      
     
     
     
@@ -1196,8 +1295,7 @@
   <span class="md-ellipsis">
     
   
-    Graphical Marks
-  
+  Graphical Marks
 
     
   </span>
@@ -1218,12 +1316,38 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Graphical Marks
-  
+  Graphical Marks
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mark/arrow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Arrow
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1240,8 +1364,7 @@
   <span class="md-ellipsis">
     
   
-    Link
-  
+  Link
 
     
   </span>
@@ -1268,8 +1391,7 @@
   <span class="md-ellipsis">
     
   
-    Point
-  
+  Point
 
     
   </span>
@@ -1296,8 +1418,7 @@
   <span class="md-ellipsis">
     
   
-    Rect
-  
+  Rect
 
     
   </span>
@@ -1324,8 +1445,7 @@
   <span class="md-ellipsis">
     
   
-    Rule
-  
+  Rule
 
     
   </span>
@@ -1352,8 +1472,7 @@
   <span class="md-ellipsis">
     
   
-    Tick
-  
+  Tick
 
     
   </span>
@@ -1380,8 +1499,7 @@
   <span class="md-ellipsis">
     
   
-    Text
-  
+  Text
 
     
   </span>
@@ -1416,8 +1534,7 @@
   <span class="md-ellipsis">
     
   
-    Conditional Encoding
-  
+  Conditional Encoding
 
     
   </span>
@@ -1468,8 +1585,7 @@
   <span class="md-ellipsis">
     
   
-    View Composition
-  
+  View Composition
 
     
   </span>
@@ -1490,8 +1606,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    View Composition
-  
+  View Composition
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1512,8 +1627,7 @@
   <span class="md-ellipsis">
     
   
-    Concat
-  
+  Concat
 
     
   </span>
@@ -1540,8 +1654,7 @@
   <span class="md-ellipsis">
     
   
-    Layer
-  
+  Layer
 
     
   </span>
@@ -1568,8 +1681,7 @@
   <span class="md-ellipsis">
     
   
-    Multiscale
-  
+  Multiscale
 
     
   </span>
@@ -1604,8 +1716,7 @@
   <span class="md-ellipsis">
     
   
-    Scales
-  
+  Scales
 
     
   </span>
@@ -1632,8 +1743,7 @@
   <span class="md-ellipsis">
     
   
-    Axes
-  
+  Axes
 
     
   </span>
@@ -1660,8 +1770,7 @@
   <span class="md-ellipsis">
     
   
-    Titles
-  
+  Titles
 
     
   </span>
@@ -1688,8 +1797,7 @@
   <span class="md-ellipsis">
     
   
-    Legends
-  
+  Legends
 
     
   </span>
@@ -1716,8 +1824,7 @@
   <span class="md-ellipsis">
     
   
-    Config And Themes
-  
+  Config And Themes
 
     
   </span>
@@ -1744,8 +1851,7 @@
   <span class="md-ellipsis">
     
   
-    Importing Views
-  
+  Importing Views
 
     
   </span>
@@ -1772,8 +1878,7 @@
   <span class="md-ellipsis">
     
   
-    Expressions
-  
+  Expressions
 
     
   </span>
@@ -1796,7 +1901,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
       
       
         
@@ -1809,8 +1914,7 @@
   <span class="md-ellipsis">
     
   
-    Parameters
-  
+  Parameters
 
     
   </span>
@@ -1820,15 +1924,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    Parameters
-  
+  Parameters
 
     
   </span>
@@ -1839,7 +1942,8 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -1848,16 +1952,16 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#using-input-bindings" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Using Input Bindings
-      
+      </span>
     </span>
   </a>
   
@@ -1866,20 +1970,48 @@
         <li class="md-nav__item">
   <a href="#expressions" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Expressions
-      
+      </span>
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#numeric-transitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Numeric Transitions
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Numeric Transitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transition-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Transition Properties
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#selection-parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Selection Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -1889,9 +2021,9 @@
           <li class="md-nav__item">
   <a href="#point-selection" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Point Selection
-      
+      </span>
     </span>
   </a>
   
@@ -1900,9 +2032,9 @@
           <li class="md-nav__item">
   <a href="#interval-selection" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Interval Selection
-      
+      </span>
     </span>
   </a>
   
@@ -1912,9 +2044,9 @@
           <li class="md-nav__item">
   <a href="#linking-scale-domains-across-views" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Linking Scale Domains Across Views
-      
+      </span>
     </span>
   </a>
   
@@ -1924,9 +2056,9 @@
           <li class="md-nav__item">
   <a href="#zoomable-linking-example" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Zoomable Linking Example
-      
+      </span>
     </span>
   </a>
   
@@ -1935,9 +2067,9 @@
           <li class="md-nav__item">
   <a href="#overviewdetail-example" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Overview+detail Example
-      
+      </span>
     </span>
   </a>
   
@@ -1961,9 +2093,9 @@
         <li class="md-nav__item">
   <a href="#ruler-parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Ruler Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -1973,9 +2105,9 @@
           <li class="md-nav__item">
   <a href="#ruler-guides-in-descendant-views" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Ruler Guides in Descendant Views
-      
+      </span>
     </span>
   </a>
   
@@ -1984,9 +2116,9 @@
           <li class="md-nav__item">
   <a href="#pushing-ruler-values-to-ancestor-scopes" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Pushing Ruler Values to Ancestor Scopes
-      
+      </span>
     </span>
   </a>
   
@@ -1995,9 +2127,9 @@
           <li class="md-nav__item">
   <a href="#properties" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Properties
-      
+      </span>
     </span>
   </a>
   
@@ -2031,8 +2163,7 @@
   <span class="md-ellipsis">
     
   
-    Types
-  
+  Types
 
     
   </span>
@@ -2088,8 +2219,7 @@
   <span class="md-ellipsis">
     
   
-    Working with Genomic Data
-  
+  Working with Genomic Data
 
     
   </span>
@@ -2110,8 +2240,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Working with Genomic Data
-  
+  Working with Genomic Data
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2132,8 +2261,7 @@
   <span class="md-ellipsis">
     
   
-    Genomic Coordinates
-  
+  Genomic Coordinates
 
     
   </span>
@@ -2157,6 +2285,18 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -2194,8 +2334,7 @@
   <span class="md-ellipsis">
     
   
-    Examples
-  
+  Examples
 
     
   </span>
@@ -2216,8 +2355,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Examples
-  
+  Examples
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2238,8 +2376,7 @@
   <span class="md-ellipsis">
     
   
-    Chromosome Ideogram from Cytobands
-  
+  Chromosome Ideogram from Cytobands
 
     
   </span>
@@ -2259,15 +2396,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../genomic-data/examples/indexed-fasta-sequence-track/" class="md-nav__link">
+      <a href="../../genomic-data/examples/indexed-fasta-six-frame-translation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Indexed FASTA Sequence Track
-  
+  Indexed FASTA Six-Frame Translation
 
     
   </span>
@@ -2294,8 +2430,7 @@
   <span class="md-ellipsis">
     
   
-    RefSeq Gene Annotations with Scored Labels
-  
+  RefSeq Gene Annotations with Scored Labels
 
     
   </span>
@@ -2322,8 +2457,7 @@
   <span class="md-ellipsis">
     
   
-    GENCODE Gene Annotations from GFF3
-  
+  GENCODE Gene Annotations from GFF3
 
     
   </span>
@@ -2350,8 +2484,7 @@
   <span class="md-ellipsis">
     
   
-    ASCAT Copy-Number Segmentation
-  
+  ASCAT Copy-Number Segmentation
 
     
   </span>
@@ -2378,8 +2511,61 @@
   <span class="md-ellipsis">
     
   
-    ASCAT Algorithm in GenomeSpy
+  ASCAT Algorithm in GenomeSpy
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/hcc1954-sv-cnv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  HCC1954 Structural Variants and Copy Number
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/tcga-ov-gistic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  TCGA Ovarian Cancer GISTIC2 Copy-Number Landscape
 
     
   </span>
@@ -2406,8 +2592,34 @@
   <span class="md-ellipsis">
     
   
-    Sashimi plot from splice junctions
+  Sashimi plot from splice junctions
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/dynseq-spi1-bqtl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SPI1 Binding-QTL Dynseq Track
 
     
   </span>
@@ -2434,8 +2646,88 @@
   <span class="md-ellipsis">
     
   
-    ClinVar Small-Variant Classifications
+  ClinVar Small-Variant Classifications
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/bam-read-alignments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  BAM Read Alignments
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/multiple-sequence-alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Multiple Sequence Alignment
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/genome-browser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Composing a Genome Browser
 
     
   </span>
@@ -2474,6 +2766,12 @@
       
         
           
+        
+      
+        
+      
+        
+      
         
       
         
@@ -2503,8 +2801,7 @@
   <span class="md-ellipsis">
     
   
-    Working with Sample Collections
-  
+  Working with Sample Collections
 
     
   </span>
@@ -2525,8 +2822,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Working with Sample Collections
-  
+  Working with Sample Collections
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2547,8 +2843,61 @@
   <span class="md-ellipsis">
     
   
-    Visualizing
+  Visualizing
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sample-collections/sample-view-parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sample View Parameters
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sample-collections/aggregating-samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Aggregating Samples
 
     
   </span>
@@ -2575,8 +2924,34 @@
   <span class="md-ellipsis">
     
   
-    Configuring Metadata Sources
+  Configuring Metadata Sources
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sample-collections/app-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuring App Features
 
     
   </span>
@@ -2603,8 +2978,7 @@
   <span class="md-ellipsis">
     
   
-    Analyzing
-  
+  Analyzing
 
     
   </span>
@@ -2631,8 +3005,7 @@
   <span class="md-ellipsis">
     
   
-    Importing Metadata
-  
+  Importing Metadata
 
     
   </span>
@@ -2696,8 +3069,7 @@
   <span class="md-ellipsis">
     
   
-    JavaScript API
-  
+  JavaScript API
 
     
   </span>
@@ -2718,8 +3090,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    JavaScript API
-  
+  JavaScript API
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2740,8 +3111,7 @@
   <span class="md-ellipsis">
     
   
-    Embedding and Entry Points
-  
+  Embedding and Entry Points
 
     
   </span>
@@ -2768,8 +3138,7 @@
   <span class="md-ellipsis">
     
   
-    View Hierarchy
-  
+  View Hierarchy
 
     
   </span>
@@ -2796,8 +3165,7 @@
   <span class="md-ellipsis">
     
   
-    Runtime State
-  
+  Runtime State
 
     
   </span>
@@ -2824,8 +3192,7 @@
   <span class="md-ellipsis">
     
   
-    Inspector
-  
+  Inspector
 
     
   </span>
@@ -2852,8 +3219,7 @@
   <span class="md-ellipsis">
     
   
-    Instance, Events, and Export
-  
+  Instance, Events, and Export
 
     
   </span>
@@ -2880,8 +3246,7 @@
   <span class="md-ellipsis">
     
   
-    Embed Options
-  
+  Embed Options
 
     
   </span>
@@ -2915,8 +3280,7 @@
   <span class="md-ellipsis">
     
   
-    License
-  
+  License
 
     
   </span>
@@ -2938,10 +3302,24 @@
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -2950,16 +3328,16 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#using-input-bindings" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Using Input Bindings
-      
+      </span>
     </span>
   </a>
   
@@ -2968,20 +3346,48 @@
         <li class="md-nav__item">
   <a href="#expressions" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Expressions
-      
+      </span>
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#numeric-transitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Numeric Transitions
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Numeric Transitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transition-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Transition Properties
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#selection-parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Selection Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -2991,9 +3397,9 @@
           <li class="md-nav__item">
   <a href="#point-selection" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Point Selection
-      
+      </span>
     </span>
   </a>
   
@@ -3002,9 +3408,9 @@
           <li class="md-nav__item">
   <a href="#interval-selection" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Interval Selection
-      
+      </span>
     </span>
   </a>
   
@@ -3014,9 +3420,9 @@
           <li class="md-nav__item">
   <a href="#linking-scale-domains-across-views" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Linking Scale Domains Across Views
-      
+      </span>
     </span>
   </a>
   
@@ -3026,9 +3432,9 @@
           <li class="md-nav__item">
   <a href="#zoomable-linking-example" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Zoomable Linking Example
-      
+      </span>
     </span>
   </a>
   
@@ -3037,9 +3443,9 @@
           <li class="md-nav__item">
   <a href="#overviewdetail-example" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Overview+detail Example
-      
+      </span>
     </span>
   </a>
   
@@ -3063,9 +3469,9 @@
         <li class="md-nav__item">
   <a href="#ruler-parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Ruler Parameters
-      
+      </span>
     </span>
   </a>
   
@@ -3075,9 +3481,9 @@
           <li class="md-nav__item">
   <a href="#ruler-guides-in-descendant-views" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Ruler Guides in Descendant Views
-      
+      </span>
     </span>
   </a>
   
@@ -3086,9 +3492,9 @@
           <li class="md-nav__item">
   <a href="#pushing-ruler-values-to-ancestor-scopes" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Pushing Ruler Values to Ancestor Scopes
-      
+      </span>
     </span>
   </a>
   
@@ -3097,9 +3503,9 @@
           <li class="md-nav__item">
   <a href="#properties" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Properties
-      
+      </span>
     </span>
   </a>
   
@@ -3124,12 +3530,10 @@
               <article class="md-content__inner md-typeset">
                 
                   
-
-
   
     <a href="https://github.com/genome-spy/genome-spy/edit/master/docs/grammar/parameters.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
     </a>
   
   
@@ -3137,10 +3541,10 @@
 
 <h1 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h1>
 <p>Parameters enable various dynamic behaviors in GenomeSpy visualizations, such as
-interactive selections, <a href="../conditional-encoding/">conditional encoding</a>, and
-data filtering with <a href="../expressions/">expressions</a>. They also enable
+interactive selections, <a href=".././conditional-encoding/">conditional encoding</a>, and
+data filtering with <a href=".././expressions/">expressions</a>. They also enable
 parameterization when
-<a href="../import/">importing</a> specification fragments from external files or named
+<a href=".././import/">importing</a> specification fragments from external files or named
 templates. Parameters in GenomeSpy are heavily inspired by the
 <a href="https://vega.github.io/vega-lite/docs/parameter.html">parameters</a> concept of
 Vega-Lite.</p>
@@ -3151,7 +3555,7 @@ visualization. In the GenomeSpy App, the input elements are shown in the <a href
 visibility</em> menu</a>, allowing the
 visualization author to provide configuration options to the end
 user.</p>
-<p>Parameters with input bindings should have a unique <code>name</code> within the <a href="../import/#repeating-with-named-templates">import
+<p>Parameters with input bindings should have a unique <code>name</code> within the <a href=".././import/#repeating-with-named-templates">import
 scope</a>. While not enforced in core,
 this is necessary for bookmarkable state in the GenomeSpy App.</p>
 <p>By default, selection parameters and parameters with input bindings are
@@ -3211,7 +3615,7 @@ them to control the size, angle, and text of a text mark.</p>
 </genome-spy-doc-embed></div>
 
 <h2 id="expressions">Expressions<a class="headerlink" href="#expressions" title="Permanent link">&para;</a></h2>
-<p>Parameters can be based on <a href="../expressions/">expressions</a>, which can depend on
+<p>Parameters can be based on <a href=".././expressions/">expressions</a>, which can depend on
 other parameters. They are automatically re-evaluated when the dependent
 parameters change.</p>
 <div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/parameters/expressions.json" height="150">
@@ -3249,10 +3653,54 @@ parameters change.</p>
 
 </genome-spy-doc-embed></div>
 
+<h2 id="numeric-transitions">Numeric Transitions<a class="headerlink" href="#numeric-transitions" title="Permanent link">&para;</a></h2>
+<p>Numeric value and expression parameters can use <code>transition</code> to smooth how the
+exposed runtime value follows a target value. Use <code>"lerp"</code> to continuously
+interpolate toward the latest target.</p>
+<p>Transitions apply to finite numeric scalar values only. A transitioned value
+parameter requires a numeric <code>value</code>, and a transitioned expression parameter
+must evaluate to a finite number. They can be used with input-bound parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;laneHeight&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;bind&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;range&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;transition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lerp&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;halfLife&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;epsilon&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.02</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The input binding writes discrete target values. Expressions and visual
+encodings read the current transitioned value, which can be fractional while
+the value settles.</p>
+<p>Transitions can also be used with expression parameters:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;zoomMessageOpacity&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abs(span(domain(&#39;x&#39;))) &gt; windowSize ? 1 : 0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;transition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lerp&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;halfLife&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;epsilon&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This keeps the state decision crisp while smoothing only the visual value.
+For bound value parameters, bookmarks, provenance, and input controls use the
+target value.</p>
+<p>Use transitions for visual presentation such as layout, opacity, and visual
+thresholds. They can also drive data loading, filtering, and other data-flow
+operations, but these receive intermediate values while the transition settles.
+Use transitions carefully when those operations are expensive or stateful.</p>
+<p>Transitions cannot be used with selection parameters, ruler parameters, or
+<code>push: "outer"</code> parameters.</p>
+<h3 id="transition-properties">Transition Properties<a class="headerlink" href="#transition-properties" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>epsilon</code></dt>
+<dd>Type: number<p>Distance from the target at which the current value snaps to the target.</p>
+<p><strong>Default value:</strong> <code>0.01</code></p>
+</dd>
+<dt><code>halfLife</code></dt>
+<dd>Type: number<p>Time in milliseconds for the remaining distance to the target to halve.</p>
+<p><strong>Default value:</strong> <code>80</code></p>
+</dd>
+</dl>
 <h2 id="selection-parameters">Selection Parameters<a class="headerlink" href="#selection-parameters" title="Permanent link">&para;</a></h2>
 <p>Parameters allow for defining interactive selections, which can be used in
-<a href="../conditional-encoding/">conditional encodings</a> and
-<a href="../transform/filter/"><code>"filter"</code></a> transforms. GenomeSpy compiles the
+<a href=".././conditional-encoding/">conditional encodings</a> and
+<a href=".././transform/filter/"><code>"filter"</code></a> transforms. GenomeSpy compiles the
 conditional encoding rules into efficient GPU shader code, enabling fast
 interactions in very large data sets.</p>
 <h3 id="point-selection">Point Selection<a class="headerlink" href="#point-selection" title="Permanent link">&para;</a></h3>
@@ -3373,7 +3821,7 @@ spanning rectangle, and <code>"view"</code> always draws per-view rectangles.</p
 
 </genome-spy-doc-embed></div>
 
-<p>Selections can also drive <a href="../transform/filter/">"filter"</a> transforms, allowing for
+<p>Selections can also drive <a href=".././transform/filter/">"filter"</a> transforms, allowing for
 aggregating or otherwise transforming only the selected data points. The example
 below shows how to aggregate only the brushed penguins from the <a href="https://allisonhorst.github.io/palmerpenguins/">Palmer
 Penguins</a> dataset.</p>
@@ -3506,7 +3954,7 @@ Penguins</a> dataset.</p>
 </genome-spy-doc-embed></div>
 
 <h4 id="linking-scale-domains-across-views">Linking Scale Domains Across Views<a class="headerlink" href="#linking-scale-domains-across-views" title="Permanent link">&para;</a></h4>
-<p>An interval selection can drive <a href="../scale/#domain-from-selection-parameters">scale</a>
+<p>An interval selection can drive <a href=".././scale/#domain-from-selection-parameters">scale</a>
 domains in sibling views. To make this
 work with GenomeSpy's hierarchical parameter scopes:</p>
 <ol>
@@ -3608,7 +4056,7 @@ the whole genome, while the bottom view shows a zoomed-in region. The linked
 domain is configured at the root using <code>scales.x.domain</code>, and its <code>initial</code>
 value sets the detail view's starting domain. The overview template uses
 <code>resolve.scale.x: "excluded"</code> so its own x scales are not affected by the
-detail domain. A <a href="../mark/link/"><code>"link"</code></a> mark with a <code>"diagonal"</code> shape
+detail domain. A <a href=".././mark/link/"><code>"link"</code></a> mark with a <code>"diagonal"</code> shape
 visually connects the selected region in the overview to the detail view.</p>
 <div><genome-spy-doc-embed base-url="examples/" playground-url="/playground/?spec=/docs/examples/docs/grammar/parameters/genome-overview-detail.json" height="150" spechidden="true">
 
@@ -3935,54 +4383,38 @@ transforms, or encodings.</p>
 <p><code>ruler</code> supports the following properties:</p>
 <dl>
 <dt><code>clear</code></dt>
-<dd>
-<p>Type: <code>mouseleave</code> | <code>mouseup</code> | <code>False</code></p>
-<p>Event that clears the ruler, or <code>false</code> to keep the current value.</p>
+<dd>Type: <code>mouseleave</code> | <code>mouseup</code> | <code>False</code><p>Event that clears the ruler, or <code>false</code> to keep the current value.</p>
 <p><strong>Default value:</strong> <code>"mouseleave"</code> for <code>on: "mousemove"</code>, otherwise <code>false</code>.</p>
 </dd>
 <dt><code>display</code></dt>
-<dd>
-<p>Type: <code>"line"</code> | <code>"center"</code> | <code>"band"</code> | <code>"none"</code></p>
-<p>How the ruler is drawn for snapped index or locus coordinates.</p>
+<dd>Type: <code>"line"</code> | <code>"center"</code> | <code>"band"</code> | <code>"none"</code><p>How the ruler is drawn for snapped index or locus coordinates.</p>
 <p><code>"line"</code> draws at the coordinate. <code>"center"</code> draws at the center of the coordinate band. <code>"band"</code> draws a rectangle covering the coordinate band. <code>"none"</code> tracks the ruler value without drawing a guide.</p>
 <p><strong>Default value:</strong> <code>"center"</code> for snapped index and locus scales, otherwise <code>"line"</code>.</p>
 </dd>
 <dt><code>encodings</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Positional channels whose domain coordinates are tracked by the ruler.</p>
+<dd>Type: array<p>Positional channels whose domain coordinates are tracked by the ruler.</p>
 <p><strong>Default value:</strong> <code>["x"]</code></p>
 </dd>
 <dt><code>extent</code></dt>
-<dd>
-<p>Type: <code>"auto"</code> | <code>"view"</code> | <code>"container"</code></p>
-<p>Visual extent of the ruler.</p>
+<dd>Type: <code>"auto"</code> | <code>"view"</code> | <code>"container"</code><p>Visual extent of the ruler.</p>
 <p><code>"view"</code> draws one guide per participating view. <code>"container"</code> draws one spanning guide when participating projections align. <code>"auto"</code> chooses a spanning guide only when it is safe.</p>
 <p><strong>Default value:</strong> <code>"auto"</code></p>
 </dd>
 <dt><code>mark</code></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">RulerMarkConfig</a></p>
-<p>Rule or band appearance. Has no effect when <code>display</code> is <code>"none"</code>.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">RulerMarkConfig</a><p>Rule or band appearance. Has no effect when <code>display</code> is <code>"none"</code>.</p>
 </dd>
 <dt><code>on</code></dt>
-<dd>
-<p>Type: <code>"mousemove"</code> | <code>"mousedown"</code> | <a href="https://genomespy.app/docs/grammar/types/">RulerEventConfig</a> | string</p>
-<p>Event that updates a pointer-driven ruler.</p>
+<dd>Type: <code>"mousemove"</code> | <code>"mousedown"</code> | <a href="https://genomespy.app/docs/grammar/types/">RulerEventConfig</a> | string<p>Event that updates a pointer-driven ruler.</p>
 <p><code>"mousemove"</code> follows the pointer. <code>"mousedown"</code> updates on press and continues while dragging. Event filters can require modifier keys.</p>
 <p><strong>Default value:</strong> <code>"mousemove"</code></p>
 </dd>
 <dt><code>snap</code></dt>
-<dd>
-<p>Type: <code>auto</code> | <code>integer</code> | <code>False</code></p>
-<p>Quantization applied before writing the ruler value.</p>
+<dd>Type: <code>auto</code> | <code>integer</code> | <code>False</code><p>Quantization applied before writing the ruler value.</p>
 <p><code>"auto"</code> snaps index and locus scales to integer coordinates. <code>"integer"</code> snaps all numeric coordinates. <code>false</code> keeps the original coordinate.</p>
 <p><strong>Default value:</strong> <code>"auto"</code> for index and locus scales, otherwise <code>false</code>.</p>
 </dd>
 <dt><code>source</code></dt>
-<dd>
-<p>Type: <code>"pointer"</code> | <code>"viewport"</code></p>
-<p>Source of the ruler coordinate. <code>"pointer"</code> uses pointer events configured by <code>on</code>. <code>"viewport"</code> tracks the center of the current viewport.</p>
+<dd>Type: <code>"pointer"</code> | <code>"viewport"</code><p>Source of the ruler coordinate. <code>"pointer"</code> uses pointer events configured by <code>on</code>. <code>"viewport"</code> tracks the center of the current viewport.</p>
 <p><strong>Default value:</strong> <code>"pointer"</code></p>
 </dd>
 </dl>
@@ -3993,27 +4425,8 @@ transforms, or encodings.</p>
 
 
 
-  
-    
-  
-  
 
 
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 1, 2026 14:17:07 UTC">July 1, 2026</span>
-  </span>
-
-    
-    
-    
-    
-  </aside>
 
 
 
@@ -4037,8 +4450,8 @@ transforms, or encodings.</p>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
     </a>
   
 </div>
@@ -4056,12 +4469,12 @@ transforms, or encodings.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["navigation.indexes","content.action.edit"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7f30b55.min.js"></script>
       
-        <script src="../../app/index.js"></script>
+        <script src="../../app/index.js" type="module"></script>
       
     
   </body>

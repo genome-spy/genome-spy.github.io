@@ -16,10 +16,6 @@
     }
   },
 
-  "resolve": {
-    "scale": { "x": "shared" }
-  },
-
   "scales": {
     "x": {
       "domain": [
@@ -29,7 +25,17 @@
     }
   },
 
+  "resolve": { "axis": { "x": "shared" } },
+
   "spacing": 5,
+
+  "params": [
+    {
+      "name": "laneHeight",
+      "value": 12,
+      "bind": { "input": "range", "min": 2, "max": 30, "step": 1 }
+    }
+  ],
 
   "vconcat": [
     {
@@ -45,17 +51,19 @@
       ],
       "mark": "rect",
       "encoding": {
-        "x": {
-          "chrom": "chrom",
-          "pos": "start",
-          "type": "locus",
-          "axis": null
-        },
+        "x": { "chrom": "chrom", "pos": "start", "type": "locus" },
         "x2": { "chrom": "chrom", "pos": "end" },
-        "y": { "field": "coverage", "type": "quantitative" }
+        "y": {
+          "field": "coverage",
+          "type": "quantitative",
+          "axis": { "tickCount": 2 }
+        }
       }
     },
     {
+      "height": { "step": { "expr": "laneHeight" } },
+      "viewportHeight": "container",
+
       "transform": [
         { "type": "pileup", "start": "start", "end": "end", "as": "_lane" }
       ],
@@ -71,8 +79,7 @@
           "field": "_lane",
           "type": "index",
           "scale": {
-            "domain": [0, 60],
-            "padding": 0.3,
+            "padding": 0.2,
             "reverse": true,
             "zoom": false
           }
@@ -81,9 +88,18 @@
           "field": "strand",
           "type": "nominal",
           "scale": { "domain": ["+", "-"], "range": ["crimson", "orange"] }
+        },
+        "direction": {
+          "field": "strand",
+          "type": "nominal",
+          "scale": { "domain": ["+", "-"], "range": ["forward", "reverse"] }
         }
       },
-      "mark": "rect"
+      "mark": {
+        "type": "arrow",
+        "style": "arrow-block",
+        "minStemLength": 10
+      }
     }
   ],
 

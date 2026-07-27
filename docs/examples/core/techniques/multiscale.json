@@ -1,7 +1,7 @@
 {
   "$schema": "https://unpkg.com/@genome-spy/core/dist/schema.json",
 
-  "description": "A three-stage semantic zoom using the multiscale composition operator.",
+  "description": "A three-stage semantic zoom using persistent opacity ramps between multiscale levels.",
 
   "view": { "stroke": "lightgray" },
 

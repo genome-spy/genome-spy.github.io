@@ -14,25 +14,30 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../metadata-sources/">
+        <link rel="next" href="../sample-view-parameters/">
       
       
         
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="zensical-0.0.51">
     
     
       
-        <title>Visualizing - GenomeSpy Docs</title>
+        <title>Visualizing Sample Collections - GenomeSpy Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.62c9b9cc.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
       
       
 
@@ -46,14 +51,14 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Lato";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"JetBrains Mono"}</style>
       
     
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -61,21 +66,12 @@
      
 <meta name="base_url" content="../.." />
 
-  
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Visualizing - GenomeSpy Docs" />
-<meta property="og:image" content="https://genomespy.app/docs/assets/images/social/sample-collections/visualizing.png" />
-<meta property="og:image:type" content="image/png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://genomespy.app/docs/sample-collections/visualizing/" />
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Visualizing - GenomeSpy Docs" />
-<meta property="twitter:image" content="https://genomespy.app/docs/assets/images/social/sample-collections/visualizing.png" />
-</head>
+  </head>
   
   
     
+    
+      
     
     
     
@@ -85,7 +81,7 @@
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
     <div data-md-component="skip">
       
         
@@ -107,12 +103,12 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="GenomeSpy Docs" class="md-header__button md-logo" aria-label="GenomeSpy Docs" data-md-component="logo">
       
-  <img src="../../img/bowtie.svg" alt="logo">
+  <img src="../../img/bowtie.svg" alt="GenomeSpy Docs">
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -124,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Visualizing
+              Visualizing Sample Collections
             
           </span>
         </div>
@@ -132,63 +128,48 @@
     </div>
     
       
+        <form class="md-header__option" data-md-component="palette">
+  
     
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
       
       
-        <label class="md-header__button md-icon" for="__search">
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
         </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
 </div>
       
     
-    
-      <div class="md-header__source">
+    <div class="md-header__source">
+      
         <a href="https://github.com/genome-spy/genome-spy" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
   </div>
 </a>
-      </div>
-    
+      
+    </div>
   </nav>
   
 </header>
@@ -216,7 +197,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="GenomeSpy Docs" class="md-nav__button md-logo" aria-label="GenomeSpy Docs" data-md-component="logo">
       
-  <img src="../../img/bowtie.svg" alt="logo">
+  <img src="../../img/bowtie.svg" alt="GenomeSpy Docs">
 
     </a>
     GenomeSpy Docs
@@ -226,7 +207,7 @@
       <a href="https://github.com/genome-spy/genome-spy" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -250,8 +231,7 @@
   <span class="md-ellipsis">
     
   
-    Introduction
-  
+  Introduction
 
     
   </span>
@@ -277,8 +257,7 @@
   <span class="md-ellipsis">
     
   
-    Getting Started
-  
+  Getting Started
 
     
   </span>
@@ -350,8 +329,7 @@
   <span class="md-ellipsis">
     
   
-    Visualization Grammar
-  
+  Visualization Grammar
 
     
   </span>
@@ -372,8 +350,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Visualization Grammar
-  
+  Visualization Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -418,8 +395,7 @@
   <span class="md-ellipsis">
     
   
-    Data Input
-  
+  Data Input
 
     
   </span>
@@ -440,8 +416,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Data Input
-  
+  Data Input
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -462,8 +437,7 @@
   <span class="md-ellipsis">
     
   
-    Eager Data Sources
-  
+  Eager Data Sources
 
     
   </span>
@@ -490,8 +464,7 @@
   <span class="md-ellipsis">
     
   
-    Lazy Data Sources
-  
+  Lazy Data Sources
 
     
   </span>
@@ -518,8 +491,7 @@
   <span class="md-ellipsis">
     
   
-    URL Templates and Multiple Files
-  
+  URL Templates and Multiple Files
 
     
   </span>
@@ -551,6 +523,16 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -608,8 +590,7 @@
   <span class="md-ellipsis">
     
   
-    Transform
-  
+  Transform
 
     
   </span>
@@ -630,8 +611,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Transform
-  
+  Transform
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -652,8 +632,34 @@
   <span class="md-ellipsis">
     
   
-    Aggregate
+  Aggregate
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/alignment-mismatches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AlignmentMismatches
 
     
   </span>
@@ -680,8 +686,7 @@
   <span class="md-ellipsis">
     
   
-    Collect
-  
+  Collect
 
     
   </span>
@@ -708,8 +713,7 @@
   <span class="md-ellipsis">
     
   
-    Coverage
-  
+  Coverage
 
     
   </span>
@@ -736,8 +740,7 @@
   <span class="md-ellipsis">
     
   
-    Filter
-  
+  Filter
 
     
   </span>
@@ -764,8 +767,7 @@
   <span class="md-ellipsis">
     
   
-    FilterScoredLabels
-  
+  FilterScoredLabels
 
     
   </span>
@@ -792,8 +794,34 @@
   <span class="md-ellipsis">
     
   
-    Flatten
+  Flatten
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/flatten-cigar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  FlattenCigar
 
     
   </span>
@@ -820,8 +848,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenCompressedExons
-  
+  FlattenCompressedExons
 
     
   </span>
@@ -848,8 +875,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenDelimited
-  
+  FlattenDelimited
 
     
   </span>
@@ -876,8 +902,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenSequence
-  
+  FlattenSequence
 
     
   </span>
@@ -904,8 +929,7 @@
   <span class="md-ellipsis">
     
   
-    Formula
-  
+  Formula
 
     
   </span>
@@ -932,8 +956,61 @@
   <span class="md-ellipsis">
     
   
-    LinearizeGenomicCoordinate
+  LinearizeGenomicCoordinate
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lookup
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/coordinate-lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CoordinateLookup
 
     
   </span>
@@ -960,8 +1037,7 @@
   <span class="md-ellipsis">
     
   
-    MeasureText
-  
+  MeasureText
 
     
   </span>
@@ -988,8 +1064,7 @@
   <span class="md-ellipsis">
     
   
-    Pileup
-  
+  Pileup
 
     
   </span>
@@ -1016,8 +1091,7 @@
   <span class="md-ellipsis">
     
   
-    Project
-  
+  Project
 
     
   </span>
@@ -1044,8 +1118,7 @@
   <span class="md-ellipsis">
     
   
-    RegexExtract
-  
+  RegexExtract
 
     
   </span>
@@ -1072,8 +1145,7 @@
   <span class="md-ellipsis">
     
   
-    RegexFold
-  
+  RegexFold
 
     
   </span>
@@ -1100,8 +1172,7 @@
   <span class="md-ellipsis">
     
   
-    Sample
-  
+  Sample
 
     
   </span>
@@ -1128,8 +1199,34 @@
   <span class="md-ellipsis">
     
   
-    Stack
+  Stack
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Window
 
     
   </span>
@@ -1175,6 +1272,8 @@
       
         
       
+        
+      
     
     
     
@@ -1194,8 +1293,7 @@
   <span class="md-ellipsis">
     
   
-    Graphical Marks
-  
+  Graphical Marks
 
     
   </span>
@@ -1216,12 +1314,38 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Graphical Marks
-  
+  Graphical Marks
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/mark/arrow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Arrow
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1238,8 +1362,7 @@
   <span class="md-ellipsis">
     
   
-    Link
-  
+  Link
 
     
   </span>
@@ -1266,8 +1389,7 @@
   <span class="md-ellipsis">
     
   
-    Point
-  
+  Point
 
     
   </span>
@@ -1294,8 +1416,7 @@
   <span class="md-ellipsis">
     
   
-    Rect
-  
+  Rect
 
     
   </span>
@@ -1322,8 +1443,7 @@
   <span class="md-ellipsis">
     
   
-    Rule
-  
+  Rule
 
     
   </span>
@@ -1350,8 +1470,7 @@
   <span class="md-ellipsis">
     
   
-    Tick
-  
+  Tick
 
     
   </span>
@@ -1378,8 +1497,7 @@
   <span class="md-ellipsis">
     
   
-    Text
-  
+  Text
 
     
   </span>
@@ -1414,8 +1532,7 @@
   <span class="md-ellipsis">
     
   
-    Conditional Encoding
-  
+  Conditional Encoding
 
     
   </span>
@@ -1466,8 +1583,7 @@
   <span class="md-ellipsis">
     
   
-    View Composition
-  
+  View Composition
 
     
   </span>
@@ -1488,8 +1604,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    View Composition
-  
+  View Composition
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1510,8 +1625,7 @@
   <span class="md-ellipsis">
     
   
-    Concat
-  
+  Concat
 
     
   </span>
@@ -1538,8 +1652,7 @@
   <span class="md-ellipsis">
     
   
-    Layer
-  
+  Layer
 
     
   </span>
@@ -1566,8 +1679,7 @@
   <span class="md-ellipsis">
     
   
-    Multiscale
-  
+  Multiscale
 
     
   </span>
@@ -1602,8 +1714,7 @@
   <span class="md-ellipsis">
     
   
-    Scales
-  
+  Scales
 
     
   </span>
@@ -1630,8 +1741,7 @@
   <span class="md-ellipsis">
     
   
-    Axes
-  
+  Axes
 
     
   </span>
@@ -1658,8 +1768,7 @@
   <span class="md-ellipsis">
     
   
-    Titles
-  
+  Titles
 
     
   </span>
@@ -1686,8 +1795,7 @@
   <span class="md-ellipsis">
     
   
-    Legends
-  
+  Legends
 
     
   </span>
@@ -1714,8 +1822,7 @@
   <span class="md-ellipsis">
     
   
-    Config And Themes
-  
+  Config And Themes
 
     
   </span>
@@ -1742,8 +1849,7 @@
   <span class="md-ellipsis">
     
   
-    Importing Views
-  
+  Importing Views
 
     
   </span>
@@ -1770,8 +1876,7 @@
   <span class="md-ellipsis">
     
   
-    Expressions
-  
+  Expressions
 
     
   </span>
@@ -1798,8 +1903,7 @@
   <span class="md-ellipsis">
     
   
-    Parameters
-  
+  Parameters
 
     
   </span>
@@ -1826,8 +1930,7 @@
   <span class="md-ellipsis">
     
   
-    Types
-  
+  Types
 
     
   </span>
@@ -1883,8 +1986,7 @@
   <span class="md-ellipsis">
     
   
-    Working with Genomic Data
-  
+  Working with Genomic Data
 
     
   </span>
@@ -1905,8 +2007,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Working with Genomic Data
-  
+  Working with Genomic Data
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1927,8 +2028,7 @@
   <span class="md-ellipsis">
     
   
-    Genomic Coordinates
-  
+  Genomic Coordinates
 
     
   </span>
@@ -1952,6 +2052,18 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -1989,8 +2101,7 @@
   <span class="md-ellipsis">
     
   
-    Examples
-  
+  Examples
 
     
   </span>
@@ -2011,8 +2122,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Examples
-  
+  Examples
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2033,8 +2143,7 @@
   <span class="md-ellipsis">
     
   
-    Chromosome Ideogram from Cytobands
-  
+  Chromosome Ideogram from Cytobands
 
     
   </span>
@@ -2054,15 +2163,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../genomic-data/examples/indexed-fasta-sequence-track/" class="md-nav__link">
+      <a href="../../genomic-data/examples/indexed-fasta-six-frame-translation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Indexed FASTA Sequence Track
-  
+  Indexed FASTA Six-Frame Translation
 
     
   </span>
@@ -2089,8 +2197,7 @@
   <span class="md-ellipsis">
     
   
-    RefSeq Gene Annotations with Scored Labels
-  
+  RefSeq Gene Annotations with Scored Labels
 
     
   </span>
@@ -2117,8 +2224,7 @@
   <span class="md-ellipsis">
     
   
-    GENCODE Gene Annotations from GFF3
-  
+  GENCODE Gene Annotations from GFF3
 
     
   </span>
@@ -2145,8 +2251,7 @@
   <span class="md-ellipsis">
     
   
-    ASCAT Copy-Number Segmentation
-  
+  ASCAT Copy-Number Segmentation
 
     
   </span>
@@ -2173,8 +2278,61 @@
   <span class="md-ellipsis">
     
   
-    ASCAT Algorithm in GenomeSpy
+  ASCAT Algorithm in GenomeSpy
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/hcc1954-sv-cnv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  HCC1954 Structural Variants and Copy Number
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/tcga-ov-gistic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  TCGA Ovarian Cancer GISTIC2 Copy-Number Landscape
 
     
   </span>
@@ -2201,8 +2359,34 @@
   <span class="md-ellipsis">
     
   
-    Sashimi plot from splice junctions
+  Sashimi plot from splice junctions
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/dynseq-spi1-bqtl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SPI1 Binding-QTL Dynseq Track
 
     
   </span>
@@ -2229,8 +2413,88 @@
   <span class="md-ellipsis">
     
   
-    ClinVar Small-Variant Classifications
+  ClinVar Small-Variant Classifications
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/bam-read-alignments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  BAM Read Alignments
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/multiple-sequence-alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Multiple Sequence Alignment
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/genome-browser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Composing a Genome Browser
 
     
   </span>
@@ -2271,6 +2535,12 @@
       
         
           
+        
+      
+        
+      
+        
+      
         
       
         
@@ -2300,8 +2570,7 @@
   <span class="md-ellipsis">
     
   
-    Working with Sample Collections
-  
+  Working with Sample Collections
 
     
   </span>
@@ -2322,8 +2591,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Working with Sample Collections
-  
+  Working with Sample Collections
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2340,7 +2608,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
       
       
         
@@ -2353,8 +2621,7 @@
   <span class="md-ellipsis">
     
   
-    Visualizing
-  
+  Visualizing
 
     
   </span>
@@ -2364,15 +2631,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    Visualizing
-  
+  Visualizing
 
     
   </span>
@@ -2383,7 +2649,8 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -2392,16 +2659,16 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Getting started
-      
+      </span>
     </span>
   </a>
   
@@ -2410,9 +2677,9 @@
         <li class="md-nav__item">
   <a href="#specifying-a-sample-view" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Specifying a Sample View
-      
+      </span>
     </span>
   </a>
   
@@ -2422,31 +2689,65 @@
           <li class="md-nav__item">
   <a href="#implicit-sample-identifiers" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Implicit sample identifiers
-      
+      </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Implicit sample identifiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Example
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#defining-sample-identity" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Defining sample identity
-      
+      </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Defining sample identity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Example
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#showing-sample-y-axes" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Showing sample y-axes
-      
+      </span>
     </span>
   </a>
   
@@ -2455,42 +2756,9 @@
           <li class="md-nav__item">
   <a href="#adjusting-sample-labels" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Adjusting sample labels
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#handling-variable-sample-heights" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Handling variable sample heights
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#visible-sample-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Visible sample parameters
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aggregation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Aggregation
-      
+      </span>
     </span>
   </a>
   
@@ -2498,106 +2766,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bookmarking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bookmarking
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Bookmarking">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pre-defined-bookmarks-and-bookmark-tour" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pre-defined bookmarks and bookmark tour
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Pre-defined bookmarks and bookmark tour">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enabling-remote-bookmarks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Enabling remote bookmarks
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-bookmark-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The bookmark file
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#toggleable-view-visibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Toggleable View Visibility
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#actions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Actions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#search" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Search
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#a-practical-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A practical example
-      
-    </span>
-  </a>
   
 </li>
       
@@ -2617,6 +2785,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../sample-view-parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sample View Parameters
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aggregating-samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Aggregating Samples
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../metadata-sources/" class="md-nav__link">
         
   
@@ -2624,8 +2846,34 @@
   <span class="md-ellipsis">
     
   
-    Configuring Metadata Sources
+  Configuring Metadata Sources
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../app-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuring App Features
 
     
   </span>
@@ -2652,8 +2900,7 @@
   <span class="md-ellipsis">
     
   
-    Analyzing
-  
+  Analyzing
 
     
   </span>
@@ -2680,8 +2927,7 @@
   <span class="md-ellipsis">
     
   
-    Importing Metadata
-  
+  Importing Metadata
 
     
   </span>
@@ -2745,8 +2991,7 @@
   <span class="md-ellipsis">
     
   
-    JavaScript API
-  
+  JavaScript API
 
     
   </span>
@@ -2767,8 +3012,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    JavaScript API
-  
+  JavaScript API
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2789,8 +3033,7 @@
   <span class="md-ellipsis">
     
   
-    Embedding and Entry Points
-  
+  Embedding and Entry Points
 
     
   </span>
@@ -2817,8 +3060,7 @@
   <span class="md-ellipsis">
     
   
-    View Hierarchy
-  
+  View Hierarchy
 
     
   </span>
@@ -2845,8 +3087,7 @@
   <span class="md-ellipsis">
     
   
-    Runtime State
-  
+  Runtime State
 
     
   </span>
@@ -2873,8 +3114,7 @@
   <span class="md-ellipsis">
     
   
-    Inspector
-  
+  Inspector
 
     
   </span>
@@ -2901,8 +3141,7 @@
   <span class="md-ellipsis">
     
   
-    Instance, Events, and Export
-  
+  Instance, Events, and Export
 
     
   </span>
@@ -2929,8 +3168,7 @@
   <span class="md-ellipsis">
     
   
-    Embed Options
-  
+  Embed Options
 
     
   </span>
@@ -2964,8 +3202,7 @@
   <span class="md-ellipsis">
     
   
-    License
-  
+  License
 
     
   </span>
@@ -2987,10 +3224,24 @@
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -2999,16 +3250,16 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Getting started
-      
+      </span>
     </span>
   </a>
   
@@ -3017,9 +3268,9 @@
         <li class="md-nav__item">
   <a href="#specifying-a-sample-view" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Specifying a Sample View
-      
+      </span>
     </span>
   </a>
   
@@ -3029,31 +3280,65 @@
           <li class="md-nav__item">
   <a href="#implicit-sample-identifiers" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Implicit sample identifiers
-      
+      </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Implicit sample identifiers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Example
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#defining-sample-identity" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Defining sample identity
-      
+      </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Defining sample identity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Example
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#showing-sample-y-axes" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Showing sample y-axes
-      
+      </span>
     </span>
   </a>
   
@@ -3062,42 +3347,9 @@
           <li class="md-nav__item">
   <a href="#adjusting-sample-labels" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Adjusting sample labels
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#handling-variable-sample-heights" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Handling variable sample heights
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#visible-sample-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Visible sample parameters
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#aggregation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Aggregation
-      
+      </span>
     </span>
   </a>
   
@@ -3105,106 +3357,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bookmarking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bookmarking
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Bookmarking">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pre-defined-bookmarks-and-bookmark-tour" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pre-defined bookmarks and bookmark tour
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Pre-defined bookmarks and bookmark tour">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enabling-remote-bookmarks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Enabling remote bookmarks
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-bookmark-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The bookmark file
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#toggleable-view-visibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Toggleable View Visibility
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#actions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Actions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#search" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Search
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#a-practical-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A practical example
-      
-    </span>
-  </a>
   
 </li>
       
@@ -3222,12 +3374,10 @@
               <article class="md-content__inner md-typeset">
                 
                   
-
-
   
     <a href="https://github.com/genome-spy/genome-spy/edit/master/docs/sample-collections/visualizing.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
     </a>
   
   
@@ -3252,12 +3402,12 @@ page for more information.</p>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.80.0/dist/style.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.81.0/dist/style.css&quot;</span>
     <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.80.0/dist/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.81.0/dist/index.es.js&quot;</span><span class="p">;</span>
 
 <span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;spec.json&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -3317,8 +3467,56 @@ graphical marks can span multiple bands. You could, for example, draw lines
 between the bands.</p>
 </div>
 <h3 id="implicit-sample-identifiers">Implicit sample identifiers<a class="headerlink" href="#implicit-sample-identifiers" title="Permanent link">&para;</a></h3>
-<p>By default, the identifiers of the samples are extracted from the
-data, and each sample gets its own track.</p>
+<p>By default, GenomeSpy extracts sample identifiers from the field encoded with
+the <code>sample</code> channel, and each sample gets its own track.</p>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
+<p>This example displays four segments for each of three samples. The required
+<code>samples</code> object is empty, so GenomeSpy derives the samples and their order
+from the <code>sample</code> field in the data.</p>
+<div><genome-spy-doc-embed base-url="examples/" height="200" runtime="app">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A simple segmented view of three samples.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;neutral&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gain&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;neutral&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;neutral&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gain&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;loss&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;neutral&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gain&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;neutral&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;loss&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gain&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+
+<span class="w">  </span><span class="nt">&quot;spec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;state&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;loss&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;neutral&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;gain&quot;</span><span class="p">],</span>
+<span class="w">          </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;#5090e0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#e0e0e0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#ff6040&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
 <h3 id="defining-sample-identity">Defining sample identity<a class="headerlink" href="#defining-sample-identity" title="Permanent link">&para;</a></h3>
 <p>Use <code>samples.identity</code> when you want to define the sample order, display names,
 or the complete sample set independently from the visualized data.</p>
@@ -3334,29 +3532,55 @@ or the complete sample set independently from the visualized data.</p>
 <span class="p">}</span>
 </code></pre></div>
 <p>This configuration reads sample ids and display names from <code>samples.tsv</code>.
-Configure metadata sources and metadata matrix layout in
-<a href="../metadata-sources/"><code>metadata</code></a>.</p>
+Sample metadata, like clinical attributes, has to be provided separately in a
+<a href="../metadata-sources/"><code>metadata</code></a> source.</p>
 <p>The following properties configure <code>samples.identity</code>:</p>
 <dl>
 <dt><code>data</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">Generator</a></p>
-<p>Data source that defines the sample set for the view.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">Generator</a><p>Data source that defines the sample set for the view.</p>
 <p>The source must contain one row per sample. Metadata imports are matched against these sample ids.</p>
 </dd>
 <dt><code>displayNameField</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Field containing a user-visible sample label.</p>
+<dd>Type: string<p>Field containing a user-visible sample label.</p>
 <p>If omitted, sample ids are used.</p>
 </dd>
 <dt><code>idField</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Field that contains the canonical sample id.</p>
+<dd>Type: string<p>Field that contains the canonical sample id.</p>
 <p><strong>Default value:</strong> <code>"sample"</code></p>
 </dd>
 </dl>
+<h4 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h4>
+<p>The example below defines three samples and their display names with inline identity
+data.</p>
+<div><genome-spy-doc-embed base-url="examples/" height="200" runtime="app">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Three samples with display names defined by inline identity data.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;identity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Control&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Treatment A&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S3&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Treatment B&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;idField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;displayNameField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;displayName&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;spec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;fill&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#f8f8f8&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{}]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Data&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
 <h3 id="showing-sample-y-axes">Showing sample y-axes<a class="headerlink" href="#showing-sample-y-axes" title="Permanent link">&para;</a></h3>
 <p>Sample views can show vertical axes for the repeated sample plots when the
 child <code>spec</code> defines a y-axis. By default, the axis is repeated for every
@@ -3365,9 +3589,7 @@ to avoid clutter.</p>
 <p>The sample view property that enables and disables this behavior is:</p>
 <dl>
 <dt><code>sampleYAxis</code></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">SampleYAxisDef</a> | null</p>
-<p>Controls how vertical axes are shown for repeated sample plots.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">SampleYAxisDef</a> | null<p>Controls how vertical axes are shown for repeated sample plots.</p>
 <p>Set to <code>null</code> to disable sample y-axes.</p>
 <p><strong>Default value:</strong> <code>{"mode": "all", "minSampleHeight": 60}</code></p>
 </dd>
@@ -3376,19 +3598,13 @@ to avoid clutter.</p>
 y-axes are shown:</p>
 <dl>
 <dt><code>mode</code></dt>
-<dd>
-<p>Type: <code>"all"</code> | <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code></p>
-<p>How vertical axes are shown for repeated sample plots.</p>
-<ul>
-<li><code>"all"</code> shows an axis for every eligible visible sample.</li>
-<li><code>"top"</code>, <code>"middle"</code>, and <code>"bottom"</code> show one representative axis.</li>
-</ul>
+<dd>Type: <code>"all"</code> | <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code><p>How vertical axes are shown for repeated sample plots.</p>
+<p>- <code>"all"</code> shows an axis for every eligible visible sample.
+  - <code>"top"</code>, <code>"middle"</code>, and <code>"bottom"</code> show one representative axis.</p>
 <p><strong>Default value:</strong> <code>"all"</code></p>
 </dd>
 <dt><code>minSampleHeight</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Minimum visible sample height in pixels required before a repeated y-axis can be shown.</p>
+<dd>Type: number<p>Minimum visible sample height in pixels required before a repeated y-axis can be shown.</p>
 <p><strong>Default value:</strong> <code>60</code></p>
 </dd>
 </dl>
@@ -3406,344 +3622,65 @@ sample label font size, use the following configuration:</p>
 <p>The following properties allow for fine-grained control of the font styles:</p>
 <dl>
 <dt><code>labelFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The font typeface. GenomeSpy uses <a href="https://github.com/Chlumsky/msdfgen">SDF</a> versions of <a href="https://fonts.google.com/">Google Fonts</a>. Check their availability at the <a href="https://github.com/etiennepinchon/aframe-fonts/tree/master/fonts">A-Frame Fonts</a> repository. System fonts are <strong>not</strong> supported.</p>
+<dd>Type: string<p>The font typeface. GenomeSpy uses <a href="https://github.com/Chlumsky/msdfgen">SDF</a> versions of <a href="https://fonts.google.com/">Google Fonts</a>. Check their availability at the <a href="https://github.com/etiennepinchon/aframe-fonts/tree/master/fonts">A-Frame Fonts</a> repository. System fonts are <strong>not</strong> supported.</p>
 <p><strong>Default value:</strong> <code>"Lato"</code></p>
 </dd>
 <dt><code>labelFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The font size in pixels.</p>
+<dd>Type: number<p>The font size in pixels.</p>
 <p><strong>Default value:</strong> <code>11</code></p>
 </dd>
 <dt><code>labelFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>The font weight. The following strings and numbers are valid values: <code>"thin"</code> (<code>100</code>), <code>"light"</code> (<code>300</code>), <code>"regular"</code> (<code>400</code>), <code>"normal"</code> (<code>400</code>), <code>"medium"</code> (<code>500</code>), <code>"bold"</code> (<code>700</code>), <code>"black"</code> (<code>900</code>)</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>The font weight. The following strings and numbers are valid values: <code>"thin"</code> (<code>100</code>), <code>"light"</code> (<code>300</code>), <code>"regular"</code> (<code>400</code>), <code>"normal"</code> (<code>400</code>), <code>"medium"</code> (<code>500</code>), <code>"bold"</code> (<code>700</code>), <code>"black"</code> (<code>900</code>)</p>
 <p><strong>Default value:</strong> <code>"regular"</code></p>
 </dd>
 <dt><code>labelFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>The font style. Valid values: <code>"normal"</code> and <code>"italic"</code>.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>The font style. Valid values: <code>"normal"</code> and <code>"italic"</code>.</p>
 <p><strong>Default value:</strong> <code>"normal"</code></p>
 </dd>
 <dt><code>labelAlign</code></dt>
-<dd>
-<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
-<p>The horizontal alignment of the text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
+<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>The horizontal alignment of the text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
 <p><strong>Default value:</strong> <code>"left"</code></p>
 </dd>
 </dl>
 <p>In addition, the following sample label properties are supported:</p>
 <dl>
 <dt><code>labelTitle</code></dt>
-<dd>
-<p>Type: string | null</p>
-<p>Title shown above sample labels. If omitted, the title defaults to <code>"Sample"</code>. Set to <code>null</code> to hide the title.</p>
+<dd>Type: string | null<p>Title shown above sample labels. If omitted, the title defaults to <code>"Sample"</code>. Set to <code>null</code> to hide the title.</p>
 </dd>
 <dt><code>labelLength</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Width reserved for sample labels in pixels.</p>
+<dd>Type: number<p>Width reserved for sample labels in pixels.</p>
 <p>If omitted, the width is inferred from the sample labels.</p>
 </dd>
 </dl>
 <p>Sample row and group layout can be adjusted with the <code>sampleLayout</code> property:</p>
 <dl>
 <dt><code>sampleLayout</code></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">SampleLayoutDef</a></p>
-<p>Layout settings for sample rows and sample groups.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">SampleLayoutDef</a><p>Layout settings for sample rows and sample groups.</p>
 </dd>
 <dt><code>sampleHeight</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Height of one sample row when the view is expanded for (close-up) inspection. In the birdseye overview, sample rows are automatically scaled to fit the available vertical space.</p>
+<dd>Type: number<p>Height of one sample row when the view is expanded for (close-up) inspection. In the birdseye overview, sample rows are automatically scaled to fit the available vertical space.</p>
 <p><strong>Default value:</strong> <code>35</code></p>
 </dd>
 <dt><code>groupSpacing</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Spacing between sample groups in the fitted layout.</p>
+<dd>Type: number<p>Spacing between sample groups in the fitted layout.</p>
 <p><strong>Default value:</strong> <code>5</code></p>
 </dd>
 <dt><code>peekGroupSpacing</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Spacing between sample groups in the expanded layout.</p>
+<dd>Type: number<p>Spacing between sample groups in the expanded layout.</p>
 <p><strong>Default value:</strong> <code>15</code></p>
 </dd>
 <dt><code>sampleSpacingFactor</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Fraction of each sample row reserved as spacing between rendered sample contents.</p>
+<dd>Type: number<p>Fraction of each sample row reserved as spacing between rendered sample contents.</p>
 <p>Spacing is reduced when rows are too short to render cleanly.</p>
 <p><strong>Default value:</strong> <code>0.2</code></p>
 </dd>
 </dl>
 <p>Metadata attribute label and matrix layout properties are documented in
 <a href="../metadata-sources/#metadata-configuration">Configuring Metadata Sources</a>.</p>
-<h3 id="handling-variable-sample-heights">Handling variable sample heights<a class="headerlink" href="#handling-variable-sample-heights" title="Permanent link">&para;</a></h3>
-<p>The height of a single sample depend on the number of samples and the height of
-the sample view. Moreover, the end user can
-<a href="../analyzing/#peeking-samples">toggle</a> between a bird's eye view and a closeup
-view making the height very dynamic.</p>
-<p>To adapt the maximum size of <a href="../../grammar/mark/point/"><code>"point"</code></a> marks to the
-height of the samples, you need to specify a dynamic
-<a href="../../grammar/scale/">scale</a> range for the <code>size</code> channel. The following example
-demonstrates how to use <a href="../../grammar/expressions/">expressions</a> and the
-<code>height</code> <a href="../../grammar/parameters/">parameter</a> to adjust the point size:</p>
-<div class="highlight"><span class="filename">Dynamic point sizes</span><pre><span></span><code><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VAF&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pow(clamp(height * 0.65, 2, 18), 2)&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">      </span><span class="p">]</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>In this example, the <code>height</code> parameter, provided by the sample view, contains
-the height of a single sample. By multiplying it with <code>0.65</code>, the points get
-some padding at the top and bottom. To prevent the points from becoming too
-small or excessively large, the <code>clamp</code> function is used to limit the point's
-diameter to a minimum of <code>2</code> and a maximum of <code>18</code> pixels. As the <code>size</code> channel
-encodes the <em>area</em>, not the diameter of the points, the <code>pow</code> function is used
-to square the value. The technique shown here is used in the
-<a href="https://genomespy.app/examples/?spec=PARPiCL/parpicl.json">PARPiCL</a> example.</p>
-<h3 id="visible-sample-parameters">Visible sample parameters<a class="headerlink" href="#visible-sample-parameters" title="Permanent link">&para;</a></h3>
-<p>Sample view exposes parameters that describe the currently visible samples.
-These are mainly useful in advanced cohort visualizations where data sources
-should react to the current sample set.</p>
-<p><code>visibleSamples</code> contains the identifiers of samples that are currently visible
-in the sample hierarchy. It is based on filtering and grouping state, but not on
-transient viewport closeup state.</p>
-<div class="highlight"><span class="filename">Using visibleSamples</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;visibleSamples&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p><code>visibleSampleMetadata</code> provides metadata values for the currently visible
-samples. Use bracket access for full metadata paths, or dot access for simple
-hierarchical names:</p>
-<div class="highlight"><span class="filename">Using visibleSampleMetadata</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;visibleSampleMetadata[&#39;Clinical/patientId&#39;]&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="highlight"><span class="filename">Dot access for hierarchical metadata</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;visibleSampleMetadata.Clinical.patientId&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>These parameters are often used with
-<a href="../../grammar/data/multi-url/">URL templates and multiple files</a> to load
-per-sample, per-patient, or per-cohort-partition files only for the currently
-relevant samples.</p>
-<h3 id="aggregation">Aggregation<a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h3>
-<p><code>aggregateSamples</code> adds one or more summary tracks to a sample view. Use it when
-you want to compare patterns across sample subgroups in addition to inspecting
-individual samples.</p>
-<p>In the GenomeSpy <a href="https://doi.org/10.1093/gigascience/giae040">paper</a>, the
-summary track is used as a copy-number landscape above the main heatmap. The
-summary is computed separately for each visible group, which makes recurrent
-amplification and deletion patterns easier to compare between subgroups.</p>
-<p>Each entry in <code>aggregateSamples</code> is a normal unit or layer spec. It may define
-its own <code>transform</code>, <code>encoding</code>, <code>params</code>, etc. sections. GenomeSpy prepends a
-<code>mergeFacets</code> transform automatically and removes the <code>sample</code> channel from the
-summary encoding.</p>
-<p>Use the provided <code>sampleCount</code> parameter to normalize summary values by the
-number of samples in the current group.</p>
-<p>Examples:</p>
-<ul>
-<li><a href="/docs/examples/app/copy-numbers.json"><code>copy-numbers.json</code></a></li>
-<li><a href="/docs/examples/app/expression-zscores.json"><code>expression-zscores.json</code></a></li>
-<li><a href="https://github.com/HautaniemiLab/genomespy-paper-2024-spec/blob/main/cnv-segments.json">Spec from the GenomeSpy paper</a></li>
-</ul>
-<h2 id="bookmarking">Bookmarking<a class="headerlink" href="#bookmarking" title="Permanent link">&para;</a></h2>
-<p>With the GenomeSpy app, users can save the current visualization state,
-including scale domains and view visibilities, as bookmarks. These bookmarks are
-stored in the
-<a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB">IndexedDB</a>
-of the user's web browser. Each database is unique to an
-<a href="https://developer.mozilla.org/en-US/docs/Glossary/Origin">origin</a>, which
-typically refers to the hostname and domain of the web server hosting the
-visualization. Since the server may host multiple visualizations, each
-visualization must have a unique ID assigned to it. To enable bookmarking,
-simply add the <code>specId</code> property with an arbitrary but unique string value to
-the top-level view. Example:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;specId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My example visualization&quot;</span><span class="p">,</span>
-
-<span class="w">  </span><span class="nt">&quot;vconcat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="pre-defined-bookmarks-and-bookmark-tour">Pre-defined bookmarks and bookmark tour<a class="headerlink" href="#pre-defined-bookmarks-and-bookmark-tour" title="Permanent link">&para;</a></h3>
-<p>You may want to provide users with a few pre-defined bookmarks that showcase
-interesting findings from the data. Since bookmarks support Markdown-formatted
-notes, you can also explain the implications of the findings and present
-essential background information.</p>
-<p>The <em>remote bookmarks</em> feature allows for storing bookmarks in a JSON file on a
-web server and provides them to users through the bookmark menu. In addition,
-you can optionally enable the <code>tour</code> function, which automatically opens the
-first bookmark in the file and allows the user navigate the tour using
-previous/next buttons.</p>
-<h4 id="enabling-remote-bookmarks">Enabling remote bookmarks<a class="headerlink" href="#enabling-remote-bookmarks" title="Permanent link">&para;</a></h4>
-<div class="highlight"><span class="filename">View specification</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;bookmarks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;remote&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tour.json&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;tour&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-
-<span class="w">  </span><span class="nt">&quot;vconcat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The <code>remote</code> object accepts the following properties:</p>
-<dl>
-<dt><code>url</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string</p>
-<p>URL to the remote bookmark file.</p>
-</dd>
-<dt><code>initialBookmark</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Name of the bookmark that should be loaded as the initial state. The bookmark description dialog is shown only if the <code>tour</code> property is set to <code>true</code>.</p>
-</dd>
-<dt><code>tour</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Should the user be shown a tour of the remote bookmarks when the visualization is launched? If the <code>initialBookmark</code> property is not defined, the tour starts from the first bookmark.</p>
-<p><strong>Default value:</strong> <code>false</code></p>
-</dd>
-<dt><code>afterTourBookmark</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Name of the bookmark that should be loaded when the user ends the tour. If <code>null</code>, the dialog will be closed and the current state is retained. If undefined, the default state without any performed actions will be loaded.</p>
-</dd>
-</dl>
-<h4 id="the-bookmark-file">The bookmark file<a class="headerlink" href="#the-bookmark-file" title="Permanent link">&para;</a></h4>
-<p>The remote bookmark file consists of an array of bookmark objects. The easiest
-way to create such bookmark objects is to create a bookmark in the app and
-choose <em>Share</em> from the submenu (<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M64 144a56 56 0 1 1 0-112 56 56 0 1 1 0 112m0 224c30.9 0 56 25.1 56 56s-25.1 56-56 56-56-25.1-56-56 25.1-56 56-56m56-112c0 30.9-25.1 56-56 56S8 286.9 8 256s25.1-56 56-56 56 25.1 56 56"/></svg></span>) of the
-bookmark item. The sharing dialog provides the bookmark in a URL-encoded format
-and as a JSON object. Just copy-paste the JSON object into the bookmark file to
-make it available to all users. A simplified example:</p>
-<div class="highlight"><span class="filename">Bookmark file (tour.json)</span><pre><span></span><code><span class="p">[</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;First bookmark&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span>
-<span class="w">    </span><span class="err">...</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Second bookmark&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span>
-<span class="w">    </span><span class="err">...</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">]</span>
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Providing the user with an initial state</p>
-<p>If you want to provide the user with an initial state comprising specific
-actions performed on the samples, a particular visible genomic region, etc.,
-you can create a bookmark with the desired settings and set the
-<code>initialBookmark</code> property to the bookmark's name. See the documentation
-above for details.</p>
-</div>
-<h2 id="toggleable-view-visibility">Toggleable View Visibility<a class="headerlink" href="#toggleable-view-visibility" title="Permanent link">&para;</a></h2>
-<p>When working with a complex visualization that includes multiple tracks and
-extensive metadata, it may not always be necessary to display all views
-simultaneously. GenomeSpy App allows for interactive toggling of the visibility
-of nodes within the view hierarchy. This visibility state is also included in
-shareable links and bookmarks, allowing users to easily access their preferred
-configurations.</p>
-<p>Toggleable visibility requires each view to have an explicit unique <code>name</code>.
-GenomeSpy uses the name to address visibility state in bookmarks and shared
-state, and to keep views unambiguous within the import scope.</p>
-<p>Views have two properties for controlling the visibility:</p>
-<dl>
-<dt><code>visible</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see <a href="https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility">toggleable view visibility</a>.</p>
-<p><strong>Default:</strong> <code>true</code></p>
-</dd>
-<dt><code>configurableVisibility</code></dt>
-<dd>
-<p>Type: boolean | <a href="https://genomespy.app/docs/grammar/types/">AppVisibilityGroupSpec</a></p>
-<p>Is the visibility configurable from the GenomeSpy App view visibility menu.</p>
-<p>Configurability requires an explicit view name that is unique in its import scope.</p>
-<p>Set to an object with <code>group</code> to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.</p>
-<p><strong>Default value:</strong> <code>false</code> for children of <code>layer</code>, <code>true</code> for others</p>
-</dd>
-</dl>
-<p>Use object-form <code>configurableVisibility</code> to make views mutually exclusive in the
-menu. Views that share the same <code>group</code> in the same import scope are shown as
-radio buttons:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rawCoverage&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;configurableVisibility&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;coverageMode&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h2>
-<p>The app provides context-menu actions for sorting, filtering, grouping, and
-other sample-collection operations. For an overview, see
-<a href="../analyzing/">Analyzing Sample Collections</a>.</p>
-<p>Actions in sample collections also require each view to have an explicit unique
-<code>name</code>. GenomeSpy uses the name to address the view in action definitions and
-to replay those actions from bookmarks, shared state, and provenance history.</p>
-<h2 id="search">Search<a class="headerlink" href="#search" title="Permanent link">&para;</a></h2>
-<p>The location/search field in the toolbar allows users to quickly navigate to
-features in the data. To make features searchable, use the <code>search</code> channel
-on marks that represent the searchable data objects.</p>
-<p><code>search</code> accepts either a single field definition or an array of field
-definitions. When multiple fields are provided, a datum matches if any of the
-fields matches the entered term (case-insensitive exact match).</p>
-<p>Examples:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="err">...</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;geneSymbol&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="err">...</span><span class="p">,</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="err">...</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;geneSymbol&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;geneId&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;alias&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="err">...</span><span class="p">,</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="a-practical-example">A practical example<a class="headerlink" href="#a-practical-example" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Work in progress</p>
-<p>This part of the documentation is still under construction.  For a live
-example, check the
-<a href="https://github.com/genome-spy/website-examples/tree/master/PARPiCL">PARPiCL</a>
-visualization, which is also available for <a href="https://genomespy.app/examples/?spec=PARPiCL/parpicl.json">interactive
-exploration</a></p>
-</div>
+<p>For runtime parameters that respond to the sample layout and current sample
+set, see <a href="../sample-view-parameters/">Sample View Parameters</a>. For summary
+tracks across samples or sample groups, see
+<a href="../aggregating-samples/">Aggregating Samples</a>.</p>
 
 
 
@@ -3751,27 +3688,8 @@ exploration</a></p>
 
 
 
-  
-    
-  
-  
 
 
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 25, 2026 14:16:30 UTC">June 25, 2026</span>
-  </span>
-
-    
-    
-    
-    
-  </aside>
 
 
 
@@ -3795,8 +3713,8 @@ exploration</a></p>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
     </a>
   
 </div>
@@ -3814,12 +3732,12 @@ exploration</a></p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["navigation.indexes","content.action.edit"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7f30b55.min.js"></script>
       
-        <script src="../../app/index.js"></script>
+        <script src="../../app/index.js" type="module"></script>
       
     
   </body>

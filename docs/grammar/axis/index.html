@@ -21,18 +21,23 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="zensical-0.0.51">
     
     
       
-        <title>Axes - GenomeSpy Docs</title>
+        <title>Axis - GenomeSpy Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.62c9b9cc.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
       
       
 
@@ -46,14 +51,14 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Lato";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"JetBrains Mono"}</style>
       
     
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -61,21 +66,12 @@
      
 <meta name="base_url" content="../.." />
 
-  
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Axes - GenomeSpy Docs" />
-<meta property="og:image" content="https://genomespy.app/docs/assets/images/social/grammar/axis.png" />
-<meta property="og:image:type" content="image/png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://genomespy.app/docs/grammar/axis/" />
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Axes - GenomeSpy Docs" />
-<meta property="twitter:image" content="https://genomespy.app/docs/assets/images/social/grammar/axis.png" />
-</head>
+  </head>
   
   
     
+    
+      
     
     
     
@@ -85,7 +81,7 @@
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
     <div data-md-component="skip">
       
         
@@ -107,12 +103,12 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="GenomeSpy Docs" class="md-header__button md-logo" aria-label="GenomeSpy Docs" data-md-component="logo">
       
-  <img src="../../img/bowtie.svg" alt="logo">
+  <img src="../../img/bowtie.svg" alt="GenomeSpy Docs">
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -124,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Axes
+              Axis
             
           </span>
         </div>
@@ -132,63 +128,48 @@
     </div>
     
       
+        <form class="md-header__option" data-md-component="palette">
+  
     
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
       
       
-        <label class="md-header__button md-icon" for="__search">
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
         </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
 </div>
       
     
-    
-      <div class="md-header__source">
+    <div class="md-header__source">
+      
         <a href="https://github.com/genome-spy/genome-spy" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
   </div>
 </a>
-      </div>
-    
+      
+    </div>
   </nav>
   
 </header>
@@ -216,7 +197,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="GenomeSpy Docs" class="md-nav__button md-logo" aria-label="GenomeSpy Docs" data-md-component="logo">
       
-  <img src="../../img/bowtie.svg" alt="logo">
+  <img src="../../img/bowtie.svg" alt="GenomeSpy Docs">
 
     </a>
     GenomeSpy Docs
@@ -226,7 +207,7 @@
       <a href="https://github.com/genome-spy/genome-spy" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -250,8 +231,7 @@
   <span class="md-ellipsis">
     
   
-    Introduction
-  
+  Introduction
 
     
   </span>
@@ -277,8 +257,7 @@
   <span class="md-ellipsis">
     
   
-    Getting Started
-  
+  Getting Started
 
     
   </span>
@@ -352,8 +331,7 @@
   <span class="md-ellipsis">
     
   
-    Visualization Grammar
-  
+  Visualization Grammar
 
     
   </span>
@@ -374,8 +352,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Visualization Grammar
-  
+  Visualization Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -420,8 +397,7 @@
   <span class="md-ellipsis">
     
   
-    Data Input
-  
+  Data Input
 
     
   </span>
@@ -442,8 +418,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Data Input
-  
+  Data Input
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -464,8 +439,7 @@
   <span class="md-ellipsis">
     
   
-    Eager Data Sources
-  
+  Eager Data Sources
 
     
   </span>
@@ -492,8 +466,7 @@
   <span class="md-ellipsis">
     
   
-    Lazy Data Sources
-  
+  Lazy Data Sources
 
     
   </span>
@@ -520,8 +493,7 @@
   <span class="md-ellipsis">
     
   
-    URL Templates and Multiple Files
-  
+  URL Templates and Multiple Files
 
     
   </span>
@@ -553,6 +525,16 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -610,8 +592,7 @@
   <span class="md-ellipsis">
     
   
-    Transform
-  
+  Transform
 
     
   </span>
@@ -632,8 +613,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Transform
-  
+  Transform
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -654,8 +634,34 @@
   <span class="md-ellipsis">
     
   
-    Aggregate
+  Aggregate
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/alignment-mismatches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AlignmentMismatches
 
     
   </span>
@@ -682,8 +688,7 @@
   <span class="md-ellipsis">
     
   
-    Collect
-  
+  Collect
 
     
   </span>
@@ -710,8 +715,7 @@
   <span class="md-ellipsis">
     
   
-    Coverage
-  
+  Coverage
 
     
   </span>
@@ -738,8 +742,7 @@
   <span class="md-ellipsis">
     
   
-    Filter
-  
+  Filter
 
     
   </span>
@@ -766,8 +769,7 @@
   <span class="md-ellipsis">
     
   
-    FilterScoredLabels
-  
+  FilterScoredLabels
 
     
   </span>
@@ -794,8 +796,34 @@
   <span class="md-ellipsis">
     
   
-    Flatten
+  Flatten
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/flatten-cigar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  FlattenCigar
 
     
   </span>
@@ -822,8 +850,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenCompressedExons
-  
+  FlattenCompressedExons
 
     
   </span>
@@ -850,8 +877,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenDelimited
-  
+  FlattenDelimited
 
     
   </span>
@@ -878,8 +904,7 @@
   <span class="md-ellipsis">
     
   
-    FlattenSequence
-  
+  FlattenSequence
 
     
   </span>
@@ -906,8 +931,7 @@
   <span class="md-ellipsis">
     
   
-    Formula
-  
+  Formula
 
     
   </span>
@@ -934,8 +958,61 @@
   <span class="md-ellipsis">
     
   
-    LinearizeGenomicCoordinate
+  LinearizeGenomicCoordinate
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lookup
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/coordinate-lookup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CoordinateLookup
 
     
   </span>
@@ -962,8 +1039,7 @@
   <span class="md-ellipsis">
     
   
-    MeasureText
-  
+  MeasureText
 
     
   </span>
@@ -990,8 +1066,7 @@
   <span class="md-ellipsis">
     
   
-    Pileup
-  
+  Pileup
 
     
   </span>
@@ -1018,8 +1093,7 @@
   <span class="md-ellipsis">
     
   
-    Project
-  
+  Project
 
     
   </span>
@@ -1046,8 +1120,7 @@
   <span class="md-ellipsis">
     
   
-    RegexExtract
-  
+  RegexExtract
 
     
   </span>
@@ -1074,8 +1147,7 @@
   <span class="md-ellipsis">
     
   
-    RegexFold
-  
+  RegexFold
 
     
   </span>
@@ -1102,8 +1174,7 @@
   <span class="md-ellipsis">
     
   
-    Sample
-  
+  Sample
 
     
   </span>
@@ -1130,8 +1201,34 @@
   <span class="md-ellipsis">
     
   
-    Stack
+  Stack
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Window
 
     
   </span>
@@ -1177,6 +1274,8 @@
       
         
       
+        
+      
     
     
     
@@ -1196,8 +1295,7 @@
   <span class="md-ellipsis">
     
   
-    Graphical Marks
-  
+  Graphical Marks
 
     
   </span>
@@ -1218,12 +1316,38 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Graphical Marks
-  
+  Graphical Marks
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mark/arrow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Arrow
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1240,8 +1364,7 @@
   <span class="md-ellipsis">
     
   
-    Link
-  
+  Link
 
     
   </span>
@@ -1268,8 +1391,7 @@
   <span class="md-ellipsis">
     
   
-    Point
-  
+  Point
 
     
   </span>
@@ -1296,8 +1418,7 @@
   <span class="md-ellipsis">
     
   
-    Rect
-  
+  Rect
 
     
   </span>
@@ -1324,8 +1445,7 @@
   <span class="md-ellipsis">
     
   
-    Rule
-  
+  Rule
 
     
   </span>
@@ -1352,8 +1472,7 @@
   <span class="md-ellipsis">
     
   
-    Tick
-  
+  Tick
 
     
   </span>
@@ -1380,8 +1499,7 @@
   <span class="md-ellipsis">
     
   
-    Text
-  
+  Text
 
     
   </span>
@@ -1416,8 +1534,7 @@
   <span class="md-ellipsis">
     
   
-    Conditional Encoding
-  
+  Conditional Encoding
 
     
   </span>
@@ -1468,8 +1585,7 @@
   <span class="md-ellipsis">
     
   
-    View Composition
-  
+  View Composition
 
     
   </span>
@@ -1490,8 +1606,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    View Composition
-  
+  View Composition
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1512,8 +1627,7 @@
   <span class="md-ellipsis">
     
   
-    Concat
-  
+  Concat
 
     
   </span>
@@ -1540,8 +1654,7 @@
   <span class="md-ellipsis">
     
   
-    Layer
-  
+  Layer
 
     
   </span>
@@ -1568,8 +1681,7 @@
   <span class="md-ellipsis">
     
   
-    Multiscale
-  
+  Multiscale
 
     
   </span>
@@ -1604,8 +1716,7 @@
   <span class="md-ellipsis">
     
   
-    Scales
-  
+  Scales
 
     
   </span>
@@ -1628,7 +1739,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
       
       
         
@@ -1641,8 +1752,7 @@
   <span class="md-ellipsis">
     
   
-    Axes
-  
+  Axes
 
     
   </span>
@@ -1652,15 +1762,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    Axes
-  
+  Axes
 
     
   </span>
@@ -1671,7 +1780,8 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -1680,16 +1790,16 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Configuration
-      
+      </span>
     </span>
   </a>
   
@@ -1698,9 +1808,9 @@
         <li class="md-nav__item">
   <a href="#placement" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Placement
-      
+      </span>
     </span>
   </a>
   
@@ -1709,9 +1819,9 @@
         <li class="md-nav__item">
   <a href="#titles" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Titles
-      
+      </span>
     </span>
   </a>
   
@@ -1720,9 +1830,9 @@
         <li class="md-nav__item">
   <a href="#ticks-labels-and-grid-lines" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Ticks, Labels, and Grid Lines
-      
+      </span>
     </span>
   </a>
   
@@ -1731,9 +1841,9 @@
         <li class="md-nav__item">
   <a href="#resolution" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Resolution
-      
+      </span>
     </span>
   </a>
   
@@ -1742,9 +1852,9 @@
         <li class="md-nav__item">
   <a href="#genome-axis-for-loci" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Genome Axis for Loci
-      
+      </span>
     </span>
   </a>
   
@@ -1753,9 +1863,9 @@
         <li class="md-nav__item">
   <a href="#custom-axes" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Custom Axes
-      
+      </span>
     </span>
   </a>
   
@@ -1764,9 +1874,9 @@
         <li class="md-nav__item">
   <a href="#properties" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Properties
-      
+      </span>
     </span>
   </a>
   
@@ -1775,9 +1885,9 @@
         <li class="md-nav__item">
   <a href="#genome-axis-properties" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Genome Axis Properties
-      
+      </span>
     </span>
   </a>
   
@@ -1786,9 +1896,9 @@
         <li class="md-nav__item">
   <a href="#styling" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Styling
-      
+      </span>
     </span>
   </a>
   
@@ -1798,9 +1908,9 @@
           <li class="md-nav__item">
   <a href="#config-properties" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Config Properties
-      
+      </span>
     </span>
   </a>
   
@@ -1834,8 +1944,7 @@
   <span class="md-ellipsis">
     
   
-    Titles
-  
+  Titles
 
     
   </span>
@@ -1862,8 +1971,7 @@
   <span class="md-ellipsis">
     
   
-    Legends
-  
+  Legends
 
     
   </span>
@@ -1890,8 +1998,7 @@
   <span class="md-ellipsis">
     
   
-    Config And Themes
-  
+  Config And Themes
 
     
   </span>
@@ -1918,8 +2025,7 @@
   <span class="md-ellipsis">
     
   
-    Importing Views
-  
+  Importing Views
 
     
   </span>
@@ -1946,8 +2052,7 @@
   <span class="md-ellipsis">
     
   
-    Expressions
-  
+  Expressions
 
     
   </span>
@@ -1974,8 +2079,7 @@
   <span class="md-ellipsis">
     
   
-    Parameters
-  
+  Parameters
 
     
   </span>
@@ -2002,8 +2106,7 @@
   <span class="md-ellipsis">
     
   
-    Types
-  
+  Types
 
     
   </span>
@@ -2059,8 +2162,7 @@
   <span class="md-ellipsis">
     
   
-    Working with Genomic Data
-  
+  Working with Genomic Data
 
     
   </span>
@@ -2081,8 +2183,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Working with Genomic Data
-  
+  Working with Genomic Data
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2103,8 +2204,7 @@
   <span class="md-ellipsis">
     
   
-    Genomic Coordinates
-  
+  Genomic Coordinates
 
     
   </span>
@@ -2128,6 +2228,18 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -2165,8 +2277,7 @@
   <span class="md-ellipsis">
     
   
-    Examples
-  
+  Examples
 
     
   </span>
@@ -2187,8 +2298,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Examples
-  
+  Examples
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2209,8 +2319,7 @@
   <span class="md-ellipsis">
     
   
-    Chromosome Ideogram from Cytobands
-  
+  Chromosome Ideogram from Cytobands
 
     
   </span>
@@ -2230,15 +2339,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../genomic-data/examples/indexed-fasta-sequence-track/" class="md-nav__link">
+      <a href="../../genomic-data/examples/indexed-fasta-six-frame-translation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Indexed FASTA Sequence Track
-  
+  Indexed FASTA Six-Frame Translation
 
     
   </span>
@@ -2265,8 +2373,7 @@
   <span class="md-ellipsis">
     
   
-    RefSeq Gene Annotations with Scored Labels
-  
+  RefSeq Gene Annotations with Scored Labels
 
     
   </span>
@@ -2293,8 +2400,7 @@
   <span class="md-ellipsis">
     
   
-    GENCODE Gene Annotations from GFF3
-  
+  GENCODE Gene Annotations from GFF3
 
     
   </span>
@@ -2321,8 +2427,7 @@
   <span class="md-ellipsis">
     
   
-    ASCAT Copy-Number Segmentation
-  
+  ASCAT Copy-Number Segmentation
 
     
   </span>
@@ -2349,8 +2454,61 @@
   <span class="md-ellipsis">
     
   
-    ASCAT Algorithm in GenomeSpy
+  ASCAT Algorithm in GenomeSpy
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/hcc1954-sv-cnv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  HCC1954 Structural Variants and Copy Number
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/tcga-ov-gistic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  TCGA Ovarian Cancer GISTIC2 Copy-Number Landscape
 
     
   </span>
@@ -2377,8 +2535,34 @@
   <span class="md-ellipsis">
     
   
-    Sashimi plot from splice junctions
+  Sashimi plot from splice junctions
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/dynseq-spi1-bqtl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SPI1 Binding-QTL Dynseq Track
 
     
   </span>
@@ -2405,8 +2589,88 @@
   <span class="md-ellipsis">
     
   
-    ClinVar Small-Variant Classifications
+  ClinVar Small-Variant Classifications
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/bam-read-alignments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  BAM Read Alignments
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/multiple-sequence-alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Multiple Sequence Alignment
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../genomic-data/examples/genome-browser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Composing a Genome Browser
 
     
   </span>
@@ -2445,6 +2709,12 @@
       
         
           
+        
+      
+        
+      
+        
+      
         
       
         
@@ -2474,8 +2744,7 @@
   <span class="md-ellipsis">
     
   
-    Working with Sample Collections
-  
+  Working with Sample Collections
 
     
   </span>
@@ -2496,8 +2765,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Working with Sample Collections
-  
+  Working with Sample Collections
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2518,8 +2786,61 @@
   <span class="md-ellipsis">
     
   
-    Visualizing
+  Visualizing
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sample-collections/sample-view-parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sample View Parameters
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sample-collections/aggregating-samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Aggregating Samples
 
     
   </span>
@@ -2546,8 +2867,34 @@
   <span class="md-ellipsis">
     
   
-    Configuring Metadata Sources
+  Configuring Metadata Sources
+
+    
+  </span>
   
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sample-collections/app-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuring App Features
 
     
   </span>
@@ -2574,8 +2921,7 @@
   <span class="md-ellipsis">
     
   
-    Analyzing
-  
+  Analyzing
 
     
   </span>
@@ -2602,8 +2948,7 @@
   <span class="md-ellipsis">
     
   
-    Importing Metadata
-  
+  Importing Metadata
 
     
   </span>
@@ -2667,8 +3012,7 @@
   <span class="md-ellipsis">
     
   
-    JavaScript API
-  
+  JavaScript API
 
     
   </span>
@@ -2689,8 +3033,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    JavaScript API
-  
+  JavaScript API
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2711,8 +3054,7 @@
   <span class="md-ellipsis">
     
   
-    Embedding and Entry Points
-  
+  Embedding and Entry Points
 
     
   </span>
@@ -2739,8 +3081,7 @@
   <span class="md-ellipsis">
     
   
-    View Hierarchy
-  
+  View Hierarchy
 
     
   </span>
@@ -2767,8 +3108,7 @@
   <span class="md-ellipsis">
     
   
-    Runtime State
-  
+  Runtime State
 
     
   </span>
@@ -2795,8 +3135,7 @@
   <span class="md-ellipsis">
     
   
-    Inspector
-  
+  Inspector
 
     
   </span>
@@ -2823,8 +3162,7 @@
   <span class="md-ellipsis">
     
   
-    Instance, Events, and Export
-  
+  Instance, Events, and Export
 
     
   </span>
@@ -2851,8 +3189,7 @@
   <span class="md-ellipsis">
     
   
-    Embed Options
-  
+  Embed Options
 
     
   </span>
@@ -2886,8 +3223,7 @@
   <span class="md-ellipsis">
     
   
-    License
-  
+  License
 
     
   </span>
@@ -2909,10 +3245,24 @@
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -2921,16 +3271,16 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Configuration
-      
+      </span>
     </span>
   </a>
   
@@ -2939,9 +3289,9 @@
         <li class="md-nav__item">
   <a href="#placement" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Placement
-      
+      </span>
     </span>
   </a>
   
@@ -2950,9 +3300,9 @@
         <li class="md-nav__item">
   <a href="#titles" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Titles
-      
+      </span>
     </span>
   </a>
   
@@ -2961,9 +3311,9 @@
         <li class="md-nav__item">
   <a href="#ticks-labels-and-grid-lines" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Ticks, Labels, and Grid Lines
-      
+      </span>
     </span>
   </a>
   
@@ -2972,9 +3322,9 @@
         <li class="md-nav__item">
   <a href="#resolution" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Resolution
-      
+      </span>
     </span>
   </a>
   
@@ -2983,9 +3333,9 @@
         <li class="md-nav__item">
   <a href="#genome-axis-for-loci" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Genome Axis for Loci
-      
+      </span>
     </span>
   </a>
   
@@ -2994,9 +3344,9 @@
         <li class="md-nav__item">
   <a href="#custom-axes" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Custom Axes
-      
+      </span>
     </span>
   </a>
   
@@ -3005,9 +3355,9 @@
         <li class="md-nav__item">
   <a href="#properties" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Properties
-      
+      </span>
     </span>
   </a>
   
@@ -3016,9 +3366,9 @@
         <li class="md-nav__item">
   <a href="#genome-axis-properties" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Genome Axis Properties
-      
+      </span>
     </span>
   </a>
   
@@ -3027,9 +3377,9 @@
         <li class="md-nav__item">
   <a href="#styling" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Styling
-      
+      </span>
     </span>
   </a>
   
@@ -3039,9 +3389,9 @@
           <li class="md-nav__item">
   <a href="#config-properties" class="md-nav__link">
     <span class="md-ellipsis">
-      
+      <span class="md-typeset">
         Config Properties
-      
+      </span>
     </span>
   </a>
   
@@ -3066,12 +3416,10 @@
               <article class="md-content__inner md-typeset">
                 
                   
-
-
   
     <a href="https://github.com/genome-spy/genome-spy/edit/master/docs/grammar/axis.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-file-pen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg>
     </a>
   
   
@@ -3193,10 +3541,10 @@ numeric labels with a
 the rest of the axis.</p>
 <p>Grid lines are hidden by default in the default theme. Set <code>grid</code> to <code>true</code> to
 show grid lines for an axis. Global grid defaults can be configured with
-<a href="../config/#axis-defaults"><code>config.axis*</code></a>.</p>
+<a href=".././config/#axis-defaults"><code>config.axis*</code></a>.</p>
 <h2 id="resolution">Resolution<a class="headerlink" href="#resolution" title="Permanent link">&para;</a></h2>
 <p>Axes participate in view
-<a href="../composition/#scale-axis-and-legend-resolution">resolution</a> similarly
+<a href=".././composition/#scale-axis-and-legend-resolution">resolution</a> similarly
 to scales and legends. Use <code>resolve.axis</code> in composed views to choose whether
 child views share one axis or create independent axes.</p>
 <p>Shared axis resolution requires the corresponding scale resolution to be shared.
@@ -3211,7 +3559,7 @@ column. Grid lines are drawn for all participating views.</p>
 </code></pre></div>
 <p>For shared axis resolutions, axis properties can also be placed at the view level
 with <code>axes.&lt;channel&gt;</code>:</p>
-<div class="highlight"><span class="filename">View-level axis configuration</span><pre><span></span><code><span class="p">{</span>
+<div class="highlight"><span class="filename">View-level axis properties</span><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;axes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;orient&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bottom&quot;</span><span class="p">,</span>
@@ -3223,11 +3571,15 @@ with <code>axes.&lt;channel&gt;</code>:</p>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>A view-level axis config must map to one axis resolution. If the subtree has
-multiple independent axes for the same channel, place the config closer to the
-intended subtree or use local <code>encoding.&lt;channel&gt;.axis</code> settings. Do not mix
-view-level <code>axes.&lt;channel&gt;</code> with participating channel-level axis config for the
-same resolved axis.</p>
+<p>A view-level axis declaration must map to one axis resolution. If the subtree
+has multiple independent axes for the same channel, place the declaration
+closer to the intended subtree or use local <code>encoding.&lt;channel&gt;.axis</code>
+properties. Do not mix view-level <code>axes.&lt;channel&gt;</code> with participating
+channel-level axis properties for the same resolved axis.</p>
+<p>When nested view-level axis declarations target the same resolution, the
+ancestor declaration shadows the whole descendant declaration; their
+properties are not merged. Declarations in separate sibling subtrees remain
+ambiguous and cause an error.</p>
 <h2 id="genome-axis-for-loci">Genome Axis for Loci<a class="headerlink" href="#genome-axis-for-loci" title="Permanent link">&para;</a></h2>
 <p>The genome axis is a special axis for the <code>"locus"</code> scale. It displays
 chromosome names and intra-chromosomal coordinates. Chromosome ticks, labels,
@@ -3280,284 +3632,182 @@ chromosome ticks, bands, or grids.</p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>domain</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>domainCap</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The stroke cap for the domain line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
+<dd>Type: string<p>The stroke cap for the domain line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>domainColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Color of axis domain line.</p>
+<dd>Type: string<p>Color of axis domain line.</p>
 <p><strong>Default value:</strong> <code>"gray"</code>.</p>
 </dd>
 <dt><code>domainDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed domain lines.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed domain lines.</p>
 </dd>
 <dt><code>domainDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the domain dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the domain dash array.</p>
 </dd>
 <dt><code>domainWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Stroke width of axis domain line</p>
+<dd>Type: number<p>Stroke width of axis domain line</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>format</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The format specifier pattern for axis labels. Must be a legal <a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
+<dd>Type: string<p>The format specifier pattern for axis labels. Must be a legal <a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
 </dd>
 <dt><code>grid</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if grid lines should be included as part of the axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if grid lines should be included as part of the axis.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>gridCap</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The stroke cap for the grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
+<dd>Type: string<p>The stroke cap for the grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>gridColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Color of grid lines.</p>
+<dd>Type: string<p>Color of grid lines.</p>
 <p><strong>Default value:</strong> <code>lightgray</code></p>
 </dd>
 <dt><code>gridDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed grid mark lines.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed grid mark lines.</p>
 </dd>
 <dt><code>gridDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the grid mark dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the grid mark dash array.</p>
 </dd>
 <dt><code>gridOpacity</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The opacity of the grid lines.</p>
+<dd>Type: number<p>The opacity of the grid lines.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>gridWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Width of the grid lines.</p>
+<dd>Type: number<p>Width of the grid lines.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>labelAlign</code></dt>
-<dd>
-<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
-<p>Horizontal text alignment of axis tick labels, overriding the default setting for the current axis orientation.</p>
+<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>Horizontal text alignment of axis tick labels, overriding the default setting for the current axis orientation.</p>
 </dd>
 <dt><code>labelAngle</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The rotation angle of the axis labels.</p>
+<dd>Type: number<p>The rotation angle of the axis labels.</p>
 <p><strong>Default value:</strong> <code>-90</code> for nominal and ordinal fields; <code>0</code> otherwise.</p>
 </dd>
 <dt><code>labelBaseline</code></dt>
-<dd>
-<p>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code></p>
-<p>Vertical text baseline of axis tick labels, overriding the default setting for the current axis orientation. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, <code>"bottom"</code>.</p>
+<dd>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code><p>Vertical text baseline of axis tick labels, overriding the default setting for the current axis orientation. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, <code>"bottom"</code>.</p>
 </dd>
 <dt><code>labelColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The color of the tick label, can be in hex color code or regular color name.</p>
+<dd>Type: string<p>The color of the tick label, can be in hex color code or regular color name.</p>
 </dd>
 <dt><code>labelFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The font of the tick label.</p>
+<dd>Type: string<p>The font of the tick label.</p>
 </dd>
 <dt><code>labelFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The font size of the label, in pixels.</p>
+<dd>Type: number<p>The font size of the label, in pixels.</p>
 </dd>
 <dt><code>labelFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>Font style of the title.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style of the title.</p>
 </dd>
 <dt><code>labelFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>Font weight of axis tick labels.</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight of axis tick labels.</p>
 </dd>
 <dt><code>labelLimit</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Maximum allowed pixel width of axis tick labels.</p>
+<dd>Type: number<p>Maximum allowed pixel width of axis tick labels.</p>
 <p><strong>Default value:</strong> <code>180</code></p>
 </dd>
 <dt><code>labelPadding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The padding, in pixels, between axis and text labels.</p>
+<dd>Type: number<p>The padding, in pixels, between axis and text labels.</p>
 <p><strong>Default value:</strong> <code>2</code></p>
 </dd>
 <dt><code>labels</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if labels should be included as part of the axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if labels should be included as part of the axis.</p>
 <p><strong>Default value:</strong> <code>true</code>.</p>
 </dd>
 <dt><code>maxExtent</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The maximum extent in pixels that axis ticks and labels should use. This determines a maximum offset value for axis titles.</p>
+<dd>Type: number<p>The maximum extent in pixels that axis ticks and labels should use. This determines a maximum offset value for axis titles.</p>
 <p><strong>Default value:</strong> <code>undefined</code>.</p>
 </dd>
 <dt><code>minExtent</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The minimum extent in pixels that axis ticks and labels should use. This determines a minimum offset value for axis titles.</p>
+<dd>Type: number<p>The minimum extent in pixels that axis ticks and labels should use. This determines a minimum offset value for axis titles.</p>
 <p><strong>Default value:</strong> <code>30</code> for y-axis; <code>undefined</code> for x-axis.</p>
 </dd>
 <dt><code>offset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The orthogonal offset in pixels by which to displace the axis from its position along the edge of the chart.</p>
+<dd>Type: number<p>The orthogonal offset in pixels by which to displace the axis from its position along the edge of the chart.</p>
 </dd>
 <dt><code>orient</code></dt>
-<dd>
-<p>Type: <code>"top"</code> | <code>"bottom"</code> | <code>"left"</code> | <code>"right"</code></p>
-<p>The orientation of the axis. One of <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code> or <code>"right"</code>. The orientation can be used to further specialize the axis type (e.g., a y axis oriented for the right edge of the chart).</p>
+<dd>Type: <code>"top"</code> | <code>"bottom"</code> | <code>"left"</code> | <code>"right"</code><p>The orientation of the axis. One of <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code> or <code>"right"</code>. The orientation can be used to further specialize the axis type (e.g., a y axis oriented for the right edge of the chart).</p>
 <p><strong>Default value:</strong> <code>"bottom"</code> for x-axes and <code>"left"</code> for y-axes.</p>
 </dd>
 <dt><code>placement</code></dt>
-<dd>
-<p>Type: <code>"outside"</code> | <code>"inside"</code></p>
-<p>Placement of the axis relative to the plotting area. Outside axes reserve layout space outside the plot. Inside axes are mirrored into the plot and do not reserve external layout space.</p>
+<dd>Type: <code>"outside"</code> | <code>"inside"</code><p>Placement of the axis relative to the plotting area. Outside axes reserve layout space outside the plot. Inside axes are mirrored into the plot and do not reserve external layout space.</p>
 <p><strong>Default value:</strong> <code>"outside"</code>.</p>
 </dd>
 <dt><code>style</code></dt>
-<dd>
-<p>Type: string | string[] | null</p>
-<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones. Set to <code>null</code> to reset inherited axis styles.</p>
+<dd>Type: string | string[] | null<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones. Set to <code>null</code> to reset inherited axis styles.</p>
 </dd>
 <dt><code>tickCap</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The stroke cap for the tick lines' ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
+<dd>Type: string<p>The stroke cap for the tick lines' ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>tickColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The color of the axis's tick.</p>
+<dd>Type: string<p>The color of the axis's tick.</p>
 <p><strong>Default value:</strong> <code>"gray"</code></p>
 </dd>
 <dt><code>tickCount</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are "nice" (multiples of <code>2</code>, <code>5</code>, <code>10</code>) and lie within the underlying scale's range.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are "nice" (multiples of <code>2</code>, <code>5</code>, <code>10</code>) and lie within the underlying scale's range.</p>
 <p>An expression reference can use <code>axisLength</code> for the current length of the axis in pixels. For example, <code>{ "expr": "ceil(axisLength / 40)" }</code> requests one tick per 40 pixels.</p>
 <p><strong>Default value:</strong> an expression based on <code>axisLength</code></p>
 </dd>
 <dt><code>tickDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed tick mark lines.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed tick mark lines.</p>
 </dd>
 <dt><code>tickDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the tick mark dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the tick mark dash array.</p>
 </dd>
 <dt><code>tickMinStep</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The minimum desired step between axis ticks, in terms of scale domain values. For example, a value of <code>1</code> indicates that ticks should not be less than 1 unit apart. If <code>tickMinStep</code> is specified, the <code>tickCount</code> value will be adjusted, if necessary, to enforce the minimum step value.</p>
+<dd>Type: number<p>The minimum desired step between axis ticks, in terms of scale domain values. For example, a value of <code>1</code> indicates that ticks should not be less than 1 unit apart. If <code>tickMinStep</code> is specified, the <code>tickCount</code> value will be adjusted, if necessary, to enforce the minimum step value.</p>
 </dd>
 <dt><code>tickSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The size in pixels of axis ticks.</p>
+<dd>Type: number<p>The size in pixels of axis ticks.</p>
 <p><strong>Default value:</strong> <code>5</code></p>
 </dd>
 <dt><code>tickWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The width, in pixels, of ticks.</p>
+<dd>Type: number<p>The width, in pixels, of ticks.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>ticks</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Boolean value that determines whether the axis should include ticks.</p>
+<dd>Type: boolean<p>Boolean value that determines whether the axis should include ticks.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>title</code></dt>
-<dd>
-<p>Type: string | null</p>
-<p>A title for the axis. By default, the title is derived from the encoding title, field, or expression. Set to <code>null</code> to remove it.</p>
+<dd>Type: string | null<p>A title for the axis. By default, the title is derived from the encoding title, field, or expression. Set to <code>null</code> to remove it.</p>
 </dd>
 <dt><code>titleColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Color of the title, can be in hex color code or regular color name.</p>
+<dd>Type: string<p>Color of the title, can be in hex color code or regular color name.</p>
 </dd>
 <dt><code>titleFit</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Fitting mode for the axis title. <code>"point"</code> anchors the title at the center of the axis without constraining its length. <code>"range"</code> constrains the title to the axis span using <a href="https://genomespy.app/docs/grammar/mark/text/#ranged-text">ranged text</a>, allowing it to be squeezed to fit and kept visible inside scrollable viewports.</p>
+<dd>Type: string<p>Fitting mode for the axis title. <code>"point"</code> anchors the title at the center of the axis without constraining its length. <code>"range"</code> constrains the title to the axis span using <a href="https://genomespy.app/docs/grammar/mark/text/#ranged-text">ranged text</a>, allowing it to be squeezed to fit and kept visible inside scrollable viewports.</p>
 <p><strong>Default value:</strong> <code>"point"</code></p>
 </dd>
 <dt><code>titleFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Font of the title. (e.g., <code>"Helvetica Neue"</code>).</p>
+<dd>Type: string<p>Font of the title. (e.g., <code>"Helvetica Neue"</code>).</p>
 </dd>
 <dt><code>titleFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Font size of the title.</p>
+<dd>Type: number<p>Font size of the title.</p>
 </dd>
 <dt><code>titleFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>Font style of the title.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style of the title.</p>
 </dd>
 <dt><code>titleFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>Font weight of the title. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight of the title. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
 </dd>
 <dt><code>titleOpacity</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Opacity of the axis title.</p>
+<dd>Type: number<p>Opacity of the axis title.</p>
 </dd>
 <dt><code>titlePadding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The padding, in pixels, between title and axis.</p>
+<dd>Type: number<p>The padding, in pixels, between title and axis.</p>
 </dd>
 <dt><code>values</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Explicitly set the visible axis tick and label values.</p>
+<dd>Type: array<p>Explicitly set the visible axis tick and label values.</p>
 </dd>
 <dt><code>zindex</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Z-order of the axis relative to the view content.</p>
+<dd>Type: number<p>Z-order of the axis relative to the view content.</p>
 <p>Values greater than <code>0</code> render after the view marks. Values less than or equal to <code>0</code> render before the marks.</p>
 <p><strong>Default value:</strong> <code>0</code>, or <code>10</code> when the view content is clipped or scrollable.</p>
 </dd>
@@ -3565,419 +3815,271 @@ chromosome ticks, bands, or grids.</p>
 <h2 id="genome-axis-properties">Genome Axis Properties<a class="headerlink" href="#genome-axis-properties" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>chromGrid</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if chromosome grid lines should be included as part of the axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if chromosome grid lines should be included as part of the axis.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>chromGridCap</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The stroke cap for the chromosome grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
+<dd>Type: string<p>The stroke cap for the chromosome grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>chromGridColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Color of grid lines.</p>
+<dd>Type: string<p>Color of grid lines.</p>
 <p><strong>Default value:</strong> <code>lightgray</code></p>
 </dd>
 <dt><code>chromGridDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed chromosome grid mark lines.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed chromosome grid mark lines.</p>
 </dd>
 <dt><code>chromGridDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the chromosome grid mark dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the chromosome grid mark dash array.</p>
 </dd>
 <dt><code>chromGridFillEven</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Fill color of odd chromosomes.</p>
+<dd>Type: string<p>Fill color of odd chromosomes.</p>
 <p><strong>Default value:</strong> (none)</p>
 </dd>
 <dt><code>chromGridFillOdd</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Fill color of odd chromosomes.</p>
+<dd>Type: string<p>Fill color of odd chromosomes.</p>
 <p><strong>Default value:</strong> (none)</p>
 </dd>
 <dt><code>chromGridOpacity</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The opacity of the chromosome grid lines.</p>
+<dd>Type: number<p>The opacity of the chromosome grid lines.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>chromGridWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Width of the chromosome grid lines.</p>
+<dd>Type: number<p>Width of the chromosome grid lines.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>chromLabelAlign</code></dt>
-<dd>
-<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
-<p>Horizontal text alignment of chromosome name labels.</p>
+<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>Horizontal text alignment of chromosome name labels.</p>
 <p><strong>Default value:</strong> <code>"left"</code></p>
 </dd>
 <dt><code>chromLabelColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Text color of chromosome name labels.</p>
+<dd>Type: string<p>Text color of chromosome name labels.</p>
 <p><strong>Default value:</strong> <code>"black"</code></p>
 </dd>
 <dt><code>chromLabelFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The font of chromosome name labels.</p>
+<dd>Type: string<p>The font of chromosome name labels.</p>
 </dd>
 <dt><code>chromLabelFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Font size of chromosome name labels, in pixels.</p>
+<dd>Type: number<p>Font size of chromosome name labels, in pixels.</p>
 <p><strong>Default value:</strong> <code>13</code></p>
 </dd>
 <dt><code>chromLabelFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>Font style of chromosome name labels.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style of chromosome name labels.</p>
 <p><strong>Default value:</strong> <code>"normal"</code></p>
 </dd>
 <dt><code>chromLabelFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>Font weight of chromosome name labels.</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight of chromosome name labels.</p>
 <p><strong>Default value:</strong> <code>"normal"</code></p>
 </dd>
 <dt><code>chromLabelPadding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The padding, in pixels, between chromosome boundary ticks and chromosome name labels.</p>
+<dd>Type: number<p>The padding, in pixels, between chromosome boundary ticks and chromosome name labels.</p>
 <p><strong>Default value:</strong> <code>7</code></p>
 </dd>
 <dt><code>chromLabels</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if chromosome name labels should be included as part of the genome axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if chromosome name labels should be included as part of the genome axis.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>chromTickColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The color of chromosome boundary ticks.</p>
+<dd>Type: string<p>The color of chromosome boundary ticks.</p>
 <p><strong>Default value:</strong> <code>"#989898"</code></p>
 </dd>
 <dt><code>chromTickDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed chromosome boundary ticks.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed chromosome boundary ticks.</p>
 <p><strong>Default value:</strong> <code>[4, 2]</code></p>
 </dd>
 <dt><code>chromTickDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the chromosome tick dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the chromosome tick dash array.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>chromTickSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The size in pixels of chromosome boundary ticks.</p>
+<dd>Type: number<p>The size in pixels of chromosome boundary ticks.</p>
 <p><strong>Default value:</strong> <code>18</code></p>
 </dd>
 <dt><code>chromTickWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The width, in pixels, of chromosome boundary ticks.</p>
+<dd>Type: number<p>The width, in pixels, of chromosome boundary ticks.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>chromTicks</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if chromosome boundary ticks should be included as part of the genome axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if chromosome boundary ticks should be included as part of the genome axis.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>domain</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>domainCap</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The stroke cap for the domain line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
+<dd>Type: string<p>The stroke cap for the domain line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>domainColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Color of axis domain line.</p>
+<dd>Type: string<p>Color of axis domain line.</p>
 <p><strong>Default value:</strong> <code>"gray"</code>.</p>
 </dd>
 <dt><code>domainDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed domain lines.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed domain lines.</p>
 </dd>
 <dt><code>domainDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the domain dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the domain dash array.</p>
 </dd>
 <dt><code>domainWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Stroke width of axis domain line</p>
+<dd>Type: number<p>Stroke width of axis domain line</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>format</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The format specifier pattern for axis labels. Must be a legal <a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
+<dd>Type: string<p>The format specifier pattern for axis labels. Must be a legal <a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
 </dd>
 <dt><code>grid</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if grid lines should be included as part of the axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if grid lines should be included as part of the axis.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>gridCap</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The stroke cap for the grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
+<dd>Type: string<p>The stroke cap for the grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>gridColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Color of grid lines.</p>
+<dd>Type: string<p>Color of grid lines.</p>
 <p><strong>Default value:</strong> <code>lightgray</code></p>
 </dd>
 <dt><code>gridDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed grid mark lines.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed grid mark lines.</p>
 </dd>
 <dt><code>gridDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the grid mark dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the grid mark dash array.</p>
 </dd>
 <dt><code>gridOpacity</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The opacity of the grid lines.</p>
+<dd>Type: number<p>The opacity of the grid lines.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>gridWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Width of the grid lines.</p>
+<dd>Type: number<p>Width of the grid lines.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>labelAlign</code></dt>
-<dd>
-<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
-<p>Horizontal text alignment of axis tick labels, overriding the default setting for the current axis orientation.</p>
+<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>Horizontal text alignment of axis tick labels, overriding the default setting for the current axis orientation.</p>
 </dd>
 <dt><code>labelAngle</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The rotation angle of the axis labels.</p>
+<dd>Type: number<p>The rotation angle of the axis labels.</p>
 <p><strong>Default value:</strong> <code>-90</code> for nominal and ordinal fields; <code>0</code> otherwise.</p>
 </dd>
 <dt><code>labelBaseline</code></dt>
-<dd>
-<p>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code></p>
-<p>Vertical text baseline of axis tick labels, overriding the default setting for the current axis orientation. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, <code>"bottom"</code>.</p>
+<dd>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code><p>Vertical text baseline of axis tick labels, overriding the default setting for the current axis orientation. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, <code>"bottom"</code>.</p>
 </dd>
 <dt><code>labelColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The color of the tick label, can be in hex color code or regular color name.</p>
+<dd>Type: string<p>The color of the tick label, can be in hex color code or regular color name.</p>
 </dd>
 <dt><code>labelFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The font of the tick label.</p>
+<dd>Type: string<p>The font of the tick label.</p>
 </dd>
 <dt><code>labelFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The font size of the label, in pixels.</p>
+<dd>Type: number<p>The font size of the label, in pixels.</p>
 </dd>
 <dt><code>labelFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>Font style of the title.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style of the title.</p>
 </dd>
 <dt><code>labelFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>Font weight of axis tick labels.</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight of axis tick labels.</p>
 </dd>
 <dt><code>labelLimit</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Maximum allowed pixel width of axis tick labels.</p>
+<dd>Type: number<p>Maximum allowed pixel width of axis tick labels.</p>
 <p><strong>Default value:</strong> <code>180</code></p>
 </dd>
 <dt><code>labelPadding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The padding, in pixels, between axis and text labels.</p>
+<dd>Type: number<p>The padding, in pixels, between axis and text labels.</p>
 <p><strong>Default value:</strong> <code>2</code></p>
 </dd>
 <dt><code>labels</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if labels should be included as part of the axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if labels should be included as part of the axis.</p>
 <p><strong>Default value:</strong> <code>true</code>.</p>
 </dd>
 <dt><code>maxExtent</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The maximum extent in pixels that axis ticks and labels should use. This determines a maximum offset value for axis titles.</p>
+<dd>Type: number<p>The maximum extent in pixels that axis ticks and labels should use. This determines a maximum offset value for axis titles.</p>
 <p><strong>Default value:</strong> <code>undefined</code>.</p>
 </dd>
 <dt><code>minExtent</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The minimum extent in pixels that axis ticks and labels should use. This determines a minimum offset value for axis titles.</p>
+<dd>Type: number<p>The minimum extent in pixels that axis ticks and labels should use. This determines a minimum offset value for axis titles.</p>
 <p><strong>Default value:</strong> <code>30</code> for y-axis; <code>undefined</code> for x-axis.</p>
 </dd>
 <dt><code>offset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The orthogonal offset in pixels by which to displace the axis from its position along the edge of the chart.</p>
+<dd>Type: number<p>The orthogonal offset in pixels by which to displace the axis from its position along the edge of the chart.</p>
 </dd>
 <dt><code>orient</code></dt>
-<dd>
-<p>Type: <code>"top"</code> | <code>"bottom"</code> | <code>"left"</code> | <code>"right"</code></p>
-<p>The orientation of the axis. One of <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code> or <code>"right"</code>. The orientation can be used to further specialize the axis type (e.g., a y axis oriented for the right edge of the chart).</p>
+<dd>Type: <code>"top"</code> | <code>"bottom"</code> | <code>"left"</code> | <code>"right"</code><p>The orientation of the axis. One of <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code> or <code>"right"</code>. The orientation can be used to further specialize the axis type (e.g., a y axis oriented for the right edge of the chart).</p>
 <p><strong>Default value:</strong> <code>"bottom"</code> for x-axes and <code>"left"</code> for y-axes.</p>
 </dd>
 <dt><code>placement</code></dt>
-<dd>
-<p>Type: <code>"outside"</code> | <code>"inside"</code></p>
-<p>Placement of the axis relative to the plotting area. Outside axes reserve layout space outside the plot. Inside axes are mirrored into the plot and do not reserve external layout space.</p>
+<dd>Type: <code>"outside"</code> | <code>"inside"</code><p>Placement of the axis relative to the plotting area. Outside axes reserve layout space outside the plot. Inside axes are mirrored into the plot and do not reserve external layout space.</p>
 <p><strong>Default value:</strong> <code>"outside"</code>.</p>
 </dd>
 <dt><code>style</code></dt>
-<dd>
-<p>Type: string | string[] | null</p>
-<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones. Set to <code>null</code> to reset inherited axis styles.</p>
+<dd>Type: string | string[] | null<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones. Set to <code>null</code> to reset inherited axis styles.</p>
 </dd>
 <dt><code>tickCap</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The stroke cap for the tick lines' ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
+<dd>Type: string<p>The stroke cap for the tick lines' ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>tickColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The color of the axis's tick.</p>
+<dd>Type: string<p>The color of the axis's tick.</p>
 <p><strong>Default value:</strong> <code>"gray"</code></p>
 </dd>
 <dt><code>tickCount</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are "nice" (multiples of <code>2</code>, <code>5</code>, <code>10</code>) and lie within the underlying scale's range.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are "nice" (multiples of <code>2</code>, <code>5</code>, <code>10</code>) and lie within the underlying scale's range.</p>
 <p>An expression reference can use <code>axisLength</code> for the current length of the axis in pixels. For example, <code>{ "expr": "ceil(axisLength / 40)" }</code> requests one tick per 40 pixels.</p>
 <p><strong>Default value:</strong> an expression based on <code>axisLength</code></p>
 </dd>
 <dt><code>tickDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed tick mark lines.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed tick mark lines.</p>
 </dd>
 <dt><code>tickDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the tick mark dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the tick mark dash array.</p>
 </dd>
 <dt><code>tickMinStep</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The minimum desired step between axis ticks, in terms of scale domain values. For example, a value of <code>1</code> indicates that ticks should not be less than 1 unit apart. If <code>tickMinStep</code> is specified, the <code>tickCount</code> value will be adjusted, if necessary, to enforce the minimum step value.</p>
+<dd>Type: number<p>The minimum desired step between axis ticks, in terms of scale domain values. For example, a value of <code>1</code> indicates that ticks should not be less than 1 unit apart. If <code>tickMinStep</code> is specified, the <code>tickCount</code> value will be adjusted, if necessary, to enforce the minimum step value.</p>
 </dd>
 <dt><code>tickSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The size in pixels of axis ticks.</p>
+<dd>Type: number<p>The size in pixels of axis ticks.</p>
 <p><strong>Default value:</strong> <code>5</code></p>
 </dd>
 <dt><code>tickWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The width, in pixels, of ticks.</p>
+<dd>Type: number<p>The width, in pixels, of ticks.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>ticks</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Boolean value that determines whether the axis should include ticks.</p>
+<dd>Type: boolean<p>Boolean value that determines whether the axis should include ticks.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>title</code></dt>
-<dd>
-<p>Type: string | null</p>
-<p>A title for the axis. By default, the title is derived from the encoding title, field, or expression. Set to <code>null</code> to remove it.</p>
+<dd>Type: string | null<p>A title for the axis. By default, the title is derived from the encoding title, field, or expression. Set to <code>null</code> to remove it.</p>
 </dd>
 <dt><code>titleColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Color of the title, can be in hex color code or regular color name.</p>
+<dd>Type: string<p>Color of the title, can be in hex color code or regular color name.</p>
 </dd>
 <dt><code>titleFit</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Fitting mode for the axis title. <code>"point"</code> anchors the title at the center of the axis without constraining its length. <code>"range"</code> constrains the title to the axis span using <a href="https://genomespy.app/docs/grammar/mark/text/#ranged-text">ranged text</a>, allowing it to be squeezed to fit and kept visible inside scrollable viewports.</p>
+<dd>Type: string<p>Fitting mode for the axis title. <code>"point"</code> anchors the title at the center of the axis without constraining its length. <code>"range"</code> constrains the title to the axis span using <a href="https://genomespy.app/docs/grammar/mark/text/#ranged-text">ranged text</a>, allowing it to be squeezed to fit and kept visible inside scrollable viewports.</p>
 <p><strong>Default value:</strong> <code>"point"</code></p>
 </dd>
 <dt><code>titleFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Font of the title. (e.g., <code>"Helvetica Neue"</code>).</p>
+<dd>Type: string<p>Font of the title. (e.g., <code>"Helvetica Neue"</code>).</p>
 </dd>
 <dt><code>titleFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Font size of the title.</p>
+<dd>Type: number<p>Font size of the title.</p>
 </dd>
 <dt><code>titleFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>Font style of the title.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style of the title.</p>
 </dd>
 <dt><code>titleFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>Font weight of the title. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight of the title. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
 </dd>
 <dt><code>titleOpacity</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Opacity of the axis title.</p>
+<dd>Type: number<p>Opacity of the axis title.</p>
 </dd>
 <dt><code>titlePadding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The padding, in pixels, between title and axis.</p>
+<dd>Type: number<p>The padding, in pixels, between title and axis.</p>
 </dd>
 <dt><code>values</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Explicitly set the visible axis tick and label values.</p>
+<dd>Type: array<p>Explicitly set the visible axis tick and label values.</p>
 </dd>
 <dt><code>zindex</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Z-order of the axis relative to the view content.</p>
+<dd>Type: number<p>Z-order of the axis relative to the view content.</p>
 <p>Values greater than <code>0</code> render after the view marks. Values less than or equal to <code>0</code> render before the marks.</p>
 <p><strong>Default value:</strong> <code>0</code>, or <code>10</code> when the view content is clipped or scrollable.</p>
 </dd>
@@ -4007,419 +4109,271 @@ channel-level axis object overrides the configured defaults for that axis.</p>
 <h3 id="config-properties">Config Properties<a class="headerlink" href="#config-properties" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>chromGrid</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if chromosome grid lines should be included as part of the axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if chromosome grid lines should be included as part of the axis.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>chromGridCap</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The stroke cap for the chromosome grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
+<dd>Type: string<p>The stroke cap for the chromosome grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>chromGridColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Color of grid lines.</p>
+<dd>Type: string<p>Color of grid lines.</p>
 <p><strong>Default value:</strong> <code>lightgray</code></p>
 </dd>
 <dt><code>chromGridDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed chromosome grid mark lines.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed chromosome grid mark lines.</p>
 </dd>
 <dt><code>chromGridDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the chromosome grid mark dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the chromosome grid mark dash array.</p>
 </dd>
 <dt><code>chromGridFillEven</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Fill color of odd chromosomes.</p>
+<dd>Type: string<p>Fill color of odd chromosomes.</p>
 <p><strong>Default value:</strong> (none)</p>
 </dd>
 <dt><code>chromGridFillOdd</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Fill color of odd chromosomes.</p>
+<dd>Type: string<p>Fill color of odd chromosomes.</p>
 <p><strong>Default value:</strong> (none)</p>
 </dd>
 <dt><code>chromGridOpacity</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The opacity of the chromosome grid lines.</p>
+<dd>Type: number<p>The opacity of the chromosome grid lines.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>chromGridWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Width of the chromosome grid lines.</p>
+<dd>Type: number<p>Width of the chromosome grid lines.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>chromLabelAlign</code></dt>
-<dd>
-<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
-<p>Horizontal text alignment of chromosome name labels.</p>
+<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>Horizontal text alignment of chromosome name labels.</p>
 <p><strong>Default value:</strong> <code>"left"</code></p>
 </dd>
 <dt><code>chromLabelColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Text color of chromosome name labels.</p>
+<dd>Type: string<p>Text color of chromosome name labels.</p>
 <p><strong>Default value:</strong> <code>"black"</code></p>
 </dd>
 <dt><code>chromLabelFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The font of chromosome name labels.</p>
+<dd>Type: string<p>The font of chromosome name labels.</p>
 </dd>
 <dt><code>chromLabelFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Font size of chromosome name labels, in pixels.</p>
+<dd>Type: number<p>Font size of chromosome name labels, in pixels.</p>
 <p><strong>Default value:</strong> <code>13</code></p>
 </dd>
 <dt><code>chromLabelFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>Font style of chromosome name labels.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style of chromosome name labels.</p>
 <p><strong>Default value:</strong> <code>"normal"</code></p>
 </dd>
 <dt><code>chromLabelFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>Font weight of chromosome name labels.</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight of chromosome name labels.</p>
 <p><strong>Default value:</strong> <code>"normal"</code></p>
 </dd>
 <dt><code>chromLabelPadding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The padding, in pixels, between chromosome boundary ticks and chromosome name labels.</p>
+<dd>Type: number<p>The padding, in pixels, between chromosome boundary ticks and chromosome name labels.</p>
 <p><strong>Default value:</strong> <code>7</code></p>
 </dd>
 <dt><code>chromLabels</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if chromosome name labels should be included as part of the genome axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if chromosome name labels should be included as part of the genome axis.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>chromTickColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The color of chromosome boundary ticks.</p>
+<dd>Type: string<p>The color of chromosome boundary ticks.</p>
 <p><strong>Default value:</strong> <code>"#989898"</code></p>
 </dd>
 <dt><code>chromTickDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed chromosome boundary ticks.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed chromosome boundary ticks.</p>
 <p><strong>Default value:</strong> <code>[4, 2]</code></p>
 </dd>
 <dt><code>chromTickDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the chromosome tick dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the chromosome tick dash array.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>chromTickSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The size in pixels of chromosome boundary ticks.</p>
+<dd>Type: number<p>The size in pixels of chromosome boundary ticks.</p>
 <p><strong>Default value:</strong> <code>18</code></p>
 </dd>
 <dt><code>chromTickWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The width, in pixels, of chromosome boundary ticks.</p>
+<dd>Type: number<p>The width, in pixels, of chromosome boundary ticks.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>chromTicks</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if chromosome boundary ticks should be included as part of the genome axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if chromosome boundary ticks should be included as part of the genome axis.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>domain</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>domainCap</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The stroke cap for the domain line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
+<dd>Type: string<p>The stroke cap for the domain line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>domainColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Color of axis domain line.</p>
+<dd>Type: string<p>Color of axis domain line.</p>
 <p><strong>Default value:</strong> <code>"gray"</code>.</p>
 </dd>
 <dt><code>domainDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed domain lines.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed domain lines.</p>
 </dd>
 <dt><code>domainDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the domain dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the domain dash array.</p>
 </dd>
 <dt><code>domainWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Stroke width of axis domain line</p>
+<dd>Type: number<p>Stroke width of axis domain line</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>format</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The format specifier pattern for axis labels. Must be a legal <a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
+<dd>Type: string<p>The format specifier pattern for axis labels. Must be a legal <a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
 </dd>
 <dt><code>grid</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if grid lines should be included as part of the axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if grid lines should be included as part of the axis.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>gridCap</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The stroke cap for the grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
+<dd>Type: string<p>The stroke cap for the grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>gridColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Color of grid lines.</p>
+<dd>Type: string<p>Color of grid lines.</p>
 <p><strong>Default value:</strong> <code>lightgray</code></p>
 </dd>
 <dt><code>gridDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed grid mark lines.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed grid mark lines.</p>
 </dd>
 <dt><code>gridDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the grid mark dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the grid mark dash array.</p>
 </dd>
 <dt><code>gridOpacity</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The opacity of the grid lines.</p>
+<dd>Type: number<p>The opacity of the grid lines.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>gridWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Width of the grid lines.</p>
+<dd>Type: number<p>Width of the grid lines.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>labelAlign</code></dt>
-<dd>
-<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
-<p>Horizontal text alignment of axis tick labels, overriding the default setting for the current axis orientation.</p>
+<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>Horizontal text alignment of axis tick labels, overriding the default setting for the current axis orientation.</p>
 </dd>
 <dt><code>labelAngle</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The rotation angle of the axis labels.</p>
+<dd>Type: number<p>The rotation angle of the axis labels.</p>
 <p><strong>Default value:</strong> <code>-90</code> for nominal and ordinal fields; <code>0</code> otherwise.</p>
 </dd>
 <dt><code>labelBaseline</code></dt>
-<dd>
-<p>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code></p>
-<p>Vertical text baseline of axis tick labels, overriding the default setting for the current axis orientation. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, <code>"bottom"</code>.</p>
+<dd>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code><p>Vertical text baseline of axis tick labels, overriding the default setting for the current axis orientation. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, <code>"bottom"</code>.</p>
 </dd>
 <dt><code>labelColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The color of the tick label, can be in hex color code or regular color name.</p>
+<dd>Type: string<p>The color of the tick label, can be in hex color code or regular color name.</p>
 </dd>
 <dt><code>labelFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The font of the tick label.</p>
+<dd>Type: string<p>The font of the tick label.</p>
 </dd>
 <dt><code>labelFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The font size of the label, in pixels.</p>
+<dd>Type: number<p>The font size of the label, in pixels.</p>
 </dd>
 <dt><code>labelFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>Font style of the title.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style of the title.</p>
 </dd>
 <dt><code>labelFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>Font weight of axis tick labels.</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight of axis tick labels.</p>
 </dd>
 <dt><code>labelLimit</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Maximum allowed pixel width of axis tick labels.</p>
+<dd>Type: number<p>Maximum allowed pixel width of axis tick labels.</p>
 <p><strong>Default value:</strong> <code>180</code></p>
 </dd>
 <dt><code>labelPadding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The padding, in pixels, between axis and text labels.</p>
+<dd>Type: number<p>The padding, in pixels, between axis and text labels.</p>
 <p><strong>Default value:</strong> <code>2</code></p>
 </dd>
 <dt><code>labels</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>A boolean flag indicating if labels should be included as part of the axis.</p>
+<dd>Type: boolean<p>A boolean flag indicating if labels should be included as part of the axis.</p>
 <p><strong>Default value:</strong> <code>true</code>.</p>
 </dd>
 <dt><code>maxExtent</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The maximum extent in pixels that axis ticks and labels should use. This determines a maximum offset value for axis titles.</p>
+<dd>Type: number<p>The maximum extent in pixels that axis ticks and labels should use. This determines a maximum offset value for axis titles.</p>
 <p><strong>Default value:</strong> <code>undefined</code>.</p>
 </dd>
 <dt><code>minExtent</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The minimum extent in pixels that axis ticks and labels should use. This determines a minimum offset value for axis titles.</p>
+<dd>Type: number<p>The minimum extent in pixels that axis ticks and labels should use. This determines a minimum offset value for axis titles.</p>
 <p><strong>Default value:</strong> <code>30</code> for y-axis; <code>undefined</code> for x-axis.</p>
 </dd>
 <dt><code>offset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The orthogonal offset in pixels by which to displace the axis from its position along the edge of the chart.</p>
+<dd>Type: number<p>The orthogonal offset in pixels by which to displace the axis from its position along the edge of the chart.</p>
 </dd>
 <dt><code>orient</code></dt>
-<dd>
-<p>Type: <code>"top"</code> | <code>"bottom"</code> | <code>"left"</code> | <code>"right"</code></p>
-<p>The orientation of the axis. One of <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code> or <code>"right"</code>. The orientation can be used to further specialize the axis type (e.g., a y axis oriented for the right edge of the chart).</p>
+<dd>Type: <code>"top"</code> | <code>"bottom"</code> | <code>"left"</code> | <code>"right"</code><p>The orientation of the axis. One of <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code> or <code>"right"</code>. The orientation can be used to further specialize the axis type (e.g., a y axis oriented for the right edge of the chart).</p>
 <p><strong>Default value:</strong> <code>"bottom"</code> for x-axes and <code>"left"</code> for y-axes.</p>
 </dd>
 <dt><code>placement</code></dt>
-<dd>
-<p>Type: <code>"outside"</code> | <code>"inside"</code></p>
-<p>Placement of the axis relative to the plotting area. Outside axes reserve layout space outside the plot. Inside axes are mirrored into the plot and do not reserve external layout space.</p>
+<dd>Type: <code>"outside"</code> | <code>"inside"</code><p>Placement of the axis relative to the plotting area. Outside axes reserve layout space outside the plot. Inside axes are mirrored into the plot and do not reserve external layout space.</p>
 <p><strong>Default value:</strong> <code>"outside"</code>.</p>
 </dd>
 <dt><code>style</code></dt>
-<dd>
-<p>Type: string | string[] | null</p>
-<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones. Set to <code>null</code> to reset inherited axis styles.</p>
+<dd>Type: string | string[] | null<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones. Set to <code>null</code> to reset inherited axis styles.</p>
 </dd>
 <dt><code>tickCap</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The stroke cap for the tick lines' ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
+<dd>Type: string<p>The stroke cap for the tick lines' ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>tickColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>The color of the axis's tick.</p>
+<dd>Type: string<p>The color of the axis's tick.</p>
 <p><strong>Default value:</strong> <code>"gray"</code></p>
 </dd>
 <dt><code>tickCount</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are "nice" (multiples of <code>2</code>, <code>5</code>, <code>10</code>) and lie within the underlying scale's range.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are "nice" (multiples of <code>2</code>, <code>5</code>, <code>10</code>) and lie within the underlying scale's range.</p>
 <p>An expression reference can use <code>axisLength</code> for the current length of the axis in pixels. For example, <code>{ "expr": "ceil(axisLength / 40)" }</code> requests one tick per 40 pixels.</p>
 <p><strong>Default value:</strong> an expression based on <code>axisLength</code></p>
 </dd>
 <dt><code>tickDash</code></dt>
-<dd>
-<p>Type: array</p>
-<p>An array of alternating [stroke, space] lengths for dashed tick mark lines.</p>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed tick mark lines.</p>
 </dd>
 <dt><code>tickDashOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The pixel offset at which to start drawing with the tick mark dash array.</p>
+<dd>Type: number<p>The pixel offset at which to start drawing with the tick mark dash array.</p>
 </dd>
 <dt><code>tickMinStep</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The minimum desired step between axis ticks, in terms of scale domain values. For example, a value of <code>1</code> indicates that ticks should not be less than 1 unit apart. If <code>tickMinStep</code> is specified, the <code>tickCount</code> value will be adjusted, if necessary, to enforce the minimum step value.</p>
+<dd>Type: number<p>The minimum desired step between axis ticks, in terms of scale domain values. For example, a value of <code>1</code> indicates that ticks should not be less than 1 unit apart. If <code>tickMinStep</code> is specified, the <code>tickCount</code> value will be adjusted, if necessary, to enforce the minimum step value.</p>
 </dd>
 <dt><code>tickSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The size in pixels of axis ticks.</p>
+<dd>Type: number<p>The size in pixels of axis ticks.</p>
 <p><strong>Default value:</strong> <code>5</code></p>
 </dd>
 <dt><code>tickWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The width, in pixels, of ticks.</p>
+<dd>Type: number<p>The width, in pixels, of ticks.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>ticks</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Boolean value that determines whether the axis should include ticks.</p>
+<dd>Type: boolean<p>Boolean value that determines whether the axis should include ticks.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>title</code></dt>
-<dd>
-<p>Type: string | null</p>
-<p>A title for the axis. By default, the title is derived from the encoding title, field, or expression. Set to <code>null</code> to remove it.</p>
+<dd>Type: string | null<p>A title for the axis. By default, the title is derived from the encoding title, field, or expression. Set to <code>null</code> to remove it.</p>
 </dd>
 <dt><code>titleColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Color of the title, can be in hex color code or regular color name.</p>
+<dd>Type: string<p>Color of the title, can be in hex color code or regular color name.</p>
 </dd>
 <dt><code>titleFit</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Fitting mode for the axis title. <code>"point"</code> anchors the title at the center of the axis without constraining its length. <code>"range"</code> constrains the title to the axis span using <a href="https://genomespy.app/docs/grammar/mark/text/#ranged-text">ranged text</a>, allowing it to be squeezed to fit and kept visible inside scrollable viewports.</p>
+<dd>Type: string<p>Fitting mode for the axis title. <code>"point"</code> anchors the title at the center of the axis without constraining its length. <code>"range"</code> constrains the title to the axis span using <a href="https://genomespy.app/docs/grammar/mark/text/#ranged-text">ranged text</a>, allowing it to be squeezed to fit and kept visible inside scrollable viewports.</p>
 <p><strong>Default value:</strong> <code>"point"</code></p>
 </dd>
 <dt><code>titleFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Font of the title. (e.g., <code>"Helvetica Neue"</code>).</p>
+<dd>Type: string<p>Font of the title. (e.g., <code>"Helvetica Neue"</code>).</p>
 </dd>
 <dt><code>titleFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Font size of the title.</p>
+<dd>Type: number<p>Font size of the title.</p>
 </dd>
 <dt><code>titleFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>Font style of the title.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style of the title.</p>
 </dd>
 <dt><code>titleFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>Font weight of the title. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight of the title. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
 </dd>
 <dt><code>titleOpacity</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Opacity of the axis title.</p>
+<dd>Type: number<p>Opacity of the axis title.</p>
 </dd>
 <dt><code>titlePadding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The padding, in pixels, between title and axis.</p>
+<dd>Type: number<p>The padding, in pixels, between title and axis.</p>
 </dd>
 <dt><code>values</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Explicitly set the visible axis tick and label values.</p>
+<dd>Type: array<p>Explicitly set the visible axis tick and label values.</p>
 </dd>
 <dt><code>zindex</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Z-order of the axis relative to the view content.</p>
+<dd>Type: number<p>Z-order of the axis relative to the view content.</p>
 <p>Values greater than <code>0</code> render after the view marks. Values less than or equal to <code>0</code> render before the marks.</p>
 <p><strong>Default value:</strong> <code>0</code>, or <code>10</code> when the view content is clipped or scrollable.</p>
 </dd>
@@ -4431,27 +4385,8 @@ channel-level axis object overrides the configured defaults for that axis.</p>
 
 
 
-  
-    
-  
-  
 
 
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 26, 2026 21:06:52 UTC">June 26, 2026</span>
-  </span>
-
-    
-    
-    
-    
-  </aside>
 
 
 
@@ -4475,8 +4410,8 @@ channel-level axis object overrides the configured defaults for that axis.</p>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
     </a>
   
 </div>
@@ -4494,12 +4429,12 @@ channel-level axis object overrides the configured defaults for that axis.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["navigation.indexes","content.action.edit"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7f30b55.min.js"></script>
       
-        <script src="../../app/index.js"></script>
+        <script src="../../app/index.js" type="module"></script>
       
     
   </body>
