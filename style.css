@@ -98,7 +98,8 @@ section > * {
   margin-right: auto;
 }
 
-section.dark {
+section.dark,
+#nav-bar {
   background-color: #f0f0f0;
 }
 
@@ -131,6 +132,37 @@ section:not(.dark) + section:not(.dark) {
 
 #title p {
   font-size: clamp(17px, 2.2vw, 22px);
+}
+
+#nav-bar {
+  position: absolute;
+  top: 0.5em;
+  width: 100%;
+
+  ul {
+    margin: 0;
+    padding: 0 1em;
+    display: flex;
+    justify-content: end;
+    gap: 0.7em;
+  }
+
+  li {
+    display: block;
+    list-style: none;
+    text-align: center;
+  }
+
+  a {
+    display: block;
+    padding: 0.2em;
+  }
+
+  a,
+  i.fas,
+  i.fab {
+    color: #555;
+  }
 }
 
 #showcase {
@@ -187,12 +219,6 @@ section:not(.dark) + section:not(.dark) {
 #building-blocks > a:nth-child(2n) figure picture {
   margin-left: 0;
   margin-right: 40px;
-}
-
-#under-construction {
-  padding: 20px;
-
-  margin-bottom: 30px;
 }
 
 #examples {
@@ -290,10 +316,15 @@ ul.icon-list li {
   #title {
     text-align: center;
     padding: 40px;
+    padding-top: 80px;
   }
 
   #title picture {
     width: 60%;
+  }
+
+  #nav-bar ul {
+    justify-content: center;
   }
 }
 
