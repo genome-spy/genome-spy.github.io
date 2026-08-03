@@ -1,5 +1,200 @@
 [
   {
+    "id": "docs/examples/generic/upsetr-mutations",
+    "title": "Interactive GenomeSpy version of the five-set mutations example from UpSetR.",
+    "description": "Interactive GenomeSpy version of the five-set mutations example from UpSetR.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Generic",
+    "specPath": "examples/docs/examples/generic/upsetr-mutations.json",
+    "specUrl": "/docs/example-specs/docs/examples/generic/upsetr-mutations.json",
+    "screenshotPath": "examples/docs/examples/generic/upsetr-mutations.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/generic/upsetr-mutations.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/genome-browser",
+    "title": "A genome-browser-like view with multiple tracks",
+    "description": "A genome-browser-like view with multiple tracks",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/genome-browser.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/genome-browser.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/genome-browser.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/genome-browser.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/ASCAT",
+    "title": "ASCAT Copy-Number Segmentation",
+    "description": "ASCAT Copy-Number Segmentation",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/ASCAT.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/ASCAT.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/ASCAT.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/ASCAT.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/bam-read-alignments",
+    "title": "BAM read alignment example using a downsampled GIAB HG002 chr20 slice.",
+    "description": "BAM read alignment example using a downsampled GIAB HG002 chr20 slice.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/bam-read-alignments.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/bam-read-alignments.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/bam-read-alignments.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/bam-read-alignments.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/cytobands",
+    "title": "Chromosome Ideogram from Cytobands",
+    "description": "Chromosome Ideogram from Cytobands",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/cytobands.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/cytobands.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/cytobands.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/cytobands.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/clinvar-variants",
+    "title": "ClinVar Small-Variant Classifications",
+    "description": "ClinVar Small-Variant Classifications",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/clinvar-variants.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/clinvar-variants.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/clinvar-variants.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/clinvar-variants.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/gff3-gene-annotations",
+    "title": "GENCODE Gene Annotations from GFF3",
+    "description": "GENCODE Gene Annotations from GFF3",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/gff3-gene-annotations.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/gff3-gene-annotations.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/gff3-gene-annotations.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/gff3-gene-annotations.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/hcc1954-sv-cnv",
+    "title": "HCC1954 Structural Variants and Copy Number",
+    "description": "HCC1954 Structural Variants and Copy Number",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/hcc1954-sv-cnv.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/hcc1954-sv-cnv.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/hcc1954-sv-cnv.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/hcc1954-sv-cnv.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/indexed-fasta-six-frame-translation",
+    "title": "Indexed FASTA Six-Frame Translation",
+    "description": "Indexed FASTA Six-Frame Translation",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/indexed-fasta-six-frame-translation.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/indexed-fasta-six-frame-translation.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/indexed-fasta-six-frame-translation.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/indexed-fasta-six-frame-translation.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/ASCAT-algorithm",
+    "title": "Interactive ASCAT-like Purity/Ploidy Fitting",
+    "description": "Interactive ASCAT-like Purity/Ploidy Fitting",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/ASCAT-algorithm.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/ASCAT-algorithm.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/ASCAT-algorithm.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/ASCAT-algorithm.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/msa",
+    "title": "Multiple Sequence Alignment",
+    "description": "Multiple Sequence Alignment",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/msa.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/msa.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/msa.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/msa.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/scored-refSeq-genes",
+    "title": "RefSeq Gene Annotations with Scored Labels",
+    "description": "RefSeq Gene Annotations with Scored Labels",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/scored-refSeq-genes.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/scored-refSeq-genes.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/scored-refSeq-genes.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/scored-refSeq-genes.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/sashimi-plot",
+    "title": "Sashimi Plot from Splice Junctions",
+    "description": "Sashimi Plot from Splice Junctions",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/sashimi-plot.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/sashimi-plot.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/sashimi-plot.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/sashimi-plot.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/dynseq-spi1-bqtl",
+    "title": "SPI1 Binding-QTL Dynseq Track",
+    "description": "SPI1 Binding-QTL Dynseq Track",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/dynseq-spi1-bqtl.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/dynseq-spi1-bqtl.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/dynseq-spi1-bqtl.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/dynseq-spi1-bqtl.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/tcga-ov-gistic",
+    "title": "TCGA Ovarian Cancer GISTIC2 Copy-Number Landscape",
+    "description": "TCGA Ovarian Cancer GISTIC2 Copy-Number Landscape",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/tcga-ov-gistic.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/tcga-ov-gistic.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/tcga-ov-gistic.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/tcga-ov-gistic.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/index/interactive-overview",
     "title": "Interactive point plot with a zoomable x-scale and zoom-dependent point size.",
     "description": "Interactive point plot with a zoomable x-scale and zoom-dependent point size.",
@@ -7,191 +202,9 @@
     "sourceLabel": "Docs",
     "category": "General",
     "specPath": "examples/docs/index/interactive-overview.json",
-    "specUrl": "/docs/examples/docs/index/interactive-overview.json",
+    "specUrl": "/docs/example-specs/docs/index/interactive-overview.json",
     "screenshotPath": "examples/docs/index/interactive-overview.png",
-    "screenshotUrl": "/docs/examples/docs/index/interactive-overview.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/genome-browser",
-    "title": "A genome-browser-like view with multiple tracks",
-    "description": "A genome-browser-like view with multiple tracks",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/genome-browser.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/genome-browser.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/genome-browser.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/genome-browser.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/ASCAT-algorithm",
-    "title": "ASCAT Algorithm in GenomeSpy",
-    "description": "ASCAT Algorithm in GenomeSpy",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/ASCAT-algorithm.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/ASCAT-algorithm.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/ASCAT-algorithm.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/ASCAT-algorithm.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/ASCAT",
-    "title": "ASCAT Copy-Number Segmentation",
-    "description": "ASCAT Copy-Number Segmentation",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/ASCAT.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/ASCAT.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/ASCAT.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/ASCAT.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/bam-read-alignments",
-    "title": "BAM read alignment example using a downsampled GIAB HG002 chr20 slice.",
-    "description": "BAM read alignment example using a downsampled GIAB HG002 chr20 slice.",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/bam-read-alignments.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/bam-read-alignments.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/bam-read-alignments.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/bam-read-alignments.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/cytobands",
-    "title": "Chromosome Ideogram from Cytobands",
-    "description": "Chromosome Ideogram from Cytobands",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/cytobands.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/cytobands.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/cytobands.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/cytobands.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/clinvar-variants",
-    "title": "ClinVar Small-Variant Classifications",
-    "description": "ClinVar Small-Variant Classifications",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/clinvar-variants.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/clinvar-variants.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/clinvar-variants.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/clinvar-variants.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/gff3-gene-annotations",
-    "title": "GENCODE Gene Annotations from GFF3",
-    "description": "GENCODE Gene Annotations from GFF3",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/gff3-gene-annotations.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/gff3-gene-annotations.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/gff3-gene-annotations.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/gff3-gene-annotations.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/hcc1954-sv-cnv",
-    "title": "HCC1954 Structural Variants and Copy Number",
-    "description": "HCC1954 Structural Variants and Copy Number",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/hcc1954-sv-cnv.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/hcc1954-sv-cnv.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/hcc1954-sv-cnv.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/hcc1954-sv-cnv.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/indexed-fasta-six-frame-translation",
-    "title": "Indexed FASTA Six-Frame Translation",
-    "description": "Indexed FASTA Six-Frame Translation",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/indexed-fasta-six-frame-translation.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/indexed-fasta-six-frame-translation.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/indexed-fasta-six-frame-translation.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/indexed-fasta-six-frame-translation.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/msa",
-    "title": "Multiple Sequence Alignment",
-    "description": "Multiple Sequence Alignment",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/msa.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/msa.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/msa.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/msa.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/scored-refSeq-genes",
-    "title": "RefSeq Gene Annotations with Scored Labels",
-    "description": "RefSeq Gene Annotations with Scored Labels",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/scored-refSeq-genes.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/scored-refSeq-genes.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/scored-refSeq-genes.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/scored-refSeq-genes.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/sashimi-plot",
-    "title": "Sashimi Plot from Splice Junctions",
-    "description": "Sashimi Plot from Splice Junctions",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/sashimi-plot.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/sashimi-plot.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/sashimi-plot.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/sashimi-plot.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/dynseq-spi1-bqtl",
-    "title": "SPI1 Binding-QTL Dynseq Track",
-    "description": "SPI1 Binding-QTL Dynseq Track",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/dynseq-spi1-bqtl.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/dynseq-spi1-bqtl.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/dynseq-spi1-bqtl.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/dynseq-spi1-bqtl.png",
-    "sourceMode": "shared-example"
-  },
-  {
-    "id": "docs/genomic-data/examples/tcga-ov-gistic",
-    "title": "TCGA Ovarian Cancer GISTIC2 Copy-Number Landscape",
-    "description": "TCGA Ovarian Cancer GISTIC2 Copy-Number Landscape",
-    "sourceGroup": "docs",
-    "sourceLabel": "Docs",
-    "category": "Genomic Data / Examples",
-    "specPath": "examples/docs/genomic-data/examples/tcga-ov-gistic.json",
-    "specUrl": "/docs/examples/docs/genomic-data/examples/tcga-ov-gistic.json",
-    "screenshotPath": "examples/docs/genomic-data/examples/tcga-ov-gistic.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/examples/tcga-ov-gistic.png",
+    "screenshotUrl": "/docs/example-specs/docs/index/interactive-overview.png",
     "sourceMode": "shared-example"
   },
   {
@@ -202,9 +215,9 @@
     "sourceLabel": "Docs",
     "category": "Genomic Data / Genomic Coordinates",
     "specPath": "examples/docs/genomic-data/genomic-coordinates/point-features.json",
-    "specUrl": "/docs/examples/docs/genomic-data/genomic-coordinates/point-features.json",
+    "specUrl": "/docs/example-specs/docs/genomic-data/genomic-coordinates/point-features.json",
     "screenshotPath": "examples/docs/genomic-data/genomic-coordinates/point-features.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/genomic-coordinates/point-features.png",
+    "screenshotUrl": "/docs/example-specs/docs/genomic-data/genomic-coordinates/point-features.png",
     "sourceMode": "shared-example"
   },
   {
@@ -215,9 +228,9 @@
     "sourceLabel": "Docs",
     "category": "Genomic Data / Genomic Coordinates",
     "specPath": "examples/docs/genomic-data/genomic-coordinates/segment-features.json",
-    "specUrl": "/docs/examples/docs/genomic-data/genomic-coordinates/segment-features.json",
+    "specUrl": "/docs/example-specs/docs/genomic-data/genomic-coordinates/segment-features.json",
     "screenshotPath": "examples/docs/genomic-data/genomic-coordinates/segment-features.png",
-    "screenshotUrl": "/docs/examples/docs/genomic-data/genomic-coordinates/segment-features.png",
+    "screenshotUrl": "/docs/example-specs/docs/genomic-data/genomic-coordinates/segment-features.png",
     "sourceMode": "shared-example"
   },
   {
@@ -228,9 +241,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar",
     "specPath": "examples/docs/grammar/index/single-view-specification.json",
-    "specUrl": "/docs/examples/docs/grammar/index/single-view-specification.json",
+    "specUrl": "/docs/example-specs/docs/grammar/index/single-view-specification.json",
     "screenshotPath": "examples/docs/grammar/index/single-view-specification.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/index/single-view-specification.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/index/single-view-specification.png",
     "sourceMode": "shared-example"
   },
   {
@@ -241,9 +254,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Axis",
     "specPath": "examples/docs/grammar/axis/genome-axis.json",
-    "specUrl": "/docs/examples/docs/grammar/axis/genome-axis.json",
+    "specUrl": "/docs/example-specs/docs/grammar/axis/genome-axis.json",
     "screenshotPath": "examples/docs/grammar/axis/genome-axis.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/axis/genome-axis.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/axis/genome-axis.png",
     "sourceMode": "shared-example"
   },
   {
@@ -254,9 +267,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Axis",
     "specPath": "examples/docs/grammar/axis/inside-axis.json",
-    "specUrl": "/docs/examples/docs/grammar/axis/inside-axis.json",
+    "specUrl": "/docs/example-specs/docs/grammar/axis/inside-axis.json",
     "screenshotPath": "examples/docs/grammar/axis/inside-axis.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/axis/inside-axis.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/axis/inside-axis.png",
     "sourceMode": "shared-example"
   },
   {
@@ -267,9 +280,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition",
     "specPath": "examples/docs/grammar/composition/index/independent-resolution.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/index/independent-resolution.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/index/independent-resolution.json",
     "screenshotPath": "examples/docs/grammar/composition/index/independent-resolution.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/index/independent-resolution.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/index/independent-resolution.png",
     "sourceMode": "shared-example"
   },
   {
@@ -280,9 +293,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition",
     "specPath": "examples/docs/grammar/composition/index/shared-resolution.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/index/shared-resolution.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/index/shared-resolution.json",
     "screenshotPath": "examples/docs/grammar/composition/index/shared-resolution.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/index/shared-resolution.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/index/shared-resolution.png",
     "sourceMode": "shared-example"
   },
   {
@@ -293,9 +306,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition / Concat",
     "specPath": "examples/docs/grammar/composition/concat/child-sizing.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/concat/child-sizing.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/concat/child-sizing.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/child-sizing.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/concat/child-sizing.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/child-sizing.png",
     "sourceMode": "shared-example"
   },
   {
@@ -306,9 +319,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition / Concat",
     "specPath": "examples/docs/grammar/composition/concat/concat-separators.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/concat/concat-separators.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/concat/concat-separators.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/concat-separators.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/concat/concat-separators.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/concat-separators.png",
     "sourceMode": "shared-example"
   },
   {
@@ -319,9 +332,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition / Concat",
     "specPath": "examples/docs/grammar/composition/concat/shared-axes.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/concat/shared-axes.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/concat/shared-axes.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/shared-axes.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/concat/shared-axes.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/shared-axes.png",
     "sourceMode": "shared-example"
   },
   {
@@ -332,9 +345,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition / Concat",
     "specPath": "examples/docs/grammar/composition/concat/grid-concat.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/concat/grid-concat.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/concat/grid-concat.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/grid-concat.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/concat/grid-concat.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/grid-concat.png",
     "sourceMode": "shared-example"
   },
   {
@@ -345,9 +358,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition / Concat",
     "specPath": "examples/docs/grammar/composition/concat/horizontal-concat.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/concat/horizontal-concat.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/concat/horizontal-concat.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/horizontal-concat.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/concat/horizontal-concat.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/horizontal-concat.png",
     "sourceMode": "shared-example"
   },
   {
@@ -358,9 +371,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition / Concat",
     "specPath": "examples/docs/grammar/composition/concat/sizedef-layout.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/concat/sizedef-layout.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/concat/sizedef-layout.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/sizedef-layout.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/concat/sizedef-layout.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/sizedef-layout.png",
     "sourceMode": "shared-example"
   },
   {
@@ -371,9 +384,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition / Concat",
     "specPath": "examples/docs/grammar/composition/concat/scrollable-viewports.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/concat/scrollable-viewports.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/concat/scrollable-viewports.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/scrollable-viewports.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/concat/scrollable-viewports.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/scrollable-viewports.png",
     "sourceMode": "shared-example"
   },
   {
@@ -384,9 +397,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition / Concat",
     "specPath": "examples/docs/grammar/composition/concat/vertical-concat.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/concat/vertical-concat.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/concat/vertical-concat.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/vertical-concat.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/concat/vertical-concat.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/vertical-concat.png",
     "sourceMode": "shared-example"
   },
   {
@@ -397,9 +410,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition / Layer",
     "specPath": "examples/docs/grammar/composition/layer/bar-and-label-layer.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/layer/bar-and-label-layer.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/layer/bar-and-label-layer.json",
     "screenshotPath": "examples/docs/grammar/composition/layer/bar-and-label-layer.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/layer/bar-and-label-layer.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/layer/bar-and-label-layer.png",
     "sourceMode": "shared-example"
   },
   {
@@ -410,9 +423,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition / Layer",
     "specPath": "examples/docs/grammar/composition/layer/lollipop-plot.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/layer/lollipop-plot.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/layer/lollipop-plot.json",
     "screenshotPath": "examples/docs/grammar/composition/layer/lollipop-plot.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/layer/lollipop-plot.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/layer/lollipop-plot.png",
     "sourceMode": "shared-example"
   },
   {
@@ -423,9 +436,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition / Multiscale",
     "specPath": "examples/docs/grammar/composition/multiscale/multiscale-transition.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/multiscale/multiscale-transition.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/multiscale/multiscale-transition.json",
     "screenshotPath": "examples/docs/grammar/composition/multiscale/multiscale-transition.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/multiscale/multiscale-transition.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/multiscale/multiscale-transition.png",
     "sourceMode": "shared-example"
   },
   {
@@ -436,9 +449,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Composition / Multiscale",
     "specPath": "examples/docs/grammar/composition/multiscale/multiscale-composition.json",
-    "specUrl": "/docs/examples/docs/grammar/composition/multiscale/multiscale-composition.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/multiscale/multiscale-composition.json",
     "screenshotPath": "examples/docs/grammar/composition/multiscale/multiscale-composition.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/composition/multiscale/multiscale-composition.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/multiscale/multiscale-composition.png",
     "sourceMode": "shared-example"
   },
   {
@@ -449,9 +462,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Config",
     "specPath": "examples/docs/grammar/config/theme.json",
-    "specUrl": "/docs/examples/docs/grammar/config/theme.json",
+    "specUrl": "/docs/example-specs/docs/grammar/config/theme.json",
     "screenshotPath": "examples/docs/grammar/config/theme.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/config/theme.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/config/theme.png",
     "sourceMode": "shared-example"
   },
   {
@@ -462,9 +475,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Config",
     "specPath": "examples/docs/grammar/config/config-overview.json",
-    "specUrl": "/docs/examples/docs/grammar/config/config-overview.json",
+    "specUrl": "/docs/example-specs/docs/grammar/config/config-overview.json",
     "screenshotPath": "examples/docs/grammar/config/config-overview.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/config/config-overview.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/config/config-overview.png",
     "sourceMode": "shared-example"
   },
   {
@@ -475,9 +488,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Data / Eager",
     "specPath": "examples/docs/grammar/data/eager/bedpe.json",
-    "specUrl": "/docs/examples/docs/grammar/data/eager/bedpe.json",
+    "specUrl": "/docs/example-specs/docs/grammar/data/eager/bedpe.json",
     "screenshotPath": "examples/docs/grammar/data/eager/bedpe.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/data/eager/bedpe.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/data/eager/bedpe.png",
     "sourceMode": "shared-example"
   },
   {
@@ -488,9 +501,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Data / Eager",
     "specPath": "examples/docs/grammar/data/eager/bed.json",
-    "specUrl": "/docs/examples/docs/grammar/data/eager/bed.json",
+    "specUrl": "/docs/example-specs/docs/grammar/data/eager/bed.json",
     "screenshotPath": "examples/docs/grammar/data/eager/bed.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/data/eager/bed.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/data/eager/bed.png",
     "sourceMode": "shared-example"
   },
   {
@@ -501,9 +514,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Data / Lazy",
     "specPath": "examples/docs/grammar/data/lazy/axis-genome.json",
-    "specUrl": "/docs/examples/docs/grammar/data/lazy/axis-genome.json",
+    "specUrl": "/docs/example-specs/docs/grammar/data/lazy/axis-genome.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/axis-genome.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/data/lazy/axis-genome.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/axis-genome.png",
     "sourceMode": "shared-example"
   },
   {
@@ -514,9 +527,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Data / Lazy",
     "specPath": "examples/docs/grammar/data/lazy/axis-ticks.json",
-    "specUrl": "/docs/examples/docs/grammar/data/lazy/axis-ticks.json",
+    "specUrl": "/docs/example-specs/docs/grammar/data/lazy/axis-ticks.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/axis-ticks.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/data/lazy/axis-ticks.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/axis-ticks.png",
     "sourceMode": "shared-example"
   },
   {
@@ -527,9 +540,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Data / Lazy",
     "specPath": "examples/docs/grammar/data/lazy/bam-read-alignments.json",
-    "specUrl": "/docs/examples/docs/grammar/data/lazy/bam-read-alignments.json",
+    "specUrl": "/docs/example-specs/docs/grammar/data/lazy/bam-read-alignments.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/bam-read-alignments.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/data/lazy/bam-read-alignments.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/bam-read-alignments.png",
     "sourceMode": "shared-example"
   },
   {
@@ -540,9 +553,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Data / Lazy",
     "specPath": "examples/docs/grammar/data/lazy/bigbed-ccre-track.json",
-    "specUrl": "/docs/examples/docs/grammar/data/lazy/bigbed-ccre-track.json",
+    "specUrl": "/docs/example-specs/docs/grammar/data/lazy/bigbed-ccre-track.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/bigbed-ccre-track.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/data/lazy/bigbed-ccre-track.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/bigbed-ccre-track.png",
     "sourceMode": "shared-example"
   },
   {
@@ -553,9 +566,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Data / Lazy",
     "specPath": "examples/docs/grammar/data/lazy/bigwig-gc-content.json",
-    "specUrl": "/docs/examples/docs/grammar/data/lazy/bigwig-gc-content.json",
+    "specUrl": "/docs/example-specs/docs/grammar/data/lazy/bigwig-gc-content.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/bigwig-gc-content.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/data/lazy/bigwig-gc-content.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/bigwig-gc-content.png",
     "sourceMode": "shared-example"
   },
   {
@@ -566,9 +579,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Data / Lazy",
     "specPath": "examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.json",
-    "specUrl": "/docs/examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.json",
+    "specUrl": "/docs/example-specs/docs/grammar/data/lazy/indexed-fasta-sequence-track.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/indexed-fasta-sequence-track.png",
     "sourceMode": "shared-example"
   },
   {
@@ -579,9 +592,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Import",
     "specPath": "examples/docs/grammar/import/named-template-repeat-config.json",
-    "specUrl": "/docs/examples/docs/grammar/import/named-template-repeat-config.json",
+    "specUrl": "/docs/example-specs/docs/grammar/import/named-template-repeat-config.json",
     "screenshotPath": "examples/docs/grammar/import/named-template-repeat-config.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/import/named-template-repeat-config.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/import/named-template-repeat-config.png",
     "sourceMode": "shared-example"
   },
   {
@@ -592,9 +605,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Import",
     "specPath": "examples/docs/grammar/import/named-template-repeat.json",
-    "specUrl": "/docs/examples/docs/grammar/import/named-template-repeat.json",
+    "specUrl": "/docs/example-specs/docs/grammar/import/named-template-repeat.json",
     "screenshotPath": "examples/docs/grammar/import/named-template-repeat.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/import/named-template-repeat.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/import/named-template-repeat.png",
     "sourceMode": "shared-example"
   },
   {
@@ -605,9 +618,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Legend",
     "specPath": "examples/docs/grammar/legend/reactive-disable.json",
-    "specUrl": "/docs/examples/docs/grammar/legend/reactive-disable.json",
+    "specUrl": "/docs/example-specs/docs/grammar/legend/reactive-disable.json",
     "screenshotPath": "examples/docs/grammar/legend/reactive-disable.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/legend/reactive-disable.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/legend/reactive-disable.png",
     "sourceMode": "shared-example"
   },
   {
@@ -618,9 +631,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Legend",
     "specPath": "examples/docs/grammar/legend/symbol-legend.json",
-    "specUrl": "/docs/examples/docs/grammar/legend/symbol-legend.json",
+    "specUrl": "/docs/example-specs/docs/grammar/legend/symbol-legend.json",
     "screenshotPath": "examples/docs/grammar/legend/symbol-legend.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/legend/symbol-legend.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/legend/symbol-legend.png",
     "sourceMode": "shared-example"
   },
   {
@@ -631,9 +644,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Legend",
     "specPath": "examples/docs/grammar/legend/gradient-legend.json",
-    "specUrl": "/docs/examples/docs/grammar/legend/gradient-legend.json",
+    "specUrl": "/docs/example-specs/docs/grammar/legend/gradient-legend.json",
     "screenshotPath": "examples/docs/grammar/legend/gradient-legend.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/legend/gradient-legend.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/legend/gradient-legend.png",
     "sourceMode": "shared-example"
   },
   {
@@ -644,9 +657,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Legend",
     "specPath": "examples/docs/grammar/legend/shared-hconcat-legend.json",
-    "specUrl": "/docs/examples/docs/grammar/legend/shared-hconcat-legend.json",
+    "specUrl": "/docs/example-specs/docs/grammar/legend/shared-hconcat-legend.json",
     "screenshotPath": "examples/docs/grammar/legend/shared-hconcat-legend.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/legend/shared-hconcat-legend.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/legend/shared-hconcat-legend.png",
     "sourceMode": "shared-example"
   },
   {
@@ -657,9 +670,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Arrow",
     "specPath": "examples/docs/grammar/mark/arrow/arrow-styles.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/arrow/arrow-styles.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/arrow/arrow-styles.json",
     "screenshotPath": "examples/docs/grammar/mark/arrow/arrow-styles.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/arrow/arrow-styles.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/arrow/arrow-styles.png",
     "sourceMode": "shared-example"
   },
   {
@@ -670,9 +683,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Arrow",
     "specPath": "examples/docs/grammar/mark/arrow/arrow-mark.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/arrow/arrow-mark.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/arrow/arrow-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/arrow/arrow-mark.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/arrow/arrow-mark.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/arrow/arrow-mark.png",
     "sourceMode": "shared-example"
   },
   {
@@ -683,9 +696,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Arrow",
     "specPath": "examples/docs/grammar/mark/arrow/arrow-playground.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/arrow/arrow-playground.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/arrow/arrow-playground.json",
     "screenshotPath": "examples/docs/grammar/mark/arrow/arrow-playground.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/arrow/arrow-playground.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/arrow/arrow-playground.png",
     "sourceMode": "shared-example"
   },
   {
@@ -696,9 +709,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Link",
     "specPath": "examples/docs/grammar/mark/link/link-shapes-and-orientations.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/link/link-shapes-and-orientations.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/link/link-shapes-and-orientations.json",
     "screenshotPath": "examples/docs/grammar/mark/link/link-shapes-and-orientations.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/link/link-shapes-and-orientations.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/link/link-shapes-and-orientations.png",
     "sourceMode": "shared-example"
   },
   {
@@ -709,9 +722,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Link",
     "specPath": "examples/docs/grammar/mark/link/dome-height.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/link/dome-height.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/link/dome-height.json",
     "screenshotPath": "examples/docs/grammar/mark/link/dome-height.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/link/dome-height.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/link/dome-height.png",
     "sourceMode": "shared-example"
   },
   {
@@ -722,9 +735,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Link",
     "specPath": "examples/docs/grammar/mark/link/link-mark.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/link/link-mark.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/link/link-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/link/link-mark.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/link/link-mark.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/link/link-mark.png",
     "sourceMode": "shared-example"
   },
   {
@@ -735,9 +748,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Point",
     "specPath": "examples/docs/grammar/mark/point/semantic-zoom.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/point/semantic-zoom.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/point/semantic-zoom.json",
     "screenshotPath": "examples/docs/grammar/mark/point/semantic-zoom.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/point/semantic-zoom.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/point/semantic-zoom.png",
     "sourceMode": "shared-example"
   },
   {
@@ -748,9 +761,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Point",
     "specPath": "examples/docs/grammar/mark/point/plenty-of-points.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/point/plenty-of-points.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/point/plenty-of-points.json",
     "screenshotPath": "examples/docs/grammar/mark/point/plenty-of-points.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/point/plenty-of-points.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/point/plenty-of-points.png",
     "sourceMode": "shared-example"
   },
   {
@@ -761,9 +774,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Point",
     "specPath": "examples/docs/grammar/mark/point/geometric-zoom.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/point/geometric-zoom.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/point/geometric-zoom.json",
     "screenshotPath": "examples/docs/grammar/mark/point/geometric-zoom.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/point/geometric-zoom.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/point/geometric-zoom.png",
     "sourceMode": "shared-example"
   },
   {
@@ -774,9 +787,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Point",
     "specPath": "examples/docs/grammar/mark/point/point-mark.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/point/point-mark.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/point/point-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/point/point-mark.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/point/point-mark.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/point/point-mark.png",
     "sourceMode": "shared-example"
   },
   {
@@ -787,9 +800,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Rect",
     "specPath": "examples/docs/grammar/mark/rect/heatmap.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/rect/heatmap.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/rect/heatmap.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/heatmap.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/rect/heatmap.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/heatmap.png",
     "sourceMode": "shared-example"
   },
   {
@@ -800,9 +813,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Rect",
     "specPath": "examples/docs/grammar/mark/rect/bars.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/rect/bars.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/rect/bars.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/bars.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/rect/bars.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/bars.png",
     "sourceMode": "shared-example"
   },
   {
@@ -813,9 +826,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Rect",
     "specPath": "examples/docs/grammar/mark/rect/shadowed-marks.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/rect/shadowed-marks.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/rect/shadowed-marks.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/shadowed-marks.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/rect/shadowed-marks.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/shadowed-marks.png",
     "sourceMode": "shared-example"
   },
   {
@@ -826,9 +839,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Rect",
     "specPath": "examples/docs/grammar/mark/rect/rect-mark.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/rect/rect-mark.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/rect/rect-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/rect-mark.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/rect/rect-mark.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/rect-mark.png",
     "sourceMode": "shared-example"
   },
   {
@@ -839,9 +852,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Rect",
     "specPath": "examples/docs/grammar/mark/rect/hatch-patterns.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/rect/hatch-patterns.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/rect/hatch-patterns.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/hatch-patterns.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/rect/hatch-patterns.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/hatch-patterns.png",
     "sourceMode": "shared-example"
   },
   {
@@ -852,9 +865,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Rect",
     "specPath": "examples/docs/grammar/mark/rect/shadowed-view.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/rect/shadowed-view.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/rect/shadowed-view.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/shadowed-view.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/rect/shadowed-view.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/shadowed-view.png",
     "sourceMode": "shared-example"
   },
   {
@@ -865,9 +878,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Rule",
     "specPath": "examples/docs/grammar/mark/rule/synteny-hg38-mm10.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/rule/synteny-hg38-mm10.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/rule/synteny-hg38-mm10.json",
     "screenshotPath": "examples/docs/grammar/mark/rule/synteny-hg38-mm10.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/rule/synteny-hg38-mm10.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rule/synteny-hg38-mm10.png",
     "sourceMode": "shared-example"
   },
   {
@@ -878,9 +891,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Rule",
     "specPath": "examples/docs/grammar/mark/rule/ranged-rules.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/rule/ranged-rules.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/rule/ranged-rules.json",
     "screenshotPath": "examples/docs/grammar/mark/rule/ranged-rules.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/rule/ranged-rules.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rule/ranged-rules.png",
     "sourceMode": "shared-example"
   },
   {
@@ -891,9 +904,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Rule",
     "specPath": "examples/docs/grammar/mark/rule/rule-mark.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/rule/rule-mark.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/rule/rule-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/rule/rule-mark.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/rule/rule-mark.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rule/rule-mark.png",
     "sourceMode": "shared-example"
   },
   {
@@ -904,9 +917,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Text",
     "specPath": "examples/docs/grammar/mark/text/sequence-logo.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/text/sequence-logo.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/text/sequence-logo.json",
     "screenshotPath": "examples/docs/grammar/mark/text/sequence-logo.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/text/sequence-logo.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/text/sequence-logo.png",
     "sourceMode": "shared-example"
   },
   {
@@ -917,9 +930,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Text",
     "specPath": "examples/docs/grammar/mark/text/ranged-text.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/text/ranged-text.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/text/ranged-text.json",
     "screenshotPath": "examples/docs/grammar/mark/text/ranged-text.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/text/ranged-text.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/text/ranged-text.png",
     "sourceMode": "shared-example"
   },
   {
@@ -930,9 +943,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Text",
     "specPath": "examples/docs/grammar/mark/text/text-mark.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/text/text-mark.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/text/text-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/text/text-mark.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/text/text-mark.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/text/text-mark.png",
     "sourceMode": "shared-example"
   },
   {
@@ -943,9 +956,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Mark / Tick",
     "specPath": "examples/docs/grammar/mark/tick/tick-mark.json",
-    "specUrl": "/docs/examples/docs/grammar/mark/tick/tick-mark.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/tick/tick-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/tick/tick-mark.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/mark/tick/tick-mark.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/tick/tick-mark.png",
     "sourceMode": "shared-example"
   },
   {
@@ -956,9 +969,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Parameters",
     "specPath": "examples/docs/grammar/parameters/point-selection.json",
-    "specUrl": "/docs/examples/docs/grammar/parameters/point-selection.json",
+    "specUrl": "/docs/example-specs/docs/grammar/parameters/point-selection.json",
     "screenshotPath": "examples/docs/grammar/parameters/point-selection.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/parameters/point-selection.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/point-selection.png",
     "sourceMode": "shared-example"
   },
   {
@@ -969,9 +982,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Parameters",
     "specPath": "examples/docs/grammar/parameters/ruler-push-outer.json",
-    "specUrl": "/docs/examples/docs/grammar/parameters/ruler-push-outer.json",
+    "specUrl": "/docs/example-specs/docs/grammar/parameters/ruler-push-outer.json",
     "screenshotPath": "examples/docs/grammar/parameters/ruler-push-outer.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/parameters/ruler-push-outer.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/ruler-push-outer.png",
     "sourceMode": "shared-example"
   },
   {
@@ -982,9 +995,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Parameters",
     "specPath": "examples/docs/grammar/parameters/penguins.json",
-    "specUrl": "/docs/examples/docs/grammar/parameters/penguins.json",
+    "specUrl": "/docs/example-specs/docs/grammar/parameters/penguins.json",
     "screenshotPath": "examples/docs/grammar/parameters/penguins.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/parameters/penguins.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/penguins.png",
     "sourceMode": "shared-example"
   },
   {
@@ -995,9 +1008,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Parameters",
     "specPath": "examples/docs/grammar/parameters/expressions.json",
-    "specUrl": "/docs/examples/docs/grammar/parameters/expressions.json",
+    "specUrl": "/docs/example-specs/docs/grammar/parameters/expressions.json",
     "screenshotPath": "examples/docs/grammar/parameters/expressions.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/parameters/expressions.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/expressions.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1008,9 +1021,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Parameters",
     "specPath": "examples/docs/grammar/parameters/genome-overview-detail.json",
-    "specUrl": "/docs/examples/docs/grammar/parameters/genome-overview-detail.json",
+    "specUrl": "/docs/example-specs/docs/grammar/parameters/genome-overview-detail.json",
     "screenshotPath": "examples/docs/grammar/parameters/genome-overview-detail.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/parameters/genome-overview-detail.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/genome-overview-detail.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1021,9 +1034,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Parameters",
     "specPath": "examples/docs/grammar/parameters/interval-selection.json",
-    "specUrl": "/docs/examples/docs/grammar/parameters/interval-selection.json",
+    "specUrl": "/docs/example-specs/docs/grammar/parameters/interval-selection.json",
     "screenshotPath": "examples/docs/grammar/parameters/interval-selection.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/parameters/interval-selection.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/interval-selection.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1034,9 +1047,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Parameters",
     "specPath": "examples/docs/grammar/parameters/input-bindings.json",
-    "specUrl": "/docs/examples/docs/grammar/parameters/input-bindings.json",
+    "specUrl": "/docs/example-specs/docs/grammar/parameters/input-bindings.json",
     "screenshotPath": "examples/docs/grammar/parameters/input-bindings.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/parameters/input-bindings.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/input-bindings.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1047,9 +1060,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Parameters",
     "specPath": "examples/docs/grammar/parameters/ruler.json",
-    "specUrl": "/docs/examples/docs/grammar/parameters/ruler.json",
+    "specUrl": "/docs/example-specs/docs/grammar/parameters/ruler.json",
     "screenshotPath": "examples/docs/grammar/parameters/ruler.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/parameters/ruler.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/ruler.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1060,9 +1073,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Parameters",
     "specPath": "examples/docs/grammar/parameters/two-way-linking.json",
-    "specUrl": "/docs/examples/docs/grammar/parameters/two-way-linking.json",
+    "specUrl": "/docs/example-specs/docs/grammar/parameters/two-way-linking.json",
     "screenshotPath": "examples/docs/grammar/parameters/two-way-linking.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/parameters/two-way-linking.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/two-way-linking.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1073,9 +1086,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Scale",
     "specPath": "examples/docs/grammar/scale/point-indices-bands.json",
-    "specUrl": "/docs/examples/docs/grammar/scale/point-indices-bands.json",
+    "specUrl": "/docs/example-specs/docs/grammar/scale/point-indices-bands.json",
     "screenshotPath": "examples/docs/grammar/scale/point-indices-bands.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/scale/point-indices-bands.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/point-indices-bands.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1086,9 +1099,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Scale",
     "specPath": "examples/docs/grammar/scale/point-indices-centers.json",
-    "specUrl": "/docs/examples/docs/grammar/scale/point-indices-centers.json",
+    "specUrl": "/docs/example-specs/docs/grammar/scale/point-indices-centers.json",
     "screenshotPath": "examples/docs/grammar/scale/point-indices-centers.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/scale/point-indices-centers.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/point-indices-centers.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1099,9 +1112,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Scale",
     "specPath": "examples/docs/grammar/scale/range-indices.json",
-    "specUrl": "/docs/examples/docs/grammar/scale/range-indices.json",
+    "specUrl": "/docs/example-specs/docs/grammar/scale/range-indices.json",
     "screenshotPath": "examples/docs/grammar/scale/range-indices.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/scale/range-indices.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/range-indices.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1112,9 +1125,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Scale",
     "specPath": "examples/docs/grammar/scale/numbering-offset.json",
-    "specUrl": "/docs/examples/docs/grammar/scale/numbering-offset.json",
+    "specUrl": "/docs/example-specs/docs/grammar/scale/numbering-offset.json",
     "screenshotPath": "examples/docs/grammar/scale/numbering-offset.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/scale/numbering-offset.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/numbering-offset.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1125,9 +1138,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Scale",
     "specPath": "examples/docs/grammar/scale/locus-scale-domain.json",
-    "specUrl": "/docs/examples/docs/grammar/scale/locus-scale-domain.json",
+    "specUrl": "/docs/example-specs/docs/grammar/scale/locus-scale-domain.json",
     "screenshotPath": "examples/docs/grammar/scale/locus-scale-domain.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/scale/locus-scale-domain.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/locus-scale-domain.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1138,9 +1151,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Title",
     "specPath": "examples/docs/grammar/title/basic-title.json",
-    "specUrl": "/docs/examples/docs/grammar/title/basic-title.json",
+    "specUrl": "/docs/example-specs/docs/grammar/title/basic-title.json",
     "screenshotPath": "examples/docs/grammar/title/basic-title.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/title/basic-title.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/title/basic-title.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1151,9 +1164,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Title",
     "specPath": "examples/docs/grammar/title/title-styles.json",
-    "specUrl": "/docs/examples/docs/grammar/title/title-styles.json",
+    "specUrl": "/docs/example-specs/docs/grammar/title/title-styles.json",
     "screenshotPath": "examples/docs/grammar/title/title-styles.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/title/title-styles.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/title/title-styles.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1164,9 +1177,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Transform / Aggregate",
     "specPath": "examples/docs/grammar/transform/aggregate/aggregate-min-max.json",
-    "specUrl": "/docs/examples/docs/grammar/transform/aggregate/aggregate-min-max.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/aggregate/aggregate-min-max.json",
     "screenshotPath": "examples/docs/grammar/transform/aggregate/aggregate-min-max.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/transform/aggregate/aggregate-min-max.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/aggregate/aggregate-min-max.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1177,9 +1190,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Transform / Aggregate",
     "specPath": "examples/docs/grammar/transform/aggregate/aggregate-boxplot.json",
-    "specUrl": "/docs/examples/docs/grammar/transform/aggregate/aggregate-boxplot.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/aggregate/aggregate-boxplot.json",
     "screenshotPath": "examples/docs/grammar/transform/aggregate/aggregate-boxplot.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/transform/aggregate/aggregate-boxplot.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/aggregate/aggregate-boxplot.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1190,9 +1203,22 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Transform / Coverage",
     "specPath": "examples/docs/grammar/transform/coverage/coverage-pileup.json",
-    "specUrl": "/docs/examples/docs/grammar/transform/coverage/coverage-pileup.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/coverage/coverage-pileup.json",
     "screenshotPath": "examples/docs/grammar/transform/coverage/coverage-pileup.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/transform/coverage/coverage-pileup.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/coverage/coverage-pileup.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/transform/cross/cross-heatmap",
+    "title": "Cross two generated sequences to form a heatmap grid.",
+    "description": "Cross two generated sequences to form a heatmap grid.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Transform / Cross",
+    "specPath": "examples/docs/grammar/transform/cross/cross-heatmap.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/cross/cross-heatmap.json",
+    "screenshotPath": "examples/docs/grammar/transform/cross/cross-heatmap.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/cross/cross-heatmap.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1203,9 +1229,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Transform / Filter",
     "specPath": "examples/docs/grammar/transform/filter/selection-predicate-filter.json",
-    "specUrl": "/docs/examples/docs/grammar/transform/filter/selection-predicate-filter.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/filter/selection-predicate-filter.json",
     "screenshotPath": "examples/docs/grammar/transform/filter/selection-predicate-filter.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/transform/filter/selection-predicate-filter.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/filter/selection-predicate-filter.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1216,9 +1242,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Transform / Filter Scored Labels",
     "specPath": "examples/docs/grammar/transform/filter-scored-labels/filter-scored-labels.json",
-    "specUrl": "/docs/examples/docs/grammar/transform/filter-scored-labels/filter-scored-labels.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/filter-scored-labels/filter-scored-labels.json",
     "screenshotPath": "examples/docs/grammar/transform/filter-scored-labels/filter-scored-labels.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/transform/filter-scored-labels/filter-scored-labels.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/filter-scored-labels/filter-scored-labels.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1229,9 +1255,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Transform / Formula",
     "specPath": "examples/docs/grammar/transform/formula/formula-with-parameters.json",
-    "specUrl": "/docs/examples/docs/grammar/transform/formula/formula-with-parameters.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/formula/formula-with-parameters.json",
     "screenshotPath": "examples/docs/grammar/transform/formula/formula-with-parameters.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/transform/formula/formula-with-parameters.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/formula/formula-with-parameters.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1242,9 +1268,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Transform / Measure Text",
     "specPath": "examples/docs/grammar/transform/measure-text/measure-text-table.json",
-    "specUrl": "/docs/examples/docs/grammar/transform/measure-text/measure-text-table.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/measure-text/measure-text-table.json",
     "screenshotPath": "examples/docs/grammar/transform/measure-text/measure-text-table.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/transform/measure-text/measure-text-table.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/measure-text/measure-text-table.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1255,9 +1281,22 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Transform / Pileup",
     "specPath": "examples/docs/grammar/transform/pileup/pileup-lanes.json",
-    "specUrl": "/docs/examples/docs/grammar/transform/pileup/pileup-lanes.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/pileup/pileup-lanes.json",
     "screenshotPath": "examples/docs/grammar/transform/pileup/pileup-lanes.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/transform/pileup/pileup-lanes.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/pileup/pileup-lanes.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/transform/set-intersection/co-mutation",
+    "title": "Exact co-mutation profiles across samples.",
+    "description": "Exact co-mutation profiles across samples.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Transform / Set Intersection",
+    "specPath": "examples/docs/grammar/transform/set-intersection/co-mutation.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/set-intersection/co-mutation.json",
+    "screenshotPath": "examples/docs/grammar/transform/set-intersection/co-mutation.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/set-intersection/co-mutation.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1268,9 +1307,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Transform / Stack",
     "specPath": "examples/docs/grammar/transform/stack/sequence-logo.json",
-    "specUrl": "/docs/examples/docs/grammar/transform/stack/sequence-logo.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/stack/sequence-logo.json",
     "screenshotPath": "examples/docs/grammar/transform/stack/sequence-logo.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/transform/stack/sequence-logo.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/stack/sequence-logo.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1281,9 +1320,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Transform / Stack",
     "specPath": "examples/docs/grammar/transform/stack/stacked-bar-plot.json",
-    "specUrl": "/docs/examples/docs/grammar/transform/stack/stacked-bar-plot.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/stack/stacked-bar-plot.json",
     "screenshotPath": "examples/docs/grammar/transform/stack/stacked-bar-plot.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/transform/stack/stacked-bar-plot.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/stack/stacked-bar-plot.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1294,9 +1333,9 @@
     "sourceLabel": "Docs",
     "category": "Grammar / Transform / Window",
     "specPath": "examples/docs/grammar/transform/window/window-transform.json",
-    "specUrl": "/docs/examples/docs/grammar/transform/window/window-transform.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/window/window-transform.json",
     "screenshotPath": "examples/docs/grammar/transform/window/window-transform.png",
-    "screenshotUrl": "/docs/examples/docs/grammar/transform/window/window-transform.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/window/window-transform.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1307,9 +1346,9 @@
     "sourceLabel": "Core",
     "category": "Config",
     "specPath": "examples/core/config/config-scoped-view.json",
-    "specUrl": "/docs/examples/core/config/config-scoped-view.json",
+    "specUrl": "/docs/example-specs/core/config/config-scoped-view.json",
     "screenshotPath": "examples/core/config/config-scoped-view.png",
-    "screenshotUrl": "/docs/examples/core/config/config-scoped-view.png",
+    "screenshotUrl": "/docs/example-specs/core/config/config-scoped-view.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1320,9 +1359,9 @@
     "sourceLabel": "Core",
     "category": "Config",
     "specPath": "examples/core/config/config-crazy-theme-style-showcase.json",
-    "specUrl": "/docs/examples/core/config/config-crazy-theme-style-showcase.json",
+    "specUrl": "/docs/example-specs/core/config/config-crazy-theme-style-showcase.json",
     "screenshotPath": "examples/core/config/config-crazy-theme-style-showcase.png",
-    "screenshotUrl": "/docs/examples/core/config/config-crazy-theme-style-showcase.png",
+    "screenshotUrl": "/docs/example-specs/core/config/config-crazy-theme-style-showcase.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1333,9 +1372,9 @@
     "sourceLabel": "Core",
     "category": "Config",
     "specPath": "examples/core/config/config-scale-schemes-by-type.json",
-    "specUrl": "/docs/examples/core/config/config-scale-schemes-by-type.json",
+    "specUrl": "/docs/example-specs/core/config/config-scale-schemes-by-type.json",
     "screenshotPath": "examples/core/config/config-scale-schemes-by-type.png",
-    "screenshotUrl": "/docs/examples/core/config/config-scale-schemes-by-type.png",
+    "screenshotUrl": "/docs/example-specs/core/config/config-scale-schemes-by-type.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1346,9 +1385,9 @@
     "sourceLabel": "Core",
     "category": "Config",
     "specPath": "examples/core/config/config-import-override.json",
-    "specUrl": "/docs/examples/core/config/config-import-override.json",
+    "specUrl": "/docs/example-specs/core/config/config-import-override.json",
     "screenshotPath": "examples/core/config/config-import-override.png",
-    "screenshotUrl": "/docs/examples/core/config/config-import-override.png",
+    "screenshotUrl": "/docs/example-specs/core/config/config-import-override.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1359,9 +1398,9 @@
     "sourceLabel": "Core",
     "category": "Config",
     "specPath": "examples/core/config/config-imported-track.json",
-    "specUrl": "/docs/examples/core/config/config-imported-track.json",
+    "specUrl": "/docs/example-specs/core/config/config-imported-track.json",
     "screenshotPath": "examples/core/config/config-imported-track.png",
-    "screenshotUrl": "/docs/examples/core/config/config-imported-track.png",
+    "screenshotUrl": "/docs/example-specs/core/config/config-imported-track.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1372,9 +1411,9 @@
     "sourceLabel": "Core",
     "category": "Config",
     "specPath": "examples/core/config/config-basic.json",
-    "specUrl": "/docs/examples/core/config/config-basic.json",
+    "specUrl": "/docs/example-specs/core/config/config-basic.json",
     "screenshotPath": "examples/core/config/config-basic.png",
-    "screenshotUrl": "/docs/examples/core/config/config-basic.png",
+    "screenshotUrl": "/docs/example-specs/core/config/config-basic.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1385,9 +1424,9 @@
     "sourceLabel": "Core",
     "category": "Config",
     "specPath": "examples/core/config/config-theme-comparison-bars.json",
-    "specUrl": "/docs/examples/core/config/config-theme-comparison-bars.json",
+    "specUrl": "/docs/example-specs/core/config/config-theme-comparison-bars.json",
     "screenshotPath": "examples/core/config/config-theme-comparison-bars.png",
-    "screenshotUrl": "/docs/examples/core/config/config-theme-comparison-bars.png",
+    "screenshotUrl": "/docs/example-specs/core/config/config-theme-comparison-bars.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1398,9 +1437,9 @@
     "sourceLabel": "Core",
     "category": "General",
     "specPath": "examples/core/first.json",
-    "specUrl": "/docs/examples/core/first.json",
+    "specUrl": "/docs/example-specs/core/first.json",
     "screenshotPath": "examples/core/first.png",
-    "screenshotUrl": "/docs/examples/core/first.png",
+    "screenshotUrl": "/docs/example-specs/core/first.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1411,9 +1450,9 @@
     "sourceLabel": "Core",
     "category": "Genomic",
     "specPath": "examples/core/genomic/bedBlocks.json",
-    "specUrl": "/docs/examples/core/genomic/bedBlocks.json",
+    "specUrl": "/docs/example-specs/core/genomic/bedBlocks.json",
     "screenshotPath": "examples/core/genomic/bedBlocks.png",
-    "screenshotUrl": "/docs/examples/core/genomic/bedBlocks.png",
+    "screenshotUrl": "/docs/example-specs/core/genomic/bedBlocks.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1424,9 +1463,9 @@
     "sourceLabel": "Core",
     "category": "Genomic",
     "specPath": "examples/core/genomic/bedpeColumns.json",
-    "specUrl": "/docs/examples/core/genomic/bedpeColumns.json",
+    "specUrl": "/docs/example-specs/core/genomic/bedpeColumns.json",
     "screenshotPath": "examples/core/genomic/bedpeColumns.png",
-    "screenshotUrl": "/docs/examples/core/genomic/bedpeColumns.png",
+    "screenshotUrl": "/docs/example-specs/core/genomic/bedpeColumns.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1437,9 +1476,9 @@
     "sourceLabel": "Core",
     "category": "Layout",
     "specPath": "examples/core/layout/title_bounds.json",
-    "specUrl": "/docs/examples/core/layout/title_bounds.json",
+    "specUrl": "/docs/example-specs/core/layout/title_bounds.json",
     "screenshotPath": "examples/core/layout/title_bounds.png",
-    "screenshotUrl": "/docs/examples/core/layout/title_bounds.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/title_bounds.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1450,9 +1489,9 @@
     "sourceLabel": "Core",
     "category": "Layout",
     "specPath": "examples/core/layout/size_expr.json",
-    "specUrl": "/docs/examples/core/layout/size_expr.json",
+    "specUrl": "/docs/example-specs/core/layout/size_expr.json",
     "screenshotPath": "examples/core/layout/size_expr.png",
-    "screenshotUrl": "/docs/examples/core/layout/size_expr.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/size_expr.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1463,9 +1502,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Grid",
     "specPath": "examples/core/layout/grid/scrollable_viewport2.json",
-    "specUrl": "/docs/examples/core/layout/grid/scrollable_viewport2.json",
+    "specUrl": "/docs/example-specs/core/layout/grid/scrollable_viewport2.json",
     "screenshotPath": "examples/core/layout/grid/scrollable_viewport2.png",
-    "screenshotUrl": "/docs/examples/core/layout/grid/scrollable_viewport2.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/grid/scrollable_viewport2.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1476,9 +1515,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Grid",
     "specPath": "examples/core/layout/grid/scrollable_viewport.json",
-    "specUrl": "/docs/examples/core/layout/grid/scrollable_viewport.json",
+    "specUrl": "/docs/example-specs/core/layout/grid/scrollable_viewport.json",
     "screenshotPath": "examples/core/layout/grid/scrollable_viewport.png",
-    "screenshotUrl": "/docs/examples/core/layout/grid/scrollable_viewport.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/grid/scrollable_viewport.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1489,9 +1528,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Grid",
     "specPath": "examples/core/layout/grid/complex_grid_layout.json",
-    "specUrl": "/docs/examples/core/layout/grid/complex_grid_layout.json",
+    "specUrl": "/docs/example-specs/core/layout/grid/complex_grid_layout.json",
     "screenshotPath": "examples/core/layout/grid/complex_grid_layout.png",
-    "screenshotUrl": "/docs/examples/core/layout/grid/complex_grid_layout.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/grid/complex_grid_layout.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1502,9 +1541,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Grid",
     "specPath": "examples/core/layout/grid/complex_grid_layout_separators.json",
-    "specUrl": "/docs/examples/core/layout/grid/complex_grid_layout_separators.json",
+    "specUrl": "/docs/example-specs/core/layout/grid/complex_grid_layout_separators.json",
     "screenshotPath": "examples/core/layout/grid/complex_grid_layout_separators.png",
-    "screenshotUrl": "/docs/examples/core/layout/grid/complex_grid_layout_separators.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/grid/complex_grid_layout_separators.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1515,9 +1554,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Grid",
     "specPath": "examples/core/layout/grid/complex_grid_layout2.json",
-    "specUrl": "/docs/examples/core/layout/grid/complex_grid_layout2.json",
+    "specUrl": "/docs/example-specs/core/layout/grid/complex_grid_layout2.json",
     "screenshotPath": "examples/core/layout/grid/complex_grid_layout2.png",
-    "screenshotUrl": "/docs/examples/core/layout/grid/complex_grid_layout2.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/grid/complex_grid_layout2.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1528,9 +1567,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Grid",
     "specPath": "examples/core/layout/grid/concat.json",
-    "specUrl": "/docs/examples/core/layout/grid/concat.json",
+    "specUrl": "/docs/example-specs/core/layout/grid/concat.json",
     "screenshotPath": "examples/core/layout/grid/concat.png",
-    "screenshotUrl": "/docs/examples/core/layout/grid/concat.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/grid/concat.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1541,9 +1580,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Grid",
     "specPath": "examples/core/layout/grid/concat_points_text.json",
-    "specUrl": "/docs/examples/core/layout/grid/concat_points_text.json",
+    "specUrl": "/docs/example-specs/core/layout/grid/concat_points_text.json",
     "screenshotPath": "examples/core/layout/grid/concat_points_text.png",
-    "screenshotUrl": "/docs/examples/core/layout/grid/concat_points_text.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/grid/concat_points_text.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1554,9 +1593,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Grid",
     "specPath": "examples/core/layout/grid/condensed_concat.json",
-    "specUrl": "/docs/examples/core/layout/grid/condensed_concat.json",
+    "specUrl": "/docs/example-specs/core/layout/grid/condensed_concat.json",
     "screenshotPath": "examples/core/layout/grid/condensed_concat.png",
-    "screenshotUrl": "/docs/examples/core/layout/grid/condensed_concat.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/grid/condensed_concat.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1567,9 +1606,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Grid",
     "specPath": "examples/core/layout/grid/vconcat_width_child_chrome.json",
-    "specUrl": "/docs/examples/core/layout/grid/vconcat_width_child_chrome.json",
+    "specUrl": "/docs/example-specs/core/layout/grid/vconcat_width_child_chrome.json",
     "screenshotPath": "examples/core/layout/grid/vconcat_width_child_chrome.png",
-    "screenshotUrl": "/docs/examples/core/layout/grid/vconcat_width_child_chrome.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/grid/vconcat_width_child_chrome.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1580,9 +1619,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Grid",
     "specPath": "examples/core/layout/grid/hconcat_width_child_minimums.json",
-    "specUrl": "/docs/examples/core/layout/grid/hconcat_width_child_minimums.json",
+    "specUrl": "/docs/example-specs/core/layout/grid/hconcat_width_child_minimums.json",
     "screenshotPath": "examples/core/layout/grid/hconcat_width_child_minimums.png",
-    "screenshotUrl": "/docs/examples/core/layout/grid/hconcat_width_child_minimums.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/grid/hconcat_width_child_minimums.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1593,9 +1632,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Grid",
     "specPath": "examples/core/layout/grid/shared_axis_at_root.json",
-    "specUrl": "/docs/examples/core/layout/grid/shared_axis_at_root.json",
+    "specUrl": "/docs/example-specs/core/layout/grid/shared_axis_at_root.json",
     "screenshotPath": "examples/core/layout/grid/shared_axis_at_root.png",
-    "screenshotUrl": "/docs/examples/core/layout/grid/shared_axis_at_root.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/grid/shared_axis_at_root.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1606,9 +1645,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Layer",
     "specPath": "examples/core/layout/layer/heatmap_with_text.json",
-    "specUrl": "/docs/examples/core/layout/layer/heatmap_with_text.json",
+    "specUrl": "/docs/example-specs/core/layout/layer/heatmap_with_text.json",
     "screenshotPath": "examples/core/layout/layer/heatmap_with_text.png",
-    "screenshotUrl": "/docs/examples/core/layout/layer/heatmap_with_text.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/layer/heatmap_with_text.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1619,9 +1658,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Layer",
     "specPath": "examples/core/layout/layer/lollipop.json",
-    "specUrl": "/docs/examples/core/layout/layer/lollipop.json",
+    "specUrl": "/docs/example-specs/core/layout/layer/lollipop.json",
     "screenshotPath": "examples/core/layout/layer/lollipop.png",
-    "screenshotUrl": "/docs/examples/core/layout/layer/lollipop.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/layer/lollipop.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1632,9 +1671,9 @@
     "sourceLabel": "Core",
     "category": "Layout / Layer",
     "specPath": "examples/core/layout/layer/rect.json",
-    "specUrl": "/docs/examples/core/layout/layer/rect.json",
+    "specUrl": "/docs/example-specs/core/layout/layer/rect.json",
     "screenshotPath": "examples/core/layout/layer/rect.png",
-    "screenshotUrl": "/docs/examples/core/layout/layer/rect.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/layer/rect.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1645,9 +1684,9 @@
     "sourceLabel": "Core",
     "category": "Lazy Data",
     "specPath": "examples/core/lazy-data/bigwig.json",
-    "specUrl": "/docs/examples/core/lazy-data/bigwig.json",
+    "specUrl": "/docs/example-specs/core/lazy-data/bigwig.json",
     "screenshotPath": "examples/core/lazy-data/bigwig.png",
-    "screenshotUrl": "/docs/examples/core/lazy-data/bigwig.png",
+    "screenshotUrl": "/docs/example-specs/core/lazy-data/bigwig.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1658,7 +1697,7 @@
     "sourceLabel": "Core",
     "category": "Lazy Data",
     "specPath": "examples/core/lazy-data/bigbed.json",
-    "specUrl": "/docs/examples/core/lazy-data/bigbed.json",
+    "specUrl": "/docs/example-specs/core/lazy-data/bigbed.json",
     "screenshotPath": null,
     "screenshotUrl": null,
     "sourceMode": "shared-example"
@@ -1671,7 +1710,7 @@
     "sourceLabel": "Core",
     "category": "Lazy Data",
     "specPath": "examples/core/lazy-data/indexed_fasta.json",
-    "specUrl": "/docs/examples/core/lazy-data/indexed_fasta.json",
+    "specUrl": "/docs/example-specs/core/lazy-data/indexed_fasta.json",
     "screenshotPath": null,
     "screenshotUrl": null,
     "sourceMode": "shared-example"
@@ -1684,9 +1723,9 @@
     "sourceLabel": "Core",
     "category": "Legends",
     "specPath": "examples/core/legends/bubble-health-income.json",
-    "specUrl": "/docs/examples/core/legends/bubble-health-income.json",
+    "specUrl": "/docs/example-specs/core/legends/bubble-health-income.json",
     "screenshotPath": "examples/core/legends/bubble-health-income.png",
-    "screenshotUrl": "/docs/examples/core/legends/bubble-health-income.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/bubble-health-income.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1697,9 +1736,9 @@
     "sourceLabel": "Core",
     "category": "Legends",
     "specPath": "examples/core/legends/horizontal-stacked-bar.json",
-    "specUrl": "/docs/examples/core/legends/horizontal-stacked-bar.json",
+    "specUrl": "/docs/example-specs/core/legends/horizontal-stacked-bar.json",
     "screenshotPath": "examples/core/legends/horizontal-stacked-bar.png",
-    "screenshotUrl": "/docs/examples/core/legends/horizontal-stacked-bar.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/horizontal-stacked-bar.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1710,9 +1749,9 @@
     "sourceLabel": "Core",
     "category": "Legends",
     "specPath": "examples/core/legends/corner-horizontal.json",
-    "specUrl": "/docs/examples/core/legends/corner-horizontal.json",
+    "specUrl": "/docs/example-specs/core/legends/corner-horizontal.json",
     "screenshotPath": "examples/core/legends/corner-horizontal.png",
-    "screenshotUrl": "/docs/examples/core/legends/corner-horizontal.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/corner-horizontal.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1723,9 +1762,9 @@
     "sourceLabel": "Core",
     "category": "Legends",
     "specPath": "examples/core/legends/linear-gradient.json",
-    "specUrl": "/docs/examples/core/legends/linear-gradient.json",
+    "specUrl": "/docs/example-specs/core/legends/linear-gradient.json",
     "screenshotPath": "examples/core/legends/linear-gradient.png",
-    "screenshotUrl": "/docs/examples/core/legends/linear-gradient.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/linear-gradient.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1736,9 +1775,9 @@
     "sourceLabel": "Core",
     "category": "Legends",
     "specPath": "examples/core/legends/log-gradient.json",
-    "specUrl": "/docs/examples/core/legends/log-gradient.json",
+    "specUrl": "/docs/example-specs/core/legends/log-gradient.json",
     "screenshotPath": "examples/core/legends/log-gradient.png",
-    "screenshotUrl": "/docs/examples/core/legends/log-gradient.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/log-gradient.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1749,9 +1788,9 @@
     "sourceLabel": "Core",
     "category": "Legends",
     "specPath": "examples/core/legends/quantize-gradient.json",
-    "specUrl": "/docs/examples/core/legends/quantize-gradient.json",
+    "specUrl": "/docs/example-specs/core/legends/quantize-gradient.json",
     "screenshotPath": "examples/core/legends/quantize-gradient.png",
-    "screenshotUrl": "/docs/examples/core/legends/quantize-gradient.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/quantize-gradient.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1762,9 +1801,9 @@
     "sourceLabel": "Core",
     "category": "Legends",
     "specPath": "examples/core/legends/threshold-gradient.json",
-    "specUrl": "/docs/examples/core/legends/threshold-gradient.json",
+    "specUrl": "/docs/example-specs/core/legends/threshold-gradient.json",
     "screenshotPath": "examples/core/legends/threshold-gradient.png",
-    "screenshotUrl": "/docs/examples/core/legends/threshold-gradient.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/threshold-gradient.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1775,9 +1814,9 @@
     "sourceLabel": "Core",
     "category": "Legends",
     "specPath": "examples/core/legends/layered-legend-regions.json",
-    "specUrl": "/docs/examples/core/legends/layered-legend-regions.json",
+    "specUrl": "/docs/example-specs/core/legends/layered-legend-regions.json",
     "screenshotPath": "examples/core/legends/layered-legend-regions.png",
-    "screenshotUrl": "/docs/examples/core/legends/layered-legend-regions.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/layered-legend-regions.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1788,9 +1827,9 @@
     "sourceLabel": "Core",
     "category": "Legends",
     "specPath": "examples/core/legends/redundant-encoding.json",
-    "specUrl": "/docs/examples/core/legends/redundant-encoding.json",
+    "specUrl": "/docs/example-specs/core/legends/redundant-encoding.json",
     "screenshotPath": "examples/core/legends/redundant-encoding.png",
-    "screenshotUrl": "/docs/examples/core/legends/redundant-encoding.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/redundant-encoding.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1801,9 +1840,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Arrow",
     "specPath": "examples/core/marks/arrow/arrow_direction.json",
-    "specUrl": "/docs/examples/core/marks/arrow/arrow_direction.json",
+    "specUrl": "/docs/example-specs/core/marks/arrow/arrow_direction.json",
     "screenshotPath": "examples/core/marks/arrow/arrow_direction.png",
-    "screenshotUrl": "/docs/examples/core/marks/arrow/arrow_direction.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/arrow/arrow_direction.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1814,9 +1853,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Arrow",
     "specPath": "examples/core/marks/arrow/arrow_band_size.json",
-    "specUrl": "/docs/examples/core/marks/arrow/arrow_band_size.json",
+    "specUrl": "/docs/example-specs/core/marks/arrow/arrow_band_size.json",
     "screenshotPath": "examples/core/marks/arrow/arrow_band_size.png",
-    "screenshotUrl": "/docs/examples/core/marks/arrow/arrow_band_size.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/arrow/arrow_band_size.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1827,9 +1866,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Arrow",
     "specPath": "examples/core/marks/arrow/arrow_block_bands.json",
-    "specUrl": "/docs/examples/core/marks/arrow/arrow_block_bands.json",
+    "specUrl": "/docs/example-specs/core/marks/arrow/arrow_block_bands.json",
     "screenshotPath": "examples/core/marks/arrow/arrow_block_bands.png",
-    "screenshotUrl": "/docs/examples/core/marks/arrow/arrow_block_bands.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/arrow/arrow_block_bands.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1840,9 +1879,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Arrow",
     "specPath": "examples/core/marks/arrow/arrow_diagonal.json",
-    "specUrl": "/docs/examples/core/marks/arrow/arrow_diagonal.json",
+    "specUrl": "/docs/example-specs/core/marks/arrow/arrow_diagonal.json",
     "screenshotPath": "examples/core/marks/arrow/arrow_diagonal.png",
-    "screenshotUrl": "/docs/examples/core/marks/arrow/arrow_diagonal.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/arrow/arrow_diagonal.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1853,9 +1892,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Link",
     "specPath": "examples/core/marks/link/link.json",
-    "specUrl": "/docs/examples/core/marks/link/link.json",
+    "specUrl": "/docs/example-specs/core/marks/link/link.json",
     "screenshotPath": "examples/core/marks/link/link.png",
-    "screenshotUrl": "/docs/examples/core/marks/link/link.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/link/link.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1866,9 +1905,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Point",
     "specPath": "examples/core/marks/point/point2d.json",
-    "specUrl": "/docs/examples/core/marks/point/point2d.json",
+    "specUrl": "/docs/example-specs/core/marks/point/point2d.json",
     "screenshotPath": "examples/core/marks/point/point2d.png",
-    "screenshotUrl": "/docs/examples/core/marks/point/point2d.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/point/point2d.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1879,9 +1918,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Point",
     "specPath": "examples/core/marks/point/point.json",
-    "specUrl": "/docs/examples/core/marks/point/point.json",
+    "specUrl": "/docs/example-specs/core/marks/point/point.json",
     "screenshotPath": "examples/core/marks/point/point.png",
-    "screenshotUrl": "/docs/examples/core/marks/point/point.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/point/point.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1892,9 +1931,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Rect",
     "specPath": "examples/core/marks/rect/bar.json",
-    "specUrl": "/docs/examples/core/marks/rect/bar.json",
+    "specUrl": "/docs/example-specs/core/marks/rect/bar.json",
     "screenshotPath": "examples/core/marks/rect/bar.png",
-    "screenshotUrl": "/docs/examples/core/marks/rect/bar.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/rect/bar.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1905,9 +1944,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Rect",
     "specPath": "examples/core/marks/rect/heatmap.json",
-    "specUrl": "/docs/examples/core/marks/rect/heatmap.json",
+    "specUrl": "/docs/example-specs/core/marks/rect/heatmap.json",
     "screenshotPath": "examples/core/marks/rect/heatmap.png",
-    "screenshotUrl": "/docs/examples/core/marks/rect/heatmap.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/rect/heatmap.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1918,9 +1957,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Rect",
     "specPath": "examples/core/marks/rect/index_bars.json",
-    "specUrl": "/docs/examples/core/marks/rect/index_bars.json",
+    "specUrl": "/docs/example-specs/core/marks/rect/index_bars.json",
     "screenshotPath": "examples/core/marks/rect/index_bars.png",
-    "screenshotUrl": "/docs/examples/core/marks/rect/index_bars.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/rect/index_bars.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1931,9 +1970,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Rect",
     "specPath": "examples/core/marks/rect/rect_with_params.json",
-    "specUrl": "/docs/examples/core/marks/rect/rect_with_params.json",
+    "specUrl": "/docs/example-specs/core/marks/rect/rect_with_params.json",
     "screenshotPath": "examples/core/marks/rect/rect_with_params.png",
-    "screenshotUrl": "/docs/examples/core/marks/rect/rect_with_params.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/rect/rect_with_params.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1944,9 +1983,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Rule",
     "specPath": "examples/core/marks/rule/rule_test.json",
-    "specUrl": "/docs/examples/core/marks/rule/rule_test.json",
+    "specUrl": "/docs/example-specs/core/marks/rule/rule_test.json",
     "screenshotPath": "examples/core/marks/rule/rule_test.png",
-    "screenshotUrl": "/docs/examples/core/marks/rule/rule_test.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/rule/rule_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1957,9 +1996,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Rule",
     "specPath": "examples/core/marks/rule/rule_test4.json",
-    "specUrl": "/docs/examples/core/marks/rule/rule_test4.json",
+    "specUrl": "/docs/example-specs/core/marks/rule/rule_test4.json",
     "screenshotPath": "examples/core/marks/rule/rule_test4.png",
-    "screenshotUrl": "/docs/examples/core/marks/rule/rule_test4.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/rule/rule_test4.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1970,9 +2009,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Rule",
     "specPath": "examples/core/marks/rule/rules.json",
-    "specUrl": "/docs/examples/core/marks/rule/rules.json",
+    "specUrl": "/docs/example-specs/core/marks/rule/rules.json",
     "screenshotPath": "examples/core/marks/rule/rules.png",
-    "screenshotUrl": "/docs/examples/core/marks/rule/rules.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/rule/rules.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1983,9 +2022,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Text",
     "specPath": "examples/core/marks/text/ranged_text.json",
-    "specUrl": "/docs/examples/core/marks/text/ranged_text.json",
+    "specUrl": "/docs/example-specs/core/marks/text/ranged_text.json",
     "screenshotPath": "examples/core/marks/text/ranged_text.png",
-    "screenshotUrl": "/docs/examples/core/marks/text/ranged_text.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/text/ranged_text.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1996,9 +2035,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Text",
     "specPath": "examples/core/marks/text/quality.json",
-    "specUrl": "/docs/examples/core/marks/text/quality.json",
+    "specUrl": "/docs/example-specs/core/marks/text/quality.json",
     "screenshotPath": "examples/core/marks/text/quality.png",
-    "screenshotUrl": "/docs/examples/core/marks/text/quality.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/text/quality.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2009,9 +2048,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Text",
     "specPath": "examples/core/marks/text/text_baseline.json",
-    "specUrl": "/docs/examples/core/marks/text/text_baseline.json",
+    "specUrl": "/docs/example-specs/core/marks/text/text_baseline.json",
     "screenshotPath": "examples/core/marks/text/text_baseline.png",
-    "screenshotUrl": "/docs/examples/core/marks/text/text_baseline.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/text/text_baseline.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2022,9 +2061,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Text",
     "specPath": "examples/core/marks/text/text_sequence.json",
-    "specUrl": "/docs/examples/core/marks/text/text_sequence.json",
+    "specUrl": "/docs/example-specs/core/marks/text/text_sequence.json",
     "screenshotPath": "examples/core/marks/text/text_sequence.png",
-    "screenshotUrl": "/docs/examples/core/marks/text/text_sequence.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/text/text_sequence.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2035,9 +2074,9 @@
     "sourceLabel": "Core",
     "category": "Marks / Text",
     "specPath": "examples/core/marks/text/text_with_params.json",
-    "specUrl": "/docs/examples/core/marks/text/text_with_params.json",
+    "specUrl": "/docs/example-specs/core/marks/text/text_with_params.json",
     "screenshotPath": "examples/core/marks/text/text_with_params.png",
-    "screenshotUrl": "/docs/examples/core/marks/text/text_with_params.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/text/text_with_params.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2048,9 +2087,9 @@
     "sourceLabel": "Core",
     "category": "Ruler",
     "specPath": "examples/core/ruler/hconcat-push-outer.json",
-    "specUrl": "/docs/examples/core/ruler/hconcat-push-outer.json",
+    "specUrl": "/docs/example-specs/core/ruler/hconcat-push-outer.json",
     "screenshotPath": "examples/core/ruler/hconcat-push-outer.png",
-    "screenshotUrl": "/docs/examples/core/ruler/hconcat-push-outer.png",
+    "screenshotUrl": "/docs/example-specs/core/ruler/hconcat-push-outer.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2061,9 +2100,9 @@
     "sourceLabel": "Core",
     "category": "Ruler",
     "specPath": "examples/core/ruler/crosshair.json",
-    "specUrl": "/docs/examples/core/ruler/crosshair.json",
+    "specUrl": "/docs/example-specs/core/ruler/crosshair.json",
     "screenshotPath": "examples/core/ruler/crosshair.png",
-    "screenshotUrl": "/docs/examples/core/ruler/crosshair.png",
+    "screenshotUrl": "/docs/example-specs/core/ruler/crosshair.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2074,9 +2113,9 @@
     "sourceLabel": "Core",
     "category": "Ruler",
     "specPath": "examples/core/ruler/vconcat-independent.json",
-    "specUrl": "/docs/examples/core/ruler/vconcat-independent.json",
+    "specUrl": "/docs/example-specs/core/ruler/vconcat-independent.json",
     "screenshotPath": "examples/core/ruler/vconcat-independent.png",
-    "screenshotUrl": "/docs/examples/core/ruler/vconcat-independent.png",
+    "screenshotUrl": "/docs/example-specs/core/ruler/vconcat-independent.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2087,9 +2126,9 @@
     "sourceLabel": "Core",
     "category": "Ruler",
     "specPath": "examples/core/ruler/vconcat-spanning.json",
-    "specUrl": "/docs/examples/core/ruler/vconcat-spanning.json",
+    "specUrl": "/docs/example-specs/core/ruler/vconcat-spanning.json",
     "screenshotPath": "examples/core/ruler/vconcat-spanning.png",
-    "screenshotUrl": "/docs/examples/core/ruler/vconcat-spanning.png",
+    "screenshotUrl": "/docs/example-specs/core/ruler/vconcat-spanning.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2100,9 +2139,9 @@
     "sourceLabel": "Core",
     "category": "Ruler",
     "specPath": "examples/core/ruler/viewport-index.json",
-    "specUrl": "/docs/examples/core/ruler/viewport-index.json",
+    "specUrl": "/docs/example-specs/core/ruler/viewport-index.json",
     "screenshotPath": "examples/core/ruler/viewport-index.png",
-    "screenshotUrl": "/docs/examples/core/ruler/viewport-index.png",
+    "screenshotUrl": "/docs/example-specs/core/ruler/viewport-index.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2113,9 +2152,9 @@
     "sourceLabel": "Core",
     "category": "Ruler",
     "specPath": "examples/core/ruler/mouse-events.json",
-    "specUrl": "/docs/examples/core/ruler/mouse-events.json",
+    "specUrl": "/docs/example-specs/core/ruler/mouse-events.json",
     "screenshotPath": "examples/core/ruler/mouse-events.png",
-    "screenshotUrl": "/docs/examples/core/ruler/mouse-events.png",
+    "screenshotUrl": "/docs/example-specs/core/ruler/mouse-events.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2126,9 +2165,9 @@
     "sourceLabel": "Core",
     "category": "Scales",
     "specPath": "examples/core/scales/diverging_test.json",
-    "specUrl": "/docs/examples/core/scales/diverging_test.json",
+    "specUrl": "/docs/example-specs/core/scales/diverging_test.json",
     "screenshotPath": "examples/core/scales/diverging_test.png",
-    "screenshotUrl": "/docs/examples/core/scales/diverging_test.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/diverging_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2139,9 +2178,9 @@
     "sourceLabel": "Core",
     "category": "Scales",
     "specPath": "examples/core/scales/constrained_locus_test.json",
-    "specUrl": "/docs/examples/core/scales/constrained_locus_test.json",
+    "specUrl": "/docs/example-specs/core/scales/constrained_locus_test.json",
     "screenshotPath": "examples/core/scales/constrained_locus_test.png",
-    "screenshotUrl": "/docs/examples/core/scales/constrained_locus_test.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/constrained_locus_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2152,9 +2191,9 @@
     "sourceLabel": "Core",
     "category": "Scales",
     "specPath": "examples/core/scales/index_scale_test.json",
-    "specUrl": "/docs/examples/core/scales/index_scale_test.json",
+    "specUrl": "/docs/example-specs/core/scales/index_scale_test.json",
     "screenshotPath": "examples/core/scales/index_scale_test.png",
-    "screenshotUrl": "/docs/examples/core/scales/index_scale_test.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/index_scale_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2165,9 +2204,9 @@
     "sourceLabel": "Core",
     "category": "Scales",
     "specPath": "examples/core/scales/log_test.json",
-    "specUrl": "/docs/examples/core/scales/log_test.json",
+    "specUrl": "/docs/example-specs/core/scales/log_test.json",
     "screenshotPath": "examples/core/scales/log_test.png",
-    "screenshotUrl": "/docs/examples/core/scales/log_test.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/log_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2178,9 +2217,9 @@
     "sourceLabel": "Core",
     "category": "Scales",
     "specPath": "examples/core/scales/piecewise_test.json",
-    "specUrl": "/docs/examples/core/scales/piecewise_test.json",
+    "specUrl": "/docs/example-specs/core/scales/piecewise_test.json",
     "screenshotPath": "examples/core/scales/piecewise_test.png",
-    "screenshotUrl": "/docs/examples/core/scales/piecewise_test.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/piecewise_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2191,9 +2230,9 @@
     "sourceLabel": "Core",
     "category": "Scales",
     "specPath": "examples/core/scales/band_test.json",
-    "specUrl": "/docs/examples/core/scales/band_test.json",
+    "specUrl": "/docs/example-specs/core/scales/band_test.json",
     "screenshotPath": "examples/core/scales/band_test.png",
-    "screenshotUrl": "/docs/examples/core/scales/band_test.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/band_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2204,9 +2243,9 @@
     "sourceLabel": "Core",
     "category": "Scales",
     "specPath": "examples/core/scales/symlog_test.json",
-    "specUrl": "/docs/examples/core/scales/symlog_test.json",
+    "specUrl": "/docs/example-specs/core/scales/symlog_test.json",
     "screenshotPath": "examples/core/scales/symlog_test.png",
-    "screenshotUrl": "/docs/examples/core/scales/symlog_test.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/symlog_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2217,9 +2256,9 @@
     "sourceLabel": "Core",
     "category": "Scales",
     "specPath": "examples/core/scales/large_genome_test.json",
-    "specUrl": "/docs/examples/core/scales/large_genome_test.json",
+    "specUrl": "/docs/example-specs/core/scales/large_genome_test.json",
     "screenshotPath": "examples/core/scales/large_genome_test.png",
-    "screenshotUrl": "/docs/examples/core/scales/large_genome_test.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/large_genome_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2230,9 +2269,9 @@
     "sourceLabel": "Core",
     "category": "Scales",
     "specPath": "examples/core/scales/threshold_test.json",
-    "specUrl": "/docs/examples/core/scales/threshold_test.json",
+    "specUrl": "/docs/example-specs/core/scales/threshold_test.json",
     "screenshotPath": "examples/core/scales/threshold_test.png",
-    "screenshotUrl": "/docs/examples/core/scales/threshold_test.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/threshold_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2243,9 +2282,9 @@
     "sourceLabel": "Core",
     "category": "Scales",
     "specPath": "examples/core/scales/ordinal_position_test.json",
-    "specUrl": "/docs/examples/core/scales/ordinal_position_test.json",
+    "specUrl": "/docs/example-specs/core/scales/ordinal_position_test.json",
     "screenshotPath": "examples/core/scales/ordinal_position_test.png",
-    "screenshotUrl": "/docs/examples/core/scales/ordinal_position_test.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/ordinal_position_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2256,9 +2295,9 @@
     "sourceLabel": "Core",
     "category": "Scales",
     "specPath": "examples/core/scales/parameterized_range_test.json",
-    "specUrl": "/docs/examples/core/scales/parameterized_range_test.json",
+    "specUrl": "/docs/example-specs/core/scales/parameterized_range_test.json",
     "screenshotPath": "examples/core/scales/parameterized_range_test.png",
-    "screenshotUrl": "/docs/examples/core/scales/parameterized_range_test.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/parameterized_range_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2269,9 +2308,9 @@
     "sourceLabel": "Core",
     "category": "Scales",
     "specPath": "examples/core/scales/band_test2.json",
-    "specUrl": "/docs/examples/core/scales/band_test2.json",
+    "specUrl": "/docs/example-specs/core/scales/band_test2.json",
     "screenshotPath": "examples/core/scales/band_test2.png",
-    "screenshotUrl": "/docs/examples/core/scales/band_test2.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/band_test2.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2282,9 +2321,9 @@
     "sourceLabel": "Core",
     "category": "Selection",
     "specPath": "examples/core/selection/interval_points.json",
-    "specUrl": "/docs/examples/core/selection/interval_points.json",
+    "specUrl": "/docs/example-specs/core/selection/interval_points.json",
     "screenshotPath": "examples/core/selection/interval_points.png",
-    "screenshotUrl": "/docs/examples/core/selection/interval_points.png",
+    "screenshotUrl": "/docs/example-specs/core/selection/interval_points.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2295,9 +2334,9 @@
     "sourceLabel": "Core",
     "category": "Selection",
     "specPath": "examples/core/selection/bars.json",
-    "specUrl": "/docs/examples/core/selection/bars.json",
+    "specUrl": "/docs/example-specs/core/selection/bars.json",
     "screenshotPath": "examples/core/selection/bars.png",
-    "screenshotUrl": "/docs/examples/core/selection/bars.png",
+    "screenshotUrl": "/docs/example-specs/core/selection/bars.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2308,9 +2347,9 @@
     "sourceLabel": "Core",
     "category": "Selection",
     "specPath": "examples/core/selection/bars_shift.json",
-    "specUrl": "/docs/examples/core/selection/bars_shift.json",
+    "specUrl": "/docs/example-specs/core/selection/bars_shift.json",
     "screenshotPath": "examples/core/selection/bars_shift.png",
-    "screenshotUrl": "/docs/examples/core/selection/bars_shift.png",
+    "screenshotUrl": "/docs/example-specs/core/selection/bars_shift.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2321,9 +2360,9 @@
     "sourceLabel": "Core",
     "category": "Selection",
     "specPath": "examples/core/selection/interval_genome.json",
-    "specUrl": "/docs/examples/core/selection/interval_genome.json",
+    "specUrl": "/docs/example-specs/core/selection/interval_genome.json",
     "screenshotPath": "examples/core/selection/interval_genome.png",
-    "screenshotUrl": "/docs/examples/core/selection/interval_genome.png",
+    "screenshotUrl": "/docs/example-specs/core/selection/interval_genome.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2334,9 +2373,9 @@
     "sourceLabel": "Core",
     "category": "Selection",
     "specPath": "examples/core/selection/interval_linked_domain.json",
-    "specUrl": "/docs/examples/core/selection/interval_linked_domain.json",
+    "specUrl": "/docs/example-specs/core/selection/interval_linked_domain.json",
     "screenshotPath": "examples/core/selection/interval_linked_domain.png",
-    "screenshotUrl": "/docs/examples/core/selection/interval_linked_domain.png",
+    "screenshotUrl": "/docs/example-specs/core/selection/interval_linked_domain.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2347,9 +2386,9 @@
     "sourceLabel": "Core",
     "category": "Selection",
     "specPath": "examples/core/selection/interval_ranged.json",
-    "specUrl": "/docs/examples/core/selection/interval_ranged.json",
+    "specUrl": "/docs/example-specs/core/selection/interval_ranged.json",
     "screenshotPath": "examples/core/selection/interval_ranged.png",
-    "screenshotUrl": "/docs/examples/core/selection/interval_ranged.png",
+    "screenshotUrl": "/docs/example-specs/core/selection/interval_ranged.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2360,9 +2399,9 @@
     "sourceLabel": "Core",
     "category": "Selection",
     "specPath": "examples/core/selection/interval_ranged_test.json",
-    "specUrl": "/docs/examples/core/selection/interval_ranged_test.json",
+    "specUrl": "/docs/example-specs/core/selection/interval_ranged_test.json",
     "screenshotPath": "examples/core/selection/interval_ranged_test.png",
-    "screenshotUrl": "/docs/examples/core/selection/interval_ranged_test.png",
+    "screenshotUrl": "/docs/example-specs/core/selection/interval_ranged_test.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2373,9 +2412,9 @@
     "sourceLabel": "Core",
     "category": "Selection",
     "specPath": "examples/core/selection/interval_concat.json",
-    "specUrl": "/docs/examples/core/selection/interval_concat.json",
+    "specUrl": "/docs/example-specs/core/selection/interval_concat.json",
     "screenshotPath": "examples/core/selection/interval_concat.png",
-    "screenshotUrl": "/docs/examples/core/selection/interval_concat.png",
+    "screenshotUrl": "/docs/example-specs/core/selection/interval_concat.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2386,9 +2425,9 @@
     "sourceLabel": "Core",
     "category": "Selection",
     "specPath": "examples/core/selection/interval_linked_domain_two_way.json",
-    "specUrl": "/docs/examples/core/selection/interval_linked_domain_two_way.json",
+    "specUrl": "/docs/example-specs/core/selection/interval_linked_domain_two_way.json",
     "screenshotPath": "examples/core/selection/interval_linked_domain_two_way.png",
-    "screenshotUrl": "/docs/examples/core/selection/interval_linked_domain_two_way.png",
+    "screenshotUrl": "/docs/example-specs/core/selection/interval_linked_domain_two_way.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2399,9 +2438,9 @@
     "sourceLabel": "Core",
     "category": "Techniques",
     "specPath": "examples/core/techniques/multiscale.json",
-    "specUrl": "/docs/examples/core/techniques/multiscale.json",
+    "specUrl": "/docs/example-specs/core/techniques/multiscale.json",
     "screenshotPath": "examples/core/techniques/multiscale.png",
-    "screenshotUrl": "/docs/examples/core/techniques/multiscale.png",
+    "screenshotUrl": "/docs/example-specs/core/techniques/multiscale.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2412,9 +2451,9 @@
     "sourceLabel": "Core",
     "category": "Techniques",
     "specPath": "examples/core/techniques/input_element_binding.json",
-    "specUrl": "/docs/examples/core/techniques/input_element_binding.json",
+    "specUrl": "/docs/example-specs/core/techniques/input_element_binding.json",
     "screenshotPath": "examples/core/techniques/input_element_binding.png",
-    "screenshotUrl": "/docs/examples/core/techniques/input_element_binding.png",
+    "screenshotUrl": "/docs/example-specs/core/techniques/input_element_binding.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2425,9 +2464,9 @@
     "sourceLabel": "Core",
     "category": "Techniques",
     "specPath": "examples/core/techniques/geometric_zoom.json",
-    "specUrl": "/docs/examples/core/techniques/geometric_zoom.json",
+    "specUrl": "/docs/example-specs/core/techniques/geometric_zoom.json",
     "screenshotPath": "examples/core/techniques/geometric_zoom.png",
-    "screenshotUrl": "/docs/examples/core/techniques/geometric_zoom.png",
+    "screenshotUrl": "/docs/example-specs/core/techniques/geometric_zoom.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2438,9 +2477,9 @@
     "sourceLabel": "Core",
     "category": "Techniques",
     "specPath": "examples/core/techniques/geometric_zoom_expr.json",
-    "specUrl": "/docs/examples/core/techniques/geometric_zoom_expr.json",
+    "specUrl": "/docs/example-specs/core/techniques/geometric_zoom_expr.json",
     "screenshotPath": "examples/core/techniques/geometric_zoom_expr.png",
-    "screenshotUrl": "/docs/examples/core/techniques/geometric_zoom_expr.png",
+    "screenshotUrl": "/docs/example-specs/core/techniques/geometric_zoom_expr.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2451,9 +2490,9 @@
     "sourceLabel": "Core",
     "category": "Techniques",
     "specPath": "examples/core/techniques/semantic_zoom.json",
-    "specUrl": "/docs/examples/core/techniques/semantic_zoom.json",
+    "specUrl": "/docs/example-specs/core/techniques/semantic_zoom.json",
     "screenshotPath": "examples/core/techniques/semantic_zoom.png",
-    "screenshotUrl": "/docs/examples/core/techniques/semantic_zoom.png",
+    "screenshotUrl": "/docs/example-specs/core/techniques/semantic_zoom.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2464,9 +2503,9 @@
     "sourceLabel": "Core",
     "category": "Transforms",
     "specPath": "examples/core/transforms/pileup.json",
-    "specUrl": "/docs/examples/core/transforms/pileup.json",
+    "specUrl": "/docs/example-specs/core/transforms/pileup.json",
     "screenshotPath": "examples/core/transforms/pileup.png",
-    "screenshotUrl": "/docs/examples/core/transforms/pileup.png",
+    "screenshotUrl": "/docs/example-specs/core/transforms/pileup.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2477,7 +2516,7 @@
     "sourceLabel": "App",
     "category": "General",
     "specPath": "examples/app/samples.json",
-    "specUrl": "/docs/examples/app/samples.json",
+    "specUrl": "/docs/example-specs/app/samples.json",
     "screenshotPath": null,
     "screenshotUrl": null,
     "sourceMode": "shared-example"
@@ -2490,7 +2529,7 @@
     "sourceLabel": "App",
     "category": "General",
     "specPath": "examples/app/copy-numbers.json",
-    "specUrl": "/docs/examples/app/copy-numbers.json",
+    "specUrl": "/docs/example-specs/app/copy-numbers.json",
     "screenshotPath": null,
     "screenshotUrl": null,
     "sourceMode": "shared-example"
@@ -2503,7 +2542,7 @@
     "sourceLabel": "App",
     "category": "General",
     "specPath": "examples/app/metadata-hierarchy.json",
-    "specUrl": "/docs/examples/app/metadata-hierarchy.json",
+    "specUrl": "/docs/example-specs/app/metadata-hierarchy.json",
     "screenshotPath": null,
     "screenshotUrl": null,
     "sourceMode": "shared-example"
@@ -2516,7 +2555,7 @@
     "sourceLabel": "App",
     "category": "General",
     "specPath": "examples/app/samples-identity.json",
-    "specUrl": "/docs/examples/app/samples-identity.json",
+    "specUrl": "/docs/example-specs/app/samples-identity.json",
     "screenshotPath": null,
     "screenshotUrl": null,
     "sourceMode": "shared-example"
@@ -2529,7 +2568,7 @@
     "sourceLabel": "App",
     "category": "General",
     "specPath": "examples/app/metadata-data-source.json",
-    "specUrl": "/docs/examples/app/metadata-data-source.json",
+    "specUrl": "/docs/example-specs/app/metadata-data-source.json",
     "screenshotPath": null,
     "screenshotUrl": null,
     "sourceMode": "shared-example"
@@ -2542,7 +2581,7 @@
     "sourceLabel": "App",
     "category": "General",
     "specPath": "examples/app/expression-zscores.json",
-    "specUrl": "/docs/examples/app/expression-zscores.json",
+    "specUrl": "/docs/example-specs/app/expression-zscores.json",
     "screenshotPath": null,
     "screenshotUrl": null,
     "sourceMode": "shared-example"

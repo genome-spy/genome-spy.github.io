@@ -37,6 +37,9 @@
         <loc>https://genomespy.app/docs/grammar/transform/coverage/</loc>
       </url>
       <url>
+        <loc>https://genomespy.app/docs/grammar/transform/cross/</loc>
+      </url>
+      <url>
         <loc>https://genomespy.app/docs/grammar/transform/filter/</loc>
       </url>
       <url>
@@ -88,6 +91,9 @@
         <loc>https://genomespy.app/docs/grammar/transform/sample/</loc>
       </url>
       <url>
+        <loc>https://genomespy.app/docs/grammar/transform/set-intersection/</loc>
+      </url>
+      <url>
         <loc>https://genomespy.app/docs/grammar/transform/stack/</loc>
       </url>
       <url>
@@ -136,6 +142,9 @@
         <loc>https://genomespy.app/docs/grammar/scale/</loc>
       </url>
       <url>
+        <loc>https://genomespy.app/docs/grammar/genomic-coordinates/</loc>
+      </url>
+      <url>
         <loc>https://genomespy.app/docs/grammar/axis/</loc>
       </url>
       <url>
@@ -158,57 +167,6 @@
       </url>
       <url>
         <loc>https://genomespy.app/docs/grammar/types/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/genomic-coordinates/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/cytobands/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/indexed-fasta-six-frame-translation/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/refseq-genes/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/gencode-gff3-gene-annotations/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/ascat/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/ascat-algorithm/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/hcc1954-sv-cnv/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/tcga-ov-gistic/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/sashimi-plot/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/dynseq-spi1-bqtl/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/clinvar-variants/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/bam-read-alignments/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/multiple-sequence-alignment/</loc>
-      </url>
-      <url>
-        <loc>https://genomespy.app/docs/genomic-data/examples/genome-browser/</loc>
       </url>
       <url>
         <loc>https://genomespy.app/docs/sample-collections/</loc>
@@ -254,6 +212,54 @@
       </url>
       <url>
         <loc>https://genomespy.app/docs/api/embed-options/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/cytobands/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/indexed-fasta-six-frame-translation/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/refseq-genes/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/gencode-gff3-gene-annotations/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/ascat/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/ascat-algorithm/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/hcc1954-sv-cnv/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/tcga-ov-gistic/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/sashimi-plot/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/dynseq-spi1-bqtl/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/clinvar-variants/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/bam-read-alignments/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/multiple-sequence-alignment/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/genome-browser/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/generic/upsetr-mutations/</loc>
       </url>
       <url>
         <loc>https://genomespy.app/docs/license/</loc>
