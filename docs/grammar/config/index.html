@@ -66,6 +66,25 @@
      
 <meta name="base_url" content="../.." />
 
+
+  
+
+
+<meta property="og:title" content="Global Config, Themes, and Styles" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;config&#x2f;" />
+
+
+<meta property="og:description" content="GenomeSpy supports visual defaults through config, built-in theme selection through theme, and reusable named buckets through config.style. The key idea is that configuration is hierarchical: it can be defined at the root, on nested views, and at import sites, which makes it practical for large visualizations composed of multiple panels, tracks, and reusable imported subtrees that each need their own local defaults while still fitting into a shared overall design." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+<meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;grammar&#x2f;config&#x2f;config-overview.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="Configuration overview example." />
+
+
   </head>
   
   
@@ -579,6 +598,8 @@
       
         
       
+        
+      
     
     
     
@@ -749,6 +770,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2772,6 +2820,8 @@
       
         
       
+        
+      
     
     
     
@@ -3050,6 +3100,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3504,49 +3581,49 @@ point defaults, and defines a reusable style bucket for the view background.</p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>arrow</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">ArrowConfig</a><p>Defaults for arrow marks.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#arrowconfig">ArrowConfig</a><p>Defaults for arrow marks.</p>
 </dd>
 <dt><code>axis</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#axes">AxisConfig</a><p>Defaults shared by all axes.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#config-properties">AxisConfig</a><p>Defaults shared by all axes.</p>
 </dd>
 <dt><code>axisBottom</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#axes">AxisConfig</a><p>Defaults for bottom-oriented axes.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#config-properties">AxisConfig</a><p>Defaults for bottom-oriented axes.</p>
 </dd>
 <dt><code>axisIndex</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#axes">AxisConfig</a><p>Defaults for axes that visualize GenomeSpy <code>index</code> scales.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#config-properties">AxisConfig</a><p>Defaults for axes that visualize GenomeSpy <code>index</code> scales.</p>
 </dd>
 <dt><code>axisLeft</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#axes">AxisConfig</a><p>Defaults for left-oriented axes.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#config-properties">AxisConfig</a><p>Defaults for left-oriented axes.</p>
 </dd>
 <dt><code>axisLocus</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#axes">AxisConfig</a><p>Defaults for axes that visualize GenomeSpy <code>locus</code> scales.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#config-properties">AxisConfig</a><p>Defaults for axes that visualize GenomeSpy <code>locus</code> scales.</p>
 </dd>
 <dt><code>axisNominal</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#axes">AxisConfig</a><p>Defaults for axes that visualize nominal data.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#config-properties">AxisConfig</a><p>Defaults for axes that visualize nominal data.</p>
 </dd>
 <dt><code>axisOrdinal</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#axes">AxisConfig</a><p>Defaults for axes that visualize ordinal data.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#config-properties">AxisConfig</a><p>Defaults for axes that visualize ordinal data.</p>
 </dd>
 <dt><code>axisQuantitative</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#axes">AxisConfig</a><p>Defaults for axes that visualize quantitative data.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#config-properties">AxisConfig</a><p>Defaults for axes that visualize quantitative data.</p>
 </dd>
 <dt><code>axisRight</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#axes">AxisConfig</a><p>Defaults for right-oriented axes.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#config-properties">AxisConfig</a><p>Defaults for right-oriented axes.</p>
 </dd>
 <dt><code>axisTop</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#axes">AxisConfig</a><p>Defaults for top-oriented axes.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#config-properties">AxisConfig</a><p>Defaults for top-oriented axes.</p>
 </dd>
 <dt><code>axisX</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#axes">AxisConfig</a><p>Defaults for x axes.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#config-properties">AxisConfig</a><p>Defaults for x axes.</p>
 </dd>
 <dt><code>axisY</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#axes">AxisConfig</a><p>Defaults for y axes.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#config-properties">AxisConfig</a><p>Defaults for y axes.</p>
 </dd>
 <dt><code>legend</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">LegendConfig</a><p>Defaults shared by all legends. Set <code>disable</code> to <code>true</code> to suppress automatic legend creation by default.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/legend/#config-properties">LegendConfig</a><p>Defaults shared by all legends. Set <code>disable</code> to <code>true</code> to suppress automatic legend creation by default.</p>
 </dd>
 <dt><code>legendTrack</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">LegendConfig</a><p>Defaults for legends of track-like views that use <code>index</code> or <code>locus</code> scales on the x channel.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/legend/#config-properties">LegendConfig</a><p>Defaults for legends of track-like views that use <code>index</code> or <code>locus</code> scales on the x channel.</p>
 <p><strong>Default value:</strong> <code>{ "style": "track-bottom" }</code></p>
 </dd>
 <dt><code>link</code></dt>
@@ -3559,7 +3636,7 @@ point defaults, and defines a reusable style bucket for the view background.</p>
 <dd>Type: <a href="https://genomespy.app/docs/grammar/mark/point/#properties">PointConfig</a><p>Defaults for point marks.</p>
 </dd>
 <dt><code>range</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#scale-defaults">RangeConfig</a><p>Named reusable ranges for channels such as <code>shape</code>, <code>size</code>, and color.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/config/#scale-defaults">RangeConfig</a><p>Named reusable ranges for channels such as <code>shape</code>, <code>size</code>, and color.</p>
 </dd>
 <dt><code>rect</code></dt>
 <dd>Type: <a href="https://genomespy.app/docs/grammar/mark/rect/#properties">RectConfig</a><p>Defaults for rect marks.</p>
@@ -3568,7 +3645,7 @@ point defaults, and defines a reusable style bucket for the view background.</p>
 <dd>Type: <a href="https://genomespy.app/docs/grammar/mark/rule/#properties">RuleConfig</a><p>Defaults for rule marks.</p>
 </dd>
 <dt><code>scale</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/scale/#scale-defaults">ScaleConfig</a><p>Defaults for scale behavior and scale-type-specific buckets.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/config/#scale-defaults">ScaleConfig</a><p>Defaults for scale behavior and scale-type-specific buckets.</p>
 </dd>
 <dt><code>style</code></dt>
 <dd>Type: object<p>Named reusable style buckets that marks, axes, legends, titles, and views can reference through their <code>style</code> properties.</p>
@@ -3580,10 +3657,10 @@ point defaults, and defines a reusable style bucket for the view background.</p>
 <dd>Type: <a href="https://genomespy.app/docs/grammar/mark/tick/#properties">TickConfig</a><p>Defaults for tick marks.</p>
 </dd>
 <dt><code>title</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/config/#title-and-view-defaults">TitleConfig</a><p>Defaults for view titles.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/title/#config-properties">TitleConfig</a><p>Defaults for view titles.</p>
 </dd>
 <dt><code>view</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/config/#title-and-view-defaults">ViewConfig</a><p>Defaults for view background styling, including fill, stroke, shadow, and z-order properties.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/config/#view-size-defaults">ViewConfig</a><p>Defaults for view background styling, including fill, stroke, shadow, and z-order properties.</p>
 </dd>
 </dl>
 <h2 id="theme-config-and-style">Theme, Config, and Style<a class="headerlink" href="#theme-config-and-style" title="Permanent link">&para;</a></h2>
@@ -3707,7 +3784,7 @@ backgrounds.</p>
 <p><strong>Default value:</strong> <code>"container"</code></p>
 </dd>
 <dt><code>discreteWidth</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">Step</a><p>The default width when the view has a discrete x scale or no x scale. This may be a fixed width or a step size for each discrete domain value.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/composition/concat/#step-sizing">Step</a><p>The default width when the view has a discrete x scale or no x scale. This may be a fixed width or a step size for each discrete domain value.</p>
 <p><strong>Default value:</strong> <code>"container"</code></p>
 </dd>
 <dt><code>continuousHeight</code></dt>
@@ -3715,7 +3792,7 @@ backgrounds.</p>
 <p><strong>Default value:</strong> <code>"container"</code></p>
 </dd>
 <dt><code>discreteHeight</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">Step</a><p>The default height when the view has a discrete y scale or no y scale. This may be a fixed height or a step size for each discrete domain value.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/composition/concat/#step-sizing">Step</a><p>The default height when the view has a discrete y scale or no y scale. This may be a fixed height or a step size for each discrete domain value.</p>
 <p><strong>Default value:</strong> <code>"container"</code></p>
 </dd>
 <dt><code>step</code></dt>
@@ -3746,6 +3823,9 @@ details about <code>"container"</code> and other size shorthands.</p>
 
 
 
+
+  
+  
 
 
 

@@ -66,6 +66,21 @@
      
 <meta name="base_url" content="../../.." />
 
+
+  
+
+
+<meta property="og:title" content="URL Templates and Multiple Files" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;data&#x2f;multi-url&#x2f;" />
+
+
+<meta property="og:description" content="URL templates are an advanced data input feature. Most embedded GenomeSpy visualizations only need a single eager or lazy data source. URL templates are intended for complex visual analytics workflows, especially cohort views where the current filtering, grouping, or sample hierarchy determines which files are relevant." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+
   </head>
   
   
@@ -694,6 +709,8 @@
       
         
       
+        
+      
     
     
     
@@ -864,6 +881,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2708,6 +2752,8 @@
       
         
       
+        
+      
     
     
     
@@ -2986,6 +3032,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3363,7 +3436,7 @@ load the remaining files and write a warning to the browser console.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>field</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">FieldName</a><p>Field name used as the template placeholder and as the datum field attached to loaded rows.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#fieldname">FieldName</a><p>Field name used as the template placeholder and as the datum field attached to loaded rows.</p>
 </dd>
 <dt><code>maxValues</code></dt>
 <dd>Type: number<p>Maximum number of distinct resolved values to load. If the limit is exceeded, the source loads no data.</p>
@@ -3376,7 +3449,7 @@ load the remaining files and write a warning to the browser console.</p>
 <dd>Type: string<p>URL template. The value from <code>values</code> is substituted for the placeholder named by <code>field</code>, for example <code>{sample}</code>.</p>
 </dd>
 <dt><code>values</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">Scalar</a>[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Values used for template expansion. Duplicate resolved URLs are loaded once. An ExprRef can reference reactive parameters such as <code>visibleSamples</code>.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#scalar">Scalar</a>[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Values used for template expansion. Duplicate resolved URLs are loaded once. An ExprRef can reference reactive parameters such as <code>visibleSamples</code>.</p>
 </dd>
 </dl>
 <h2 id="reactive-values">Reactive Values<a class="headerlink" href="#reactive-values" title="Permanent link">&para;</a></h2>
@@ -3489,6 +3562,9 @@ use it. For example, Tabix defaults to the data URL plus <code>.tbi</code>.</p>
 
 
 
+
+  
+  
 
 
 

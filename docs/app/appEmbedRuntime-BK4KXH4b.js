@@ -1,8 +1,8 @@
 import { n as e, t } from "./rolldown-runtime-DF993M8W.js";
-import { $ as n, A as r, C as i, D as a, E as o, H as s, I as c, J as l, K as u, L as d, M as f, N as p, O as m, P as h, Q as g, R as _, S as v, St as y, T as b, U as x, X as S, Y as C, Z as w, _ as T, _t as E, a as D, b as O, c as k, d as A, et as j, f as M, ft as N, g as ee, gt as P, h as F, ht as I, i as te, j as ne, k as re, l as ie, lt as ae, m as oe, mt as se, n as ce, nt as le, o as ue, p as de, pt as fe, q as pe, r as me, s as he, st as ge, tt as _e, u as ve, ut as ye, v as be, vt as xe, w as Se, x as Ce, xt as L, y as we, yt as R, z as Te } from "./src-CMGEQI1V.js";
-import { $t as Ee, A as De, F as Oe, Gt as ke, I as Ae, Ir as je, J as Me, Jt as Ne, Ln as Pe, Lt as Fe, Mt as Ie, N as Le, Nn as Re, Nr as ze, Pt as Be, Qt as Ve, Rt as He, S as Ue, St as We, U as Ge, Ur as Ke, Ut as qe, V as Je, Vr as Ye, Wt as Xe, Xt as Ze, Yt as Qe, Zt as $e, _ as et, a as tt, c as nt, cn as rt, d as it, f as at, fr as ot, g as st, gt as ct, ht as lt, jt as ut, k as dt, l as ft, mt as pt, n as mt, nn as ht, o as gt, qr as _t, qt as vt, r as yt, s as bt, sn as xt, tn as St, ur as Ct, v as wt, vn as Tt, wn as Et, xt as Dt, y as Ot } from "./viewIdentityRegistry-Dbxu22Sy.js";
-import { a as kt, c as At, i as jt, l as Mt, n as Nt, o as Pt, r as Ft, s as It, t as Lt, u as Rt } from "./ref-DhO6yeFe.js";
-import { $ as zt, A as Bt, B as Vt, C as Ht, D as Ut, E as Wt, F as Gt, G as Kt, H as qt, I as Jt, J as Yt, K as Xt, L as Zt, M as Qt, N as $t, O as en, P as tn, Q as nn, R as rn, S as an, T as on, U as sn, V as cn, W as ln, X as un, Y as dn, Z as fn, _ as pn, _t as mn, a as hn, at as gn, b as _n, bt as vn, c as yn, ct as bn, d as xn, dt as Sn, et as Cn, f as wn, ft as Tn, g as En, gt as Dn, h as On, ht as kn, i as An, it as jn, j as Mn, k as Nn, l as Pn, lt as Fn, m as In, mt as Ln, n as Rn, nt as zn, o as Bn, ot as Vn, p as Hn, pt as Un, q as Wn, r as Gn, rt as Kn, s as qn, st as Jn, tt as Yn, u as Xn, ut as Zn, v as Qn, vt as $n, w as er, x as tr, xt as nr, y as rr, yt as ir, z as ar } from "./agentApi-3Omxgvjp.js";
+import { $ as n, A as r, C as i, D as a, E as o, H as s, I as c, J as l, K as u, L as d, M as f, N as p, O as m, P as h, Q as g, R as _, S as v, St as y, T as b, U as x, X as S, Y as C, Z as w, _ as T, _t as E, a as D, b as O, c as k, d as A, et as j, f as M, ft as N, g as ee, gt as P, h as F, ht as I, i as te, j as ne, k as re, l as ie, lt as ae, m as oe, mt as se, n as ce, nt as le, o as ue, p as de, pt as fe, q as pe, r as me, s as he, st as ge, tt as _e, u as ve, ut as ye, v as be, vt as xe, w as Se, x as Ce, xt as L, y as we, yt as R, z as Te } from "./src-BiBK3iof.js";
+import { $t as Ee, A as De, Br as Oe, Dt as ke, F as Ae, Gr as je, Gt as Me, I as Ne, J as Pe, Jt as Fe, Ln as Ie, Lr as Le, Lt as Re, N as ze, Ot as Be, Pt as Ve, Qt as He, Rt as Ue, S as We, St as Ge, Tn as Ke, U as qe, Ut as Je, V as Ye, Vn as Xe, Wt as Ze, Xt as Qe, Yt as $e, Zr as et, Zt as tt, _ as nt, a as rt, bt as it, c as at, cn as ot, d as st, f as ct, g as lt, gr as ut, k as dt, l as ft, mr as pt, n as mt, nn as ht, nt as gt, o as _t, qr as vt, qt as yt, r as bt, s as xt, sn as St, tn as Ct, tt as wt, v as Tt, xt as Et, y as Dt, yn as Ot } from "./viewIdentityRegistry-EH5-Noyz.js";
+import { a as kt, c as At, i as jt, l as Mt, n as Nt, o as Pt, r as Ft, s as It, t as Lt, u as Rt } from "./ref-CTBfqPSy.js";
+import { $ as zt, A as Bt, B as Vt, C as Ht, D as Ut, E as Wt, F as Gt, G as Kt, H as qt, I as Jt, J as Yt, K as Xt, L as Zt, M as Qt, N as $t, O as en, P as tn, Q as nn, R as rn, S as an, T as on, U as sn, V as cn, W as ln, X as un, Y as dn, Z as fn, _ as pn, _t as mn, a as hn, at as gn, b as _n, bt as vn, c as yn, ct as bn, d as xn, dt as Sn, et as Cn, f as wn, ft as Tn, g as En, gt as Dn, h as On, ht as kn, i as An, it as jn, j as Mn, k as Nn, l as Pn, lt as Fn, m as In, mt as Ln, n as Rn, nt as zn, o as Bn, ot as Vn, p as Hn, pt as Un, q as Wn, r as Gn, rt as Kn, s as qn, st as Jn, tt as Yn, u as Xn, ut as Zn, v as Qn, vt as $n, w as er, x as tr, xt as nr, y as rr, yt as ir, z as ar } from "./agentApi-D36QXXDg.js";
 //#region ../../node_modules/d3-array/src/array.js
 var or = Array.prototype, sr = or.slice;
 or.map;
@@ -16,7 +16,7 @@ function cr(e) {
 function lr(e, t, n) {
 	let r;
 	for (;;) {
-		let i = Ye(e, t, n);
+		let i = je(e, t, n);
 		if (i === r || i === 0 || !isFinite(i)) return [e, t];
 		i > 0 ? (e = Math.floor(e / i) * i, t = Math.ceil(t / i) * i) : i < 0 && (e = Math.ceil(e * i) / i, t = Math.floor(t * i) / i), r = i;
 	}
@@ -37,8 +37,8 @@ function dr() {
 		var l = t(c), u = l[0], d = l[1], f = n(c, u, d);
 		if (!Array.isArray(f)) {
 			let e = d, n = +f;
-			if (t === fe && ([u, d] = lr(u, d, n)), f = Ke(u, d, n), f[0] <= u && (s = Ye(u, d, n)), f[f.length - 1] >= d) if (e >= d && t === fe) {
-				let e = Ye(u, d, n);
+			if (t === fe && ([u, d] = lr(u, d, n)), f = vt(u, d, n), f[0] <= u && (s = je(u, d, n)), f[f.length - 1] >= d) if (e >= d && t === fe) {
+				let e = je(u, d, n);
 				isFinite(e) && (e > 0 ? d = (Math.floor(d / e) + 1) * e : e < 0 && (d = (Math.ceil(d * -e) + 1) / -e));
 			} else f.pop();
 		}
@@ -55,7 +55,7 @@ function dr() {
 					g[Math.min(p, e + (f[e] <= o))].push(r[i]);
 				}
 			}
-		} else for (i = 0; i < a; ++i) (o = c[i]) != null && u <= o && o <= d && g[_t(f, o, 0, p)].push(r[i]);
+		} else for (i = 0; i < a; ++i) (o = c[i]) != null && u <= o && o <= d && g[et(f, o, 0, p)].push(r[i]);
 		return g;
 	}
 	return r.value = function(t) {
@@ -3766,10 +3766,10 @@ var Gc = L`
 	#n;
 	#r = 0;
 	constructor() {
-		super(), this.values = [], this.thresholds = [], this.operators = [], this.colors = Zc, this.showThresholdNumbers = !1, this.binCount = 40, this.#e = dr().thresholds(this.binCount), this.#t = this.#e([]), this.#n = We();
+		super(), this.values = [], this.thresholds = [], this.operators = [], this.colors = Zc, this.showThresholdNumbers = !1, this.binCount = 40, this.#e = dr().thresholds(this.binCount), this.#t = this.#e([]), this.#n = Be();
 	}
 	willUpdate(e) {
-		e.has("binCount") && (this.#e = dr().thresholds(this.binCount)), (e.has("values") || e.has("binCount")) && (this.#t = this.#e(this.values), this.#n = We().domain(this.domain).range([0, 100]));
+		e.has("binCount") && (this.#e = dr().thresholds(this.binCount)), (e.has("values") || e.has("binCount")) && (this.#t = this.#e(this.values), this.#n = Be().domain(this.domain).range([0, 100]));
 	}
 	get domain() {
 		return [this.#t.at(0).x0, this.#t.at(-1).x1];
@@ -3788,7 +3788,7 @@ var Gc = L`
 		});
 	}
 	#o(e, t, n) {
-		n = xt(n, 0, 1), this.dispatchEvent(new qc(e, t, +this.#n.invert(n * 100).toPrecision(3)));
+		n = St(n, 0, 1), this.dispatchEvent(new qc(e, t, +this.#n.invert(n * 100).toPrecision(3)));
 	}
 	#s() {
 		let e = this.#t, t = this.#n, n = 90 / e.map((e) => e.length).reduce((e, t) => Math.max(e, t), 0), r = [], i = this.thresholds.length == 1 && this.operators[0] == "eq", a = [
@@ -4120,7 +4120,7 @@ var al = class extends G {
 customElements.define("gs-quantitative-attribute-filter-dialog", al);
 function ol(e, t) {
 	let n = e.scale?.type;
-	lt(n) ? cl(e, t) : pt(n) || ct(n) ? ul(e, t) : e.type === "identifier" ? sl(e, t) : q("Not implemented (yet).");
+	Et(n) ? cl(e, t) : it(n) || Ge(n) ? ul(e, t) : e.type === "identifier" ? sl(e, t) : q("Not implemented (yet).");
 }
 function sl(e, t) {
 	ll(t.getSamples().map((e) => e.id), e, t);
@@ -4637,7 +4637,7 @@ function xl(e) {
 }
 //#endregion
 //#region ../app/src/sampleView/state/actionInfo.js
-var Sl = ze(".4"), Cl = {
+var Sl = Le(".4"), Cl = {
 	lt: "<",
 	lte: "≤",
 	eq: "=",
@@ -8708,7 +8708,7 @@ var qp = { step: 24 }, Jp = class extends Ce {
 					type: "nominal",
 					scale: {
 						type: "ordinal",
-						domain: je(500)
+						domain: Oe(500)
 					},
 					axis: null
 				},
@@ -8931,7 +8931,7 @@ var nm = class {
 	}
 	setScrollOffset(e) {
 		let t = Math.max(0, this.#n - this.#c.getHeight());
-		this.#t = xt(e, 0, t);
+		this.#t = St(e, 0, t);
 	}
 	getScrollableHeight() {
 		return this.#n;
@@ -8979,7 +8979,7 @@ var nm = class {
 				let n = this.getSummaryAt(t);
 				n && (e = this.#s.summaries[n.index].locSize.location - (n.location.locSize.location - t));
 			}
-			if (e ? this.#t = e - t : this.#t = (this.#n - i) / 2, this.#n > i) return ut({
+			if (e ? this.#t = e - t : this.#t = (this.#n - i) / 2, this.#n > i) return wt({
 				...a,
 				to: 1,
 				duration: 500,
@@ -8987,7 +8987,7 @@ var nm = class {
 			});
 			{
 				let e = (e) => (1 - (e * 2 - 1) ** 2) * .5;
-				return ut({
+				return wt({
 					...a,
 					from: 0,
 					to: 1,
@@ -8995,7 +8995,7 @@ var nm = class {
 					easingFunction: e
 				});
 			}
-		} else return ut({
+		} else return wt({
 			...a,
 			to: 0,
 			duration: 400,
@@ -9010,7 +9010,7 @@ var nm = class {
 		if (!t) return [];
 		let n = t.groups, r = n.map((e) => e.key.depth).reduce((e, t) => Math.max(e, t), 0), i = n.filter((e) => e.key.depth == r), a = this.#c.getSummaryHeight();
 		e = e.flatten();
-		let o = this.#c.isStickySummaries() && a > 0 ? e.shrink(new Je(a, 0, 0, 0)) : e;
+		let o = this.#c.isStickySummaries() && a > 0 ? e.shrink(new Ye(a, 0, 0, 0)) : e;
 		return [...i.values()].map((t) => ({
 			coords: e.modify({
 				y: () => {
@@ -9152,7 +9152,7 @@ function um(e, t, n, r, i) {
 }
 function dm(e, { viewHeight: t = 0, sampleHeight: n = 0, groupSpacing: r = 5, sampleSpacingFactor: i = om, summaryHeight: a = 0 }) {
 	if (!t && !n) throw Error("viewHeight or sampleHeight must be provided!");
-	let o = (e) => ot(e), s = e.map((e) => ({
+	let o = (e) => ut(e), s = e.map((e) => ({
 		path: e,
 		sampleGroup: o(e),
 		samples: o(e).samples
@@ -9163,7 +9163,7 @@ function dm(e, { viewHeight: t = 0, sampleHeight: n = 0, groupSpacing: r = 5, sa
 		px: a,
 		grow: e.length
 	}), l = [];
-	Me(s.map((e) => c(e.samples)), t, { spacing: r }).forEach((e, t) => {
+	Pe(s.map((e) => c(e.samples)), t, { spacing: r }).forEach((e, t) => {
 		l.push({
 			key: s[t].path,
 			locSize: e
@@ -9172,8 +9172,8 @@ function dm(e, { viewHeight: t = 0, sampleHeight: n = 0, groupSpacing: r = 5, sa
 	let u = [];
 	for (let [e, t] of s.entries()) {
 		let n = { grow: 1 }, r = t.samples;
-		Me(r.map((e) => n), Math.max(0, l[e].locSize.size - a), { offset: l[e].locSize.location + a }).forEach((e, t) => {
-			let { size: n, location: a } = e, o = n * i * .5 * rt(15, 22, n);
+		Pe(r.map((e) => n), Math.max(0, l[e].locSize.size - a), { offset: l[e].locSize.location + a }).forEach((e, t) => {
+			let { size: n, location: a } = e, o = n * i * .5 * ot(15, 22, n);
 			e.location = a + o, e.size = n - 2 * o, u.push({
 				key: r[t],
 				locSize: e
@@ -9183,7 +9183,7 @@ function dm(e, { viewHeight: t = 0, sampleHeight: n = 0, groupSpacing: r = 5, sa
 	function* d() {
 		let e = [];
 		for (let t of l) {
-			let n = t.key, r = ot(n);
+			let n = t.key, r = ut(n);
 			for (; e.length <= n.length && e.length && n[e.length - 1] != e[e.length - 1].group;) yield e.pop();
 			for (let n = 0; n < e.length; n++) {
 				let r = e[n];
@@ -9256,8 +9256,8 @@ function vm(e) {
 //#endregion
 //#region ../app/src/sampleView/datumLookup.js
 function ym(e, t = e.getCollector()) {
-	let n = e.getDataAccessor("x"), r = e.getDataAccessor("x2"), i = e.getScaleResolution("x")?.getScale()?.type, a = i ? lt(i) : !1;
-	return !t || !n ? () => void 0 : a ? (e, r) => t.facetBatches.get(Ct(e))?.find((e) => r == n(e)) : !a && r ? (e, i) => t.facetBatches.get(Ct(e))?.find((e) => i >= n(e) && i < r(e)) : (e, r) => t.facetBatches.get(Ct(e))?.find((e) => r == n(e));
+	let n = e.getDataAccessor("x"), r = e.getDataAccessor("x2"), i = e.getScaleResolution("x")?.getScale()?.type, a = i ? Et(i) : !1;
+	return !t || !n ? () => void 0 : a ? (e, r) => t.facetBatches.get(pt(e))?.find((e) => r == n(e)) : !a && r ? (e, i) => t.facetBatches.get(pt(e))?.find((e) => i >= n(e) && i < r(e)) : (e, r) => t.facetBatches.get(pt(e))?.find((e) => r == n(e));
 }
 //#endregion
 //#region ../app/src/utils/predicates/featureFilter.js
@@ -9355,7 +9355,7 @@ function Dm(e, t) {
 		i != null && (n.push(i), g && r.push(t));
 	};
 	return (e) => {
-		let [t, n] = m(), r = a.facetBatches.get(Ct(e));
+		let [t, n] = m(), r = a.facetBatches.get(pt(e));
 		if (!r?.length) return h === "count" || h === "itemCount" ? 0 : void 0;
 		let i = [], l = [], u = 0;
 		switch (Kn(r, o, c, s, t, n, (e, t) => {
@@ -9400,7 +9400,7 @@ function jm(e) {
 }
 function Mm(e) {
 	let t = /* @__PURE__ */ new Map();
-	Ot(e, (e) => {
+	Dt(e, (e) => {
 		let n = jm(e);
 		n && t.set(n, (t.get(n) ?? 0) + 1);
 	});
@@ -9412,13 +9412,13 @@ function Nm(e) {
 	return typeof e == "string" ? e : JSON.stringify(e);
 }
 function Pm(e, t) {
-	let n = et(e, t);
+	let n = nt(e, t);
 	if (!n) throw Error("Cannot resolve view selector: " + Nm(t));
 	return n;
 }
 function Fm(e, t) {
 	let n = [];
-	if (Ot(e, (e) => {
+	if (Dt(e, (e) => {
 		e.explicitName === t && n.push(e);
 	}), n.length === 1) return n[0];
 	throw n.length === 0 ? Error("Cannot find view: " + t) : Error("Multiple views named \"" + t + "\" found. Name imports or use a selector object.");
@@ -9438,19 +9438,19 @@ function Rm(e, t) {
 	let n = t.explicitName;
 	if (typeof n != "string" || n.length === 0) return !1;
 	let r = 0;
-	return Ot(e, (e) => {
+	return Dt(e, (e) => {
 		e.explicitName === n && (r += 1);
 	}), r > 1;
 }
 function zm(e, t) {
 	if (!e || typeof e.visit != "function") return !1;
 	let n = 0;
-	for (let r of tt(e)) r.selector.param === t && (n += 1);
+	for (let r of rt(e)) r.selector.param === t && (n += 1);
 	return n > 1;
 }
 function Bm(e) {
 	try {
-		return nt(e);
+		return at(e);
 	} catch {
 		return [];
 	}
@@ -9471,7 +9471,7 @@ function Vm(e, t) {
 	}, d = Object.entries(r.getEncoding()).find(([e, t]) => "field" in t && t.field == n.field), f = d?.[0], p = d?.[1];
 	if (!p && !("aggregation" in n)) throw Error(`Cannot resolve field '${n.field}' in view '${r.name}'`);
 	if (!p && "aggregation" in n && n.aggregation.op !== "count" && n.aggregation.op !== "itemCount") throw Error(`Aggregation '${n.aggregation.op}' requires a field definition for '${n.field}' in view '${r.name}'`);
-	let m = f && Tt(f) ? r.getScaleResolution(f).getScale() : void 0, h = p && "scale" in p && p.scale && typeof p.scale == "object" ? p.scale : void 0, g = p && "type" in p ? p.type : void 0, _ = "aggregation" in n ? "quantitative" : g, v, y;
+	let m = f && Ot(f) ? r.getScaleResolution(f).getScale() : void 0, h = p && "scale" in p && p.scale && typeof p.scale == "object" ? p.scale : void 0, g = p && "type" in p ? p.type : void 0, _ = "aggregation" in n ? "quantitative" : g, v, y;
 	if ("ensureViewAttributeAvailability" in e) {
 		let t = e;
 		v = (e) => t.ensureViewAttributeAvailability(n, e), y = (e) => t.awaitViewAttributeProcessed(n, e);
@@ -9713,7 +9713,7 @@ var uh = /* @__PURE__ */ "blues.greens.greys.oranges.purples.reds.blueGreen.blue
 function dh(e) {
 	let t = document.createElement("canvas");
 	t.width = 120, t.height = 14;
-	let n = t.getContext("2d"), r = Dt(e);
+	let n = t.getContext("2d"), r = ke(e);
 	if (!r) throw Error(`Unknown scheme name: ${e}`);
 	if (typeof r == "function") {
 		let e = r, i = t.width / 20;
@@ -11383,7 +11383,7 @@ function Kh(e, t) {
 function qh(e) {
 	if (e.view.getEncoding()?.x2) return !0;
 	let t = e.view.getScaleResolution("x")?.getScale()?.type;
-	return t ? lt(t) : !1;
+	return t ? Et(t) : !1;
 }
 function Jh(e) {
 	return e === "quantitative" ? Rh : Ih;
@@ -11499,8 +11499,8 @@ function og(e, t) {
 	let n = t.mark.unitView, r = t.datum, i = [];
 	for (let [e, t] of n.paramRuntime.paramConfigs) {
 		if (!("select" in t) || t.persist === !1) continue;
-		let n = qe(t.select);
-		Ve(n) && n.toggle && i.push(e);
+		let n = Je(t.select);
+		He(n) && n.toggle && i.push(e);
 	}
 	if (i.length === 0) return { status: "unavailable" };
 	if (i.length > 1) return {
@@ -11509,16 +11509,16 @@ function og(e, t) {
 	};
 	let a;
 	try {
-		a = yt(n.getEncoding());
+		a = bt(n.getEncoding());
 	} catch {
 		return { status: "unavailable" };
 	}
 	if (!a || a.length === 0) return { status: "unavailable" };
-	let o = a.map((e) => Re(e)(r));
+	let o = a.map((e) => Ie(e)(r));
 	if (o.some((e) => e == null)) return { status: "unavailable" };
-	let s = i[0], c = bt(n, s);
+	let s = i[0], c = xt(n, s);
 	try {
-		st(e, c);
+		lt(e, c);
 	} catch {
 		return { status: "unavailable" };
 	}
@@ -11635,11 +11635,11 @@ var hg = vn({
 	initialState: { entries: {} },
 	reducers: {
 		paramChange: (e, t) => {
-			let n = it(t.payload.selector);
+			let n = st(t.payload.selector);
 			e.entries[n] = t.payload;
 		},
 		expandPointSelection: (e, t) => {
-			let n = t.payload, r = it(n.selector), i;
+			let n = t.payload, r = st(n.selector), i;
 			if ("rule" in n && n.rule) i = { rule: n.rule };
 			else if ("predicate" in n && n.predicate) i = { predicate: n.predicate };
 			else throw Error("expandPointSelection requires either 'rule' or 'predicate'.");
@@ -11659,7 +11659,7 @@ var hg = vn({
 function gg(e) {
 	if (hg.actions.expandPointSelection.match(e) || !hg.actions.paramChange.match(e)) return null;
 	let t = e.payload, n = t?.selector;
-	return !n || !Array.isArray(n.scope) || !n.param || t?.value?.type === "pointExpand" ? null : it(n);
+	return !n || !Array.isArray(n.scope) || !n.param || t?.value?.type === "pointExpand" ? null : st(n);
 }
 //#endregion
 //#region ../app/src/state/selectionExpansionMenu.js
@@ -11724,7 +11724,7 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 		return this.#r("right", e);
 	}
 	getHorizontalReserve(e) {
-		return new Je(0, this.getRightReserve(e), 0, this.getLeftReserve(e));
+		return new Ye(0, this.getRightReserve(e), 0, this.getLeftReserve(e));
 	}
 	hasHorizontalReserveChanged(e, t) {
 		return this.getLeftReserve(e) !== this.getLeftReserve(t) || this.getRightReserve(e) !== this.getRightReserve(t);
@@ -11871,7 +11871,7 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 		if (!r) throw Error(`No x scale resolution found for view: ${n.name}`);
 		this.#b(n);
 		let i = r.getScale();
-		if (pt(i.type) && !lt(i.type)) {
+		if (it(i.type) && !Et(i.type)) {
 			let t = this.#x(e);
 			await this.#S(n, t);
 		}
@@ -11955,7 +11955,7 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 			hconcat: [],
 			spacing: 8,
 			padding: { right: 8 }
-		}, this, this, "sample-sidebar"), at(this.#n, { skipSubtree: !0 }), this.sampleGroupView = new Jp(this, this.#n), this.sampleLabelView = new Zm(this, this.#n), this.metadataView = new Fp(this, this.#n), this.#n.setChildren([
+		}, this, this, "sample-sidebar"), ct(this.#n, { skipSubtree: !0 }), this.sampleGroupView = new Jp(this, this.#n), this.sampleLabelView = new Zm(this, this.#n), this.metadataView = new Fp(this, this.#n), this.#n.setChildren([
 			this.sampleGroupView,
 			this.sampleLabelView,
 			this.metadataView
@@ -11970,7 +11970,7 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 		}, a(this), b(this), o(this), await this.#t.syncGuideViews(), await this.#W(), a(this), b(this), o(this), await this.#t.summaryViews.syncGuideViews(), await this.sampleGroupView.initializeChildren(), await this.metadataView.initializeChildren(), this.#t.view.addInteractionListener("contextmenu", this.#V.bind(this));
 	}
 	getOverhang() {
-		let e = this.#D().px ?? 0, t = this.locationManager.getLocations(), n = this.#t.sampleChromeLayout.getHorizontalReserve(t).add(new Je(0, 0, 0, e)), r = this.#O();
+		let e = this.#D().px ?? 0, t = this.locationManager.getLocations(), n = this.#t.sampleChromeLayout.getHorizontalReserve(t).add(new Ye(0, 0, 0, e)), r = this.#O();
 		return n.add(r.sampleOverhang.getHorizontal()).add(r.sharedVerticalOverhang);
 	}
 	prepareLayoutSize(e, t) {
@@ -11983,7 +11983,7 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 		return this.#n.isConfiguredVisible() ? this.#n.getSize().addPadding(this.#n.getPadding()).width : { px: 0 };
 	}
 	#O() {
-		let e = this.#t.getOverhangWithoutYAxes(), t = this.#n.isConfiguredVisible() ? this.#n.getOverhang().getVertical() : Je.zero();
+		let e = this.#t.getOverhangWithoutYAxes(), t = this.#n.isConfiguredVisible() ? this.#n.getOverhang().getVertical() : Ye.zero();
 		return {
 			sampleOverhang: e,
 			sidebarVerticalOverhang: t,
@@ -11993,7 +11993,7 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 	getSize() {
 		return this._cache("size/size2", () => {
 			let e = super.getSize(), t = ((e) => e.getSize().addPadding(e.getOverhang()).addPadding(e.getPadding()))(this.#t.view).width;
-			return new Ge(t, e.height);
+			return new qe(t, e.height);
 		});
 	}
 	*[Symbol.iterator]() {
@@ -12086,7 +12086,7 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 			let a = t.modify({
 				y: () => {
 					let e = i.locSize.location, n = t.y + e;
-					return this.#i ? n + xt(-e, 0, i.locSize.size - m) : n;
+					return this.#i ? n + St(-e, 0, i.locSize.size - m) : n;
 				},
 				height: m
 			}).expand(p);
@@ -12103,7 +12103,7 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 		this.layoutParent || (t = t.shrink(this.getPadding()));
 		let r = this.#O();
 		t = t.shrink(r.sampleOverhang.getHorizontal().add(r.sharedVerticalOverhang)), e.pushView(this, t);
-		let i = Me([this.#D(), { grow: 1 }], t.width), a = (e) => t.modify({
+		let i = Pe([this.#D(), { grow: 1 }], t.width), a = (e) => t.modify({
 			x: e.location + t.x,
 			width: e.size
 		});
@@ -12168,10 +12168,10 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 		let e = this.#t.view.getLayoutAncestors();
 		for (let t of e) for (let [e, n] of t.paramRuntime.paramConfigs) {
 			if (!("select" in n)) continue;
-			let r = qe(n.select);
-			if (!Ze(r) || !r.encodings?.includes("x")) continue;
+			let r = Je(n.select);
+			if (!Qe(r) || !r.encodings?.includes("x")) continue;
 			let i = t.paramRuntime.getValue(e);
-			if (i && Ne(i)) return {
+			if (i && Fe(i)) return {
 				selection: i,
 				view: t,
 				paramName: e,
@@ -12192,8 +12192,8 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 	#V(e) {
 		let t = e.uiEvent, n = this.getLayoutAncestors().at(-1), r = this.childCoords.normalizePoint(e.point.x, e.point.y).x, i = this.findSampleForMouseEvent(e), a = this.#t.view, o = a.getScaleResolution("x"), s = o.invertToComplex(r), c = this.#z(), { selectionInterval: l, selectionIntervalComplex: u, selectionIntervalLabel: d } = eg(c, c ? this.#B(c.view, e) : void 0), f;
 		if (c && c.bookmarkable) try {
-			let e = bt(c.view, c.paramName);
-			st(this, e), f = {
+			let e = xt(c.view, c.paramName);
+			lt(this, e), f = {
 				type: "selection",
 				selector: e
 			};
@@ -12326,7 +12326,7 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 	dispose() {
 		super.dispose(), this.intentExecutor.removeActionAugmenter(this.#u);
 	}
-}, Eg = class extends Pe {
+}, Eg = class extends Xe {
 	#e;
 	#t;
 	#n = 0;
@@ -12352,9 +12352,9 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 			getPeekState: () => t.locationManager.getPeekState()
 		});
 		let a = de(i);
-		a && (this.groupBackground = new s(a, t.context, t, e, "sample-group-background-" + n), at(this.groupBackground, { skipSubtree: !0 }));
+		a && (this.groupBackground = new s(a, t.context, t, e, "sample-group-background-" + n), ct(this.groupBackground, { skipSubtree: !0 }));
 		let o = oe(i);
-		o && (this.groupBackgroundStroke = new s(o, t.context, t, e, "sample-group-background-stroke-" + n), at(this.groupBackgroundStroke, { skipSubtree: !0 })), this.summaryViews = r;
+		o && (this.groupBackgroundStroke = new s(o, t.context, t, e, "sample-group-background-stroke-" + n), ct(this.groupBackgroundStroke, { skipSubtree: !0 })), this.summaryViews = r;
 	}
 	allowDuplicateAxes() {
 		return !0;
@@ -12366,7 +12366,7 @@ var bg = 60, xg = "all", Sg = 1e-6, Cg = class {
 		return e === "y" ? "anchor" : super.getAxisLabelClipPolicy(e, t);
 	}
 	getOverhangWithoutYAxes() {
-		let e = (e) => we(this.axes[e]), t = new Je(0, e("right"), 0, e("left"));
+		let e = (e) => we(this.axes[e]), t = new Ye(0, e("right"), 0, e("left"));
 		return this.getOverhang().subtract(t);
 	}
 	*getChildren() {
@@ -12792,7 +12792,7 @@ function u_(e) {
 	return e.visit((e) => {
 		for (let n of ["x", "y"]) {
 			let r = e.resolutions.scale[n];
-			if (r && r.type == "locus" && r.isZoomable()) return t = r, Ue;
+			if (r && r.type == "locus" && r.isZoomable()) return t = r, We;
 		}
 	}), t;
 }
@@ -12806,7 +12806,7 @@ var d_ = {
 	contributors: [],
 	license: "MIT",
 	homepage: "https://genomespy.app/",
-	version: "0.82.0",
+	version: "0.83.0",
 	main: "dist/index.js",
 	module: "dist/index.es.js",
 	type: "module",
@@ -12865,7 +12865,7 @@ var d_ = {
 		"@fortawesome/fontawesome-free": "^6.4.2",
 		"@fortawesome/fontawesome-svg-core": "^6.4.2",
 		"@fortawesome/free-solid-svg-icons": "^6.4.2",
-		"@genome-spy/core": "^0.82.0",
+		"@genome-spy/core": "^0.83.0",
 		"@reduxjs/toolkit": "^2.11.0",
 		"d3-color": "^3.1.0",
 		idb: "^7.1.1",
@@ -12878,8 +12878,8 @@ var d_ = {
 		zarrita: "^0.6.1"
 	},
 	devDependencies: {
-		"@genome-spy/app-agent": "^0.82.0",
-		"@genome-spy/inspector": "^0.82.0"
+		"@genome-spy/app-agent": "^0.83.0",
+		"@genome-spy/inspector": "^0.83.0"
 	}
 };
 //#endregion
@@ -14677,7 +14677,7 @@ var U_ = class {
 		let e = this.#e.genomeSpy.viewRoot;
 		if (!e) return;
 		let t = [];
-		Ot(e, (e) => {
+		Dt(e, (e) => {
 			t.push(e);
 		});
 		let n = t.filter(q_).map((t) => [...t.getDataAncestors()].filter((t) => t === e || q_(t)).reverse());
@@ -14776,7 +14776,7 @@ var U_ = class {
 		if (e) T_(e);
 		else throw Error("Cannot upload metadata without SampleView");
 	}
-}, G_ = (e) => [...e.paramRuntime.paramConfigs.values()].some((e) => He(e) && e.bind), K_ = (e, t) => {
+}, G_ = (e) => [...e.paramRuntime.paramConfigs.values()].some((e) => Ue(e) && e.bind), K_ = (e, t) => {
 	let n = [];
 	return t && n.push({
 		label: "Parameters",
@@ -17304,8 +17304,8 @@ function Gb(e, t, n) {
 function Kb(e, t = {}) {
 	let n = Gb(e), r = new DOMParser().parseFromString(`<!DOCTYPE html><html><body><div>${n}</div></body></html>`, "text/html");
 	r.normalize(), qb(r.body);
-	for (let e of r.querySelectorAll("a[href]")) e.setAttribute("target", "blank"), e.setAttribute("rel", "noopener noreferrer"), e.setAttribute("href", Le(e.getAttribute("href"), t.baseUrl));
-	for (let e of r.querySelectorAll("img[src]")) e.setAttribute("src", Le(e.getAttribute("src"), t.baseUrl));
+	for (let e of r.querySelectorAll("a[href]")) e.setAttribute("target", "blank"), e.setAttribute("rel", "noopener noreferrer"), e.setAttribute("href", ze(e.getAttribute("href"), t.baseUrl));
+	for (let e of r.querySelectorAll("img[src]")) e.setAttribute("src", ze(e.getAttribute("src"), t.baseUrl));
 	let i = r.body.removeChild(r.querySelector("body > div"));
 	return i.className = "markdown", i;
 }
@@ -17904,7 +17904,7 @@ var lx = class extends I {
             `), t.push(R`<genome-spy-view-visibility></genome-spy-view-visibility>`), this.app.isEmbedded() || t.push(R`
                 <genome-spy-bookmark-button></genome-spy-bookmark-button>
             `);
-		let n = this.app.rootSpec.description ? Ct(this.app.rootSpec.description) : [];
+		let n = this.app.rootSpec.description ? pt(this.app.rootSpec.description) : [];
 		return n.length > 1 && t.push(R`
                 <button
                     class="tool-btn"
@@ -18087,7 +18087,7 @@ var dx = class {
 //#endregion
 //#region ../core/src/utils/kWayMerge.js
 function fx(e, t, n = (e) => +e) {
-	let r = e.length, i = new Ie(), a = Array(r).fill(0);
+	let r = e.length, i = new gt(), a = Array(r).fill(0);
 	for (let [t, r] of e.entries()) r.length && i.push(t, n(r[0]));
 	let o;
 	for (; (o = i.pop()) !== void 0;) {
@@ -18100,7 +18100,7 @@ function fx(e, t, n = (e) => +e) {
 }
 //#endregion
 //#region ../app/src/sampleView/mergeFacets.js
-var px = "sampleCount", mx = class extends Pe {
+var px = "sampleCount", mx = class extends Xe {
 	#e = !0;
 	#t;
 	constructor(e, t) {
@@ -18127,7 +18127,7 @@ var px = "sampleCount", mx = class extends Pe {
 	initialize() {
 		this.#t = this.paramRuntime.allocateSetter(px, 0, !0);
 		let e = this.view.getEncoding().x;
-		if (Et(e)) this.xAccessor = Re(e.field);
+		if (Ke(e)) this.xAccessor = Ie(e.field);
 		else throw Error("Sample summarization requires a FieldDef. This is not a FieldDef: " + JSON.stringify(e));
 	}
 	handle(e) {}
@@ -18142,9 +18142,9 @@ var px = "sampleCount", mx = class extends Pe {
 		this.#n && this.#i(this.provenance.getPresentState()[pn]), super.complete();
 	}
 	#i(e) {
-		let t = [...tr(e.rootGroup)].filter((e) => _n(ot(e)));
+		let t = [...tr(e.rootGroup)].filter((e) => _n(ut(e)));
 		for (let [e, n] of t.entries()) {
-			let t = ot(n);
+			let t = ut(n);
 			if (_n(t)) {
 				this.beginBatch({
 					type: "facet",
@@ -18777,7 +18777,7 @@ function Xx(e, t) {
 	if (!Array.isArray(t.keyTuple) || t.keyTuple.length === 0) return { reason: "invalidOriginKeyTuple" };
 	let r;
 	try {
-		r = yt(e.getEncoding());
+		r = bt(e.getEncoding());
 	} catch {
 		return { reason: "missingEncodingKey" };
 	}
@@ -18846,9 +18846,9 @@ var $x = 150, eS = class {
 		this.#o.length = 0, this.#O();
 	}
 	#g() {
-		this.#r = tt(this.#e), this.#i.clear(), this.#u.clear();
+		this.#r = rt(this.#e), this.#i.clear(), this.#u.clear();
 		for (let e of this.#r) {
-			let t = it(e.selector);
+			let t = st(e.selector);
 			this.#i.set(t, e), this.#X(e, t);
 		}
 	}
@@ -18871,10 +18871,10 @@ var $x = 150, eS = class {
 	}
 	#b(e) {
 		if (this.#a) return;
-		let t = it(e.selector);
+		let t = st(e.selector);
 		if (this.#u.has(t)) return;
 		let n = this.#L(e);
-		if (n === void 0 || Fe(e.param) && this.#Z(e.param, n) && this.#C(e, t)) return;
+		if (n === void 0 || Re(e.param) && this.#Z(e.param, n) && this.#C(e, t)) return;
 		let r = this.#P(e, n);
 		if (r) {
 			if (this.#x(e, n, t)) {
@@ -18889,18 +18889,18 @@ var $x = 150, eS = class {
 		}
 	}
 	#x(e, t, n) {
-		if (!Fe(e.param) || !this.#Z(e.param, t)) return !1;
+		if (!Re(e.param) || !this.#Z(e.param, t)) return !1;
 		let { past: r, present: i } = this.#t.getState().provenance;
 		if (r.length === 0) return !1;
 		let a = i.lastAction;
 		if (!a || !hg.actions.paramChange.match(a)) return !1;
 		let o = a.payload.selector;
-		if (it(o) !== n) return !1;
+		if (st(o) !== n) return !1;
 		let s = r[r.length - 1].paramProvenance.entries[n];
 		return !s || this.#S(e.param, s.value);
 	}
 	#S(e, t) {
-		if (!t || !Fe(e)) return !0;
+		if (!t || !Re(e)) return !0;
 		if (t.type === "point") return t.keys.length === 0;
 		if (t.type === "pointExpand") return !1;
 		if (t.type === "interval") {
@@ -18915,7 +18915,7 @@ var $x = 150, eS = class {
 		return !n || this.#S(e.param, n.value);
 	}
 	#w(e) {
-		return Fe(e) ? !0 : He(e) && !!e.bind;
+		return Re(e) ? !0 : Ue(e) && !!e.bind;
 	}
 	#T(e, t) {
 		let n = hg.actions.paramChange({
@@ -18939,7 +18939,7 @@ var $x = 150, eS = class {
 		this.#m.clear();
 	}
 	#k(e) {
-		return Be(e.param, e.view.paramRuntime);
+		return Ve(e.param, e.view.paramRuntime);
 	}
 	#A(e, t) {
 		return this.#K(e.param, t), this.#k(e);
@@ -18954,7 +18954,7 @@ var $x = 150, eS = class {
 	#N(e, t) {
 		let n;
 		try {
-			n = yt(e.view.getEncoding());
+			n = bt(e.view.getEncoding());
 		} catch (n) {
 			t === "persist" ? this.#q(e.param, `will not be saved because encoding.key is invalid: ${n}`) : this.#K(e.param, `cannot be restored because encoding.key is invalid: ${n}`);
 			return;
@@ -18967,12 +18967,12 @@ var $x = 150, eS = class {
 	}
 	#P(e, t) {
 		let n = e.param;
-		if (Fe(n)) {
-			let r = qe(n.select);
-			if (Ve(r)) {
+		if (Re(n)) {
+			let r = Je(n.select);
+			if (He(r)) {
 				let r = this.#N(e, "persist");
 				if (!r) return;
-				let i = vt(t, r);
+				let i = yt(t, r);
 				if (!i) return;
 				let a = this.#M(e.view);
 				if (a && a.completed) try {
@@ -18987,8 +18987,8 @@ var $x = 150, eS = class {
 					keys: i
 				};
 			}
-			if (Ze(r)) {
-				if (!Qe(t)) {
+			if (Qe(r)) {
+				if (!$e(t)) {
 					this.#q(n, "has no value yet and will not be saved.");
 					return;
 				}
@@ -18996,7 +18996,7 @@ var $x = 150, eS = class {
 			}
 			throw Error(`Unsupported selection config for parameter "${n.name}".`);
 		}
-		if (He(n)) return {
+		if (Ue(n)) return {
 			type: "value",
 			value: t
 		};
@@ -19007,7 +19007,7 @@ var $x = 150, eS = class {
 			this.#e.paramRuntime.runInTransaction(() => {
 				let t = new Set(this.#i.keys()), n = new Set(Object.keys(e));
 				for (let t of this.#r) {
-					let r = it(t.selector);
+					let r = st(t.selector);
 					if (n.delete(r), this.#u.has(r)) continue;
 					let i = e[r], a = i ? this.#R(t, i) : this.#k(t);
 					this.#I(t, a) || t.view.paramRuntime.setValue(t.selector.param, a, { animate: !1 });
@@ -19022,20 +19022,20 @@ var $x = 150, eS = class {
 		}
 	}
 	#I(e, t) {
-		return He(e.param) && Object.is(e.view.paramRuntime.getTargetValue(e.selector.param), t);
+		return Ue(e.param) && Object.is(e.view.paramRuntime.getTargetValue(e.selector.param), t);
 	}
 	#L(e) {
 		let t = e.selector.param;
-		return He(e.param) ? e.view.paramRuntime.getTargetValue(t) : e.view.paramRuntime.getValue(t);
+		return Ue(e.param) ? e.view.paramRuntime.getTargetValue(t) : e.view.paramRuntime.getValue(t);
 	}
 	async whenApplied(e) {
 		return await Promise.resolve(), await this.#h, this.#e.paramRuntime.whenPropagated(e);
 	}
 	#R(e, t) {
 		let n = e.param, r = t.value;
-		if (Fe(n)) {
-			let i = qe(n.select);
-			if (Ve(i)) {
+		if (Re(n)) {
+			let i = Je(n.select);
+			if (He(i)) {
 				if (r.type === "pointExpand") return this.#z(e, r, i);
 				if (r.type !== "point") return this.#A(e, "cannot be restored because the bookmark stored a different selection type.");
 				let t = this.#N(e, "restore");
@@ -19047,22 +19047,22 @@ var $x = 150, eS = class {
 				if (!o.completed) return this.#V(o), this.#k(e);
 				let s = i.toggle ? "multi" : "single", c;
 				try {
-					c = St(s, t, a, (e, t) => o.findDatumByKey(e, t));
+					c = Ct(s, t, a, (e, t) => o.findDatumByKey(e, t));
 				} catch (r) {
 					return String(r).includes("Duplicate key detected") ? this.#K(n, `cannot be restored because encoding.key fields [${t.join(", ")}] are not unique in the current data.`) : this.#K(n, `cannot be restored due to an error: ${r}`), this.#k(e);
 				}
 				return c.unresolved.length && this.#K(n, "has some points that could not be resolved. Ensure encoding.key is unique and present in the data."), c.selection;
 			}
-			if (Ze(i)) {
+			if (Qe(i)) {
 				if (r.type !== "interval") return this.#A(e, "cannot be restored because the bookmark stored a different selection type.");
-				let n = Xe(i.encodings);
+				let n = Ze(i.encodings);
 				this.#H(e.view, n, r.intervals);
 				let a = this.#U(t.origin);
 				return a && this.#H(e.view, n, a), n;
 			}
 			return this.#k(e);
 		}
-		return He(n) ? r.type === "value" ? r.value : this.#j(e, "cannot be restored because the bookmark stored a different value type.") : this.#k(e);
+		return Ue(n) ? r.type === "value" ? r.value : this.#j(e, "cannot be restored because the bookmark stored a different value type.") : this.#k(e);
 	}
 	#z(e, t, n) {
 		if (!n.toggle) return this.#K(e.param, "cannot apply expansion because the target selection is not multi-point."), this.#k(e);
@@ -19079,13 +19079,13 @@ var $x = 150, eS = class {
 			let n = Gx(e), a = [];
 			return r.visitData((e) => {
 				n(e) && a.push(e);
-			}), ke(a);
+			}), Me(a);
 		} catch (t) {
 			return this.#K(e.param, `cannot apply expansion due to an error: ${t}`), this.#k(e);
 		}
 	}
 	#B(e) {
-		let t = e.origin, n = et(this.#e, t.view);
+		let t = e.origin, n = nt(this.#e, t.view);
 		if (!n) {
 			this.#J("the expansion origin view is missing in the current import scope.");
 			return;
@@ -19138,7 +19138,7 @@ var $x = 150, eS = class {
 	}
 	#U(e) {
 		if (!e || e.type !== "datum" || !e.intervalSources) return;
-		let t = et(this.#e, e.view);
+		let t = nt(this.#e, e.view);
 		if (!t) {
 			this.#J("the source view is missing. Using stored coordinates instead.");
 			return;
@@ -19163,7 +19163,7 @@ var $x = 150, eS = class {
 		for (let [t, n] of Object.entries(e.intervalSources)) {
 			let e = n.start, a = n.end ?? n.start;
 			if (!e || !a) continue;
-			let o = Re(e), s = Re(a);
+			let o = Ie(e), s = Ie(a);
 			i[t] = [o(r), s(r)];
 		}
 		return i;
@@ -19188,11 +19188,11 @@ var $x = 150, eS = class {
 	}
 	#X(e, t) {
 		let n = e.param;
-		Fe(n) && Ve(qe(n.select)) && (this.#N(e, "persist") || this.#u.add(t));
+		Re(n) && He(Je(n.select)) && (this.#N(e, "persist") || this.#u.add(t));
 	}
 	#Z(e, t) {
-		let n = qe(e.select);
-		return Ve(n) ? Ee(t) ? !t.datum : !$e(t) || t.data.size === 0 : Ze(n) ? !Ne(t) : !1;
+		let n = Je(e.select);
+		return He(n) ? Ee(t) ? !t.datum : !tt(t) || t.data.size === 0 : Qe(n) ? !Fe(t) : !1;
 	}
 	#Q(e) {
 		this.#l.has(e) || (this.#l.add(e), this.#s.add(e), !this.#d && (this.#d = !0, queueMicrotask(() => {
@@ -19250,7 +19250,7 @@ function rS(e, t) {
 		partitionBy: i.partitionBy,
 		origin: i.origin,
 		...o
-	} : i.value, c = i.origin, l = pS(st, t, a), u = l ? l.view : void 0, d = u ? oS(u, t) : null, f = iS(e, u, a, s, c, t);
+	} : i.value, c = i.origin, l = pS(lt, t, a), u = l ? l.view : void 0, d = u ? oS(u, t) : null, f = iS(e, u, a, s, c, t);
 	return {
 		title: d ? R`${f} in ${d}` : f,
 		icon: fS(s)
@@ -19285,7 +19285,7 @@ function iS(e, t, n, r, i, a) {
 }
 function aS(e, t) {
 	if (!e || e.type !== "datum") return R``;
-	let n = t ? pS(et, t, e.view) : null;
+	let n = t ? pS(nt, t, e.view) : null;
 	return n ? R` from ${oS(n, t)}` : R``;
 }
 function oS(e, t) {
@@ -19374,7 +19374,7 @@ function bS(e, t, n, r) {
 	let i = nS.get(e);
 	if (i?.has(r)) return i.get(r);
 	if (!t) return;
-	let a = pS(et, t, n.view);
+	let a = pS(nt, t, n.view);
 	if (!a) return;
 	let o = Xx(a, n);
 	if (o.reason !== "ok") return;
@@ -19396,14 +19396,14 @@ function SS(e) {
 //#endregion
 //#region ../app/src/viewSelectorConstraints.js
 function CS(e) {
-	let t = [...wt(e)];
+	let t = [...Tt(e)];
 	return wS(e, t), TS(e, t), ES(e, t), t;
 }
 function wS(e, t) {
-	Ot(e, (e) => {
+	Dt(e, (e) => {
 		let n = kn(e);
 		if (!(!n || typeof n != "object") && (typeof n.group != "string" || n.group.length === 0)) {
-			let n = nt(e);
+			let n = at(e);
 			t.push({
 				message: "Configurable visibility group must be a non-empty string in " + kS(n) + " for " + e.getPathString() + ".",
 				scope: n
@@ -19413,8 +19413,8 @@ function wS(e, t) {
 }
 function TS(e, t) {
 	let n = /* @__PURE__ */ new Map(), r = /* @__PURE__ */ new Map();
-	Ot(e, (e) => {
-		let i = nt(e), a = OS(i);
+	Dt(e, (e) => {
+		let i = at(e), a = OS(i);
 		if (n.has(a) || (n.set(a, i), r.set(a, /* @__PURE__ */ new Map())), !mn(e)) return;
 		let o = e.explicitName;
 		if (!o) {
@@ -19442,10 +19442,10 @@ function TS(e, t) {
 }
 function ES(e, t) {
 	let n = /* @__PURE__ */ new Map(), r = /* @__PURE__ */ new Map();
-	Ot(e, (e) => {
-		let t = gt(e), i = t ? t.name : void 0;
+	Dt(e, (e) => {
+		let t = _t(e), i = t ? t.name : void 0;
 		if (typeof i != "string" || !i.length || !DS(e)) return;
-		let a = nt(e);
+		let a = at(e);
 		if (!a.length) return;
 		let o = a.slice(0, a.length - 1), s = OS(o);
 		n.has(s) || (n.set(s, o), r.set(s, /* @__PURE__ */ new Map()));
@@ -19462,8 +19462,8 @@ function ES(e, t) {
 }
 function DS(e) {
 	let t = !1;
-	return Ot(e, (e) => {
-		if (mn(e) && (e.explicitName || Dn(e))) return t = !0, Ue;
+	return Dt(e, (e) => {
+		if (mn(e) && (e.explicitName || Dn(e))) return t = !0, We;
 	}), t;
 }
 function OS(e) {
@@ -19622,10 +19622,10 @@ var RS = class {
 		}, this.genomeSpy.viewFactory.addViewType(_m, ((e, t, n, r, i) => new Tg(e, t, n, r, i, this.provenance, this.intentExecutor, $b(this)))), this.#o();
 	}
 	getAgentApi() {
-		return this.#e ||= import("./agentApi-3Omxgvjp.js").then((e) => e.t).then((e) => e.createAgentApi(this)), this.#e;
+		return this.#e ||= import("./agentApi-D36QXXDg.js").then((e) => e.t).then((e) => e.createAgentApi(this)), this.#e;
 	}
 	async getDebugModules() {
-		return import("./debug-zKHyqg6H.js");
+		return import("./debug-DJKug_38.js");
 	}
 	#r() {
 		this.store = xx(), this.intentExecutor = new _x(this.store), this.provenance = new dx(this.store), this.intentPipeline = new Sx({
@@ -19748,7 +19748,7 @@ var RS = class {
 			this.#c(this.store.subscribe(n));
 			for (let [, e] of this.genomeSpy.getNamedScaleResolutions()) e.isZoomable() && (e.addEventListener("domain", n), this.#c(() => e.removeEventListener("domain", n)));
 		}
-		let r = Ct(this.genomeSpy.spec.description ?? []);
+		let r = pt(this.genomeSpy.spec.description ?? []);
 		this.isFullPage() && r.length > 0 && (document.title = "GenomeSpy - " + r), this.store.dispatch(vx.actions.setInitialized());
 	}
 	async #l(e) {
@@ -19849,13 +19849,13 @@ var RS = class {
 		if (!this.genomeSpy?.viewRoot) return;
 		let e;
 		return this.genomeSpy.viewRoot.visit((t) => {
-			if (t instanceof Tg) return e = t, Ue;
+			if (t instanceof Tg) return e = t, We;
 		}), e;
 	}
 };
 function zS(e) {
 	let t = e.bookmarks?.remote;
-	if (t) return Ae(Oe(e.baseUrl, t.url));
+	if (t) return Ne(Ae(e.baseUrl, t.url));
 }
 function BS(e) {
 	let t = document.querySelector("head"), n = document.createElement("link");
@@ -19869,48 +19869,49 @@ function VS(e) {
 //#endregion
 //#region ../app/src/index.js
 async function HS(e, t, n = {}) {
-	let r;
+	let r = !0, i = () => r, a;
 	if (zt(e)) {
-		if (r = document.querySelector(e), !r) throw Error(`No such element: ${e}`);
-	} else if (e instanceof HTMLElement) r = e;
+		if (a = document.querySelector(e), !a) throw Error(`No such element: ${e}`);
+	} else if (e instanceof HTMLElement) a = e;
 	else throw Error(`Invalid element: ${e}`);
-	let i, a, o = [];
+	let o, s, c = [];
 	try {
 		let e = nn(t) ? t : await ce(t);
 		e.baseUrl ??= "", e.padding ??= 10;
-		let { plugins: s = [], ...c } = {
+		let { plugins: r = [], ...i } = {
 			powerPreference: "high-performance",
 			...n
 		};
-		a = new RS(r, e, c), i = a.genomeSpy, o = await WS(a, s), US(i, c), await a.launch();
+		s = new RS(a, e, i), o = s.genomeSpy, c = await WS(s, r), US(o, i), await s.launch();
 	} catch (e) {
-		r.innerText = e.toString(), console.error(e);
+		a.innerText = e.toString(), console.error(e);
 	}
 	return {
-		views: te(i),
-		datasets: me(i),
-		debug: a.debug,
+		views: te(o, i),
+		datasets: me(o, i),
+		debug: s.debug,
 		finalize() {
-			let e = o;
-			o = [];
+			r = !1;
+			let e = c;
+			c = [];
 			for (let t = e.length - 1; t >= 0; --t) e[t]();
-			for (a?.finalize(), i?.destroy(), i = void 0; r.firstChild;) r.firstChild.remove();
+			for (s?.finalize(), o?.destroy(), o = void 0; a.firstChild;) a.firstChild.remove();
 		},
 		addEventListener(e, t) {
-			i.addEventListener(e, t);
+			o.addEventListener(e, t);
 		},
 		removeEventListener(e, t) {
-			i.removeEventListener(e, t);
+			o.removeEventListener(e, t);
 		},
 		getScaleResolutionByName(e) {
-			return i.getNamedScaleResolutions().get(e);
+			return o.getNamedScaleResolutions().get(e);
 		},
-		getParam: i.getParam.bind(i),
-		awaitVisibleLazyData: i.awaitVisibleLazyData.bind(i),
-		getRenderedBounds: i.getRenderedBounds.bind(i),
-		updateNamedData: i.updateNamedData.bind(i),
-		getLogicalCanvasSize: i.getLogicalCanvasSize.bind(i),
-		exportCanvas: i.exportCanvas.bind(i)
+		getParam: o.getParam.bind(o),
+		awaitVisibleLazyData: o.awaitVisibleLazyData.bind(o),
+		getRenderedBounds: o.getRenderedBounds.bind(o),
+		updateNamedData: o.updateNamedData.bind(o),
+		getLogicalCanvasSize: o.getLogicalCanvasSize.bind(o),
+		exportCanvas: o.exportCanvas.bind(o)
 	};
 }
 function US(e, t) {

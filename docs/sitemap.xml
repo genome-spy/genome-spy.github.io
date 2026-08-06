@@ -40,6 +40,9 @@
         <loc>https://genomespy.app/docs/grammar/transform/cross/</loc>
       </url>
       <url>
+        <loc>https://genomespy.app/docs/grammar/transform/displace1d/</loc>
+      </url>
+      <url>
         <loc>https://genomespy.app/docs/grammar/transform/filter/</loc>
       </url>
       <url>
@@ -242,6 +245,9 @@
       </url>
       <url>
         <loc>https://genomespy.app/docs/examples/genomic-data/sashimi-plot/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/pik3ca-tcga-brca-lollipop/</loc>
       </url>
       <url>
         <loc>https://genomespy.app/docs/examples/genomic-data/dynseq-spi1-bqtl/</loc>

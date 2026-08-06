@@ -66,6 +66,25 @@
      
 <meta name="base_url" content="../../.." />
 
+
+  
+
+
+<meta property="og:title" content="HCC1954 Structural Variants and Copy Number" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;examples&#x2f;genomic-data&#x2f;hcc1954-sv-cnv&#x2f;" />
+
+
+<meta property="og:description" content="This example combines somatic structural variants (SVs) and copy-number (CN) segments from the highly rearranged HCC1954&#x2f;HCC1954BL breast-cancer cell-line pair. It uses PacBio HiFi results from the CASTLE tumour-normal dataset: the Severus somatic calls consumed by Wakhan and the corresponding haplotype-specific CN solution." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+<meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;examples&#x2f;genomic-data&#x2f;hcc1954-sv-cnv.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="Shows paired Severus somatic SV arcs and Wakhan ploidy-relative copy-number segments for the highly rearranged HCC1954 breast-cancer cell line." />
+
+
   </head>
   
   
@@ -577,6 +596,8 @@
       
         
       
+        
+      
     
     
     
@@ -747,6 +768,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../grammar/transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2593,6 +2641,8 @@
       
         
       
+        
+      
     
     
     
@@ -2970,6 +3020,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../dynseq-spi1-bqtl/" class="md-nav__link">
         
   
@@ -3282,7 +3359,7 @@ haplotype-specific CN solution.</p>
 
 <span class="w">  </span><span class="nt">&quot;resolve&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shared&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shared&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
 
-<span class="w">  </span><span class="nt">&quot;spacing&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spacing&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
 
 <span class="w">  </span><span class="nt">&quot;vconcat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
@@ -3353,6 +3430,9 @@ haplotype-specific CN solution.</p>
 <span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum.INFO.STRANDS[0][1]&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;strand2&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;identifier&quot;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3382,11 +3462,10 @@ haplotype-specific CN solution.</p>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">],</span>
 <span class="w">          </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rule&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;tooltip&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;dy&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;yOffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.5</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;opacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span>
 <span class="w">          </span><span class="p">},</span>
 <span class="w">          </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3396,13 +3475,20 @@ haplotype-specific CN solution.</p>
 <span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;band&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;shape&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pos&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;band&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;xOffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;strand&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;+&quot;</span><span class="p">],</span>
-<span class="w">                </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tick-right&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;tick-left&quot;</span><span class="p">]</span>
+<span class="w">                </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">-10</span><span class="p">]</span>
 <span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAMPLES.wakhan_haplotagged.VAF[0]&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">2.5</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pow&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">              </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">}</span>
@@ -3541,10 +3627,12 @@ in human cancer</a>.</p>
 <h2 id="what-to-notice">What to notice<a class="headerlink" href="#what-to-notice" title="Permanent link">&para;</a></h2>
 <p>The upper track shows paired Severus breakends, deletions, and duplications.
 Arc stroke width encodes variant allele frequency. Hovering an arc emphasizes
-it by increasing its stroke width and opacity. The lower track shows Wakhan
-copy-number segments colored by their total copy number divided by the selected
-ploidy estimate: pale grey represents copy number near the genome-wide ploidy,
-while blue and red indicate lower and higher relative copy number.</p>
+it by increasing its stroke width and opacity. Short feet at the arc endpoints
+point in the breakend strand direction and use the same variant-allele-frequency
+stroke-width scale. The lower track shows Wakhan copy-number segments colored by
+their total copy number divided by the selected ploidy estimate: pale grey
+represents copy number near the genome-wide ploidy, while blue and red indicate
+lower and higher relative copy number.</p>
 <p>The initial view covers a dense chromosome 21-22 region with a
 chromothripsis-like pattern of structural variants. Pan and zoom to inspect other
 rearranged regions, including chromosome 8q and chromosome 5-8 events. The
@@ -3560,6 +3648,9 @@ supporting-read counts directly from the VCF.</p>
 <li><a href="../../../grammar/mark/link/"><code>link</code></a> marks for intra- and interchromosomal SV arcs.</li>
 <li><a href="../../../grammar/transform/regex-fold/"><code>regexFold</code></a> to generate endpoint paws
   from paired breakpoint columns.</li>
+<li><a href="../../../grammar/mark/rule/"><code>rule</code></a> marks with a pixel-valued
+  <a href="../../../grammar/mark/#offset-channels"><code>xOffset</code></a> scale for
+  strand-directed endpoint feet.</li>
 <li>A shared <a href="../../../grammar/scale/#locus-scale"><code>locus</code></a> x-scale to keep SV and
   CN positions aligned across vertically concatenated tracks.</li>
 <li>Conditional encodings and a point selection to emphasize the hovered arc.</li>
@@ -3595,6 +3686,9 @@ absolute CN, not a measured tumour-versus-normal log ratio.</p>
 
 
 
+
+  
+  
 
 
 

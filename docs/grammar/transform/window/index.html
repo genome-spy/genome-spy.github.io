@@ -66,6 +66,25 @@
      
 <meta name="base_url" content="../../.." />
 
+
+  
+
+
+<meta property="og:title" content="Window" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;window&#x2f;" />
+
+
+<meta property="og:description" content="The &quot;window&quot; transform calculates values for every input row from a frame of rows in its partition. It keeps input rows and preserves their observed output order. Sorting affects calculations only: &quot;window&quot; is not a sorting transform." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+<meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;window&#x2f;window-transform.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="Window transform showing lead arrows and a two-row moving mean." />
+
+
   </head>
   
   
@@ -581,6 +600,8 @@
       
         
       
+        
+      
     
     
     
@@ -751,6 +772,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2719,6 +2767,8 @@
       
         
       
+        
+      
     
     
     
@@ -2997,6 +3047,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3378,7 +3455,7 @@ transform.</p>
 <dd>Type: array<p>Optional operation parameters. <code>lag</code> and <code>lead</code> use an offset, while <code>ntile</code> and <code>nth_value</code> use a positive integer.</p>
 </dd>
 <dt><code>sort</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">CompareParams</a><p>Fields used to sort rows before window functions are calculated. Without sorting, rows retain their input order and no rows are peers.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#compareparams">CompareParams</a><p>Fields used to sort rows before window functions are calculated. Without sorting, rows retain their input order and no rows are peers.</p>
 </dd>
 </dl>
 <h2 id="partitions-and-order">Partitions and order<a class="headerlink" href="#partitions-and-order" title="Permanent link">&para;</a></h2>
@@ -3846,6 +3923,9 @@ for a more detailed description of the example and its data sources.</p>
 
 
 
+
+  
+  
 
 
 

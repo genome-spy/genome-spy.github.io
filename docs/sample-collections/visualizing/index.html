@@ -66,6 +66,21 @@
      
 <meta name="base_url" content="../.." />
 
+
+  
+
+
+<meta property="og:title" content="Visualizing Sample Collections" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;sample-collections&#x2f;visualizing&#x2f;" />
+
+
+<meta property="og:description" content="You can use the following HTML template to create a web page for your visualization. The template loads the app from a content delivery network and the visualization specification from a separate spec.json file placed in the same directory. See the getting started page for more information." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+
   </head>
   
   
@@ -577,6 +592,8 @@
       
         
       
+        
+      
     
     
     
@@ -747,6 +764,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2746,6 +2790,8 @@
       
         
       
+        
+      
     
     
     
@@ -3024,6 +3070,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3419,12 +3492,12 @@ page for more information.</p>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.82.0/dist/style.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.83.0/dist/style.css&quot;</span>
     <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.82.0/dist/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.83.0/dist/index.es.js&quot;</span><span class="p">;</span>
 
 <span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;spec.json&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -3554,7 +3627,7 @@ Sample metadata, like clinical attributes, has to be provided separately in a
 <p>The following properties configure <code>samples.identity</code>:</p>
 <dl>
 <dt><code>data</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">Generator</a><p>Data source that defines the sample set for the view.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/data/eager/#url-data">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#inline-data">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#named-data">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/#dynamiccallbackdata">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#sequence-generator">Generator</a><p>Data source that defines the sample set for the view.</p>
 <p>The source must contain one row per sample. Metadata imports are matched against these sample ids.</p>
 </dd>
 <dt><code>displayNameField</code></dt>
@@ -3606,7 +3679,7 @@ to avoid clutter.</p>
 <p>The sample view property that enables and disables this behavior is:</p>
 <dl>
 <dt><code>sampleYAxis</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">SampleYAxisDef</a> | null<p>Controls how vertical axes are shown for repeated sample plots.</p>
+<dd>Type: <a href="https://genomespy.app/docs/sample-collections/visualizing/#showing-sample-y-axes">SampleYAxisDef</a> | null<p>Controls how vertical axes are shown for repeated sample plots.</p>
 <p>Set to <code>null</code> to disable sample y-axes.</p>
 <p><strong>Default value:</strong> <code>{"mode": "all", "minSampleHeight": 60}</code></p>
 </dd>
@@ -3672,7 +3745,7 @@ sample label font size, use the following configuration:</p>
 <p>Sample row and group layout can be adjusted with the <code>sampleLayout</code> property:</p>
 <dl>
 <dt><code>sampleLayout</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">SampleLayoutDef</a><p>Layout settings for sample rows and sample groups.</p>
+<dd>Type: <a href="https://genomespy.app/docs/sample-collections/visualizing/#adjusting-sample-labels">SampleLayoutDef</a><p>Layout settings for sample rows and sample groups.</p>
 </dd>
 <dt><code>sampleHeight</code></dt>
 <dd>Type: number<p>Height of one sample row when the view is expanded for (close-up) inspection. In the birdseye overview, sample rows are automatically scaled to fit the available vertical space.</p>
@@ -3706,6 +3779,9 @@ tracks across samples or sample groups, see
 
 
 
+
+  
+  
 
 
 

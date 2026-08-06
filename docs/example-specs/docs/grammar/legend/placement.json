@@ -1,0 +1,57 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/@genome-spy/core/dist/schema.json",
+
+  "description": [
+    "Local legend placement",
+    "Each legend stays next to its view."
+  ],
+
+  "data": {
+    "values": [
+      { "x": 1, "group": "A", "status": "pass" },
+      { "x": 2, "group": "B", "status": "review" },
+      { "x": 3, "group": "A", "status": "fail" }
+    ]
+  },
+
+  "resolve": { "scale": { "x": "shared" } },
+
+  "vconcat": [
+    {
+      "mark": { "type": "rect" },
+      "encoding": {
+        "x": { "field": "x", "type": "ordinal", "axis": null },
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "legend": {
+            "offset": 5,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "title": "Local"
+          }
+        }
+      }
+    },
+
+    {
+      "mark": { "type": "rect" },
+      "encoding": {
+        "x": { "field": "x", "type": "ordinal" },
+        "color": {
+          "field": "status",
+          "type": "nominal",
+          "legend": {
+            "orient": "right",
+            "title": "Right"
+          }
+        }
+      }
+    }
+  ],
+
+  "config": {
+    "view": { "stroke": "lightgray" }
+  },
+  "background": "#f8f8f8"
+}

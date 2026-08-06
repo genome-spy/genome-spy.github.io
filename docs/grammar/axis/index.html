@@ -66,6 +66,25 @@
      
 <meta name="base_url" content="../.." />
 
+
+  
+
+
+<meta property="og:title" content="Axis" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;axis&#x2f;" />
+
+
+<meta property="og:description" content="Axes explain how positional channels such as x and y map data values to positions. GenomeSpy creates axes automatically for positional field and expression encodings." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+<meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;grammar&#x2f;axis&#x2f;inside-axis.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="Inside axis placement example." />
+
+
   </head>
   
   
@@ -579,6 +598,8 @@
       
         
       
+        
+      
     
     
     
@@ -749,6 +770,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2767,6 +2815,8 @@
       
         
       
+        
+      
     
     
     
@@ -3045,6 +3095,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3551,8 +3628,12 @@ actual number may differ when GenomeSpy chooses nice tick values. <code>tickCoun
 can also be an expression reference. In tick-count expressions, <code>axisLength</code> is
 the current length of the axis in pixels. Use <code>tickMinStep</code> to set the minimum
 step between ticks in domain units.</p>
-<p>Use <code>values</code> to set explicit tick and label values. Use <code>format</code> to format
-numeric labels with a
+<p>Use <code>values</code> to replace the automatically generated ticks with explicit tick
+and label values. On continuous scales, use <code>extraValues</code> to add values while
+retaining the automatically generated ticks. Invisible and duplicate extra
+values are omitted. <code>extraValues</code> is ignored on discrete scales and when
+<code>values</code> is set.</p>
+<p>Use <code>format</code> to format numeric labels with a
 <a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
 <p>Set <code>ticks</code> or <code>labels</code> to <code>false</code> to hide tick marks or labels while keeping
 the rest of the axis.</p>
@@ -3669,6 +3750,10 @@ chromosome ticks, bands, or grids.</p>
 <dt><code>domainWidth</code></dt>
 <dd>Type: number<p>Stroke width of axis domain line</p>
 <p><strong>Default value:</strong> <code>1</code></p>
+</dd>
+<dt><code>extraValues</code></dt>
+<dd>Type: array<p>Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.</p>
+<p>This property is ignored on discrete scales and when <code>values</code> is set.</p>
 </dd>
 <dt><code>format</code></dt>
 <dd>Type: string<p>The format specifier pattern for axis labels. Must be a legal <a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
@@ -3941,6 +4026,10 @@ chromosome ticks, bands, or grids.</p>
 <dt><code>domainWidth</code></dt>
 <dd>Type: number<p>Stroke width of axis domain line</p>
 <p><strong>Default value:</strong> <code>1</code></p>
+</dd>
+<dt><code>extraValues</code></dt>
+<dd>Type: array<p>Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.</p>
+<p>This property is ignored on discrete scales and when <code>values</code> is set.</p>
 </dd>
 <dt><code>format</code></dt>
 <dd>Type: string<p>The format specifier pattern for axis labels. Must be a legal <a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
@@ -4236,6 +4325,10 @@ channel-level axis object overrides the configured defaults for that axis.</p>
 <dd>Type: number<p>Stroke width of axis domain line</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
+<dt><code>extraValues</code></dt>
+<dd>Type: array<p>Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.</p>
+<p>This property is ignored on discrete scales and when <code>values</code> is set.</p>
+</dd>
 <dt><code>format</code></dt>
 <dd>Type: string<p>The format specifier pattern for axis labels. Must be a legal <a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
 </dd>
@@ -4403,6 +4496,9 @@ channel-level axis object overrides the configured defaults for that axis.</p>
 
 
 
+
+  
+  
 
 
 

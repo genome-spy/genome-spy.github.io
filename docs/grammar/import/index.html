@@ -66,6 +66,25 @@
      
 <meta name="base_url" content="../.." />
 
+
+  
+
+
+<meta property="og:title" content="Importing Views" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;import&#x2f;" />
+
+
+<meta property="og:description" content="GenomeSpy facilitates reusing views by allowing them to be imported from the same specification by name or from external specification files by a URL. The files can be placed flexibly – it may be practical to split large specifications into multiple files and place them in the same directory. On the other hand, if you have created, for example, an annotation track that you would like the share with the research community, you can upload the specification file and the associated data to a publicly accessible web server. The imported views, both named and URLs, can be parameterized to allow for customization." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+<meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;grammar&#x2f;import&#x2f;named-template-repeat.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="Template import example with repeated named tracks." />
+
+
   </head>
   
   
@@ -579,6 +598,8 @@
       
         
       
+        
+      
     
     
     
@@ -749,6 +770,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2712,6 +2760,8 @@
       
         
       
+        
+      
     
     
     
@@ -2990,6 +3040,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3354,7 +3431,7 @@ named and URLs, can be parameterized to allow for customization.</p>
 <dd>Type: string<p>The name given to the imported view. This property overrides the name specified in the imported specification and defines an import scope that is used for bookmarkable view visibility and parameter addressing.</p>
 </dd>
 <dt><code>params</code></dt>
-<dd>Type: (<a href="https://genomespy.app/docs/grammar/types/">PlainValueParameter</a> | <a href="https://genomespy.app/docs/grammar/types/">TransitionedValueParameter</a> | <a href="https://genomespy.app/docs/grammar/types/">ExprParameter</a> | <a href="https://genomespy.app/docs/grammar/parameters/">SelectionParameter</a> | <a href="https://genomespy.app/docs/grammar/types/">RulerParameter</a>)[] | object<p>Dynamic variables that parameterize a visualization. Parameters defined here override the parameters defined in the imported specification.</p>
+<dd>Type: (<a href="https://genomespy.app/docs/grammar/types/#plainvalueparameter">PlainValueParameter</a> | <a href="https://genomespy.app/docs/grammar/types/#transitionedvalueparameter">TransitionedValueParameter</a> | <a href="https://genomespy.app/docs/grammar/types/#exprparameter">ExprParameter</a> | <a href="https://genomespy.app/docs/grammar/parameters/#selection-parameters">SelectionParameter</a> | <a href="https://genomespy.app/docs/grammar/types/#rulerparameter">RulerParameter</a>)[] | object<p>Dynamic variables that parameterize a visualization. Parameters defined here override the parameters defined in the imported specification.</p>
 </dd>
 <dt><code>visible</code></dt>
 <dd>Type: boolean<p>Overrides the visibility of the imported view.</p>
@@ -3517,6 +3594,9 @@ buckets. Host specs can then customize imported tracks through import-site
 
 
 
+
+  
+  
 
 
 

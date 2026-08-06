@@ -66,6 +66,21 @@
      
 <meta name="base_url" content="../../.." />
 
+
+  
+
+
+<meta property="og:title" content="Coordinate Lookup" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;coordinate-lookup&#x2f;" />
+
+
+<meta property="og:description" content="The &quot;coordinateLookup&quot; transform is the lazy, coordinate-constrained form of &quot;lookup&quot;. It adds values from a lazy side input to rows whose coordinates are on the same positional scale, using an exact one-to-one lookup by a continuous coordinate or a [chrom, pos] pair." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+
   </head>
   
   
@@ -581,6 +596,8 @@
       
         
       
+        
+      
     
     
     
@@ -751,6 +768,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2664,6 +2708,8 @@
       
         
       
+        
+      
     
     
     
@@ -2942,6 +2988,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3271,7 +3344,7 @@ to the coordinate names used by <code>key</code>. It cannot contain <code>"looku
 <dd>Type: string (field name) | [string (field name), string (field name)] | null<p>Coordinate field or <code>[chrom, pos]</code> fields in the primary data. Defaults to <code>key</code>.</p>
 </dd>
 <dt><code>from</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">CoordinateLookupInput</a><p>The lazy side input and its optional transforms. Rows outside the loaded side-input domain are not passed through.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#coordinatelookupinput">CoordinateLookupInput</a><p>The lazy side input and its optional transforms. Rows outside the loaded side-input domain are not passed through.</p>
 </dd>
 <dt><code>key</code> <span class="required">Required</span></dt>
 <dd>Type: string (field name) | [string (field name), string (field name)]<p>Coordinate field or <code>[chrom, pos]</code> fields in the lazy side input. The same fields in the primary data determine both the exact match and whether a row is within the loaded side-input interval.</p>
@@ -3315,6 +3388,9 @@ see the <a href="../../../examples/genomic-data/dynseq-spi1-bqtl/">SPI1 Binding-
 
 
 
+
+  
+  
 
 
 

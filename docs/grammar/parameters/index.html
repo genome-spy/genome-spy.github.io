@@ -66,6 +66,25 @@
      
 <meta name="base_url" content="../.." />
 
+
+  
+
+
+<meta property="og:title" content="Parameters" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;parameters&#x2f;" />
+
+
+<meta property="og:description" content="Parameters enable various dynamic behaviors in GenomeSpy visualizations, such as interactive selections, conditional encoding, and data filtering with expressions. They also enable parameterization when importing specification fragments from external files or named templates. Parameters in GenomeSpy are heavily inspired by the parameters concept of Vega-Lite." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+<meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;grammar&#x2f;parameters&#x2f;input-bindings.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="Parameter bindings example." />
+
+
   </head>
   
   
@@ -579,6 +598,8 @@
       
         
       
+        
+      
     
     
     
@@ -749,6 +770,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2227,6 +2275,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#implicit-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Implicit Parameters
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implicit Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#view-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        View Size
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2824,6 +2900,8 @@
       
         
       
+        
+      
     
     
     
@@ -3102,6 +3180,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3522,6 +3627,34 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         Properties
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implicit-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Implicit Parameters
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implicit Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#view-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        View Size
       </span>
     </span>
   </a>
@@ -4418,10 +4551,10 @@ transforms, or encodings.</p>
 <p><strong>Default value:</strong> <code>"auto"</code></p>
 </dd>
 <dt><code>mark</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">RulerMarkConfig</a><p>Rule or band appearance. Has no effect when <code>display</code> is <code>"none"</code>.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#rulermarkconfig">RulerMarkConfig</a><p>Rule or band appearance. Has no effect when <code>display</code> is <code>"none"</code>.</p>
 </dd>
 <dt><code>on</code></dt>
-<dd>Type: <code>"mousemove"</code> | <code>"mousedown"</code> | <a href="https://genomespy.app/docs/grammar/types/">RulerEventConfig</a> | string<p>Event that updates a pointer-driven ruler.</p>
+<dd>Type: <code>"mousemove"</code> | <code>"mousedown"</code> | <a href="https://genomespy.app/docs/grammar/types/#rulereventconfig">RulerEventConfig</a> | string<p>Event that updates a pointer-driven ruler.</p>
 <p><code>"mousemove"</code> follows the pointer. <code>"mousedown"</code> updates on press and continues while dragging. Event filters can require modifier keys.</p>
 <p><strong>Default value:</strong> <code>"mousemove"</code></p>
 </dd>
@@ -4435,6 +4568,21 @@ transforms, or encodings.</p>
 <p><strong>Default value:</strong> <code>"pointer"</code></p>
 </dd>
 </dl>
+<h2 id="implicit-parameters">Implicit Parameters<a class="headerlink" href="#implicit-parameters" title="Permanent link">&para;</a></h2>
+<p>GenomeSpy provides implicit parameters for values determined at runtime. An
+explicitly configured parameter with the same name takes precedence.</p>
+<h3 id="view-size">View Size<a class="headerlink" href="#view-size" title="Permanent link">&para;</a></h3>
+<p>The implicit <code>width</code> and <code>height</code> parameters contain the current view's inner
+content dimensions in logical pixels. They update when the view is laid out and
+can be used in expressions without being declared in <code>params</code>.</p>
+<p>For unit and layer views, these dimensions match the plot area used to render
+marks. Layer children inherit the layer's dimensions. For concatenated views,
+they describe the inner grid span. This span includes spacing and internal
+guides between child plots, but excludes external overhang from axes, legends,
+and titles. At the root, it also excludes root padding.</p>
+<p>These parameters are distinct from the authored <code>width</code> and <code>height</code> sizing
+properties, which control layout. Declaring a parameter named <code>width</code> or
+<code>height</code> overrides the corresponding implicit parameter in its scope.</p>
 
 
 
@@ -4443,6 +4591,9 @@ transforms, or encodings.</p>
 
 
 
+
+  
+  
 
 
 

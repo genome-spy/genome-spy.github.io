@@ -66,6 +66,25 @@
      
 <meta name="base_url" content="../../.." />
 
+
+  
+
+
+<meta property="og:title" content="Multiscale Composition" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;composition&#x2f;multiscale&#x2f;" />
+
+
+<meta property="og:description" content="multiscale is a convenience macro for semantic zooming. It expands to a layer composition with generated opacity transitions between child views." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+<meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;grammar&#x2f;composition&#x2f;multiscale&#x2f;multiscale-composition.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="A three-stage semantic zoom using the multiscale composition operator." />
+
+
   </head>
   
   
@@ -579,6 +598,8 @@
       
         
       
+        
+      
     
     
     
@@ -749,6 +770,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2748,6 +2796,8 @@
       
         
       
+        
+      
     
     
     
@@ -3026,6 +3076,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3611,7 +3688,7 @@ fully visible and all other levels are hidden.</p>
 <p>All other properties follow <a href=".././layer/"><code>layer</code></a> view semantics.</p>
 <dl>
 <dt><code>stops</code> <span class="required">Required</span></dt>
-<dd>Type: (number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a>)[] | <a href="https://genomespy.app/docs/grammar/types/">FadedMultiscaleStops</a> | <a href="https://genomespy.app/docs/grammar/types/">TransitionedMultiscaleStops</a><p>Stop definition that controls transitions between the multiscale levels.</p>
+<dd>Type: (number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a>)[] | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#fadedmultiscalestops">FadedMultiscaleStops</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#transitionedmultiscalestops">TransitionedMultiscaleStops</a><p>Stop definition that controls transitions between the multiscale levels.</p>
 <p>- <code>number[]</code> is shorthand for <code>{ metric: "unitsPerPixel", values: ... }</code>
   - <code>(number | ExprRef)[]</code> supports mixed constants and expressions
   - Object form allows configuring metric, channel, and fade.</p>
@@ -3644,7 +3721,7 @@ fully visible and all other levels are hidden.</p>
 <dd>Type: <code>"x"</code> | <code>"y"</code><p>Positional channel that controls the stop metric.</p>
 </dd>
 <dt><code>transition</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">ParamTransition</a><p>Cross-fades stages in time after a stop selects a new detail level. The selected stage settles fully visible and all other stages settle hidden. This differs from <code>fade</code>, which keeps adjacent stages partly visible within a zoom range.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/parameters/#transition-properties">ParamTransition</a><p>Cross-fades stages in time after a stop selects a new detail level. The selected stage settles fully visible and all other stages settle hidden. This differs from <code>fade</code>, which keeps adjacent stages partly visible within a zoom range.</p>
 <p>Transitioned stops require <code>channel</code> to be either <code>"x"</code> or <code>"y"</code> and cannot be combined with <code>fade</code>.</p>
 </dd>
 <dt><code>values</code> <span class="required">Required</span></dt>
@@ -3683,6 +3760,9 @@ typically base pairs per pixel.</p>
 
 
 
+
+  
+  
 
 
 

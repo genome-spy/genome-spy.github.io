@@ -66,6 +66,21 @@
      
 <meta name="base_url" content="../.." />
 
+
+  
+
+
+<meta property="og:title" content="Marks" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;mark&#x2f;" />
+
+
+<meta property="og:description" content="In GenomeSpy, visualizations are built from marks, which are geometric shapes, such as points, ticks, arrows, rectangles, and lines, that represent data objects (or rows in tabular data). These marks are mapped to the data using the encoding property, which specifies which visual channels, such as x, color, and size, should be used to encode the data fields. By adjusting the encodings, you can present the same data in a wide range of visual forms, such as scatterplots, bar charts, and heatmaps." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+
   </head>
   
   
@@ -579,6 +594,8 @@
       
         
       
+        
+      
     
     
     
@@ -749,6 +766,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2595,6 +2639,8 @@
       
         
       
+        
+      
     
     
     
@@ -2873,6 +2919,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3189,6 +3262,34 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#offset-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Offset channels
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Offset channels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nested-offset-scales" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Nested offset scales
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3410,6 +3511,51 @@ cover in the visualization.</p>
 <dt><code>y2</code></dt>
 <dd>The secondary position on the <em>y</em> axis</dd>
 </dl>
+<h5 id="offset-channels">Offset channels<a class="headerlink" href="#offset-channels" title="Permanent link">&para;</a></h5>
+<p><code>xOffset</code> and <code>yOffset</code> displace encoded positions in logical pixels. Positive
+<code>xOffset</code> values move right, and positive <code>yOffset</code> values move down. Offset
+channels accept constants, expressions, and scale-backed field or datum
+definitions.</p>
+<dl>
+<dt><code>xOffset</code></dt>
+<dd>Horizontal displacement from <code>x</code></dd>
+<dt><code>yOffset</code></dt>
+<dd>Vertical displacement from <code>y</code></dd>
+</dl>
+<p>For ranged marks, an implicit <code>x2</code> or <code>y2</code> endpoint inherits the corresponding
+primary offset. An explicitly encoded secondary endpoint is independent and
+has no offset by default. Set the <code>x2Offset</code> or <code>y2Offset</code> mark property to
+displace an explicit secondary endpoint. These secondary offsets are mark
+properties, not encoding channels.</p>
+<h6 id="nested-offset-scales">Nested offset scales<a class="headerlink" href="#nested-offset-scales" title="Permanent link">&para;</a></h6>
+<p>A discrete field, datum, or expression on <code>xOffset</code> or <code>yOffset</code> creates a
+nested band scale when the matching primary position uses a band scale. The
+offset range is measured in logical pixels and spans the primary band.
+Point-like marks use subgroup centers, while rectangles cover subgroup band
+extents.</p>
+<p>The primary scale's <code>paddingInner</code> and <code>paddingOuter</code> control spacing between
+groups and default to <code>0.2</code> when a nested offset scale is present. The offset
+scale's padding controls spacing between marks within each group. Explicit
+padding values override the defaults.</p>
+<p>See the <a href="rect/#grouped-bars">grouped bar example</a>.</p>
+<div class="highlight"><span class="filename">Nested bands for grouped bars</span><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;category&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;xOffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;group&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;paddingInner&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>As described in <a href="../composition/concat/#step-sizing">Step sizing</a>, a
+step-based width or height normally describes a positional scale step. When a
+discrete offset scale is present, it describes each offset step by default. Use
+<code>{ "step": 12, "for": "position" }</code> to make the step describe each primary
+category instead. An explicit offset-scale <code>range</code> remains a pixel range and is
+not replaced by nested-band inference.</p>
 <h4 id="other-channels">Other channels<a class="headerlink" href="#other-channels" title="Permanent link">&para;</a></h4>
 <dl>
 <dt><code>color</code></dt>
@@ -3529,6 +3675,9 @@ the scale transformation will be applied.</p>
 
 
 
+
+  
+  
 
 
 

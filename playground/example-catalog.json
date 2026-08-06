@@ -143,6 +143,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/examples/genomic-data/pik3ca-tcga-brca-lollipop",
+    "title": "Recurrent protein-altering PIK3CA mutations in TCGA-BRCA.",
+    "description": "Recurrent protein-altering PIK3CA mutations in TCGA-BRCA.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/pik3ca-tcga-brca-lollipop.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/pik3ca-tcga-brca-lollipop.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/pik3ca-tcga-brca-lollipop.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/pik3ca-tcga-brca-lollipop.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/examples/genomic-data/scored-refSeq-genes",
     "title": "RefSeq Gene Annotations with Scored Labels",
     "description": "RefSeq Gene Annotations with Scored Labels",
@@ -650,6 +663,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/legend/placement",
+    "title": "Local legend placement",
+    "description": "Local legend placement",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Legend",
+    "specPath": "examples/docs/grammar/legend/placement.json",
+    "specUrl": "/docs/example-specs/docs/grammar/legend/placement.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/legend/shared-hconcat-legend",
     "title": "Palmer penguins scatter plots with a shared legend.",
     "description": "Palmer penguins scatter plots with a shared legend.",
@@ -790,6 +816,19 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/point/point-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/point/point-mark.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/point/point-mark.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/mark/rect/grouped-bars",
+    "title": "Grouped bar chart using a nested xOffset scale.",
+    "description": "Grouped bar chart using a nested xOffset scale.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Mark / Rect",
+    "specPath": "examples/docs/grammar/mark/rect/grouped-bars.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/rect/grouped-bars.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
     "sourceMode": "shared-example"
   },
   {
@@ -1076,6 +1115,19 @@
     "specUrl": "/docs/example-specs/docs/grammar/parameters/two-way-linking.json",
     "screenshotPath": "examples/docs/grammar/parameters/two-way-linking.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/two-way-linking.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/scale/extra-axis-values",
+    "title": "A one-based index scale that identifies the first residue.",
+    "description": "A one-based index scale that identifies the first residue.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Scale",
+    "specPath": "examples/docs/grammar/scale/extra-axis-values.json",
+    "specUrl": "/docs/example-specs/docs/grammar/scale/extra-axis-values.json",
+    "screenshotPath": "examples/docs/grammar/scale/extra-axis-values.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/extra-axis-values.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1729,6 +1781,32 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "core/legends/root-collected-legends",
+    "title": "Independent legends collected at the root",
+    "description": "Independent legends collected at the root",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/root-collected-legends.json",
+    "specUrl": "/docs/example-specs/core/legends/root-collected-legends.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/legends/region-layout-directions",
+    "title": "Legend region and entry directions",
+    "description": "Legend region and entry directions",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/region-layout-directions.json",
+    "specUrl": "/docs/example-specs/core/legends/region-layout-directions.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "core/legends/horizontal-stacked-bar",
     "title": "Legend test case adapted from Vega-Lite's horizontal stacked barley bar chart.",
     "description": "Legend test case adapted from Vega-Lite's horizontal stacked barley bar chart.",
@@ -1934,6 +2012,19 @@
     "specUrl": "/docs/example-specs/core/marks/rect/bar.json",
     "screenshotPath": "examples/core/marks/rect/bar.png",
     "screenshotUrl": "/docs/example-specs/core/marks/rect/bar.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/marks/rect/grouped-bars-layered",
+    "title": "Grouped bars with points aligned through a shared xOffset scale.",
+    "description": "Grouped bars with points aligned through a shared xOffset scale.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Marks / Rect",
+    "specPath": "examples/core/marks/rect/grouped-bars-layered.json",
+    "specUrl": "/docs/example-specs/core/marks/rect/grouped-bars-layered.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
     "sourceMode": "shared-example"
   },
   {

@@ -275,6 +275,13 @@
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
                 },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
                   "type": "string"
@@ -649,6 +656,13 @@
                 "domainWidth": {
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
+                },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
                 },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -1028,6 +1042,12 @@
             },
             "strokeWidth": {
               "$ref": "#/definitions/Legend"
+            },
+            "xOffset": {
+              "$ref": "#/definitions/Legend"
+            },
+            "yOffset": {
+              "$ref": "#/definitions/Legend"
             }
           },
           "type": "object"
@@ -1130,10 +1150,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -1214,10 +1240,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -1298,10 +1330,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -1359,10 +1397,16 @@
             "x2": {
               "$ref": "#/definitions/Scale"
             },
+            "xOffset": {
+              "$ref": "#/definitions/Scale"
+            },
             "y": {
               "$ref": "#/definitions/Scale"
             },
             "y2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "yOffset": {
               "$ref": "#/definitions/Scale"
             }
           },
@@ -1622,6 +1666,13 @@
                 "domainWidth": {
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
+                },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
                 },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -1997,6 +2048,13 @@
                 "domainWidth": {
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
+                },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
                 },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -2372,6 +2430,12 @@
             },
             "strokeWidth": {
               "$ref": "#/definitions/Legend"
+            },
+            "xOffset": {
+              "$ref": "#/definitions/Legend"
+            },
+            "yOffset": {
+              "$ref": "#/definitions/Legend"
             }
           },
           "type": "object"
@@ -2474,10 +2538,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -2558,10 +2628,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -2642,10 +2718,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -2703,10 +2785,16 @@
             "x2": {
               "$ref": "#/definitions/Scale"
             },
+            "xOffset": {
+              "$ref": "#/definitions/Scale"
+            },
             "y": {
               "$ref": "#/definitions/Scale"
             },
             "y2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "yOffset": {
               "$ref": "#/definitions/Scale"
             }
           },
@@ -2972,6 +3060,13 @@
                 "domainWidth": {
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
+                },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
                 },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -3347,6 +3442,13 @@
                 "domainWidth": {
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
+                },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
                 },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -3728,6 +3830,12 @@
             },
             "strokeWidth": {
               "$ref": "#/definitions/Legend"
+            },
+            "xOffset": {
+              "$ref": "#/definitions/Legend"
+            },
+            "yOffset": {
+              "$ref": "#/definitions/Legend"
             }
           },
           "type": "object"
@@ -3834,10 +3942,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -3918,10 +4032,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -4002,10 +4122,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -4063,10 +4189,16 @@
             "x2": {
               "$ref": "#/definitions/Scale"
             },
+            "xOffset": {
+              "$ref": "#/definitions/Scale"
+            },
             "y": {
               "$ref": "#/definitions/Scale"
             },
             "y2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "yOffset": {
               "$ref": "#/definitions/Scale"
             }
           },
@@ -4320,6 +4452,13 @@
                 "domainWidth": {
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
+                },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
                 },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -4695,6 +4834,13 @@
                 "domainWidth": {
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
+                },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
                 },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -5057,6 +5203,12 @@
             },
             "strokeWidth": {
               "$ref": "#/definitions/Legend"
+            },
+            "xOffset": {
+              "$ref": "#/definitions/Legend"
+            },
+            "yOffset": {
+              "$ref": "#/definitions/Legend"
             }
           },
           "type": "object"
@@ -5182,10 +5334,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -5266,10 +5424,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -5350,10 +5514,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -5411,10 +5581,16 @@
             "x2": {
               "$ref": "#/definitions/Scale"
             },
+            "xOffset": {
+              "$ref": "#/definitions/Scale"
+            },
             "y": {
               "$ref": "#/definitions/Scale"
             },
             "y2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "yOffset": {
               "$ref": "#/definitions/Scale"
             }
           },
@@ -5704,6 +5880,13 @@
                     "domainWidth": {
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
+                    },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
                     },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -6079,6 +6262,13 @@
                     "domainWidth": {
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
+                    },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
                     },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -6460,6 +6650,12 @@
                 },
                 "strokeWidth": {
                   "$ref": "#/definitions/Legend"
+                },
+                "xOffset": {
+                  "$ref": "#/definitions/Legend"
+                },
+                "yOffset": {
+                  "$ref": "#/definitions/Legend"
                 }
               },
               "type": "object"
@@ -6577,10 +6773,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -6661,10 +6863,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -6745,10 +6953,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -6806,10 +7020,16 @@
                 "x2": {
                   "$ref": "#/definitions/Scale"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/Scale"
+                },
                 "y": {
                   "$ref": "#/definitions/Scale"
                 },
                 "y2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/Scale"
                 }
               },
@@ -7089,6 +7309,13 @@
                     "domainWidth": {
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
+                    },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
                     },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -7464,6 +7691,13 @@
                     "domainWidth": {
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
+                    },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
                     },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -7864,6 +8098,12 @@
                 },
                 "strokeWidth": {
                   "$ref": "#/definitions/Legend"
+                },
+                "xOffset": {
+                  "$ref": "#/definitions/Legend"
+                },
+                "yOffset": {
+                  "$ref": "#/definitions/Legend"
                 }
               },
               "type": "object"
@@ -7970,10 +8210,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -8054,10 +8300,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -8138,10 +8390,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -8199,10 +8457,16 @@
                 "x2": {
                   "$ref": "#/definitions/Scale"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/Scale"
+                },
                 "y": {
                   "$ref": "#/definitions/Scale"
                 },
                 "y2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/Scale"
                 }
               },
@@ -8482,6 +8746,13 @@
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
                     },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
                       "type": "string"
@@ -8856,6 +9127,13 @@
                     "domainWidth": {
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
+                    },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
                     },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -9237,6 +9515,12 @@
                 },
                 "strokeWidth": {
                   "$ref": "#/definitions/Legend"
+                },
+                "xOffset": {
+                  "$ref": "#/definitions/Legend"
+                },
+                "yOffset": {
+                  "$ref": "#/definitions/Legend"
                 }
               },
               "type": "object"
@@ -9362,10 +9646,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -9446,10 +9736,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -9530,10 +9826,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -9591,10 +9893,16 @@
                 "x2": {
                   "$ref": "#/definitions/Scale"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/Scale"
+                },
                 "y": {
                   "$ref": "#/definitions/Scale"
                 },
                 "y2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/Scale"
                 }
               },
@@ -9872,6 +10180,13 @@
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
                     },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
                       "type": "string"
@@ -10246,6 +10561,13 @@
                     "domainWidth": {
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
+                    },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
                     },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -10627,6 +10949,12 @@
                 },
                 "strokeWidth": {
                   "$ref": "#/definitions/Legend"
+                },
+                "xOffset": {
+                  "$ref": "#/definitions/Legend"
+                },
+                "yOffset": {
+                  "$ref": "#/definitions/Legend"
                 }
               },
               "type": "object"
@@ -10729,10 +11057,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -10813,10 +11147,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -10897,10 +11237,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -10958,10 +11304,16 @@
                 "x2": {
                   "$ref": "#/definitions/Scale"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/Scale"
+                },
                 "y": {
                   "$ref": "#/definitions/Scale"
                 },
                 "y2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/Scale"
                 }
               },
@@ -11259,6 +11611,13 @@
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
                     },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
                       "type": "string"
@@ -11633,6 +11992,13 @@
                     "domainWidth": {
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
+                    },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
                     },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -12027,6 +12393,12 @@
                 },
                 "strokeWidth": {
                   "$ref": "#/definitions/Legend"
+                },
+                "xOffset": {
+                  "$ref": "#/definitions/Legend"
+                },
+                "yOffset": {
+                  "$ref": "#/definitions/Legend"
                 }
               },
               "type": "object"
@@ -12129,10 +12501,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -12213,10 +12591,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -12297,10 +12681,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -12358,10 +12748,16 @@
                 "x2": {
                   "$ref": "#/definitions/Scale"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/Scale"
+                },
                 "y": {
                   "$ref": "#/definitions/Scale"
                 },
                 "y2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/Scale"
                 }
               },
@@ -12645,6 +13041,13 @@
                     "domainWidth": {
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
+                    },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
                     },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -13020,6 +13423,13 @@
                     "domainWidth": {
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
+                    },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
                     },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -13418,6 +13828,12 @@
                 },
                 "strokeWidth": {
                   "$ref": "#/definitions/Legend"
+                },
+                "xOffset": {
+                  "$ref": "#/definitions/Legend"
+                },
+                "yOffset": {
+                  "$ref": "#/definitions/Legend"
                 }
               },
               "type": "object"
@@ -13520,10 +13936,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -13604,10 +14026,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -13688,10 +14116,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -13749,10 +14183,16 @@
                 "x2": {
                   "$ref": "#/definitions/Scale"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/Scale"
+                },
                 "y": {
                   "$ref": "#/definitions/Scale"
                 },
                 "y2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/Scale"
                 }
               },
@@ -14037,6 +14477,13 @@
                     "domainWidth": {
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
+                    },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
                     },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -14412,6 +14859,13 @@
                     "domainWidth": {
                       "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                       "type": "number"
+                    },
+                    "extraValues": {
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
                     },
                     "format": {
                       "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -14793,6 +15247,12 @@
                 },
                 "strokeWidth": {
                   "$ref": "#/definitions/Legend"
+                },
+                "xOffset": {
+                  "$ref": "#/definitions/Legend"
+                },
+                "yOffset": {
+                  "$ref": "#/definitions/Legend"
                 }
               },
               "type": "object"
@@ -14899,10 +15359,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -14983,10 +15449,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -15067,10 +15539,16 @@
                     "x2": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
+                    "xOffset": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
                     "y": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     },
                     "y2": {
+                      "$ref": "#/definitions/ResolutionBehavior"
+                    },
+                    "yOffset": {
                       "$ref": "#/definitions/ResolutionBehavior"
                     }
                   },
@@ -15147,10 +15625,16 @@
                 "x2": {
                   "$ref": "#/definitions/Scale"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/Scale"
+                },
                 "y": {
                   "$ref": "#/definitions/Scale"
                 },
                 "y2": {
+                  "$ref": "#/definitions/Scale"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/Scale"
                 }
               },
@@ -15442,6 +15926,13 @@
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
                 },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
                   "type": "string"
@@ -15817,6 +16308,13 @@
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
                 },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
                   "type": "string"
@@ -16178,6 +16676,12 @@
             },
             "strokeWidth": {
               "$ref": "#/definitions/Legend"
+            },
+            "xOffset": {
+              "$ref": "#/definitions/Legend"
+            },
+            "yOffset": {
+              "$ref": "#/definitions/Legend"
             }
           },
           "type": "object"
@@ -16295,10 +16799,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -16379,10 +16889,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -16463,10 +16979,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -16524,10 +17046,16 @@
             "x2": {
               "$ref": "#/definitions/Scale"
             },
+            "xOffset": {
+              "$ref": "#/definitions/Scale"
+            },
             "y": {
               "$ref": "#/definitions/Scale"
             },
             "y2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "yOffset": {
               "$ref": "#/definitions/Scale"
             }
           },
@@ -16776,6 +17304,13 @@
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
                 },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
                   "type": "string"
@@ -17151,6 +17686,13 @@
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
                 },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
                   "type": "string"
@@ -17512,6 +18054,12 @@
             },
             "strokeWidth": {
               "$ref": "#/definitions/Legend"
+            },
+            "xOffset": {
+              "$ref": "#/definitions/Legend"
+            },
+            "yOffset": {
+              "$ref": "#/definitions/Legend"
             }
           },
           "type": "object"
@@ -17614,10 +18162,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -17698,10 +18252,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -17782,10 +18342,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -17843,10 +18409,16 @@
             "x2": {
               "$ref": "#/definitions/Scale"
             },
+            "xOffset": {
+              "$ref": "#/definitions/Scale"
+            },
             "y": {
               "$ref": "#/definitions/Scale"
             },
             "y2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "yOffset": {
               "$ref": "#/definitions/Scale"
             }
           },
@@ -18340,9 +18912,27 @@
           ],
           "description": "The secondary position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -18366,9 +18956,27 @@
           ],
           "description": "The secondary position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "type": "object"
@@ -18706,9 +19314,27 @@
           ],
           "description": "The secondary position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -18732,9 +19358,27 @@
           ],
           "description": "The secondary position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "required": [
@@ -18811,6 +19455,13 @@
         "domainWidth": {
           "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
           "type": "number"
+        },
+        "extraValues": {
+          "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
         },
         "format": {
           "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -19186,6 +19837,13 @@
         "domainWidth": {
           "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
           "type": "number"
+        },
+        "extraValues": {
+          "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
         },
         "format": {
           "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -20033,6 +20691,9 @@
       "anyOf": [
         {
           "$ref": "#/definitions/PositionalChannel"
+        },
+        {
+          "$ref": "#/definitions/OffsetChannel"
         },
         {
           "const": "color",
@@ -21074,6 +21735,9 @@
           "$ref": "#/definitions/BedpeDataFormat"
         },
         {
+          "$ref": "#/definitions/WigDataFormat"
+        },
+        {
           "$ref": "#/definitions/VcfDataFormat"
         },
         {
@@ -21215,6 +21879,75 @@
           "$ref": "#/definitions/ValueDef%3CArrowDirection%3E"
         }
       ]
+    },
+    "Displace1DParams": {
+      "additionalProperties": false,
+      "properties": {
+        "as": {
+          "description": "The output field for signed displacement.\n\n__Default value:__ `\"displacement\"`",
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
+        "extent": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Preferred outer bounds for the placed collision intervals, expressed in the original `pos` coordinate system. The bounds are multiplied by `positionFactor` together with the item positions. When all items cannot fit, they remain non-overlapping and extend beyond the bounds by the minimum necessary amount. An expression can update the bounds reactively."
+        },
+        "length": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/Field"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "The full collision length, including any desired spacing, or a field containing that length. The value uses the same units as the scaled positions and output displacement. An expression provides a reactive scalar length shared by all rows."
+        },
+        "pos": {
+          "$ref": "#/definitions/Field",
+          "description": "The field containing the original position. Input rows must be ordered by ascending `pos * positionFactor`."
+        },
+        "positionFactor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "A multiplier applied to `pos` before placement. An expression can convert position units to logical pixels and react to zoom or layout changes. Use an ascending `pos` sort for a positive factor and a descending sort for a negative factor. Place a `collect` transform before this transform to buffer input for expression-driven updates.\n\n__Default value:__ `1`"
+        },
+        "type": {
+          "const": "displace1d",
+          "description": "The type of the transform to be applied",
+          "type": "string"
+        }
+      },
+      "required": [
+        "length",
+        "pos",
+        "type"
+      ],
+      "type": "object"
     },
     "DomEventType": {
       "anyOf": [
@@ -21372,7 +22105,9 @@
             {
               "$ref": "#/definitions/MarkPropExprDef"
             }
-          ]
+          ],
+          "deprecated": "Use `xOffset` instead.",
+          "description": "Legacy horizontal pixel offset for point marks."
         },
         "dy": {
           "anyOf": [
@@ -21382,7 +22117,9 @@
             {
               "$ref": "#/definitions/MarkPropExprDef"
             }
-          ]
+          ],
+          "deprecated": "Use `yOffset` instead.",
+          "description": "Legacy vertical pixel offset for point marks. Positive values move in the opposite direction from `yOffset`."
         },
         "facetIndex": {
           "$ref": "#/definitions/FieldDefWithoutScale",
@@ -21438,7 +22175,7 @@
         },
         "shape": {
           "$ref": "#/definitions/ShapeDef",
-          "description": "Shape of the mark.\n\nFor `point` marks the supported values include:\n- plotting shapes: `\"circle\"`, `\"square\"`, `\"cross\"`, `\"diamond\"`, `\"triangle-up\"`, `\"triangle-down\"`, `\"triangle-right\"`, or `\"triangle-left\"`.\n- centered directional shape `\"triangle\"`"
+          "description": "Shape of the mark.\n\nFor `point` marks the supported values include:\n- plotting shapes: `\"circle\"`, `\"square\"`, `\"cross\"`, `\"diamond\"`, `\"triangle-up\"`, `\"triangle-down\"`, `\"triangle-right\"`, or `\"triangle-left\"`.\n- stroke-only `\"x\"` and `\"+\"` shapes, whose line thickness is controlled by `strokeWidth`\n- centered directional shape `\"triangle\"`"
         },
         "size": {
           "$ref": "#/definitions/NumericMarkPropDef",
@@ -21793,6 +22530,17 @@
           ],
           "description": "X2 coordinates of the marks.\n\nThe `value` of this channel can be a number between zero and one."
         },
+        "xOffset": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/OffsetDef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Horizontal offset from the encoded x position, in logical pixels."
+        },
         "y": {
           "anyOf": [
             {
@@ -21814,6 +22562,17 @@
             }
           ],
           "description": "Y2 coordinates of the marks.\n\nThe `value` of this channel can be a number between zero and one."
+        },
+        "yOffset": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/OffsetDef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Vertical offset from the encoded y position, in logical pixels."
         }
       },
       "type": "object"
@@ -22865,6 +23624,13 @@
         "domainWidth": {
           "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
           "type": "number"
+        },
+        "extraValues": {
+          "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
         },
         "format": {
           "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
@@ -24584,9 +25350,27 @@
           ],
           "description": "The secondary position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -24610,9 +25394,27 @@
           ],
           "description": "The secondary position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "type": "object"
@@ -24889,9 +25691,27 @@
           ],
           "description": "The secondary position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -24915,9 +25735,27 @@
           ],
           "description": "The secondary position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "required": [
@@ -25134,9 +25972,27 @@
           ],
           "description": "Position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -25149,9 +26005,27 @@
           ],
           "description": "Position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "type": "object"
@@ -25781,6 +26655,24 @@
     "NumericValueDef": {
       "$ref": "#/definitions/ValueDef%3Cnumber%3E"
     },
+    "OffsetChannel": {
+      "enum": [
+        "xOffset",
+        "yOffset"
+      ],
+      "type": "string"
+    },
+    "OffsetDef": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/NumericMarkPropDef"
+        },
+        {
+          "$ref": "#/definitions/MarkPropExprDef"
+        }
+      ],
+      "description": "A pixel-valued offset of a primary positional channel."
+    },
     "OtherDataFormat": {
       "additionalProperties": false,
       "description": "Other data format, such as `\"fasta\"`",
@@ -26180,6 +27072,7 @@
               "$ref": "#/definitions/ExprRef"
             }
           ],
+          "deprecated": "Use `xOffset` instead.",
           "description": "Horizontal offset in pixels.\n\n**Default value:** `0`"
         },
         "dy": {
@@ -26191,6 +27084,7 @@
               "$ref": "#/definitions/ExprRef"
             }
           ],
+          "deprecated": "Use `yOffset` instead. Note that positive `yOffset` values\nmove down, while positive `dy` values move up.",
           "description": "Vertical offset in pixels.\n\n**Default value:** `0`"
         },
         "fill": {
@@ -26306,7 +27200,7 @@
               "$ref": "#/definitions/ExprRef"
             }
           ],
-          "description": "One of `\"circle\"`, `\"square\"`, `\"cross\"`, `\"diamond\"`, `\"triangle-up\"`, `\"triangle-down\"`, `\"triangle-right\"`, `\"triangle-left\"`, `\"tick-up\"`, `\"tick-down\"`, `\"tick-right\"`, or `\"tick-left\"`\n\n**Default value:** `\"circle\"`"
+          "description": "One of `\"circle\"`, `\"square\"`, `\"cross\"`, `\"x\"`, `\"+\"`, `\"diamond\"`, `\"triangle-up\"`, `\"triangle-down\"`, `\"triangle-right\"`, `\"triangle-left\"`, `\"tick-up\"`, `\"tick-down\"`, `\"tick-right\"`, or `\"tick-left\"`. The `\"x\"` and `\"+\"` shapes are stroke-only and use `strokeWidth` for their line thickness.\n\n**Default value:** `\"circle\"`"
         },
         "size": {
           "anyOf": [
@@ -26381,9 +27275,27 @@
           ],
           "description": "Position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -26396,9 +27308,27 @@
           ],
           "description": "Position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "type": "object"
@@ -26488,6 +27418,7 @@
               "$ref": "#/definitions/ExprRef"
             }
           ],
+          "deprecated": "Use `xOffset` instead.",
           "description": "Horizontal offset in pixels.\n\n**Default value:** `0`"
         },
         "dy": {
@@ -26499,6 +27430,7 @@
               "$ref": "#/definitions/ExprRef"
             }
           ],
+          "deprecated": "Use `yOffset` instead. Note that positive `yOffset` values\nmove down, while positive `dy` values move up.",
           "description": "Vertical offset in pixels.\n\n**Default value:** `0`"
         },
         "fill": {
@@ -26614,7 +27546,7 @@
               "$ref": "#/definitions/ExprRef"
             }
           ],
-          "description": "One of `\"circle\"`, `\"square\"`, `\"cross\"`, `\"diamond\"`, `\"triangle-up\"`, `\"triangle-down\"`, `\"triangle-right\"`, `\"triangle-left\"`, `\"tick-up\"`, `\"tick-down\"`, `\"tick-right\"`, or `\"tick-left\"`\n\n**Default value:** `\"circle\"`"
+          "description": "One of `\"circle\"`, `\"square\"`, `\"cross\"`, `\"x\"`, `\"+\"`, `\"diamond\"`, `\"triangle-up\"`, `\"triangle-down\"`, `\"triangle-right\"`, `\"triangle-left\"`, `\"tick-up\"`, `\"tick-down\"`, `\"tick-right\"`, or `\"tick-left\"`. The `\"x\"` and `\"+\"` shapes are stroke-only and use `strokeWidth` for their line thickness.\n\n**Default value:** `\"circle\"`"
         },
         "size": {
           "anyOf": [
@@ -26693,9 +27625,27 @@
           ],
           "description": "Position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -26708,9 +27658,27 @@
           ],
           "description": "Position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "required": [
@@ -27564,9 +28532,27 @@
           ],
           "description": "The secondary position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -27590,9 +28576,27 @@
           ],
           "description": "The secondary position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "type": "object"
@@ -27971,9 +28975,27 @@
           ],
           "description": "The secondary position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -27997,9 +29019,27 @@
           ],
           "description": "The secondary position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "required": [
@@ -28318,9 +29358,27 @@
           ],
           "description": "The secondary position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -28344,9 +29402,27 @@
           ],
           "description": "The secondary position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "type": "object"
@@ -28528,9 +29604,27 @@
           ],
           "description": "The secondary position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -28554,9 +29648,27 @@
           ],
           "description": "The secondary position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "required": [
@@ -29154,6 +30266,13 @@
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
                 },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
                   "type": "string"
@@ -29529,6 +30648,13 @@
                   "description": "Stroke width of axis domain line\n\n__Default value:__ `1`",
                   "type": "number"
                 },
+                "extraValues": {
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
                 "format": {
                   "description": "The format specifier pattern for axis labels. Must be a legal [d3-format](https://github.com/d3/d3-format#locale_format) specifier.",
                   "type": "string"
@@ -29890,6 +31016,12 @@
             },
             "strokeWidth": {
               "$ref": "#/definitions/Legend"
+            },
+            "xOffset": {
+              "$ref": "#/definitions/Legend"
+            },
+            "yOffset": {
+              "$ref": "#/definitions/Legend"
             }
           },
           "type": "object"
@@ -29996,10 +31128,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -30080,10 +31218,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -30164,10 +31308,16 @@
                 "x2": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
+                "xOffset": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
                 "y": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 },
                 "y2": {
+                  "$ref": "#/definitions/ResolutionBehavior"
+                },
+                "yOffset": {
                   "$ref": "#/definitions/ResolutionBehavior"
                 }
               },
@@ -30244,10 +31394,16 @@
             "x2": {
               "$ref": "#/definitions/Scale"
             },
+            "xOffset": {
+              "$ref": "#/definitions/Scale"
+            },
             "y": {
               "$ref": "#/definitions/Scale"
             },
             "y2": {
+              "$ref": "#/definitions/Scale"
+            },
+            "yOffset": {
               "$ref": "#/definitions/Scale"
             }
           },
@@ -30541,7 +31697,7 @@
           "description": "Extending the domain so that it starts and ends on nice round values. This method typically modifies the scale’s domain, and may only extend the bounds to the nearest round value. Nicing is useful if the domain is computed from data and may be irregular. For example, for a domain of _[0.201479…, 0.996679…]_, a nice domain might be _[0.2, 1.0]_.\n\nFor quantitative scales such as linear, `nice` can be either a boolean flag or a number. If `nice` is a number, it will represent a desired tick count. This allows greater control over the step size used to extend the bounds, guaranteeing that the returned ticks will exactly cover the domain.\n\n__Default value:__ `true` for unbinned _quantitative_ fields; `false` otherwise."
         },
         "numberingOffset": {
-          "description": "The numbering offset used when formatting tick labels on index and locus scales.\n\n__Default value:__ `0`",
+          "description": "The offset added to data values when formatting tick labels on index and locus scales. This property does not transform data values.\n\n__Default value:__ `0`",
           "type": "number"
         },
         "padding": {
@@ -30840,7 +31996,7 @@
               "description": "Extending the domain so that it starts and ends on nice round values. This method typically modifies the scale’s domain, and may only extend the bounds to the nearest round value. Nicing is useful if the domain is computed from data and may be irregular. For example, for a domain of _[0.201479…, 0.996679…]_, a nice domain might be _[0.2, 1.0]_.\n\nFor quantitative scales such as linear, `nice` can be either a boolean flag or a number. If `nice` is a number, it will represent a desired tick count. This allows greater control over the step size used to extend the bounds, guaranteeing that the returned ticks will exactly cover the domain.\n\n__Default value:__ `true` for unbinned _quantitative_ fields; `false` otherwise."
             },
             "numberingOffset": {
-              "description": "The numbering offset used when formatting tick labels on index and locus scales.\n\n__Default value:__ `0`",
+              "description": "The offset added to data values when formatting tick labels on index and locus scales. This property does not transform data values.\n\n__Default value:__ `0`",
               "type": "number"
             },
             "padding": {
@@ -31065,7 +32221,7 @@
               "description": "Extending the domain so that it starts and ends on nice round values. This method typically modifies the scale’s domain, and may only extend the bounds to the nearest round value. Nicing is useful if the domain is computed from data and may be irregular. For example, for a domain of _[0.201479…, 0.996679…]_, a nice domain might be _[0.2, 1.0]_.\n\nFor quantitative scales such as linear, `nice` can be either a boolean flag or a number. If `nice` is a number, it will represent a desired tick count. This allows greater control over the step size used to extend the bounds, guaranteeing that the returned ticks will exactly cover the domain.\n\n__Default value:__ `true` for unbinned _quantitative_ fields; `false` otherwise."
             },
             "numberingOffset": {
-              "description": "The numbering offset used when formatting tick labels on index and locus scales.\n\n__Default value:__ `0`",
+              "description": "The offset added to data values when formatting tick labels on index and locus scales. This property does not transform data values.\n\n__Default value:__ `0`",
               "type": "number"
             },
             "padding": {
@@ -31310,7 +32466,7 @@
               "description": "Extending the domain so that it starts and ends on nice round values. This method typically modifies the scale’s domain, and may only extend the bounds to the nearest round value. Nicing is useful if the domain is computed from data and may be irregular. For example, for a domain of _[0.201479…, 0.996679…]_, a nice domain might be _[0.2, 1.0]_.\n\nFor quantitative scales such as linear, `nice` can be either a boolean flag or a number. If `nice` is a number, it will represent a desired tick count. This allows greater control over the step size used to extend the bounds, guaranteeing that the returned ticks will exactly cover the domain.\n\n__Default value:__ `true` for unbinned _quantitative_ fields; `false` otherwise."
             },
             "numberingOffset": {
-              "description": "The numbering offset used when formatting tick labels on index and locus scales.\n\n__Default value:__ `0`",
+              "description": "The offset added to data values when formatting tick labels on index and locus scales. This property does not transform data values.\n\n__Default value:__ `0`",
               "type": "number"
             },
             "padding": {
@@ -31400,7 +32556,7 @@
           "description": "Default color scheme for nominal color scales."
         },
         "numberingOffset": {
-          "description": "The numbering offset used when formatting tick labels on index and locus scales.\n\n__Default value:__ `0`",
+          "description": "The offset added to data values when formatting tick labels on index and locus scales. This property does not transform data values.\n\n__Default value:__ `0`",
           "type": "number"
         },
         "ordinal": {
@@ -31532,7 +32688,7 @@
               "description": "Extending the domain so that it starts and ends on nice round values. This method typically modifies the scale’s domain, and may only extend the bounds to the nearest round value. Nicing is useful if the domain is computed from data and may be irregular. For example, for a domain of _[0.201479…, 0.996679…]_, a nice domain might be _[0.2, 1.0]_.\n\nFor quantitative scales such as linear, `nice` can be either a boolean flag or a number. If `nice` is a number, it will represent a desired tick count. This allows greater control over the step size used to extend the bounds, guaranteeing that the returned ticks will exactly cover the domain.\n\n__Default value:__ `true` for unbinned _quantitative_ fields; `false` otherwise."
             },
             "numberingOffset": {
-              "description": "The numbering offset used when formatting tick labels on index and locus scales.\n\n__Default value:__ `0`",
+              "description": "The offset added to data values when formatting tick labels on index and locus scales. This property does not transform data values.\n\n__Default value:__ `0`",
               "type": "number"
             },
             "padding": {
@@ -31767,7 +32923,7 @@
               "description": "Extending the domain so that it starts and ends on nice round values. This method typically modifies the scale’s domain, and may only extend the bounds to the nearest round value. Nicing is useful if the domain is computed from data and may be irregular. For example, for a domain of _[0.201479…, 0.996679…]_, a nice domain might be _[0.2, 1.0]_.\n\nFor quantitative scales such as linear, `nice` can be either a boolean flag or a number. If `nice` is a number, it will represent a desired tick count. This allows greater control over the step size used to extend the bounds, guaranteeing that the returned ticks will exactly cover the domain.\n\n__Default value:__ `true` for unbinned _quantitative_ fields; `false` otherwise."
             },
             "numberingOffset": {
-              "description": "The numbering offset used when formatting tick labels on index and locus scales.\n\n__Default value:__ `0`",
+              "description": "The offset added to data values when formatting tick labels on index and locus scales. This property does not transform data values.\n\n__Default value:__ `0`",
               "type": "number"
             },
             "padding": {
@@ -32411,9 +33567,27 @@
           ],
           "description": "The secondary position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -32437,9 +33611,27 @@
           ],
           "description": "The secondary position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "zindex": {
           "description": "Z-order of the separator relative to the view content.\n\nValues greater than `0` render after the view marks. Values less than or equal to `0` render before the marks.\n\n__Default value:__ `0`",
@@ -32673,6 +33865,14 @@
     "Step": {
       "additionalProperties": false,
       "properties": {
+        "for": {
+          "description": "Selects which discrete scale the step describes when a positional scale has a nested offset scale. `\"offset\"` sizes each subgroup step; `\"position\"` sizes each primary category step.\n\n__Default value:__ `\"offset\"` when a discrete nested offset scale is present, otherwise `\"position\"`.",
+          "enum": [
+            "position",
+            "offset"
+          ],
+          "type": "string"
+        },
         "step": {
           "anyOf": [
             {
@@ -33253,6 +34453,7 @@
                   "$ref": "#/definitions/ExprRef"
                 }
               ],
+              "deprecated": "Use `xOffset` instead.",
               "description": "Horizontal offset in pixels.\n\n**Default value:** `0`"
             },
             {
@@ -33276,6 +34477,7 @@
                   "$ref": "#/definitions/ExprRef"
                 }
               ],
+              "deprecated": "Use `yOffset` instead. Note that positive `yOffset` values\nmove down, while positive `dy` values move up.",
               "description": "Vertical offset in pixels.\n\n**Default value:** `0`"
             },
             {
@@ -33287,6 +34489,13 @@
               "type": "number"
             }
           ]
+        },
+        "extraValues": {
+          "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
         },
         "fill": {
           "anyOf": [
@@ -34077,7 +35286,7 @@
               "$ref": "#/definitions/ExprRef"
             }
           ],
-          "description": "One of `\"circle\"`, `\"square\"`, `\"cross\"`, `\"diamond\"`, `\"triangle-up\"`, `\"triangle-down\"`, `\"triangle-right\"`, `\"triangle-left\"`, `\"tick-up\"`, `\"tick-down\"`, `\"tick-right\"`, or `\"tick-left\"`\n\n**Default value:** `\"circle\"`"
+          "description": "One of `\"circle\"`, `\"square\"`, `\"cross\"`, `\"x\"`, `\"+\"`, `\"diamond\"`, `\"triangle-up\"`, `\"triangle-down\"`, `\"triangle-right\"`, `\"triangle-left\"`, `\"tick-up\"`, `\"tick-down\"`, `\"tick-right\"`, or `\"tick-left\"`. The `\"x\"` and `\"+\"` shapes are stroke-only and use `strokeWidth` for their line thickness.\n\n**Default value:** `\"circle\"`"
         },
         "size": {
           "anyOf": [
@@ -34600,9 +35809,27 @@
           ],
           "description": "The secondary position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -34626,9 +35853,27 @@
           ],
           "description": "The secondary position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "zindex": {
           "anyOf": [
@@ -35025,9 +36270,27 @@
           ],
           "description": "The secondary position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -35051,9 +36314,27 @@
           ],
           "description": "The secondary position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "type": "object"
@@ -35360,9 +36641,27 @@
           ],
           "description": "The secondary position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -35386,9 +36685,27 @@
           ],
           "description": "The secondary position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "required": [
@@ -35559,9 +36876,27 @@
           ],
           "description": "Position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -35574,9 +36909,27 @@
           ],
           "description": "Position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "type": "object"
@@ -35748,9 +37101,27 @@
           ],
           "description": "Position on the x axis."
         },
+        "x2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x2` coordinate in logical pixels. When `x2` is implicit, it inherits `xOffset` unless this property is specified.\n\n**Default value:** inherited from `xOffset` for an implicit `x2`, otherwise `0`"
+        },
         "xOffset": {
-          "description": "Offsets of the `x` and `x2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `x` coordinate in logical pixels.\n\n**Default value:** `0`"
         },
         "y": {
           "anyOf": [
@@ -35763,9 +37134,27 @@
           ],
           "description": "Position on the y axis."
         },
+        "y2Offset": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y2` coordinate in logical pixels. When `y2` is implicit, it inherits `yOffset` unless this property is specified.\n\n**Default value:** inherited from `yOffset` for an implicit `y2`, otherwise `0`"
+        },
         "yOffset": {
-          "description": "Offsets of the `y` and `y2` coordinates in pixels. The offset is applied after the viewport scaling and translation.\n\n**Default value:** `0`",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ],
+          "description": "Offset of the `y` coordinate in logical pixels.\n\n**Default value:** `0`"
         }
       },
       "required": [
@@ -36177,6 +37566,9 @@
         },
         {
           "$ref": "#/definitions/CrossParams"
+        },
+        {
+          "$ref": "#/definitions/Displace1DParams"
         },
         {
           "$ref": "#/definitions/FlattenDelimitedParams"
@@ -37163,6 +38555,31 @@
           "$ref": "#/definitions/ExprRef"
         }
       ]
+    },
+    "WigDataFormat": {
+      "additionalProperties": false,
+      "properties": {
+        "parse": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Parse"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "If set to `null`, disable type inference based on the spec and only use type inference based on the data. Alternatively, a parsing directive object can be provided for explicit data types. Each property of the object corresponds to a field name, and the value to the desired data type (one of `\"number\"`, `\"boolean\"`, `\"date\"`, or null (do not parse the field)). For example, `\"parse\": {\"modified_on\": \"date\"}` parses the `modified_on` field in each input record a Date value.\n\nFor `\"date\"`, we parse data based using Javascript's [`Date.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse). For Specific date formats can be provided (e.g., `{foo: \"date:'%m%d%Y'\"}`), using the [d3-time-format syntax](https://github.com/d3/d3-time-format#locale_format). UTC date format parsing is supported similarly (e.g., `{foo: \"utc:'%m%d%Y'\"}`). See more about [UTC time](https://vega.github.io/vega-lite/docs/timeunit.html#utc)"
+        },
+        "type": {
+          "const": "wig",
+          "description": "Parses fixedStep and variableStep WIG records into genomic intervals.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
     },
     "WindowOnlyOp": {
       "description": "Operations that calculate a value from rows in the current window.",

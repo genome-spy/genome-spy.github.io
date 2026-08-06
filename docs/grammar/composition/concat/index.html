@@ -66,6 +66,25 @@
      
 <meta name="base_url" content="../../.." />
 
+
+  
+
+
+<meta property="og:title" content="View Concatenation" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;composition&#x2f;concat&#x2f;" />
+
+
+<meta property="og:description" content="The vconcat and hconcat composition operators place views side-by-side either vertically or horizontally. The vconcat is practical for building genomic visualizations with multiple tracks. The concat operator with the columns property produces a wrapping grid layout." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+<meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;grammar&#x2f;composition&#x2f;concat&#x2f;vertical-concat.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="Vertical concatenation example." />
+
+
   </head>
   
   
@@ -579,6 +598,8 @@
       
         
       
+        
+      
     
     
     
@@ -749,6 +770,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -1825,6 +1873,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#step-sizing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step sizing
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#scrollable-viewports" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -2781,6 +2840,8 @@
       
         
       
+        
+      
     
     
     
@@ -3059,6 +3120,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3391,6 +3479,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#step-sizing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Step sizing
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#scrollable-viewports" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3675,7 +3774,7 @@ Numbers are interpreted as absolute sizes, and <code>"container"</code> is the s
 <code>{ grow: 1 }</code>. A SizeDef with only <code>minPx</code> or <code>maxPx</code> also uses <code>{ grow: 1 }</code>.
 Undefined sizes generally default to <code>"container"</code>.
 Expression references may be used where the resolved value is a number or
-<code>"container"</code>. Step sizes may also be expression references.</p>
+<code>"container"</code>.</p>
 <p>Concatenation operators can nested flexibly to build complex layouts as in the
 following example.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/composition/concat/sizedef-layout.json" height="150">
@@ -3698,6 +3797,26 @@ following example.</p>
 
 </genome-spy-doc-embed></div>
 
+<h3 id="step-sizing">Step sizing<a class="headerlink" href="#step-sizing" title="Permanent link">&para;</a></h3>
+<p>For a view with a discrete positional scale, <code>width</code> or <code>height</code> can specify a
+step size instead of a fixed total size. The view derives its size from the
+scale's domain and reserves the specified number of logical pixels for each
+discrete step. The step may also be an expression reference.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<dl>
+<dt><code>for</code></dt>
+<dd>Type: string<p>Selects which discrete scale the step describes when a positional scale has a nested offset scale. <code>"offset"</code> sizes each subgroup step; <code>"position"</code> sizes each primary category step.</p>
+<p><strong>Default value:</strong> <code>"offset"</code> when a discrete nested offset scale is present, otherwise <code>"position"</code>.</p>
+</dd>
+<dt><code>step</code> <span class="required">Required</span></dt>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Step size in pixels.</p>
+</dd>
+</dl>
+<p>Discrete <a href="../../mark/#nested-offset-scales">offset channels</a> can introduce
+a second scale whose steps determine the view size.</p>
 <h3 id="scrollable-viewports">Scrollable viewports<a class="headerlink" href="#scrollable-viewports" title="Permanent link">&para;</a></h3>
 <p>Sometimes the concents of a view are so large that they do not fit into the
 available space. In such cases, the view can be made scrollable by setting an
@@ -3796,6 +3915,9 @@ Grid lines are drawn for all participating views.</p>
 
 
 
+
+  
+  
 
 
 

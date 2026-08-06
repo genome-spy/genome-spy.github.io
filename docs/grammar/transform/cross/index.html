@@ -14,7 +14,7 @@
         <link rel="prev" href="../coverage/">
       
       
-        <link rel="next" href="../filter/">
+        <link rel="next" href="../displace1d/">
       
       
         
@@ -65,6 +65,25 @@
     
      
 <meta name="base_url" content="../../.." />
+
+
+  
+
+
+<meta property="og:title" content="Cross" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;cross&#x2f;" />
+
+
+<meta property="og:description" content="The &quot;cross&quot; transform forms the Cartesian product of its primary input and a finite eager foreign data source. It emits one flat row for every pair of primary and foreign rows." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+<meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;cross&#x2f;cross-heatmap.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="Cross two generated sequences to form a heatmap grid." />
+
 
   </head>
   
@@ -581,6 +600,8 @@
       
         
       
+        
+      
     
     
     
@@ -849,6 +870,33 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2686,6 +2734,8 @@
       
         
       
+        
+      
     
     
     
@@ -2964,6 +3014,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3360,7 +3437,7 @@ order. An empty input on either side produces no rows.</p>
 <dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 <dt><code>from</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">CrossInput</a><p>The finite eager foreign data and its optional preprocessing transforms.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#crossinput">CrossInput</a><p>The finite eager foreign data and its optional preprocessing transforms.</p>
 </dd>
 </dl>
 <h2 id="foreign-data">Foreign Data<a class="headerlink" href="#foreign-data" title="Permanent link">&para;</a></h2>
@@ -3468,6 +3545,9 @@ each heatmap cell:</p>
 
 
 
+
+  
+  
 
 
 

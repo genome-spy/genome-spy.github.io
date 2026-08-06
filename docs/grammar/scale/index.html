@@ -66,6 +66,25 @@
      
 <meta name="base_url" content="../.." />
 
+
+  
+
+
+<meta property="og:title" content="Scale" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;scale&#x2f;" />
+
+
+<meta property="og:description" content="Scales are functions that map abstract data values (e.g., a type of a point mutation) to visual values (e.g., colors that indicate the type)." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+<meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;grammar&#x2f;scale&#x2f;point-indices-bands.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="Index scale example with band-filling marks." />
+
+
   </head>
   
   
@@ -579,6 +598,8 @@
       
         
       
+        
+      
     
     
     
@@ -749,6 +770,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -1895,6 +1943,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#including-the-first-index-as-a-tick" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Including the first index as a tick
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2868,6 +2927,8 @@
       
         
       
+        
+      
     
     
     
@@ -3146,6 +3207,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3461,6 +3549,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#including-the-first-index-as-a-tick" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Including the first index as a tick
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3700,9 +3799,10 @@ amino-acid locations to positional visual channels. It has traits from both the
 continuous <code>"linear"</code> and the discrete <code>"band"</code> scale. It is linear and zoomable
 but maps indices to the range like the band scale does – each index has its own
 band. Properties such as <code>padding</code> work just as in the band scale.</p>
-<p>The indices must be zero-based, i.e., the counting must start from zero. The
-numbering of the axis labels can be adjusted to give an impression of, for
-example, one-based indexing.</p>
+<p>Indices can be zero-based or one-based. Configure the scale domain to match the
+index values in the data. The numbering of axis labels can also be
+<a href="#adjusting-the-indexing-of-axis-labels">adjusted</a> without transforming the
+data values.</p>
 <p>The index scale is used by default when the <em>field</em> type is <code>"index"</code>.</p>
 <p>User-facing two-point domains on index scales are inclusive. For example,
 <code>"domain": [2, 4]</code> covers the indices 2, 3, and 4. Domains inferred from
@@ -3808,9 +3908,10 @@ as <code>x</code>/<code>x2</code> use half-open interval edges directly.</p>
 </genome-spy-doc-embed></div>
 
 <h4 id="adjusting-the-indexing-of-axis-labels">Adjusting the indexing of axis labels<a class="headerlink" href="#adjusting-the-indexing-of-axis-labels" title="Permanent link">&para;</a></h4>
-<p>The index scale expects zero-based indexing. However, it may be desirable to display
-the axis labels using one-based indexing. Use the <code>numberingOffset</code> property adjust
-the label indices.</p>
+<p>When data values are zero-based but axis labels should use one-based numbering,
+set <code>numberingOffset</code> to <code>1</code>. The offset does not transform the data values, but
+tick generation takes it into account so labels fall on nice round values.
+Consequently, it may change which data indices receive ticks.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/scale/numbering-offset.json" height="100" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -3840,6 +3941,45 @@ the label indices.</p>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<h4 id="including-the-first-index-as-a-tick">Including the first index as a tick<a class="headerlink" href="#including-the-first-index-as-a-tick" title="Permanent link">&para;</a></h4>
+<p>Use <code>axis.extraValues</code> to add specified values while retaining automatically
+generated ticks. Extra values outside the visible domain are omitted. This is
+useful for one-based protein residue positions, where automatic tick generation
+may start at a round value such as 100; adding 1 identifies the first residue.
+<code>extraValues</code> applies only to continuous scales and is ignored on discrete
+scales.</p>
+<div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/scale/extra-axis-values.json" height="100" spechidden="true">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A one-based index scale that identifies the first residue.&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;First residue&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Residue 100&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Residue 1000&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;clip&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;position&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1068</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Protein position (aa)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;tickCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;extraValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -3992,7 +4132,7 @@ each channel.</p>
 <p>If omitted, GenomeSpy infers the channel from the scale channel when possible (e.g., <code>x</code> -&gt; <code>x</code>, <code>x2</code> -&gt; <code>x</code>, <code>y</code> -&gt; <code>y</code>, <code>y2</code> -&gt; <code>y</code>).</p>
 </dd>
 <dt><code>initial</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/">ComplexDomain</a><p>Initial configured domain for the linked scale when the linked interval selection is empty.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#numericdomain">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/#complexdomain">ComplexDomain</a><p>Initial configured domain for the linked scale when the linked interval selection is empty.</p>
 <p>Only supported when the linked scale is zoomable.</p>
 <p>Clearing the linked interval selection resets the domain to the normal default/data-derived domain instead of restoring <code>initial</code>.</p>
 </dd>
@@ -4024,7 +4164,7 @@ the <code>zoom</code> scale property to <code>true</code>. Example:</p>
 <h3 id="zoom-extent">Zoom extent<a class="headerlink" href="#zoom-extent" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>extent</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/">ComplexDomain</a> | <code>"data"</code> | <code>"unbounded"</code><p>The boundaries that limit zoom and pan interactions.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#numericdomain">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/#complexdomain">ComplexDomain</a> | <code>"data"</code> | <code>"unbounded"</code><p>The boundaries that limit zoom and pan interactions.</p>
 <p>A domain array sets explicit boundaries. <code>"data"</code> derives the boundaries from the data that contributes to the scale domain. For index and quantitative scales, <code>"unbounded"</code> allows zooming and panning without fixed boundaries. Locus scales do not support unbounded zoom.</p>
 <p>With an unbounded extent, the initial scale domain is used as the reference for the <code>zoomLevel</code> expression parameter.</p>
 <p><strong>Default value:</strong> The initial scale domain, except the whole genome for locus scales.</p>
@@ -4170,6 +4310,9 @@ locus scales.</p>
 
 
 
+
+  
+  
 
 
 

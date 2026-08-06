@@ -66,6 +66,21 @@
      
 <meta name="base_url" content="../.." />
 
+
+  
+
+
+<meta property="og:title" content="Configuring Metadata Sources" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;sample-collections&#x2f;metadata-sources&#x2f;" />
+
+
+<meta property="og:description" content="Metadata sources make sample metadata configurable as explicit sources instead of one monolithic metadata table. This enables:" />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+
   </head>
   
   
@@ -577,6 +592,8 @@
       
         
       
+        
+      
     
     
     
@@ -747,6 +764,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2929,6 +2973,8 @@
       
         
       
+        
+      
     
     
     
@@ -3207,6 +3253,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -4220,7 +4293,7 @@ configuration are documented in
 definitions or import wrappers. <code>MetadataSourceEntry</code> describes this allowed
 array entry shape, while <code>MetadataSourceDef</code> describes an inline source object.</p>
 <h4 id="source-entries">Source entries<a class="headerlink" href="#source-entries" title="Permanent link">&para;</a></h4>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/">MetadataSourceDef</a> | object</p>
+<p>Type: <a href="https://genomespy.app/docs/sample-collections/metadata-sources/#inline-source-objects">MetadataSourceDef</a> | object</p>
 <h4 id="inline-source-objects">Inline source objects<a class="headerlink" href="#inline-source-objects" title="Permanent link">&para;</a></h4>
 <dl>
 <dt><code>attributeGroupSeparator</code></dt>
@@ -4232,7 +4305,7 @@ array entry shape, while <code>MetadataSourceDef</code> describes an inline sour
 <p>Special key <code>""</code> defines source-level defaults for all imported columns. Path splitting is applied only when <code>attributeGroupSeparator</code> is defined.</p>
 </dd>
 <dt><code>backend</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">DataBackendDef</a> | <a href="https://genomespy.app/docs/grammar/types/">ZarrBackendDef</a> | <a href="https://genomespy.app/docs/grammar/types/">ParquetBackendDef</a> | <a href="https://genomespy.app/docs/grammar/types/">ArrowBackendDef</a><p>Source backend configuration.</p>
+<dd>Type: <a href="https://genomespy.app/docs/sample-collections/metadata-sources/#data-backend">DataBackendDef</a> | <a href="https://genomespy.app/docs/sample-collections/metadata-sources/#zarr-backend-schema">ZarrBackendDef</a> | ParquetBackendDef | ArrowBackendDef<p>Source backend configuration.</p>
 </dd>
 <dt><code>description</code></dt>
 <dd>Type: string<p>User-facing description of what this source contains.</p>
@@ -4268,7 +4341,7 @@ array entry shape, while <code>MetadataSourceDef</code> describes an inline sour
 <h3 id="data-backend"><code>data</code> backend<a class="headerlink" href="#data-backend" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>data</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a><p>Eager tabular metadata source.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/data/eager/#url-data">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#inline-data">InlineData</a><p>Eager tabular metadata source.</p>
 <p>Supports <code>UrlData</code> and <code>InlineData</code>.</p>
 </dd>
 <dt><code>sampleIdField</code></dt>
@@ -4355,7 +4428,7 @@ arrays/chunks over HTTP.</p>
 <p>If omitted, only primary column ids are used for lookup.</p>
 </dd>
 <dt><code>matrix</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">ZarrMatrixLayoutDef</a><p>Path overrides for the matrix layout.</p>
+<dd>Type: <a href="https://genomespy.app/docs/sample-collections/metadata-sources/#zarr-layout-details">ZarrMatrixLayoutDef</a><p>Path overrides for the matrix layout.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
 <dd>Type: string<p>URL to the root of the Zarr store.</p>
@@ -4415,6 +4488,9 @@ Use these path overrides for expression-style sample-by-feature arrays.</p>
 
 
 
+
+  
+  
 
 
 

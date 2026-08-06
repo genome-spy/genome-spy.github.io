@@ -1,6 +1,6 @@
 import { n as e } from "./rolldown-runtime-DF993M8W.js";
-import { B as t, F as n, K as r, V as i, _t as a, at as o, ct as s, dt as c, it as l, ot as u, rt as d, t as f, ut as p } from "./src-CMGEQI1V.js";
-import { F as m, Ir as h, Jt as g, L as _, Lr as v, Nr as ee, Rr as te, Tt as ne, Wr as re, Yt as ie, _ as ae, fr as oe, g as se, l as ce, o as le, y as ue } from "./viewIdentityRegistry-Dbxu22Sy.js";
+import { B as t, F as n, K as r, V as i, _t as a, at as o, ct as s, dt as c, it as l, ot as u, rt as d, t as f, ut as p } from "./src-BiBK3iof.js";
+import { Br as m, F as h, Hr as g, Jr as _, Jt as ee, L as te, Lr as ne, Vr as v, Yt as re, _ as ie, g as ae, gr as oe, jt as se, l as ce, o as le, y as ue } from "./viewIdentityRegistry-EH5-Noyz.js";
 //#region ../../node_modules/redux/dist/redux.mjs
 function y(e) {
 	return `Minified Redux error #${e}; visit https://redux.js.org/Errors?code=${e} for the full message or use the non-minified dev environment for full errors. `;
@@ -146,16 +146,16 @@ function x(e, ...t) {
 }
 var S = Object, C = S.getPrototypeOf, Ce = "constructor", we = "prototype", Te = "configurable", Ee = "enumerable", De = "writable", w = "value", T = (e) => !!e && !!e[b];
 function E(e) {
-	return e ? Ae(e) || Re(e) || !!e[Se] || !!e[Ce]?.[Se] || ze(e) || Be(e) : !1;
+	return e ? Ae(e) || Le(e) || !!e[Se] || !!e[Ce]?.[Se] || Re(e) || ze(e) : !1;
 }
 var Oe = S[we][Ce].toString(), ke = /* @__PURE__ */ new WeakMap();
 function Ae(e) {
-	if (!e || !Ve(e)) return !1;
+	if (!e || !Be(e)) return !1;
 	let t = C(e);
 	if (t === null || t === S[we]) return !0;
 	let n = S.hasOwnProperty.call(t, Ce) && t[Ce];
 	if (n === Object) return !0;
-	if (!D(n)) return !1;
+	if (!O(n)) return !1;
 	let r = ke.get(n);
 	return r === void 0 && (r = Function.toString.call(n), ke.set(n, r)), r === Oe;
 }
@@ -163,30 +163,30 @@ function je(e) {
 	return T(e) || x(15, e), e[b].base_;
 }
 function Me(e, t, n = !0) {
-	Ne(e) === 0 ? (n ? Reflect.ownKeys(e) : S.keys(e)).forEach((n) => {
+	D(e) === 0 ? (n ? Reflect.ownKeys(e) : S.keys(e)).forEach((n) => {
 		t(n, e[n], e);
 	}) : e.forEach((n, r) => t(r, n, e));
 }
-function Ne(e) {
+function D(e) {
 	let t = e[b];
-	return t ? t.type_ : Re(e) ? 1 : ze(e) ? 2 : Be(e) ? 3 : 0;
+	return t ? t.type_ : Le(e) ? 1 : Re(e) ? 2 : ze(e) ? 3 : 0;
 }
-var Pe = (e, t, n = Ne(e)) => n === 2 ? e.has(t) : S[we].hasOwnProperty.call(e, t), Fe = (e, t, n = Ne(e)) => n === 2 ? e.get(t) : e[t], Ie = (e, t, n, r = Ne(e)) => {
+var Ne = (e, t, n = D(e)) => n === 2 ? e.has(t) : S[we].hasOwnProperty.call(e, t), Pe = (e, t, n = D(e)) => n === 2 ? e.get(t) : e[t], Fe = (e, t, n, r = D(e)) => {
 	r === 2 ? e.set(t, n) : r === 3 ? e.add(n) : e[t] = n;
 };
-function Le(e, t) {
+function Ie(e, t) {
 	return e === t ? e !== 0 || 1 / e == 1 / t : e !== e && t !== t;
 }
-var Re = Array.isArray, ze = (e) => e instanceof Map, Be = (e) => e instanceof Set, Ve = (e) => typeof e == "object", D = (e) => typeof e == "function", He = (e) => typeof e == "boolean";
-function Ue(e) {
+var Le = Array.isArray, Re = (e) => e instanceof Map, ze = (e) => e instanceof Set, Be = (e) => typeof e == "object", O = (e) => typeof e == "function", Ve = (e) => typeof e == "boolean";
+function He(e) {
 	let t = +e;
 	return Number.isInteger(t) && String(t) === e;
 }
-var O = (e) => e.copy_ || e.base_, We = (e) => e.modified_ ? e.copy_ : e.base_;
-function Ge(e, t) {
-	if (ze(e)) return new Map(e);
-	if (Be(e)) return new Set(e);
-	if (Re(e)) return Array[we].slice.call(e);
+var k = (e) => e.copy_ || e.base_, Ue = (e) => e.modified_ ? e.copy_ : e.base_;
+function We(e, t) {
+	if (Re(e)) return new Map(e);
+	if (ze(e)) return new Set(e);
+	if (Le(e)) return Array[we].slice.call(e);
 	let n = Ae(e);
 	if (t === !0 || t === "class_only" && !n) {
 		let t = S.getOwnPropertyDescriptors(e);
@@ -209,14 +209,14 @@ function Ge(e, t) {
 		return S.assign(r, e);
 	}
 }
-function k(e, t = !1) {
-	return Je(e) || T(e) || !E(e) ? e : (Ne(e) > 1 && S.defineProperties(e, {
+function Ge(e, t = !1) {
+	return Je(e) || T(e) || !E(e) ? e : (D(e) > 1 && S.defineProperties(e, {
 		set: qe,
 		add: qe,
 		clear: qe,
 		delete: qe
 	}), S.freeze(e), t && Me(e, (e, t) => {
-		k(t, !0);
+		Ge(t, !0);
 	}, !1), e);
 }
 function Ke() {
@@ -224,7 +224,7 @@ function Ke() {
 }
 var qe = { [w]: Ke };
 function Je(e) {
-	return e === null || !Ve(e) || S.isFrozen(e);
+	return e === null || !Be(e) || S.isFrozen(e);
 }
 var Ye = "MapSet", Xe = "Patches", Ze = "ArrayMethods", Qe = {};
 function A(e) {
@@ -280,16 +280,16 @@ function ct(e, t) {
 	return n.copy_;
 }
 function lt(e, t, n = !1) {
-	!e.parent_ && e.immer_.autoFreeze_ && e.canAutoFreeze_ && k(t, n);
+	!e.parent_ && e.immer_.autoFreeze_ && e.canAutoFreeze_ && Ge(t, n);
 }
 function ut(e) {
 	e.finalized_ = !0, e.scope_.unfinalizedDrafts_--;
 }
 var dt = (e, t) => e.scope_ === t, ft = [];
 function pt(e, t, n, r) {
-	let i = O(e), a = e.type_;
-	if (r !== void 0 && Fe(i, r, a) === t) {
-		Ie(i, r, n, a);
+	let i = k(e), a = e.type_;
+	if (r !== void 0 && Pe(i, r, a) === t) {
+		Fe(i, r, n, a);
 		return;
 	}
 	if (!e.draftLocations_) {
@@ -302,14 +302,14 @@ function pt(e, t, n, r) {
 		});
 	}
 	let o = e.draftLocations_.get(t) ?? ft;
-	for (let e of o) Ie(i, e, n, a);
+	for (let e of o) Fe(i, e, n, a);
 }
 function mt(e, t, n) {
 	e.callbacks_.push(function(r) {
 		let i = t;
 		if (!i || !dt(i, r)) return;
 		r.mapSetPlugin_?.fixSetContents(i);
-		let a = We(i);
+		let a = Ue(i);
 		pt(e, i.draft_ ?? i, a, n), ht(i, r);
 	});
 }
@@ -328,23 +328,23 @@ function gt(e, t, n) {
 	if (T(n)) {
 		let i = n[b];
 		dt(i, r) && i.callbacks_.push(function() {
-			wt(e), pt(e, n, We(i), t);
+			wt(e), pt(e, n, Ue(i), t);
 		});
 	} else E(n) && e.callbacks_.push(function() {
-		let i = O(e);
-		e.type_ === 3 ? i.has(n) && _t(n, r.handledSet_, r) : Fe(i, t, e.type_) === n && r.drafts_.length > 1 && (e.assigned_.get(t) ?? !1) === !0 && e.copy_ && _t(Fe(e.copy_, t, e.type_), r.handledSet_, r);
+		let i = k(e);
+		e.type_ === 3 ? i.has(n) && _t(n, r.handledSet_, r) : Pe(i, t, e.type_) === n && r.drafts_.length > 1 && (e.assigned_.get(t) ?? !1) === !0 && e.copy_ && _t(Pe(e.copy_, t, e.type_), r.handledSet_, r);
 	});
 }
 function _t(e, t, n) {
 	return !n.immer_.autoFreeze_ && n.unfinalizedDrafts_ < 1 || T(e) || t.has(e) || !E(e) || Je(e) ? e : (t.add(e), Me(e, (r, i) => {
 		if (T(i)) {
 			let t = i[b];
-			dt(t, n) && (Ie(e, r, We(t), e.type_), ut(t));
+			dt(t, n) && (Fe(e, r, Ue(t), e.type_), ut(t));
 		} else E(i) && _t(i, t, n);
 	}), e);
 }
 function vt(e, t) {
-	let n = Re(e), r = {
+	let n = Le(e), r = {
 		type_: +!!n,
 		scope_: t ? t.scope_ : et(),
 		modified_: !1,
@@ -367,10 +367,10 @@ var yt = {
 		if (t === b) return e;
 		let n = e.scope_.arrayMethodsPlugin_, r = e.type_ === 1 && typeof t == "string";
 		if (r && n?.isArrayOperationMethod(t)) return n.createMethodInterceptor(e, t);
-		let i = O(e);
-		if (!Pe(i, t, e.type_)) return xt(e, i, t);
+		let i = k(e);
+		if (!Ne(i, t, e.type_)) return xt(e, i, t);
 		let a = i[t];
-		if (e.finalized_ || !E(a) || r && e.operationMethod && n?.isMutatingArrayMethod(e.operationMethod) && Ue(t)) return a;
+		if (e.finalized_ || !E(a) || r && e.operationMethod && n?.isMutatingArrayMethod(e.operationMethod) && He(t)) return a;
 		if (a === bt(e.base_, t)) {
 			wt(e);
 			let n = e.type_ === 1 ? +t : t, r = Et(e.scope_, a, e, n);
@@ -379,18 +379,18 @@ var yt = {
 		return a;
 	},
 	has(e, t) {
-		return t in O(e);
+		return t in k(e);
 	},
 	ownKeys(e) {
-		return Reflect.ownKeys(O(e));
+		return Reflect.ownKeys(k(e));
 	},
 	set(e, t, n) {
-		let r = St(O(e), t);
+		let r = St(k(e), t);
 		if (r?.set) return r.set.call(e.draft_, n), !0;
 		if (!e.modified_) {
-			let r = bt(O(e), t), i = r?.[b];
+			let r = bt(k(e), t), i = r?.[b];
 			if (i && i.base_ === n) return e.copy_[t] = n, e.assigned_.set(t, !1), !0;
-			if (Le(n, r) && (n !== void 0 || Pe(e.base_, t, e.type_))) return !0;
+			if (Ie(n, r) && (n !== void 0 || Ne(e.base_, t, e.type_))) return !0;
 			wt(e), Ct(e);
 		}
 		return e.copy_[t] === n && (n !== void 0 || t in e.copy_) || Number.isNaN(n) && Number.isNaN(e.copy_[t]) ? !0 : (e.copy_[t] = n, e.assigned_.set(t, !0), gt(e, t, n), !0);
@@ -399,7 +399,7 @@ var yt = {
 		return wt(e), bt(e.base_, t) !== void 0 || t in e.base_ ? (e.assigned_.set(t, !1), Ct(e)) : e.assigned_.delete(t), e.copy_ && delete e.copy_[t], !0;
 	},
 	getOwnPropertyDescriptor(e, t) {
-		let n = O(e), r = Reflect.getOwnPropertyDescriptor(n, t);
+		let n = k(e), r = Reflect.getOwnPropertyDescriptor(n, t);
 		return r && {
 			[De]: !0,
 			[Te]: e.type_ !== 1 || t !== "length",
@@ -431,7 +431,7 @@ M.deleteProperty = function(e, t) {
 };
 function bt(e, t) {
 	let n = e[b];
-	return (n ? O(n) : e)[t];
+	return (n ? k(n) : e)[t];
 }
 function xt(e, t, n) {
 	let r = St(t, n);
@@ -450,12 +450,12 @@ function Ct(e) {
 	e.modified_ || (e.modified_ = !0, e.parent_ && Ct(e.parent_));
 }
 function wt(e) {
-	e.copy_ ||= (e.assigned_ = /* @__PURE__ */ new Map(), Ge(e.base_, e.scope_.immer_.useStrictShallowCopy_));
+	e.copy_ ||= (e.assigned_ = /* @__PURE__ */ new Map(), We(e.base_, e.scope_.immer_.useStrictShallowCopy_));
 }
 var Tt = class {
 	constructor(e) {
 		this.autoFreeze_ = !0, this.useStrictShallowCopy_ = !1, this.useStrictIteration_ = !1, this.produce = (e, t, n) => {
-			if (D(e) && !D(t)) {
+			if (O(e) && !O(t)) {
 				let n = t;
 				t = e;
 				let r = this;
@@ -463,7 +463,7 @@ var Tt = class {
 					return r.produce(e, (e) => t.call(this, e, ...i));
 				};
 			}
-			D(t) || x(6), n !== void 0 && !D(n) && x(7);
+			O(t) || x(6), n !== void 0 && !O(n) && x(7);
 			let r;
 			if (E(e)) {
 				let i = at(this), a = Et(i, e, void 0), o = !0;
@@ -473,8 +473,8 @@ var Tt = class {
 					o ? rt(i) : it(i);
 				}
 				return nt(i, n), st(r, i);
-			} else if (!e || !Ve(e)) {
-				if (r = t(e), r === void 0 && (r = e), r === xe && (r = void 0), this.autoFreeze_ && k(r, !0), n) {
+			} else if (!e || !Be(e)) {
+				if (r = t(e), r === void 0 && (r = e), r === xe && (r = void 0), this.autoFreeze_ && Ge(r, !0), n) {
 					let t = [], i = [];
 					A(Xe).generateReplacementPatches_(e, r, {
 						patches_: t,
@@ -484,7 +484,7 @@ var Tt = class {
 				return r;
 			} else x(1, e);
 		}, this.produceWithPatches = (e, t) => {
-			if (D(e)) return (t, ...n) => this.produceWithPatches(t, (t) => e(t, ...n));
+			if (O(e)) return (t, ...n) => this.produceWithPatches(t, (t) => e(t, ...n));
 			let n, r;
 			return [
 				this.produce(e, t, (e, t) => {
@@ -493,7 +493,7 @@ var Tt = class {
 				n,
 				r
 			];
-		}, He(e?.autoFreeze) && this.setAutoFreeze(e.autoFreeze), He(e?.useStrictShallowCopy) && this.setUseStrictShallowCopy(e.useStrictShallowCopy), He(e?.useStrictIteration) && this.setUseStrictIteration(e.useStrictIteration);
+		}, Ve(e?.autoFreeze) && this.setAutoFreeze(e.autoFreeze), Ve(e?.useStrictShallowCopy) && this.setUseStrictShallowCopy(e.useStrictShallowCopy), Ve(e?.useStrictIteration) && this.setUseStrictIteration(e.useStrictIteration);
 	}
 	createDraft(e) {
 		E(e) || x(8), T(e) && (e = Dt(e));
@@ -533,7 +533,7 @@ var Tt = class {
 	}
 };
 function Et(e, t, n, r) {
-	let [i, a] = ze(t) ? A(Ye).proxyMap_(t, n) : Be(t) ? A(Ye).proxySet_(t, n) : vt(t, n);
+	let [i, a] = Re(t) ? A(Ye).proxyMap_(t, n) : ze(t) ? A(Ye).proxySet_(t, n) : vt(t, n);
 	return (n?.scope_ ?? et()).drafts_.push(i), a.callbacks_ = n?.callbacks_ ?? [], a.key_ = r, n && r !== void 0 ? mt(n, a, r) : a.callbacks_.push(function(e) {
 		e.mapSetPlugin_?.fixSetContents(a);
 		let { patchPlugin_: t } = e;
@@ -548,10 +548,10 @@ function Ot(e) {
 	let t = e[b], n, r = !0;
 	if (t) {
 		if (!t.modified_) return t.base_;
-		t.finalized_ = !0, n = Ge(e, t.scope_.immer_.useStrictShallowCopy_), r = t.scope_.immer_.shouldUseStrictIteration();
-	} else n = Ge(e, !0);
+		t.finalized_ = !0, n = We(e, t.scope_.immer_.useStrictShallowCopy_), r = t.scope_.immer_.shouldUseStrictIteration();
+	} else n = We(e, !0);
 	return Me(n, (e, t) => {
-		Ie(n, e, Ot(t));
+		Fe(n, e, Ot(t));
 	}, r), t && (t.finalized_ = !1), n;
 }
 var kt = new Tt().produce;
@@ -1180,10 +1180,10 @@ function Jn(e, t) {
 	if (Kn(t)) return t;
 	if (!qn(t)) throw Error("Unsupported interval reference.");
 	if (!e) throw Error("Cannot resolve selection-backed interval because the root view is unavailable.");
-	let n = se(e, t.selector);
+	let n = ae(e, t.selector);
 	if (!n) throw Error(`Cannot resolve interval source selection "${t.selector.param}" in import scope ${JSON.stringify(t.selector.scope)}.`);
 	let r = n.view.paramRuntime.getValue(t.selector.param);
-	if (!r || !ie(r) || !g(r)) throw Error(`Interval source selection "${t.selector.param}" is empty. Create a brush selection before running this action.`);
+	if (!r || !re(r) || !ee(r)) throw Error(`Interval source selection "${t.selector.param}" is empty. Create a brush selection before running this action.`);
 	let i = r.intervals.x;
 	if (!i || i.length !== 2 || typeof i[0] != "number" || typeof i[1] != "number") throw Error(`Interval source selection "${t.selector.param}" must provide a numeric x interval.`);
 	return [i[0], i[1]];
@@ -1471,7 +1471,7 @@ function Sr(e, t) {
 	return n;
 }
 function Cr(e, t, n, r) {
-	let i = (e) => `Group ${e + 1}`, a = h(n.length - 1).reverse(), o = h(n.length - 1).map((e) => Lr(n[e], n[e + 1])), s = Sr(r, o.length), c = Nr(t, n.slice(1, n.length - 1));
+	let i = (e) => `Group ${e + 1}`, a = m(n.length - 1).reverse(), o = m(n.length - 1).map((e) => Lr(n[e], n[e + 1])), s = Sr(r, o.length), c = Nr(t, n.slice(1, n.length - 1));
 	xr(e, (e) => i(c(e)), a.map(i), a.map((e) => s?.[e] ?? o[e]), a.map((e) => o[e]));
 }
 function wr(e, t, n, r) {
@@ -1561,15 +1561,15 @@ function Nr(e, t) {
 	};
 }
 function Pr(e, t, n) {
-	let r = re(e.map(t).filter((e) => _r(e) && !isNaN(e)));
-	return n.map((e) => te(r, e));
+	let r = _(e.map(t).filter((e) => _r(e) && !isNaN(e)));
+	return n.map((e) => g(r, e));
 }
 function Fr(e) {
 	let t = [e[0]];
 	for (let n = 1; n < e.length; n++) e[n] != e[n - 1] && t.push(e[n]);
 	return t;
 }
-var Ir = ee(".3~r"), Lr = (e, t) => `${e.operator == "lt" ? "[" : "("}${Ir(e.operand)}, ${Ir(t.operand)}${t.operator == "lte" ? "]" : ")"}`;
+var Ir = ne(".3~r"), Lr = (e, t) => `${e.operator == "lt" ? "[" : "("}${Ir(e.operand)}, ${Ir(t.operand)}${t.operator == "lte" ? "]" : ")"}`;
 function Rr(e, t) {
 	let n = /* @__PURE__ */ new Map();
 	for (let [e, r] of Object.entries(t)) for (let t of r) n.set(t, e);
@@ -1602,7 +1602,7 @@ function Vr(e, t, n) {
 //#endregion
 //#region ../app/src/sampleView/state/sampleOperations.js
 function Hr(e, t) {
-	let n = (e) => e.copy().range(h(0, e.domain().length)).unknown(-1), r = (e) => e ?? "";
+	let n = (e) => e.copy().range(m(0, e.domain().length)).unknown(-1), r = (e) => e ?? "";
 	switch (t.type) {
 		case "quantitative":
 			r = (e) => _r(e) && !isNaN(e) ? e : -Infinity;
@@ -2458,7 +2458,7 @@ function ba(e) {
 	return n && (!Array.isArray(n) || !n.every(xa)) && delete t.range, Object.keys(t).length > 0 ? t : void 0;
 }
 function xa(e) {
-	return typeof e == "string" && ne(e) != null;
+	return typeof e == "string" && se(e) != null;
 }
 function Sa(e, t) {
 	let n = new Set(t), r = Ca(e) ?? (e.name && e.name.length > 0 ? e.name.trim() : "Derived"), i = [], a = r.length > 20, o = a ? oa(r, 20) : "";
@@ -2560,7 +2560,7 @@ function Pa(e, t) {
 		...i,
 		attributeDefs: a
 	}, s = je(e.sampleMetadata) ?? e.sampleMetadata, c = t.replace ? o : qi(s, o);
-	e.sampleMetadata = t.replace ? k(o) : k(c);
+	e.sampleMetadata = t.replace ? Ge(o) : Ge(c);
 }
 var Fa = mn({
 	name: ka,
@@ -2829,10 +2829,10 @@ function to(e, t, n = {}) {
 		u += m.length;
 		let h = Ka(t, m, e, l);
 		if (h.length !== m.length) throw Error("Attribute values length does not match sample ids.");
-		let g = /* @__PURE__ */ new Map(), _ = 0, v = 0;
+		let g = /* @__PURE__ */ new Map(), _ = 0, ee = 0;
 		for (let e of h) {
 			if (e == null) {
-				f++, v++;
+				f++, ee++;
 				continue;
 			}
 			let t = e;
@@ -2843,7 +2843,7 @@ function to(e, t, n = {}) {
 				title: p,
 				sampleCount: m.length,
 				nonMissingCount: _,
-				missingCount: v,
+				missingCount: ee,
 				counts: g
 			}), r.grouped && s.push(p);
 			for (let [e, t] of g) i.push({
@@ -3109,13 +3109,13 @@ function bo(e) {
 		categoryField: n,
 		groupField: a,
 		countField: o
-	}), h = Ao(t, c), g = u ? a : n, _ = u ? a : r, v = u ? l : c, ee = u ? "nominal" : i, te = {
+	}), h = Ao(t, c), g = u ? a : n, _ = u ? a : r, ee = u ? l : c, te = u ? "nominal" : i, ne = {
 		data: { name: go },
 		mark: { type: "rect" },
 		encoding: {
 			x: {
 				field: Y(g),
-				type: ee,
+				type: te,
 				band: .8,
 				title: _,
 				axis: { labelAngle: 0 }
@@ -3144,10 +3144,10 @@ function bo(e) {
 			groupby: [Y(g)],
 			as: ["y0", "y1"]
 		}] } : {}
-	}, ne = te.encoding.x;
-	return ne.scale = {
-		...ne.scale ?? {},
-		domain: v
+	}, v = ne.encoding.x;
+	return v.scale = {
+		...v.scale ?? {},
+		domain: ee
 	}, {
 		kind: "sample_attribute_plot",
 		plotType: "barplot",
@@ -3156,7 +3156,7 @@ function bo(e) {
 			attribute: e.attributeInfo.attribute
 		},
 		title: `Bar plot of ${J(t.title)}`,
-		spec: te,
+		spec: ne,
 		namedData: [{
 			name: go,
 			rows: s
@@ -3543,7 +3543,7 @@ var Ho = class {
 	}
 	async #s(e, t) {
 		if (typeof e.url != "string") throw Error("Metadata source UrlData currently supports only string URLs.");
-		let n = m(this.#n, e.url), r = d(e, n), i = o(r.type), a;
+		let n = h(this.#n, e.url), r = d(e, n), i = o(r.type), a;
 		try {
 			a = await fetch(n, { signal: t });
 		} catch (e) {
@@ -3763,15 +3763,15 @@ var Jo = class {
 };
 //#endregion
 //#region ../../node_modules/zarrita/dist/src/util.js
-function X(e) {
+function Qo(e) {
 	let t = new TextDecoder().decode(e);
 	return JSON.parse(t);
 }
-function Qo(e, t) {
+function $o(e, t) {
 	let n = t / 2, r = t - 1, i = 0;
 	for (let a = 0; a < e.length; a += t) for (let t = 0; t < n; t += 1) i = e[a + t], e[a + t] = e[a + r - t], e[a + r - t] = i;
 }
-function $o(e) {
+function es(e) {
 	if (e === "v2:object") return globalThis.Array;
 	let t = e.match(/v2:([US])(\d+)/);
 	if (t) {
@@ -3793,16 +3793,16 @@ function $o(e) {
 		float64: Float64Array,
 		bool: Yo
 	}[e];
-	return Q(n, `Unknown or unsupported data_type: ${e}`), n;
+	return Z(n, `Unknown or unsupported data_type: ${e}`), n;
 }
-function Z(e, t) {
+function X(e, t) {
 	let n = e.length;
-	typeof t == "string" && (t = t === "C" ? Array.from({ length: n }, (e, t) => t) : Array.from({ length: n }, (e, t) => n - 1 - t)), Q(n === t.length, "Order length must match the number of dimensions.");
+	typeof t == "string" && (t = t === "C" ? Array.from({ length: n }, (e, t) => t) : Array.from({ length: n }, (e, t) => n - 1 - t)), Z(n === t.length, "Order length must match the number of dimensions.");
 	let r = 1, i = Array(n);
 	for (let n = t.length - 1; n >= 0; n--) i[t[n]] = r, r *= e[t[n]];
 	return i;
 }
-function es({ name: e, configuration: t }) {
+function ts({ name: e, configuration: t }) {
 	if (e === "default") {
 		let e = t?.separator ?? "/";
 		return (t) => ["c", ...t].join(e);
@@ -3813,10 +3813,10 @@ function es({ name: e, configuration: t }) {
 	}
 	throw Error(`Unknown chunk key encoding: ${e}`);
 }
-function ts(e) {
+function ns(e) {
 	if (e === "|O") return { data_type: "v2:object" };
 	let t = e.match(/^([<|>])(.*)$/);
-	Q(t, `Invalid dtype: ${e}`);
+	Z(t, `Invalid dtype: ${e}`);
 	let [, n, r] = t, i = {
 		b1: "bool",
 		i1: "int8",
@@ -3831,13 +3831,13 @@ function ts(e) {
 		f4: "float32",
 		f8: "float64"
 	}[r] ?? (r.startsWith("S") || r.startsWith("U") ? `v2:${r}` : void 0);
-	return Q(i, `Unsupported or unknown dtype: ${e}`), n === "|" ? { data_type: i } : {
+	return Z(i, `Unsupported or unknown dtype: ${e}`), n === "|" ? { data_type: i } : {
 		data_type: i,
 		endian: n === "<" ? "little" : "big"
 	};
 }
-function ns(e, t = {}) {
-	let n = [], r = ts(e.dtype);
+function rs(e, t = {}) {
+	let n = [], r = ns(e.dtype);
 	e.order === "F" && n.push({
 		name: "transpose",
 		configuration: { order: "F" }
@@ -3874,14 +3874,14 @@ function ns(e, t = {}) {
 		attributes: t
 	};
 }
-function rs(e, t = {}) {
+function is(e, t = {}) {
 	return {
 		zarr_format: 3,
 		node_type: "group",
 		attributes: t
 	};
 }
-function is(e, t) {
+function as(e, t) {
 	if (t !== "number" && t !== "bigint" && t !== "boolean" && t !== "object" && t !== "string") return e === t;
 	let n = e === "bool";
 	if (t === "boolean") return n;
@@ -3892,21 +3892,21 @@ function is(e, t) {
 	let a = e === "v2:object";
 	return t === "object" ? a : !r && !i && !n && !a;
 }
-function as(e) {
+function os(e) {
 	return e?.name === "sharding_indexed";
 }
-function os(e) {
+function ss(e) {
 	return (e.data_type === "uint64" || e.data_type === "int64") && e.fill_value != null ? BigInt(e.fill_value) : e.fill_value;
 }
-function ss(e, ...t) {
+function cs(e, ...t) {
 	if (!t.some((t) => e instanceof t)) throw e;
 }
-function Q(e, t = "") {
+function Z(e, t = "") {
 	if (!e) throw Error(t);
 }
-async function cs(e, { format: t, signal: n }) {
+async function ls(e, { format: t, signal: n }) {
 	let r = e instanceof Response ? e : new Response(e);
-	Q(r.body, "Response does not contain body.");
+	Z(r.body, "Response does not contain body.");
 	try {
 		return await new Response(r.body.pipeThrough(new DecompressionStream(t), { signal: n })).arrayBuffer();
 	} catch {
@@ -3915,10 +3915,10 @@ async function cs(e, { format: t, signal: n }) {
 }
 //#endregion
 //#region ../../node_modules/zarrita/dist/src/codecs/bitround.js
-var ls = class e {
+var us = class e {
 	kind = "array_to_array";
 	constructor(e, t) {
-		Q(e.keepbits >= 0, "keepbits must be zero or positive");
+		Z(e.keepbits >= 0, "keepbits must be zero or positive");
 	}
 	static fromConfig(t, n) {
 		return new e(t, n);
@@ -3929,15 +3929,15 @@ var ls = class e {
 	decode(e) {
 		return e;
 	}
-}, us = ds();
-function ds() {
+}, ds = fs();
+function fs() {
 	let e = new Uint32Array([305419896]);
 	return new Uint8Array(e.buffer, e.byteOffset, e.byteLength)[0] !== 18;
 }
-function fs(e) {
+function ps(e) {
 	return "BYTES_PER_ELEMENT" in e ? e.BYTES_PER_ELEMENT : 4;
 }
-var ps = class e {
+var ms = class e {
 	kind = "array_to_bytes";
 	#e;
 	#t;
@@ -3945,7 +3945,7 @@ var ps = class e {
 	#r;
 	#i;
 	constructor(e, t) {
-		this.#i = e?.endian, this.#t = $o(t.data_type), this.#r = t.shape, this.#e = Z(t.shape, "C");
+		this.#i = e?.endian, this.#t = es(t.data_type), this.#r = t.shape, this.#e = X(t.shape, "C");
 		let n = new this.#t(0);
 		this.#n = n.BYTES_PER_ELEMENT;
 	}
@@ -3954,16 +3954,16 @@ var ps = class e {
 	}
 	encode(e) {
 		let t = new Uint8Array(e.data.buffer);
-		return us && this.#i === "big" && Qo(t, fs(this.#t)), t;
+		return ds && this.#i === "big" && $o(t, ps(this.#t)), t;
 	}
 	decode(e) {
-		return us && this.#i === "big" && Qo(e, fs(this.#t)), {
+		return ds && this.#i === "big" && $o(e, ps(this.#t)), {
 			data: new this.#t(e.buffer, e.byteOffset, e.byteLength / this.#n),
 			shape: this.#r,
 			stride: this.#e
 		};
 	}
-}, ms = class e {
+}, hs = class e {
 	kind = "bytes_to_bytes";
 	static fromConfig() {
 		return new e();
@@ -3974,7 +3974,7 @@ var ps = class e {
 	decode(e) {
 		return new Uint8Array(e.buffer, e.byteOffset, e.byteLength - 4);
 	}
-}, hs = class e {
+}, gs = class e {
 	kind = "bytes_to_bytes";
 	static fromConfig(t) {
 		return new e();
@@ -3983,19 +3983,19 @@ var ps = class e {
 		throw Error("Gzip encoding is not enabled by default. Please register a custom codec with `numcodecs/gzip`.");
 	}
 	async decode(e) {
-		let t = await cs(e, { format: "gzip" });
+		let t = await ls(e, { format: "gzip" });
 		return new Uint8Array(t);
 	}
 };
 //#endregion
 //#region ../../node_modules/zarrita/dist/src/codecs/json2.js
-function gs(e, t) {
-	return Q(!Number.isNaN(t), "JsonCodec allow_nan is false but NaN was encountered during encoding."), Q(t !== Infinity, "JsonCodec allow_nan is false but Infinity was encountered during encoding."), Q(t !== -Infinity, "JsonCodec allow_nan is false but -Infinity was encountered during encoding."), t;
-}
 function _s(e, t) {
+	return Z(!Number.isNaN(t), "JsonCodec allow_nan is false but NaN was encountered during encoding."), Z(t !== Infinity, "JsonCodec allow_nan is false but Infinity was encountered during encoding."), Z(t !== -Infinity, "JsonCodec allow_nan is false but -Infinity was encountered during encoding."), t;
+}
+function vs(e, t) {
 	return t instanceof Object && !Array.isArray(t) ? Object.keys(t).sort().reduce((e, n) => (e[n] = t[n], e), {}) : t;
 }
-var vs = class e {
+var ys = class e {
 	configuration;
 	kind = "array_to_bytes";
 	#e;
@@ -4019,9 +4019,9 @@ var vs = class e {
 	}
 	encode(e) {
 		let { indent: t, encoding: n, ensure_ascii: r, check_circular: i, allow_nan: a, sort_keys: o } = this.#e;
-		Q(n === "utf-8", "JsonCodec does not yet support non-utf-8 encoding.");
+		Z(n === "utf-8", "JsonCodec does not yet support non-utf-8 encoding.");
 		let s = [];
-		Q(i, "JsonCodec does not yet support skipping the check for circular references during encoding."), a || s.push(gs), o && s.push(_s);
+		Z(i, "JsonCodec does not yet support skipping the check for circular references during encoding."), a || s.push(_s), o && s.push(vs);
 		let c = Array.from(e.data);
 		c.push("|O"), c.push(e.shape);
 		let l;
@@ -4038,18 +4038,18 @@ var vs = class e {
 	}
 	decode(e) {
 		let { strict: t } = this.#t;
-		Q(t, "JsonCodec does not yet support non-strict decoding.");
-		let n = X(e), r = n.pop();
-		return n.pop(), Q(r, "0D not implemented for JsonCodec."), {
+		Z(t, "JsonCodec does not yet support non-strict decoding.");
+		let n = Qo(e), r = n.pop();
+		return n.pop(), Z(r, "0D not implemented for JsonCodec."), {
 			data: n,
 			shape: r,
-			stride: Z(r, "C")
+			stride: X(r, "C")
 		};
 	}
 };
 //#endregion
 //#region ../../node_modules/zarrita/dist/src/codecs/transpose.js
-function ys(e) {
+function bs(e) {
 	return e instanceof Yo || e instanceof Xo || e instanceof Zo ? new Proxy(e, {
 		get(e, t) {
 			return e.get(Number(t));
@@ -4059,16 +4059,16 @@ function ys(e) {
 		}
 	}) : e;
 }
-function bs(e, t) {
+function xs(e, t) {
 	let n;
 	return n = e.data instanceof Xo || e.data instanceof Zo ? new e.constructor(e.data.length, e.data.chars) : new e.constructor(e.data.length), {
 		data: n,
 		shape: e.shape,
-		stride: Z(e.shape, t)
+		stride: X(e.shape, t)
 	};
 }
-function xs(e, t) {
-	let n = bs(e, t), r = e.shape.length, i = e.data.length, a = Array(r).fill(0), o = ys(e.data), s = ys(n.data);
+function Ss(e, t) {
+	let n = xs(e, t), r = e.shape.length, i = e.data.length, a = Array(r).fill(0), o = bs(e.data), s = bs(n.data);
 	for (let t = 0; t < i; t++) {
 		let i = 0;
 		for (let e = 0; e < r; e++) i += a[e] * n.stride[e];
@@ -4080,18 +4080,18 @@ function xs(e, t) {
 	}
 	return n;
 }
-function Ss(e) {
+function Cs(e) {
 	let t = e.shape.length;
-	return Q(t === e.stride.length, "Shape and stride must have the same length."), e.stride.map((e, t) => ({
+	return Z(t === e.stride.length, "Shape and stride must have the same length."), e.stride.map((e, t) => ({
 		stride: e,
 		index: t
 	})).sort((e, t) => t.stride - e.stride).map((e) => e.index);
 }
-function Cs(e, t) {
-	let n = Ss(e);
-	return Q(n.length === t.length, "Orders must match"), n.every((e, n) => e === t[n]);
+function ws(e, t) {
+	let n = Cs(e);
+	return Z(n.length === t.length, "Orders must match"), n.every((e, n) => e === t[n]);
 }
-var ws = class e {
+var Ts = class e {
 	kind = "array_to_array";
 	#e;
 	#t;
@@ -4100,7 +4100,7 @@ var ws = class e {
 		if (n === "C") for (let e = 0; e < r; ++e) i[e] = e, a[e] = e;
 		else if (n === "F") for (let e = 0; e < r; ++e) i[e] = r - e - 1, a[e] = r - e - 1;
 		else i = n, i.forEach((e, t) => {
-			Q(a[e] === void 0, `Invalid permutation: ${JSON.stringify(n)}`), a[e] = t;
+			Z(a[e] === void 0, `Invalid permutation: ${JSON.stringify(n)}`), a[e] = t;
 		});
 		this.#e = i, this.#t = a;
 	}
@@ -4108,21 +4108,21 @@ var ws = class e {
 		return new e(t, n);
 	}
 	encode(e) {
-		return Cs(e, this.#t) ? e : xs(e, this.#t);
+		return ws(e, this.#t) ? e : Ss(e, this.#t);
 	}
 	decode(e) {
 		return {
 			data: e.data,
 			shape: e.shape,
-			stride: Z(e.shape, this.#e)
+			stride: X(e.shape, this.#e)
 		};
 	}
-}, Ts = class e {
+}, Es = class e {
 	kind = "array_to_bytes";
 	#e;
 	#t;
 	constructor(e) {
-		this.#e = e, this.#t = Z(e, "C");
+		this.#e = e, this.#t = X(e, "C");
 	}
 	static fromConfig(t, n) {
 		return new e(n.shape);
@@ -4142,7 +4142,7 @@ var ws = class e {
 			stride: this.#t
 		};
 	}
-}, Es = class e {
+}, Ds = class e {
 	kind = "bytes_to_bytes";
 	static fromConfig(t) {
 		return new e();
@@ -4151,28 +4151,28 @@ var ws = class e {
 		throw Error("Zlib encoding is not enabled by default. Please register a codec with `numcodecs/zlib`.");
 	}
 	async decode(e) {
-		let t = await cs(e, { format: "deflate" });
+		let t = await ls(e, { format: "deflate" });
 		return new Uint8Array(t);
 	}
 };
 //#endregion
 //#region ../../node_modules/zarrita/dist/src/codecs.js
-function Ds() {
-	return (/* @__PURE__ */ new Map()).set("blosc", () => import("./blosc-JROzDOnd.js").then((e) => e.default)).set("lz4", () => import("./lz4-CUYSbVey.js").then((e) => e.default)).set("zstd", () => import("./zstd-YMzMcush.js").then((e) => e.default)).set("gzip", () => hs).set("zlib", () => Es).set("transpose", () => ws).set("bytes", () => ps).set("crc32c", () => ms).set("vlen-utf8", () => Ts).set("json2", () => vs).set("bitround", () => ls);
+function Os() {
+	return (/* @__PURE__ */ new Map()).set("blosc", () => import("./blosc-JROzDOnd.js").then((e) => e.default)).set("lz4", () => import("./lz4-CUYSbVey.js").then((e) => e.default)).set("zstd", () => import("./zstd-YMzMcush.js").then((e) => e.default)).set("gzip", () => gs).set("zlib", () => Ds).set("transpose", () => Ts).set("bytes", () => ms).set("crc32c", () => hs).set("vlen-utf8", () => Es).set("json2", () => ys).set("bitround", () => us);
 }
-var Os = Ds();
-function ks(e) {
+var ks = Os();
+function As(e) {
 	let t;
 	return {
 		async encode(n) {
-			t ||= await As(e);
+			t ||= await js(e);
 			for (let e of t.array_to_array) n = await e.encode(n);
 			let r = await t.array_to_bytes.encode(n);
 			for (let e of t.bytes_to_bytes) r = await e.encode(r);
 			return r;
 		},
 		async decode(n) {
-			t ||= await As(e);
+			t ||= await js(e);
 			for (let e = t.bytes_to_bytes.length - 1; e >= 0; e--) n = await t.bytes_to_bytes[e].decode(n);
 			let r = await t.array_to_bytes.decode(n);
 			for (let e = t.array_to_array.length - 1; e >= 0; e--) r = await t.array_to_array[e].decode(r);
@@ -4180,10 +4180,10 @@ function ks(e) {
 		}
 	};
 }
-async function As(e) {
+async function js(e) {
 	let t = e.codecs.map(async (e) => {
-		let t = await Os.get(e.name)?.();
-		return Q(t, `Unknown codec: ${e.name}`), {
+		let t = await ks.get(e.name)?.();
+		return Z(t, `Unknown codec: ${e.name}`), {
 			Codec: t,
 			meta: e
 		};
@@ -4200,29 +4200,29 @@ async function As(e) {
 			default: i.push(t);
 		}
 	}
-	return r ||= (Q(js(e), `Cannot encode ${e.data_type} to bytes without a codec`), ps.fromConfig({ endian: "little" }, e)), {
+	return r ||= (Z(Ms(e), `Cannot encode ${e.data_type} to bytes without a codec`), ms.fromConfig({ endian: "little" }, e)), {
 		array_to_array: n,
 		array_to_bytes: r,
 		bytes_to_bytes: i
 	};
 }
-function js(e) {
+function Ms(e) {
 	return e.data_type !== "v2:object" && e.data_type !== "string";
 }
 //#endregion
 //#region ../../node_modules/zarrita/dist/src/errors.js
-var Ms = class extends Error {
+var Ns = class extends Error {
 	constructor(e, t = {}) {
 		super(`Node not found: ${e}`, t), this.name = "NodeNotFoundError";
 	}
-}, Ns = class extends Error {
+}, Ps = class extends Error {
 	constructor(e) {
 		super(`Missing key: ${e}`), this.name = "KeyError";
 	}
-}, Ps = 18446744073709551615n;
-function Fs(e, t, n, r) {
-	Q(e.store.getRange, "Store does not support range requests");
-	let i = e.store.getRange.bind(e.store), a = t.map((e, t) => e / r.chunk_shape[t]), o = ks({
+}, Fs = 18446744073709551615n;
+function Is(e, t, n, r) {
+	Z(e.store.getRange, "Store does not support range requests");
+	let i = e.store.getRange.bind(e.store), a = t.map((e, t) => e / r.chunk_shape[t]), o = As({
 		data_type: "uint64",
 		shape: [...a, 2],
 		codecs: r.index_codecs
@@ -4238,7 +4238,7 @@ function Fs(e, t, n, r) {
 		let d = await c[u];
 		if (d === null) return;
 		let { data: f, shape: p, stride: m } = d, h = t.map((e, t) => e % p[t]).reduce((e, t, n) => e + t * m[n], 0), g = f[h], _ = f[h + 1];
-		if (!(g === Ps && _ === Ps)) return i(u, {
+		if (!(g === Fs && _ === Fs)) return i(u, {
 			offset: Number(g),
 			length: Number(_)
 		}, r);
@@ -4246,7 +4246,7 @@ function Fs(e, t, n, r) {
 }
 //#endregion
 //#region ../../node_modules/zarrita/dist/src/hierarchy.js
-var Is = class e {
+var Ls = class e {
 	store;
 	path;
 	constructor(e, t = "/") {
@@ -4257,10 +4257,10 @@ var Is = class e {
 		return new e(this.store, decodeURIComponent(new URL(t, n).pathname));
 	}
 };
-function Ls(e) {
-	return new Is(e ?? /* @__PURE__ */ new Map());
+function Rs(e) {
+	return new Ls(e ?? /* @__PURE__ */ new Map());
 }
-var Rs = class extends Is {
+var zs = class extends Ls {
 	kind = "group";
 	#e;
 	constructor(e, t, n) {
@@ -4270,48 +4270,48 @@ var Rs = class extends Is {
 		return this.#e.attributes;
 	}
 };
-function zs(e) {
+function Bs(e) {
 	return e.find((e) => e.name === "transpose")?.configuration?.order ?? "C";
 }
-var Bs = Symbol("zarrita.context");
+var Q = Symbol("zarrita.context");
 function Vs(e) {
-	return e[Bs];
+	return e[Q];
 }
 function Hs(e, t) {
-	let { configuration: n } = t.codecs.find(as) ?? {}, r = {
-		encode_chunk_key: es(t.chunk_key_encoding),
-		TypedArray: $o(t.data_type),
+	let { configuration: n } = t.codecs.find(os) ?? {}, r = {
+		encode_chunk_key: ts(t.chunk_key_encoding),
+		TypedArray: es(t.data_type),
 		fill_value: t.fill_value
 	};
 	if (n) {
-		let i = zs(n.codecs);
+		let i = Bs(n.codecs);
 		return {
 			...r,
 			kind: "sharded",
 			chunk_shape: n.chunk_shape,
-			codec: ks({
+			codec: As({
 				data_type: t.data_type,
 				shape: n.chunk_shape,
 				codecs: n.codecs
 			}),
 			get_strides(e) {
-				return Z(e, i);
+				return X(e, i);
 			},
-			get_chunk_bytes: Fs(e, t.chunk_grid.configuration.chunk_shape, r.encode_chunk_key, n)
+			get_chunk_bytes: Is(e, t.chunk_grid.configuration.chunk_shape, r.encode_chunk_key, n)
 		};
 	}
-	let i = zs(t.codecs);
+	let i = Bs(t.codecs);
 	return {
 		...r,
 		kind: "regular",
 		chunk_shape: t.chunk_grid.configuration.chunk_shape,
-		codec: ks({
+		codec: As({
 			data_type: t.data_type,
 			shape: t.chunk_grid.configuration.chunk_shape,
 			codecs: t.codecs
 		}),
 		get_strides(e) {
-			return Z(e, i);
+			return X(e, i);
 		},
 		async get_chunk_bytes(t, n) {
 			let i = r.encode_chunk_key(t), a = e.resolve(i).path;
@@ -4319,15 +4319,15 @@ function Hs(e, t) {
 		}
 	};
 }
-var Us = class extends Is {
+var Us = class extends Ls {
 	kind = "array";
 	#e;
-	[Bs];
+	[Q];
 	constructor(e, t, n) {
 		super(e, t), this.#e = {
 			...n,
-			fill_value: os(n)
-		}, this[Bs] = Hs(this, this.#e);
+			fill_value: ss(n)
+		}, this[Q] = Hs(this, this.#e);
 	}
 	get attrs() {
 		return this.#e.attributes;
@@ -4336,13 +4336,13 @@ var Us = class extends Is {
 		return this.#e.shape;
 	}
 	get chunks() {
-		return this[Bs].chunk_shape;
+		return this[Q].chunk_shape;
 	}
 	get dtype() {
 		return this.#e.data_type;
 	}
 	async getChunk(e, t) {
-		let n = this[Bs], r = await n.get_chunk_bytes(e, t);
+		let n = this[Q], r = await n.get_chunk_bytes(e, t);
 		if (!r) {
 			let e = n.chunk_shape.reduce((e, t) => e * t, 1), t = new n.TypedArray(e);
 			return t.fill(n.fill_value), {
@@ -4354,7 +4354,7 @@ var Us = class extends Is {
 		return n.codec.decode(r);
 	}
 	is(e) {
-		return is(this.dtype, e);
+		return as(this.dtype, e);
 	}
 };
 //#endregion
@@ -4668,37 +4668,37 @@ function _c() {
 }
 async function vc(e) {
 	let t = await e.store.get(e.resolve(".zattrs").path);
-	return t ? X(t) : {};
+	return t ? Qo(t) : {};
 }
 async function yc(e, t = {}) {
-	let n = "store" in e ? e : new Is(e), r = {};
-	return (t.attrs ?? !0) && (r = await vc(n)), t.kind === "array" ? bc(n, r) : t.kind === "group" ? xc(n, r) : bc(n, r).catch((e) => (ss(e, Ms), xc(n, r)));
+	let n = "store" in e ? e : new Ls(e), r = {};
+	return (t.attrs ?? !0) && (r = await vc(n)), t.kind === "array" ? bc(n, r) : t.kind === "group" ? xc(n, r) : bc(n, r).catch((e) => (cs(e, Ns), xc(n, r)));
 }
 async function bc(e, t) {
 	let { path: n } = e.resolve(".zarray"), r = await e.store.get(n);
-	if (!r) throw new Ms("v2 array", { cause: new Ns(n) });
-	return gc.increment(e.store, "v2"), new Us(e.store, e.path, ns(X(r), t));
+	if (!r) throw new Ns("v2 array", { cause: new Ps(n) });
+	return gc.increment(e.store, "v2"), new Us(e.store, e.path, rs(Qo(r), t));
 }
 async function xc(e, t) {
 	let { path: n } = e.resolve(".zgroup"), r = await e.store.get(n);
-	if (!r) throw new Ms("v2 group", { cause: new Ns(n) });
-	return gc.increment(e.store, "v2"), new Rs(e.store, e.path, rs(X(r), t));
+	if (!r) throw new Ns("v2 group", { cause: new Ps(n) });
+	return gc.increment(e.store, "v2"), new zs(e.store, e.path, is(Qo(r), t));
 }
 async function Sc(e) {
 	let { store: t, path: n } = e.resolve("zarr.json"), r = await e.store.get(n);
-	if (!r) throw new Ms("v3 array or group", { cause: new Ns(n) });
-	let i = X(r);
-	return i.node_type === "array" && (i.fill_value = os(i)), i.node_type === "array" ? new Us(t, e.path, i) : new Rs(t, e.path, i);
+	if (!r) throw new Ns("v3 array or group", { cause: new Ps(n) });
+	let i = Qo(r);
+	return i.node_type === "array" && (i.fill_value = ss(i)), i.node_type === "array" ? new Us(t, e.path, i) : new zs(t, e.path, i);
 }
 async function Cc(e, t = {}) {
-	let n = "store" in e ? e : new Is(e), r = await Sc(n);
-	if (gc.increment(n.store, "v3"), t.kind === void 0 || t.kind === "array" && r instanceof Us || t.kind === "group" && r instanceof Rs) return r;
+	let n = "store" in e ? e : new Ls(e), r = await Sc(n);
+	if (gc.increment(n.store, "v3"), t.kind === void 0 || t.kind === "array" && r instanceof Us || t.kind === "group" && r instanceof zs) return r;
 	let i = r instanceof Us ? "array" : "group";
 	throw Error(`Expected node of kind ${t.kind}, found ${i}.`);
 }
 async function $(e, t = {}) {
 	let n = "store" in e ? e.store : e, r = gc.version_max(n), i = r === "v2" ? $.v2 : $.v3, a = r === "v2" ? $.v3 : $.v2;
-	return i(e, t).catch((n) => (ss(n, Ms), a(e, t)));
+	return i(e, t).catch((n) => (cs(n, Ns), a(e, t)));
 }
 $.v2 = yc, $.v3 = Cc;
 //#endregion
@@ -4738,7 +4738,7 @@ var Dc = class {
 	#o;
 	#s;
 	constructor(e, t = {}) {
-		this.#e = e, this.#t = e.backend, this.#n = new Jo(m(t.baseUrl, this.#t.url)), this.#s = new Set(e.excludeColumns ?? []);
+		this.#e = e, this.#t = e.backend, this.#n = new Jo(h(t.baseUrl, this.#t.url)), this.#s = new Set(e.excludeColumns ?? []);
 	}
 	async listColumns(e) {
 		return (await this.#l(e)).filter((e) => !this.#g(e)).map((e) => ({ id: e }));
@@ -4808,7 +4808,7 @@ var Dc = class {
 	}
 	async #c() {
 		let e = wc(this.#t.matrix?.valuesPath ?? "X");
-		return $(Ls(this.#n).resolve(e), { kind: "array" });
+		return $(Rs(this.#n).resolve(e), { kind: "array" });
 	}
 	async #l(e) {
 		return this.#r ||= this.#h(this.#t.matrix?.columnIdsPath ?? "var_names", e), this.#r;
@@ -4833,7 +4833,7 @@ var Dc = class {
 		return n;
 	}
 	async #m(e, t) {
-		return Tc(await fc(await $(Ls(this.#n).resolve(wc(e)), { kind: "array" }), [qs(null)], t ? { opts: { signal: t } } : void 0));
+		return Tc(await fc(await $(Rs(this.#n).resolve(wc(e)), { kind: "array" }), [qs(null)], t ? { opts: { signal: t } } : void 0));
 	}
 	async #h(e, t) {
 		return (await this.#m(e, t)).map((e) => String(e));
@@ -4881,7 +4881,7 @@ function Mc(e, t) {
 				...e.backend,
 				data: {
 					...n,
-					url: _(t, n.url)
+					url: te(t, n.url)
 				}
 			}
 		} : e;
@@ -4890,7 +4890,7 @@ function Mc(e, t) {
 		...e,
 		backend: {
 			...e.backend,
-			url: _(t, e.backend.url)
+			url: te(t, e.backend.url)
 		}
 	} : e;
 }
@@ -4898,7 +4898,7 @@ async function Nc(e, t = {}) {
 	let n = e?.sources ?? [], r = t.loadJson ?? kc;
 	return Promise.all(n.map(async (e) => {
 		if (!("import" in e)) return Ac(e), e;
-		let n = _(t.baseUrl, e.import.url), i = Mc(jc(await r(n, t.signal), n), n);
+		let n = te(t.baseUrl, e.import.url), i = Mc(jc(await r(n, t.signal), n), n);
 		return Ac(i), i;
 	}));
 }
@@ -5084,12 +5084,12 @@ function Qc(e) {
 		},
 		resolveViewSelector(t) {
 			let n = e.genomeSpy.viewRoot;
-			if (n) return ae(n, t);
+			if (n) return ie(n, t);
 		},
 		getSelectionFeatureFieldValues(t, n, r) {
 			let i = e.genomeSpy.viewRoot;
 			if (!i) return;
-			let a = ae(i, t);
+			let a = ie(i, t);
 			if (a) return $n(a, n, r);
 		},
 		getActionHistory() {

@@ -66,6 +66,25 @@
      
 <meta name="base_url" content="../../.." />
 
+
+  
+
+
+<meta property="og:title" content="Point" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;mark&#x2f;point&#x2f;" />
+
+
+<meta property="og:description" content="Point mark displays each data item as a symbol. Points are often used to create a scatter plot. In the genomic context, they could represent, for example, point mutations at genomic loci." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+<meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;grammar&#x2f;mark&#x2f;point&#x2f;point-mark.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="Point mark example." />
+
+
   </head>
   
   
@@ -579,6 +598,8 @@
       
         
       
+        
+      
     
     
     
@@ -749,6 +770,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2731,6 +2779,8 @@
       
         
       
+        
+      
     
     
     
@@ -3009,6 +3059,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3392,9 +3469,14 @@ point mutations at genomic loci.</p>
 </genome-spy-doc-embed></div>
 
 <h2 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h2>
-<p>In addition to standard <a href=".././#channels">position</a> channels and
-<code>color</code>, <code>opacity</code>, and <code>strokeWidth</code> channels, point mark has the following
-channels: <code>size</code>, <code>shape</code>, <code>dx</code>, and <code>dy</code>.</p>
+<p>In addition to standard <a href=".././#channels">position and offset</a> channels and
+<code>color</code>, <code>opacity</code>, and <code>strokeWidth</code> channels, point mark has the <code>size</code> and
+<code>shape</code> channels.</p>
+<p>The legacy point <code>dx</code> and <code>dy</code> channels remain supported for compatibility.
+New specifications should use <code>xOffset</code> and <code>yOffset</code>. Unlike <code>yOffset</code>, where
+positive values move down, positive legacy <code>dy</code> values move up. Do not specify
+both forms on the same axis. Text-mark <code>dx</code> and <code>dy</code> properties are unrelated:
+they remain glyph offsets applied after text rotation.</p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>angle</code></dt>
@@ -3471,7 +3553,7 @@ channels: <code>size</code>, <code>shape</code>, <code>dx</code>, and <code>dy</
 <p><strong>Default value:</strong> <code>0.02</code></p>
 </dd>
 <dt><code>shape</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>One of <code>"circle"</code>, <code>"square"</code>, <code>"cross"</code>, <code>"diamond"</code>, <code>"triangle-up"</code>, <code>"triangle-down"</code>, <code>"triangle-right"</code>, <code>"triangle-left"</code>, <code>"tick-up"</code>, <code>"tick-down"</code>, <code>"tick-right"</code>, or <code>"tick-left"</code></p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>One of <code>"circle"</code>, <code>"square"</code>, <code>"cross"</code>, <code>"x"</code>, <code>"+"</code>, <code>"diamond"</code>, <code>"triangle-up"</code>, <code>"triangle-down"</code>, <code>"triangle-right"</code>, <code>"triangle-left"</code>, <code>"tick-up"</code>, <code>"tick-down"</code>, <code>"tick-right"</code>, or <code>"tick-left"</code>. The <code>"x"</code> and <code>"+"</code> shapes are stroke-only and use <code>strokeWidth</code> for their line thickness.</p>
 <p><strong>Default value:</strong> <code>"circle"</code></p>
 </dd>
 <dt><code>size</code></dt>
@@ -3490,20 +3572,28 @@ channels: <code>size</code>, <code>shape</code>, <code>dx</code>, and <code>dy</
 <dd>Type: string | string[]<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones.</p>
 </dd>
 <dt><code>tooltip</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/">HandledTooltip</a> | null | boolean<p>Tooltip handler. If <code>null</code>, no tooltip is shown. If string, specifies the <a href="https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#handledtooltip">HandledTooltip</a> | null | boolean<p>Tooltip handler. If <code>null</code>, no tooltip is shown. If string, specifies the <a href="https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
 </dd>
 <dt><code>x</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Position on the x axis.</p>
 </dd>
+<dt><code>x2Offset</code></dt>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>x2</code> coordinate in logical pixels. When <code>x2</code> is implicit, it inherits <code>xOffset</code> unless this property is specified.</p>
+<p><strong>Default value:</strong> inherited from <code>xOffset</code> for an implicit <code>x2</code>, otherwise <code>0</code></p>
+</dd>
 <dt><code>xOffset</code></dt>
-<dd>Type: number<p>Offsets of the <code>x</code> and <code>x2</code> coordinates in pixels. The offset is applied after the viewport scaling and translation.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>x</code> coordinate in logical pixels.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>y</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Position on the y axis.</p>
 </dd>
+<dt><code>y2Offset</code></dt>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>y2</code> coordinate in logical pixels. When <code>y2</code> is implicit, it inherits <code>yOffset</code> unless this property is specified.</p>
+<p><strong>Default value:</strong> inherited from <code>yOffset</code> for an implicit <code>y2</code>, otherwise <code>0</code></p>
+</dd>
 <dt><code>yOffset</code></dt>
-<dd>Type: number<p>Offsets of the <code>y</code> and <code>y2</code> coordinates in pixels. The offset is applied after the viewport scaling and translation.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>y</code> coordinate in logical pixels.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 </dl>
@@ -3683,6 +3773,9 @@ for example.</p>
 
 
 
+
+  
+  
 
 
 

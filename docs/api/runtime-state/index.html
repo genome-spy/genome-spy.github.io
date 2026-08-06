@@ -66,6 +66,21 @@
      
 <meta name="base_url" content="../.." />
 
+
+  
+
+
+<meta property="og:title" content="Runtime State" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;api&#x2f;runtime-state&#x2f;" />
+
+
+<meta property="og:description" content="Named data sources allow data to be provided at runtime instead of loading it from a URL. Declare every named dataset in the datasets property of the view that owns it, and reference it with data.name:" />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+
   </head>
   
   
@@ -577,6 +592,8 @@
       
         
       
+        
+      
     
     
     
@@ -747,6 +764,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2521,6 +2565,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Updating named data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-binary-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Loading binary data
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2697,6 +2758,8 @@
       
         
           
+        
+      
         
       
         
@@ -3026,6 +3089,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/genomic-data/dynseq-spi1-bqtl/" class="md-nav__link">
         
   
@@ -3275,6 +3365,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Updating named data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-binary-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Loading binary data
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -3423,6 +3530,39 @@ JavaScript specification before embedding:</p>
 user interactions. For practical examples, see the
 <a href="https://github.com/genome-spy/genome-spy/tree/master/packages/embed-examples">embed-examples</a>
 package.</p>
+<h4 id="loading-binary-data">Loading binary data<a class="headerlink" href="#loading-binary-data" title="Permanent link">&para;</a></h4>
+<p>Use <code>datasets.load()</code> to replace a declared dataset directly from Arrow IPC or
+Parquet data in memory:</p>
+<div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">datasets</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s2">&quot;myResults&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">arrowData</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;arrow&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">datasets</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s2">&quot;myResults&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">parquetData</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;parquet&quot;</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+<p>The binary input can be an <code>ArrayBuffer</code> or any <code>ArrayBufferView</code>, including a
+<code>Uint8Array</code> or the <code>DataView</code> received from an AnyWidget binary trait. Arrow
+IPC files and streams are both supported.</p>
+<p>The same exact-owner rule applies to binary data. Load a nested declaration
+through the declaring view's handle:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">owner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">views</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">scope</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;translationA&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">view</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;translationA&quot;</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="k">await</span><span class="w"> </span><span class="nx">owner</span><span class="p">.</span><span class="nx">datasets</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s2">&quot;geneticCode&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">arrowData</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;arrow&quot;</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+<p><code>load()</code> resolves after decoding, dataflow propagation, and render scheduling.
+It does not wait for the next animation frame. The existing visualization,
+canvas, parameters, and event listeners remain live; scales, selections, and
+other state derived from the replaced rows may react to the new data.</p>
+<p>Dataset operations use latest-operation-wins ordering. If loads overlap, only
+the most recently started <code>load()</code>, <code>set()</code>, or <code>reset()</code> can update the
+dataset. A decoding failure from the current operation rejects the promise and
+leaves the previous rows unchanged.</p>
+<p>The default and full entry points register both binary readers. With the
+<a href="../embedding/#entry-points">minimal entry point</a>, import each reader that the
+host uses:</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/minimal&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/data/formats/arrow.js&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/data/formats/parquet.js&quot;</span><span class="p">;</span>
+</code></pre></div>
 <h3 id="deprecated-global-apis">Deprecated global APIs<a class="headerlink" href="#deprecated-global-apis" title="Permanent link">&para;</a></h3>
 <p><code>api.updateNamedData(name, data)</code> and the <code>namedDataProvider</code> embed option are
 deprecated. They use embed-wide name lookup, which cannot address repeated or
@@ -3565,6 +3705,9 @@ package.</p>
 
 
 
+
+  
+  
 
 
 

@@ -66,6 +66,21 @@
      
 <meta name="base_url" content="../../.." />
 
+
+  
+
+
+<meta property="og:title" content="Lookup" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;lookup&#x2f;" />
+
+
+<meta property="og:description" content="The &quot;lookup&quot; transform performs a keyed, one-to-one left outer join: it retains every input data object and adds values from a matching lookup-table row." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+
   </head>
   
   
@@ -581,6 +596,8 @@
       
         
       
+        
+      
     
     
     
@@ -751,6 +768,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2675,6 +2719,8 @@
       
         
       
+        
+      
     
     
     
@@ -2953,6 +2999,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3279,7 +3352,7 @@ input data as the lookup table.</p>
 <dd>Type: string (field name) | string (field name)[] | null<p>The fields in the input data to match against the lookup-table key. This array must have the same length and order as <code>key</code>. Defaults to <code>key</code>.</p>
 </dd>
 <dt><code>from</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/data/eager/">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/types/">LookupSelfInput</a><p>The non-lazy data source that provides the lookup table, or the current input data.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/data/eager/#url-data">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#inline-data">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#named-data">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/#dynamiccallbackdata">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/types/#lookupselfinput">LookupSelfInput</a><p>The non-lazy data source that provides the lookup table, or the current input data.</p>
 </dd>
 <dt><code>key</code> <span class="required">Required</span></dt>
 <dd>Type: string (field name) | string (field name)[]<p>The key field or fields in the lookup table. When multiple fields are provided, they form a composite key.</p>
@@ -3495,6 +3568,9 @@ mate fields.</p>
 
 
 
+
+  
+  
 
 
 

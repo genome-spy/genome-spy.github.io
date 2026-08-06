@@ -66,6 +66,25 @@
      
 <meta name="base_url" content="../../.." />
 
+
+  
+
+
+<meta property="og:title" content="Eager Data Sources" />
+<meta property="og:type" content="article" />
+
+<meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;data&#x2f;eager&#x2f;" />
+
+
+<meta property="og:description" content="Eager data sources load and process all available data during the initialization stage. They are suitable for small data sets as they do not support partial loading or loading in response to user interactions. However, eager data sources are often more flexible and straightforward than lazy ones." />
+
+<meta property="og:site_name" content="GenomeSpy Docs" />
+
+<meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;grammar&#x2f;data&#x2f;eager&#x2f;bed.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content="Browser Extendible Data (BED) example." />
+
+
   </head>
   
   
@@ -584,6 +603,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#wig" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        WIG
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#bed" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -822,6 +852,8 @@
       
         
       
+        
+      
     
     
     
@@ -992,6 +1024,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/displace1d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace1D
 
     
   </span>
@@ -2836,6 +2895,8 @@
       
         
       
+        
+      
     
     
     
@@ -3114,6 +3175,33 @@
     
   
   Sashimi Plot from Splice Junctions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PIK3CA Mutation Lollipop Plot
 
     
   </span>
@@ -3451,6 +3539,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#wig" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        WIG
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#bed" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3591,7 +3690,8 @@ loading data from <code>url</code>, embedding it inline with <code>values</code>
 Vega-Lite and is mostly compatible, but the sections below describe GenomeSpy's
 behavior directly.</p>
 <p>GenomeSpy can read eager data as <code>"csv"</code>, <code>"tsv"</code>, <code>"dsv"</code>, and <code>"json"</code>, as
-well as additional URL-based formats such as <a href="#bed"><code>"bed"</code></a>,
+well as additional URL-based formats such as <a href="#wig"><code>"wig"</code></a>,
+<a href="#bed"><code>"bed"</code></a>,
 <a href="#bedpe"><code>"bedpe"</code></a>, <a href="#fasta"><code>"fasta"</code></a>, <a href="#arrow"><code>"arrow"</code></a>, and
 <a href="#parquet"><code>"parquet"</code></a>. Whatever the source, the data is treated as a table of
 records that can be further processed with <a href="../../transform/">transforms</a>.</p>
@@ -3868,6 +3968,23 @@ also use expression references.</p>
 <h2 id="additional-formats">Additional Formats<a class="headerlink" href="#additional-formats" title="Permanent link">&para;</a></h2>
 <p>The following additional formats are supported by the eager <code>url</code> data source.
 Most bioinformatic data formats are supported through <a href="../lazy/">lazy</a> data.</p>
+<h3 id="wig">WIG<a class="headerlink" href="#wig" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.genome.ucsc.edu/goldenPath/help/wiggle.html">WIG</a> parsing supports
+<code>fixedStep</code> and <code>variableStep</code> records. The parser outputs objects with the
+normalized fields <code>chrom</code>, <code>start</code>, <code>end</code>, and <code>score</code>.
+WIG's 1-based, fully closed coordinates are converted to GenomeSpy's 0-based,
+half-open intervals.</p>
+<p>WIG is an eager format, so the complete file is downloaded and parsed. For
+large signal tracks, use the lazy <a href="../lazy/#bigwig">BigWig data source</a> instead.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;scores.wig&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wig&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The format is inferred for URLs ending in <code>.wig</code>, including compressed suffixes
+such as <code>.wig.gz</code>.</p>
 <h3 id="bed">BED<a class="headerlink" href="#bed" title="Permanent link">&para;</a></h3>
 <p><a href="https://genome.ucsc.edu/FAQ/FAQformat#format1">BED</a> parsing is based on
 <a href="https://github.com/GMOD/bed-js">@gmod/bed</a> and supports BED3-BED12 fields.
@@ -4076,6 +4193,9 @@ using the <code>arrow</code> package:</p>
 
 
 
+
+  
+  
 
 
 
