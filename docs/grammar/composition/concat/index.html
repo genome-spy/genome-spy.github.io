@@ -3751,16 +3751,24 @@ the remaining space is distributed in proportions of 1:2.</p>
 <h3 id="sizedef">SizeDef<a class="headerlink" href="#sizedef" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>grow</code></dt>
-<dd>Type: number<p>Share of the remaining space. See <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
+<dd>
+<p>Type: number</p>
+<p>Share of the remaining space. See <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
 </dd>
 <dt><code>maxPx</code></dt>
-<dd>Type: number<p>Maximum size in pixels.</p>
+<dd>
+<p>Type: number</p>
+<p>Maximum size in pixels.</p>
 </dd>
 <dt><code>minPx</code></dt>
-<dd>Type: number<p>Minimum size in pixels.</p>
+<dd>
+<p>Type: number</p>
+<p>Minimum size in pixels.</p>
 </dd>
 <dt><code>px</code></dt>
-<dd>Type: number<p>Size in pixels</p>
+<dd>
+<p>Type: number</p>
+<p>Size in pixels</p>
 </dd>
 </dl>
 <p>The size may have both absolute (<code>px</code>) and proportional (<code>grow</code>) components.
@@ -3808,11 +3816,15 @@ discrete step. The step may also be an expression reference.</p>
 </code></pre></div>
 <dl>
 <dt><code>for</code></dt>
-<dd>Type: string<p>Selects which discrete scale the step describes when a positional scale has a nested offset scale. <code>"offset"</code> sizes each subgroup step; <code>"position"</code> sizes each primary category step.</p>
+<dd>
+<p>Type: string</p>
+<p>Selects which discrete scale the step describes when a positional scale has a nested offset scale. <code>"offset"</code> sizes each subgroup step; <code>"position"</code> sizes each primary category step.</p>
 <p><strong>Default value:</strong> <code>"offset"</code> when a discrete nested offset scale is present, otherwise <code>"position"</code>.</p>
 </dd>
 <dt><code>step</code> <span class="required">Required</span></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Step size in pixels.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Step size in pixels.</p>
 </dd>
 </dl>
 <p>Discrete <a href="../../mark/#nested-offset-scales">offset channels</a> can introduce

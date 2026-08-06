@@ -3429,33 +3429,51 @@ transform.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code></dt>
-<dd>Type: array<p>Output field names. A missing or <code>null</code> entry uses the operation and field name joined with an underscore, such as <code>sum_score</code>. Operations without a field use only the operation name, such as <code>rank</code>.</p>
+<dd>
+<p>Type: array</p>
+<p>Output field names. A missing or <code>null</code> entry uses the operation and field name joined with an underscore, such as <code>sum_score</code>. Operations without a field use only the operation name, such as <code>rank</code>.</p>
 </dd>
 <dt><code>description</code></dt>
-<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
+<dd>
+<p>Type: string</p>
+<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 <dt><code>fields</code></dt>
-<dd>Type: array<p>Input fields for operations that use a field. Use <code>null</code> for operations such as <code>rank</code> and <code>count</code> that do not use one.</p>
+<dd>
+<p>Type: array</p>
+<p>Input fields for operations that use a field. Use <code>null</code> for operations such as <code>rank</code> and <code>count</code> that do not use one.</p>
 </dd>
 <dt><code>frame</code></dt>
-<dd>Type: array<p>Inclusive offsets from the current sorted row that define the window. <code>null</code> leaves the corresponding side unbounded.</p>
+<dd>
+<p>Type: array</p>
+<p>Inclusive offsets from the current sorted row that define the window. <code>null</code> leaves the corresponding side unbounded.</p>
 <p><strong>Default value:</strong> <code>[null, 0]</code></p>
 </dd>
 <dt><code>groupby</code></dt>
-<dd>Type: array<p>Fields that divide the input into independent window partitions.</p>
+<dd>
+<p>Type: array</p>
+<p>Fields that divide the input into independent window partitions.</p>
 </dd>
 <dt><code>ignorePeers</code></dt>
-<dd>Type: boolean<p>Use row offsets without expanding frame boundaries to include sorted rows with equal values.</p>
+<dd>
+<p>Type: boolean</p>
+<p>Use row offsets without expanding frame boundaries to include sorted rows with equal values.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>ops</code> <span class="required">Required</span></dt>
-<dd>Type: array<p>Window and aggregate operations to calculate. Entries align with <code>fields</code>, <code>params</code>, and <code>as</code>.</p>
+<dd>
+<p>Type: array</p>
+<p>Window and aggregate operations to calculate. Entries align with <code>fields</code>, <code>params</code>, and <code>as</code>.</p>
 </dd>
 <dt><code>params</code></dt>
-<dd>Type: array<p>Optional operation parameters. <code>lag</code> and <code>lead</code> use an offset, while <code>ntile</code> and <code>nth_value</code> use a positive integer.</p>
+<dd>
+<p>Type: array</p>
+<p>Optional operation parameters. <code>lag</code> and <code>lead</code> use an offset, while <code>ntile</code> and <code>nth_value</code> use a positive integer.</p>
 </dd>
 <dt><code>sort</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#compareparams">CompareParams</a><p>Fields used to sort rows before window functions are calculated. Without sorting, rows retain their input order and no rows are peers.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#compareparams">CompareParams</a></p>
+<p>Fields used to sort rows before window functions are calculated. Without sorting, rows retain their input order and no rows are peers.</p>
 </dd>
 </dl>
 <h2 id="partitions-and-order">Partitions and order<a class="headerlink" href="#partitions-and-order" title="Permanent link">&para;</a></h2>

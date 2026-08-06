@@ -3627,15 +3627,21 @@ Sample metadata, like clinical attributes, has to be provided separately in a
 <p>The following properties configure <code>samples.identity</code>:</p>
 <dl>
 <dt><code>data</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/data/eager/#url-data">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#inline-data">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#named-data">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/#dynamiccallbackdata">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#sequence-generator">Generator</a><p>Data source that defines the sample set for the view.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/data/eager/#url-data">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#inline-data">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#named-data">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/#dynamiccallbackdata">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#sequence-generator">Generator</a></p>
+<p>Data source that defines the sample set for the view.</p>
 <p>The source must contain one row per sample. Metadata imports are matched against these sample ids.</p>
 </dd>
 <dt><code>displayNameField</code></dt>
-<dd>Type: string<p>Field containing a user-visible sample label.</p>
+<dd>
+<p>Type: string</p>
+<p>Field containing a user-visible sample label.</p>
 <p>If omitted, sample ids are used.</p>
 </dd>
 <dt><code>idField</code></dt>
-<dd>Type: string<p>Field that contains the canonical sample id.</p>
+<dd>
+<p>Type: string</p>
+<p>Field that contains the canonical sample id.</p>
 <p><strong>Default value:</strong> <code>"sample"</code></p>
 </dd>
 </dl>
@@ -3679,7 +3685,9 @@ to avoid clutter.</p>
 <p>The sample view property that enables and disables this behavior is:</p>
 <dl>
 <dt><code>sampleYAxis</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/sample-collections/visualizing/#showing-sample-y-axes">SampleYAxisDef</a> | null<p>Controls how vertical axes are shown for repeated sample plots.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/sample-collections/visualizing/#showing-sample-y-axes">SampleYAxisDef</a> | null</p>
+<p>Controls how vertical axes are shown for repeated sample plots.</p>
 <p>Set to <code>null</code> to disable sample y-axes.</p>
 <p><strong>Default value:</strong> <code>{"mode": "all", "minSampleHeight": 60}</code></p>
 </dd>
@@ -3688,13 +3696,19 @@ to avoid clutter.</p>
 y-axes are shown:</p>
 <dl>
 <dt><code>mode</code></dt>
-<dd>Type: <code>"all"</code> | <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code><p>How vertical axes are shown for repeated sample plots.</p>
-<p>- <code>"all"</code> shows an axis for every eligible visible sample.
-  - <code>"top"</code>, <code>"middle"</code>, and <code>"bottom"</code> show one representative axis.</p>
+<dd>
+<p>Type: <code>"all"</code> | <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code></p>
+<p>How vertical axes are shown for repeated sample plots.</p>
+<ul>
+<li><code>"all"</code> shows an axis for every eligible visible sample.</li>
+<li><code>"top"</code>, <code>"middle"</code>, and <code>"bottom"</code> show one representative axis.</li>
+</ul>
 <p><strong>Default value:</strong> <code>"all"</code></p>
 </dd>
 <dt><code>minSampleHeight</code></dt>
-<dd>Type: number<p>Minimum visible sample height in pixels required before a repeated y-axis can be shown.</p>
+<dd>
+<p>Type: number</p>
+<p>Minimum visible sample height in pixels required before a repeated y-axis can be shown.</p>
 <p><strong>Default value:</strong> <code>60</code></p>
 </dd>
 </dl>
@@ -3712,55 +3726,79 @@ sample label font size, use the following configuration:</p>
 <p>The following properties allow for fine-grained control of the font styles:</p>
 <dl>
 <dt><code>labelFont</code></dt>
-<dd>Type: string<p>The font typeface. GenomeSpy uses <a href="https://github.com/Chlumsky/msdfgen">SDF</a> versions of <a href="https://fonts.google.com/">Google Fonts</a>. Check their availability at the <a href="https://github.com/etiennepinchon/aframe-fonts/tree/master/fonts">A-Frame Fonts</a> repository. System fonts are <strong>not</strong> supported.</p>
+<dd>
+<p>Type: string</p>
+<p>The font typeface. GenomeSpy uses <a href="https://github.com/Chlumsky/msdfgen">SDF</a> versions of <a href="https://fonts.google.com/">Google Fonts</a>. Check their availability at the <a href="https://github.com/etiennepinchon/aframe-fonts/tree/master/fonts">A-Frame Fonts</a> repository. System fonts are <strong>not</strong> supported.</p>
 <p><strong>Default value:</strong> <code>"Lato"</code></p>
 </dd>
 <dt><code>labelFontSize</code></dt>
-<dd>Type: number<p>The font size in pixels.</p>
+<dd>
+<p>Type: number</p>
+<p>The font size in pixels.</p>
 <p><strong>Default value:</strong> <code>11</code></p>
 </dd>
 <dt><code>labelFontWeight</code></dt>
-<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>The font weight. The following strings and numbers are valid values: <code>"thin"</code> (<code>100</code>), <code>"light"</code> (<code>300</code>), <code>"regular"</code> (<code>400</code>), <code>"normal"</code> (<code>400</code>), <code>"medium"</code> (<code>500</code>), <code>"bold"</code> (<code>700</code>), <code>"black"</code> (<code>900</code>)</p>
+<dd>
+<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
+<p>The font weight. The following strings and numbers are valid values: <code>"thin"</code> (<code>100</code>), <code>"light"</code> (<code>300</code>), <code>"regular"</code> (<code>400</code>), <code>"normal"</code> (<code>400</code>), <code>"medium"</code> (<code>500</code>), <code>"bold"</code> (<code>700</code>), <code>"black"</code> (<code>900</code>)</p>
 <p><strong>Default value:</strong> <code>"regular"</code></p>
 </dd>
 <dt><code>labelFontStyle</code></dt>
-<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>The font style. Valid values: <code>"normal"</code> and <code>"italic"</code>.</p>
+<dd>
+<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
+<p>The font style. Valid values: <code>"normal"</code> and <code>"italic"</code>.</p>
 <p><strong>Default value:</strong> <code>"normal"</code></p>
 </dd>
 <dt><code>labelAlign</code></dt>
-<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>The horizontal alignment of the text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
+<dd>
+<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
+<p>The horizontal alignment of the text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
 <p><strong>Default value:</strong> <code>"left"</code></p>
 </dd>
 </dl>
 <p>In addition, the following sample label properties are supported:</p>
 <dl>
 <dt><code>labelTitle</code></dt>
-<dd>Type: string | null<p>Title shown above sample labels. If omitted, the title defaults to <code>"Sample"</code>. Set to <code>null</code> to hide the title.</p>
+<dd>
+<p>Type: string | null</p>
+<p>Title shown above sample labels. If omitted, the title defaults to <code>"Sample"</code>. Set to <code>null</code> to hide the title.</p>
 </dd>
 <dt><code>labelLength</code></dt>
-<dd>Type: number<p>Width reserved for sample labels in pixels.</p>
+<dd>
+<p>Type: number</p>
+<p>Width reserved for sample labels in pixels.</p>
 <p>If omitted, the width is inferred from the sample labels.</p>
 </dd>
 </dl>
 <p>Sample row and group layout can be adjusted with the <code>sampleLayout</code> property:</p>
 <dl>
 <dt><code>sampleLayout</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/sample-collections/visualizing/#adjusting-sample-labels">SampleLayoutDef</a><p>Layout settings for sample rows and sample groups.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/sample-collections/visualizing/#adjusting-sample-labels">SampleLayoutDef</a></p>
+<p>Layout settings for sample rows and sample groups.</p>
 </dd>
 <dt><code>sampleHeight</code></dt>
-<dd>Type: number<p>Height of one sample row when the view is expanded for (close-up) inspection. In the birdseye overview, sample rows are automatically scaled to fit the available vertical space.</p>
+<dd>
+<p>Type: number</p>
+<p>Height of one sample row when the view is expanded for (close-up) inspection. In the birdseye overview, sample rows are automatically scaled to fit the available vertical space.</p>
 <p><strong>Default value:</strong> <code>35</code></p>
 </dd>
 <dt><code>groupSpacing</code></dt>
-<dd>Type: number<p>Spacing between sample groups in the fitted layout.</p>
+<dd>
+<p>Type: number</p>
+<p>Spacing between sample groups in the fitted layout.</p>
 <p><strong>Default value:</strong> <code>5</code></p>
 </dd>
 <dt><code>peekGroupSpacing</code></dt>
-<dd>Type: number<p>Spacing between sample groups in the expanded layout.</p>
+<dd>
+<p>Type: number</p>
+<p>Spacing between sample groups in the expanded layout.</p>
 <p><strong>Default value:</strong> <code>15</code></p>
 </dd>
 <dt><code>sampleSpacingFactor</code></dt>
-<dd>Type: number<p>Fraction of each sample row reserved as spacing between rendered sample contents.</p>
+<dd>
+<p>Type: number</p>
+<p>Fraction of each sample row reserved as spacing between rendered sample contents.</p>
 <p>Spacing is reduced when rows are too short to render cleanly.</p>
 <p><strong>Default value:</strong> <code>0.2</code></p>
 </dd>

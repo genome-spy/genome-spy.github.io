@@ -3599,83 +3599,133 @@ scope:</p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>align</code></dt>
-<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>Horizontal text alignment for title text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
+<dd>
+<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
+<p>Horizontal text alignment for title text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
 </dd>
 <dt><code>anchor</code></dt>
-<dd>Type: <code>None</code> | <code>start</code> | <code>middle</code> | <code>end</code><p>The anchor position for placing the title and subtitle text. One of <code>"start"</code>, <code>"middle"</code>, or <code>"end"</code>. For example, with an orientation of top these anchor positions map to a left-, center-, or right-aligned title.</p>
+<dd>
+<p>Type: <code>None</code> | <code>start</code> | <code>middle</code> | <code>end</code></p>
+<p>The anchor position for placing the title and subtitle text. One of <code>"start"</code>, <code>"middle"</code>, or <code>"end"</code>. For example, with an orientation of top these anchor positions map to a left-, center-, or right-aligned title.</p>
 </dd>
 <dt><code>angle</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Angle in degrees of title and subtitle text.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Angle in degrees of title and subtitle text.</p>
 </dd>
 <dt><code>baseline</code></dt>
-<dd>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code><p>Vertical text baseline for title and subtitle text. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, or <code>"bottom"</code>.</p>
+<dd>
+<p>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code></p>
+<p>Vertical text baseline for title and subtitle text. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, or <code>"bottom"</code>.</p>
 </dd>
 <dt><code>color</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Text color for title text.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Text color for title text.</p>
 </dd>
 <dt><code>dx</code></dt>
-<dd>Type: number<p>Delta offset for title and subtitle text x-coordinate.</p>
+<dd>
+<p>Type: number</p>
+<p>Delta offset for title and subtitle text x-coordinate.</p>
 </dd>
 <dt><code>dy</code></dt>
-<dd>Type: number<p>Delta offset for title and subtitle text y-coordinate.</p>
+<dd>
+<p>Type: number</p>
+<p>Delta offset for title and subtitle text y-coordinate.</p>
 </dd>
 <dt><code>font</code></dt>
-<dd>Type: string<p>Font name for title text.</p>
+<dd>
+<p>Type: string</p>
+<p>Font name for title text.</p>
 </dd>
 <dt><code>fontSize</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Font size in pixels for title text.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Font size in pixels for title text.</p>
 </dd>
 <dt><code>fontStyle</code></dt>
-<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style for title text.</p>
+<dd>
+<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
+<p>Font style for title text.</p>
 </dd>
 <dt><code>fontWeight</code></dt>
-<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight for title text. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
+<dd>
+<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
+<p>Font weight for title text. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
 </dd>
 <dt><code>frame</code></dt>
-<dd>Type: <code>"bounds"</code> | <code>"group"</code><p>The reference frame for the title anchor. <code>"group"</code> anchors the title along the plot area. <code>"bounds"</code> anchors the title along the full bounds, including axes, legends, and other reserved space.</p>
+<dd>
+<p>Type: <code>"bounds"</code> | <code>"group"</code></p>
+<p>The reference frame for the title anchor. <code>"group"</code> anchors the title along the plot area. <code>"bounds"</code> anchors the title along the full bounds, including axes, legends, and other reserved space.</p>
 <p><strong>Default value:</strong> <code>"group"</code></p>
 </dd>
 <dt><code>offset</code></dt>
-<dd>Type: number<p>The orthogonal offset in pixels by which to displace the title group from its position along the edge of the chart.</p>
+<dd>
+<p>Type: number</p>
+<p>The orthogonal offset in pixels by which to displace the title group from its position along the edge of the chart.</p>
 </dd>
 <dt><code>orient</code></dt>
-<dd>Type: <code>"none"</code> | <code>"left"</code> | <code>"right"</code> | <code>"top"</code> | <code>"bottom"</code><p>Default title orientation (<code>"none"</code>, <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code>, or <code>"right"</code>)</p>
+<dd>
+<p>Type: <code>"none"</code> | <code>"left"</code> | <code>"right"</code> | <code>"top"</code> | <code>"bottom"</code></p>
+<p>Default title orientation (<code>"none"</code>, <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code>, or <code>"right"</code>)</p>
 </dd>
 <dt><code>reserve</code></dt>
-<dd>Type: boolean<p>Whether the title reserves layout space outside the plot area. Reserved titles are placed outside axes, legends, and other guide space on the same side.</p>
+<dd>
+<p>Type: boolean</p>
+<p>Whether the title reserves layout space outside the plot area. Reserved titles are placed outside axes, legends, and other guide space on the same side.</p>
 <p>Setting this to <code>false</code> lets the title render without affecting layout, enabling wilder layouts where titles may overlap nearby content.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>style</code></dt>
-<dd>Type: string | string[]<p>A mark style property to apply to the title text mark. If not specified, a default style of <code>"group-title"</code> is applied.</p>
+<dd>
+<p>Type: string | string[]</p>
+<p>A mark style property to apply to the title text mark. If not specified, a default style of <code>"group-title"</code> is applied.</p>
 </dd>
 <dt><code>subtitle</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The subtitle text.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The subtitle text.</p>
 </dd>
 <dt><code>subtitleColor</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Text color for subtitle text.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Text color for subtitle text.</p>
 </dd>
 <dt><code>subtitleFont</code></dt>
-<dd>Type: string<p>Font name for subtitle text.</p>
+<dd>
+<p>Type: string</p>
+<p>Font name for subtitle text.</p>
 </dd>
 <dt><code>subtitleFontSize</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Font size in pixels for subtitle text.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Font size in pixels for subtitle text.</p>
 </dd>
 <dt><code>subtitleFontStyle</code></dt>
-<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style for subtitle text.</p>
+<dd>
+<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
+<p>Font style for subtitle text.</p>
 </dd>
 <dt><code>subtitleFontWeight</code></dt>
-<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight for subtitle text. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
+<dd>
+<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
+<p>Font weight for subtitle text. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
 </dd>
 <dt><code>subtitlePadding</code></dt>
-<dd>Type: number<p>Padding in pixels between title and subtitle text.</p>
+<dd>
+<p>Type: number</p>
+<p>Padding in pixels between title and subtitle text.</p>
 <p><strong>Default value:</strong> <code>3</code></p>
 </dd>
 <dt><code>text</code> <span class="required">Required</span></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The title text.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The title text.</p>
 </dd>
 <dt><code>zindex</code></dt>
-<dd>Type: number<p>Z-order of the title relative to the view content.</p>
+<dd>
+<p>Type: number</p>
+<p>Z-order of the title relative to the view content.</p>
 <p>Values greater than <code>0</code> render after the view marks. Values less than or equal to <code>0</code> render before the marks.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
@@ -3683,80 +3733,128 @@ scope:</p>
 <h3 id="config-properties">Config Properties<a class="headerlink" href="#config-properties" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>align</code></dt>
-<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>Horizontal text alignment for title text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
+<dd>
+<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
+<p>Horizontal text alignment for title text. One of <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>.</p>
 </dd>
 <dt><code>anchor</code></dt>
-<dd>Type: <code>None</code> | <code>start</code> | <code>middle</code> | <code>end</code><p>The anchor position for placing the title and subtitle text. One of <code>"start"</code>, <code>"middle"</code>, or <code>"end"</code>. For example, with an orientation of top these anchor positions map to a left-, center-, or right-aligned title.</p>
+<dd>
+<p>Type: <code>None</code> | <code>start</code> | <code>middle</code> | <code>end</code></p>
+<p>The anchor position for placing the title and subtitle text. One of <code>"start"</code>, <code>"middle"</code>, or <code>"end"</code>. For example, with an orientation of top these anchor positions map to a left-, center-, or right-aligned title.</p>
 </dd>
 <dt><code>angle</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Angle in degrees of title and subtitle text.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Angle in degrees of title and subtitle text.</p>
 </dd>
 <dt><code>baseline</code></dt>
-<dd>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code><p>Vertical text baseline for title and subtitle text. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, or <code>"bottom"</code>.</p>
+<dd>
+<p>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code></p>
+<p>Vertical text baseline for title and subtitle text. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, or <code>"bottom"</code>.</p>
 </dd>
 <dt><code>color</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Text color for title text.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Text color for title text.</p>
 </dd>
 <dt><code>dx</code></dt>
-<dd>Type: number<p>Delta offset for title and subtitle text x-coordinate.</p>
+<dd>
+<p>Type: number</p>
+<p>Delta offset for title and subtitle text x-coordinate.</p>
 </dd>
 <dt><code>dy</code></dt>
-<dd>Type: number<p>Delta offset for title and subtitle text y-coordinate.</p>
+<dd>
+<p>Type: number</p>
+<p>Delta offset for title and subtitle text y-coordinate.</p>
 </dd>
 <dt><code>font</code></dt>
-<dd>Type: string<p>Font name for title text.</p>
+<dd>
+<p>Type: string</p>
+<p>Font name for title text.</p>
 </dd>
 <dt><code>fontSize</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Font size in pixels for title text.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Font size in pixels for title text.</p>
 </dd>
 <dt><code>fontStyle</code></dt>
-<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style for title text.</p>
+<dd>
+<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
+<p>Font style for title text.</p>
 </dd>
 <dt><code>fontWeight</code></dt>
-<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight for title text. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
+<dd>
+<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
+<p>Font weight for title text. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
 </dd>
 <dt><code>frame</code></dt>
-<dd>Type: <code>"bounds"</code> | <code>"group"</code><p>The reference frame for the title anchor. <code>"group"</code> anchors the title along the plot area. <code>"bounds"</code> anchors the title along the full bounds, including axes, legends, and other reserved space.</p>
+<dd>
+<p>Type: <code>"bounds"</code> | <code>"group"</code></p>
+<p>The reference frame for the title anchor. <code>"group"</code> anchors the title along the plot area. <code>"bounds"</code> anchors the title along the full bounds, including axes, legends, and other reserved space.</p>
 <p><strong>Default value:</strong> <code>"group"</code></p>
 </dd>
 <dt><code>offset</code></dt>
-<dd>Type: number<p>The orthogonal offset in pixels by which to displace the title group from its position along the edge of the chart.</p>
+<dd>
+<p>Type: number</p>
+<p>The orthogonal offset in pixels by which to displace the title group from its position along the edge of the chart.</p>
 </dd>
 <dt><code>orient</code></dt>
-<dd>Type: <code>"none"</code> | <code>"left"</code> | <code>"right"</code> | <code>"top"</code> | <code>"bottom"</code><p>Default title orientation (<code>"none"</code>, <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code>, or <code>"right"</code>)</p>
+<dd>
+<p>Type: <code>"none"</code> | <code>"left"</code> | <code>"right"</code> | <code>"top"</code> | <code>"bottom"</code></p>
+<p>Default title orientation (<code>"none"</code>, <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code>, or <code>"right"</code>)</p>
 </dd>
 <dt><code>reserve</code></dt>
-<dd>Type: boolean<p>Whether the title reserves layout space outside the plot area. Reserved titles are placed outside axes, legends, and other guide space on the same side.</p>
+<dd>
+<p>Type: boolean</p>
+<p>Whether the title reserves layout space outside the plot area. Reserved titles are placed outside axes, legends, and other guide space on the same side.</p>
 <p>Setting this to <code>false</code> lets the title render without affecting layout, enabling wilder layouts where titles may overlap nearby content.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>style</code></dt>
-<dd>Type: string | string[]<p>A mark style property to apply to the title text mark. If not specified, a default style of <code>"group-title"</code> is applied.</p>
+<dd>
+<p>Type: string | string[]</p>
+<p>A mark style property to apply to the title text mark. If not specified, a default style of <code>"group-title"</code> is applied.</p>
 </dd>
 <dt><code>subtitle</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The subtitle text.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The subtitle text.</p>
 </dd>
 <dt><code>subtitleColor</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Text color for subtitle text.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Text color for subtitle text.</p>
 </dd>
 <dt><code>subtitleFont</code></dt>
-<dd>Type: string<p>Font name for subtitle text.</p>
+<dd>
+<p>Type: string</p>
+<p>Font name for subtitle text.</p>
 </dd>
 <dt><code>subtitleFontSize</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Font size in pixels for subtitle text.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Font size in pixels for subtitle text.</p>
 </dd>
 <dt><code>subtitleFontStyle</code></dt>
-<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style for subtitle text.</p>
+<dd>
+<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
+<p>Font style for subtitle text.</p>
 </dd>
 <dt><code>subtitleFontWeight</code></dt>
-<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight for subtitle text. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
+<dd>
+<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
+<p>Font weight for subtitle text. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
 </dd>
 <dt><code>subtitlePadding</code></dt>
-<dd>Type: number<p>Padding in pixels between title and subtitle text.</p>
+<dd>
+<p>Type: number</p>
+<p>Padding in pixels between title and subtitle text.</p>
 <p><strong>Default value:</strong> <code>3</code></p>
 </dd>
 <dt><code>zindex</code></dt>
-<dd>Type: number<p>Z-order of the title relative to the view content.</p>
+<dd>
+<p>Type: number</p>
+<p>Z-order of the title relative to the view content.</p>
 <p>Values greater than <code>0</code> render after the view marks. Values less than or equal to <code>0</code> render before the marks.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>

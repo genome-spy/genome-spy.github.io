@@ -4128,16 +4128,22 @@ each channel.</p>
 <h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>encoding</code></dt>
-<dd>Type: string<p>Selection interval channel to use.</p>
+<dd>
+<p>Type: string</p>
+<p>Selection interval channel to use.</p>
 <p>If omitted, GenomeSpy infers the channel from the scale channel when possible (e.g., <code>x</code> -&gt; <code>x</code>, <code>x2</code> -&gt; <code>x</code>, <code>y</code> -&gt; <code>y</code>, <code>y2</code> -&gt; <code>y</code>).</p>
 </dd>
 <dt><code>initial</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#numericdomain">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/#complexdomain">ComplexDomain</a><p>Initial configured domain for the linked scale when the linked interval selection is empty.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#numericdomain">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/#complexdomain">ComplexDomain</a></p>
+<p>Initial configured domain for the linked scale when the linked interval selection is empty.</p>
 <p>Only supported when the linked scale is zoomable.</p>
 <p>Clearing the linked interval selection resets the domain to the normal default/data-derived domain instead of restoring <code>initial</code>.</p>
 </dd>
 <dt><code>param</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>Name of an interval selection parameter that provides the domain.</p>
+<dd>
+<p>Type: string</p>
+<p>Name of an interval selection parameter that provides the domain.</p>
 </dd>
 </dl>
 <p>Clearing the linked interval selection returns the scale to its normal default
@@ -4164,7 +4170,9 @@ the <code>zoom</code> scale property to <code>true</code>. Example:</p>
 <h3 id="zoom-extent">Zoom extent<a class="headerlink" href="#zoom-extent" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>extent</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#numericdomain">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/#complexdomain">ComplexDomain</a> | <code>"data"</code> | <code>"unbounded"</code><p>The boundaries that limit zoom and pan interactions.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#numericdomain">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/#complexdomain">ComplexDomain</a> | <code>"data"</code> | <code>"unbounded"</code></p>
+<p>The boundaries that limit zoom and pan interactions.</p>
 <p>A domain array sets explicit boundaries. <code>"data"</code> derives the boundaries from the data that contributes to the scale domain. For index and quantitative scales, <code>"unbounded"</code> allows zooming and panning without fixed boundaries. Locus scales do not support unbounded zoom.</p>
 <p>With an unbounded extent, the initial scale domain is used as the reference for the <code>zoomLevel</code> expression parameter.</p>
 <p><strong>Default value:</strong> The initial scale domain, except the whole genome for locus scales.</p>

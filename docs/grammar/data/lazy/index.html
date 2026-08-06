@@ -3985,30 +3985,44 @@ The chunks are provided as data objects with the following fields: <code>chrom</
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#indexed-files">IndexUrlTemplate</a><p>URL of the index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#indexed-files">IndexUrlTemplate</a></p>
+<p>URL of the index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".fai"</code>.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a><p>URL of the fasta file. URL templates must resolve to one URL.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a></p>
+<p>URL of the fasta file. URL templates must resolve to one URL.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>Type: number<p>Size of each chunk when fetching the fasta file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>
+<p>Type: number</p>
+<p>Size of each chunk when fetching the fasta file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>7000</code></p>
 </dd>
 </dl>
@@ -4129,27 +4143,39 @@ sample identifier to each returned row.</p>
 <h3 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>pixelsPerBin</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The approximate minimum width of each data bin, in pixels.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The approximate minimum width of each data bin, in pixels.</p>
 <p><strong>Default value:</strong> <code>2</code></p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a><p>URL of the BigWig file. URL templates load multiple BigWig files and attach the template field to loaded rows.</p>
+<dd>
+<p>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a></p>
+<p>URL of the BigWig file. URL templates load multiple BigWig files and attach the template field to loaded rows.</p>
 </dd>
 </dl>
 <h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
@@ -4206,26 +4232,38 @@ genomic regions stored in BigBed files.</p>
 <h3 id="parameters_2">Parameters<a class="headerlink" href="#parameters_2" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a><p>URL of the BigBed file. URL templates load multiple BigBed files and attach the template field to loaded rows.</p>
+<dd>
+<p>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a></p>
+<p>URL of the BigBed file. URL templates load multiple BigBed files and attach the template field to loaded rows.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Size of each chunk when fetching the BigBed file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>1000000</code></p>
 </dd>
 </dl>
@@ -4307,41 +4345,61 @@ for the supported syntax). If the file uses bare chromosome names, set
 <h3 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>addChrPrefix</code></dt>
-<dd>Type: boolean | string<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
+<dd>
+<p>Type: boolean | string</p>
+<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>columns</code></dt>
-<dd>Type: array<p>Ordered list of field names for headerless tabix TSV input. If omitted, the source tries to read a commented header line from the tabix file header or the first row of a plain TSV header.</p>
+<dd>
+<p>Type: array</p>
+<p>Ordered list of field names for headerless tabix TSV input. If omitted, the source tries to read a commented header line from the tabix file header or the first row of a plain TSV header.</p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#indexed-files">IndexUrlTemplate</a><p>URL of the tabix index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#indexed-files">IndexUrlTemplate</a></p>
+<p>URL of the tabix index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".tbi"</code>.</p>
 </dd>
 <dt><code>parse</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#parse">Parse</a> | null<p>Optional type parsing for TSV fields. When omitted, field types are inferred automatically. Set to <code>null</code> to disable spec-based type inference and rely on data inference, or provide a field-to-type map to override selected columns.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#parse">Parse</a> | null</p>
+<p>Optional type parsing for TSV fields. When omitted, field types are inferred automatically. Set to <code>null</code> to disable spec-based type inference and rely on data inference, or provide a field-to-type map to override selected columns.</p>
 <p><strong>Default value:</strong> <code>"auto"</code></p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a><p>URL of the bgzip-compressed file. URL templates load multiple files and attach the template field to loaded rows.</p>
+<dd>
+<p>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a></p>
+<p>URL of the bgzip-compressed file. URL templates load multiple files and attach the template field to loaded rows.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>Type: number<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>
+<p>Type: number</p>
+<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>30000000</code></p>
 </dd>
 </dl>
@@ -4359,34 +4417,50 @@ directly with the eager <a href="../eager/#vcf"><code>url</code> data source</a>
 <h3 id="parameters_4">Parameters<a class="headerlink" href="#parameters_4" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>addChrPrefix</code></dt>
-<dd>Type: boolean | string<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
+<dd>
+<p>Type: boolean | string</p>
+<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#indexed-files">IndexUrlTemplate</a><p>URL of the tabix index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#indexed-files">IndexUrlTemplate</a></p>
+<p>URL of the tabix index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".tbi"</code>.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a><p>URL of the bgzip-compressed file. URL templates load multiple files and attach the template field to loaded rows.</p>
+<dd>
+<p>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a></p>
+<p>URL of the bgzip-compressed file. URL templates load multiple files and attach the template field to loaded rows.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>Type: number<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>
+<p>Type: number</p>
+<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>30000000</code></p>
 </dd>
 </dl>
@@ -4562,34 +4636,50 @@ visualization below.</p>
 <h3 id="parameters_5">Parameters<a class="headerlink" href="#parameters_5" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>addChrPrefix</code></dt>
-<dd>Type: boolean | string<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
+<dd>
+<p>Type: boolean | string</p>
+<p>Add a <code>chr</code> (boolean) or custom (string) prefix to the chromosome names in the Tabix file.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#indexed-files">IndexUrlTemplate</a><p>URL of the tabix index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#indexed-files">IndexUrlTemplate</a></p>
+<p>URL of the tabix index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".tbi"</code>.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a><p>URL of the bgzip-compressed file. URL templates load multiple files and attach the template field to loaded rows.</p>
+<dd>
+<p>Type: string | string[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a></p>
+<p>URL of the bgzip-compressed file. URL templates load multiple files and attach the template field to loaded rows.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>Type: number<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>
+<p>Type: number</p>
+<p>Size of each chunk when fetching the Tabix file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>30000000</code></p>
 </dd>
 </dl>
@@ -4974,30 +5064,44 @@ mismatch evidence.</p>
 <h3 id="parameters_6">Parameters<a class="headerlink" href="#parameters_6" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to monitor.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to monitor.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for data updates, in milliseconds. Debouncing prevents excessive data updates when the user is zooming or panning around.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceDomainChange</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Debounce time for scale-domain driven data updates, in milliseconds.</p>
 <p><strong>Default value:</strong> <code>200</code></p>
 </dd>
 <dt><code>debounceMode</code></dt>
-<dd>Type: string<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
+<dd>
+<p>Type: string</p>
+<p>The debounce mode for data updates. If set to <code>"domain"</code>, domain change events (panning and zooming) will be debounced. If set to <code>"window"</code>, the data fetches initiated by the changes to the visible window (or tile) will be debounced.  If your data is small, the <code>"window"</code> is better as it will start fetching data while the user is still panning around, resulting in a shorter perceived latency.</p>
 <p><strong>Default value:</strong> <code>"window"</code></p>
 </dd>
 <dt><code>indexUrl</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#indexed-files">IndexUrlTemplate</a><p>URL of the index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#indexed-files">IndexUrlTemplate</a></p>
+<p>URL of the index file. When <code>url</code> is a template, this can be an index URL template using the same placeholder and values.</p>
 <p><strong>Default value:</strong> <code>url</code> + <code>".bai"</code>.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a><p>URL of the BAM file. URL templates must resolve to one URL.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/data/multi-url/#url-templates">UrlTemplate</a></p>
+<p>URL of the BAM file. URL templates must resolve to one URL.</p>
 </dd>
 <dt><code>windowSize</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Size of each chunk when fetching the BAM file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Size of each chunk when fetching the BAM file. Data is only fetched when the length of the visible domain smaller than the window size.</p>
 <p><strong>Default value:</strong> <code>10000</code></p>
 </dd>
 </dl>
@@ -5134,10 +5238,14 @@ according to your requirements. The data source generates data objects with
 <h3 id="parameters_7">Parameters<a class="headerlink" href="#parameters_7" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>axis</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/axis/#properties">Axis</a><p>Optional axis properties</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/axis/#properties">Axis</a></p>
+<p>Optional axis properties</p>
 </dd>
 <dt><code>channel</code> <span class="required">Required</span></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to listen to</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to listen to</p>
 </dd>
 </dl>
 <h3 id="example_6">Example<a class="headerlink" href="#example_6" title="Permanent link">&para;</a></h3>
@@ -5180,7 +5288,9 @@ The data source generates data objects with the following fields: <code>name</co
 <h3 id="parameters_8">Parameters<a class="headerlink" href="#parameters_8" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code> <span class="required">Required</span></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>Which channel's scale domain to use</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>Which channel's scale domain to use</p>
 </dd>
 </dl>
 <h3 id="example_7">Example<a class="headerlink" href="#example_7" title="Permanent link">&para;</a></h3>

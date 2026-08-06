@@ -3432,24 +3432,36 @@ load the remaining files and write a warning to the browser console.</p>
 <p>The template object accepts the following properties:</p>
 <dl>
 <dt><code>attach</code></dt>
-<dd>Type: boolean<p>Whether to attach the template value to each loaded datum using <code>field</code> as the datum field name. Disable this when the expanded URL identifies only a file partition and the loaded data already contains the relevant identifiers.</p>
+<dd>
+<p>Type: boolean</p>
+<p>Whether to attach the template value to each loaded datum using <code>field</code> as the datum field name. Disable this when the expanded URL identifies only a file partition and the loaded data already contains the relevant identifiers.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>field</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#fieldname">FieldName</a><p>Field name used as the template placeholder and as the datum field attached to loaded rows.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#fieldname">FieldName</a></p>
+<p>Field name used as the template placeholder and as the datum field attached to loaded rows.</p>
 </dd>
 <dt><code>maxValues</code></dt>
-<dd>Type: number<p>Maximum number of distinct resolved values to load. If the limit is exceeded, the source loads no data.</p>
+<dd>
+<p>Type: number</p>
+<p>Maximum number of distinct resolved values to load. If the limit is exceeded, the source loads no data.</p>
 </dd>
 <dt><code>onLoadError</code></dt>
-<dd>Type: string<p>Behavior when loading an expanded URL fails. The default <code>"error"</code> fails the data source. Use <code>"skip"</code> when some expanded URLs are expected to be unavailable, for example when data files for some patients have not been generated yet.</p>
+<dd>
+<p>Type: string</p>
+<p>Behavior when loading an expanded URL fails. The default <code>"error"</code> fails the data source. Use <code>"skip"</code> when some expanded URLs are expected to be unavailable, for example when data files for some patients have not been generated yet.</p>
 <p><strong>Default value:</strong> <code>"error"</code></p>
 </dd>
 <dt><code>template</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>URL template. The value from <code>values</code> is substituted for the placeholder named by <code>field</code>, for example <code>{sample}</code>.</p>
+<dd>
+<p>Type: string</p>
+<p>URL template. The value from <code>values</code> is substituted for the placeholder named by <code>field</code>, for example <code>{sample}</code>.</p>
 </dd>
 <dt><code>values</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#scalar">Scalar</a>[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Values used for template expansion. Duplicate resolved URLs are loaded once. An ExprRef can reference reactive parameters such as <code>visibleSamples</code>.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#scalar">Scalar</a>[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Values used for template expansion. Duplicate resolved URLs are loaded once. An ExprRef can reference reactive parameters such as <code>visibleSamples</code>.</p>
 </dd>
 </dl>
 <h2 id="reactive-values">Reactive Values<a class="headerlink" href="#reactive-values" title="Permanent link">&para;</a></h2>

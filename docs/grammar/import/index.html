@@ -3421,33 +3421,47 @@ named and URLs, can be parameterized to allow for customization.</p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>config</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/config/#properties">GenomeSpyConfig</a><p>Configures defaults for the imported subtree at the import site.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/config/#properties">GenomeSpyConfig</a></p>
+<p>Configures defaults for the imported subtree at the import site.</p>
 <p>This config is merged before the imported spec's own root-level <code>config</code>, so imported specs can remain self-contained and override import-site defaults where needed.</p>
 </dd>
 <dt><code>import</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/import/#urlimport">UrlImport</a> | <a href="https://genomespy.app/docs/grammar/import/#templateimport">TemplateImport</a><p>The method to import a specification.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/import/#urlimport">UrlImport</a> | <a href="https://genomespy.app/docs/grammar/import/#templateimport">TemplateImport</a></p>
+<p>The method to import a specification.</p>
 </dd>
 <dt><code>name</code></dt>
-<dd>Type: string<p>The name given to the imported view. This property overrides the name specified in the imported specification and defines an import scope that is used for bookmarkable view visibility and parameter addressing.</p>
+<dd>
+<p>Type: string</p>
+<p>The name given to the imported view. This property overrides the name specified in the imported specification and defines an import scope that is used for bookmarkable view visibility and parameter addressing.</p>
 </dd>
 <dt><code>params</code></dt>
-<dd>Type: (<a href="https://genomespy.app/docs/grammar/types/#plainvalueparameter">PlainValueParameter</a> | <a href="https://genomespy.app/docs/grammar/types/#transitionedvalueparameter">TransitionedValueParameter</a> | <a href="https://genomespy.app/docs/grammar/types/#exprparameter">ExprParameter</a> | <a href="https://genomespy.app/docs/grammar/parameters/#selection-parameters">SelectionParameter</a> | <a href="https://genomespy.app/docs/grammar/types/#rulerparameter">RulerParameter</a>)[] | object<p>Dynamic variables that parameterize a visualization. Parameters defined here override the parameters defined in the imported specification.</p>
+<dd>
+<p>Type: (<a href="https://genomespy.app/docs/grammar/types/#plainvalueparameter">PlainValueParameter</a> | <a href="https://genomespy.app/docs/grammar/types/#transitionedvalueparameter">TransitionedValueParameter</a> | <a href="https://genomespy.app/docs/grammar/types/#exprparameter">ExprParameter</a> | <a href="https://genomespy.app/docs/grammar/parameters/#selection-parameters">SelectionParameter</a> | <a href="https://genomespy.app/docs/grammar/types/#rulerparameter">RulerParameter</a>)[] | object</p>
+<p>Dynamic variables that parameterize a visualization. Parameters defined here override the parameters defined in the imported specification.</p>
 </dd>
 <dt><code>visible</code></dt>
-<dd>Type: boolean<p>Overrides the visibility of the imported view.</p>
+<dd>
+<p>Type: boolean</p>
+<p>Overrides the visibility of the imported view.</p>
 <p>If not specified, the imported specification's <code>visible</code> property is used.</p>
 </dd>
 </dl>
 <h3 id="urlimport">UrlImport<a class="headerlink" href="#urlimport" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>Imports a specification from the specified URL.</p>
+<dd>
+<p>Type: string</p>
+<p>Imports a specification from the specified URL.</p>
 </dd>
 </dl>
 <h3 id="templateimport">TemplateImport<a class="headerlink" href="#templateimport" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>template</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>Imports a specification from the current view hierarchy, searching first in the current view, then ascending through ancestors.</p>
+<dd>
+<p>Type: string</p>
+<p>Imports a specification from the current view hierarchy, searching first in the current view, then ascending through ancestors.</p>
 </dd>
 </dl>
 <h2 id="importing-from-a-url">Importing from a URL<a class="headerlink" href="#importing-from-a-url" title="Permanent link">&para;</a></h2>

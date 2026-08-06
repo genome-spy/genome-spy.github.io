@@ -3328,29 +3328,45 @@ to the coordinate names used by <code>key</code>. It cannot contain <code>"looku
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code></dt>
-<dd>Type: array<p>Output field names. Defaults to <code>values</code>. Requires an explicit <code>values</code> array.</p>
+<dd>
+<p>Type: array</p>
+<p>Output field names. Defaults to <code>values</code>. Requires an explicit <code>values</code> array.</p>
 </dd>
 <dt><code>channel</code></dt>
-<dd>Type: <code>"x"</code> | <code>"y"</code><p>The positional channel shared with the lazy side input.</p>
+<dd>
+<p>Type: <code>"x"</code> | <code>"y"</code></p>
+<p>The positional channel shared with the lazy side input.</p>
 <p><strong>Default value:</strong> <code>"x"</code></p>
 </dd>
 <dt><code>default</code></dt>
-<dd>Value written when no side-input row matches.<p><strong>Default value:</strong> <code>null</code></p>
+<dd>
+<p>Value written when no side-input row matches.</p>
+<p><strong>Default value:</strong> <code>null</code></p>
 </dd>
 <dt><code>description</code></dt>
-<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
+<dd>
+<p>Type: string</p>
+<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 <dt><code>fields</code></dt>
-<dd>Type: string (field name) | [string (field name), string (field name)] | null<p>Coordinate field or <code>[chrom, pos]</code> fields in the primary data. Defaults to <code>key</code>.</p>
+<dd>
+<p>Type: string (field name) | [string (field name), string (field name)] | null</p>
+<p>Coordinate field or <code>[chrom, pos]</code> fields in the primary data. Defaults to <code>key</code>.</p>
 </dd>
 <dt><code>from</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#coordinatelookupinput">CoordinateLookupInput</a><p>The lazy side input and its optional transforms. Rows outside the loaded side-input domain are not passed through.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#coordinatelookupinput">CoordinateLookupInput</a></p>
+<p>The lazy side input and its optional transforms. Rows outside the loaded side-input domain are not passed through.</p>
 </dd>
 <dt><code>key</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name) | [string (field name), string (field name)]<p>Coordinate field or <code>[chrom, pos]</code> fields in the lazy side input. The same fields in the primary data determine both the exact match and whether a row is within the loaded side-input interval.</p>
+<dd>
+<p>Type: string (field name) | [string (field name), string (field name)]</p>
+<p>Coordinate field or <code>[chrom, pos]</code> fields in the lazy side input. The same fields in the primary data determine both the exact match and whether a row is within the loaded side-input interval.</p>
 </dd>
 <dt><code>values</code></dt>
-<dd>Type: string (field name)[] | null<p>Fields to copy from a matching side-input row. Defaults to all fields except <code>key</code>.</p>
+<dd>
+<p>Type: string (field name)[] | null</p>
+<p>Fields to copy from a matching side-input row. Defaults to all fields except <code>key</code>.</p>
 </dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>

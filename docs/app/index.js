@@ -1,5 +1,5 @@
-import { Z as e, gt as t, ht as n, t as r, xt as i, yt as a } from "./src-CShF4tQM.js";
-import { n as o, t as s } from "./ref-CR9xLN0-.js";
+import { Z as e, gt as t, ht as n, t as r, xt as i, yt as a } from "./src-wjQzgtDW.js";
+import { n as o, t as s } from "./ref-dcQGeLs_.js";
 //#region index.js
 function c() {
 	let e = document.querySelector("meta[name='base_url']").getAttribute("content");
@@ -13,7 +13,7 @@ async function u(e, t, n, i, a) {
 	try {
 		if (t.baseUrl = t.baseUrl || (n ? l(n) : o), i === "core") return await r(e, t);
 		if (i === "app") {
-			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-C_E7hoLh.js");
+			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-DY9on1pd.js");
 			return await a(n), await r(e, t, { embedMode: "embedded" });
 		} else throw Error(`Unknown GenomeSpy embed runtime: ${i}`);
 	} catch (t) {
