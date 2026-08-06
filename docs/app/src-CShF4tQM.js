@@ -2451,7 +2451,7 @@ var pc = class extends oc {
 			load: (e, r) => this.#o(e, n, t, r),
 			loadBatch: (e, r) => this.#s(e, n, t, r)
 		});
-		r && (this.publishData(r), this.#e.markLoaded());
+		r && (this.#e.markLoaded(), this.publishData(r));
 	}
 	async #o(e, t, n, r) {
 		return (await Promise.all(t.map((t, i) => {
@@ -2566,7 +2566,7 @@ var yc = class extends oc {
 	}
 	async loadInterval(e) {
 		let t = this.#e.handles, n = await this.discretizeAndLoad(e, async (e, n) => (await Promise.all(t.map((t) => t.bbi.getFeatures(e.chrom, e.startPos, e.endPos, { signal: n }).then((n) => n.map((n) => t.attachFields(t.parseLine(e.chrom, n))))))).flat());
-		n && (this.publishData(n), this.#e.markLoaded());
+		n && (this.#e.markLoaded(), this.publishData(n));
 	}
 	isDataReadyForDomain(e) {
 		return this.#e.activeSetLoaded && super.isDataReadyForDomain(e);
@@ -2899,7 +2899,7 @@ var Wc = class extends oc {
 				for (let e of i) this._propagate(e);
 			}
 		}
-		this.complete(), this.#e.markLoaded();
+		this.#e.markLoaded(), this.complete();
 	}
 	isDataReadyForDomain(e) {
 		return this.#e.activeSetLoaded && super.isDataReadyForDomain(e);
@@ -6447,7 +6447,7 @@ var q_ = class {
 			let e = this.properties[r];
 			if (e && E(e)) {
 				let i = this.unitView.paramRuntime.watchExpression(e.expr, () => {
-					this.updateGraphicsData(), this.unitView.context.animator.requestRender();
+					this.unitView.getCollector()?.completed && (this.updateGraphicsData(), this.unitView.context.animator.requestRender());
 				});
 				t.includes(r) || Object.defineProperty(n, r, { get() {
 					return i();
@@ -9222,7 +9222,7 @@ var Gb = class {
 			return;
 		}
 		if (!this.#n || o) {
-			this.#E("domain");
+			(!r || !_t(n, t.domain())) && this.#E("domain");
 			return;
 		}
 		if (t.props.domainTransition === !1) {
@@ -19892,11 +19892,11 @@ function fj(e, t) {
 function pj(e, t, n) {
 	let r = hj(e, n);
 	if (!r.size) return !0;
-	for (let e of r) if (!_j(e, t)) return !1;
+	for (let e of r) if (!vj(e, t)) return !1;
 	return !0;
 }
 function mj(e, t, n, r, i) {
-	let a = i ?? ((e) => e.isConfiguredVisible());
+	let a = i ?? gj;
 	return new Promise((i, o) => {
 		let s = /* @__PURE__ */ new Set(), c = /* @__PURE__ */ new Set(), l = () => {
 			f(), d();
@@ -19921,11 +19921,11 @@ function mj(e, t, n, r, i) {
 			}
 			r.addEventListener("abort", p, { once: !0 });
 		}
-		f(), gj(t, n, a), d();
+		f(), _j(t, n, a), d();
 	});
 }
 function hj(e, t) {
-	let n = t ?? ((e) => e.isConfiguredVisible()), r = /* @__PURE__ */ new Set();
+	let n = t ?? gj, r = /* @__PURE__ */ new Set();
 	return e.visit((e) => {
 		if (!(e instanceof J) || !n(e)) return;
 		let t = e;
@@ -19935,22 +19935,25 @@ function hj(e, t) {
 		i instanceof Bo && r.add(i);
 	}), r;
 }
-function gj(e, t, n) {
+function gj(e) {
+	return e.isConfiguredVisible() && e.getEffectiveOpacity() > 0;
+}
+function _j(e, t, n) {
 	for (let r of hj(e, n)) {
-		let e = vj(r, t);
+		let e = yj(r, t);
 		e && r.ensureDataForDomain(e);
 	}
 }
-function _j(e, t) {
-	let n = vj(e, t);
+function vj(e, t) {
+	let n = yj(e, t);
 	return !!n && e.isDataReadyForDomain({ [e.channel]: n });
 }
-function vj(e, t) {
+function yj(e, t) {
 	return t?.[e.channel] ?? (t ? void 0 : Array.from(e.scaleResolution.getDomain()));
 }
 //#endregion
 //#region ../core/src/config/themes.js
-var yj = {
+var bj = {
 	mark: { color: "#4c78a8" },
 	point: {
 		filled: !1,
@@ -20005,15 +20008,15 @@ var yj = {
 		ramp: "blues",
 		diverging: "blueorange"
 	}
-}, bj = {
+}, xj = {
 	genomespy: {
 		mark: { color: "#4c78a8" },
 		rule: { color: "black" },
 		text: { color: "black" },
 		link: { color: "black" }
 	},
-	vegalite: yj,
-	quartz: A([yj, {
+	vegalite: bj,
+	quartz: A([bj, {
 		background: "#f9f9f9",
 		view: { fill: "#f9f9f9" },
 		mark: { color: "#ab5787" },
@@ -20037,7 +20040,7 @@ var yj = {
 			tickSize: 0
 		}
 	}]),
-	dark: A([yj, {
+	dark: A([bj, {
 		background: "#333",
 		view: {
 			fill: "#333",
@@ -20054,7 +20057,7 @@ var yj = {
 		text: { color: "#fff" },
 		rule: { color: "#fff" }
 	}]),
-	fivethirtyeight: A([yj, {
+	fivethirtyeight: A([bj, {
 		background: "#f0f0f0",
 		view: { fill: "#f0f0f0" },
 		mark: { color: "#30a2da" },
@@ -20085,7 +20088,7 @@ var yj = {
 			offset: 20
 		}
 	}]),
-	urbaninstitute: A([yj, {
+	urbaninstitute: A([bj, {
 		background: "#FFFFFF",
 		view: {
 			fill: "#FFFFFF",
@@ -20135,34 +20138,34 @@ var yj = {
 			titleFont: "Lato"
 		}
 	}])
-}, xj = Object.keys(bj);
-function Sj(e) {
-	let t = { ...bj[e] };
+}, Sj = Object.keys(xj);
+function Cj(e) {
+	let t = { ...xj[e] };
 	return delete t.background, t;
 }
-function Cj(e) {
+function wj(e) {
 	if (!e) return [];
-	let t = Array.isArray(e) ? e : [e], n = t.filter((e) => !(e in bj));
-	if (n.length > 0) throw Error("Unknown theme \"" + n[0] + "\". Available themes: " + xj.join(", "));
+	let t = Array.isArray(e) ? e : [e], n = t.filter((e) => !(e in xj));
+	if (n.length > 0) throw Error("Unknown theme \"" + n[0] + "\". Available themes: " + Sj.join(", "));
 	return t;
 }
-var wj = "genomespy";
-function Tj(e) {
-	return bj[e].background;
-}
+var Tj = "genomespy";
 function Ej(e) {
-	let t = Cj(e);
-	if (t.length != 0) return A(t.map((e) => Sj(e)));
+	return xj[e].background;
+}
+function Dj(e) {
+	let t = wj(e);
+	if (t.length != 0) return A(t.map((e) => Cj(e)));
 }
 //#endregion
 //#region ../core/src/utils/warning.js
-var Dj = /* @__PURE__ */ new Set();
-function Oj(e) {
-	Dj.has(e) || (Dj.add(e), console.warn(e));
+var Oj = /* @__PURE__ */ new Set();
+function kj(e) {
+	Oj.has(e) || (Oj.add(e), console.warn(e));
 }
 //#endregion
 //#region ../core/src/genomeSpyBase.js
-var kj = class {
+var Aj = class {
 	#e = [];
 	#t;
 	#n;
@@ -20187,7 +20190,7 @@ var kj = class {
 		this.#i.initialize(this.viewRoot);
 	}
 	registerNamedDataProvider(e) {
-		Oj("The `namedDataProvider` embed option is deprecated. Declare named datasets explicitly and update them through `api.datasets` or the owning `ViewHandle.datasets`."), this.namedDataProviders.unshift(e);
+		kj("The `namedDataProvider` embed option is deprecated. Declare named datasets explicitly and update them through `api.datasets` or the owning `ViewHandle.datasets`."), this.namedDataProviders.unshift(e);
 	}
 	getNamedDataFromProvider(e) {
 		for (let t of this.namedDataProviders) {
@@ -20196,7 +20199,7 @@ var kj = class {
 		}
 	}
 	updateNamedData(e, t) {
-		Oj("`updateNamedData()` is deprecated. Update an explicitly declared dataset through `api.datasets` or its owning `ViewHandle.datasets`.");
+		kj("`updateNamedData()` is deprecated. Update an explicitly declared dataset through `api.datasets` or its owning `ViewHandle.datasets`.");
 		let n = this.viewRoot.context.dataFlow.findNamedDataSource(e);
 		if (!n) throw Error("No such named data source: " + e);
 		n.dataSource.updateDynamicData(t), this.animator.requestRender();
@@ -20261,8 +20264,8 @@ var kj = class {
 		e.loadingStatusRegistry = this.#r;
 		let t = uA({
 			defaultConfig: tj,
-			builtInTheme: Ej(wj),
-			theme: A([this.options.theme, Ej(this.spec.theme)])
+			builtInTheme: Dj(Tj),
+			theme: A([this.options.theme, Dj(this.spec.theme)])
 		});
 		return NA({
 			dataFlow: e,
@@ -20306,7 +20309,7 @@ var kj = class {
 				if (this.spec.background !== void 0) return this.spec.background;
 				let e;
 				for (let t of n) {
-					let n = Tj(t);
+					let n = Ej(t);
 					n !== void 0 && (e = n);
 				}
 				return e;
@@ -20346,7 +20349,7 @@ var kj = class {
 		this.viewRoot && (await ww(this.viewRoot, this.viewRoot.context.dataFlow, this.viewRoot.context.fontManager), this.viewRoot._invalidateCacheByPrefix("size", "progeny"), this.#o.invalidateSize(), this.computeLayout(), this.animator.requestRender());
 	}
 	async awaitVisibleLazyData(e) {
-		this.viewRoot && await mj(this.viewRoot.context, this.viewRoot, void 0, e, (e) => e.isConfiguredVisible() && Aj(e));
+		this.viewRoot && await mj(this.viewRoot.context, this.viewRoot, void 0, e, (e) => gj(e) && jj(e));
 	}
 	updateTooltip(e, t) {
 		this.#a.updateTooltip(e, t);
@@ -20399,7 +20402,7 @@ var kj = class {
 		}), e;
 	}
 };
-function Aj(e) {
+function jj(e) {
 	let t = e;
 	for (; t;) {
 		let e = t.flowHandle?.dataSource;
@@ -20410,16 +20413,16 @@ function Aj(e) {
 }
 //#endregion
 //#region ../core/src/data/formats/readBinary.js
-async function jj(e, t) {
+async function Mj(e, t) {
 	let n = t?.type;
 	if (n !== "arrow" && n !== "parquet") throw Error("Unsupported binary data format: " + String(n));
 	let r = za(n);
 	if (!r) throw Error("Data format is not registered: " + n);
-	let i = await r(Mj(e), t);
+	let i = await r(Nj(e), t);
 	if (!Array.isArray(i)) throw Error(`The ${n} data reader did not return an array.`);
 	return i;
 }
-function Mj(e) {
+function Nj(e) {
 	if (ArrayBuffer.isView(e)) return new Uint8Array(e.buffer, e.byteOffset, e.byteLength);
 	if (e instanceof ArrayBuffer) return new Uint8Array(e);
 	throw TypeError("Binary data must be an ArrayBuffer or ArrayBufferView.");
@@ -20431,56 +20434,56 @@ var $ = class extends Error {
 		super(t, n), this.name = "ViewMutationError", this.code = e;
 	}
 };
-function Nj(e, t) {
+function Pj(e, t) {
 	let n = () => e.viewRoot;
-	return Pj(() => mA(n()), n, t);
+	return Fj(() => mA(n()), n, t);
 }
-function Pj(e, t, n = () => !0) {
+function Fj(e, t, n = () => !0) {
 	return {
 		set(r, i) {
-			Fj(n);
+			Ij(n);
 			let a = e();
-			zj(a, Rj(a, r, t), i);
+			Bj(a, zj(a, r, t), i);
 		},
 		async load(r, i, a) {
-			Fj(n);
-			let o = e(), s = Rj(o, r, t), c = s.beginUpdate(), l = a?.type ?? "unknown", u = () => (Fj(n), Rj(o, r, t) === s && s.isCurrentUpdate(c)), d;
+			Ij(n);
+			let o = e(), s = zj(o, r, t), c = s.beginUpdate(), l = a?.type ?? "unknown", u = () => (Ij(n), zj(o, r, t) === s && s.isCurrentUpdate(c)), d;
 			try {
-				d = await jj(i, a);
+				d = await Mj(i, a);
 			} catch (e) {
 				if (!u()) return;
-				throw new $("datasetLoadFailed", `Cannot load named dataset "${r}" as ${l}: ${Ij(e)}`, { cause: e });
+				throw new $("datasetLoadFailed", `Cannot load named dataset "${r}" as ${l}: ${Lj(e)}`, { cause: e });
 			}
-			u() && zj(o, s, d);
+			u() && Bj(o, s, d);
 		},
 		reset(r) {
-			Fj(n);
+			Ij(n);
 			let i = e();
-			zj(i, Rj(i, r, t));
+			Bj(i, zj(i, r, t));
 		}
 	};
 }
-function Fj(e) {
+function Ij(e) {
 	if (!e()) throw new $("staleEmbed", "Cannot update named data through a finalized embed.");
 }
-function Ij(e) {
+function Lj(e) {
 	return e instanceof Error ? e.message : String(e);
 }
-function Lj(e, t) {
+function Rj(e, t) {
 	let n = t();
 	return e === n || !!n?.getDescendants?.().includes(e);
 }
-function Rj(e, t, n) {
-	if (!Lj(e, n)) throw new $("staleHandle", "Cannot update named data through a stale view handle.");
+function zj(e, t, n) {
+	if (!Rj(e, n)) throw new $("staleHandle", "Cannot update named data through a stale view handle.");
 	if (typeof t != "string" || !t.length) throw new $("invalidNamedData", "Named dataset name must be a non-empty string.");
 	let r = e.namedDataScope.getLocalBinding(t);
 	if (r) return r;
 	throw e.namedDataScope.findDeclaredBinding(t) ? new $("namedDataOwnerMismatch", "Named dataset \"" + t + "\" is declared by an ancestor view. Use the dataset owner's handle.") : new $("namedDataNotDeclared", "View does not declare named dataset \"" + t + "\". Add it to the view's datasets object before updating it.");
 }
-function zj(e, t, n) {
+function Bj(e, t, n) {
 	e.context.dataFlow.updateNamedDataBinding(t, n), e.context.animator.requestRender();
 }
-function Bj(e, t) {
+function Vj(e, t) {
 	let n = /* @__PURE__ */ new WeakMap(), r = /* @__PURE__ */ new WeakMap(), i = Promise.resolve(), a;
 	function o() {
 		return e.viewRoot;
@@ -20508,15 +20511,15 @@ function Bj(e, t) {
 			get type() {
 				return s(e);
 			},
-			isAlive: () => Lj(e, o),
+			isAlive: () => Rj(e, o),
 			parent: () => {
-				if (!(!Lj(e, o) || !e.layoutParent)) return l(e.layoutParent);
+				if (!(!Rj(e, o) || !e.layoutParent)) return l(e.layoutParent);
 			},
 			children: () => {
 				let t = u(e);
-				return !Lj(e, o) || !t ? [] : t.map((e) => l(e));
+				return !Rj(e, o) || !t ? [] : t.map((e) => l(e));
 			},
-			datasets: Pj(() => e, o, t)
+			datasets: Fj(() => e, o, t)
 		}, n.set(e, i), r.set(i, e), i);
 	}
 	function u(e) {
@@ -20525,8 +20528,8 @@ function Bj(e, t) {
 	}
 	function d(e) {
 		if (e === "root") return l(o());
-		if (Vj(e)) return r.has(e) && e.isAlive() ? e : void 0;
-		if (Hj(e)) {
+		if (Hj(e)) return r.has(e) && e.isAlive() ? e : void 0;
+		if (Uj(e)) {
 			let t = ht(o(), e);
 			return t ? l(t) : void 0;
 		} else throw new $("invalidAddress", "View address must be a handle, selector, or \"root\".");
@@ -20534,7 +20537,7 @@ function Bj(e, t) {
 	function f(e) {
 		let t = d(e);
 		if (t) return t;
-		throw Vj(e) && r.has(e) ? new $("staleHandle", "Stale view handle no longer refers to a live view.") : new $("unresolvedAddress", "View address did not resolve to a live view.");
+		throw Hj(e) && r.has(e) ? new $("staleHandle", "Stale view handle no longer refers to a live view.") : new $("unresolvedAddress", "View address did not resolve to a live view.");
 	}
 	function p(e) {
 		let t = f(e), n = r.get(t);
@@ -20711,39 +20714,39 @@ function Bj(e, t) {
 	};
 	return le;
 }
-function Vj(e) {
+function Hj(e) {
 	return typeof e == "object" && !!e && typeof e.isAlive == "function";
 }
-function Hj(e) {
+function Uj(e) {
 	return typeof e == "object" && !!e && Array.isArray(e.scope) && typeof e.view == "string";
 }
 //#endregion
 //#region ../core/src/utils/inferSpecBaseUrl.js
-var Uj = [
+var Wj = [
 	["/docs/example-specs/", "/docs/example-specs/"],
 	["/examples/core/", "/examples/"],
 	["/examples/docs/", "/examples/"],
 	["/examples/app/", "/examples/"]
-], Wj = /^(?:[a-z]+:)?\/\//i, Gj = "https://example.invalid";
-function Kj(e) {
-	return Wj.test(e) ? "external" : e.startsWith("/") ? "root" : "relative";
-}
+], Gj = /^(?:[a-z]+:)?\/\//i, Kj = "https://example.invalid";
 function qj(e) {
-	let t = new URL(e, Gj), n = Uj.find(([e]) => t.pathname.startsWith(e));
-	if (n) return Yj(n[1], t, Kj(e));
+	return Gj.test(e) ? "external" : e.startsWith("/") ? "root" : "relative";
 }
 function Jj(e) {
-	let t = qj(e);
-	if (t) return t;
-	let n = new URL(e, Gj);
-	return Yj(new URL("./", n).pathname, n, Kj(e));
+	let t = new URL(e, Kj), n = Wj.find(([e]) => t.pathname.startsWith(e));
+	if (n) return Xj(n[1], t, qj(e));
 }
-function Yj(e, t, n) {
+function Yj(e) {
+	let t = Jj(e);
+	if (t) return t;
+	let n = new URL(e, Kj);
+	return Xj(new URL("./", n).pathname, n, qj(e));
+}
+function Xj(e, t, n) {
 	return n === "external" ? t.origin + e : n === "root" ? e : e.slice(1);
 }
 //#endregion
 //#region ../core/src/embedFactory.js
-function Xj(e) {
+function Zj(e) {
 	return async function(t, n, r = {}) {
 		let i = !0, a = () => i, o;
 		if (L(t)) {
@@ -20752,18 +20755,18 @@ function Xj(e) {
 		else throw Error(`Invalid element: ${t}`);
 		let s;
 		try {
-			let t = Pt(n) ? n : await Qj(n);
+			let t = Pt(n) ? n : await $j(n);
 			if (t.baseUrl ??= "", t.padding ??= 10, o == document.body) {
 				let e = document.createElement("div");
 				e.style.position = "fixed", e.style.inset = "0", e.style.overflow = "hidden", o.appendChild(e), o = e;
 			}
-			s = new e(o, t, r), Zj(s, r), await s.launch();
+			s = new e(o, t, r), Qj(s, r), await s.launch();
 		} catch (e) {
 			o.innerText = e.toString(), console.error(e);
 		}
 		return {
-			views: Bj(s, a),
-			datasets: Nj(s, a),
+			views: Vj(s, a),
+			datasets: Pj(s, a),
 			finalize() {
 				for (i = !1, s.destroy(); o.firstChild;) o.firstChild.remove();
 			},
@@ -20793,20 +20796,20 @@ function Xj(e) {
 		};
 	};
 }
-function Zj(e, t) {
+function Qj(e, t) {
 	t.namedDataProvider && e.registerNamedDataProvider(t.namedDataProvider);
 }
-async function Qj(e) {
+async function $j(e) {
 	let t;
 	try {
 		t = await jx(e);
 	} catch (t) {
 		throw Error(`Could not load or parse configuration: ${e}, reason: ${t.message}`, { cause: t });
 	}
-	return t.baseUrl ||= Jj(e), t;
+	return t.baseUrl ||= Yj(e), t;
 }
 //#endregion
 //#region ../core/src/index.js
-var $j = Xj(kj);
+var eM = Zj(Aj);
 //#endregion
-export { fl as $, hw as A, Ax as B, lE as C, kT as D, LT as E, MS as F, Gy as G, J as H, Xx as I, Cv as J, uy as K, Mx as L, iw as M, GC as N, Xw as O, kC as P, dl as Q, Px as R, uE as S, sr as St, IT as T, Mb as U, jx as V, Ky as W, Sl as X, Cg as Y, hl as Z, KE as _, li as _t, kj as a, Nc as at, X as b, si as bt, pj as c, ka as ct, Uk as d, Ji as dt, ul as et, Ok as f, qi as ft, oD as g, z as gt, XD as h, di as ht, Bj as i, Lc as it, bw as j, gw as k, lA as l, Ha as lt, Ak as m, Wi as mt, Qj as n, nl as nt, mj as o, Mc as ot, kk as p, Ki as pt, iy as q, Nj as r, jc as rt, fj as s, ac as st, $j as t, rl as tt, cA as u, Ba as ut, qE as v, qr as vt, KT as w, Y as x, cr as xt, PE as y, R as yt, Fx as z };
+export { fl as $, hw as A, Ax as B, lE as C, kT as D, LT as E, MS as F, Gy as G, J as H, Xx as I, Cv as J, uy as K, Mx as L, iw as M, GC as N, Xw as O, kC as P, dl as Q, Px as R, uE as S, sr as St, IT as T, Mb as U, jx as V, Ky as W, Sl as X, Cg as Y, hl as Z, KE as _, li as _t, Aj as a, Nc as at, X as b, si as bt, pj as c, ka as ct, Uk as d, Ji as dt, ul as et, Ok as f, qi as ft, oD as g, z as gt, XD as h, di as ht, Vj as i, Lc as it, bw as j, gw as k, lA as l, Ha as lt, Ak as m, Wi as mt, $j as n, nl as nt, mj as o, Mc as ot, kk as p, Ki as pt, iy as q, Pj as r, jc as rt, fj as s, ac as st, eM as t, rl as tt, cA as u, Ba as ut, qE as v, qr as vt, KT as w, Y as x, cr as xt, PE as y, R as yt, Fx as z };
