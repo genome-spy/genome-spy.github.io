@@ -600,6 +600,8 @@
       
         
       
+        
+      
     
     
     
@@ -1013,6 +1015,33 @@
     
   
   Formula
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/identifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Identifier
 
     
   </span>
@@ -3453,198 +3482,128 @@ arrowhead wider than the stem.</p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>buildIndex</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Whether the x channel should build an index for efficient subset rendering. If omitted, GenomeSpy enables indexing automatically for positional x encodings.</p>
+<dd>Type: boolean<p>Whether the x channel should build an index for efficient subset rendering. If omitted, GenomeSpy enables indexing automatically for positional x encodings.</p>
 </dd>
 <dt><code>clip</code></dt>
-<dd>
-<p>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code></p>
-<p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
+<dd>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code><p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
 <p><strong>Default value:</strong> the direction of zoomable positional scales</p>
 </dd>
 <dt><code>color</code></dt>
-<dd>
-<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
 </dd>
 <dt><code>cullByVisibleRange</code></dt>
-<dd>
-<p>Type: boolean | <code>"x"</code> | <code>"y"</code></p>
-<p>Hide point-like mark instances whose anchor falls outside the inherited visible range in the given screen-space direction.</p>
+<dd>Type: boolean | <code>"x"</code> | <code>"y"</code><p>Hide point-like mark instances whose anchor falls outside the inherited visible range in the given screen-space direction.</p>
 </dd>
 <dt><code>cursor</code></dt>
-<dd>
-<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Mouse cursor shown while the pointer is over the mark. Mark cursor takes precedence over enclosing view cursors.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Mouse cursor shown while the pointer is over the mark. Mark cursor takes precedence over enclosing view cursors.</p>
 <p><strong>Default value:</strong> browser default</p>
 </dd>
 <dt><code>direction</code></dt>
-<dd>
-<p>Type: <code>"forward"</code> | <code>"reverse"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Direction of the arrowhead. <code>"forward"</code> places the arrowhead at the secondary endpoint (<code>x2</code>, <code>y2</code>). <code>"reverse"</code> places it at the primary endpoint (<code>x</code>, <code>y</code>). For data-driven direction, use the <code>direction</code> encoding channel.</p>
+<dd>Type: <code>"forward"</code> | <code>"reverse"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Direction of the arrowhead. <code>"forward"</code> places the arrowhead at the secondary endpoint (<code>x2</code>, <code>y2</code>). <code>"reverse"</code> places it at the primary endpoint (<code>x</code>, <code>y</code>). For data-driven direction, use the <code>direction</code> encoding channel.</p>
 <p><strong>Default value:</strong> <code>"forward"</code></p>
 </dd>
 <dt><code>fill</code></dt>
-<dd>
-<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>The fill color.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The fill color.</p>
 </dd>
 <dt><code>fillOpacity</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>The fill opacity. Value between <code>0</code> and <code>1</code>.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The fill opacity. Value between <code>0</code> and <code>1</code>.</p>
 </dd>
 <dt><code>filled</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Whether the <code>color</code> represents the <code>fill</code> color (<code>true</code>) or the <code>stroke</code> color (<code>false</code>).</p>
+<dd>Type: boolean<p>Whether the <code>color</code> represents the <code>fill</code> color (<code>true</code>) or the <code>stroke</code> color (<code>false</code>).</p>
 </dd>
 <dt><code>headAngle</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Angle in degrees between the arrow axis and an outer edge of the arrowhead. Smaller values produce longer, narrower heads. Larger values produce shorter, blunter heads. Values are clamped to <code>[1, 90]</code>.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Angle in degrees between the arrow axis and an outer edge of the arrowhead. Smaller values produce longer, narrower heads. Larger values produce shorter, blunter heads. Values are clamped to <code>[1, 90]</code>.</p>
 <p><strong>Default value:</strong> <code>45</code></p>
 </dd>
 <dt><code>headNotchAngle</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Angle in degrees between the arrow axis and the arrowhead notch edge. <code>90</code> places the notch point at the tip, producing a triangular head when <code>headAngle</code> is less than <code>90</code>. Applies to <code>"triangle"</code> heads. <code>"open"</code> heads use <code>headAngle</code> for the notch edge as well. Values are clamped to <code>[1, 90]</code>.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Angle in degrees between the arrow axis and the arrowhead notch edge. <code>90</code> places the notch point at the tip, producing a triangular head when <code>headAngle</code> is less than <code>90</code>. Applies to <code>"triangle"</code> heads. <code>"open"</code> heads use <code>headAngle</code> for the notch edge as well. Values are clamped to <code>[1, 90]</code>.</p>
 <p><strong>Default value:</strong> <code>90</code></p>
 </dd>
 <dt><code>headPlacement</code></dt>
-<dd>
-<p>Type: <code>"inside"</code> | <code>"outside"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Placement of the arrowhead relative to the encoded segment. <code>"inside"</code> keeps the whole arrowhead within the encoded segment. <code>"outside"</code> places the arrowhead beyond the encoded segment so that the head starts at the segment endpoint.</p>
+<dd>Type: <code>"inside"</code> | <code>"outside"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Placement of the arrowhead relative to the encoded segment. <code>"inside"</code> keeps the whole arrowhead within the encoded segment. <code>"outside"</code> places the arrowhead beyond the encoded segment so that the head starts at the segment endpoint.</p>
 <p><strong>Default value:</strong> <code>"inside"</code></p>
 </dd>
 <dt><code>headShape</code></dt>
-<dd>
-<p>Type: <code>"triangle"</code> | <code>"open"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Shape of the arrowhead. <code>"triangle"</code> draws a filled head. <code>"open"</code> draws an open head whose thickness matches the resolved <code>size</code>, even when <code>stem</code> is <code>false</code>.</p>
+<dd>Type: <code>"triangle"</code> | <code>"open"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Shape of the arrowhead. <code>"triangle"</code> draws a filled head. <code>"open"</code> draws an open head whose thickness matches the resolved <code>size</code>, even when <code>stem</code> is <code>false</code>.</p>
 <p><strong>Default value:</strong> <code>"triangle"</code></p>
 </dd>
 <dt><code>headSpacing</code></dt>
-<dd>
-<p>Type: number | null | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Spacing between repeated arrowheads as a multiplier of resolved <code>size</code>. The effective spacing is at least the rendered arrowhead footprint, including stroke. If <code>null</code>, arrowheads are not repeated.</p>
+<dd>Type: number | null | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Spacing between repeated arrowheads as a multiplier of resolved <code>size</code>. The effective spacing is at least the rendered arrowhead footprint, including stroke. If <code>null</code>, arrowheads are not repeated.</p>
 <p><strong>Default value:</strong> <code>null</code></p>
 </dd>
 <dt><code>headWidth</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Width of the arrowhead as a multiplier of resolved <code>size</code>. Values above <code>1</code> make the arrowhead wider than the stem.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Width of the arrowhead as a multiplier of resolved <code>size</code>. Values above <code>1</code> make the arrowhead wider than the stem.</p>
 <p><strong>Default value:</strong> <code>3</code></p>
 </dd>
 <dt><code>minBufferSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Minimum size for WebGL buffers (number of data items). Allows for using <code>bufferSubData()</code> to update graphics.</p>
+<dd>Type: number<p>Minimum size for WebGL buffers (number of data items). Allows for using <code>bufferSubData()</code> to update graphics.</p>
 <p>This property is intended for internal use.</p>
 </dd>
 <dt><code>minSize</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Minimum resolved arrow stem thickness in pixels. Applies to numeric, band-relative, and encoded <code>size</code> values.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Minimum resolved arrow stem thickness in pixels. Applies to numeric, band-relative, and encoded <code>size</code> values.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>minStemLength</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Minimum visible length of the arrow stem in pixels. When a non-repeated arrow is too short for the configured shape and minimum stem length, the affected notch or head angle is made blunter toward 90 degrees. For <code>"inside"</code> placement, this applies to <code>"triangle"</code> heads and is measured from the start of the stem to where the stem meets the head notch edge. For <code>"outside"</code> placement, this applies when <code>startNotch</code> is <code>true</code> and is measured from the start notch to the head start. Has no effect when <code>stem</code> is <code>false</code>.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Minimum visible length of the arrow stem in pixels. When a non-repeated arrow is too short for the configured shape and minimum stem length, the affected notch or head angle is made blunter toward 90 degrees. For <code>"inside"</code> placement, this applies to <code>"triangle"</code> heads and is measured from the start of the stem to where the stem meets the head notch edge. For <code>"outside"</code> placement, this applies when <code>startNotch</code> is <code>true</code> and is measured from the start notch to the head start. Has no effect when <code>stem</code> is <code>false</code>.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>opacity</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Opacity of the mark. Affects <code>fillOpacity</code> or <code>strokeOpacity</code>, depending on the <code>filled</code> property.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Opacity of the mark. Affects <code>fillOpacity</code> or <code>strokeOpacity</code>, depending on the <code>filled</code> property.</p>
 </dd>
 <dt><code>size</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/types/#arrowrelativesize">ArrowRelativeSize</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Arrow stem thickness in pixels, or as a fraction of the perpendicular band or view span for axis-aligned arrows.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/types/#arrowrelativesize">ArrowRelativeSize</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Arrow stem thickness in pixels, or as a fraction of the perpendicular band or view span for axis-aligned arrows.</p>
 <p>Numeric values are pixels. <code>{ "band": 0.8 }</code> resolves to 80% of the perpendicular band width, or 80% of the perpendicular view span when no band scale is available. Use <code>channel</code> to explicitly select the reference channel. Band-relative size is not supported for diagonal arrows.</p>
 <p><strong>Default value:</strong> <code>8</code></p>
 </dd>
 <dt><code>startNotch</code></dt>
-<dd>
-<p>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Whether to draw a notch at the start of the arrow. The start notch uses the same slope as the arrowhead edge.</p>
+<dd>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Whether to draw a notch at the start of the arrow. The start notch uses the same slope as the arrowhead edge.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>stem</code></dt>
-<dd>
-<p>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Whether to draw the arrow stem. When <code>false</code>, the resolved <code>size</code> still controls open-head thickness. <code>minStemLength</code> has no effect when the stem is hidden.</p>
+<dd>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Whether to draw the arrow stem. When <code>false</code>, the resolved <code>size</code> still controls open-head thickness. <code>minStemLength</code> has no effect when the stem is hidden.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>stroke</code></dt>
-<dd>
-<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>The stroke color</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The stroke color</p>
 </dd>
 <dt><code>strokeOpacity</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>The stroke opacity. Value between <code>0</code> and <code>1</code>.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The stroke opacity. Value between <code>0</code> and <code>1</code>.</p>
 </dd>
 <dt><code>strokeWidth</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>The stroke width in pixels.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The stroke width in pixels.</p>
 </dd>
 <dt><code>style</code></dt>
-<dd>
-<p>Type: string | string[]</p>
-<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones.</p>
+<dd>Type: string | string[]<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones.</p>
 </dd>
 <dt><code>tooltip</code></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/#handledtooltip">HandledTooltip</a> | null | boolean</p>
-<p>Tooltip handler. If <code>null</code>, no tooltip is shown. If string, specifies the <a href="https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#handledtooltip">HandledTooltip</a> | null | boolean<p>Tooltip handler. If <code>null</code>, no tooltip is shown. If string, specifies the <a href="https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
 </dd>
 <dt><code>x</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Position on the x axis.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Position on the x axis.</p>
 </dd>
 <dt><code>x2</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>The secondary position on the x axis.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The secondary position on the x axis.</p>
 </dd>
 <dt><code>x2Offset</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Offset of the <code>x2</code> coordinate in logical pixels. When <code>x2</code> is implicit, it inherits <code>xOffset</code> unless this property is specified.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>x2</code> coordinate in logical pixels. When <code>x2</code> is implicit, it inherits <code>xOffset</code> unless this property is specified.</p>
 <p><strong>Default value:</strong> inherited from <code>xOffset</code> for an implicit <code>x2</code>, otherwise <code>0</code></p>
 </dd>
 <dt><code>xOffset</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Offset of the <code>x</code> coordinate in logical pixels.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>x</code> coordinate in logical pixels.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>y</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Position on the y axis.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Position on the y axis.</p>
 </dd>
 <dt><code>y2</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>The secondary position on the y axis.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The secondary position on the y axis.</p>
 </dd>
 <dt><code>y2Offset</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Offset of the <code>y2</code> coordinate in logical pixels. When <code>y2</code> is implicit, it inherits <code>yOffset</code> unless this property is specified.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>y2</code> coordinate in logical pixels. When <code>y2</code> is implicit, it inherits <code>yOffset</code> unless this property is specified.</p>
 <p><strong>Default value:</strong> inherited from <code>yOffset</code> for an implicit <code>y2</code>, otherwise <code>0</code></p>
 </dd>
 <dt><code>yOffset</code></dt>
-<dd>
-<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Offset of the <code>y</code> coordinate in logical pixels.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>y</code> coordinate in logical pixels.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 </dl>

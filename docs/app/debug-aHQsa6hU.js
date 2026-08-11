@@ -1,4 +1,5 @@
-import { T as e, i as t, l as n, n as r, t as i } from "./viewIdentityRegistry-EH5-Noyz.js";
+import { a as e, x as t } from "./viewSelectors-BhW4mTR1.js";
+import { i as n, n as r, t as i } from "./viewIdentityRegistry-AEQpJTDm.js";
 //#region ../core/src/debug/valuePreview.js
 var a = 3, o = 12, s = 8, c = 160;
 function l(e, t = 0) {
@@ -73,7 +74,7 @@ function p(e) {
 }
 //#endregion
 //#region ../core/src/debug/markDebugSnapshot.js
-function m(e, n) {
+function m(e, t) {
 	if (!e) return { marks: [] };
 	let r = [];
 	return h(e, (e) => {
@@ -81,7 +82,7 @@ function m(e, n) {
 		if (!i) return;
 		let a = i.getDebugState();
 		r.push({
-			viewId: n.getDebugId(e),
+			viewId: t.getDebugId(e),
 			viewPath: e.getPathString(),
 			type: i.getType(),
 			ready: !!i.isReady(),
@@ -89,7 +90,7 @@ function m(e, n) {
 			markUniformsAltered: a.markUniformsAltered,
 			encodingChannels: Object.keys(i.encoding),
 			encoderChannels: i.encoders ? Object.keys(i.encoders) : [],
-			searchFields: t(e.getEncoding()) ?? [],
+			searchFields: n(e.getEncoding()) ?? [],
 			dataCount: g(e),
 			vertexCount: a.vertexCount,
 			allocatedVertices: a.allocatedVertices,
@@ -218,8 +219,8 @@ function w(e, t) {
 		}))
 	};
 }
-function T(t) {
-	return e(t) || t.getLayoutAncestors().some(e);
+function T(e) {
+	return t(e) || e.getLayoutAncestors().some(t);
 }
 function E(e, t) {
 	return {
@@ -229,23 +230,23 @@ function E(e, t) {
 }
 //#endregion
 //#region ../core/src/debug/viewDebugSnapshot.js
-function D(t, n) {
-	if (!t) return {
+function D(e, n) {
+	if (!e) return {
 		rootId: void 0,
 		nodes: []
 	};
-	let i = n.includeChrome ?? !1, a = [], o = (t, s) => {
-		let c = e(t);
+	let i = n.includeChrome ?? !1, a = [], o = (e, s) => {
+		let c = t(e);
 		if (c && !i) return;
-		let l = n.getDebugId(t), u = O(t, l, s, c, n);
-		if (a.push(u), t instanceof r) for (let e of t) {
-			let t = o(e, l);
-			t && u.childIds.push(t.id);
+		let l = n.getDebugId(e), u = O(e, l, s, c, n);
+		if (a.push(u), e instanceof r) for (let t of e) {
+			let e = o(t, l);
+			e && u.childIds.push(e.id);
 		}
 		return u;
 	};
 	return {
-		rootId: o(t, void 0)?.id,
+		rootId: o(e, void 0)?.id,
 		nodes: a
 	};
 }
@@ -299,8 +300,8 @@ function j(e) {
 	let t = e;
 	if (typeof t.getMarkType == "function") return t.getMarkType();
 }
-function M(e) {
-	if (e.explicitName) return n(e);
+function M(t) {
+	if (t.explicitName) return e(t);
 }
 function N(e) {
 	let t = e.coords;

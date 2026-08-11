@@ -594,6 +594,8 @@
       
         
       
+        
+      
     
     
     
@@ -1007,6 +1009,33 @@
     
   
   Formula
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/identifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Identifier
 
     
   </span>
@@ -2621,13 +2650,63 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exporting-the-canvas" class="md-nav__link">
+  <a href="#exporting-raster-images" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Exporting the canvas
+        Exporting raster images
       </span>
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exporting-svg" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exporting SVG
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exporting SVG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#downloading-the-svg" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Downloading the SVG
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rasterizing-dense-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Rasterizing dense layers
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#previewing-rasterization" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Previewing rasterization
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3294,13 +3373,63 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#exporting-the-canvas" class="md-nav__link">
+  <a href="#exporting-raster-images" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Exporting the canvas
+        Exporting raster images
       </span>
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exporting-svg" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exporting SVG
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exporting SVG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#downloading-the-svg" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Downloading the SVG
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rasterizing-dense-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Rasterizing dense layers
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#previewing-rasterization" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Previewing rasterization
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3358,22 +3487,105 @@ future version. Avoid using it in new code.</p>
 <span class="c1">// Later:</span>
 <span class="nx">api</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">listener</span><span class="p">);</span>
 </code></pre></div>
-<h2 id="exporting-the-canvas">Exporting the canvas<a class="headerlink" href="#exporting-the-canvas" title="Permanent link">&para;</a></h2>
-<p><code>exportCanvas()</code> renders the current visualization into a PNG data URL.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">dataUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">exportCanvas</span><span class="p">();</span>
+<h2 id="exporting-raster-images">Exporting raster images<a class="headerlink" href="#exporting-raster-images" title="Permanent link">&para;</a></h2>
+<p><code>imageExport.raster()</code> exports the current visualization as a PNG <code>Blob</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">blob</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">imageExport</span><span class="p">.</span><span class="nx">raster</span><span class="p">();</span>
 </code></pre></div>
-<p>Optional arguments control the exported logical size, device pixel ratio, and
-background color:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">dataUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">exportCanvas</span><span class="p">(</span>
-<span class="w">  </span><span class="mf">1200</span><span class="p">,</span><span class="w"> </span><span class="c1">// logical width in CSS pixels</span>
-<span class="w">  </span><span class="mf">600</span><span class="p">,</span><span class="w"> </span><span class="c1">// logical height in CSS pixels</span>
-<span class="w">  </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="c1">// device pixel ratio</span>
-<span class="w">  </span><span class="s2">&quot;white&quot;</span><span class="w"> </span><span class="c1">// background color</span>
+<p>The default logical dimensions match the current canvas, and <code>pixelRatio</code>
+defaults to <code>window.devicePixelRatio</code>. The visualization background is used
+when configured; otherwise it defaults to white. Pass <code>null</code> for a transparent
+background:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">blob</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">imageExport</span><span class="p">.</span><span class="nx">raster</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">logicalWidth</span><span class="o">:</span><span class="w"> </span><span class="mf">1200</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">logicalHeight</span><span class="o">:</span><span class="w"> </span><span class="mf">600</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">pixelRatio</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">background</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">mimeType</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;image/png&quot;</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>image/png</code> is currently the only supported MIME type.</p>
+<div class="admonition warning">
+<p class="admonition-title">Deprecated canvas export</p>
+<p><code>exportCanvas(width, height, devicePixelRatio, background)</code> remains
+available for compatibility and returns a PNG data URL. Use
+<code>imageExport.raster()</code> for new code.</p>
+</div>
+<h2 id="exporting-svg">Exporting SVG<a class="headerlink" href="#exporting-svg" title="Permanent link">&para;</a></h2>
+<p><code>imageExport.svg()</code> exports the current visualization as an SVG <code>Blob</code>. Views
+become nested SVG groups, and supported marks, axes, legends, and titles remain
+editable vector elements.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">blob</span><span class="p">,</span><span class="w"> </span><span class="nx">warnings</span><span class="p">,</span><span class="w"> </span><span class="nx">rasterized</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">imageExport</span><span class="p">.</span><span class="nx">svg</span><span class="p">();</span>
+</code></pre></div>
+<p>The default dimensions match the current canvas. The visualization background
+is used when configured; otherwise it defaults to white. Pass <code>null</code> for a
+transparent background:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">imageExport</span><span class="p">.</span><span class="nx">svg</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">logicalWidth</span><span class="o">:</span><span class="w"> </span><span class="mf">1200</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">logicalHeight</span><span class="o">:</span><span class="w"> </span><span class="mf">600</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">background</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>The result contains:</p>
+<ul>
+<li><code>blob</code>: the serialized SVG with MIME type <code>image/svg+xml</code>.</li>
+<li><code>warnings</code>: unsupported visual properties that were ignored. These warnings
+  do not prevent the rest of the visualization from being exported.</li>
+<li><code>rasterized</code>: descriptions of mark layers embedded as raster images.</li>
+</ul>
+<p>Exported text uses the configured font followed by a list of system-font
+fallbacks. The exact appearance can vary when the configured font is not
+available in the application that opens the SVG.</p>
+<h3 id="downloading-the-svg">Downloading the SVG<a class="headerlink" href="#downloading-the-svg" title="Permanent link">&para;</a></h3>
+<p>Use the returned <code>Blob</code> with the browser's download APIs or pass it directly to
+another file or upload API:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">blob</span><span class="p">,</span><span class="w"> </span><span class="nx">warnings</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">imageExport</span><span class="p">.</span><span class="nx">svg</span><span class="p">();</span>
+<span class="nx">warnings</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">warning</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="nx">warning</span><span class="p">));</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">blob</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">link</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">);</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">url</span><span class="p">;</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">download</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;visualization.svg&quot;</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">link</span><span class="p">);</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+<span class="nx">link</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+
+<span class="c1">// Revoke the URL after the browser has started the download.</span>
+<span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">URL</span><span class="p">.</span><span class="nx">revokeObjectURL</span><span class="p">(</span><span class="nx">url</span><span class="p">),</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="rasterizing-dense-layers">Rasterizing dense layers<a class="headerlink" href="#rasterizing-dense-layers" title="Permanent link">&para;</a></h3>
+<p>Large mark layers can make SVG files slow to open and edit. The optional
+<code>rasterization</code> setting embeds a mark as a transparent PNG when its visible,
+post-culling instance count exceeds <code>maxVectorInstances</code>. Adjacent rasterized
+layers are combined into the same image when possible, while axes, labels, and
+other layers remain vectors.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">imageExport</span><span class="p">.</span><span class="nx">svg</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">rasterization</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">maxVectorInstances</span><span class="o">:</span><span class="w"> </span><span class="mf">5000</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">pixelRatio</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>pixelRatio</code> controls the resolution of embedded images and defaults to <code>2</code>.
+Higher values produce sharper raster layers and larger files. It does not
+change the SVG dimensions or vector elements.</p>
+<p>Rasterization uses GenomeSpy's existing WebGL renderer. If no WebGL context is
+available, export remains functional and emits vectors instead, with a warning
+in the result. Omitting <code>rasterization</code> produces a vector-only SVG and does not
+require WebGL.</p>
+<h3 id="previewing-rasterization">Previewing rasterization<a class="headerlink" href="#previewing-rasterization" title="Permanent link">&para;</a></h3>
+<p><code>imageExport.analyzeSvg()</code> reports the visible instance count of each mark layer
+without creating an SVG or using WebGL. It can be used to preview which layers
+would cross a rasterization threshold:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">layers</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">imageExport</span><span class="p">.</span><span class="nx">analyzeSvg</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5000</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">rasterizedLayers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">layers</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span>
+<span class="w">  </span><span class="p">(</span><span class="nx">layer</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">layer</span><span class="p">.</span><span class="nx">instanceCount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">threshold</span>
 <span class="p">);</span>
 </code></pre></div>
-<p>If omitted, the logical size defaults to the current canvas size and the device
-pixel ratio defaults to <code>window.devicePixelRatio</code>. The default background color
-is <code>"white"</code>.</p>
+<p>Each layer reports its view name, optional resolved view title, hierarchy path,
+mark type, and instance count. The optional <code>logicalWidth</code> and <code>logicalHeight</code>
+settings use the same CSS-pixel coordinate system as <code>imageExport.svg()</code>.</p>
 
 
 

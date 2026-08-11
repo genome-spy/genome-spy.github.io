@@ -600,6 +600,8 @@
       
         
       
+        
+      
     
     
     
@@ -1013,6 +1015,33 @@
     
   
   Formula
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/identifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Identifier
 
     
   </span>
@@ -2025,6 +2054,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Placement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-legends-in-a-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Multiple legends in a region
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2044,6 +2090,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         <code>shared</code> legend
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collected-legends" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>collected</code> legends
       </span>
     </span>
   </a>
@@ -3428,6 +3485,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Placement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-legends-in-a-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Multiple legends in a region
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3447,6 +3521,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         <code>shared</code> legend
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collected-legends" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>collected</code> legends
       </span>
     </span>
   </a>
@@ -3630,6 +3715,23 @@ uses the same scale as the plotted data.</p>
 
 </genome-spy-doc-embed></div>
 
+<p>The ramp fills available space when its direction is parallel to its legend
+region. Otherwise it uses a natural length of 200 pixels. Set
+<code>gradientLength</code> for a fixed ramp. The other gradient properties adjust its
+appearance and desired tick density:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;gradientLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gradientThickness&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gradientOpacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gradientStrokeColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#666&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gradientStrokeWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;tickCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Explicit <code>values</code> determine the ticks when provided and take precedence over
+<code>tickCount</code>.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <p>Legend properties are usually placed in the encoding channel that creates the
 legend:</p>
@@ -3650,7 +3752,9 @@ legend:</p>
 <a href="#resolution">Resolution</a>.</p>
 <h2 id="placement">Placement<a class="headerlink" href="#placement" title="Permanent link">&para;</a></h2>
 <p>The <code>orient</code> property controls where the legend is placed. Side legends are
-placed outside the plot area. Corner legends are placed inside the plot area.</p>
+placed outside the plot area. Corner legends are placed inside the plot area.
+It does not change how entries are arranged. Set <code>direction</code> to <code>"horizontal"</code>
+when horizontal entries are wanted.</p>
 <p>Supported orientations:</p>
 <ul>
 <li><code>left</code></li>
@@ -3674,6 +3778,32 @@ background improves readability.</p>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h3 id="multiple-legends-in-a-region">Multiple legends in a region<a class="headerlink" href="#multiple-legends-in-a-region" title="Permanent link">&para;</a></h3>
+<p>When several complete legends share an orientation, left and right regions
+stack them vertically by default. Top, bottom, and corner regions arrange them
+horizontally. Configure all regions or one orientation with
+<code>config.legend.layout</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;layout&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;direction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;top&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;direction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;horizontal&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;right&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;anchor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;middle&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Region layout is separate from <code>legend.direction</code>: region <code>direction</code> arranges
+complete legends, while <code>legend.direction</code> arranges entries within one legend.
+For external orientations, <code>anchor</code> positions the complete stack along the
+plot edge using <code>"start"</code> (the default), <code>"middle"</code>, or <code>"end"</code>. Corner legends
+remain anchored to their specified corner.</p>
+<p>External regions wrap complete legends by default when their minimum sizes do
+not fit beside the plot. A horizontal region fills rows from left to right; a
+vertical region fills columns from top to bottom. Set <code>wrap</code> to <code>false</code> in the
+region layout to keep a single row or column. Inside-corner regions do not wrap.</p>
 <h2 id="resolution">Resolution<a class="headerlink" href="#resolution" title="Permanent link">&para;</a></h2>
 <p>Legends participate in view
 <a href=".././composition/#scale-axis-and-legend-resolution">resolution</a> similarly
@@ -3690,7 +3820,7 @@ corresponding scale resolution.</p>
 <span class="p">}</span>
 </code></pre></div>
 <p>Shared legend resolution is most useful when sibling views encode the same field
-with a shared scale and should show a single collected legend.</p>
+with a shared scale and should show a single legend.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/legend/shared-hconcat-legend.json" height="360">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -3719,7 +3849,7 @@ with a shared scale and should show a single collected legend.</p>
 <span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Species&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;orient&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bottom&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;orient&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bottom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;direction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;horizontal&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
@@ -3738,7 +3868,7 @@ with a shared scale and should show a single collected legend.</p>
 <span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Species&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;orient&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bottom&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;orient&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bottom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;direction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;horizontal&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -3778,6 +3908,80 @@ same resolved legend.</p>
 ancestor declaration shadows the whole descendant declaration; their
 properties are not merged. Declarations in separate sibling subtrees remain
 ambiguous and cause an error.</p>
+<h3 id="collected-legends"><code>collected</code> legends<a class="headerlink" href="#collected-legends" title="Permanent link">&para;</a></h3>
+<p>Use <code>"collected"</code> to place complete descendant legends around a composition.
+This is useful in dense matrix-like layouts where legends beside every child
+would fragment the layout, but the underlying scales must remain distinct.
+Collection changes only layout. Legend resolution continues to follow the
+corresponding scale resolution:</p>
+<ul>
+<li>Children with a shared scale produce one shared legend at the collector.</li>
+<li>Children with independent scales produce separate legends at the collector.</li>
+<li>Independent legends are not merged or deduplicated.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;resolve&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;independent&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;collected&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The nearest ancestor that declares <code>"collected"</code> lays out the legends. Use
+<code>"default": "collected"</code> to collect every legend channel. Set a channel to
+<code>"excluded"</code> on a view or composition to keep that legend at its normal local
+or shared owner and prevent collection by outer ancestors.</p>
+<div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/legend/collected-legends.json" height="200">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Collect independent legends around a composition&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;resolve&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;independent&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;collected&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;hconcat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Control&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Treatment&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;group&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Group&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;score&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Score&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
 <h2 id="titles">Titles<a class="headerlink" href="#titles" title="Permanent link">&para;</a></h2>
 <p>The legend title defaults to the channel title. Set <code>title</code> to override it, or
 to <code>null</code> to remove it. The title can be placed on any side of the legend body
@@ -3863,89 +4067,78 @@ view.</p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>backgroundFill</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Fill color of the legend background.</p>
+<dd>Type: string<p>Fill color of the legend background.</p>
 </dd>
 <dt><code>backgroundFillOpacity</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Opacity of the legend background fill.</p>
+<dd>Type: number<p>Opacity of the legend background fill.</p>
 </dd>
 <dt><code>backgroundStroke</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Stroke color of the legend background.</p>
+<dd>Type: string<p>Stroke color of the legend background.</p>
 </dd>
 <dt><code>backgroundStrokeOpacity</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Opacity of the legend background stroke.</p>
+<dd>Type: number<p>Opacity of the legend background stroke.</p>
 </dd>
 <dt><code>backgroundStrokeWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Stroke width of the legend background border.</p>
+<dd>Type: number<p>Stroke width of the legend background border.</p>
 </dd>
 <dt><code>columns</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The number of columns in which to arrange symbol legend entries.</p>
+<dd>Type: number<p>The number of columns in which to arrange symbol legend entries.</p>
 </dd>
 <dt><code>direction</code></dt>
-<dd>
-<p>Type: <code>"vertical"</code> | <code>"horizontal"</code></p>
-<p>The direction in which legend entries are laid out.</p>
+<dd>Type: <code>"vertical"</code> | <code>"horizontal"</code><p>The direction in which legend entries are laid out. This is independent of <code>orient</code>, which selects the legend region.</p>
+<p><strong>Default value:</strong> <code>"vertical"</code></p>
+</dd>
+<dt><code>gradientLength</code></dt>
+<dd>Type: number<p>Fixed length of the gradient ramp in pixels. This is the width of a horizontal ramp and the height of a vertical ramp. When omitted, the ramp fills available space when its direction is parallel to its legend region. Otherwise its natural length is 200 pixels.</p>
+</dd>
+<dt><code>gradientOpacity</code></dt>
+<dd>Type: number<p>Opacity of the gradient ramp.</p>
+<p><strong>Default value:</strong> <code>1</code></p>
+</dd>
+<dt><code>gradientStrokeColor</code></dt>
+<dd>Type: string<p>Stroke color of the gradient ramp border.</p>
+</dd>
+<dt><code>gradientStrokeWidth</code></dt>
+<dd>Type: number<p>Stroke width of the gradient ramp border in pixels.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
+<dt><code>gradientThickness</code></dt>
+<dd>Type: number<p>Thickness of the gradient ramp in pixels.</p>
+<p><strong>Default value:</strong> <code>12</code></p>
 </dd>
 <dt><code>labelLimit</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Maximum label text width in pixels.</p>
+<dd>Type: number<p>Maximum label text width in pixels.</p>
 </dd>
 <dt><code>offset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>External gap in pixels between the legend and the plot edge.</p>
+<dd>Type: number<p>External gap in pixels between the legend and the plot edge.</p>
 </dd>
 <dt><code>orient</code></dt>
-<dd>
-<p>Type: <code>"left"</code> | <code>"right"</code> | <code>"top"</code> | <code>"bottom"</code> | <code>"top-left"</code> | <code>"top-right"</code> | <code>"bottom-left"</code> | <code>"bottom-right"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>The plot side or inside corner where the legend is placed. Side legends are placed outside the plot area. Corner legends are placed inside the plot area.</p>
+<dd>Type: <code>"left"</code> | <code>"right"</code> | <code>"top"</code> | <code>"bottom"</code> | <code>"top-left"</code> | <code>"top-right"</code> | <code>"bottom-left"</code> | <code>"bottom-right"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The plot side or inside corner where the legend is placed. Side legends are placed outside the plot area. Corner legends are placed inside the plot area.</p>
 </dd>
 <dt><code>padding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Internal padding in pixels around the legend content and background.</p>
+<dd>Type: number<p>Internal padding in pixels around the legend content and background.</p>
 </dd>
 <dt><code>style</code></dt>
-<dd>
-<p>Type: string | string[] | null</p>
-<p>Named style reference or references resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones. Set to <code>null</code> to reset inherited legend styles.</p>
+<dd>Type: string | string[] | null<p>Named style reference or references resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones. Set to <code>null</code> to reset inherited legend styles.</p>
 </dd>
 <dt><code>symbolSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Symbol size in pixels squared.</p>
+<dd>Type: number<p>Symbol size in pixels squared.</p>
 </dd>
 <dt><code>symbolType</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Symbol shape.</p>
+<dd>Type: string<p>Symbol shape.</p>
+</dd>
+<dt><code>tickCount</code></dt>
+<dd>Type: number<p>Desired number of ticks for a quantitative gradient legend. Explicit <code>values</code> take precedence over this property.</p>
+<p><strong>Default value:</strong> <code>5</code></p>
 </dd>
 <dt><code>title</code></dt>
-<dd>
-<p>Type: string | null</p>
-<p>Title text for the legend. If <code>null</code>, the title is removed.</p>
+<dd>Type: string | null<p>Title text for the legend. If <code>null</code>, the title is removed.</p>
 </dd>
 <dt><code>titleOrient</code></dt>
-<dd>
-<p>Type: <code>"top"</code> | <code>"bottom"</code> | <code>"left"</code> | <code>"right"</code></p>
-<p>The side of the legend on which to place the title.</p>
+<dd>Type: <code>"top"</code> | <code>"bottom"</code> | <code>"left"</code> | <code>"right"</code><p>The side of the legend on which to place the title.</p>
 </dd>
 <dt><code>values</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Explicit values to show in the legend. For discrete symbol legends, the values define an ordered subset of entries. For quantitative symbol and gradient legends, the values define the shown representative values or ticks.</p>
+<dd>Type: array<p>Explicit values to show in the legend. For discrete symbol legends, the values define an ordered subset of entries. For quantitative symbol and gradient legends, the values define the shown representative values or ticks.</p>
 </dd>
 </dl>
 <h2 id="styling">Styling<a class="headerlink" href="#styling" title="Permanent link">&para;</a></h2>
@@ -3965,11 +4158,12 @@ object overrides the configured defaults for that legend.</p>
 </code></pre></div>
 <h3 id="track-like-legends">Track-like legends<a class="headerlink" href="#track-like-legends" title="Permanent link">&para;</a></h3>
 <p>Named styles from <code>config.style</code> can also be referenced with <code>legend.style</code>.
-GenomeSpy includes a built-in <code>track-bottom</code> legend style for compact
-track-like layouts.</p>
+GenomeSpy includes a built-in <code>track-bottom-legend</code> style for compact
+track-like layouts. It places the title to the left of horizontally arranged
+entries.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;style&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;track-bottom&quot;</span>
+<span class="w">    </span><span class="nt">&quot;style&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;track-bottom-legend&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -3977,8 +4171,9 @@ track-like layouts.</p>
 intermediate default. These views usually form genome-browser-like horizontal
 tracks where there is more room below each track than to the side of a dense
 track stack. The default <code>config.legendTrack</code> style is therefore
-<code>track-bottom</code>. Use <code>config.legend</code> to override those defaults globally, or a
-channel-level <code>legend</code> object to override a single legend.</p>
+<code>track-bottom-legend</code>. Use <code>config.legend</code> to override those defaults globally,
+or a channel-level <code>legend</code> object to override a single legend. The old
+<code>track-bottom</code> name remains as a compatibility alias.</p>
 <p>Clear this track-specific style at the root or in a subtree by setting
 <code>config.legendTrack.style</code> to <code>null</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -3992,205 +4187,151 @@ channel-level <code>legend</code> object to override a single legend.</p>
 <h3 id="config-properties">Config Properties<a class="headerlink" href="#config-properties" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>backgroundFill</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Fill color of the legend background.</p>
+<dd>Type: string<p>Fill color of the legend background.</p>
 </dd>
 <dt><code>backgroundFillOpacity</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Opacity of the legend background fill.</p>
+<dd>Type: number<p>Opacity of the legend background fill.</p>
 </dd>
 <dt><code>backgroundStroke</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Stroke color of the legend background.</p>
+<dd>Type: string<p>Stroke color of the legend background.</p>
 </dd>
 <dt><code>backgroundStrokeOpacity</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Opacity of the legend background stroke.</p>
+<dd>Type: number<p>Opacity of the legend background stroke.</p>
 </dd>
 <dt><code>backgroundStrokeWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Stroke width of the legend background border.</p>
+<dd>Type: number<p>Stroke width of the legend background border.</p>
 </dd>
 <dt><code>columnPadding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Padding between legend columns in pixels.</p>
+<dd>Type: number<p>Padding between legend columns in pixels.</p>
 </dd>
 <dt><code>columns</code></dt>
-<dd>
-<p>Type: number</p>
-<p>The number of columns in which to arrange symbol legend entries.</p>
+<dd>Type: number<p>The number of columns in which to arrange symbol legend entries.</p>
 </dd>
 <dt><code>direction</code></dt>
-<dd>
-<p>Type: <code>"vertical"</code> | <code>"horizontal"</code></p>
-<p>The direction in which legend entries are laid out.</p>
+<dd>Type: <code>"vertical"</code> | <code>"horizontal"</code><p>The direction in which legend entries are laid out. This is independent of <code>orient</code>, which selects the legend region.</p>
+<p><strong>Default value:</strong> <code>"vertical"</code></p>
 </dd>
 <dt><code>disable</code></dt>
-<dd>
-<p>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Disable automatic legend creation. Use <code>legend: null</code> on an encoding channel to remove that channel's legend.</p>
+<dd>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Disable automatic legend creation. Use <code>legend: null</code> on an encoding channel to remove that channel's legend.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
+<dt><code>gradientLength</code></dt>
+<dd>Type: number<p>Fixed length of the gradient ramp in pixels. This is the width of a horizontal ramp and the height of a vertical ramp. When omitted, the ramp fills available space when its direction is parallel to its legend region. Otherwise its natural length is 200 pixels.</p>
+</dd>
+<dt><code>gradientOpacity</code></dt>
+<dd>Type: number<p>Opacity of the gradient ramp.</p>
+<p><strong>Default value:</strong> <code>1</code></p>
+</dd>
+<dt><code>gradientStrokeColor</code></dt>
+<dd>Type: string<p>Stroke color of the gradient ramp border.</p>
+</dd>
+<dt><code>gradientStrokeWidth</code></dt>
+<dd>Type: number<p>Stroke width of the gradient ramp border in pixels.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
+<dt><code>gradientThickness</code></dt>
+<dd>Type: number<p>Thickness of the gradient ramp in pixels.</p>
+<p><strong>Default value:</strong> <code>12</code></p>
+</dd>
 <dt><code>labelAlign</code></dt>
-<dd>
-<p>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code></p>
-<p>Horizontal alignment of legend labels.</p>
+<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>Horizontal alignment of legend labels.</p>
 </dd>
 <dt><code>labelBaseline</code></dt>
-<dd>
-<p>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code></p>
-<p>Baseline alignment of legend labels.</p>
+<dd>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code><p>Baseline alignment of legend labels.</p>
 </dd>
 <dt><code>labelColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Legend label color.</p>
+<dd>Type: string<p>Legend label color.</p>
 </dd>
 <dt><code>labelFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Legend label font.</p>
+<dd>Type: string<p>Legend label font.</p>
 </dd>
 <dt><code>labelFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Legend label font size in pixels.</p>
+<dd>Type: number<p>Legend label font size in pixels.</p>
 </dd>
 <dt><code>labelFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>Legend label font style.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Legend label font style.</p>
 </dd>
 <dt><code>labelFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>Legend label font weight.</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Legend label font weight.</p>
 </dd>
 <dt><code>labelLimit</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Maximum label text width in pixels.</p>
+<dd>Type: number<p>Maximum label text width in pixels.</p>
 </dd>
 <dt><code>labelOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Offset between legend symbols and labels in pixels.</p>
+<dd>Type: number<p>Offset between legend symbols and labels in pixels.</p>
+</dd>
+<dt><code>layout</code></dt>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#legendlayout">LegendLayout</a><p>Layout of complete legends within each orientation region. A general direction or anchor applies to every region unless the orientation has its own override.</p>
 </dd>
 <dt><code>offset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>External gap in pixels between the legend and the plot edge.</p>
+<dd>Type: number<p>External gap in pixels between the legend and the plot edge.</p>
 </dd>
 <dt><code>orient</code></dt>
-<dd>
-<p>Type: <code>"left"</code> | <code>"right"</code> | <code>"top"</code> | <code>"bottom"</code> | <code>"top-left"</code> | <code>"top-right"</code> | <code>"bottom-left"</code> | <code>"bottom-right"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>The plot side or inside corner where the legend is placed. Side legends are placed outside the plot area. Corner legends are placed inside the plot area.</p>
+<dd>Type: <code>"left"</code> | <code>"right"</code> | <code>"top"</code> | <code>"bottom"</code> | <code>"top-left"</code> | <code>"top-right"</code> | <code>"bottom-left"</code> | <code>"bottom-right"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The plot side or inside corner where the legend is placed. Side legends are placed outside the plot area. Corner legends are placed inside the plot area.</p>
 </dd>
 <dt><code>padding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Internal padding in pixels around the legend content and background.</p>
+<dd>Type: number<p>Internal padding in pixels around the legend content and background.</p>
 </dd>
 <dt><code>rowPadding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Padding between legend rows in pixels.</p>
+<dd>Type: number<p>Padding between legend rows in pixels.</p>
 </dd>
 <dt><code>spacing</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Spacing in pixels between legends collected into the same legend region.</p>
+<dd>Type: number<p>Spacing in pixels between legends collected into the same legend region.</p>
 </dd>
 <dt><code>style</code></dt>
-<dd>
-<p>Type: string | string[] | null</p>
-<p>Named style reference or references resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones. Set to <code>null</code> to reset inherited legend styles.</p>
+<dd>Type: string | string[] | null<p>Named style reference or references resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones. Set to <code>null</code> to reset inherited legend styles.</p>
 </dd>
 <dt><code>symbolBaseFillColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Base fill color for legend symbols when the legend does not encode fill.</p>
+<dd>Type: string<p>Base fill color for legend symbols when the legend does not encode fill.</p>
 </dd>
 <dt><code>symbolBaseStrokeColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Base stroke color for legend symbols when the legend does not encode stroke.</p>
+<dd>Type: string<p>Base stroke color for legend symbols when the legend does not encode stroke.</p>
 </dd>
 <dt><code>symbolOffset</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Offset applied to legend symbols in pixels.</p>
+<dd>Type: number<p>Offset applied to legend symbols in pixels.</p>
 </dd>
 <dt><code>symbolSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Symbol size in pixels squared.</p>
+<dd>Type: number<p>Symbol size in pixels squared.</p>
 </dd>
 <dt><code>symbolStrokeWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Legend symbol stroke width in pixels.</p>
+<dd>Type: number<p>Legend symbol stroke width in pixels.</p>
 </dd>
 <dt><code>symbolType</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Symbol shape.</p>
+<dd>Type: string<p>Symbol shape.</p>
+</dd>
+<dt><code>tickCount</code></dt>
+<dd>Type: number<p>Desired number of ticks for a quantitative gradient legend. Explicit <code>values</code> take precedence over this property.</p>
+<p><strong>Default value:</strong> <code>5</code></p>
 </dd>
 <dt><code>title</code></dt>
-<dd>
-<p>Type: string | null</p>
-<p>Title text for the legend. If <code>null</code>, the title is removed.</p>
+<dd>Type: string | null<p>Title text for the legend. If <code>null</code>, the title is removed.</p>
 </dd>
 <dt><code>titleColor</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Legend title color.</p>
+<dd>Type: string<p>Legend title color.</p>
 </dd>
 <dt><code>titleFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Legend title font.</p>
+<dd>Type: string<p>Legend title font.</p>
 </dd>
 <dt><code>titleFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Legend title font size in pixels.</p>
+<dd>Type: number<p>Legend title font size in pixels.</p>
 </dd>
 <dt><code>titleFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>Legend title font style.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Legend title font style.</p>
 </dd>
 <dt><code>titleFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>Legend title font weight.</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Legend title font weight.</p>
 </dd>
 <dt><code>titleLimit</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Maximum title text width in pixels.</p>
+<dd>Type: number<p>Maximum title text width in pixels.</p>
 </dd>
 <dt><code>titleOrient</code></dt>
-<dd>
-<p>Type: <code>"top"</code> | <code>"bottom"</code> | <code>"left"</code> | <code>"right"</code></p>
-<p>The side of the legend on which to place the title.</p>
+<dd>Type: <code>"top"</code> | <code>"bottom"</code> | <code>"left"</code> | <code>"right"</code><p>The side of the legend on which to place the title.</p>
 </dd>
 <dt><code>titlePadding</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Padding in pixels between the legend title and the legend body.</p>
+<dd>Type: number<p>Padding in pixels between the legend title and the legend body.</p>
 </dd>
 <dt><code>values</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Explicit values to show in the legend. For discrete symbol legends, the values define an ordered subset of entries. For quantitative symbol and gradient legends, the values define the shown representative values or ticks.</p>
+<dd>Type: array<p>Explicit values to show in the legend. For discrete symbol legends, the values define an ordered subset of entries. For quantitative symbol and gradient legends, the values define the shown representative values or ticks.</p>
 </dd>
 </dl>
 

@@ -1,0 +1,1993 @@
+import { _ as e, a as t, n, o as r, u as i } from "./clipOptions-Dqco1p8b.js";
+import { t as a } from "./viewRenderingContext-HtpqwS_x.js";
+//#region ../../node_modules/d3-array/src/identity.js
+function o(e) {
+	return e;
+}
+//#endregion
+//#region ../../node_modules/d3-array/src/group.js
+function s(e, ...t) {
+	return l(e, o, o, t);
+}
+function c(e, ...t) {
+	return l(e, Array.from, o, t);
+}
+function l(t, n, r, i) {
+	return (function t(a, o) {
+		if (o >= i.length) return r(a);
+		let s = new e(), c = i[o++], l = -1;
+		for (let e of a) {
+			let t = c(e, ++l, a), n = s.get(t);
+			n ? n.push(e) : s.set(t, [e]);
+		}
+		for (let [e, n] of s) s.set(e, t(n, o));
+		return n(s);
+	})(t, 0);
+}
+//#endregion
+//#region ../../node_modules/twgl.js/dist/4.x/twgl-full.module.js
+var u = 5120, d = 5121, f = 5122, p = 5123, m = 5124, h = 5125, g = 5126, ee = 32819, _ = 32820, te = 33635, ne = 5131, re = 33640, ie = 35899, ae = 35902, oe = 36269, se = 34042, ce = {};
+{
+	let e = ce;
+	e[u] = Int8Array, e[d] = Uint8Array, e[f] = Int16Array, e[p] = Uint16Array, e[m] = Int32Array, e[h] = Uint32Array, e[g] = Float32Array, e[ee] = Uint16Array, e[_] = Uint16Array, e[te] = Uint16Array, e[ne] = Uint16Array, e[re] = Uint32Array, e[ie] = Uint32Array, e[ae] = Uint32Array, e[oe] = Uint32Array, e[se] = Uint32Array;
+}
+function le(e) {
+	if (e instanceof Int8Array) return u;
+	if (e instanceof Uint8Array || e instanceof Uint8ClampedArray) return d;
+	if (e instanceof Int16Array) return f;
+	if (e instanceof Uint16Array) return p;
+	if (e instanceof Int32Array) return m;
+	if (e instanceof Uint32Array) return h;
+	if (e instanceof Float32Array) return g;
+	throw Error("unsupported typed array type");
+}
+function ue(e) {
+	if (e === Int8Array) return u;
+	if (e === Uint8Array || e === Uint8ClampedArray) return d;
+	if (e === Int16Array) return f;
+	if (e === Uint16Array) return p;
+	if (e === Int32Array) return m;
+	if (e === Uint32Array) return h;
+	if (e === Float32Array) return g;
+	throw Error("unsupported typed array type");
+}
+function de(e) {
+	let t = ce[e];
+	if (!t) throw Error("unknown gl type");
+	return t;
+}
+var fe = typeof SharedArrayBuffer < "u" ? function(e) {
+	return e && e.buffer && (e.buffer instanceof ArrayBuffer || e.buffer instanceof SharedArrayBuffer);
+} : function(e) {
+	return e && e.buffer && e.buffer instanceof ArrayBuffer;
+};
+function pe(...e) {
+	console.error(...e);
+}
+function me(...e) {
+	console.warn(...e);
+}
+function he(e, t) {
+	return typeof WebGLBuffer < "u" && t instanceof WebGLBuffer;
+}
+function ge(e, t) {
+	return typeof WebGLRenderbuffer < "u" && t instanceof WebGLRenderbuffer;
+}
+function _e(e, t) {
+	return typeof WebGLTexture < "u" && t instanceof WebGLTexture;
+}
+function ve(e, t) {
+	return typeof WebGLSampler < "u" && t instanceof WebGLSampler;
+}
+var ye = 35044, v = 34962, be = 34963, xe = 34660, Se = 5120, Ce = 5121, we = 5122, Te = 5123, Ee = 5124, De = 5125, Oe = 5126, ke = { attribPrefix: "" };
+function Ae(e, t, n, r, i) {
+	e.bindBuffer(t, n), e.bufferData(t, r, i || ye);
+}
+function je(e, t, n, r) {
+	if (he(e, t)) return t;
+	n ||= v;
+	let i = e.createBuffer();
+	return Ae(e, n, i, t, r), i;
+}
+function Me(e) {
+	return e === "indices";
+}
+function Ne(e) {
+	return e instanceof Int8Array || e instanceof Uint8Array;
+}
+function Pe(e) {
+	return e === Int8Array || e === Uint8Array;
+}
+function Fe(e) {
+	return e.length ? e : e.data;
+}
+var Ie = /coord|texture/i, Le = /color|colour/i;
+function Re(e, t) {
+	let n;
+	if (n = Ie.test(e) ? 2 : Le.test(e) ? 4 : 3, t % n > 0) throw Error(`Can not guess numComponents for attribute '${e}'. Tried ${n} but ${t} values is not evenly divisible by ${n}. You should specify it.`);
+	return n;
+}
+function ze(e, t) {
+	return e.numComponents || e.size || Re(t, Fe(e).length);
+}
+function Be(e, t) {
+	if (fe(e)) return e;
+	if (fe(e.data)) return e.data;
+	Array.isArray(e) && (e = { data: e });
+	let n = e.type;
+	return n ||= Me(t) ? Uint16Array : Float32Array, new n(e.data);
+}
+function Ve(e, t) {
+	let n = {};
+	return Object.keys(t).forEach(function(r) {
+		if (!Me(r)) {
+			let i = t[r], a = i.attrib || i.name || i.attribName || ke.attribPrefix + r;
+			if (i.value) {
+				if (!Array.isArray(i.value) && !fe(i.value)) throw Error("array.value is not array or typedarray");
+				n[a] = { value: i.value };
+			} else {
+				let t, o, s, c;
+				if (i.buffer && i.buffer instanceof WebGLBuffer) t = i.buffer, c = i.numComponents || i.size, o = i.type, s = i.normalize;
+				else if (typeof i == "number" || typeof i.data == "number") {
+					let n = i.data || i, a = i.type || Float32Array, l = n * a.BYTES_PER_ELEMENT;
+					o = ue(a), s = i.normalize === void 0 ? Pe(a) : i.normalize, c = i.numComponents || i.size || Re(r, n), t = e.createBuffer(), e.bindBuffer(v, t), e.bufferData(v, l, i.drawType || ye);
+				} else {
+					let n = Be(i, r);
+					t = je(e, n, void 0, i.drawType), o = le(n), s = i.normalize === void 0 ? Ne(n) : i.normalize, c = ze(i, r);
+				}
+				n[a] = {
+					buffer: t,
+					numComponents: c,
+					type: o,
+					normalize: s,
+					stride: i.stride || 0,
+					offset: i.offset || 0,
+					divisor: i.divisor === void 0 ? void 0 : i.divisor,
+					drawType: i.drawType
+				};
+			}
+		}
+	}), e.bindBuffer(v, null), n;
+}
+function He(e, t, n, r) {
+	n = Be(n), r === void 0 ? Ae(e, v, t.buffer, n, t.drawType) : (e.bindBuffer(v, t.buffer), e.bufferSubData(v, r, n));
+}
+function Ue(e, t) {
+	return t === Se || t === Ce ? 1 : t === we || t === Te ? 2 : t === Ee || t === De || t === Oe ? 4 : 0;
+}
+var We = [
+	"position",
+	"positions",
+	"a_position"
+];
+function Ge(e, t) {
+	let n, r;
+	for (r = 0; r < We.length && (n = We[r], !(n in t || (n = ke.attribPrefix + n, n in t))); ++r);
+	r === We.length && (n = Object.keys(t)[0]);
+	let i = t[n];
+	if (!i.buffer) return 1;
+	e.bindBuffer(v, i.buffer);
+	let a = e.getBufferParameter(v, xe);
+	e.bindBuffer(v, null);
+	let o = a / Ue(e, i.type), s = i.numComponents || i.size, c = o / s;
+	if (c % 1 != 0) throw Error(`numComponents ${s} not correct for length ${length}`);
+	return c;
+}
+function Ke(e, t, n) {
+	let r = Ve(e, t), i = Object.assign({}, n || {});
+	i.attribs = Object.assign({}, n ? n.attribs : {}, r);
+	let a = t.indices;
+	if (a) {
+		let t = Be(a, "indices");
+		i.indices = je(e, t, be), i.numElements = t.length, i.elementType = le(t);
+	} else i.numElements ||= Ge(e, i.attribs);
+	return i;
+}
+function y(e) {
+	return !!e.texStorage2D;
+}
+var qe = function() {
+	let e = {}, t = {};
+	function n(n) {
+		let r = n.constructor.name;
+		if (!e[r]) {
+			for (let e in n) if (typeof n[e] == "number") {
+				let r = t[n[e]];
+				t[n[e]] = r ? `${r} | ${e}` : e;
+			}
+			e[r] = !0;
+		}
+	}
+	return function(e, r) {
+		return n(e), t[r] || (typeof r == "number" ? `0x${r.toString(16)}` : r);
+	};
+}(), b = {
+	textureColor: new Uint8Array([
+		128,
+		192,
+		255,
+		255
+	]),
+	textureOptions: {},
+	crossOrigin: void 0
+}, x = fe, Je = function() {
+	let e;
+	return function() {
+		return e ||= typeof document < "u" && document.createElement ? document.createElement("canvas").getContext("2d") : null, e;
+	};
+}(), Ye = 6406, S = 6407, C = 6408, Xe = 6409, Ze = 6410, w = 6402, Qe = 34041, $e = 33071, et = 9728, tt = 9729, T = 3553, E = 34067, D = 32879, O = 35866, nt = 34069, rt = 34070, it = 34071, at = 34072, ot = 34073, st = 34074, ct = 10241, lt = 10240, ut = 10242, dt = 10243, ft = 32882, pt = 33082, mt = 33083, ht = 33084, gt = 33085, _t = 3317, vt = 3314, yt = 32878, bt = 3316, xt = 3315, St = 32877, Ct = 37443, wt = 37441, Tt = 37440, Et = 33321, Dt = 36756, Ot = 33325, kt = 33326, At = 33330, jt = 33329, Mt = 33338, Nt = 33337, Pt = 33340, Ft = 33339, It = 33323, Lt = 36757, Rt = 33327, zt = 33328, Bt = 33336, Vt = 33335, Ht = 33332, Ut = 33331, Wt = 33334, Gt = 33333, Kt = 32849, qt = 35905, Jt = 36194, Yt = 36758, Xt = 35898, Zt = 35901, Qt = 34843, $t = 34837, en = 36221, tn = 36239, nn = 36215, rn = 36233, an = 36209, on = 36227, sn = 32856, cn = 35907, ln = 36759, un = 32855, dn = 32854, fn = 32857, pn = 34842, mn = 34836, hn = 36220, gn = 36238, _n = 36975, vn = 36214, yn = 36232, bn = 36226, xn = 36208, Sn = 33189, Cn = 33190, wn = 36012, Tn = 36013, En = 35056, k = 5120, A = 5121, Dn = 5122, j = 5123, On = 5124, M = 5125, N = 5126, kn = 32819, An = 32820, jn = 33635, P = 5131, F = 36193, Mn = 33640, Nn = 35899, Pn = 35902, Fn = 36269, In = 34042, I = 33319, L = 33320, R = 6403, z = 36244, B = 36248, V = 36249, Ln = {};
+{
+	let e = Ln;
+	e[Ye] = { numColorComponents: 1 }, e[Xe] = { numColorComponents: 1 }, e[Ze] = { numColorComponents: 2 }, e[S] = { numColorComponents: 3 }, e[C] = { numColorComponents: 4 }, e[R] = { numColorComponents: 1 }, e[z] = { numColorComponents: 1 }, e[I] = { numColorComponents: 2 }, e[L] = { numColorComponents: 2 }, e[S] = { numColorComponents: 3 }, e[B] = { numColorComponents: 3 }, e[C] = { numColorComponents: 4 }, e[V] = { numColorComponents: 4 }, e[w] = { numColorComponents: 1 }, e[Qe] = { numColorComponents: 2 };
+}
+var Rn;
+function zn(e) {
+	if (!Rn) {
+		let e = {};
+		e[Ye] = {
+			textureFormat: Ye,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [
+				1,
+				2,
+				2,
+				4
+			],
+			type: [
+				A,
+				P,
+				F,
+				N
+			]
+		}, e[Xe] = {
+			textureFormat: Xe,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [
+				1,
+				2,
+				2,
+				4
+			],
+			type: [
+				A,
+				P,
+				F,
+				N
+			]
+		}, e[Ze] = {
+			textureFormat: Ze,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [
+				2,
+				4,
+				4,
+				8
+			],
+			type: [
+				A,
+				P,
+				F,
+				N
+			]
+		}, e[S] = {
+			textureFormat: S,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [
+				3,
+				6,
+				6,
+				12,
+				2
+			],
+			type: [
+				A,
+				P,
+				F,
+				N,
+				jn
+			]
+		}, e[C] = {
+			textureFormat: C,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [
+				4,
+				8,
+				8,
+				16,
+				2,
+				2
+			],
+			type: [
+				A,
+				P,
+				F,
+				N,
+				kn,
+				An
+			]
+		}, e[w] = {
+			textureFormat: w,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [2, 4],
+			type: [M, j]
+		}, e[Et] = {
+			textureFormat: R,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [1],
+			type: [A]
+		}, e[Dt] = {
+			textureFormat: R,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [1],
+			type: [k]
+		}, e[Ot] = {
+			textureFormat: R,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [4, 2],
+			type: [N, P]
+		}, e[kt] = {
+			textureFormat: R,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [N]
+		}, e[At] = {
+			textureFormat: z,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [1],
+			type: [A]
+		}, e[jt] = {
+			textureFormat: z,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [1],
+			type: [k]
+		}, e[Ht] = {
+			textureFormat: z,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [2],
+			type: [j]
+		}, e[Ut] = {
+			textureFormat: z,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [2],
+			type: [Dn]
+		}, e[Wt] = {
+			textureFormat: z,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [M]
+		}, e[Gt] = {
+			textureFormat: z,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [On]
+		}, e[It] = {
+			textureFormat: I,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [2],
+			type: [A]
+		}, e[Lt] = {
+			textureFormat: I,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [2],
+			type: [k]
+		}, e[Rt] = {
+			textureFormat: I,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [8, 4],
+			type: [N, P]
+		}, e[zt] = {
+			textureFormat: I,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [8],
+			type: [N]
+		}, e[Bt] = {
+			textureFormat: L,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [2],
+			type: [A]
+		}, e[Vt] = {
+			textureFormat: L,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [2],
+			type: [k]
+		}, e[Mt] = {
+			textureFormat: L,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [j]
+		}, e[Nt] = {
+			textureFormat: L,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [Dn]
+		}, e[Pt] = {
+			textureFormat: L,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [8],
+			type: [M]
+		}, e[Ft] = {
+			textureFormat: L,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [8],
+			type: [On]
+		}, e[Kt] = {
+			textureFormat: S,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [3],
+			type: [A]
+		}, e[qt] = {
+			textureFormat: S,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [3],
+			type: [A]
+		}, e[Jt] = {
+			textureFormat: S,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [3, 2],
+			type: [A, jn]
+		}, e[Yt] = {
+			textureFormat: S,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [3],
+			type: [k]
+		}, e[Xt] = {
+			textureFormat: S,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [
+				12,
+				6,
+				4
+			],
+			type: [
+				N,
+				P,
+				Nn
+			]
+		}, e[Zt] = {
+			textureFormat: S,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [
+				12,
+				6,
+				4
+			],
+			type: [
+				N,
+				P,
+				Pn
+			]
+		}, e[Qt] = {
+			textureFormat: S,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [12, 6],
+			type: [N, P]
+		}, e[$t] = {
+			textureFormat: S,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [12],
+			type: [N]
+		}, e[en] = {
+			textureFormat: B,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [3],
+			type: [A]
+		}, e[tn] = {
+			textureFormat: B,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [3],
+			type: [k]
+		}, e[nn] = {
+			textureFormat: B,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [6],
+			type: [j]
+		}, e[rn] = {
+			textureFormat: B,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [6],
+			type: [Dn]
+		}, e[an] = {
+			textureFormat: B,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [12],
+			type: [M]
+		}, e[on] = {
+			textureFormat: B,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [12],
+			type: [On]
+		}, e[sn] = {
+			textureFormat: C,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [4],
+			type: [A]
+		}, e[cn] = {
+			textureFormat: C,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [4],
+			type: [A]
+		}, e[ln] = {
+			textureFormat: C,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [4],
+			type: [k]
+		}, e[un] = {
+			textureFormat: C,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [
+				4,
+				2,
+				4
+			],
+			type: [
+				A,
+				An,
+				Mn
+			]
+		}, e[dn] = {
+			textureFormat: C,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [4, 2],
+			type: [A, kn]
+		}, e[fn] = {
+			textureFormat: C,
+			colorRenderable: !0,
+			textureFilterable: !0,
+			bytesPerElement: [4],
+			type: [Mn]
+		}, e[pn] = {
+			textureFormat: C,
+			colorRenderable: !1,
+			textureFilterable: !0,
+			bytesPerElement: [16, 8],
+			type: [N, P]
+		}, e[mn] = {
+			textureFormat: C,
+			colorRenderable: !1,
+			textureFilterable: !1,
+			bytesPerElement: [16],
+			type: [N]
+		}, e[hn] = {
+			textureFormat: V,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [A]
+		}, e[gn] = {
+			textureFormat: V,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [k]
+		}, e[_n] = {
+			textureFormat: V,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [Mn]
+		}, e[vn] = {
+			textureFormat: V,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [8],
+			type: [j]
+		}, e[yn] = {
+			textureFormat: V,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [8],
+			type: [Dn]
+		}, e[bn] = {
+			textureFormat: V,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [16],
+			type: [On]
+		}, e[xn] = {
+			textureFormat: V,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [16],
+			type: [M]
+		}, e[Sn] = {
+			textureFormat: w,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [2, 4],
+			type: [j, M]
+		}, e[Cn] = {
+			textureFormat: w,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [M]
+		}, e[wn] = {
+			textureFormat: w,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [N]
+		}, e[En] = {
+			textureFormat: Qe,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [In]
+		}, e[Tn] = {
+			textureFormat: Qe,
+			colorRenderable: !0,
+			textureFilterable: !1,
+			bytesPerElement: [4],
+			type: [Fn]
+		}, Object.keys(e).forEach(function(t) {
+			let n = e[t];
+			n.bytesPerElementMap = {}, n.bytesPerElement.forEach(function(e, t) {
+				let r = n.type[t];
+				n.bytesPerElementMap[r] = e;
+			});
+		}), Rn = e;
+	}
+	return Rn[e];
+}
+function Bn(e, t) {
+	let n = zn(e);
+	if (!n) throw "unknown internal format";
+	let r = n.bytesPerElementMap[t];
+	if (r === void 0) throw "unknown internal format";
+	return r;
+}
+function H(e) {
+	let t = zn(e);
+	if (!t) throw "unknown internal format";
+	return {
+		format: t.textureFormat,
+		type: t.type[0]
+	};
+}
+function Vn(e) {
+	return (e & e - 1) == 0;
+}
+function Hn(e, t, n, r) {
+	if (!y(e)) return Vn(t) && Vn(n);
+	let i = zn(r);
+	if (!i) throw "unknown internal format";
+	return i.colorRenderable && i.textureFilterable;
+}
+function Un(e) {
+	let t = zn(e);
+	if (!t) throw "unknown internal format";
+	return t.textureFilterable;
+}
+function Wn(e, t, n) {
+	return x(t) ? le(t) : n || A;
+}
+function Gn(e, t, n, r, i) {
+	if (i % 1 != 0) throw "can't guess dimensions";
+	if (!n && !r) {
+		let e = Math.sqrt(i / (t === E ? 6 : 1));
+		e % 1 == 0 ? (n = e, r = e) : (n = i, r = 1);
+	} else if (!r) {
+		if (r = i / n, r % 1) throw "can't guess dimensions";
+	} else if (!n && (n = i / r, n % 1)) throw "can't guess dimensions";
+	return {
+		width: n,
+		height: r
+	};
+}
+function U(e, t) {
+	t.colorspaceConversion !== void 0 && e.pixelStorei(Ct, t.colorspaceConversion), t.premultiplyAlpha !== void 0 && e.pixelStorei(wt, t.premultiplyAlpha), t.flipY !== void 0 && e.pixelStorei(Tt, t.flipY);
+}
+function Kn(e) {
+	e.pixelStorei(_t, 4), y(e) && (e.pixelStorei(vt, 0), e.pixelStorei(yt, 0), e.pixelStorei(bt, 0), e.pixelStorei(xt, 0), e.pixelStorei(St, 0));
+}
+function qn(e, t, n, r) {
+	r.minMag && (n.call(e, t, ct, r.minMag), n.call(e, t, lt, r.minMag)), r.min && n.call(e, t, ct, r.min), r.mag && n.call(e, t, lt, r.mag), r.wrap && (n.call(e, t, ut, r.wrap), n.call(e, t, dt, r.wrap), (t === D || ve(e, t)) && n.call(e, t, ft, r.wrap)), r.wrapR && n.call(e, t, ft, r.wrapR), r.wrapS && n.call(e, t, ut, r.wrapS), r.wrapT && n.call(e, t, dt, r.wrapT), r.minLod && n.call(e, t, pt, r.minLod), r.maxLod && n.call(e, t, mt, r.maxLod), r.baseLevel && n.call(e, t, ht, r.baseLevel), r.maxLevel && n.call(e, t, gt, r.maxLevel);
+}
+function Jn(e, t, n) {
+	let r = n.target || T;
+	e.bindTexture(r, t), qn(e, r, e.texParameteri, n);
+}
+function Yn(e) {
+	return e ||= b.textureColor, x(e) ? e : new Uint8Array([
+		e[0] * 255,
+		e[1] * 255,
+		e[2] * 255,
+		e[3] * 255
+	]);
+}
+function Xn(e, t, n, r, i, a) {
+	n ||= b.textureOptions, a ||= C;
+	let o = n.target || T;
+	if (r ||= n.width, i ||= n.height, e.bindTexture(o, t), Hn(e, r, i, a)) e.generateMipmap(o);
+	else {
+		let t = Un(a) ? tt : et;
+		e.texParameteri(o, ct, t), e.texParameteri(o, lt, t), e.texParameteri(o, ut, $e), e.texParameteri(o, dt, $e);
+	}
+}
+function W(e) {
+	return e.auto === !0 || e.auto === void 0 && e.level === void 0;
+}
+function Zn(e, t) {
+	return t ||= {}, t.cubeFaceOrder || [
+		nt,
+		rt,
+		it,
+		at,
+		ot,
+		st
+	];
+}
+function Qn(e, t) {
+	let n = Zn(e, t).map(function(e, t) {
+		return {
+			face: e,
+			ndx: t
+		};
+	});
+	return n.sort(function(e, t) {
+		return e.face - t.face;
+	}), n;
+}
+function $n(e, t, n, r) {
+	r ||= b.textureOptions;
+	let i = r.target || T, a = r.level || 0, o = n.width, s = n.height, c = r.internalFormat || r.format || C, l = H(c), u = r.format || l.format, d = r.type || l.type;
+	if (U(e, r), e.bindTexture(i, t), i === E) {
+		let l = n.width, f = n.height, p, m;
+		if (l / 6 === f) p = f, m = [
+			0,
+			0,
+			1,
+			0,
+			2,
+			0,
+			3,
+			0,
+			4,
+			0,
+			5,
+			0
+		];
+		else if (f / 6 === l) p = l, m = [
+			0,
+			0,
+			0,
+			1,
+			0,
+			2,
+			0,
+			3,
+			0,
+			4,
+			0,
+			5
+		];
+		else if (l / 3 == f / 2) p = l / 3, m = [
+			0,
+			0,
+			1,
+			0,
+			2,
+			0,
+			0,
+			1,
+			1,
+			1,
+			2,
+			1
+		];
+		else if (l / 2 == f / 3) p = l / 2, m = [
+			0,
+			0,
+			1,
+			0,
+			0,
+			1,
+			1,
+			1,
+			0,
+			2,
+			1,
+			2
+		];
+		else throw "can't figure out cube map from element: " + (n.src ? n.src : n.nodeName);
+		let h = Je();
+		h ? (h.canvas.width = p, h.canvas.height = p, o = p, s = p, Qn(e, r).forEach(function(t) {
+			let r = m[t.ndx * 2 + 0] * p, i = m[t.ndx * 2 + 1] * p;
+			h.drawImage(n, r, i, p, p, 0, 0, p, p), e.texImage2D(t.face, a, c, u, d, h.canvas);
+		}), h.canvas.width = 1, h.canvas.height = 1) : typeof createImageBitmap < "u" && (o = p, s = p, Qn(e, r).forEach(function(l) {
+			let f = m[l.ndx * 2 + 0] * p, h = m[l.ndx * 2 + 1] * p;
+			e.texImage2D(l.face, a, c, p, p, 0, u, d, null), createImageBitmap(n, f, h, p, p, {
+				premultiplyAlpha: "none",
+				colorSpaceConversion: "none"
+			}).then(function(n) {
+				U(e, r), e.bindTexture(i, t), e.texImage2D(l.face, a, c, u, d, n), W(r) && Xn(e, t, r, o, s, c);
+			});
+		}));
+	} else if (i === D || i === O) {
+		let t = Math.min(n.width, n.height), r = Math.max(n.width, n.height), o = r / t;
+		if (o % 1 != 0) throw "can not compute 3D dimensions of element";
+		let s = +(n.width === r), l = +(n.height === r);
+		e.pixelStorei(_t, 1), e.pixelStorei(vt, n.width), e.pixelStorei(yt, 0), e.pixelStorei(St, 0), e.texImage3D(i, a, c, t, t, t, 0, u, d, null);
+		for (let r = 0; r < o; ++r) {
+			let o = r * t * s, c = r * t * l;
+			e.pixelStorei(bt, o), e.pixelStorei(xt, c), e.texSubImage3D(i, a, 0, 0, r, t, t, 1, u, d, n);
+		}
+		Kn(e);
+	} else e.texImage2D(i, a, c, u, d, n);
+	W(r) && Xn(e, t, r, o, s, c), Jn(e, t, r);
+}
+function G() {}
+function er(e) {
+	if (typeof document < "u") {
+		let t = document.createElement("a");
+		return t.href = e, t.hostname === location.hostname && t.port === location.port && t.protocol === location.protocol;
+	} else {
+		let t = new URL(location.href).origin;
+		return new URL(e, location.href).origin === t;
+	}
+}
+function tr(e, t) {
+	return t === void 0 && !er(e) ? "anonymous" : t;
+}
+function nr(e, t, n) {
+	n ||= G;
+	let r;
+	if (t = t === void 0 ? b.crossOrigin : t, t = tr(e, t), typeof Image < "u") {
+		r = new Image(), t !== void 0 && (r.crossOrigin = t);
+		let i = function() {
+			r.removeEventListener("error", a), r.removeEventListener("load", o), r = null;
+		}, a = function() {
+			let t = "couldn't load image: " + e;
+			pe(t), n(t, r), i();
+		}, o = function() {
+			n(null, r), i();
+		};
+		return r.addEventListener("error", a), r.addEventListener("load", o), r.src = e, r;
+	} else if (typeof ImageBitmap < "u") {
+		let i, a, o = function() {
+			n(i, a);
+		}, s = {};
+		t && (s.mode = "cors"), fetch(e, s).then(function(e) {
+			if (!e.ok) throw e;
+			return e.blob();
+		}).then(function(e) {
+			return createImageBitmap(e, {
+				premultiplyAlpha: "none",
+				colorSpaceConversion: "none"
+			});
+		}).then(function(e) {
+			a = e, setTimeout(o);
+		}).catch(function(e) {
+			i = e, setTimeout(o);
+		}), r = null;
+	}
+	return r;
+}
+function rr(e) {
+	return typeof ImageBitmap < "u" && e instanceof ImageBitmap || typeof ImageData < "u" && e instanceof ImageData || typeof HTMLElement < "u" && e instanceof HTMLElement;
+}
+function ir(e, t, n) {
+	return rr(e) ? (setTimeout(function() {
+		n(null, e);
+	}), e) : nr(e, t, n);
+}
+function ar(e, t, n) {
+	n ||= b.textureOptions;
+	let r = n.target || T;
+	if (e.bindTexture(r, t), n.color === !1) return;
+	let i = Yn(n.color);
+	if (r === E) for (let t = 0; t < 6; ++t) e.texImage2D(nt + t, 0, C, 1, 1, 0, C, A, i);
+	else r === D || r === O ? e.texImage3D(r, 0, C, 1, 1, 1, 0, C, A, i) : e.texImage2D(r, 0, C, 1, 1, 0, C, A, i);
+}
+function or(e, t, n, r) {
+	return r ||= G, n ||= b.textureOptions, ar(e, t, n), n = Object.assign({}, n), ir(n.src, n.crossOrigin, function(i, a) {
+		i ? r(i, t, a) : ($n(e, t, a, n), r(null, t, a));
+	});
+}
+function sr(e, t, n, r) {
+	r ||= G;
+	let i = n.src;
+	if (i.length !== 6) throw "there must be 6 urls for a cubemap";
+	let a = n.level || 0, o = n.internalFormat || n.format || C, s = H(o), c = n.format || s.format, l = n.type || A, u = n.target || T;
+	if (u !== E) throw "target must be TEXTURE_CUBE_MAP";
+	ar(e, t, n), n = Object.assign({}, n);
+	let d = 6, f = [], p = Zn(e, n), m;
+	function h(i) {
+		return function(s, p) {
+			--d, s ? f.push(s) : p.width === p.height ? (U(e, n), e.bindTexture(u, t), d === 5 ? Zn().forEach(function(t) {
+				e.texImage2D(t, a, o, c, l, p);
+			}) : e.texImage2D(i, a, o, c, l, p), W(n) && e.generateMipmap(u)) : f.push("cubemap face img is not a square: " + p.src), d === 0 && r(f.length ? f : void 0, t, m);
+		};
+	}
+	m = i.map(function(e, t) {
+		return ir(e, n.crossOrigin, h(p[t]));
+	});
+}
+function cr(e, t, n, r) {
+	r ||= G;
+	let i = n.src, a = n.internalFormat || n.format || C, o = H(a), s = n.format || o.format, c = n.type || A, l = n.target || O;
+	if (l !== D && l !== O) throw "target must be TEXTURE_3D or TEXTURE_2D_ARRAY";
+	ar(e, t, n), n = Object.assign({}, n);
+	let u = i.length, d = [], f, p = n.level || 0, m = n.width, h = n.height, g = i.length, ee = !0;
+	function _(i) {
+		return function(o, _) {
+			if (--u, o) d.push(o);
+			else {
+				if (U(e, n), e.bindTexture(l, t), ee) {
+					ee = !1, m = n.width || _.width, h = n.height || _.height, e.texImage3D(l, p, a, m, h, g, 0, s, c, null);
+					for (let t = 0; t < g; ++t) e.texSubImage3D(l, p, 0, 0, t, m, h, 1, s, c, _);
+				} else {
+					let t = _, n;
+					(_.width !== m || _.height !== h) && (n = Je(), t = n.canvas, n.canvas.width = m, n.canvas.height = h, n.drawImage(_, 0, 0, m, h)), e.texSubImage3D(l, p, 0, 0, i, m, h, 1, s, c, t), n && t === n.canvas && (n.canvas.width = 0, n.canvas.height = 0);
+				}
+				W(n) && e.generateMipmap(l);
+			}
+			u === 0 && r(d.length ? d : void 0, t, f);
+		};
+	}
+	f = i.map(function(e, t) {
+		return ir(e, n.crossOrigin, _(t));
+	});
+}
+function lr(e, t, n, r) {
+	r ||= b.textureOptions;
+	let i = r.target || T;
+	e.bindTexture(i, t);
+	let a = r.width, o = r.height, s = r.depth, c = r.level || 0, l = r.internalFormat || r.format || C, u = H(l), d = r.format || u.format, f = r.type || Wn(e, n, u.type);
+	x(n) ? n instanceof Uint8ClampedArray && (n = new Uint8Array(n.buffer)) : n = new (de(f))(n);
+	let p = Bn(l, f), m = n.byteLength / p;
+	if (m % 1) throw "length wrong size for format: " + qe(e, d);
+	let h;
+	if (i === D || i === O) if (!a && !o && !s) {
+		let e = Math.cbrt(m);
+		if (e % 1 != 0) throw "can't guess cube size of array of numElements: " + m;
+		a = e, o = e, s = e;
+	} else a && (!o || !s) ? (h = Gn(e, i, o, s, m / a), o = h.width, s = h.height) : o && (!a || !s) ? (h = Gn(e, i, a, s, m / o), a = h.width, s = h.height) : (h = Gn(e, i, a, o, m / s), a = h.width, o = h.height);
+	else h = Gn(e, i, a, o, m), a = h.width, o = h.height;
+	if (Kn(e), e.pixelStorei(_t, r.unpackAlignment || 1), U(e, r), i === E) {
+		let t = p / n.BYTES_PER_ELEMENT, i = m / 6 * t;
+		Qn(e, r).forEach((t) => {
+			let r = i * t.ndx, s = n.subarray(r, r + i);
+			e.texImage2D(t.face, c, l, a, o, 0, d, f, s);
+		});
+	} else i === D || i === O ? e.texImage3D(i, c, l, a, o, s, 0, d, f, n) : e.texImage2D(i, c, l, a, o, 0, d, f, n);
+	return {
+		width: a,
+		height: o,
+		depth: s,
+		type: f
+	};
+}
+function ur(e, t, n) {
+	let r = n.target || T;
+	e.bindTexture(r, t);
+	let i = n.level || 0, a = n.internalFormat || n.format || C, o = H(a), s = n.format || o.format, c = n.type || o.type;
+	if (U(e, n), r === E) for (let t = 0; t < 6; ++t) e.texImage2D(nt + t, i, a, n.width, n.height, 0, s, c, null);
+	else r === D || r === O ? e.texImage3D(r, i, a, n.width, n.height, n.depth, 0, s, c, null) : e.texImage2D(r, i, a, n.width, n.height, 0, s, c, null);
+}
+function dr(e, t, n) {
+	n ||= G, t ||= b.textureOptions;
+	let r = e.createTexture(), i = t.target || T, a = t.width || 1, o = t.height || 1, s = t.internalFormat || C;
+	e.bindTexture(i, r), i === E && (e.texParameteri(i, ut, $e), e.texParameteri(i, dt, $e));
+	let c = t.src;
+	if (c) if (typeof c == "function" && (c = c(e, t)), typeof c == "string") or(e, r, t, n);
+	else if (x(c) || Array.isArray(c) && (typeof c[0] == "number" || Array.isArray(c[0]) || x(c[0]))) {
+		let n = lr(e, r, c, t);
+		a = n.width, o = n.height;
+	} else Array.isArray(c) && (typeof c[0] == "string" || rr(c[0])) ? i === E ? sr(e, r, t, n) : cr(e, r, t, n) : ($n(e, r, c, t), a = c.width, o = c.height);
+	else ur(e, r, t);
+	return W(t) && Xn(e, r, t, a, o, s), Jn(e, r, t), r;
+}
+function fr(e, t, n, r, i, a) {
+	r ||= n.width, i ||= n.height, a ||= n.depth;
+	let o = n.target || T;
+	e.bindTexture(o, t);
+	let s = n.level || 0, c = n.internalFormat || n.format || C, l = H(c), u = n.format || l.format, d, f = n.src;
+	if (d = f && (x(f) || Array.isArray(f) && typeof f[0] == "number") ? n.type || Wn(e, f, l.type) : n.type || l.type, o === E) for (let t = 0; t < 6; ++t) e.texImage2D(nt + t, s, c, r, i, 0, u, d, null);
+	else o === D || o === O ? e.texImage3D(o, s, c, r, i, a, 0, u, d, null) : e.texImage2D(o, s, c, r, i, 0, u, d, null);
+}
+var pr = me, mr = 33984, hr = 35048, gr = 34962, _r = 34963, vr = 35345, yr = 35718, br = 35721, xr = 35971, Sr = 35382, Cr = 35396, wr = 35398, Tr = 35392, Er = 35395, Dr = 5126, Or = 35664, kr = 35665, Ar = 35666, jr = 5124, Mr = 35667, Nr = 35668, Pr = 35669, Fr = 35670, Ir = 35671, Lr = 35672, Rr = 35673, zr = 35674, Br = 35675, Vr = 35676, Hr = 35678, Ur = 35680, Wr = 35679, Gr = 35682, Kr = 35685, qr = 35686, Jr = 35687, Yr = 35688, Xr = 35689, Zr = 35690, Qr = 36289, $r = 36292, ei = 36293, ti = 5125, ni = 36294, ri = 36295, ii = 36296, ai = 36298, oi = 36299, si = 36300, ci = 36303, li = 36306, ui = 36307, di = 36308, fi = 36311, pi = 3553, mi = 34067, hi = 32879, gi = 35866, K = {};
+function _i(e, t) {
+	return K[t].bindPoint;
+}
+function vi(e, t) {
+	return function(n) {
+		e.uniform1f(t, n);
+	};
+}
+function yi(e, t) {
+	return function(n) {
+		e.uniform1fv(t, n);
+	};
+}
+function bi(e, t) {
+	return function(n) {
+		e.uniform2fv(t, n);
+	};
+}
+function xi(e, t) {
+	return function(n) {
+		e.uniform3fv(t, n);
+	};
+}
+function Si(e, t) {
+	return function(n) {
+		e.uniform4fv(t, n);
+	};
+}
+function Ci(e, t) {
+	return function(n) {
+		e.uniform1i(t, n);
+	};
+}
+function wi(e, t) {
+	return function(n) {
+		e.uniform1iv(t, n);
+	};
+}
+function Ti(e, t) {
+	return function(n) {
+		e.uniform2iv(t, n);
+	};
+}
+function Ei(e, t) {
+	return function(n) {
+		e.uniform3iv(t, n);
+	};
+}
+function Di(e, t) {
+	return function(n) {
+		e.uniform4iv(t, n);
+	};
+}
+function Oi(e, t) {
+	return function(n) {
+		e.uniform1ui(t, n);
+	};
+}
+function ki(e, t) {
+	return function(n) {
+		e.uniform1uiv(t, n);
+	};
+}
+function Ai(e, t) {
+	return function(n) {
+		e.uniform2uiv(t, n);
+	};
+}
+function ji(e, t) {
+	return function(n) {
+		e.uniform3uiv(t, n);
+	};
+}
+function Mi(e, t) {
+	return function(n) {
+		e.uniform4uiv(t, n);
+	};
+}
+function Ni(e, t) {
+	return function(n) {
+		e.uniformMatrix2fv(t, !1, n);
+	};
+}
+function Pi(e, t) {
+	return function(n) {
+		e.uniformMatrix3fv(t, !1, n);
+	};
+}
+function Fi(e, t) {
+	return function(n) {
+		e.uniformMatrix4fv(t, !1, n);
+	};
+}
+function Ii(e, t) {
+	return function(n) {
+		e.uniformMatrix2x3fv(t, !1, n);
+	};
+}
+function Li(e, t) {
+	return function(n) {
+		e.uniformMatrix3x2fv(t, !1, n);
+	};
+}
+function Ri(e, t) {
+	return function(n) {
+		e.uniformMatrix2x4fv(t, !1, n);
+	};
+}
+function zi(e, t) {
+	return function(n) {
+		e.uniformMatrix4x2fv(t, !1, n);
+	};
+}
+function Bi(e, t) {
+	return function(n) {
+		e.uniformMatrix3x4fv(t, !1, n);
+	};
+}
+function Vi(e, t) {
+	return function(n) {
+		e.uniformMatrix4x3fv(t, !1, n);
+	};
+}
+function q(e, t, n, r) {
+	let i = _i(e, t);
+	return y(e) ? function(t) {
+		let a, o;
+		_e(e, t) ? (a = t, o = null) : (a = t.texture, o = t.sampler), e.uniform1i(r, n), e.activeTexture(mr + n), e.bindTexture(i, a), e.bindSampler(n, o);
+	} : function(t) {
+		e.uniform1i(r, n), e.activeTexture(mr + n), e.bindTexture(i, t);
+	};
+}
+function J(e, t, n, r, i) {
+	let a = _i(e, t), o = new Int32Array(i);
+	for (let e = 0; e < i; ++e) o[e] = n + e;
+	return y(e) ? function(t) {
+		e.uniform1iv(r, o), t.forEach(function(t, r) {
+			e.activeTexture(mr + o[r]);
+			let i, s;
+			_e(e, t) ? (i = t, s = null) : (i = t.texture, s = t.sampler), e.bindSampler(n, s), e.bindTexture(a, i);
+		});
+	} : function(t) {
+		e.uniform1iv(r, o), t.forEach(function(t, n) {
+			e.activeTexture(mr + o[n]), e.bindTexture(a, t);
+		});
+	};
+}
+K[Dr] = {
+	Type: Float32Array,
+	size: 4,
+	setter: vi,
+	arraySetter: yi
+}, K[Or] = {
+	Type: Float32Array,
+	size: 8,
+	setter: bi,
+	cols: 2
+}, K[kr] = {
+	Type: Float32Array,
+	size: 12,
+	setter: xi,
+	cols: 3
+}, K[Ar] = {
+	Type: Float32Array,
+	size: 16,
+	setter: Si,
+	cols: 4
+}, K[jr] = {
+	Type: Int32Array,
+	size: 4,
+	setter: Ci,
+	arraySetter: wi
+}, K[Mr] = {
+	Type: Int32Array,
+	size: 8,
+	setter: Ti,
+	cols: 2
+}, K[Nr] = {
+	Type: Int32Array,
+	size: 12,
+	setter: Ei,
+	cols: 3
+}, K[Pr] = {
+	Type: Int32Array,
+	size: 16,
+	setter: Di,
+	cols: 4
+}, K[ti] = {
+	Type: Uint32Array,
+	size: 4,
+	setter: Oi,
+	arraySetter: ki
+}, K[ni] = {
+	Type: Uint32Array,
+	size: 8,
+	setter: Ai,
+	cols: 2
+}, K[ri] = {
+	Type: Uint32Array,
+	size: 12,
+	setter: ji,
+	cols: 3
+}, K[ii] = {
+	Type: Uint32Array,
+	size: 16,
+	setter: Mi,
+	cols: 4
+}, K[Fr] = {
+	Type: Uint32Array,
+	size: 4,
+	setter: Ci,
+	arraySetter: wi
+}, K[Ir] = {
+	Type: Uint32Array,
+	size: 8,
+	setter: Ti,
+	cols: 2
+}, K[Lr] = {
+	Type: Uint32Array,
+	size: 12,
+	setter: Ei,
+	cols: 3
+}, K[Rr] = {
+	Type: Uint32Array,
+	size: 16,
+	setter: Di,
+	cols: 4
+}, K[zr] = {
+	Type: Float32Array,
+	size: 32,
+	setter: Ni,
+	rows: 2,
+	cols: 2
+}, K[Br] = {
+	Type: Float32Array,
+	size: 48,
+	setter: Pi,
+	rows: 3,
+	cols: 3
+}, K[Vr] = {
+	Type: Float32Array,
+	size: 64,
+	setter: Fi,
+	rows: 4,
+	cols: 4
+}, K[Kr] = {
+	Type: Float32Array,
+	size: 32,
+	setter: Ii,
+	rows: 2,
+	cols: 3
+}, K[qr] = {
+	Type: Float32Array,
+	size: 32,
+	setter: Ri,
+	rows: 2,
+	cols: 4
+}, K[Jr] = {
+	Type: Float32Array,
+	size: 48,
+	setter: Li,
+	rows: 3,
+	cols: 2
+}, K[Yr] = {
+	Type: Float32Array,
+	size: 48,
+	setter: Bi,
+	rows: 3,
+	cols: 4
+}, K[Xr] = {
+	Type: Float32Array,
+	size: 64,
+	setter: zi,
+	rows: 4,
+	cols: 2
+}, K[Zr] = {
+	Type: Float32Array,
+	size: 64,
+	setter: Vi,
+	rows: 4,
+	cols: 3
+}, K[Hr] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: pi
+}, K[Ur] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: mi
+}, K[Wr] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: hi
+}, K[Gr] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: pi
+}, K[Qr] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: gi
+}, K[$r] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: gi
+}, K[ei] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: mi
+}, K[ai] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: pi
+}, K[oi] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: hi
+}, K[si] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: mi
+}, K[ci] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: gi
+}, K[li] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: pi
+}, K[ui] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: hi
+}, K[di] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: mi
+}, K[fi] = {
+	Type: null,
+	size: 0,
+	setter: q,
+	arraySetter: J,
+	bindPoint: gi
+};
+function Hi(e, t) {
+	return function(n) {
+		if (n.value) switch (e.disableVertexAttribArray(t), n.value.length) {
+			case 4:
+				e.vertexAttrib4fv(t, n.value);
+				break;
+			case 3:
+				e.vertexAttrib3fv(t, n.value);
+				break;
+			case 2:
+				e.vertexAttrib2fv(t, n.value);
+				break;
+			case 1:
+				e.vertexAttrib1fv(t, n.value);
+				break;
+			default: throw Error("the length of a float constant value must be between 1 and 4!");
+		}
+		else e.bindBuffer(gr, n.buffer), e.enableVertexAttribArray(t), e.vertexAttribPointer(t, n.numComponents || n.size, n.type || Dr, n.normalize || !1, n.stride || 0, n.offset || 0), n.divisor !== void 0 && e.vertexAttribDivisor(t, n.divisor);
+	};
+}
+function Y(e, t) {
+	return function(n) {
+		if (n.value) if (e.disableVertexAttribArray(t), n.value.length === 4) e.vertexAttrib4iv(t, n.value);
+		else throw Error("The length of an integer constant value must be 4!");
+		else e.bindBuffer(gr, n.buffer), e.enableVertexAttribArray(t), e.vertexAttribIPointer(t, n.numComponents || n.size, n.type || jr, n.stride || 0, n.offset || 0), n.divisor !== void 0 && e.vertexAttribDivisor(t, n.divisor);
+	};
+}
+function Ui(e, t) {
+	return function(n) {
+		if (n.value) if (e.disableVertexAttribArray(t), n.value.length === 4) e.vertexAttrib4uiv(t, n.value);
+		else throw Error("The length of an unsigned integer constant value must be 4!");
+		else e.bindBuffer(gr, n.buffer), e.enableVertexAttribArray(t), e.vertexAttribIPointer(t, n.numComponents || n.size, n.type || ti, n.stride || 0, n.offset || 0), n.divisor !== void 0 && e.vertexAttribDivisor(t, n.divisor);
+	};
+}
+function Wi(e, t, n) {
+	let r = n.size, i = n.count;
+	return function(n) {
+		e.bindBuffer(gr, n.buffer);
+		let a = n.size || n.numComponents || r, o = a / i, s = n.type || Dr, c = K[s].size * a, l = n.normalize || !1, u = n.offset || 0, d = c / i;
+		for (let r = 0; r < i; ++r) e.enableVertexAttribArray(t + r), e.vertexAttribPointer(t + r, o, s, l, c, u + d * r), n.divisor !== void 0 && e.vertexAttribDivisor(t + r, n.divisor);
+	};
+}
+var X = {};
+X[Dr] = {
+	size: 4,
+	setter: Hi
+}, X[Or] = {
+	size: 8,
+	setter: Hi
+}, X[kr] = {
+	size: 12,
+	setter: Hi
+}, X[Ar] = {
+	size: 16,
+	setter: Hi
+}, X[jr] = {
+	size: 4,
+	setter: Y
+}, X[Mr] = {
+	size: 8,
+	setter: Y
+}, X[Nr] = {
+	size: 12,
+	setter: Y
+}, X[Pr] = {
+	size: 16,
+	setter: Y
+}, X[ti] = {
+	size: 4,
+	setter: Ui
+}, X[ni] = {
+	size: 8,
+	setter: Ui
+}, X[ri] = {
+	size: 12,
+	setter: Ui
+}, X[ii] = {
+	size: 16,
+	setter: Ui
+}, X[Fr] = {
+	size: 4,
+	setter: Y
+}, X[Ir] = {
+	size: 8,
+	setter: Y
+}, X[Lr] = {
+	size: 12,
+	setter: Y
+}, X[Rr] = {
+	size: 16,
+	setter: Y
+}, X[zr] = {
+	size: 4,
+	setter: Wi,
+	count: 2
+}, X[Br] = {
+	size: 9,
+	setter: Wi,
+	count: 3
+}, X[Vr] = {
+	size: 16,
+	setter: Wi,
+	count: 4
+};
+function Gi(e) {
+	let t = e.name;
+	return t.startsWith("gl_") || t.startsWith("webgl_");
+}
+var Ki = /(\.|\[|]|\w+)/g, qi = (e) => e >= "0" && e <= "9";
+function Ji(e, t, n, r) {
+	let i = e.split(Ki).filter((e) => e !== ""), a = 0, o = "";
+	for (;;) {
+		let e = i[a++];
+		o += e;
+		let s = qi(e[0]), c = s ? parseInt(e) : e;
+		if (s && (o += i[a++]), a === i.length) {
+			n[c] = t;
+			break;
+		} else {
+			let e = i[a++], t = e === "[", s = n[c] || (t ? [] : {});
+			n[c] = s, n = s, r[o] = r[o] || function(e) {
+				return function(t) {
+					oa(e, t);
+				};
+			}(s), o += e;
+		}
+	}
+}
+function Yi(e, t) {
+	let n = 0;
+	function r(t, r, i) {
+		let a = r.name.endsWith("[0]"), o = r.type, s = K[o];
+		if (!s) throw Error(`unknown type: 0x${o.toString(16)}`);
+		let c;
+		if (s.bindPoint) {
+			let t = n;
+			n += r.size, c = a ? s.arraySetter(e, o, t, i, r.size) : s.setter(e, o, t, i, r.size);
+		} else c = s.arraySetter && a ? s.arraySetter(e, i) : s.setter(e, i);
+		return c.location = i, c;
+	}
+	let i = {}, a = {}, o = e.getProgramParameter(t, yr);
+	for (let n = 0; n < o; ++n) {
+		let o = e.getActiveUniform(t, n);
+		if (Gi(o)) continue;
+		let s = o.name;
+		s.endsWith("[0]") && (s = s.substr(0, s.length - 3));
+		let c = e.getUniformLocation(t, o.name);
+		if (c) {
+			let e = r(t, o, c);
+			i[s] = e, Ji(s, e, a, i);
+		}
+	}
+	return i;
+}
+function Xi(e, t) {
+	let n = {}, r = e.getProgramParameter(t, xr);
+	for (let i = 0; i < r; ++i) {
+		let r = e.getTransformFeedbackVarying(t, i);
+		n[r.name] = {
+			index: i,
+			type: r.type,
+			size: r.size
+		};
+	}
+	return n;
+}
+function Zi(e, t) {
+	let n = e.getProgramParameter(t, yr), r = [], i = [];
+	for (let a = 0; a < n; ++a) {
+		i.push(a), r.push({});
+		let n = e.getActiveUniform(t, a);
+		r[a].name = n.name;
+	}
+	[
+		["UNIFORM_TYPE", "type"],
+		["UNIFORM_SIZE", "size"],
+		["UNIFORM_BLOCK_INDEX", "blockNdx"],
+		["UNIFORM_OFFSET", "offset"]
+	].forEach(function(n) {
+		let a = n[0], o = n[1];
+		e.getActiveUniforms(t, i, e[a]).forEach(function(e, t) {
+			r[t][o] = e;
+		});
+	});
+	let a = {}, o = e.getProgramParameter(t, Sr);
+	for (let n = 0; n < o; ++n) {
+		let r = e.getActiveUniformBlockName(t, n), i = {
+			index: e.getUniformBlockIndex(t, r),
+			usedByVertexShader: e.getActiveUniformBlockParameter(t, n, Cr),
+			usedByFragmentShader: e.getActiveUniformBlockParameter(t, n, wr),
+			size: e.getActiveUniformBlockParameter(t, n, Tr),
+			uniformIndices: e.getActiveUniformBlockParameter(t, n, Er)
+		};
+		i.used = i.usedByVertexShader || i.usedByFragmentShader, a[r] = i;
+	}
+	return {
+		blockSpecs: a,
+		uniformData: r
+	};
+}
+var Qi = /\[\d+\]\.$/, $i = (e, t) => ((e + (t - 1)) / t | 0) * t;
+function ea(e, t, n, r) {
+	if (t || n) {
+		r ||= 1;
+		let t = e.length / 4;
+		return function(n) {
+			let i = 0, a = 0;
+			for (let o = 0; o < t; ++o) {
+				for (let t = 0; t < r; ++t) e[i++] = n[a++];
+				i += 4 - r;
+			}
+		};
+	} else return function(t) {
+		t.length ? e.set(t) : e[0] = t;
+	};
+}
+function ta(e, t, n, r) {
+	let i = n.blockSpecs, a = n.uniformData, o = i[r];
+	if (!o) return pr("no uniform block object named:", r), {
+		name: r,
+		uniforms: {}
+	};
+	let s = new ArrayBuffer(o.size), c = e.createBuffer(), l = o.index;
+	e.bindBuffer(vr, c), e.uniformBlockBinding(t, o.index, l);
+	let u = r + ".";
+	Qi.test(u) && (u = u.replace(Qi, "."));
+	let d = {}, f = {}, p = {};
+	return o.uniformIndices.forEach(function(e) {
+		let t = a[e], n = t.name;
+		n.startsWith(u) && (n = n.substr(u.length));
+		let r = n.endsWith("[0]");
+		r && (n = n.substr(0, n.length - 3));
+		let i = K[t.type], o = i.Type, c = r ? $i(i.size, 16) * t.size : i.size * t.size, l = new o(s, t.offset, c / o.BYTES_PER_ELEMENT);
+		d[n] = l;
+		let m = ea(l, r, i.rows, i.cols);
+		f[n] = m, Ji(n, m, p, f);
+	}), {
+		name: r,
+		array: s,
+		asFloat: new Float32Array(s),
+		buffer: c,
+		uniforms: d,
+		setters: f
+	};
+}
+function na(e, t, n) {
+	return ta(e, t.program, t.uniformBlockSpec, n);
+}
+function ra(e, t, n) {
+	let r = (t.uniformBlockSpec || t).blockSpecs[n.name];
+	if (r) {
+		let t = r.index;
+		return e.bindBufferRange(vr, t, n.buffer, n.offset || 0, n.array.byteLength), !0;
+	}
+	return !1;
+}
+function ia(e, t, n) {
+	ra(e, t, n) && e.bufferData(vr, n.array, hr);
+}
+function aa(e, t) {
+	let n = e.setters;
+	for (let e in t) {
+		let r = n[e];
+		if (r) {
+			let n = t[e];
+			r(n);
+		}
+	}
+}
+function oa(e, t) {
+	for (let n in t) {
+		let r = e[n];
+		typeof r == "function" ? r(t[n]) : oa(e[n], t[n]);
+	}
+}
+function sa(e, ...t) {
+	let n = e.uniformSetters || e, r = t.length;
+	for (let e = 0; e < r; ++e) {
+		let r = t[e];
+		if (Array.isArray(r)) {
+			let e = r.length;
+			for (let t = 0; t < e; ++t) sa(n, r[t]);
+		} else for (let e in r) {
+			let t = n[e];
+			t && t(r[e]);
+		}
+	}
+}
+function ca(e, t) {
+	let n = {}, r = e.getProgramParameter(t, br);
+	for (let i = 0; i < r; ++i) {
+		let r = e.getActiveAttrib(t, i);
+		if (Gi(r)) continue;
+		let a = e.getAttribLocation(t, r.name), o = X[r.type], s = o.setter(e, a, o);
+		s.location = a, n[r.name] = s;
+	}
+	return n;
+}
+function la(e, t) {
+	for (let n in t) {
+		let r = e[n];
+		r && r(t[n]);
+	}
+}
+function ua(e, t, n) {
+	n.vertexArrayObject ? e.bindVertexArray(n.vertexArrayObject) : (la(t.attribSetters || t, n.attribs), n.indices && e.bindBuffer(_r, n.indices));
+}
+function da(e, t) {
+	let n = {
+		program: t,
+		uniformSetters: Yi(e, t),
+		attribSetters: ca(e, t)
+	};
+	return y(e) && (n.uniformBlockSpec = Zi(e, t), n.transformFeedbackInfo = Xi(e, t)), n;
+}
+var fa = 4, pa = 5123;
+function ma(e, t, n, r, i, a) {
+	n = n === void 0 ? fa : n;
+	let o = t.indices, s = t.elementType, c = r === void 0 ? t.numElements : r;
+	i = i === void 0 ? 0 : i, s || o ? a === void 0 ? e.drawElements(n, c, s === void 0 ? pa : t.elementType, i) : e.drawElementsInstanced(n, c, s === void 0 ? pa : t.elementType, i, a) : a === void 0 ? e.drawArrays(n, i, c) : e.drawArraysInstanced(n, i, c, a);
+}
+var ha = 36160, Z = 36161, ga = 3553, _a = 5121, va = 6402, ya = 6408, ba = 33190, xa = 36012, Sa = 35056, Ca = 36013, wa = 32854, Ta = 32855, Ea = 36194, Da = 33189, Oa = 6401, ka = 36168, Aa = 34041, ja = 36064, Ma = 36096, Na = 36128, Pa = 33306, Fa = 33071, Ia = 9729, La = [{
+	format: ya,
+	type: _a,
+	min: Ia,
+	wrap: Fa
+}, { format: Aa }], Q = {};
+Q[Aa] = Pa, Q[Oa] = Na, Q[ka] = Na, Q[va] = Ma, Q[Da] = Ma, Q[ba] = Ma, Q[xa] = Ma, Q[Sa] = Pa, Q[Ca] = Pa;
+function Ra(e, t) {
+	return Q[e] || Q[t];
+}
+var $ = {};
+$[wa] = !0, $[Ta] = !0, $[Ea] = !0, $[Aa] = !0, $[Da] = !0, $[Oa] = !0, $[ka] = !0;
+function za(e) {
+	return $[e];
+}
+function Ba(e) {
+	return e >= ja && e < 36096;
+}
+function Va(e, t, n, r) {
+	let i = ha, a = e.createFramebuffer();
+	e.bindFramebuffer(i, a), n ||= e.drawingBufferWidth, r ||= e.drawingBufferHeight, t ||= La;
+	let o = [], s = {
+		framebuffer: a,
+		attachments: [],
+		width: n,
+		height: r
+	};
+	return t.forEach(function(t, a) {
+		let c = t.attachment, l = t.samples, u = t.format, d = t.attachmentPoint || Ra(u, t.internalFormat);
+		if (d ||= ja + a, Ba(d) && o.push(d), !c) if (l !== void 0 || za(u)) c = e.createRenderbuffer(), e.bindRenderbuffer(Z, c), l > 1 ? e.renderbufferStorageMultisample(Z, l, u, n, r) : e.renderbufferStorage(Z, u, n, r);
+		else {
+			let i = Object.assign({}, t);
+			i.width = n, i.height = r, i.auto === void 0 && (i.auto = !1, i.min = i.min || i.minMag || Ia, i.mag = i.mag || i.minMag || Ia, i.wrapS = i.wrapS || i.wrap || Fa, i.wrapT = i.wrapT || i.wrap || Fa), c = dr(e, i);
+		}
+		if (ge(e, c)) e.framebufferRenderbuffer(i, d, Z, c);
+		else if (_e(e, c)) t.layer === void 0 ? e.framebufferTexture2D(i, d, t.target || ga, c, t.level || 0) : e.framebufferTextureLayer(i, d, c, t.level || 0, t.layer);
+		else throw Error("unknown attachment type");
+		s.attachments.push(c);
+	}), e.drawBuffers && e.drawBuffers(o), s;
+}
+function Ha(e, t, n, r, i) {
+	r ||= e.drawingBufferWidth, i ||= e.drawingBufferHeight, t.width = r, t.height = i, n ||= La, n.forEach(function(n, a) {
+		let o = t.attachments[a], s = n.format, c = n.samples;
+		if (c !== void 0 || ge(e, o)) e.bindRenderbuffer(Z, o), c > 1 ? e.renderbufferStorageMultisample(Z, c, s, r, i) : e.renderbufferStorage(Z, s, r, i);
+		else if (_e(e, o)) fr(e, o, n, r, i);
+		else throw Error("unknown attachment type");
+	});
+}
+function Ua(e, t, n) {
+	let r = e.createVertexArray();
+	return e.bindVertexArray(r), t.length || (t = [t]), t.forEach(function(t) {
+		ua(e, t, n);
+	}), e.bindVertexArray(null), {
+		numElements: n.numElements,
+		elementType: n.elementType,
+		vertexArrayObject: r
+	};
+}
+var Wa = { addExtensionsToContext: !0 }, Ga = /^(.*?)_/;
+function Ka(e, t) {
+	qe(e, 0);
+	let n = e.getExtension(t);
+	if (n) {
+		let r = {}, i = Ga.exec(t)[1], a = "_" + i;
+		for (let t in n) {
+			let o = n[t], s = typeof o == "function", c = s ? i : a, l = t;
+			t.endsWith(c) && (l = t.substring(0, t.length - c.length)), e[l] === void 0 ? s ? e[l] = function(e) {
+				return function() {
+					return e.apply(n, arguments);
+				};
+			}(o) : (e[l] = o, r[l] = o) : !s && e[l] !== o && me(l, e[l], o, t);
+		}
+		r.constructor = { name: n.constructor.name }, qe(r, 0);
+	}
+	return n;
+}
+var qa = [
+	"ANGLE_instanced_arrays",
+	"EXT_blend_minmax",
+	"EXT_color_buffer_float",
+	"EXT_color_buffer_half_float",
+	"EXT_disjoint_timer_query",
+	"EXT_disjoint_timer_query_webgl2",
+	"EXT_frag_depth",
+	"EXT_sRGB",
+	"EXT_shader_texture_lod",
+	"EXT_texture_filter_anisotropic",
+	"OES_element_index_uint",
+	"OES_standard_derivatives",
+	"OES_texture_float",
+	"OES_texture_float_linear",
+	"OES_texture_half_float",
+	"OES_texture_half_float_linear",
+	"OES_vertex_array_object",
+	"WEBGL_color_buffer_float",
+	"WEBGL_compressed_texture_atc",
+	"WEBGL_compressed_texture_etc1",
+	"WEBGL_compressed_texture_pvrtc",
+	"WEBGL_compressed_texture_s3tc",
+	"WEBGL_compressed_texture_s3tc_srgb",
+	"WEBGL_depth_texture",
+	"WEBGL_draw_buffers"
+];
+function Ja(e) {
+	for (let t = 0; t < qa.length; ++t) Ka(e, qa[t]);
+}
+function Ya(e, t) {
+	let n = [
+		"webgl2",
+		"webgl",
+		"experimental-webgl"
+	], r = null;
+	for (let i = 0; i < n.length; ++i) if (r = e.getContext(n[i], t), r) {
+		Wa.addExtensionsToContext && Ja(r);
+		break;
+	}
+	return r;
+}
+function Xa(e, t) {
+	return Ya(e, t);
+}
+//#endregion
+//#region ../core/src/view/renderingContext/bufferedViewRenderingContext.js
+var Za = class extends a {
+	#e = [
+		0,
+		0,
+		0,
+		0
+	];
+	#t;
+	#n = [];
+	#r;
+	#i;
+	#a = /* @__PURE__ */ new Set();
+	#o;
+	#s = void 0;
+	#c = 1;
+	#l = {
+		width: 0,
+		height: 0
+	};
+	#u;
+	constructor(e, t) {
+		if (super(e), this.#i = t.webGLHelper, this.#r = t.framebufferInfo, this.#c = t.devicePixelRatio, this.#l = t.canvasSize, this.#o = t.markPredicate ?? (() => !0), this.#u = t.pixelOffset, t.clearColor) {
+			let e = i(t.clearColor).rgb();
+			this.#e = [
+				e.r / 255,
+				e.g / 255,
+				e.b / 255,
+				e.opacity
+			];
+		}
+	}
+	getDevicePixelRatio() {
+		return this.#c;
+	}
+	pushView(e, t) {
+		this.#a.add(e), this.#s = t;
+	}
+	renderMark(e, n) {
+		if (!this.#o(e) || this.globalOptions.picking && !e.isPickingParticipant()) return;
+		let i = e.render(n);
+		if (i) {
+			let a = t(n);
+			this.#n.push({
+				mark: e,
+				callback: i,
+				coords: this.#s,
+				clip: r(a, e.properties.clip, this.#s),
+				cullClip: a
+			});
+		}
+	}
+	render() {
+		if (this.#t || this.#d(), this.#t.length == 0) return;
+		let e = this.#i.gl, t = this.#r;
+		t ? (e.bindFramebuffer(e.FRAMEBUFFER, t.framebuffer), e.viewport(0, 0, t.width, t.height)) : e.viewport(0, 0, e.drawingBufferWidth, e.drawingBufferHeight), e.disable(e.SCISSOR_TEST), e.clearColor(...this.#e), e.clear(e.COLOR_BUFFER_BIT);
+		for (let e of this.#a) e.onBeforeRender();
+		for (let e of this.#t) e();
+		this.#r && e.bindFramebuffer(e.FRAMEBUFFER, null);
+	}
+	#d() {
+		this.#t = [];
+		let e = !0, t = !0, r = (t) => () => {
+			e && t();
+		}, i = (n) => () => {
+			e && t && n();
+		}, a = s(this.#n.reverse(), (e) => e.mark);
+		for (let [o, s] of [...a.entries()].reverse()) {
+			if (!o.isReady()) continue;
+			this.#t.push(() => {
+				e = o.unitView.getEffectiveOpacity() > 0;
+			}), this.#t.push(...o.prepareRender(this.globalOptions).map((e) => r(e)));
+			let a, c, l;
+			for (let e of s) {
+				let s = e.coords;
+				(!s.equals(a) || !n(e.clip, c) || !n(e.cullClip, l)) && this.#t.push(r(() => {
+					t = o.setViewport(this.#l, this.#c, s, e.clip, e.cullClip, this.#u);
+				})), this.#t.push(i(e.callback)), a = e.coords, c = e.clip, l = e.cullClip;
+			}
+		}
+	}
+};
+//#endregion
+//#region ../core/src/gl/framebufferReadback.js
+function Qa(e, t, n = {}) {
+	let r = n.x ?? 0, i = n.y ?? 0, a = n.width ?? t.width, o = n.height ?? t.height;
+	ro(t, r, i, a, o);
+	let s = new Uint8Array(a * o * 4);
+	e.bindFramebuffer(e.FRAMEBUFFER, t.framebuffer);
+	try {
+		e.readPixels(r, t.height - i - o, a, o, e.RGBA, e.UNSIGNED_BYTE, s);
+	} finally {
+		e.bindFramebuffer(e.FRAMEBUFFER, null);
+	}
+	return {
+		pixels: no(s, a, o, n.unpremultiplyAlpha ?? !1),
+		width: a,
+		height: o
+	};
+}
+function $a(e, t, n = "image/png", r = {}) {
+	return to(e, t, r).toDataURL(n);
+}
+function eo(e, t, n = "image/png", r = {}) {
+	let i = to(e, t, r);
+	return new Promise((e, t) => {
+		i.toBlob((r) => {
+			r ? e(r) : t(/* @__PURE__ */ Error(`Could not encode framebuffer as ${n}.`));
+		}, n);
+	});
+}
+function to(e, t, n) {
+	let { pixels: r, width: i, height: a } = Qa(e, t, n), o = document.createElement("canvas");
+	o.width = i, o.height = a;
+	let s = o.getContext("2d"), c = s.createImageData(i, a);
+	return c.data.set(r), s.putImageData(c, 0, 0), o;
+}
+function no(e, t, n, r) {
+	let i = new Uint8ClampedArray(e.length), a = t * 4;
+	for (let t = 0; t < n; t++) {
+		let r = (n - t - 1) * a, o = t * a;
+		i.set(e.subarray(r, r + a), o);
+	}
+	if (r) for (let e = 0; e < i.length; e += 4) {
+		let t = i[e + 3];
+		if (t == 0) i[e] = 0, i[e + 1] = 0, i[e + 2] = 0;
+		else if (t < 255) {
+			let n = 255 / t;
+			i[e] = Math.round(i[e] * n), i[e + 1] = Math.round(i[e + 1] * n), i[e + 2] = Math.round(i[e + 2] * n);
+		}
+	}
+	return i;
+}
+function ro(e, t, n, r, i) {
+	if (![
+		t,
+		n,
+		r,
+		i
+	].every(Number.isInteger)) throw RangeError("Framebuffer readback bounds must be integers.");
+	if (t < 0 || n < 0 || r <= 0 || i <= 0 || t + r > e.width || n + i > e.height) throw RangeError("Framebuffer readback bounds are out of range.");
+}
+//#endregion
+export { c as C, s as S, aa as _, ra as a, ia as b, da as c, Ua as d, ma as f, He as g, Ha as h, Ja as i, dr as l, y as m, $a as n, Ke as o, Xa as p, Za as r, Va as s, eo as t, na as u, ua as v, o as w, sa as x, lr as y };

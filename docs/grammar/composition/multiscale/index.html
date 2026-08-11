@@ -600,6 +600,8 @@
       
         
       
+        
+      
     
     
     
@@ -1013,6 +1015,33 @@
     
   
   Formula
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/identifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Identifier
 
     
   </span>
@@ -3688,64 +3717,44 @@ fully visible and all other levels are hidden.</p>
 <p>All other properties follow <a href=".././layer/"><code>layer</code></a> view semantics.</p>
 <dl>
 <dt><code>stops</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: (number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a>)[] | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#fadedmultiscalestops">FadedMultiscaleStops</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#transitionedmultiscalestops">TransitionedMultiscaleStops</a></p>
-<p>Stop definition that controls transitions between the multiscale levels.</p>
-<ul>
-<li><code>number[]</code> is shorthand for <code>{ metric: "unitsPerPixel", values: ... }</code></li>
-<li><code>(number | ExprRef)[]</code> supports mixed constants and expressions</li>
-<li>Object form allows configuring metric, channel, and fade.</li>
-</ul>
+<dd>Type: (number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a>)[] | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#fadedmultiscalestops">FadedMultiscaleStops</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#transitionedmultiscalestops">TransitionedMultiscaleStops</a><p>Stop definition that controls transitions between the multiscale levels.</p>
+<p>- <code>number[]</code> is shorthand for <code>{ metric: "unitsPerPixel", values: ... }</code>
+  - <code>(number | ExprRef)[]</code> supports mixed constants and expressions
+  - Object form allows configuring metric, channel, and fade.</p>
 </dd>
 </dl>
 <h3 id="stop-object-forms">Stop Object Forms<a class="headerlink" href="#stop-object-forms" title="Permanent link">&para;</a></h3>
 <h4 id="fadedmultiscalestops">FadedMultiscaleStops<a class="headerlink" href="#fadedmultiscalestops" title="Permanent link">&para;</a></h4>
 <dl>
 <dt><code>channel</code></dt>
-<dd>
-<p>Type: <code>"x"</code> | <code>"y"</code> | <code>"auto"</code></p>
-<p>Which positional channel controls the stop metric.</p>
-<ul>
-<li><code>"auto"</code> averages <code>x</code> and <code>y</code> when both are available.</li>
-<li><code>"x"</code> uses only the <code>x</code> channel.</li>
-<li><code>"y"</code> uses only the <code>y</code> channel.</li>
-</ul>
+<dd>Type: <code>"x"</code> | <code>"y"</code> | <code>"auto"</code><p>Which positional channel controls the stop metric.</p>
+<p>- <code>"auto"</code> averages <code>x</code> and <code>y</code> when both are available.
+  - <code>"x"</code> uses only the <code>x</code> channel.
+  - <code>"y"</code> uses only the <code>y</code> channel.</p>
 <p><strong>Default value:</strong> <code>"auto"</code></p>
 </dd>
 <dt><code>fade</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Relative transition width around each stop.</p>
+<dd>Type: number<p>Relative transition width around each stop.</p>
 <p>For each stop value <code>s</code>, the fade transition is evaluated in the range:</p>
-<ul>
-<li>upper edge: <code>s * (1 + fade)</code></li>
-<li>lower edge: <code>s * (1 - fade)</code></li>
-</ul>
+<p>- upper edge: <code>s * (1 + fade)</code>
+  - lower edge: <code>s * (1 - fade)</code></p>
 <p><strong>Default value:</strong> <code>0.5</code></p>
 </dd>
 <dt><code>values</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: array</p>
-<p>Stop values in descending order.</p>
+<dd>Type: array<p>Stop values in descending order.</p>
 </dd>
 </dl>
 <h4 id="transitionedmultiscalestops">TransitionedMultiscaleStops<a class="headerlink" href="#transitionedmultiscalestops" title="Permanent link">&para;</a></h4>
 <dl>
 <dt><code>channel</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: <code>"x"</code> | <code>"y"</code></p>
-<p>Positional channel that controls the stop metric.</p>
+<dd>Type: <code>"x"</code> | <code>"y"</code><p>Positional channel that controls the stop metric.</p>
 </dd>
 <dt><code>transition</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/parameters/#transition-properties">ParamTransition</a></p>
-<p>Cross-fades stages in time after a stop selects a new detail level. The selected stage settles fully visible and all other stages settle hidden. This differs from <code>fade</code>, which keeps adjacent stages partly visible within a zoom range.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/parameters/#transition-properties">ParamTransition</a><p>Cross-fades stages in time after a stop selects a new detail level. The selected stage settles fully visible and all other stages settle hidden. This differs from <code>fade</code>, which keeps adjacent stages partly visible within a zoom range.</p>
 <p>Transitioned stops require <code>channel</code> to be either <code>"x"</code> or <code>"y"</code> and cannot be combined with <code>fade</code>.</p>
 </dd>
 <dt><code>values</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: array</p>
-<p>Stop values in descending order.</p>
+<dd>Type: array<p>Stop values in descending order.</p>
 </dd>
 </dl>
 <p>Array shorthand:</p>

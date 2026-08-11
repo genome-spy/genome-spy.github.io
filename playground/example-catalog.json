@@ -663,6 +663,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/legend/collected-legends",
+    "title": "Collect independent legends around a composition",
+    "description": "Collect independent legends around a composition",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Legend",
+    "specPath": "examples/docs/grammar/legend/collected-legends.json",
+    "specUrl": "/docs/example-specs/docs/grammar/legend/collected-legends.json",
+    "screenshotPath": "examples/docs/grammar/legend/collected-legends.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/legend/collected-legends.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/legend/placement",
     "title": "Local legend placement",
     "description": "Local legend placement",
@@ -1781,6 +1794,32 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "core/legends/excluded-from-collection",
+    "title": "Exclude a legend from collection",
+    "description": "Exclude a legend from collection",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/excluded-from-collection.json",
+    "specUrl": "/docs/example-specs/core/legends/excluded-from-collection.json",
+    "screenshotPath": "examples/core/legends/excluded-from-collection.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/excluded-from-collection.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/legends/gradient-controls",
+    "title": "Gradient legend controls",
+    "description": "Gradient legend controls",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/gradient-controls.json",
+    "specUrl": "/docs/example-specs/core/legends/gradient-controls.json",
+    "screenshotPath": "examples/core/legends/gradient-controls.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/gradient-controls.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "core/legends/root-collected-legends",
     "title": "Independent legends collected at the root",
     "description": "Independent legends collected at the root",
@@ -1789,8 +1828,8 @@
     "category": "Legends",
     "specPath": "examples/core/legends/root-collected-legends.json",
     "specUrl": "/docs/example-specs/core/legends/root-collected-legends.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/legends/root-collected-legends.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/root-collected-legends.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1802,8 +1841,8 @@
     "category": "Legends",
     "specPath": "examples/core/legends/region-layout-directions.json",
     "specUrl": "/docs/example-specs/core/legends/region-layout-directions.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/legends/region-layout-directions.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/region-layout-directions.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1908,6 +1947,19 @@
     "specUrl": "/docs/example-specs/core/legends/redundant-encoding.json",
     "screenshotPath": "examples/core/legends/redundant-encoding.png",
     "screenshotUrl": "/docs/example-specs/core/legends/redundant-encoding.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/legends/region-wrapping",
+    "title": "Responsive legend region wrapping",
+    "description": "Responsive legend region wrapping",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Legends",
+    "specPath": "examples/core/legends/region-wrapping.json",
+    "specUrl": "/docs/example-specs/core/legends/region-wrapping.json",
+    "screenshotPath": "examples/core/legends/region-wrapping.png",
+    "screenshotUrl": "/docs/example-specs/core/legends/region-wrapping.png",
     "sourceMode": "shared-example"
   },
   {

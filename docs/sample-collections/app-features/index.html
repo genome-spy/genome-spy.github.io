@@ -594,6 +594,8 @@
       
         
       
+        
+      
     
     
     
@@ -1007,6 +1009,33 @@
     
   
   Formula
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/identifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Identifier
 
     
   </span>
@@ -3446,25 +3475,17 @@ users navigate through the bookmark file.</p>
 <p>The <code>remote</code> object accepts the following properties:</p>
 <dl>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string</p>
-<p>URL to the remote bookmark file.</p>
+<dd>Type: string<p>URL to the remote bookmark file.</p>
 </dd>
 <dt><code>initialBookmark</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Name of the bookmark that should be loaded as the initial state. The bookmark description dialog is shown only if the <code>tour</code> property is set to <code>true</code>.</p>
+<dd>Type: string<p>Name of the bookmark that should be loaded as the initial state. The bookmark description dialog is shown only if the <code>tour</code> property is set to <code>true</code>.</p>
 </dd>
 <dt><code>tour</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Should the user be shown a tour of the remote bookmarks when the visualization is launched? If the <code>initialBookmark</code> property is not defined, the tour starts from the first bookmark.</p>
+<dd>Type: boolean<p>Should the user be shown a tour of the remote bookmarks when the visualization is launched? If the <code>initialBookmark</code> property is not defined, the tour starts from the first bookmark.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>afterTourBookmark</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Name of the bookmark that should be loaded when the user ends the tour. If <code>null</code>, the dialog will be closed and the current state is retained. If undefined, the default state without any performed actions will be loaded.</p>
+<dd>Type: string<p>Name of the bookmark that should be loaded when the user ends the tour. If <code>null</code>, the dialog will be closed and the current state is retained. If undefined, the default state without any performed actions will be loaded.</p>
 </dd>
 </dl>
 <h3 id="bookmark-files">Bookmark files<a class="headerlink" href="#bookmark-files" title="Permanent link">&para;</a></h3>
@@ -3497,15 +3518,11 @@ address visibility state in bookmarks and shared state.</p>
 <p>Views have two properties for controlling visibility:</p>
 <dl>
 <dt><code>visible</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see <a href="https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility">toggleable view visibility</a>.</p>
+<dd>Type: boolean<p>The default visibility of the view. An invisible view is removed from the layout and not rendered. For context, see <a href="https://genomespy.app/docs/sample-collections/visualizing/#toggleable-view-visibility">toggleable view visibility</a>.</p>
 <p><strong>Default:</strong> <code>true</code></p>
 </dd>
 <dt><code>configurableVisibility</code></dt>
-<dd>
-<p>Type: boolean | AppVisibilityGroupSpec</p>
-<p>Is the visibility configurable from the GenomeSpy App view visibility menu.</p>
+<dd>Type: boolean | AppVisibilityGroupSpec<p>Is the visibility configurable from the GenomeSpy App view visibility menu.</p>
 <p>Configurability requires an explicit view name that is unique in its import scope.</p>
 <p>Set to an object with <code>group</code> to make configurable views mutually exclusive in the menu (radio buttons) within the same import scope.</p>
 <p><strong>Default value:</strong> <code>false</code> for children of <code>layer</code>, <code>true</code> for others</p>

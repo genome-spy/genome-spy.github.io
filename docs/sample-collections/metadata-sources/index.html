@@ -594,6 +594,8 @@
       
         
       
+        
+      
     
     
     
@@ -1007,6 +1009,33 @@
     
   
   Formula
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/identifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Identifier
 
     
   </span>
@@ -4251,58 +4280,40 @@ configuration are documented in
 <a href="../visualizing/">Visualizing Sample Collections</a>.</p>
 <dl>
 <dt><code>sources</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Metadata source definitions used for startup and on-demand imports.</p>
+<dd>Type: array<p>Metadata source definitions used for startup and on-demand imports.</p>
 <p>Source order is significant for startup loading: eager startup imports are applied in declaration order.</p>
 </dd>
 <dt><code>attributeWidth</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Default width of metadata columns in pixels.</p>
+<dd>Type: number<p>Default width of metadata columns in pixels.</p>
 <p><strong>Default value:</strong> <code>10</code></p>
 </dd>
 <dt><code>missingValueColor</code></dt>
-<dd>
-<p>Type: string | null</p>
-<p>Default color for metadata cells whose value is missing.</p>
+<dd>Type: string | null<p>Default color for metadata cells whose value is missing.</p>
 <p>If <code>null</code>, missing-value colors are disabled unless overridden by an attribute definition.</p>
 <p><strong>Default value:</strong> <code>"#f0f0f0"</code></p>
 </dd>
 <dt><code>spacing</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Spacing between metadata columns in pixels.</p>
+<dd>Type: number<p>Spacing between metadata columns in pixels.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>labelFont</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Font typeface for metadata attribute labels.</p>
+<dd>Type: string<p>Font typeface for metadata attribute labels.</p>
 <p><strong>Default value:</strong> <code>"Lato"</code></p>
 </dd>
 <dt><code>labelFontSize</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Font size for metadata attribute labels in pixels.</p>
+<dd>Type: number<p>Font size for metadata attribute labels in pixels.</p>
 <p><strong>Default value:</strong> <code>11</code></p>
 </dd>
 <dt><code>labelFontWeight</code></dt>
-<dd>
-<p>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code></p>
-<p>Font weight for metadata attribute labels.</p>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight for metadata attribute labels.</p>
 <p><strong>Default value:</strong> <code>"regular"</code></p>
 </dd>
 <dt><code>labelFontStyle</code></dt>
-<dd>
-<p>Type: <code>"normal"</code> | <code>"italic"</code></p>
-<p>Font style for metadata attribute labels.</p>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style for metadata attribute labels.</p>
 <p><strong>Default value:</strong> <code>"normal"</code></p>
 </dd>
 <dt><code>labelAngle</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Angle of metadata attribute labels in degrees.</p>
+<dd>Type: number<p>Angle of metadata attribute labels in degrees.</p>
 <p><strong>Default value:</strong> <code>-90</code></p>
 </dd>
 </dl>
@@ -4315,63 +4326,43 @@ array entry shape, while <code>MetadataSourceDef</code> describes an inline sour
 <h4 id="inline-source-objects">Inline source objects<a class="headerlink" href="#inline-source-objects" title="Permanent link">&para;</a></h4>
 <dl>
 <dt><code>attributeGroupSeparator</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Separator used by source-side attribute names to express hierarchy.</p>
+<dd>Type: string<p>Separator used by source-side attribute names to express hierarchy.</p>
 <p>Example: if separator is <code>"."</code>, column <code>clinical.OS</code> is interpreted as group <code>clinical</code> and attribute <code>OS</code>.</p>
 </dd>
 <dt><code>attributes</code></dt>
-<dd>
-<p>Type: object</p>
-<p>Attribute definitions keyed by attribute/column id (and optionally by group path).</p>
+<dd>Type: object<p>Attribute definitions keyed by attribute/column id (and optionally by group path).</p>
 <p>Special key <code>""</code> defines source-level defaults for all imported columns. Path splitting is applied only when <code>attributeGroupSeparator</code> is defined.</p>
 </dd>
 <dt><code>backend</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/sample-collections/metadata-sources/#data-backend">DataBackendDef</a> | <a href="https://genomespy.app/docs/sample-collections/metadata-sources/#zarr-backend-schema">ZarrBackendDef</a> | ParquetBackendDef | ArrowBackendDef</p>
-<p>Source backend configuration.</p>
+<dd>Type: <a href="https://genomespy.app/docs/sample-collections/metadata-sources/#data-backend">DataBackendDef</a> | <a href="https://genomespy.app/docs/sample-collections/metadata-sources/#zarr-backend-schema">ZarrBackendDef</a> | ParquetBackendDef | ArrowBackendDef<p>Source backend configuration.</p>
 </dd>
 <dt><code>description</code></dt>
-<dd>
-<p>Type: string</p>
-<p>User-facing description of what this source contains.</p>
+<dd>Type: string<p>User-facing description of what this source contains.</p>
 <p>Can be shown in UI and can help automated agents choose the correct source.</p>
 </dd>
 <dt><code>excludeColumns</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Column ids that must never be imported from this source.</p>
+<dd>Type: array<p>Column ids that must never be imported from this source.</p>
 <p>The data backend always excludes its <code>sampleIdField</code> automatically, so this property is only needed for other helper columns such as display labels.</p>
 </dd>
 <dt><code>groupPath</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Default destination group path for imported attributes.</p>
+<dd>Type: string<p>Default destination group path for imported attributes.</p>
 <p>Imported column names are placed under this path, which effectively creates (or reuses) a metadata hierarchy node.</p>
 <p>This value is parsed as a path using <code>attributeGroupSeparator</code> when that separator is defined for the source. Without an explicit separator, the whole value is treated as one group name (including any <code>/</code> characters).</p>
 <p>Users can override this per import in the dialog.</p>
 </dd>
 <dt><code>id</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Stable source identifier.</p>
+<dd>Type: string<p>Stable source identifier.</p>
 <p>Should remain stable across spec revisions if bookmarks/provenance replay must keep working.</p>
 </dd>
 <dt><code>initialLoad</code></dt>
-<dd>
-<p>Type: boolean | <code>"*"</code> | string[]</p>
-<p>Startup loading behavior.</p>
-<ul>
-<li><code>false</code>: do not load at startup</li>
-<li><code>"*"</code>: load all columns allowed by this source</li>
-<li><code>string[]</code>: resolve and load only the listed columns</li>
-</ul>
+<dd>Type: boolean | <code>"*"</code> | string[]<p>Startup loading behavior.</p>
+<p>- <code>false</code>: do not load at startup
+  - <code>"*"</code>: load all columns allowed by this source
+  - <code>string[]</code>: resolve and load only the listed columns</p>
 <p>If omitted, data backends load all columns and other backends do not load columns at startup.</p>
 </dd>
 <dt><code>name</code></dt>
-<dd>
-<p>Type: string</p>
-<p>User-facing label shown in menus and dialogs.</p>
+<dd>Type: string<p>User-facing label shown in menus and dialogs.</p>
 <p>If omitted, UI falls back to <code>id</code>.</p>
 </dd>
 </dl>
@@ -4379,15 +4370,11 @@ array entry shape, while <code>MetadataSourceDef</code> describes an inline sour
 <h3 id="data-backend"><code>data</code> backend<a class="headerlink" href="#data-backend" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>data</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/data/eager/#url-data">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#inline-data">InlineData</a></p>
-<p>Eager tabular metadata source.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/data/eager/#url-data">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#inline-data">InlineData</a><p>Eager tabular metadata source.</p>
 <p>Supports <code>UrlData</code> and <code>InlineData</code>.</p>
 </dd>
 <dt><code>sampleIdField</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Field name in the table that matches sample ids in the view.</p>
+<dd>Type: string<p>Field name in the table that matches sample ids in the view.</p>
 <p><strong>Default value:</strong> <code>"sample"</code></p>
 </dd>
 </dl>
@@ -4466,20 +4453,14 @@ arrays/chunks over HTTP.</p>
 <h4 id="zarr-backend-schema">Zarr backend schema<a class="headerlink" href="#zarr-backend-schema" title="Permanent link">&para;</a></h4>
 <dl>
 <dt><code>identifiers</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Identifier arrays used to resolve user queries to columns.</p>
+<dd>Type: array<p>Identifier arrays used to resolve user queries to columns.</p>
 <p>If omitted, only primary column ids are used for lookup.</p>
 </dd>
 <dt><code>matrix</code></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/sample-collections/metadata-sources/#zarr-layout-details">ZarrMatrixLayoutDef</a></p>
-<p>Path overrides for the matrix layout.</p>
+<dd>Type: <a href="https://genomespy.app/docs/sample-collections/metadata-sources/#zarr-layout-details">ZarrMatrixLayoutDef</a><p>Path overrides for the matrix layout.</p>
 </dd>
 <dt><code>url</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string</p>
-<p>URL to the root of the Zarr store.</p>
+<dd>Type: string<p>URL to the root of the Zarr store.</p>
 </dd>
 </dl>
 <h4 id="zarr-layout-details">Zarr layout details<a class="headerlink" href="#zarr-layout-details" title="Permanent link">&para;</a></h4>
@@ -4487,21 +4468,15 @@ arrays/chunks over HTTP.</p>
 Use these path overrides for expression-style sample-by-feature arrays.</p>
 <dl>
 <dt><code>columnIdsPath</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Path to matrix column identifiers.</p>
+<dd>Type: string<p>Path to matrix column identifiers.</p>
 <p><strong>Default value:</strong> <code>"var_names"</code></p>
 </dd>
 <dt><code>rowIdsPath</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Path to matrix row identifiers (sample ids).</p>
+<dd>Type: string<p>Path to matrix row identifiers (sample ids).</p>
 <p><strong>Default value:</strong> <code>"obs_names"</code></p>
 </dd>
 <dt><code>valuesPath</code></dt>
-<dd>
-<p>Type: string</p>
-<p>Path to matrix values, arranged as sample rows by metadata columns.</p>
+<dd>Type: string<p>Path to matrix values, arranged as sample rows by metadata columns.</p>
 <p><strong>Default value:</strong> <code>"X"</code></p>
 </dd>
 </dl>
@@ -4510,31 +4485,21 @@ Use these path overrides for expression-style sample-by-feature arrays.</p>
 <code>identifiers</code> for aligned identifier arrays (for example symbol and Ensembl).</p>
 <dl>
 <dt><code>caseInsensitive</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Enables case-insensitive matching for this identifier field.</p>
+<dd>Type: boolean<p>Enables case-insensitive matching for this identifier field.</p>
 </dd>
 <dt><code>name</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string</p>
-<p>Name of the identifier field shown in UI and diagnostics.</p>
+<dd>Type: string<p>Name of the identifier field shown in UI and diagnostics.</p>
 <p>Example values: <code>"symbol"</code>, <code>"ensembl"</code>, <code>"entrez"</code>.</p>
 </dd>
 <dt><code>path</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string</p>
-<p>Backend path to identifier values aligned to matrix columns.</p>
+<dd>Type: string<p>Backend path to identifier values aligned to matrix columns.</p>
 <p>The array length must equal the number of columns in the matrix.</p>
 </dd>
 <dt><code>primary</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Marks this identifier as the primary, canonical identifier.</p>
+<dd>Type: boolean<p>Marks this identifier as the primary, canonical identifier.</p>
 </dd>
 <dt><code>stripVersionSuffix</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Remove version suffixes during matching (for example, ENSG...<code>.12</code>).</p>
+<dd>Type: boolean<p>Remove version suffixes during matching (for example, ENSG...<code>.12</code>).</p>
 <p>Useful for identifiers such as Ensembl ids that may contain version suffixes in some datasets but not in user queries.</p>
 </dd>
 </dl>

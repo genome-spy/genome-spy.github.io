@@ -600,6 +600,8 @@
       
         
       
+        
+      
     
     
     
@@ -1013,6 +1015,33 @@
     
   
   Formula
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/identifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Identifier
 
     
   </span>
@@ -3839,15 +3868,11 @@ Use transitions carefully when those operations are expensive or stateful.</p>
 <h3 id="transition-properties">Transition Properties<a class="headerlink" href="#transition-properties" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>epsilon</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Distance from the target at which the current value snaps to the target.</p>
+<dd>Type: number<p>Distance from the target at which the current value snaps to the target.</p>
 <p><strong>Default value:</strong> <code>0.01</code></p>
 </dd>
 <dt><code>halfLife</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Time in milliseconds for the remaining distance to the target to halve.</p>
+<dd>Type: number<p>Time in milliseconds for the remaining distance to the target to halve.</p>
 <p><strong>Default value:</strong> <code>80</code></p>
 </dd>
 </dl>
@@ -4537,54 +4562,38 @@ transforms, or encodings.</p>
 <p><code>ruler</code> supports the following properties:</p>
 <dl>
 <dt><code>clear</code></dt>
-<dd>
-<p>Type: <code>mouseleave</code> | <code>mouseup</code> | <code>False</code></p>
-<p>Event that clears the ruler, or <code>false</code> to keep the current value.</p>
+<dd>Type: <code>mouseleave</code> | <code>mouseup</code> | <code>False</code><p>Event that clears the ruler, or <code>false</code> to keep the current value.</p>
 <p><strong>Default value:</strong> <code>"mouseleave"</code> for <code>on: "mousemove"</code>, otherwise <code>false</code>.</p>
 </dd>
 <dt><code>display</code></dt>
-<dd>
-<p>Type: <code>"line"</code> | <code>"center"</code> | <code>"band"</code> | <code>"none"</code></p>
-<p>How the ruler is drawn for snapped index or locus coordinates.</p>
+<dd>Type: <code>"line"</code> | <code>"center"</code> | <code>"band"</code> | <code>"none"</code><p>How the ruler is drawn for snapped index or locus coordinates.</p>
 <p><code>"line"</code> draws at the coordinate. <code>"center"</code> draws at the center of the coordinate band. <code>"band"</code> draws a rectangle covering the coordinate band. <code>"none"</code> tracks the ruler value without drawing a guide.</p>
 <p><strong>Default value:</strong> <code>"center"</code> for snapped index and locus scales, otherwise <code>"line"</code>.</p>
 </dd>
 <dt><code>encodings</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Positional channels whose domain coordinates are tracked by the ruler.</p>
+<dd>Type: array<p>Positional channels whose domain coordinates are tracked by the ruler.</p>
 <p><strong>Default value:</strong> <code>["x"]</code></p>
 </dd>
 <dt><code>extent</code></dt>
-<dd>
-<p>Type: <code>"auto"</code> | <code>"view"</code> | <code>"container"</code></p>
-<p>Visual extent of the ruler.</p>
+<dd>Type: <code>"auto"</code> | <code>"view"</code> | <code>"container"</code><p>Visual extent of the ruler.</p>
 <p><code>"view"</code> draws one guide per participating view. <code>"container"</code> draws one spanning guide when participating projections align. <code>"auto"</code> chooses a spanning guide only when it is safe.</p>
 <p><strong>Default value:</strong> <code>"auto"</code></p>
 </dd>
 <dt><code>mark</code></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/#rulermarkconfig">RulerMarkConfig</a></p>
-<p>Rule or band appearance. Has no effect when <code>display</code> is <code>"none"</code>.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#rulermarkconfig">RulerMarkConfig</a><p>Rule or band appearance. Has no effect when <code>display</code> is <code>"none"</code>.</p>
 </dd>
 <dt><code>on</code></dt>
-<dd>
-<p>Type: <code>"mousemove"</code> | <code>"mousedown"</code> | <a href="https://genomespy.app/docs/grammar/types/#rulereventconfig">RulerEventConfig</a> | string</p>
-<p>Event that updates a pointer-driven ruler.</p>
+<dd>Type: <code>"mousemove"</code> | <code>"mousedown"</code> | <a href="https://genomespy.app/docs/grammar/types/#rulereventconfig">RulerEventConfig</a> | string<p>Event that updates a pointer-driven ruler.</p>
 <p><code>"mousemove"</code> follows the pointer. <code>"mousedown"</code> updates on press and continues while dragging. Event filters can require modifier keys.</p>
 <p><strong>Default value:</strong> <code>"mousemove"</code></p>
 </dd>
 <dt><code>snap</code></dt>
-<dd>
-<p>Type: <code>auto</code> | <code>integer</code> | <code>False</code></p>
-<p>Quantization applied before writing the ruler value.</p>
+<dd>Type: <code>auto</code> | <code>integer</code> | <code>False</code><p>Quantization applied before writing the ruler value.</p>
 <p><code>"auto"</code> snaps index and locus scales to integer coordinates. <code>"integer"</code> snaps all numeric coordinates. <code>false</code> keeps the original coordinate.</p>
 <p><strong>Default value:</strong> <code>"auto"</code> for index and locus scales, otherwise <code>false</code>.</p>
 </dd>
 <dt><code>source</code></dt>
-<dd>
-<p>Type: <code>"pointer"</code> | <code>"viewport"</code></p>
-<p>Source of the ruler coordinate. <code>"pointer"</code> uses pointer events configured by <code>on</code>. <code>"viewport"</code> tracks the center of the current viewport.</p>
+<dd>Type: <code>"pointer"</code> | <code>"viewport"</code><p>Source of the ruler coordinate. <code>"pointer"</code> uses pointer events configured by <code>on</code>. <code>"viewport"</code> tracks the center of the current viewport.</p>
 <p><strong>Default value:</strong> <code>"pointer"</code></p>
 </dd>
 </dl>

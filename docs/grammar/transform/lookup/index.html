@@ -598,6 +598,8 @@
       
         
       
+        
+      
     
     
     
@@ -1011,6 +1013,33 @@
     
   
   Formula
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../identifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Identifier
 
     
   </span>
@@ -3340,39 +3369,25 @@ input data as the lookup table.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Output field names. Defaults to <code>values</code>. Requires an explicit <code>values</code> array.</p>
+<dd>Type: array<p>Output field names. Defaults to <code>values</code>. Requires an explicit <code>values</code> array.</p>
 </dd>
 <dt><code>default</code></dt>
-<dd>
-<p>Value written when no side-input row matches.</p>
-<p><strong>Default value:</strong> <code>null</code></p>
+<dd>Value written when no side-input row matches.<p><strong>Default value:</strong> <code>null</code></p>
 </dd>
 <dt><code>description</code></dt>
-<dd>
-<p>Type: string</p>
-<p>A description of the transform step. Can be used for documentation and agent context.</p>
+<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 <dt><code>fields</code></dt>
-<dd>
-<p>Type: string (field name) | string (field name)[] | null</p>
-<p>The fields in the input data to match against the lookup-table key. This array must have the same length and order as <code>key</code>. Defaults to <code>key</code>.</p>
+<dd>Type: string (field name) | string (field name)[] | null<p>The fields in the input data to match against the lookup-table key. This array must have the same length and order as <code>key</code>. Defaults to <code>key</code>.</p>
 </dd>
 <dt><code>from</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/data/eager/#url-data">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#inline-data">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#named-data">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/#dynamiccallbackdata">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/types/#lookupselfinput">LookupSelfInput</a></p>
-<p>The non-lazy data source that provides the lookup table, or the current input data.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/data/eager/#url-data">UrlData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#inline-data">InlineData</a> | <a href="https://genomespy.app/docs/grammar/data/eager/#named-data">NamedData</a> | <a href="https://genomespy.app/docs/grammar/types/#dynamiccallbackdata">DynamicCallbackData</a> | <a href="https://genomespy.app/docs/grammar/data/lazy/">LazyData</a> | <a href="https://genomespy.app/docs/grammar/types/#lookupselfinput">LookupSelfInput</a><p>The non-lazy data source that provides the lookup table, or the current input data.</p>
 </dd>
 <dt><code>key</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string (field name) | string (field name)[]</p>
-<p>The key field or fields in the lookup table. When multiple fields are provided, they form a composite key.</p>
+<dd>Type: string (field name) | string (field name)[]<p>The key field or fields in the lookup table. When multiple fields are provided, they form a composite key.</p>
 </dd>
 <dt><code>values</code></dt>
-<dd>
-<p>Type: string (field name)[] | null</p>
-<p>Fields to copy from a matching side-input row. Defaults to all fields except <code>key</code>.</p>
+<dd>Type: string (field name)[] | null<p>Fields to copy from a matching side-input row. Defaults to all fields except <code>key</code>.</p>
 </dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
