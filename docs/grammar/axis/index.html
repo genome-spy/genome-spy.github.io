@@ -1992,10 +1992,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ticks-labels-and-grid-lines" class="md-nav__link">
+  <a href="#ticks-and-labels" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Ticks, Labels, and Grid Lines
+        Ticks and Labels
       </span>
     </span>
   </a>
@@ -3432,10 +3432,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ticks-labels-and-grid-lines" class="md-nav__link">
+  <a href="#ticks-and-labels" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Ticks, Labels, and Grid Lines
+        Ticks and Labels
       </span>
     </span>
   </a>
@@ -3651,24 +3651,92 @@ unique participant titles.</p>
 <p>Set <code>titleFit</code> to <code>"range"</code> to constrain the axis title to the axis span. Ranged
 titles are squeezed when space is scarce and stay visible longer inside
 scrollable viewports, but cannot extend outside the axis span.</p>
-<h2 id="ticks-labels-and-grid-lines">Ticks, Labels, and Grid Lines<a class="headerlink" href="#ticks-labels-and-grid-lines" title="Permanent link">&para;</a></h2>
-<p>Use <code>tickCount</code> to set the desired number of ticks on quantitative axes. The
-actual number may differ when GenomeSpy chooses nice tick values. <code>tickCount</code>
-can also be an expression reference. In tick-count expressions, <code>axisLength</code> is
-the current length of the axis in pixels. Use <code>tickMinStep</code> to set the minimum
-step between ticks in domain units.</p>
-<p>Use <code>values</code> to replace the automatically generated ticks with explicit tick
-and label values. On continuous scales, use <code>extraValues</code> to add values while
-retaining the automatically generated ticks. Invisible and duplicate extra
-values are omitted. <code>extraValues</code> is ignored on discrete scales and when
-<code>values</code> is set.</p>
-<p>Use <code>format</code> to format numeric labels with a
-<a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
-<p>Set <code>ticks</code> or <code>labels</code> to <code>false</code> to hide tick marks or labels while keeping
-the rest of the axis.</p>
-<p>Grid lines are hidden by default in the default theme. Set <code>grid</code> to <code>true</code> to
-show grid lines for an axis. Global grid defaults can be configured with
-<a href=".././config/#axis-defaults"><code>config.axis*</code></a>.</p>
+<h2 id="ticks-and-labels">Ticks and Labels<a class="headerlink" href="#ticks-and-labels" title="Permanent link">&para;</a></h2>
+<p>By default, ticks are generated from the scale. Explicit <code>values</code> replace them,
+while <code>extraValues</code> supplement them on continuous scales. When labels overlap,
+explicit labels are culled among themselves first, and the survivors take
+precedence over generated labels.</p>
+<div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/axis/protein-domain-ticks.json" height="90" spechidden="true">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Protein domain boundary ticks&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Prioritizes domain boundaries and protein length over generated labels; ranges are half-open.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Signal peptide&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">73</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;stop&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">219</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Catalytic domain&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">387</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;stop&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">583</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Regulatory domain&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">749</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;stop&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">944</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1068</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;zoom&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;extent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1068</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Protein position (length: 1,068 aa)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;tickCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;extraValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">73</span><span class="p">,</span><span class="w"> </span><span class="mi">218</span><span class="p">,</span><span class="w"> </span><span class="mi">387</span><span class="p">,</span><span class="w"> </span><span class="mi">582</span><span class="p">,</span><span class="w"> </span><span class="mi">749</span><span class="p">,</span><span class="w"> </span><span class="mi">943</span><span class="p">,</span><span class="w"> </span><span class="mi">1068</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stop&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;stop&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1069</span><span class="w"> </span><span class="p">}]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rule&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#888&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;strokeCap&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;round&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;cornerRadius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;scheme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;category10&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;align&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;baseline&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;middle&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;paddingX&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<p>By default, continuous axes cull overlapping labels. Non-zoomable x axes also
+align endpoint labels flush with the plot edges. On zoomable x axes, only ticks
+at a configured bounded zoom extent are flushed, avoiding label snapping during
+zooming. These behaviors support axis-aligned labels; culling a label does not
+remove its tick mark.</p>
 <h2 id="resolution">Resolution<a class="headerlink" href="#resolution" title="Permanent link">&para;</a></h2>
 <p>Axes participate in view
 <a href=".././composition/#scale-axis-and-legend-resolution">resolution</a> similarly
@@ -3781,7 +3849,7 @@ chromosome ticks, bands, or grids.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>extraValues</code></dt>
-<dd>Type: array<p>Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.</p>
+<dd>Type: array<p>Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.</p>
 <p>This property is ignored on discrete scales and when <code>values</code> is set.</p>
 </dd>
 <dt><code>format</code></dt>
@@ -3826,6 +3894,14 @@ chromosome ticks, bands, or grids.</p>
 <dt><code>labelColor</code></dt>
 <dd>Type: string<p>The color of the tick label, can be in hex color code or regular color name.</p>
 </dd>
+<dt><code>labelFlush</code></dt>
+<dd>Type: boolean | number<p>Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. <code>true</code> uses a threshold of one pixel.</p>
+<p>Flushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.</p>
+</dd>
+<dt><code>labelFlushOffset</code></dt>
+<dd>Type: number<p>The number of pixels by which to move flush-adjusted labels outward from the axis range.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
 <dt><code>labelFont</code></dt>
 <dd>Type: string<p>The font of the tick label.</p>
 </dd>
@@ -3842,8 +3918,16 @@ chromosome ticks, bands, or grids.</p>
 <dd>Type: number<p>Maximum allowed pixel width of axis tick labels.</p>
 <p><strong>Default value:</strong> <code>180</code></p>
 </dd>
+<dt><code>labelOverlap</code></dt>
+<dd>Type: boolean | <code>"parity"</code> | <code>"greedy"</code><p>The strategy for removing overlapping axis labels. <code>true</code> uses the <code>"parity"</code> strategy. <code>"parity"</code> removes every other label until the remaining labels no longer overlap. <code>"greedy"</code> keeps each label that does not overlap the previously retained label. <code>false</code> disables overlap removal.</p>
+<p>By default, overlap removal uses <code>"parity"</code> for linear-like continuous scales and <code>"greedy"</code> for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.</p>
+</dd>
 <dt><code>labelPadding</code></dt>
 <dd>Type: number<p>The padding, in pixels, between axis and text labels.</p>
+<p><strong>Default value:</strong> <code>2</code></p>
+</dd>
+<dt><code>labelSeparation</code></dt>
+<dd>Type: number<p>The minimum separation, in pixels, between retained axis labels.</p>
 <p><strong>Default value:</strong> <code>2</code></p>
 </dd>
 <dt><code>labels</code></dt>
@@ -3935,7 +4019,7 @@ chromosome ticks, bands, or grids.</p>
 <dd>Type: number<p>The padding, in pixels, between title and axis.</p>
 </dd>
 <dt><code>values</code></dt>
-<dd>Type: array<p>Explicitly set the visible axis tick and label values.</p>
+<dd>Type: array<p>Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.</p>
 </dd>
 <dt><code>zindex</code></dt>
 <dd>Type: number<p>Z-order of the axis relative to the view content.</p>
@@ -3944,71 +4028,20 @@ chromosome ticks, bands, or grids.</p>
 </dd>
 </dl>
 <h2 id="genome-axis-properties">Genome Axis Properties<a class="headerlink" href="#genome-axis-properties" title="Permanent link">&para;</a></h2>
+<p>Genome axes support all normal axis properties above, along with the following
+genome-specific properties:</p>
 <dl>
-<dt><code>chromGrid</code></dt>
-<dd>Type: boolean<p>A boolean flag indicating if chromosome grid lines should be included as part of the axis.</p>
-<p><strong>Default value:</strong> <code>false</code></p>
-</dd>
-<dt><code>chromGridCap</code></dt>
-<dd>Type: string<p>The stroke cap for the chromosome grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
-<p><strong>Default value:</strong> <code>"butt"</code></p>
-</dd>
-<dt><code>chromGridColor</code></dt>
-<dd>Type: string<p>Color of grid lines.</p>
-<p><strong>Default value:</strong> <code>lightgray</code></p>
-</dd>
-<dt><code>chromGridDash</code></dt>
-<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed chromosome grid mark lines.</p>
-</dd>
-<dt><code>chromGridDashOffset</code></dt>
-<dd>Type: number<p>The pixel offset at which to start drawing with the chromosome grid mark dash array.</p>
-</dd>
-<dt><code>chromGridFillEven</code></dt>
-<dd>Type: string<p>Fill color of odd chromosomes.</p>
-<p><strong>Default value:</strong> (none)</p>
-</dd>
-<dt><code>chromGridFillOdd</code></dt>
-<dd>Type: string<p>Fill color of odd chromosomes.</p>
-<p><strong>Default value:</strong> (none)</p>
-</dd>
-<dt><code>chromGridOpacity</code></dt>
-<dd>Type: number<p>The opacity of the chromosome grid lines.</p>
-<p><strong>Default value:</strong> <code>1</code></p>
-</dd>
-<dt><code>chromGridWidth</code></dt>
-<dd>Type: number<p>Width of the chromosome grid lines.</p>
-<p><strong>Default value:</strong> <code>1</code></p>
-</dd>
-<dt><code>chromLabelAlign</code></dt>
-<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>Horizontal text alignment of chromosome name labels.</p>
-<p><strong>Default value:</strong> <code>"left"</code></p>
-</dd>
-<dt><code>chromLabelColor</code></dt>
-<dd>Type: string<p>Text color of chromosome name labels.</p>
-<p><strong>Default value:</strong> <code>"black"</code></p>
-</dd>
-<dt><code>chromLabelFont</code></dt>
-<dd>Type: string<p>The font of chromosome name labels.</p>
-</dd>
-<dt><code>chromLabelFontSize</code></dt>
-<dd>Type: number<p>Font size of chromosome name labels, in pixels.</p>
-<p><strong>Default value:</strong> <code>13</code></p>
-</dd>
-<dt><code>chromLabelFontStyle</code></dt>
-<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style of chromosome name labels.</p>
-<p><strong>Default value:</strong> <code>"normal"</code></p>
-</dd>
-<dt><code>chromLabelFontWeight</code></dt>
-<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight of chromosome name labels.</p>
-<p><strong>Default value:</strong> <code>"normal"</code></p>
-</dd>
-<dt><code>chromLabelPadding</code></dt>
-<dd>Type: number<p>The padding, in pixels, between chromosome boundary ticks and chromosome name labels.</p>
-<p><strong>Default value:</strong> <code>7</code></p>
-</dd>
-<dt><code>chromLabels</code></dt>
-<dd>Type: boolean<p>A boolean flag indicating if chromosome name labels should be included as part of the genome axis.</p>
+<dt><code>chromTicks</code></dt>
+<dd>Type: boolean<p>A boolean flag indicating if chromosome boundary ticks should be included as part of the genome axis.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
+</dd>
+<dt><code>chromTickSize</code></dt>
+<dd>Type: number<p>The size in pixels of chromosome boundary ticks.</p>
+<p><strong>Default value:</strong> <code>18</code></p>
+</dd>
+<dt><code>chromTickWidth</code></dt>
+<dd>Type: number<p>The width, in pixels, of chromosome boundary ticks.</p>
+<p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>chromTickColor</code></dt>
 <dd>Type: string<p>The color of chromosome boundary ticks.</p>
@@ -4022,201 +4055,70 @@ chromosome ticks, bands, or grids.</p>
 <dd>Type: number<p>The pixel offset at which to start drawing with the chromosome tick dash array.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
-<dt><code>chromTickSize</code></dt>
-<dd>Type: number<p>The size in pixels of chromosome boundary ticks.</p>
-<p><strong>Default value:</strong> <code>18</code></p>
-</dd>
-<dt><code>chromTickWidth</code></dt>
-<dd>Type: number<p>The width, in pixels, of chromosome boundary ticks.</p>
-<p><strong>Default value:</strong> <code>1</code></p>
-</dd>
-<dt><code>chromTicks</code></dt>
-<dd>Type: boolean<p>A boolean flag indicating if chromosome boundary ticks should be included as part of the genome axis.</p>
+<dt><code>chromLabels</code></dt>
+<dd>Type: boolean<p>A boolean flag indicating if chromosome name labels should be included as part of the genome axis.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
-<dt><code>domain</code></dt>
-<dd>Type: boolean<p>A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis.</p>
-<p><strong>Default value:</strong> <code>true</code></p>
+<dt><code>chromLabelFont</code></dt>
+<dd>Type: string<p>The font of chromosome name labels.</p>
 </dd>
-<dt><code>domainCap</code></dt>
-<dd>Type: string<p>The stroke cap for the domain line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
-<p><strong>Default value:</strong> <code>"butt"</code></p>
+<dt><code>chromLabelFontSize</code></dt>
+<dd>Type: number<p>Font size of chromosome name labels, in pixels.</p>
+<p><strong>Default value:</strong> <code>13</code></p>
 </dd>
-<dt><code>domainColor</code></dt>
-<dd>Type: string<p>Color of axis domain line.</p>
-<p><strong>Default value:</strong> <code>"gray"</code>.</p>
+<dt><code>chromLabelFontWeight</code></dt>
+<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight of chromosome name labels.</p>
+<p><strong>Default value:</strong> <code>"normal"</code></p>
 </dd>
-<dt><code>domainDash</code></dt>
-<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed domain lines.</p>
+<dt><code>chromLabelFontStyle</code></dt>
+<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style of chromosome name labels.</p>
+<p><strong>Default value:</strong> <code>"normal"</code></p>
 </dd>
-<dt><code>domainDashOffset</code></dt>
-<dd>Type: number<p>The pixel offset at which to start drawing with the domain dash array.</p>
+<dt><code>chromLabelColor</code></dt>
+<dd>Type: string<p>Text color of chromosome name labels.</p>
+<p><strong>Default value:</strong> <code>"black"</code></p>
 </dd>
-<dt><code>domainWidth</code></dt>
-<dd>Type: number<p>Stroke width of axis domain line</p>
-<p><strong>Default value:</strong> <code>1</code></p>
+<dt><code>chromLabelPadding</code></dt>
+<dd>Type: number<p>The padding, in pixels, between chromosome boundary ticks and chromosome name labels.</p>
+<p><strong>Default value:</strong> <code>7</code></p>
 </dd>
-<dt><code>extraValues</code></dt>
-<dd>Type: array<p>Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.</p>
-<p>This property is ignored on discrete scales and when <code>values</code> is set.</p>
+<dt><code>chromLabelAlign</code></dt>
+<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>Horizontal text alignment of chromosome name labels.</p>
+<p><strong>Default value:</strong> <code>"left"</code></p>
 </dd>
-<dt><code>format</code></dt>
-<dd>Type: string<p>The format specifier pattern for axis labels. Must be a legal <a href="https://github.com/d3/d3-format#locale_format">d3-format</a> specifier.</p>
-</dd>
-<dt><code>grid</code></dt>
-<dd>Type: boolean<p>A boolean flag indicating if grid lines should be included as part of the axis.</p>
+<dt><code>chromGrid</code></dt>
+<dd>Type: boolean<p>A boolean flag indicating if chromosome grid lines should be included as part of the axis.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
-<dt><code>gridCap</code></dt>
-<dd>Type: string<p>The stroke cap for the grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
-<p><strong>Default value:</strong> <code>"butt"</code></p>
-</dd>
-<dt><code>gridColor</code></dt>
+<dt><code>chromGridColor</code></dt>
 <dd>Type: string<p>Color of grid lines.</p>
 <p><strong>Default value:</strong> <code>lightgray</code></p>
 </dd>
-<dt><code>gridDash</code></dt>
-<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed grid mark lines.</p>
-</dd>
-<dt><code>gridDashOffset</code></dt>
-<dd>Type: number<p>The pixel offset at which to start drawing with the grid mark dash array.</p>
-</dd>
-<dt><code>gridOpacity</code></dt>
-<dd>Type: number<p>The opacity of the grid lines.</p>
-<p><strong>Default value:</strong> <code>1</code></p>
-</dd>
-<dt><code>gridWidth</code></dt>
-<dd>Type: number<p>Width of the grid lines.</p>
-<p><strong>Default value:</strong> <code>1</code></p>
-</dd>
-<dt><code>labelAlign</code></dt>
-<dd>Type: <code>"left"</code> | <code>"center"</code> | <code>"right"</code><p>Horizontal text alignment of axis tick labels, overriding the default setting for the current axis orientation.</p>
-</dd>
-<dt><code>labelAngle</code></dt>
-<dd>Type: number<p>The rotation angle of the axis labels.</p>
-<p><strong>Default value:</strong> <code>-90</code> for nominal and ordinal fields; <code>0</code> otherwise.</p>
-</dd>
-<dt><code>labelBaseline</code></dt>
-<dd>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code><p>Vertical text baseline of axis tick labels, overriding the default setting for the current axis orientation. One of <code>"alphabetic"</code> (default), <code>"top"</code>, <code>"middle"</code>, <code>"bottom"</code>.</p>
-</dd>
-<dt><code>labelColor</code></dt>
-<dd>Type: string<p>The color of the tick label, can be in hex color code or regular color name.</p>
-</dd>
-<dt><code>labelFont</code></dt>
-<dd>Type: string<p>The font of the tick label.</p>
-</dd>
-<dt><code>labelFontSize</code></dt>
-<dd>Type: number<p>The font size of the label, in pixels.</p>
-</dd>
-<dt><code>labelFontStyle</code></dt>
-<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style of the title.</p>
-</dd>
-<dt><code>labelFontWeight</code></dt>
-<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight of axis tick labels.</p>
-</dd>
-<dt><code>labelLimit</code></dt>
-<dd>Type: number<p>Maximum allowed pixel width of axis tick labels.</p>
-<p><strong>Default value:</strong> <code>180</code></p>
-</dd>
-<dt><code>labelPadding</code></dt>
-<dd>Type: number<p>The padding, in pixels, between axis and text labels.</p>
-<p><strong>Default value:</strong> <code>2</code></p>
-</dd>
-<dt><code>labels</code></dt>
-<dd>Type: boolean<p>A boolean flag indicating if labels should be included as part of the axis.</p>
-<p><strong>Default value:</strong> <code>true</code>.</p>
-</dd>
-<dt><code>maxExtent</code></dt>
-<dd>Type: number<p>The maximum extent in pixels that axis ticks and labels should use. This determines a maximum offset value for axis titles.</p>
-<p><strong>Default value:</strong> <code>undefined</code>.</p>
-</dd>
-<dt><code>minExtent</code></dt>
-<dd>Type: number<p>The minimum extent in pixels that axis ticks and labels should use. This determines a minimum offset value for axis titles.</p>
-<p><strong>Default value:</strong> <code>30</code> for y-axis; <code>undefined</code> for x-axis.</p>
-</dd>
-<dt><code>offset</code></dt>
-<dd>Type: number<p>The orthogonal offset in pixels by which to displace the axis from its position along the edge of the chart.</p>
-</dd>
-<dt><code>orient</code></dt>
-<dd>Type: <code>"top"</code> | <code>"bottom"</code> | <code>"left"</code> | <code>"right"</code><p>The orientation of the axis. One of <code>"top"</code>, <code>"bottom"</code>, <code>"left"</code> or <code>"right"</code>. The orientation can be used to further specialize the axis type (e.g., a y axis oriented for the right edge of the chart).</p>
-<p><strong>Default value:</strong> <code>"bottom"</code> for x-axes and <code>"left"</code> for y-axes.</p>
-</dd>
-<dt><code>placement</code></dt>
-<dd>Type: <code>"outside"</code> | <code>"inside"</code><p>Placement of the axis relative to the plotting area. Outside axes reserve layout space outside the plot. Inside axes are mirrored into the plot and do not reserve external layout space.</p>
-<p><strong>Default value:</strong> <code>"outside"</code>.</p>
-</dd>
-<dt><code>style</code></dt>
-<dd>Type: string | string[] | null<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones. Set to <code>null</code> to reset inherited axis styles.</p>
-</dd>
-<dt><code>tickCap</code></dt>
-<dd>Type: string<p>The stroke cap for the tick lines' ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
+<dt><code>chromGridCap</code></dt>
+<dd>Type: string<p>The stroke cap for the chromosome grid line's ending style. One of <code>"butt"</code>, <code>"round"</code> or <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
-<dt><code>tickColor</code></dt>
-<dd>Type: string<p>The color of the axis's tick.</p>
-<p><strong>Default value:</strong> <code>"gray"</code></p>
+<dt><code>chromGridDash</code></dt>
+<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed chromosome grid mark lines.</p>
 </dd>
-<dt><code>tickCount</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>A desired number of ticks, for axes visualizing quantitative scales. The resulting number may be different so that values are "nice" (multiples of <code>2</code>, <code>5</code>, <code>10</code>) and lie within the underlying scale's range.</p>
-<p>An expression reference can use <code>axisLength</code> for the current length of the axis in pixels. For example, <code>{ "expr": "ceil(axisLength / 40)" }</code> requests one tick per 40 pixels.</p>
-<p><strong>Default value:</strong> an expression based on <code>axisLength</code></p>
+<dt><code>chromGridDashOffset</code></dt>
+<dd>Type: number<p>The pixel offset at which to start drawing with the chromosome grid mark dash array.</p>
 </dd>
-<dt><code>tickDash</code></dt>
-<dd>Type: array<p>An array of alternating [stroke, space] lengths for dashed tick mark lines.</p>
-</dd>
-<dt><code>tickDashOffset</code></dt>
-<dd>Type: number<p>The pixel offset at which to start drawing with the tick mark dash array.</p>
-</dd>
-<dt><code>tickMinStep</code></dt>
-<dd>Type: number<p>The minimum desired step between axis ticks, in terms of scale domain values. For example, a value of <code>1</code> indicates that ticks should not be less than 1 unit apart. If <code>tickMinStep</code> is specified, the <code>tickCount</code> value will be adjusted, if necessary, to enforce the minimum step value.</p>
-</dd>
-<dt><code>tickSize</code></dt>
-<dd>Type: number<p>The size in pixels of axis ticks.</p>
-<p><strong>Default value:</strong> <code>5</code></p>
-</dd>
-<dt><code>tickWidth</code></dt>
-<dd>Type: number<p>The width, in pixels, of ticks.</p>
+<dt><code>chromGridOpacity</code></dt>
+<dd>Type: number<p>The opacity of the chromosome grid lines.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
-<dt><code>ticks</code></dt>
-<dd>Type: boolean<p>Boolean value that determines whether the axis should include ticks.</p>
-<p><strong>Default value:</strong> <code>true</code></p>
+<dt><code>chromGridWidth</code></dt>
+<dd>Type: number<p>Width of the chromosome grid lines.</p>
+<p><strong>Default value:</strong> <code>1</code></p>
 </dd>
-<dt><code>title</code></dt>
-<dd>Type: string | null<p>A title for the axis. By default, the title is derived from the encoding title, field, or expression. Set to <code>null</code> to remove it.</p>
+<dt><code>chromGridFillOdd</code></dt>
+<dd>Type: string<p>Fill color of odd chromosomes.</p>
+<p><strong>Default value:</strong> (none)</p>
 </dd>
-<dt><code>titleColor</code></dt>
-<dd>Type: string<p>Color of the title, can be in hex color code or regular color name.</p>
-</dd>
-<dt><code>titleFit</code></dt>
-<dd>Type: string<p>Fitting mode for the axis title. <code>"point"</code> anchors the title at the center of the axis without constraining its length. <code>"range"</code> constrains the title to the axis span using <a href="https://genomespy.app/docs/grammar/mark/text/#ranged-text">ranged text</a>, allowing it to be squeezed to fit and kept visible inside scrollable viewports.</p>
-<p><strong>Default value:</strong> <code>"point"</code></p>
-</dd>
-<dt><code>titleFont</code></dt>
-<dd>Type: string<p>Font of the title. (e.g., <code>"Helvetica Neue"</code>).</p>
-</dd>
-<dt><code>titleFontSize</code></dt>
-<dd>Type: number<p>Font size of the title.</p>
-</dd>
-<dt><code>titleFontStyle</code></dt>
-<dd>Type: <code>"normal"</code> | <code>"italic"</code><p>Font style of the title.</p>
-</dd>
-<dt><code>titleFontWeight</code></dt>
-<dd>Type: number | <code>"thin"</code> | <code>"light"</code> | <code>"regular"</code> | <code>"normal"</code> | <code>"medium"</code> | <code>"bold"</code> | <code>"black"</code><p>Font weight of the title. This can be either a string (e.g <code>"bold"</code>, <code>"normal"</code>) or a number (<code>100</code>, <code>200</code>, <code>300</code>, ..., <code>900</code> where <code>"normal"</code> = <code>400</code> and <code>"bold"</code> = <code>700</code>).</p>
-</dd>
-<dt><code>titleOpacity</code></dt>
-<dd>Type: number<p>Opacity of the axis title.</p>
-</dd>
-<dt><code>titlePadding</code></dt>
-<dd>Type: number<p>The padding, in pixels, between title and axis.</p>
-</dd>
-<dt><code>values</code></dt>
-<dd>Type: array<p>Explicitly set the visible axis tick and label values.</p>
-</dd>
-<dt><code>zindex</code></dt>
-<dd>Type: number<p>Z-order of the axis relative to the view content.</p>
-<p>Values greater than <code>0</code> render after the view marks. Values less than or equal to <code>0</code> render before the marks.</p>
-<p><strong>Default value:</strong> <code>0</code>, or <code>10</code> when the view content is clipped or scrollable.</p>
+<dt><code>chromGridFillEven</code></dt>
+<dd>Type: string<p>Fill color of odd chromosomes.</p>
+<p><strong>Default value:</strong> (none)</p>
 </dd>
 </dl>
 <h2 id="styling">Styling<a class="headerlink" href="#styling" title="Permanent link">&para;</a></h2>
@@ -4355,7 +4257,7 @@ channel-level axis object overrides the configured defaults for that axis.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>extraValues</code></dt>
-<dd>Type: array<p>Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.</p>
+<dd>Type: array<p>Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.</p>
 <p>This property is ignored on discrete scales and when <code>values</code> is set.</p>
 </dd>
 <dt><code>format</code></dt>
@@ -4400,6 +4302,14 @@ channel-level axis object overrides the configured defaults for that axis.</p>
 <dt><code>labelColor</code></dt>
 <dd>Type: string<p>The color of the tick label, can be in hex color code or regular color name.</p>
 </dd>
+<dt><code>labelFlush</code></dt>
+<dd>Type: boolean | number<p>Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. <code>true</code> uses a threshold of one pixel.</p>
+<p>Flushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.</p>
+</dd>
+<dt><code>labelFlushOffset</code></dt>
+<dd>Type: number<p>The number of pixels by which to move flush-adjusted labels outward from the axis range.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
 <dt><code>labelFont</code></dt>
 <dd>Type: string<p>The font of the tick label.</p>
 </dd>
@@ -4416,8 +4326,16 @@ channel-level axis object overrides the configured defaults for that axis.</p>
 <dd>Type: number<p>Maximum allowed pixel width of axis tick labels.</p>
 <p><strong>Default value:</strong> <code>180</code></p>
 </dd>
+<dt><code>labelOverlap</code></dt>
+<dd>Type: boolean | <code>"parity"</code> | <code>"greedy"</code><p>The strategy for removing overlapping axis labels. <code>true</code> uses the <code>"parity"</code> strategy. <code>"parity"</code> removes every other label until the remaining labels no longer overlap. <code>"greedy"</code> keeps each label that does not overlap the previously retained label. <code>false</code> disables overlap removal.</p>
+<p>By default, overlap removal uses <code>"parity"</code> for linear-like continuous scales and <code>"greedy"</code> for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.</p>
+</dd>
 <dt><code>labelPadding</code></dt>
 <dd>Type: number<p>The padding, in pixels, between axis and text labels.</p>
+<p><strong>Default value:</strong> <code>2</code></p>
+</dd>
+<dt><code>labelSeparation</code></dt>
+<dd>Type: number<p>The minimum separation, in pixels, between retained axis labels.</p>
 <p><strong>Default value:</strong> <code>2</code></p>
 </dd>
 <dt><code>labels</code></dt>
@@ -4509,7 +4427,7 @@ channel-level axis object overrides the configured defaults for that axis.</p>
 <dd>Type: number<p>The padding, in pixels, between title and axis.</p>
 </dd>
 <dt><code>values</code></dt>
-<dd>Type: array<p>Explicitly set the visible axis tick and label values.</p>
+<dd>Type: array<p>Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.</p>
 </dd>
 <dt><code>zindex</code></dt>
 <dd>Type: number<p>Z-order of the axis relative to the view content.</p>

@@ -3504,6 +3504,10 @@ background:</p>
 <span class="p">});</span>
 </code></pre></div>
 <p><code>image/png</code> is currently the only supported MIME type.</p>
+<p>Raster export uses the active rendering backend. In Canvas2D mode, GenomeSpy
+renders the current view into a detached Canvas2D surface and encodes it without
+requesting WebGL. Native-font and effect limitations are the same as in the
+live <a href=".././embed-options/#canvas2d-limitations">Canvas2D renderer</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Deprecated canvas export</p>
 <p><code>exportCanvas(width, height, devicePixelRatio, background)</code> remains

@@ -1,0 +1,335 @@
+//#region ../../node_modules/internmap/src/index.js
+var e = class extends Map {
+	constructor(e, t = i) {
+		if (super(), Object.defineProperties(this, {
+			_intern: { value: /* @__PURE__ */ new Map() },
+			_key: { value: t }
+		}), e != null) for (let [t, n] of e) this.set(t, n);
+	}
+	get(e) {
+		return super.get(t(this, e));
+	}
+	has(e) {
+		return super.has(t(this, e));
+	}
+	set(e, t) {
+		return super.set(n(this, e), t);
+	}
+	delete(e) {
+		return super.delete(r(this, e));
+	}
+};
+function t({ _intern: e, _key: t }, n) {
+	let r = t(n);
+	return e.has(r) ? e.get(r) : n;
+}
+function n({ _intern: e, _key: t }, n) {
+	let r = t(n);
+	return e.has(r) ? e.get(r) : (e.set(r, n), n);
+}
+function r({ _intern: e, _key: t }, n) {
+	let r = t(n);
+	return e.has(r) && (n = e.get(r), e.delete(r)), n;
+}
+function i(e) {
+	return typeof e == "object" && e ? e.valueOf() : e;
+}
+//#endregion
+//#region ../../node_modules/d3-color/src/define.js
+function a(e, t, n) {
+	e.prototype = t.prototype = n, n.constructor = e;
+}
+function o(e, t) {
+	var n = Object.create(e.prototype);
+	for (var r in t) n[r] = t[r];
+	return n;
+}
+//#endregion
+//#region ../../node_modules/d3-color/src/color.js
+function s() {}
+var c = .7, l = 1 / c, u = "\\s*([+-]?\\d+)\\s*", d = "\\s*([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)\\s*", f = "\\s*([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)%\\s*", p = /^#([0-9a-f]{3,8})$/, m = RegExp(`^rgb\\(${u},${u},${u}\\)$`), h = RegExp(`^rgb\\(${f},${f},${f}\\)$`), g = RegExp(`^rgba\\(${u},${u},${u},${d}\\)$`), _ = RegExp(`^rgba\\(${f},${f},${f},${d}\\)$`), v = RegExp(`^hsl\\(${d},${f},${f}\\)$`), y = RegExp(`^hsla\\(${d},${f},${f},${d}\\)$`), b = {
+	aliceblue: 15792383,
+	antiquewhite: 16444375,
+	aqua: 65535,
+	aquamarine: 8388564,
+	azure: 15794175,
+	beige: 16119260,
+	bisque: 16770244,
+	black: 0,
+	blanchedalmond: 16772045,
+	blue: 255,
+	blueviolet: 9055202,
+	brown: 10824234,
+	burlywood: 14596231,
+	cadetblue: 6266528,
+	chartreuse: 8388352,
+	chocolate: 13789470,
+	coral: 16744272,
+	cornflowerblue: 6591981,
+	cornsilk: 16775388,
+	crimson: 14423100,
+	cyan: 65535,
+	darkblue: 139,
+	darkcyan: 35723,
+	darkgoldenrod: 12092939,
+	darkgray: 11119017,
+	darkgreen: 25600,
+	darkgrey: 11119017,
+	darkkhaki: 12433259,
+	darkmagenta: 9109643,
+	darkolivegreen: 5597999,
+	darkorange: 16747520,
+	darkorchid: 10040012,
+	darkred: 9109504,
+	darksalmon: 15308410,
+	darkseagreen: 9419919,
+	darkslateblue: 4734347,
+	darkslategray: 3100495,
+	darkslategrey: 3100495,
+	darkturquoise: 52945,
+	darkviolet: 9699539,
+	deeppink: 16716947,
+	deepskyblue: 49151,
+	dimgray: 6908265,
+	dimgrey: 6908265,
+	dodgerblue: 2003199,
+	firebrick: 11674146,
+	floralwhite: 16775920,
+	forestgreen: 2263842,
+	fuchsia: 16711935,
+	gainsboro: 14474460,
+	ghostwhite: 16316671,
+	gold: 16766720,
+	goldenrod: 14329120,
+	gray: 8421504,
+	green: 32768,
+	greenyellow: 11403055,
+	grey: 8421504,
+	honeydew: 15794160,
+	hotpink: 16738740,
+	indianred: 13458524,
+	indigo: 4915330,
+	ivory: 16777200,
+	khaki: 15787660,
+	lavender: 15132410,
+	lavenderblush: 16773365,
+	lawngreen: 8190976,
+	lemonchiffon: 16775885,
+	lightblue: 11393254,
+	lightcoral: 15761536,
+	lightcyan: 14745599,
+	lightgoldenrodyellow: 16448210,
+	lightgray: 13882323,
+	lightgreen: 9498256,
+	lightgrey: 13882323,
+	lightpink: 16758465,
+	lightsalmon: 16752762,
+	lightseagreen: 2142890,
+	lightskyblue: 8900346,
+	lightslategray: 7833753,
+	lightslategrey: 7833753,
+	lightsteelblue: 11584734,
+	lightyellow: 16777184,
+	lime: 65280,
+	limegreen: 3329330,
+	linen: 16445670,
+	magenta: 16711935,
+	maroon: 8388608,
+	mediumaquamarine: 6737322,
+	mediumblue: 205,
+	mediumorchid: 12211667,
+	mediumpurple: 9662683,
+	mediumseagreen: 3978097,
+	mediumslateblue: 8087790,
+	mediumspringgreen: 64154,
+	mediumturquoise: 4772300,
+	mediumvioletred: 13047173,
+	midnightblue: 1644912,
+	mintcream: 16121850,
+	mistyrose: 16770273,
+	moccasin: 16770229,
+	navajowhite: 16768685,
+	navy: 128,
+	oldlace: 16643558,
+	olive: 8421376,
+	olivedrab: 7048739,
+	orange: 16753920,
+	orangered: 16729344,
+	orchid: 14315734,
+	palegoldenrod: 15657130,
+	palegreen: 10025880,
+	paleturquoise: 11529966,
+	palevioletred: 14381203,
+	papayawhip: 16773077,
+	peachpuff: 16767673,
+	peru: 13468991,
+	pink: 16761035,
+	plum: 14524637,
+	powderblue: 11591910,
+	purple: 8388736,
+	rebeccapurple: 6697881,
+	red: 16711680,
+	rosybrown: 12357519,
+	royalblue: 4286945,
+	saddlebrown: 9127187,
+	salmon: 16416882,
+	sandybrown: 16032864,
+	seagreen: 3050327,
+	seashell: 16774638,
+	sienna: 10506797,
+	silver: 12632256,
+	skyblue: 8900331,
+	slateblue: 6970061,
+	slategray: 7372944,
+	slategrey: 7372944,
+	snow: 16775930,
+	springgreen: 65407,
+	steelblue: 4620980,
+	tan: 13808780,
+	teal: 32896,
+	thistle: 14204888,
+	tomato: 16737095,
+	turquoise: 4251856,
+	violet: 15631086,
+	wheat: 16113331,
+	white: 16777215,
+	whitesmoke: 16119285,
+	yellow: 16776960,
+	yellowgreen: 10145074
+};
+a(s, T, {
+	copy(e) {
+		return Object.assign(new this.constructor(), this, e);
+	},
+	displayable() {
+		return this.rgb().displayable();
+	},
+	hex: x,
+	formatHex: x,
+	formatHex8: S,
+	formatHsl: C,
+	formatRgb: w,
+	toString: w
+});
+function x() {
+	return this.rgb().formatHex();
+}
+function S() {
+	return this.rgb().formatHex8();
+}
+function C() {
+	return R(this).formatHsl();
+}
+function w() {
+	return this.rgb().formatRgb();
+}
+function T(e) {
+	var t, n;
+	return e = (e + "").trim().toLowerCase(), (t = p.exec(e)) ? (n = t[1].length, t = parseInt(t[1], 16), n === 6 ? E(t) : n === 3 ? new A(t >> 8 & 15 | t >> 4 & 240, t >> 4 & 15 | t & 240, (t & 15) << 4 | t & 15, 1) : n === 8 ? D(t >> 24 & 255, t >> 16 & 255, t >> 8 & 255, (t & 255) / 255) : n === 4 ? D(t >> 12 & 15 | t >> 8 & 240, t >> 8 & 15 | t >> 4 & 240, t >> 4 & 15 | t & 240, ((t & 15) << 4 | t & 15) / 255) : null) : (t = m.exec(e)) ? new A(t[1], t[2], t[3], 1) : (t = h.exec(e)) ? new A(t[1] * 255 / 100, t[2] * 255 / 100, t[3] * 255 / 100, 1) : (t = g.exec(e)) ? D(t[1], t[2], t[3], t[4]) : (t = _.exec(e)) ? D(t[1] * 255 / 100, t[2] * 255 / 100, t[3] * 255 / 100, t[4]) : (t = v.exec(e)) ? L(t[1], t[2] / 100, t[3] / 100, 1) : (t = y.exec(e)) ? L(t[1], t[2] / 100, t[3] / 100, t[4]) : b.hasOwnProperty(e) ? E(b[e]) : e === "transparent" ? new A(NaN, NaN, NaN, 0) : null;
+}
+function E(e) {
+	return new A(e >> 16 & 255, e >> 8 & 255, e & 255, 1);
+}
+function D(e, t, n, r) {
+	return r <= 0 && (e = t = n = NaN), new A(e, t, n, r);
+}
+function O(e) {
+	return e instanceof s || (e = T(e)), e ? (e = e.rgb(), new A(e.r, e.g, e.b, e.opacity)) : new A();
+}
+function k(e, t, n, r) {
+	return arguments.length === 1 ? O(e) : new A(e, t, n, r ?? 1);
+}
+function A(e, t, n, r) {
+	this.r = +e, this.g = +t, this.b = +n, this.opacity = +r;
+}
+a(A, k, o(s, {
+	brighter(e) {
+		return e = e == null ? l : l ** +e, new A(this.r * e, this.g * e, this.b * e, this.opacity);
+	},
+	darker(e) {
+		return e = e == null ? c : c ** +e, new A(this.r * e, this.g * e, this.b * e, this.opacity);
+	},
+	rgb() {
+		return this;
+	},
+	clamp() {
+		return new A(F(this.r), F(this.g), F(this.b), P(this.opacity));
+	},
+	displayable() {
+		return -.5 <= this.r && this.r < 255.5 && -.5 <= this.g && this.g < 255.5 && -.5 <= this.b && this.b < 255.5 && 0 <= this.opacity && this.opacity <= 1;
+	},
+	hex: j,
+	formatHex: j,
+	formatHex8: M,
+	formatRgb: N,
+	toString: N
+}));
+function j() {
+	return `#${I(this.r)}${I(this.g)}${I(this.b)}`;
+}
+function M() {
+	return `#${I(this.r)}${I(this.g)}${I(this.b)}${I((isNaN(this.opacity) ? 1 : this.opacity) * 255)}`;
+}
+function N() {
+	let e = P(this.opacity);
+	return `${e === 1 ? "rgb(" : "rgba("}${F(this.r)}, ${F(this.g)}, ${F(this.b)}${e === 1 ? ")" : `, ${e})`}`;
+}
+function P(e) {
+	return isNaN(e) ? 1 : Math.max(0, Math.min(1, e));
+}
+function F(e) {
+	return Math.max(0, Math.min(255, Math.round(e) || 0));
+}
+function I(e) {
+	return e = F(e), (e < 16 ? "0" : "") + e.toString(16);
+}
+function L(e, t, n, r) {
+	return r <= 0 ? e = t = n = NaN : n <= 0 || n >= 1 ? e = t = NaN : t <= 0 && (e = NaN), new B(e, t, n, r);
+}
+function R(e) {
+	if (e instanceof B) return new B(e.h, e.s, e.l, e.opacity);
+	if (e instanceof s || (e = T(e)), !e) return new B();
+	if (e instanceof B) return e;
+	e = e.rgb();
+	var t = e.r / 255, n = e.g / 255, r = e.b / 255, i = Math.min(t, n, r), a = Math.max(t, n, r), o = NaN, c = a - i, l = (a + i) / 2;
+	return c ? (o = t === a ? (n - r) / c + (n < r) * 6 : n === a ? (r - t) / c + 2 : (t - n) / c + 4, c /= l < .5 ? a + i : 2 - a - i, o *= 60) : c = l > 0 && l < 1 ? 0 : o, new B(o, c, l, e.opacity);
+}
+function z(e, t, n, r) {
+	return arguments.length === 1 ? R(e) : new B(e, t, n, r ?? 1);
+}
+function B(e, t, n, r) {
+	this.h = +e, this.s = +t, this.l = +n, this.opacity = +r;
+}
+a(B, z, o(s, {
+	brighter(e) {
+		return e = e == null ? l : l ** +e, new B(this.h, this.s, this.l * e, this.opacity);
+	},
+	darker(e) {
+		return e = e == null ? c : c ** +e, new B(this.h, this.s, this.l * e, this.opacity);
+	},
+	rgb() {
+		var e = this.h % 360 + (this.h < 0) * 360, t = isNaN(e) || isNaN(this.s) ? 0 : this.s, n = this.l, r = n + (n < .5 ? n : 1 - n) * t, i = 2 * n - r;
+		return new A(U(e >= 240 ? e - 240 : e + 120, i, r), U(e, i, r), U(e < 120 ? e + 240 : e - 120, i, r), this.opacity);
+	},
+	clamp() {
+		return new B(V(this.h), H(this.s), H(this.l), P(this.opacity));
+	},
+	displayable() {
+		return (0 <= this.s && this.s <= 1 || isNaN(this.s)) && 0 <= this.l && this.l <= 1 && 0 <= this.opacity && this.opacity <= 1;
+	},
+	formatHsl() {
+		let e = P(this.opacity);
+		return `${e === 1 ? "hsl(" : "hsla("}${V(this.h)}, ${H(this.s) * 100}%, ${H(this.l) * 100}%${e === 1 ? ")" : `, ${e})`}`;
+	}
+}));
+function V(e) {
+	return e = (e || 0) % 360, e < 0 ? e + 360 : e;
+}
+function H(e) {
+	return Math.max(0, Math.min(1, e || 0));
+}
+function U(e, t, n) {
+	return (e < 60 ? t + (n - t) * e / 60 : e < 180 ? n : e < 240 ? t + (n - t) * (240 - e) / 60 : t) * 255;
+}
+//#endregion
+export { c as a, O as c, e as d, T as i, a as l, A as n, z as o, l as r, k as s, s as t, o as u };

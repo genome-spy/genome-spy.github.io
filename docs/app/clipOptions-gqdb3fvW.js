@@ -1,0 +1,43 @@
+//#region ../core/src/view/renderingContext/clipOptions.js
+function e(e) {
+	if (e.clip) return e.clip;
+	if (e.clipRect) return {
+		rect: e.clipRect,
+		clipX: !0,
+		clipY: !0
+	};
+}
+function t(e, t) {
+	return e === t ? !0 : !e || !t ? !1 : e.clipX === t.clipX && e.clipY === t.clipY && e.rect.equals(t.rect);
+}
+function n(e, t, n) {
+	return t || n ? {
+		rect: e,
+		clipX: t,
+		clipY: n
+	} : void 0;
+}
+function r(e, t) {
+	return t ? t.clipX && t.clipY ? e.intersect(t.rect) : t.clipX ? e.intersectX(t.rect) : t.clipY ? e.intersectY(t.rect) : e : e;
+}
+function i(e, t) {
+	if (!e) return t;
+	if (!t) return e;
+	let r = e.clipX || t.clipX, i = e.clipY || t.clipY, a = e.clipX && t.clipX ? e.rect.intersectX(t.rect) : t.clipX ? t.rect : e.rect, o = e.clipY && t.clipY ? e.rect.intersectY(t.rect) : t.clipY ? t.rect : e.rect;
+	return n(e.rect.modify({
+		x: () => a.x,
+		y: () => o.y,
+		width: () => a.width,
+		height: () => o.height
+	}), r, i);
+}
+function a(e, t) {
+	if (e === !0) return n(t, !0, !0);
+	if (e === "x") return n(t, !0, !1);
+	if (e === "y") return n(t, !1, !0);
+}
+function o(e, t, n) {
+	if (t !== "never") return i(e, a(t, n));
+}
+//#endregion
+export { e as a, n as i, t as n, o, i as r, r as t };

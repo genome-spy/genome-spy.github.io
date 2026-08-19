@@ -3448,6 +3448,10 @@ encoded into mark instances.</p>
 <dd>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <a href="https://genomespy.app/docs/grammar/composition/concat/#step-sizing">Step</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <code>"container"</code><p>Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or <code>"container"</code>. Check <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
 <p><strong>Default:</strong> <code>"container"</code></p>
 </dd>
+<dt><code>zindex</code></dt>
+<dd>Type: number<p>Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
 </dl>
 <h2 id="view-composition-for-more-complex-visualizations">View composition for more complex visualizations<a class="headerlink" href="#view-composition-for-more-complex-visualizations" title="Permanent link">&para;</a></h2>
 <p>View <a href="composition/">composition</a> allows for building more complex

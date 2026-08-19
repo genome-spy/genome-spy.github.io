@@ -2655,6 +2655,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#rendering-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Rendering backend
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rendering backend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#canvas2d-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Canvas2D limitations
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#theme-config" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -2690,6 +2718,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#styling-tooltips" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Styling tooltips
+      </span>
+    </span>
+  </a>
   
 </li>
       
@@ -3307,6 +3346,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#rendering-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Rendering backend
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rendering backend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#canvas2d-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Canvas2D limitations
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#theme-config" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3345,6 +3412,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#styling-tooltips" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Styling tooltips
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3370,6 +3448,40 @@
 
 <h1 id="embed-options">Embed Options<a class="headerlink" href="#embed-options" title="Permanent link">&para;</a></h1>
 <p>The <code>embed</code> function accepts an optional options object.</p>
+<h2 id="rendering-backend">Rendering backend<a class="headerlink" href="#rendering-backend" title="Permanent link">&para;</a></h2>
+<p>GenomeSpy uses WebGL2 when available. The default <code>renderer: "auto"</code> setting
+falls back to the Canvas2D compatibility renderer when WebGL2 initialization
+fails and reports the fallback once in the browser console.</p>
+<p>Select Canvas2D explicitly on restricted desktops where browser policy blocks
+WebGL:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span><span class="w"> </span><span class="nx">spec</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">renderer</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;canvas&quot;</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>renderer: "canvas"</code> does not request a WebGL or WebGPU context.
+<code>renderer: "webgl"</code> requires WebGL2 and reports an error instead of falling
+back. Canvas2D may still be accelerated internally by the browser, so the
+setting does not guarantee that the browser uses no GPU hardware.</p>
+<p>Canvas2D supports live layout, axes, legends, zooming, panning, dynamic data,
+visibility changes, and PNG export. It projects geometry on the CPU and
+repaints the full Canvas surface immediately. It is intended as a compatibility
+mode; dense views can be slower than WebGL.</p>
+<h3 id="canvas2d-limitations">Canvas2D limitations<a class="headerlink" href="#canvas2d-limitations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Datum picking is disabled. Data tooltips, datum clicks, hover-dependent mark
+  behavior, and point-selection hit testing are unavailable. Coordinate-based
+  view and scale interactions continue to work. Instance-level click events
+  report <code>datum: null</code>.</li>
+<li>Text uses browser-native Canvas fonts. Metrics, rasterization, and
+  antialiasing can differ from WebGL and SVG output, especially when a requested
+  font is unavailable.</li>
+<li>Some specialized effects, including rectangle hatches and shadows, are
+  approximated or ignored. GenomeSpy reports a deduplicated console warning
+  when this occurs.</li>
+</ul>
+<p>Raster export uses the active rendering backend. A Canvas2D embed therefore
+exports PNG images without WebGL. See <a href=".././instance/">Instance, Events, and
+Export</a> for export options.</p>
 <h2 id="theme-config">Theme config<a class="headerlink" href="#theme-config" title="Permanent link">&para;</a></h2>
 <p>The <code>theme</code> embed option provides global defaults without modifying the
 specification itself:</p>
@@ -3497,6 +3609,17 @@ See the example below.</p>
 <span class="w">  </span><span class="err">...</span>
 <span class="p">}</span>
 </code></pre></div>
+<h2 id="styling-tooltips">Styling tooltips<a class="headerlink" href="#styling-tooltips" title="Permanent link">&para;</a></h2>
+<p>The built-in tooltip element has the <code>gs-tooltip</code> class. Use this class
+to customize its appearance in the embedding page. The <code>sticky</code> class is added
+while a tooltip is pinned open.</p>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="nc">gs-tooltip</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">--background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The class is namespaced to avoid conflicts with tooltip styles from CSS
+frameworks such as Bootstrap.</p>
 
 
 

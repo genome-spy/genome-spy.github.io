@@ -105,6 +105,7 @@
   "ArrowDirection": "/grammar/types/#arrowdirection",
   "ArrowRelativeSize": "/grammar/types/#arrowrelativesize",
   "ArrowSize": "/grammar/types/#arrowsize",
+  "AxisLabelLayoutParams": "/grammar/types/#axislabellayoutparams",
   "AxisOrient": "/grammar/types/#axisorient",
   "AxisPlacement": "/grammar/types/#axisplacement",
   "Baseline": "/grammar/types/#baseline",
@@ -262,6 +263,7 @@
   "ViewBackground": "/grammar/types/#viewbackground",
   "ViewOpacityDef": "/grammar/types/#viewopacitydef",
   "ViewSpec": "/grammar/types/#viewspec",
+  "ViewportDomainRef": "/grammar/types/#viewportdomainref",
   "WigDataFormat": "/grammar/types/#wigdataformat",
   "WindowOnlyOp": "/grammar/types/#windowonlyop",
   "WindowOp": "/grammar/types/#windowop"

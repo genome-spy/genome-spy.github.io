@@ -2276,6 +2276,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#axislabellayoutparams" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        AxisLabelLayoutParams
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#axisorient" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -4854,6 +4865,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         ViewSpec
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewportdomainref" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ViewportDomainRef
       </span>
     </span>
   </a>
@@ -6172,6 +6194,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#axislabellayoutparams" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        AxisLabelLayoutParams
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#axisorient" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -8757,6 +8790,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#viewportdomainref" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ViewportDomainRef
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#wigdataformat" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -8996,6 +9040,63 @@ documentation link to the relevant page; the rest are documented here.</p>
 <p>See the <a href="../axis/#config-properties">AxisConfig documentation</a>.</p>
 <h2 id="axisgenomedata">AxisGenomeData<a class="headerlink" href="#axisgenomedata" title="Permanent link">&para;</a></h2>
 <p>See the <a href="../data/lazy/#parameters_8">AxisGenomeData documentation</a>.</p>
+<h2 id="axislabellayoutparams">AxisLabelLayoutParams<a class="headerlink" href="#axislabellayoutparams" title="Permanent link">&para;</a></h2>
+<dl>
+<dt><code>channel</code> <span class="required">Required</span></dt>
+<dd>Type: <code>"x"</code> | <code>"y"</code><p>TODO</p>
+</dd>
+<dt><code>chromLabelAlign</code></dt>
+<dd>Type: string<p>TODO</p>
+</dd>
+<dt><code>chromLabelPadding</code></dt>
+<dd>Type: number<p>TODO</p>
+</dd>
+<dt><code>chromLabelSpacing</code></dt>
+<dd>Type: number<p>TODO</p>
+</dd>
+<dt><code>chromLabelWidth</code></dt>
+<dd>Type: string (field name)<p>TODO</p>
+</dd>
+<dt><code>description</code></dt>
+<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
+</dd>
+<dt><code>labelAlign</code> <span class="required">Required</span></dt>
+<dd>Type: string<p>TODO</p>
+</dd>
+<dt><code>labelAngle</code> <span class="required">Required</span></dt>
+<dd>Type: number<p>TODO</p>
+</dd>
+<dt><code>labelBaseline</code> <span class="required">Required</span></dt>
+<dd>Type: <code>"top"</code> | <code>"middle"</code> | <code>"bottom"</code> | <code>"alphabetic"</code> | <code>"baseline"</code><p>TODO</p>
+</dd>
+<dt><code>labelFlush</code> <span class="required">Required</span></dt>
+<dd>Type: boolean | number<p>TODO</p>
+</dd>
+<dt><code>labelFlushOffset</code> <span class="required">Required</span></dt>
+<dd>Type: number<p>TODO</p>
+</dd>
+<dt><code>labelFlushZoomExtent</code> <span class="required">Required</span></dt>
+<dd>Type: boolean<p>TODO</p>
+</dd>
+<dt><code>labelFontSize</code> <span class="required">Required</span></dt>
+<dd>Type: number<p>TODO</p>
+</dd>
+<dt><code>labelOffset</code> <span class="required">Required</span></dt>
+<dd>Type: string<p>TODO</p>
+</dd>
+<dt><code>labelOverlap</code> <span class="required">Required</span></dt>
+<dd>Type: boolean | string<p>TODO</p>
+</dd>
+<dt><code>labelSeparation</code> <span class="required">Required</span></dt>
+<dd>Type: number<p>TODO</p>
+</dd>
+<dt><code>labelVisible</code> <span class="required">Required</span></dt>
+<dd>Type: string<p>TODO</p>
+</dd>
+<dt><code>labelWidth</code> <span class="required">Required</span></dt>
+<dd>Type: string (field name)<p>TODO</p>
+</dd>
+</dl>
 <h2 id="axisorient">AxisOrient<a class="headerlink" href="#axisorient" title="Permanent link">&para;</a></h2>
 <p>Type: <code>"top"</code> | <code>"bottom"</code> | <code>"left"</code> | <code>"right"</code></p>
 <h2 id="axisplacement">AxisPlacement<a class="headerlink" href="#axisplacement" title="Permanent link">&para;</a></h2>
@@ -9345,6 +9446,10 @@ documentation link to the relevant page; the rest are documented here.</p>
 <dd>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <a href="https://genomespy.app/docs/grammar/composition/concat/#step-sizing">Step</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <code>"container"</code><p>Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or <code>"container"</code>. Check <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
 <p><strong>Default:</strong> <code>"container"</code></p>
 </dd>
+<dt><code>zindex</code></dt>
+<dd>Type: number<p>Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
 </dl>
 <h2 id="contig">Contig<a class="headerlink" href="#contig" title="Permanent link">&para;</a></h2>
 <dl>
@@ -9670,6 +9775,10 @@ documentation link to the relevant page; the rest are documented here.</p>
 <dd>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <a href="https://genomespy.app/docs/grammar/composition/concat/#step-sizing">Step</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <code>"container"</code><p>Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or <code>"container"</code>. Check <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
 <p><strong>Default:</strong> <code>"container"</code></p>
 </dd>
+<dt><code>zindex</code></dt>
+<dd>Type: number<p>Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
 </dl>
 <h2 id="handledtooltip">HandledTooltip<a class="headerlink" href="#handledtooltip" title="Permanent link">&para;</a></h2>
 <dl>
@@ -9877,6 +9986,10 @@ documentation link to the relevant page; the rest are documented here.</p>
 <dt><code>width</code></dt>
 <dd>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <a href="https://genomespy.app/docs/grammar/composition/concat/#step-sizing">Step</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <code>"container"</code><p>Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or <code>"container"</code>. Check <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
 <p><strong>Default:</strong> <code>"container"</code></p>
+</dd>
+<dt><code>zindex</code></dt>
+<dd>Type: number<p>Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 </dl>
 <h2 id="lazydata">LazyData<a class="headerlink" href="#lazydata" title="Permanent link">&para;</a></h2>
@@ -10479,7 +10592,7 @@ documentation link to the relevant page; the rest are documented here.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 <dt><code>domain</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#numericdomain">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/#complexdomain">ComplexDomain</a> | <a href="https://genomespy.app/docs/grammar/scale/#properties">SelectionDomainRef</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/#domainvaluearray">DomainValueArray</a><p>Customized domain values.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#numericdomain">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/#complexdomain">ComplexDomain</a> | <a href="https://genomespy.app/docs/grammar/scale/#properties">SelectionDomainRef</a> | <a href="https://genomespy.app/docs/grammar/types/#viewportdomainref">ViewportDomainRef</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/#domainvaluearray">DomainValueArray</a><p>Customized domain values.</p>
 <p>For <em>quantitative</em> fields, <code>domain</code> can take the form of a two-element array with minimum and maximum values. <a href="https://vega.github.io/vega-lite/docs/scale.html#piecewise">Vega-Lite piecewise scales</a> can be created by providing a <code>domain</code> with more than two entries.</p>
 <p>For <em>ordinal</em> and <em>nominal</em> fields, <code>domain</code> can be an array that lists valid input values.</p>
 <p>The domain can also be defined by an expression reference that evaluates to the domain array. Array elements may also be expression references.</p>
@@ -10852,7 +10965,7 @@ documentation link to the relevant page; the rest are documented here.</p>
 <h2 id="tooltipdef">TooltipDef<a class="headerlink" href="#tooltipdef" title="Permanent link">&para;</a></h2>
 <p>Type: object | object | <a href="https://genomespy.app/docs/grammar/types/#stringdatumdef">StringDatumDef</a> | <a href="https://genomespy.app/docs/grammar/types/#exprdef">ExprDef</a> | ValueDef<string> | (object | object | <a href="https://genomespy.app/docs/grammar/types/#stringdatumdef">StringDatumDef</a> | <a href="https://genomespy.app/docs/grammar/types/#exprdef">ExprDef</a> | ValueDef<string>)[] | null</p>
 <h2 id="transformparams">TransformParams<a class="headerlink" href="#transformparams" title="Permanent link">&para;</a></h2>
-<p>Type: <a href="https://genomespy.app/docs/grammar/transform/alignment-mismatches/#parameters">AlignmentMismatchesParams</a> | <a href="https://genomespy.app/docs/grammar/transform/aggregate/#parameters">AggregateParams</a> | <a href="https://genomespy.app/docs/grammar/transform/collect/#parameters">CollectParams</a> | <a href="https://genomespy.app/docs/grammar/transform/coverage/#parameters">CoverageParams</a> | <a href="https://genomespy.app/docs/grammar/transform/coordinate-lookup/#parameters">CoordinateLookupParams</a> | <a href="https://genomespy.app/docs/grammar/transform/cross/#parameters">CrossParams</a> | <a href="https://genomespy.app/docs/grammar/transform/displace1d/#parameters">Displace1DParams</a> | <a href="https://genomespy.app/docs/grammar/transform/flatten-delimited/#parameters">FlattenDelimitedParams</a> | <a href="https://genomespy.app/docs/grammar/transform/formula/#parameters">FormulaParams</a> | <a href="https://genomespy.app/docs/grammar/transform/lookup/#parameters">LookupParams</a> | <a href="https://genomespy.app/docs/grammar/transform/filter/#predicate-expression">ExprFilterParams</a> | <a href="https://genomespy.app/docs/grammar/transform/filter/#selection-predicate">SelectionFilterParams</a> | <a href="https://genomespy.app/docs/grammar/transform/filter-scored-labels/#parameters">FilterScoredLabelsParams</a> | <a href="https://genomespy.app/docs/grammar/transform/flatten/#parameters">FlattenParams</a> | <a href="https://genomespy.app/docs/grammar/transform/flatten-compressed-exons/#parameters">FlattenCompressedExonsParams</a> | <a href="https://genomespy.app/docs/grammar/transform/flatten-cigar/#parameters">FlattenCigarParams</a> | <a href="https://genomespy.app/docs/grammar/transform/flatten-sequence/#parameters">FlattenSequenceParams</a> | <a href="https://genomespy.app/docs/grammar/types/#identifierparams">IdentifierParams</a> | <a href="https://genomespy.app/docs/grammar/transform/linearize-genomic-coordinate/#parameters">LinearizeGenomicCoordinateParams</a> | <a href="https://genomespy.app/docs/grammar/transform/measure-text/#parameters">MeasureTextParams</a> | <a href="https://genomespy.app/docs/grammar/types/#truncatetextparams">TruncateTextParams</a> | <a href="https://genomespy.app/docs/grammar/types/#packlegendlabelsparams">PackLegendLabelsParams</a> | <a href="https://genomespy.app/docs/grammar/types/#mergefacetsparams">MergeFacetsParams</a> | <a href="https://genomespy.app/docs/grammar/transform/pileup/#parameters">PileupParams</a> | <a href="https://genomespy.app/docs/grammar/transform/project/#parameters">ProjectParams</a> | <a href="https://genomespy.app/docs/grammar/transform/regex-extract/#parameters">RegexExtractParams</a> | <a href="https://genomespy.app/docs/grammar/transform/regex-fold/#parameters">RegexFoldParams</a> | <a href="https://genomespy.app/docs/grammar/transform/sample/#parameters">SampleParams</a> | <a href="https://genomespy.app/docs/grammar/transform/set-intersection/#parameters">SetIntersectionParams</a> | <a href="https://genomespy.app/docs/grammar/transform/stack/#parameters">StackParams</a> | <a href="https://genomespy.app/docs/grammar/transform/window/#parameters">WindowParams</a></p>
+<p>Type: <a href="https://genomespy.app/docs/grammar/transform/alignment-mismatches/#parameters">AlignmentMismatchesParams</a> | <a href="https://genomespy.app/docs/grammar/transform/aggregate/#parameters">AggregateParams</a> | <a href="https://genomespy.app/docs/grammar/transform/collect/#parameters">CollectParams</a> | <a href="https://genomespy.app/docs/grammar/transform/coverage/#parameters">CoverageParams</a> | <a href="https://genomespy.app/docs/grammar/transform/coordinate-lookup/#parameters">CoordinateLookupParams</a> | <a href="https://genomespy.app/docs/grammar/transform/cross/#parameters">CrossParams</a> | <a href="https://genomespy.app/docs/grammar/transform/displace1d/#parameters">Displace1DParams</a> | <a href="https://genomespy.app/docs/grammar/transform/flatten-delimited/#parameters">FlattenDelimitedParams</a> | <a href="https://genomespy.app/docs/grammar/transform/formula/#parameters">FormulaParams</a> | <a href="https://genomespy.app/docs/grammar/transform/lookup/#parameters">LookupParams</a> | <a href="https://genomespy.app/docs/grammar/transform/filter/#predicate-expression">ExprFilterParams</a> | <a href="https://genomespy.app/docs/grammar/transform/filter/#selection-predicate">SelectionFilterParams</a> | <a href="https://genomespy.app/docs/grammar/types/#axislabellayoutparams">AxisLabelLayoutParams</a> | <a href="https://genomespy.app/docs/grammar/transform/filter-scored-labels/#parameters">FilterScoredLabelsParams</a> | <a href="https://genomespy.app/docs/grammar/transform/flatten/#parameters">FlattenParams</a> | <a href="https://genomespy.app/docs/grammar/transform/flatten-compressed-exons/#parameters">FlattenCompressedExonsParams</a> | <a href="https://genomespy.app/docs/grammar/transform/flatten-cigar/#parameters">FlattenCigarParams</a> | <a href="https://genomespy.app/docs/grammar/transform/flatten-sequence/#parameters">FlattenSequenceParams</a> | <a href="https://genomespy.app/docs/grammar/types/#identifierparams">IdentifierParams</a> | <a href="https://genomespy.app/docs/grammar/transform/linearize-genomic-coordinate/#parameters">LinearizeGenomicCoordinateParams</a> | <a href="https://genomespy.app/docs/grammar/transform/measure-text/#parameters">MeasureTextParams</a> | <a href="https://genomespy.app/docs/grammar/types/#truncatetextparams">TruncateTextParams</a> | <a href="https://genomespy.app/docs/grammar/types/#packlegendlabelsparams">PackLegendLabelsParams</a> | <a href="https://genomespy.app/docs/grammar/types/#mergefacetsparams">MergeFacetsParams</a> | <a href="https://genomespy.app/docs/grammar/transform/pileup/#parameters">PileupParams</a> | <a href="https://genomespy.app/docs/grammar/transform/project/#parameters">ProjectParams</a> | <a href="https://genomespy.app/docs/grammar/transform/regex-extract/#parameters">RegexExtractParams</a> | <a href="https://genomespy.app/docs/grammar/transform/regex-fold/#parameters">RegexFoldParams</a> | <a href="https://genomespy.app/docs/grammar/transform/sample/#parameters">SampleParams</a> | <a href="https://genomespy.app/docs/grammar/transform/set-intersection/#parameters">SetIntersectionParams</a> | <a href="https://genomespy.app/docs/grammar/transform/stack/#parameters">StackParams</a> | <a href="https://genomespy.app/docs/grammar/transform/window/#parameters">WindowParams</a></p>
 <h2 id="transitionedmultiscalestops">TransitionedMultiscaleStops<a class="headerlink" href="#transitionedmultiscalestops" title="Permanent link">&para;</a></h2>
 <p>See the <a href="../composition/multiscale/#transitionedmultiscalestops">TransitionedMultiscaleStops documentation</a>.</p>
 <h2 id="transitionedvalueparameter">TransitionedValueParameter<a class="headerlink" href="#transitionedvalueparameter" title="Permanent link">&para;</a></h2>
@@ -11059,6 +11172,10 @@ documentation link to the relevant page; the rest are documented here.</p>
 <dd>Type: <a href="https://genomespy.app/docs/grammar/composition/concat/#sizedef">SizeDef</a> | number | <a href="https://genomespy.app/docs/grammar/composition/concat/#step-sizing">Step</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <code>"container"</code><p>Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or <code>"container"</code>. Check <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
 <p><strong>Default:</strong> <code>"container"</code></p>
 </dd>
+<dt><code>zindex</code></dt>
+<dd>Type: number<p>Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
 </dl>
 <h2 id="valueparameter">ValueParameter<a class="headerlink" href="#valueparameter" title="Permanent link">&para;</a></h2>
 <p>Type: <a href="https://genomespy.app/docs/grammar/types/#plainvalueparameter">PlainValueParameter</a> | <a href="https://genomespy.app/docs/grammar/types/#transitionedvalueparameter">TransitionedValueParameter</a></p>
@@ -11131,6 +11248,7 @@ documentation link to the relevant page; the rest are documented here.</p>
 <p>Type: number | <a href="https://genomespy.app/docs/grammar/types/#dynamicopacity">DynamicOpacity</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
 <h2 id="viewspec">ViewSpec<a class="headerlink" href="#viewspec" title="Permanent link">&para;</a></h2>
 <p>Type: <a href="https://genomespy.app/docs/grammar/#properties">UnitSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#layerspec">LayerSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#properties">MultiscaleSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#vconcatspec">VConcatSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#hconcatspec">HConcatSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#concatspec">ConcatSpec</a></p>
+<h2 id="viewportdomainref">ViewportDomainRef<a class="headerlink" href="#viewportdomainref" title="Permanent link">&para;</a></h2>
 <h2 id="wigdataformat">WigDataFormat<a class="headerlink" href="#wigdataformat" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>parse</code></dt>

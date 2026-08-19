@@ -276,7 +276,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -340,6 +340,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -361,8 +372,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -505,7 +537,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -658,7 +690,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -722,6 +754,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -743,8 +786,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -887,7 +951,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -1250,6 +1314,10 @@
             }
           ],
           "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+        },
+        "zindex": {
+          "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+          "type": "number"
         }
       },
       "required": [
@@ -1407,7 +1475,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -1471,6 +1539,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -1492,8 +1571,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -1636,7 +1736,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -1789,7 +1889,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -1853,6 +1953,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -1874,8 +1985,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -2018,7 +2150,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -2377,6 +2509,10 @@
             }
           ],
           "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+        },
+        "zindex": {
+          "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+          "type": "number"
         }
       },
       "required": [
@@ -2540,7 +2676,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -2604,6 +2740,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -2625,8 +2772,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -2769,7 +2937,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -2922,7 +3090,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -2986,6 +3154,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -3007,8 +3186,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -3151,7 +3351,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -3508,6 +3708,10 @@
             }
           ],
           "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+        },
+        "zindex": {
+          "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+          "type": "number"
         }
       },
       "required": [
@@ -3671,7 +3875,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -3735,6 +3939,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -3756,8 +3971,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -3900,7 +4136,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -4053,7 +4289,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -4117,6 +4353,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -4138,8 +4385,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -4282,7 +4550,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -4643,6 +4911,10 @@
             }
           ],
           "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+        },
+        "zindex": {
+          "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+          "type": "number"
         }
       },
       "required": [
@@ -4838,7 +5110,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -4902,6 +5174,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -4923,8 +5206,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -5067,7 +5371,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -5220,7 +5524,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -5284,6 +5588,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -5305,8 +5620,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -5449,7 +5785,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -5836,6 +6172,10 @@
                 }
               ],
               "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+            },
+            "zindex": {
+              "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+              "type": "number"
             }
           },
           "required": [
@@ -6006,7 +6346,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -6070,6 +6410,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -6091,8 +6442,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -6235,7 +6607,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -6388,7 +6760,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -6452,6 +6824,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -6473,8 +6856,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -6617,7 +7021,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -7011,6 +7415,10 @@
                 }
               ],
               "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+            },
+            "zindex": {
+              "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+              "type": "number"
             }
           },
           "required": [
@@ -7181,7 +7589,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -7245,6 +7653,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -7266,8 +7685,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -7410,7 +7850,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -7563,7 +8003,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -7627,6 +8067,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -7648,8 +8099,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -7792,7 +8264,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -8190,6 +8662,10 @@
                 }
               ],
               "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+            },
+            "zindex": {
+              "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+              "type": "number"
             }
           },
           "required": [
@@ -8354,7 +8830,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -8418,6 +8894,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -8439,8 +8926,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -8583,7 +9091,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -8736,7 +9244,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -8800,6 +9308,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -8821,8 +9340,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -8965,7 +9505,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -9361,6 +9901,10 @@
                 }
               ],
               "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+            },
+            "zindex": {
+              "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+              "type": "number"
             }
           },
           "required": [
@@ -9524,7 +10068,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -9588,6 +10132,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -9609,8 +10164,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -9753,7 +10329,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -9906,7 +10482,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -9970,6 +10546,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -9991,8 +10578,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -10135,7 +10743,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -10531,6 +11139,10 @@
                 }
               ],
               "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+            },
+            "zindex": {
+              "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+              "type": "number"
             }
           },
           "required": [
@@ -10694,7 +11306,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -10758,6 +11370,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -10779,8 +11402,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -10923,7 +11567,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -11076,7 +11720,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -11140,6 +11784,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -11161,8 +11816,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -11305,7 +11981,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -11705,6 +12381,10 @@
                 }
               ],
               "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+            },
+            "zindex": {
+              "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+              "type": "number"
             }
           },
           "required": [
@@ -11869,7 +12549,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -11933,6 +12613,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -11954,8 +12645,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -12098,7 +12810,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -12251,7 +12963,7 @@
                       "type": "number"
                     },
                     "extraValues": {
-                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                      "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                       "items": {
                         "type": "number"
                       },
@@ -12315,6 +13027,17 @@
                       "description": "The color of the tick label, can be in hex color code or regular color name.",
                       "type": "string"
                     },
+                    "labelFlush": {
+                      "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                      "type": [
+                        "boolean",
+                        "number"
+                      ]
+                    },
+                    "labelFlushOffset": {
+                      "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                      "type": "number"
+                    },
                     "labelFont": {
                       "description": "The font of the tick label.",
                       "type": "string"
@@ -12336,8 +13059,29 @@
                       "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                       "type": "number"
                     },
+                    "labelOverlap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "const": "parity",
+                          "type": "string"
+                        },
+                        {
+                          "const": "greedy",
+                          "type": "string"
+                        }
+                      ],
+                      "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                    },
                     "labelPadding": {
                       "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                      "type": "number"
+                    },
+                    "labelSeparation": {
+                      "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                      "minimum": 0,
                       "type": "number"
                     },
                     "labels": {
@@ -12480,7 +13224,7 @@
                       "type": "number"
                     },
                     "values": {
-                      "description": "Explicitly set the visible axis tick and label values.",
+                      "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                       "items": {},
                       "type": "array"
                     },
@@ -12890,6 +13634,10 @@
                 }
               ],
               "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+            },
+            "zindex": {
+              "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+              "type": "number"
             }
           },
           "required": [
@@ -13056,7 +13804,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -13120,6 +13868,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -13141,8 +13900,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -13285,7 +14065,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -13438,7 +14218,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -13502,6 +14282,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -13523,8 +14314,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -13667,7 +14479,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -14017,6 +14829,10 @@
             }
           ],
           "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+        },
+        "zindex": {
+          "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+          "type": "number"
         }
       },
       "required": [
@@ -14173,7 +14989,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -14237,6 +15053,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -14258,8 +15085,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -14402,7 +15250,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -14555,7 +15403,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -14619,6 +15467,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -14640,8 +15499,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -14784,7 +15664,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -15143,6 +16023,10 @@
             }
           ],
           "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+        },
+        "zindex": {
+          "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+          "type": "number"
         }
       },
       "required": [
@@ -16064,7 +16948,7 @@
           "type": "number"
         },
         "extraValues": {
-          "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+          "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
           "items": {
             "type": "number"
           },
@@ -16128,6 +17012,17 @@
           "description": "The color of the tick label, can be in hex color code or regular color name.",
           "type": "string"
         },
+        "labelFlush": {
+          "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+          "type": [
+            "boolean",
+            "number"
+          ]
+        },
+        "labelFlushOffset": {
+          "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+          "type": "number"
+        },
         "labelFont": {
           "description": "The font of the tick label.",
           "type": "string"
@@ -16149,8 +17044,29 @@
           "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
           "type": "number"
         },
+        "labelOverlap": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "parity",
+              "type": "string"
+            },
+            {
+              "const": "greedy",
+              "type": "string"
+            }
+          ],
+          "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+        },
         "labelPadding": {
           "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+          "type": "number"
+        },
+        "labelSeparation": {
+          "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+          "minimum": 0,
           "type": "number"
         },
         "labels": {
@@ -16293,7 +17209,7 @@
           "type": "number"
         },
         "values": {
-          "description": "Explicitly set the visible axis tick and label values.",
+          "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
           "items": {},
           "type": "array"
         },
@@ -16446,7 +17362,7 @@
           "type": "number"
         },
         "extraValues": {
-          "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+          "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
           "items": {
             "type": "number"
           },
@@ -16510,6 +17426,17 @@
           "description": "The color of the tick label, can be in hex color code or regular color name.",
           "type": "string"
         },
+        "labelFlush": {
+          "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+          "type": [
+            "boolean",
+            "number"
+          ]
+        },
+        "labelFlushOffset": {
+          "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+          "type": "number"
+        },
         "labelFont": {
           "description": "The font of the tick label.",
           "type": "string"
@@ -16531,8 +17458,29 @@
           "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
           "type": "number"
         },
+        "labelOverlap": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "parity",
+              "type": "string"
+            },
+            {
+              "const": "greedy",
+              "type": "string"
+            }
+          ],
+          "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+        },
         "labelPadding": {
           "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+          "type": "number"
+        },
+        "labelSeparation": {
+          "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+          "minimum": 0,
           "type": "number"
         },
         "labels": {
@@ -16675,7 +17623,7 @@
           "type": "number"
         },
         "values": {
-          "description": "Explicitly set the visible axis tick and label values.",
+          "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
           "items": {},
           "type": "array"
         },
@@ -16701,6 +17649,116 @@
       "required": [
         "type",
         "channel"
+      ],
+      "type": "object"
+    },
+    "AxisLabelLayoutParams": {
+      "additionalProperties": false,
+      "description": "Parameters for GenomeSpy's generated axis-label layout pipeline.",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/PrimaryPositionalChannel"
+        },
+        "chromLabelAlign": {
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ],
+          "type": "string"
+        },
+        "chromLabelPadding": {
+          "type": "number"
+        },
+        "chromLabelSpacing": {
+          "type": "number"
+        },
+        "chromLabelWidth": {
+          "$ref": "#/definitions/Field"
+        },
+        "description": {
+          "description": "A description of the transform step. Can be used for documentation and agent context.",
+          "type": "string"
+        },
+        "labelAlign": {
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ],
+          "type": "string"
+        },
+        "labelAngle": {
+          "type": "number"
+        },
+        "labelBaseline": {
+          "$ref": "#/definitions/Baseline"
+        },
+        "labelFlush": {
+          "anyOf": [
+            {
+              "const": false,
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "labelFlushOffset": {
+          "type": "number"
+        },
+        "labelFlushZoomExtent": {
+          "type": "boolean"
+        },
+        "labelFontSize": {
+          "type": "number"
+        },
+        "labelOffset": {
+          "type": "string"
+        },
+        "labelOverlap": {
+          "enum": [
+            false,
+            "auto",
+            "parity",
+            "greedy"
+          ],
+          "type": [
+            "boolean",
+            "string"
+          ]
+        },
+        "labelSeparation": {
+          "type": "number"
+        },
+        "labelVisible": {
+          "type": "string"
+        },
+        "labelWidth": {
+          "$ref": "#/definitions/Field"
+        },
+        "type": {
+          "const": "axisLabelLayout",
+          "description": "The type of the transform to be applied",
+          "type": "string"
+        }
+      },
+      "required": [
+        "channel",
+        "labelAlign",
+        "labelAngle",
+        "labelBaseline",
+        "labelFlush",
+        "labelFlushOffset",
+        "labelFlushZoomExtent",
+        "labelFontSize",
+        "labelOffset",
+        "labelOverlap",
+        "labelSeparation",
+        "labelVisible",
+        "labelWidth",
+        "type"
       ],
       "type": "object"
     },
@@ -20233,7 +21291,7 @@
           "type": "number"
         },
         "extraValues": {
-          "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+          "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
           "items": {
             "type": "number"
           },
@@ -20297,6 +21355,17 @@
           "description": "The color of the tick label, can be in hex color code or regular color name.",
           "type": "string"
         },
+        "labelFlush": {
+          "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+          "type": [
+            "boolean",
+            "number"
+          ]
+        },
+        "labelFlushOffset": {
+          "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+          "type": "number"
+        },
         "labelFont": {
           "description": "The font of the tick label.",
           "type": "string"
@@ -20318,8 +21387,29 @@
           "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
           "type": "number"
         },
+        "labelOverlap": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "parity",
+              "type": "string"
+            },
+            {
+              "const": "greedy",
+              "type": "string"
+            }
+          ],
+          "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+        },
         "labelPadding": {
           "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+          "type": "number"
+        },
+        "labelSeparation": {
+          "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+          "minimum": 0,
           "type": "number"
         },
         "labels": {
@@ -20462,7 +21552,7 @@
           "type": "number"
         },
         "values": {
-          "description": "Explicitly set the visible axis tick and label values.",
+          "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
           "items": {},
           "type": "array"
         },
@@ -20771,6 +21861,10 @@
         "visible": {
           "description": "Overrides the visibility of the imported view.\n\nIf not specified, the imported specification's `visible` property is used.",
           "type": "boolean"
+        },
+        "zindex": {
+          "description": "Overrides the imported view's z-order among sibling views. Higher values render later. This does not affect layout order.\n\n__Default value:__ the imported view's `zindex`, or `0`",
+          "type": "number"
         }
       },
       "required": [
@@ -27198,7 +28292,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -27262,6 +28356,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -27283,8 +28388,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -27427,7 +28553,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -27580,7 +28706,7 @@
                   "type": "number"
                 },
                 "extraValues": {
-                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+                  "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
                   "items": {
                     "type": "number"
                   },
@@ -27644,6 +28770,17 @@
                   "description": "The color of the tick label, can be in hex color code or regular color name.",
                   "type": "string"
                 },
+                "labelFlush": {
+                  "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                },
+                "labelFlushOffset": {
+                  "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+                  "type": "number"
+                },
                 "labelFont": {
                   "description": "The font of the tick label.",
                   "type": "string"
@@ -27665,8 +28802,29 @@
                   "description": "Maximum allowed pixel width of axis tick labels.\n\n__Default value:__ `180`",
                   "type": "number"
                 },
+                "labelOverlap": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "const": "parity",
+                      "type": "string"
+                    },
+                    {
+                      "const": "greedy",
+                      "type": "string"
+                    }
+                  ],
+                  "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+                },
                 "labelPadding": {
                   "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+                  "type": "number"
+                },
+                "labelSeparation": {
+                  "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+                  "minimum": 0,
                   "type": "number"
                 },
                 "labels": {
@@ -27809,7 +28967,7 @@
                   "type": "number"
                 },
                 "values": {
-                  "description": "Explicitly set the visible axis tick and label values.",
+                  "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
                   "items": {},
                   "type": "array"
                 },
@@ -28182,6 +29340,10 @@
             }
           ],
           "description": "Width of the view. If a number, it is interpreted as pixels. If an expression reference is provided, it must resolve to a number or `\"container\"`. Check [child sizing](https://genomespy.app/docs/grammar/composition/concat/#child-sizing) for details.\n\n**Default:** `\"container\"`"
+        },
+        "zindex": {
+          "description": "Z-order among sibling views in a composition. Higher values render later. Views with equal values render in declaration order. This does not affect layout order.\n\n__Default value:__ `0`",
+          "type": "number"
         }
       },
       "required": [
@@ -28286,6 +29448,9 @@
             },
             {
               "$ref": "#/definitions/SelectionDomainRef"
+            },
+            {
+              "$ref": "#/definitions/ViewportDomainRef"
             },
             {
               "$ref": "#/definitions/ExprRef"
@@ -28493,6 +29658,9 @@
               "$ref": "#/definitions/SelectionDomainRef"
             },
             {
+              "$ref": "#/definitions/ViewportDomainRef"
+            },
+            {
               "$ref": "#/definitions/ExprRef"
             },
             {
@@ -28569,6 +29737,9 @@
                 },
                 {
                   "$ref": "#/definitions/SelectionDomainRef"
+                },
+                {
+                  "$ref": "#/definitions/ViewportDomainRef"
                 },
                 {
                   "$ref": "#/definitions/ExprRef"
@@ -28786,6 +29957,9 @@
                 },
                 {
                   "$ref": "#/definitions/SelectionDomainRef"
+                },
+                {
+                  "$ref": "#/definitions/ViewportDomainRef"
                 },
                 {
                   "$ref": "#/definitions/ExprRef"
@@ -29025,6 +30199,9 @@
                   "$ref": "#/definitions/SelectionDomainRef"
                 },
                 {
+                  "$ref": "#/definitions/ViewportDomainRef"
+                },
+                {
                   "$ref": "#/definitions/ExprRef"
                 },
                 {
@@ -29237,6 +30414,9 @@
                 },
                 {
                   "$ref": "#/definitions/SelectionDomainRef"
+                },
+                {
+                  "$ref": "#/definitions/ViewportDomainRef"
                 },
                 {
                   "$ref": "#/definitions/ExprRef"
@@ -29464,6 +30644,9 @@
                 },
                 {
                   "$ref": "#/definitions/SelectionDomainRef"
+                },
+                {
+                  "$ref": "#/definitions/ViewportDomainRef"
                 },
                 {
                   "$ref": "#/definitions/ExprRef"
@@ -31105,7 +32288,7 @@
           ]
         },
         "extraValues": {
-          "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed.\n\nThis property is ignored on discrete scales and when `values` is set.",
+          "description": "Additional tick and label values to include alongside automatically generated ticks on continuous scales. Values outside the visible scale range are omitted and duplicates are removed. During automatic overlap removal, these labels are reduced against other explicitly specified labels but take precedence over automatically generated labels.\n\nThis property is ignored on discrete scales and when `values` is set.",
           "items": {
             "type": "number"
           },
@@ -31482,6 +32665,17 @@
             }
           ]
         },
+        "labelFlush": {
+          "description": "Indicates whether labels near the beginning or end of the axis should be aligned flush with the scale range. A number specifies the endpoint distance threshold in pixels. `true` uses a threshold of one pixel.\n\nFlushing is supported for quantitative, index, and locus axes. By default, it is enabled for non-zoomable x axes of these types. On a zoomable x axis with a configured bounded zoom extent, ticks matching the extent boundaries are flushed while they remain visible. Other zoomable ticks and y-axis ticks are not flushed by default. Flushing supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles.",
+          "type": [
+            "boolean",
+            "number"
+          ]
+        },
+        "labelFlushOffset": {
+          "description": "The number of pixels by which to move flush-adjusted labels outward from the axis range.\n\n__Default value:__ `0`",
+          "type": "number"
+        },
         "labelFont": {
           "anyOf": [
             {
@@ -31547,8 +32741,29 @@
           "description": "Offset between legend symbols and labels in pixels.",
           "type": "number"
         },
+        "labelOverlap": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "parity",
+              "type": "string"
+            },
+            {
+              "const": "greedy",
+              "type": "string"
+            }
+          ],
+          "description": "The strategy for removing overlapping axis labels. `true` uses the `\"parity\"` strategy. `\"parity\"` removes every other label until the remaining labels no longer overlap. `\"greedy\"` keeps each label that does not overlap the previously retained label. `false` disables overlap removal.\n\nBy default, overlap removal uses `\"parity\"` for linear-like continuous scales and `\"greedy\"` for logarithmic and symlog scales. It is disabled for discrete scales. Overlap removal supports label angles that are multiples of 90 degrees. The automatic behavior is disabled at other angles."
+        },
         "labelPadding": {
           "description": "The padding, in pixels, between axis and text labels.\n\n__Default value:__ `2`",
+          "type": "number"
+        },
+        "labelSeparation": {
+          "description": "The minimum separation, in pixels, between retained axis labels.\n\n__Default value:__ `2`",
+          "minimum": 0,
           "type": "number"
         },
         "labels": {
@@ -32398,7 +33613,7 @@
         "values": {
           "anyOf": [
             {
-              "description": "Explicitly set the visible axis tick and label values.",
+              "description": "Explicitly set the visible axis tick and label values. During automatic overlap removal, these labels are reduced against each other but take precedence over automatically generated labels.",
               "items": {},
               "type": "array"
             },
@@ -32416,28 +33631,84 @@
           ]
         },
         "viewportEdgeFadeDistanceBottom": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeDistanceLeft": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeDistanceRight": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeDistanceTop": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeWidthBottom": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeWidthLeft": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeWidthRight": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeWidthTop": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "x": {
           "anyOf": [
@@ -32877,28 +34148,84 @@
           "description": "Tooltip handler. If `null`, no tooltip is shown. If string, specifies the [tooltip handler](https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers) to use."
         },
         "viewportEdgeFadeDistanceBottom": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeDistanceLeft": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeDistanceRight": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeDistanceTop": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeWidthBottom": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeWidthLeft": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeWidthRight": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeWidthTop": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "x": {
           "anyOf": [
@@ -33248,28 +34575,84 @@
           "type": "string"
         },
         "viewportEdgeFadeDistanceBottom": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeDistanceLeft": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeDistanceRight": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeDistanceTop": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeWidthBottom": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeWidthLeft": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeWidthRight": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "viewportEdgeFadeWidthTop": {
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/ExprRef"
+            }
+          ]
         },
         "x": {
           "anyOf": [
@@ -34233,6 +35616,9 @@
         },
         {
           "$ref": "#/definitions/FilterParams"
+        },
+        {
+          "$ref": "#/definitions/AxisLabelLayoutParams"
         },
         {
           "$ref": "#/definitions/FilterScoredLabelsParams"
@@ -35207,6 +36593,20 @@
           "$ref": "#/definitions/ExprRef"
         }
       ]
+    },
+    "ViewportDomainRef": {
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "const": "viewport",
+          "description": "Derives the domain from data in the current positional viewport.\n\nThe domain is updated shortly after navigation pauses. Normal data-derived domain options, such as `zero` and `nice`, still apply.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "type": "object"
     },
     "WigDataFormat": {
       "additionalProperties": false,
