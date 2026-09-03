@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;identifier&#x2f;" />
 
 
-<meta property="og:description" content="The &quot;identifier&quot; transform adds a runtime-unique identifier (uniqueId) to each data object." />
+<meta property="og:description" content="The &quot;identifier&quot; transform adds a runtime-unique identifier (uniqueId) to each row." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3316,15 +3316,15 @@
 
 <h1 id="identifier">Identifier<a class="headerlink" href="#identifier" title="Permanent link">&para;</a></h1>
 <p>The <code>"identifier"</code> transform adds a runtime-unique identifier (<code>__uniqueId</code>) to
-each data object.</p>
+each row.</p>
 <p>GenomeSpy uses these identifiers internally for picking, including tooltips and
 point selections. It inserts an identifier transform automatically when a mark
 participates in picking and the dataflow branch does not already contain one.</p>
 <p>Identifiers are runtime values. Do not use them as persistent record keys. For
 point selections that need to survive state persistence, use <code>encoding.key</code>, as
 described in the <a href="../../mark/#non-visual-channels">non-visual channels
-section</a>, with fields that identify the
-data objects independently of the current data flow.</p>
+section</a>, with fields that identify rows
+independently of the current data flow.</p>
 <h2 id="explicit-identifiers">Explicit identifiers<a class="headerlink" href="#explicit-identifiers" title="Permanent link">&para;</a></h2>
 <p>Most specifications do not need to add this transform themselves. Add one
 explicitly when several downstream views must refer to the same input object

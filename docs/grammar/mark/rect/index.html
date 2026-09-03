@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;mark&#x2f;rect&#x2f;" />
 
 
-<meta property="og:description" content="Rect mark displays each data object as a rectangle." />
+<meta property="og:description" content="Rect mark displays each row as a rectangle." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3541,7 +3541,7 @@
 
 
 <h1 id="rect">Rect<a class="headerlink" href="#rect" title="Permanent link">&para;</a></h1>
-<p>Rect mark displays each data object as a rectangle.</p>
+<p>Rect mark displays each row as a rectangle.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/mark/rect/rect-mark.json">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -3588,7 +3588,7 @@ channels and the <code>color</code>, <code>stroke</code>, <code>fill</code>, <co
 </dd>
 <dt><code>clip</code></dt>
 <dd>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code><p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
-<p><strong>Default value:</strong> the direction of zoomable positional scales</p>
+<p><strong>Default value:</strong> <code>true</code> when either positional scale is zoomable; otherwise <code>false</code></p>
 </dd>
 <dt><code>color</code></dt>
 <dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
@@ -3632,10 +3632,6 @@ channels and the <code>color</code>, <code>stroke</code>, <code>fill</code>, <co
 <dt><code>hatch</code></dt>
 <dd>Type: <code>"none"</code> | <code>"diagonal"</code> | <code>"antiDiagonal"</code> | <code>"cross"</code> | <code>"vertical"</code> | <code>"horizontal"</code> | <code>"grid"</code> | <code>"dots"</code> | <code>"rings"</code> | <code>"ringsLarge"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>A hatch pattern drawn inside the mark using the stroke width, color, and opacity. The pattern is aligned in screen space and scaled by the stroke width.</p>
 <p><strong>Default value:</strong> <code>"none"</code></p>
-</dd>
-<dt><code>minBufferSize</code></dt>
-<dd>Type: number<p>Minimum size for WebGL buffers (number of data items). Allows for using <code>bufferSubData()</code> to update graphics.</p>
-<p>This property is intended for internal use.</p>
 </dd>
 <dt><code>minHeight</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The minimum height of a rectangle in pixels. The property clamps rectangles' heights.</p>
@@ -3850,7 +3846,7 @@ pattern string (such as <code>"diagonal"</code> or <code>"dots"</code>) or an ex
 evaluates to one of these patterns.</p>
 <p>The hatch pattern is currently a mark property, i.e., the same for all instances
 of the mark, but may be promoted to a visual channel in the future to allow
-different hatch patterns for different data points.</p>
+different hatch patterns for different rows.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/mark/rect/hatch-patterns.json" height="200">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>

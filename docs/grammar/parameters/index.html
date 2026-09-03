@@ -2143,6 +2143,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pushing-parameters-to-an-outer-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Pushing Parameters to an Outer Scope
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#numeric-transitions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3506,6 +3517,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pushing-parameters-to-an-outer-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Pushing Parameters to an Outer Scope
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#numeric-transitions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3741,7 +3763,7 @@ this is necessary for bookmarkable state in the GenomeSpy App.</p>
 persisted in the GenomeSpy App's bookmarks and provenance history. Use
 <code>persist: false</code> to opt out of persistence for ephemeral params (such as hover
 selections) or when <code>encoding.key</code> is not defined for point selections.</p>
-<p>For point selections, <code>encoding.key</code> should uniquely identify data objects.
+<p>For point selections, <code>encoding.key</code> should uniquely identify rows.
 You can use either a single field or a composite key (an array of field
 definitions). When using a composite key, keep the field order stable across
 bookmark creation and restore.</p>
@@ -3832,6 +3854,14 @@ parameters change.</p>
 
 </genome-spy-doc-embed></div>
 
+<h2 id="pushing-parameters-to-an-outer-scope">Pushing Parameters to an Outer Scope<a class="headerlink" href="#pushing-parameters-to-an-outer-scope" title="Permanent link">&para;</a></h2>
+<p>A child view can update a parameter owned by an ancestor. Declare the writable
+parameter on the ancestor, then declare a same-named child parameter with
+<code>"push": "outer"</code>. The child parameter acts as an alias: interactions and
+input bindings in the child write to the ancestor value.</p>
+<p>This pattern is useful when a child interaction controls shared state, such as
+a <a href=".././scale/#parameter-scope">reactive shared scale</a>. The ancestor must declare
+the target parameter before a child can push to it.</p>
 <h2 id="numeric-transitions">Numeric Transitions<a class="headerlink" href="#numeric-transitions" title="Permanent link">&para;</a></h2>
 <p>Numeric value and expression parameters can use <code>transition</code> to smooth how the
 exposed runtime value follows a target value. Use <code>"lerp"</code> to continuously
@@ -3945,7 +3975,7 @@ bars by holding down the <code>Shift</code> key.</p>
 </genome-spy-doc-embed></div>
 
 <h3 id="interval-selection">Interval Selection<a class="headerlink" href="#interval-selection" title="Permanent link">&para;</a></h3>
-<p>Interval selections allow for selecting a range of data points along one or two axes.
+<p>Interval selections allow for selecting a range of rows along one or two axes.
 By default, the start gesture depends on whether the brushed channels are
 zoomable:</p>
 <ul>
@@ -4004,7 +4034,7 @@ spanning rectangle, and <code>"view"</code> always draws per-view rectangles.</p
 </genome-spy-doc-embed></div>
 
 <p>Selections can also drive <a href=".././transform/filter/">"filter"</a> transforms, allowing for
-aggregating or otherwise transforming only the selected data points. The example
+aggregating or otherwise transforming only the selected rows. The example
 below shows how to aggregate only the brushed penguins from the <a href="https://allisonhorst.github.io/palmerpenguins/">Palmer
 Penguins</a> dataset.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/parameters/penguins.json" height="380" spechidden="true">

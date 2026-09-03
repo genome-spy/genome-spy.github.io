@@ -3377,7 +3377,7 @@ of its public API. GenomeSpy derives the endpoints internally and uses the
 </dd>
 <dt><code>clip</code></dt>
 <dd>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code><p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
-<p><strong>Default value:</strong> the direction of zoomable positional scales</p>
+<p><strong>Default value:</strong> <code>true</code> when either positional scale is zoomable; otherwise <code>false</code></p>
 </dd>
 <dt><code>color</code></dt>
 <dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
@@ -3388,10 +3388,6 @@ of its public API. GenomeSpy derives the endpoints internally and uses the
 <dt><code>cursor</code></dt>
 <dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Mouse cursor shown while the pointer is over the mark. Mark cursor takes precedence over enclosing view cursors.</p>
 <p><strong>Default value:</strong> browser default</p>
-</dd>
-<dt><code>minBufferSize</code></dt>
-<dd>Type: number<p>Minimum size for WebGL buffers (number of data items). Allows for using <code>bufferSubData()</code> to update graphics.</p>
-<p>This property is intended for internal use.</p>
 </dd>
 <dt><code>minLength</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The minimum stroke length in pixels. Use this property to ensure that very short strokes remain visible even when the user zooms out.</p>

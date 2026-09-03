@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;regex-extract&#x2f;" />
 
 
-<meta property="og:description" content="The &quot;regexExtract&quot; transform extracts groups from a string field and adds them to the data objects as new fields." />
+<meta property="og:description" content="The &quot;regexExtract&quot; transform extracts groups from a string field and adds them to the rows as new fields." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3338,7 +3338,7 @@
 
 <h1 id="regex-extract">Regex Extract<a class="headerlink" href="#regex-extract" title="Permanent link">&para;</a></h1>
 <p>The <code>"regexExtract"</code> transform extracts groups from a string field
-and adds them to the data objects as new fields.</p>
+and adds them to the rows as new fields.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code> <span class="required">Required</span></dt>
@@ -3355,7 +3355,7 @@ and adds them to the data objects as new fields.</p>
 <p>Read more at: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions</a></p>
 </dd>
 <dt><code>skipInvalidInput</code></dt>
-<dd>Type: boolean<p>Do not complain about invalid input. Just skip it and leave the new fields undefined on the affected datum.</p>
+<dd>Type: boolean<p>Do not complain about invalid input. Just skip it and leave the new fields undefined on the affected row.</p>
 <p><strong>Default:</strong> <code>false</code></p>
 </dd>
 </dl>

@@ -3447,7 +3447,7 @@ and the aggregate values.</p>
 <dd>Type: array<p>The data fields to apply aggregate functions to. This array should correspond with the <code>ops</code> and <code>as</code> arrays. If no fields or operations are specified, a count aggregation will be applied by default.</p>
 </dd>
 <dt><code>groupby</code></dt>
-<dd>Type: array<p>The fields by which to group the data. If these are not defined, all data objects will be grouped into a single category.</p>
+<dd>Type: array<p>The fields by which to group the data. If these are not defined, all rows will be grouped into a single category.</p>
 </dd>
 <dt><code>ops</code></dt>
 <dd>Type: array<p>The aggregation operations to be performed on the fields, such as <code>"sum"</code>, <code>"q1"</code>, <code>"median"</code>, <code>"q3"</code>, or <code>"count"</code>.</p>
@@ -3456,7 +3456,7 @@ and the aggregate values.</p>
 <h3 id="available-aggregate-functions">Available aggregate functions<a class="headerlink" href="#available-aggregate-functions" title="Permanent link">&para;</a></h3>
 <p>Aggregate functions are applied to the data fields in each group.</p>
 <ul>
-<li><code>"count"</code>: Count the number of records in each group.</li>
+<li><code>"count"</code>: Count the number of rows in each group.</li>
 <li><code>"valid"</code>: Count the number of non-null and non-NaN values.</li>
 <li><code>"sum"</code>: Sum the values.</li>
 <li><code>"min"</code>: Find the minimum value.</li>
@@ -3497,7 +3497,7 @@ and the aggregate values.</p>
 <span class="w">  </span><span class="nt">&quot;groupby&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>A new list of data objects is created:</p>
+<p>A new list of rows is created:</p>
 <table>
 <thead>
 <tr>

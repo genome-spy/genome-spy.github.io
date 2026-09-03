@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;flatten-compressed-exons&#x2f;" />
 
 
-<meta property="og:description" content="The &quot;flattenCompressedExons&quot; transform expands a compact representation of gene exons into one datum per exon. This encoding keeps gene annotation data compact." />
+<meta property="og:description" content="The &quot;flattenCompressedExons&quot; transform expands a compact representation of gene exons into one row per exon. This encoding keeps gene annotation data compact." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3338,12 +3338,12 @@
 
 <h1 id="flatten-compressed-exons">Flatten Compressed Exons<a class="headerlink" href="#flatten-compressed-exons" title="Permanent link">&para;</a></h1>
 <p>The <code>"flattenCompressedExons"</code> transform expands a compact representation of
-gene exons into one datum per exon. This encoding keeps gene annotation data
+gene exons into one row per exon. This encoding keeps gene annotation data
 compact.</p>
 <p>It reads the transcript start coordinate from <code>start</code> and parses <code>exons</code> as
 alternating segment lengths in <code>gap, exon, gap, exon, ...</code> order. The first gap
 is typically <code>0</code>, so the first exon begins at <code>start</code>.</p>
-<p>Each output row copies the input datum and adds exon interval fields. By
+<p>Each output row copies the input row and adds exon interval fields. By
 default, these are <code>exonStart</code> and <code>exonEnd</code>.</p>
 <p>See the <a href="../../../examples/genomic-data/refseq-genes/">RefSeq Gene Annotations with Scored
 Labels</a> example for a gene

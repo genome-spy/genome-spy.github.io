@@ -248,8 +248,8 @@
   },
   {
     "id": "docs/grammar/index/single-view-specification",
-    "title": "Single view specification example.",
-    "description": "Single view specification example.",
+    "title": "Unit view specification example.",
+    "description": "Unit view specification example.",
     "sourceGroup": "docs",
     "sourceLabel": "Docs",
     "category": "Grammar",
@@ -294,8 +294,8 @@
     "category": "Grammar / Axis",
     "specPath": "examples/docs/grammar/axis/protein-domain-ticks.json",
     "specUrl": "/docs/example-specs/docs/grammar/axis/protein-domain-ticks.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/docs/grammar/axis/protein-domain-ticks.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/axis/protein-domain-ticks.png",
     "sourceMode": "shared-example"
   },
   {
@@ -671,8 +671,8 @@
     "category": "Grammar / Legend",
     "specPath": "examples/docs/grammar/legend/placement.json",
     "specUrl": "/docs/example-specs/docs/grammar/legend/placement.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/docs/grammar/legend/placement.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/legend/placement.png",
     "sourceMode": "shared-example"
   },
   {
@@ -853,8 +853,8 @@
     "category": "Grammar / Mark / Rect",
     "specPath": "examples/docs/grammar/mark/rect/grouped-bars.json",
     "specUrl": "/docs/example-specs/docs/grammar/mark/rect/grouped-bars.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/docs/grammar/mark/rect/grouped-bars.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/grouped-bars.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1222,6 +1222,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/scale/shared-scale-expression",
+    "title": "Shared Scale Expression Scope",
+    "description": "Shared Scale Expression Scope",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Scale",
+    "specPath": "examples/docs/grammar/scale/shared-scale-expression.json",
+    "specUrl": "/docs/example-specs/docs/grammar/scale/shared-scale-expression.json",
+    "screenshotPath": "examples/docs/grammar/scale/shared-scale-expression.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/shared-scale-expression.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/scale/viewport-autoscale",
     "title": "Viewport autoscaling for a zoomable signal.",
     "description": "Viewport autoscaling for a zoomable signal.",
@@ -1230,8 +1243,8 @@
     "category": "Grammar / Scale",
     "specPath": "examples/docs/grammar/scale/viewport-autoscale.json",
     "specUrl": "/docs/example-specs/docs/grammar/scale/viewport-autoscale.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/docs/grammar/scale/viewport-autoscale.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/viewport-autoscale.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1534,6 +1547,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "core/ruler-nested-concat",
+    "title": "Ruler in nested plots",
+    "description": "Ruler in nested plots",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "General",
+    "specPath": "examples/core/ruler-nested-concat.json",
+    "specUrl": "/docs/example-specs/core/ruler-nested-concat.json",
+    "screenshotPath": "examples/core/ruler-nested-concat.png",
+    "screenshotUrl": "/docs/example-specs/core/ruler-nested-concat.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "core/genomic/bedBlocks",
     "title": "BED12 example with optional block-related fields.",
     "description": "BED12 example with optional block-related fields.",
@@ -1568,8 +1594,8 @@
     "category": "Genomic",
     "specPath": "examples/core/genomic/longChromosomeNames.json",
     "specUrl": "/docs/example-specs/core/genomic/longChromosomeNames.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/genomic/longChromosomeNames.png",
+    "screenshotUrl": "/docs/example-specs/core/genomic/longChromosomeNames.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1633,8 +1659,8 @@
     "category": "Layout / Grid",
     "specPath": "examples/core/layout/grid/concat_zindex_lollipops.json",
     "specUrl": "/docs/example-specs/core/layout/grid/concat_zindex_lollipops.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/layout/grid/concat_zindex_lollipops.png",
+    "screenshotUrl": "/docs/example-specs/core/layout/grid/concat_zindex_lollipops.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1802,8 +1828,8 @@
     "category": "Lazy Data",
     "specPath": "examples/core/lazy-data/bigbed.json",
     "specUrl": "/docs/example-specs/core/lazy-data/bigbed.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/lazy-data/bigbed.png",
+    "screenshotUrl": "/docs/example-specs/core/lazy-data/bigbed.png",
     "sourceMode": "shared-example"
   },
   {
@@ -1828,8 +1854,8 @@
     "category": "Lazy Data",
     "specPath": "examples/core/lazy-data/indexed_fasta.json",
     "specUrl": "/docs/example-specs/core/lazy-data/indexed_fasta.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/lazy-data/indexed_fasta.png",
+    "screenshotUrl": "/docs/example-specs/core/lazy-data/indexed_fasta.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2140,8 +2166,8 @@
     "category": "Marks / Rect",
     "specPath": "examples/core/marks/rect/grouped-bars-layered.json",
     "specUrl": "/docs/example-specs/core/marks/rect/grouped-bars-layered.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/marks/rect/grouped-bars-layered.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/rect/grouped-bars-layered.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2296,8 +2322,8 @@
     "category": "Renderer",
     "specPath": "examples/core/renderer/canvas-dense-points.json",
     "specUrl": "/docs/example-specs/core/renderer/canvas-dense-points.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/renderer/canvas-dense-points.png",
+    "screenshotUrl": "/docs/example-specs/core/renderer/canvas-dense-points.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2309,8 +2335,8 @@
     "category": "Renderer",
     "specPath": "examples/core/renderer/canvas-dense-rects.json",
     "specUrl": "/docs/example-specs/core/renderer/canvas-dense-rects.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/renderer/canvas-dense-rects.png",
+    "screenshotUrl": "/docs/example-specs/core/renderer/canvas-dense-rects.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2400,8 +2426,8 @@
     "category": "Scales",
     "specPath": "examples/core/scales/axis_label_overlap.json",
     "specUrl": "/docs/example-specs/core/scales/axis_label_overlap.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/scales/axis_label_overlap.png",
+    "screenshotUrl": "/docs/example-specs/core/scales/axis_label_overlap.png",
     "sourceMode": "shared-example"
   },
   {

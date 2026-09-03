@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;lookup&#x2f;" />
 
 
-<meta property="og:description" content="The &quot;lookup&quot; transform performs a keyed, one-to-one left outer join: it retains every input data object and adds values from a matching lookup-table row." />
+<meta property="og:description" content="The &quot;lookup&quot; transform performs a keyed, one-to-one left outer join: it retains every input row and adds values from a matching lookup-table row." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3360,7 +3360,7 @@
 
 <h1 id="lookup">Lookup<a class="headerlink" href="#lookup" title="Permanent link">&para;</a></h1>
 <p>The <code>"lookup"</code> transform performs a keyed, one-to-one left outer join: it
-retains every input data object and adds values from a matching lookup-table
+retains every input row and adds values from a matching lookup-table
 row.</p>
 <p>The table can use an eager <a href="../../data/eager/"><code>data</code></a> descriptor. It can contain
 inline values, load a URL in any supported format such as CSV or Parquet, or
@@ -3508,8 +3508,8 @@ require top-level lookup key fields.</p>
 <p>For an example that maps nucleotide complements and codons, see <a href="../../../examples/genomic-data/indexed-fasta-six-frame-translation/">Indexed FASTA
 Six-Frame Translation</a>.</p>
 <h2 id="lookup-from-the-input">Lookup from the input<a class="headerlink" href="#lookup-from-the-input" title="Permanent link">&para;</a></h2>
-<p>Use <code>{ "source": "input" }</code> to match records against other records in the input
-data. For example, these records refer to each other through <code>relatedId</code>:</p>
+<p>Use <code>{ "source": "input" }</code> to match rows against other rows in the input
+data. For example, these rows refer to each other through <code>relatedId</code>:</p>
 <table>
 <thead>
 <tr>
@@ -3576,17 +3576,17 @@ data. For example, these records refer to each other through <code>relatedId</co
 </tr>
 </tbody>
 </table>
-<p>Self-input lookup reads all records from one input file or inline dataset before
-emitting results. Results preserve the original input order. Reading all records
-first allows a record to match another record that appears later in the data.</p>
+<p>Self-input lookup reads all rows from one input file or inline dataset before
+emitting results. Results preserve the original input order. Reading all rows
+first allows a row to match another row that appears later in the data.</p>
 <p>When a data source loads multiple files, each file is indexed separately. Keys
 in different files neither match nor conflict. Likewise, if upstream data has
 been divided into facets, each facet is indexed separately.</p>
 <p>With lazy or incrementally loaded genomic data, a self-input lookup can only
-match records loaded together. For example, a structural-variant mate outside
+match rows loaded together. For example, a structural-variant mate outside
 the loaded genomic window is unavailable and receives <code>default</code>.</p>
 <p>When <code>values</code> is omitted for a self-input lookup, all non-key fields from the
-matching record replace the corresponding fields in the cloned input record.
+matching row replace the corresponding fields in the cloned input row.
 Use explicit <code>values</code> and <code>as</code> to retain the original fields and add renamed
 mate fields.</p>
 

@@ -8898,7 +8898,7 @@ documentation link to the relevant page; the rest are documented here.</p>
 </dd>
 <dt><code>clip</code></dt>
 <dd>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code><p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
-<p><strong>Default value:</strong> the direction of zoomable positional scales</p>
+<p><strong>Default value:</strong> <code>true</code> when either positional scale is zoomable; otherwise <code>false</code></p>
 </dd>
 <dt><code>color</code></dt>
 <dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
@@ -8946,10 +8946,6 @@ documentation link to the relevant page; the rest are documented here.</p>
 <dt><code>headWidth</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Width of the arrowhead as a multiplier of resolved <code>size</code>. Values above <code>1</code> make the arrowhead wider than the stem.</p>
 <p><strong>Default value:</strong> <code>3</code></p>
-</dd>
-<dt><code>minBufferSize</code></dt>
-<dd>Type: number<p>Minimum size for WebGL buffers (number of data items). Allows for using <code>bufferSubData()</code> to update graphics.</p>
-<p>This property is intended for internal use.</p>
 </dd>
 <dt><code>minSize</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Minimum resolved arrow stem thickness in pixels. Applies to numeric, band-relative, and encoded <code>size</code> values.</p>
@@ -9411,7 +9407,7 @@ documentation link to the relevant page; the rest are documented here.</p>
 </dd>
 <dt><code>scales</code></dt>
 <dd>Type: object<p>Defines properties for scale resolutions used by this view subtree.</p>
-<p>Use this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error.</p>
+<p>Use this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error. Expression references in these scale properties use this view's parameter scope and can access parameters declared here or on ancestors.</p>
 </dd>
 <dt><code>separator</code></dt>
 <dd>Type: boolean | <a href="https://genomespy.app/docs/grammar/types/#separatorprops">SeparatorProps</a><p>Draws separator rules between visible child views. The separators are centered within the spacing gaps and do not affect layout.</p>
@@ -9740,7 +9736,7 @@ documentation link to the relevant page; the rest are documented here.</p>
 </dd>
 <dt><code>scales</code></dt>
 <dd>Type: object<p>Defines properties for scale resolutions used by this view subtree.</p>
-<p>Use this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error.</p>
+<p>Use this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error. Expression references in these scale properties use this view's parameter scope and can access parameters declared here or on ancestors.</p>
 </dd>
 <dt><code>separator</code></dt>
 <dd>Type: boolean | <a href="https://genomespy.app/docs/grammar/types/#separatorprops">SeparatorProps</a><p>Draws separator rules between visible child views. The separators are centered within the spacing gaps and do not affect layout.</p>
@@ -9957,7 +9953,7 @@ documentation link to the relevant page; the rest are documented here.</p>
 </dd>
 <dt><code>scales</code></dt>
 <dd>Type: object<p>Defines properties for scale resolutions used by this view subtree.</p>
-<p>Use this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error.</p>
+<p>Use this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error. Expression references in these scale properties use this view's parameter scope and can access parameters declared here or on ancestors.</p>
 </dd>
 <dt><code>templates</code></dt>
 <dd>Type: object<p>TODO</p>
@@ -10595,7 +10591,7 @@ documentation link to the relevant page; the rest are documented here.</p>
 <dd>Type: <a href="https://genomespy.app/docs/grammar/types/#numericdomain">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/#complexdomain">ComplexDomain</a> | <a href="https://genomespy.app/docs/grammar/scale/#properties">SelectionDomainRef</a> | <a href="https://genomespy.app/docs/grammar/types/#viewportdomainref">ViewportDomainRef</a> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a> | <a href="https://genomespy.app/docs/grammar/types/#domainvaluearray">DomainValueArray</a><p>Customized domain values.</p>
 <p>For <em>quantitative</em> fields, <code>domain</code> can take the form of a two-element array with minimum and maximum values. <a href="https://vega.github.io/vega-lite/docs/scale.html#piecewise">Vega-Lite piecewise scales</a> can be created by providing a <code>domain</code> with more than two entries.</p>
 <p>For <em>ordinal</em> and <em>nominal</em> fields, <code>domain</code> can be an array that lists valid input values.</p>
-<p>The domain can also be defined by an expression reference that evaluates to the domain array. Array elements may also be expression references.</p>
+<p>The domain can also be defined by an expression reference that evaluates to the domain array. Array elements may also be expression references. All parameter names referenced by a scale, including selection-domain parameters, resolve from the view that owns the scale resolution. For a shared scale, declare controlling parameters on that owning composed view or an ancestor.</p>
 </dd>
 <dt><code>domainMax</code></dt>
 <dd>Type: number<p>Sets the maximum value in the scale domain, overriding the <code>domain</code> property. This property is only intended for use with scales having continuous domains.</p>
@@ -10648,8 +10644,8 @@ documentation link to the relevant page; the rest are documented here.</p>
 <dt><code>range</code></dt>
 <dd>Type: {'anyOf': [{'type': 'number'}, {'type': 'string'}, {'$ref': '#/definitions/ExprRef'}]}[] | string<p>The range of the scale. One of:</p>
 <p>- A string indicating a <a href="https://vega.github.io/vega-lite/docs/scale.html#range-config">pre-defined named scale range from Vega-Lite</a> (e.g., example, <code>"symbol"</code>, or <code>"diverging"</code>).</p>
-<p>- For <a href="https://vega.github.io/vega-lite/docs/scale.html#continuous">Vega-Lite continuous scales</a>, two-element array indicating minimum and maximum values, or an array with more than two entries for specifying a <a href="https://vega.github.io/vega-lite/docs/scale.html#piecewise">Vega-Lite piecewise scale</a>. Array elements may also be expression references.</p>
-<p>- For <a href="https://vega.github.io/vega-lite/docs/scale.html#discrete">Vega-Lite discrete</a> and <a href="https://vega.github.io/vega-lite/docs/scale.html#discretizing">Vega-Lite discretizing</a> scales, an array of desired output values. Array elements may also be expression references.</p>
+<p>- For <a href="https://vega.github.io/vega-lite/docs/scale.html#continuous">Vega-Lite continuous scales</a>, two-element array indicating minimum and maximum values, or an array with more than two entries for specifying a <a href="https://vega.github.io/vega-lite/docs/scale.html#piecewise">Vega-Lite piecewise scale</a>. Array elements may also be expression references, which use the parameter scope of the view that owns the scale resolution.</p>
+<p>- For <a href="https://vega.github.io/vega-lite/docs/scale.html#discrete">Vega-Lite discrete</a> and <a href="https://vega.github.io/vega-lite/docs/scale.html#discretizing">Vega-Lite discretizing</a> scales, an array of desired output values. Array elements may also be expression references, which use the parameter scope of the view that owns the scale resolution.</p>
 <p><strong>Notes:</strong></p>
 <p>1) For color scales you can also specify a color <a href="https://vega.github.io/vega-lite/docs/scale.html#scheme"><code>scheme</code></a> instead of <code>range</code>.</p>
 <p>2) Any directly specified <code>range</code> for <code>x</code> and <code>y</code> channels will be ignored. Range can be customized via the view's corresponding <a href="https://vega.github.io/vega-lite/docs/size.html">Vega-Lite size</a> (<code>width</code> and <code>height</code>).</p>
@@ -10774,7 +10770,7 @@ documentation link to the relevant page; the rest are documented here.</p>
 </dd>
 <dt><code>clip</code></dt>
 <dd>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code><p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
-<p><strong>Default value:</strong> the direction of zoomable positional scales</p>
+<p><strong>Default value:</strong> <code>true</code> when either positional scale is zoomable; otherwise <code>false</code></p>
 </dd>
 <dt><code>color</code></dt>
 <dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
@@ -10789,10 +10785,6 @@ documentation link to the relevant page; the rest are documented here.</p>
 <dt><code>includePlotMargin</code></dt>
 <dd>Type: boolean<p>Whether separators extend into the plot margin (axes/padding) around the grid.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
-</dd>
-<dt><code>minBufferSize</code></dt>
-<dd>Type: number<p>Minimum size for WebGL buffers (number of data items). Allows for using <code>bufferSubData()</code> to update graphics.</p>
-<p>This property is intended for internal use.</p>
 </dd>
 <dt><code>minLength</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The minimum stroke length in pixels. Use this property to ensure that very short strokes remain visible even when the user zooms out.</p>
@@ -11134,7 +11126,7 @@ documentation link to the relevant page; the rest are documented here.</p>
 </dd>
 <dt><code>scales</code></dt>
 <dd>Type: object<p>Defines properties for scale resolutions used by this view subtree.</p>
-<p>Use this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error.</p>
+<p>Use this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error. Expression references in these scale properties use this view's parameter scope and can access parameters declared here or on ancestors.</p>
 </dd>
 <dt><code>separator</code></dt>
 <dd>Type: boolean | <a href="https://genomespy.app/docs/grammar/types/#separatorprops">SeparatorProps</a><p>Draws separator rules between visible child views. The separators are centered within the spacing gaps and do not affect layout.</p>

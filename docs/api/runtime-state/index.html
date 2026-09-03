@@ -3588,7 +3588,9 @@ leaves the previous rows unchanged.</p>
 <p>The default and full entry points register both binary readers. With the
 <a href="../embedding/#entry-points">minimal entry point</a>, import each reader that the
 host uses:</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/minimal&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/rendering/webgl.js&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/rendering/canvas.js&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/minimal&quot;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/data/formats/arrow.js&quot;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/data/formats/parquet.js&quot;</span><span class="p">;</span>
 </code></pre></div>

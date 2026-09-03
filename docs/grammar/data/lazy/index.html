@@ -4009,7 +4009,7 @@ cohort visualizations that load per-sample signal or partitioned variant files.<
 <p>The <code>"indexedFasta"</code> source enable fast random access to a reference sequence.
 It loads the sequence as three consecutive chuncks that cover and flank the
 currently visible region (domain), allowing the user to rapidly pan the view.
-The chunks are provided as data objects with the following fields: <code>chrom</code>
+Each row in the chunks has the following fields: <code>chrom</code>
 (string), <code>start</code> (integer), and <code>sequence</code> (a string of bases).</p>
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <dl>
@@ -4143,14 +4143,15 @@ available for public and commercial use, subject to any upstream
 restrictions noted for the original assembly data.</p>
 </div>
 <p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
-<a href="https://github.com/GMOD/indexedfasta-js">indexedfasta-js</a> library.</p>
+<a href="https://github.com/GMOD/indexedfasta-js/tree/v5.0.7">indexedfasta-js 5.0.7</a>
+library.</p>
 <h2 id="bigwig">BigWig<a class="headerlink" href="#bigwig" title="Permanent link">&para;</a></h2>
 <p>The <code>"bigwig"</code> source enables the retrieval of dense, continuous data, such as
 coverage or other signal data stored in BigWig files. It behaves similarly to
 the indexed FASTA source, loading the data in chunks that cover and flank the
 currently visible region. However, the window size automatically adapts to the
 zoom level, and data are fetched in higher resolution when zooming in. The data
-source provides data objects with the following fields: <code>chrom</code> (string),
+each row has the following fields: <code>chrom</code> (string),
 <code>start</code> (integer), <code>end</code> (integer), and <code>score</code> (number).</p>
 <p>For advanced per-sample signal views, BigWig can use
 <a href="../multi-url/">URL templates</a> to load a bounded set of files and attach the
@@ -4228,10 +4229,12 @@ UCSC states that its downloadable data files and database tables are freely
 available for public and commercial use.</p>
 </div>
 <p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
-<a href="https://github.com/GMOD/bbi-js">bbi-js</a> library.</p>
+<a href="https://github.com/GMOD/bbi-js/tree/v9.2.1">bbi-js 9.2.1</a> library.</p>
 <h2 id="bigbed">BigBed<a class="headerlink" href="#bigbed" title="Permanent link">&para;</a></h2>
 <p>The <code>"bigbed"</code> source enables the retrieval of segmented data, such as annotated
-genomic regions stored in BigBed files.</p>
+genomic regions stored in BigBed files. The fields and their types are determined
+by the file's embedded AutoSQL schema, or by the standard BED schema when the
+file does not include one.</p>
 <h3 id="parameters_2">Parameters<a class="headerlink" href="#parameters_2" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>channel</code></dt>
@@ -4322,7 +4325,8 @@ UCSC also states that its downloadable data files are freely available for
 public and commercial use.</p>
 </div>
 <p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
-<a href="https://github.com/GMOD/bbi-js">bbi-js</a> library.</p>
+<a href="https://github.com/GMOD/bbi-js/tree/v9.2.1">bbi-js 9.2.1</a> and
+<a href="https://github.com/GMOD/bed-js/tree/v2.2.6">bed-js 2.2.6</a> libraries.</p>
 <h2 id="tabix-tsv">Tabix TSV<a class="headerlink" href="#tabix-tsv" title="Permanent link">&para;</a></h2>
 <p>The <code>"tabix"</code> source enables the retrieval of tab-separated records stored in
 a bgzip-compressed, tabix-indexed file. It returns plain objects using the
@@ -4374,11 +4378,16 @@ for the supported syntax). If the file uses bare chromosome names, set
 <p><strong>Default value:</strong> <code>30000000</code></p>
 </dd>
 </dl>
+<p>Indexed retrieval is based on <a href="http://gmod.org/">GMOD</a>'s
+<a href="https://github.com/GMOD/tabix-js/tree/v3.2.2">tabix-js 3.2.2</a> library.</p>
 <h2 id="vcf">VCF<a class="headerlink" href="#vcf" title="Permanent link">&para;</a></h2>
 <p><a href="https://samtools.github.io/hts-specs/VCFv4.3.pdf">VCF</a> parsing is based on
-GMOD's <a href="https://github.com/GMOD/vcf-js">vcf-js</a> library. Each VCF row produces
-an object with fields such as <code>CHROM</code>, <code>POS</code>, <code>ID</code>, <code>REF</code>, <code>ALT</code>, <code>QUAL</code>,
-<code>FILTER</code>, and <code>INFO</code>. Sample columns are materialized in the <code>SAMPLES</code> object.</p>
+GMOD's <a href="https://github.com/GMOD/vcf-js/tree/v7.0.9">vcf-js 7.0.9</a> library.
+Each VCF row follows its <code>Variant</code> object format, with fields such as <code>CHROM</code>,
+<code>POS</code>, <code>ID</code>, <code>REF</code>, <code>ALT</code>, <code>QUAL</code>, <code>FILTER</code>, and <code>INFO</code>. GenomeSpy materializes
+sample columns in the <code>SAMPLES</code> object and omits <code>GENOTYPES</code>. This parser-derived
+format will remain in GenomeSpy 1.x and will be replaced by a standardized row
+format in GenomeSpy 2.0.</p>
 <p>The tabix-based <code>"vcf"</code> source retrieves variant data from bgzip-compressed,
 tabix-indexed VCF files based on the visible genomic region.</p>
 <p>For partitioned VCF files, use the same multi-file mechanism as Tabix. Complex
@@ -4582,12 +4591,14 @@ source.</p>
 </div>
 <h2 id="gff3">GFF3<a class="headerlink" href="#gff3" title="Permanent link">&para;</a></h2>
 <p>The tabix-based <code>"gff3"</code> source enables the retrieval of hierarchical data, such
-as genomic annotations stored in GFF3 files. The object format GenomeSpy uses
-is described in <a href="https://github.com/GMOD/gff-js#object-format">gff-js</a>'s
-documentation. The <a href="../../transform/flatten/">flatten</a> and
-<a href="../../transform/project/">project</a> transforms are useful when extracting the
-child features and attributes from the hierarchical data structure. See the
-visualization below.</p>
+as genomic annotations stored in GFF3 files. GenomeSpy currently exposes the
+<a href="https://github.com/GMOD/gff-nostream/blob/v3.0.11/README.md#object-format">gff-nostream 3.0.11 object
+format</a>
+directly. This parser-defined format will remain in GenomeSpy 1.x and will be
+replaced by a standardized row format in GenomeSpy 2.0. The
+<a href="../../transform/flatten/">flatten</a> and <a href="../../transform/project/">project</a>
+transforms are useful when extracting child features and attributes from the
+hierarchical data structure. See the visualization below.</p>
 <h3 id="parameters_5">Parameters<a class="headerlink" href="#parameters_5" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>addChrPrefix</code></dt>
@@ -4891,7 +4902,9 @@ GFF3</a>. GENCODE states
 that all project data are open access.</p>
 </div>
 <p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
-<a href="https://github.com/GMOD/tabix-js">tabix-js</a> and <a href="https://github.com/GMOD/gff-js">gff-js</a> libraries.</p>
+<a href="https://github.com/GMOD/tabix-js/tree/v3.2.2">tabix-js 3.2.2</a> and
+<a href="https://github.com/GMOD/gff-nostream/tree/v3.0.11">gff-nostream 3.0.11</a>
+libraries.</p>
 <h2 id="bam">BAM<a class="headerlink" href="#bam" title="Permanent link">&para;</a></h2>
 <p>The <code>"bam"</code> source loads read alignments from indexed BAM files for the visible
 genomic region. It returns one row per read with alignment coordinates, CIGAR,
@@ -5153,13 +5166,16 @@ data files are freely available for public and commercial use, and the
 underlying 1000 Genomes / IGSR data are also openly available.</p>
 </div>
 <p>The data source is based on <a href="http://gmod.org/">GMOD</a>'s
-<a href="https://github.com/GMOD/bam-js">bam-js</a> library.</p>
+<a href="https://github.com/GMOD/bam-js/tree/v7.3.3">bam-js 7.3.3</a> library.
+The row format above is a GenomeSpy adaptation of <code>bam-js</code> records. It will
+remain in GenomeSpy 1.x and will be replaced by a standardized row format in
+GenomeSpy 2.0.</p>
 <h2 id="axis-ticks">Axis ticks<a class="headerlink" href="#axis-ticks" title="Permanent link">&para;</a></h2>
 <p>The <code>"axisTicks"</code> data source generates a set of ticks for the specified channel.
 While GenomeSpy internally uses this data source for generating axis ticks, you
 also have the flexibility to employ it for creating fully customized axes
-according to your requirements. The data source generates data objects with
-<code>value</code> and <code>label</code> fields.</p>
+according to your requirements. Each generated row has <code>value</code> and <code>label</code>
+fields.</p>
 <h3 id="parameters_7">Parameters<a class="headerlink" href="#parameters_7" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>axis</code></dt>
@@ -5203,7 +5219,7 @@ according to your requirements. The data source generates data objects with
 <p>The <code>axisGenome</code> data source, in fact, does not dynamically update data.
 However, it provides a convenient access to the genome (chromosomes) of the
 given channel, allowing creation of customized chromosome ticks or annotations.
-The data source generates data objects with the following fields: <code>name</code>, <code>size</code>
+Each generated row has the following fields: <code>name</code>, <code>size</code>
 (in bp), <code>continuousStart</code> (linearized coordinate), <code>continuousEnd</code>, <code>odd</code>
 (boolean), and <code>number</code> (1-based index).</p>
 <h3 id="parameters_8">Parameters<a class="headerlink" href="#parameters_8" title="Permanent link">&para;</a></h3>

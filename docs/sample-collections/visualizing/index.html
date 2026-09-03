@@ -3521,12 +3521,12 @@ page for more information.</p>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.85.0/dist/style.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.86.0/dist/style.css&quot;</span>
     <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.85.0/dist/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.86.0/dist/index.es.js&quot;</span><span class="p">;</span>
 
 <span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;spec.json&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -3543,12 +3543,12 @@ resolutions.</p>
 <h2 id="specifying-a-sample-view">Specifying a Sample View<a class="headerlink" href="#specifying-a-sample-view" title="Permanent link">&para;</a></h2>
 <p>The GenomeSpy app extends the core library with a new view composition operator
 that allows visualization of multiple samples. In this context, a <em>sample</em> means
-a set of data objects representing an organism, a piece of tissue, a cell line,
+a set of records representing an organism, a piece of tissue, a cell line,
 a single cell, etc. Each sample gets its own track in the visualization, and the
 behavior resembles the <em>facet</em> operator of Vega-Lite. However, there are subtle
 differences in the behavior.</p>
 <p>A sample view is defined by the <code>samples</code> and <code>spec</code> properties. To assign a
-track for a data object, define a sample-identifier field using the <code>sample</code>
+track for a row, define a sample-identifier field using the <code>sample</code>
 channel. More complex visualizations can be created using the
 <a href="../../grammar/composition/layer/"><code>layer</code></a> operator. Each composed view may have
 a different data source, enabling concurrent visualization of multiple data

@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;mark&#x2f;link&#x2f;" />
 
 
-<meta property="og:description" content="The &quot;link&quot; mark displays each data item as a curve that connects two points. The mark can be used to display structural variation and interactions, for example. The mark has several different linkShapes that control how the curve is drawn." />
+<meta property="og:description" content="The &quot;link&quot; mark displays each row as a curve that connects two points. The mark can be used to display structural variation and interactions, for example. The mark has several different linkShapes that control how the curve is drawn." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3419,7 +3419,7 @@
 
 
 <h1 id="link">Link<a class="headerlink" href="#link" title="Permanent link">&para;</a></h1>
-<p>The <code>"link"</code> mark displays each data item as a curve that connects two points.
+<p>The <code>"link"</code> mark displays each row as a curve that connects two points.
 The mark can be used to display structural variation and interactions, for
 example. The mark has several different <a href="#properties"><code>linkShape</code>s</a> that control
 how the curve is drawn.</p>
@@ -3475,7 +3475,7 @@ channels: <code>size</code>.</p>
 </dd>
 <dt><code>clip</code></dt>
 <dd>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code><p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
-<p><strong>Default value:</strong> the direction of zoomable positional scales</p>
+<p><strong>Default value:</strong> <code>true</code> when either positional scale is zoomable; otherwise <code>false</code></p>
 </dd>
 <dt><code>color</code></dt>
 <dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
@@ -3499,10 +3499,6 @@ channels: <code>size</code>.</p>
 <dt><code>minArcHeight</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The minimum height of an <code>"arc"</code> shape. Makes very short links more clearly visible.</p>
 <p><strong>Default value:</strong> <code>1.5</code></p>
-</dd>
-<dt><code>minBufferSize</code></dt>
-<dd>Type: number<p>Minimum size for WebGL buffers (number of data items). Allows for using <code>bufferSubData()</code> to update graphics.</p>
-<p>This property is intended for internal use.</p>
 </dd>
 <dt><code>minPickingSize</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The minimum picking size invisibly increases the stroke width or point diameter of marks when pointing them with the mouse cursor, making it easier to select them. The valus is the minimum size in pixels.</p>

@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;mark&#x2f;" />
 
 
-<meta property="og:description" content="In GenomeSpy, visualizations are built from marks, which are geometric shapes, such as points, ticks, arrows, rectangles, and lines, that represent data objects (or rows in tabular data). These marks are mapped to the data using the encoding property, which specifies which visual channels, such as x, color, and size, should be used to encode the data fields. By adjusting the encodings, you can present the same data in a wide range of visual forms, such as scatterplots, bar charts, and heatmaps." />
+<meta property="og:description" content="In GenomeSpy, visualizations are built from marks, which are geometric shapes, such as points, ticks, arrows, rectangles, and lines, that represent data records, or rows in a tabular dataset. These marks are mapped to the data using the encoding property, which specifies which visual channels, such as x, color, and size, should be used to encode the data fields. By adjusting the encodings, you can present the same data in a wide range of visual forms, such as scatterplots, bar charts, and heatmaps." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3466,7 +3466,7 @@
 <p><img align="right" alt="Marks" src="../../img/block-mark.svg" style="width: 30%" /></p>
 <p>In GenomeSpy, visualizations are built from marks, which are geometric shapes,
 such as points, ticks, arrows, rectangles, and lines, that represent data
-objects (or rows in tabular data). These marks are mapped to the data using the
+records, or rows in a tabular dataset. These marks are mapped to the data using the
 <code>encoding</code> property,
 which specifies which visual channels, such as <code>x</code>, <code>color</code>, and <code>size</code>, should
 be used to encode the data fields. By adjusting the encodings, you can present
@@ -3515,7 +3515,7 @@ properties are suitable for encoding data in a meaningful way.</p>
 <span class="w">  </span><span class="err">...</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The schematic example above uses the <code>"rect"</code> mark to represent the data objects.
+<p>The schematic example above uses the <code>"rect"</code> mark to represent the data rows.
 The <code>"from"</code> field is mapped to the positional <code>"x"</code> channel, and so on. You can adjust
 the mapping by specifying a <a href="../scale/">scale</a> for the channel.</p>
 <h3 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h3>
@@ -3632,7 +3632,7 @@ tooltip handler.</dd>
 visual mark properties.</p>
 <dl>
 <dt><code>key</code></dt>
-<dd>Defines a stable identity for data objects. This is used by point-selection
+<dd>Defines a stable identity for rows. This is used by point-selection
 persistence in the GenomeSpy App. The key can be a single field definition
 or an array of field definitions for a composite key. For composite keys, the
 field order is significant.</dd>

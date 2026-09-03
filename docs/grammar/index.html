@@ -82,7 +82,7 @@
 
 <meta property="og:image" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;example-specs&#x2f;docs&#x2f;grammar&#x2f;index&#x2f;single-view-specification.png" />
 <meta property="og:image:type" content="image/png" />
-<meta property="og:image:alt" content="Single view specification example." />
+<meta property="og:image:alt" content="Unit view specification example." />
 
 
   </head>
@@ -3225,15 +3225,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#a-single-view-specification" class="md-nav__link">
+  <a href="#unit-views" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        A single view specification
+        Unit views
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="A single view specification">
+    <nav class="md-nav" aria-label="Unit views">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3253,10 +3253,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#view-composition-for-more-complex-visualizations" class="md-nav__link">
+  <a href="#view-composition" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        View composition for more complex visualizations
+        View composition
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema-assisted-editing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Schema-assisted editing
       </span>
     </span>
   </a>
@@ -3309,16 +3320,17 @@ visualization and analysis of large datasets containing genomic coordinates.
 Nevertheless, GenomeSpy tries to follow Vega-Lite's grammar where practical,
 and thus, this documentation has several references to its documentation.</p>
 </div>
-<h2 id="a-single-view-specification">A single view specification<a class="headerlink" href="#a-single-view-specification" title="Permanent link">&para;</a></h2>
-<p>Each view specification must have at least the <code>data</code> to be visualized, the
-<code>mark</code> that will represent the data items, and an <code>encoding</code> that specifies how
-the fields of data are mapped to the visual channels of the mark. In addition,
-an optional <code>transform</code> steps allow for modifying the data before they are
-encoded into mark instances.</p>
+<h2 id="unit-views">Unit views<a class="headerlink" href="#unit-views" title="Permanent link">&para;</a></h2>
+<p>A GenomeSpy specification describes a hierarchy of views. A unit view is a leaf
+in the hierarchy that renders data using a graphical <a href="mark/">mark</a>. The
+<code>mark</code> is the only required property. A unit view can define its own <code>data</code>,
+<code>transform</code>, and <code>encoding</code>, or inherit them from an ancestor composition view.
+Transforms modify the data before the encoding maps its fields to visual
+channels of the mark.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/index/single-view-specification.json" height="200">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Single view specification example.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Unit view specification example.&quot;</span><span class="p">,</span>
 
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data/sincos.csv&quot;</span><span class="w"> </span><span class="p">},</span>
 
@@ -3339,6 +3351,9 @@ encoded into mark instances.</p>
 </genome-spy-doc-embed></div>
 
 <h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<p>The following reference lists all properties available on unit views. Most are
+shared by the different view types and can be used throughout a view hierarchy;
+<code>mark</code> is specific to unit views.</p>
 <dl>
 <dt><code>axes</code></dt>
 <dd>Type: object<p>Defines properties for axis resolutions used by this view subtree.</p>
@@ -3381,7 +3396,7 @@ encoded into mark instances.</p>
 <p>Use this when a composed view shares a legend across child views and the legend settings belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error.</p>
 </dd>
 <dt><code>mark</code> <span class="required">Required</span></dt>
-<dd>Type: <code>"rect"</code> | <code>"point"</code> | <code>"rule"</code> | <code>"tick"</code> | <code>"text"</code> | <code>"link"</code> | <code>"arrow"</code> | <a href="https://genomespy.app/docs/grammar/mark/rect/#properties">RectProps</a> | <a href="https://genomespy.app/docs/grammar/mark/arrow/#properties">ArrowProps</a> | <a href="https://genomespy.app/docs/grammar/mark/text/#properties">TextProps</a> | <a href="https://genomespy.app/docs/grammar/mark/rule/#properties">RuleProps</a> | <a href="https://genomespy.app/docs/grammar/mark/tick/#properties">TickProps</a> | <a href="https://genomespy.app/docs/grammar/mark/link/#properties">LinkProps</a> | <a href="https://genomespy.app/docs/grammar/mark/point/#properties">PointProps</a><p>The graphical mark presenting the data objects.</p>
+<dd>Type: <code>"rect"</code> | <code>"point"</code> | <code>"rule"</code> | <code>"tick"</code> | <code>"text"</code> | <code>"link"</code> | <code>"arrow"</code> | <a href="https://genomespy.app/docs/grammar/mark/rect/#properties">RectProps</a> | <a href="https://genomespy.app/docs/grammar/mark/arrow/#properties">ArrowProps</a> | <a href="https://genomespy.app/docs/grammar/mark/text/#properties">TextProps</a> | <a href="https://genomespy.app/docs/grammar/mark/rule/#properties">RuleProps</a> | <a href="https://genomespy.app/docs/grammar/mark/tick/#properties">TickProps</a> | <a href="https://genomespy.app/docs/grammar/mark/link/#properties">LinkProps</a> | <a href="https://genomespy.app/docs/grammar/mark/point/#properties">PointProps</a><p>The graphical mark presenting the rows.</p>
 </dd>
 <dt><code>name</code></dt>
 <dd>Type: string<p>An explicit name used to address the view. It is recommended to keep names unique among siblings. In the App (where view state is bookmarkable), the name must be unique within its import scope for views with configurable visibility, etc.</p>
@@ -3418,7 +3433,7 @@ encoded into mark instances.</p>
 </dd>
 <dt><code>scales</code></dt>
 <dd>Type: object<p>Defines properties for scale resolutions used by this view subtree.</p>
-<p>Use this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error.</p>
+<p>Use this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error. Expression references in these scale properties use this view's parameter scope and can access parameters declared here or on ancestors.</p>
 </dd>
 <dt><code>templates</code></dt>
 <dd>Type: object<p>TODO</p>
@@ -3453,12 +3468,33 @@ encoded into mark instances.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 </dl>
-<h2 id="view-composition-for-more-complex-visualizations">View composition for more complex visualizations<a class="headerlink" href="#view-composition-for-more-complex-visualizations" title="Permanent link">&para;</a></h2>
-<p>View <a href="composition/">composition</a> allows for building more complex
-visualizations from multiple single-view specifications. For example, the
-<a href="composition/layer/"><code>layer</code></a> operator allows creation of custom glyphs and
-the <a href="composition/concat/">concatenation</a> operators enables stacked layouts
-resembling genome browsers with multiple tracks.</p>
+<h2 id="view-composition">View composition<a class="headerlink" href="#view-composition" title="Permanent link">&para;</a></h2>
+<p><a href="composition/">Composition views</a> arrange child views into a hierarchy.
+For example, <a href="composition/layer/"><code>layer</code></a> overlays views to create custom
+glyphs, while the <a href="composition/concat/">concatenation</a> operators arrange views
+into tracks or grids. Common properties such as <code>data</code>, <code>transform</code>, and
+<code>encoding</code> can be defined on a composition view and inherited by its
+descendants.</p>
+<h2 id="schema-assisted-editing">Schema-assisted editing<a class="headerlink" href="#schema-assisted-editing" title="Permanent link">&para;</a></h2>
+<p>GenomeSpy publishes a JSON Schema that JSON-aware editors can use for
+completion, hover documentation, and validation. Add <code>$schema</code> to the root of a
+Core specification:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core/dist/schema.json&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data/example.csv&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Use the <code>@genome-spy/app</code> schema instead for <a href="../sample-collections/">sample collection
+specifications</a>. For reproducible editing, pin
+the schema to the same package version as the GenomeSpy runtime by adding
+<code>@VERSION</code> after the package name. The Playground configures the Core schema
+automatically.</p>
+<p>The inline examples in this documentation omit <code>$schema</code> to keep them concise.
+Schema validation checks the structure and configuration values of a
+specification, but it cannot verify external resources, the existence of data
+fields, or expression behavior.</p>
 
 
 

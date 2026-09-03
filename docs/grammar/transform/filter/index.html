@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;filter&#x2f;" />
 
 
-<meta property="og:description" content="The &quot;filter&quot; transform removes data objects based on a predicate expression or a selection predicate." />
+<meta property="og:description" content="The &quot;filter&quot; transform removes rows based on a predicate expression or a selection predicate." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3453,7 +3453,7 @@
 
 
 <h1 id="filter">Filter<a class="headerlink" href="#filter" title="Permanent link">&para;</a></h1>
-<p>The <code>"filter"</code> transform removes data objects based on a predicate
+<p>The <code>"filter"</code> transform removes rows based on a predicate
 <a href="../../expressions/">expression</a> or a
 <a href="../../parameters/#selection-parameters">selection</a> predicate.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
@@ -3463,7 +3463,7 @@
 <dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 <dt><code>expr</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>An expression string. The data object is removed if the expression evaluates to false.</p>
+<dd>Type: string<p>An expression string. The row is removed if the expression evaluates to false.</p>
 </dd>
 </dl>
 <h3 id="selection-predicate">Selection Predicate<a class="headerlink" href="#selection-predicate" title="Permanent link">&para;</a></h3>
@@ -3472,14 +3472,14 @@
 <dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 <dt><code>empty</code></dt>
-<dd>Type: boolean<p>If true, the filter retains all data objects when the selection is empty.</p>
+<dd>Type: boolean<p>If true, the filter retains all rows when the selection is empty.</p>
 <p><strong>Default:</strong> <code>true</code></p>
 </dd>
 <dt><code>fields</code></dt>
 <dd>Type: object<p>An optional mapping of positional channels to fields. Used to determine which fields are checked against the selection intervals.</p>
 </dd>
 <dt><code>param</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>A selection parameter. The data object is removed if it is not part of the selection.</p>
+<dd>Type: string<p>A selection parameter. The row is removed if it is not part of the selection.</p>
 </dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>

@@ -3367,12 +3367,12 @@ from primitive graphical marks, such as <a href="grammar/mark/point/">points</a>
 extensions for genome visualization.</p>
 <p>Visualizations normally use a carefully crafted WebGL-based engine, which
 enables fluid interaction and smooth animation for datasets with several
-million data points. This performance comes from using GPU
+million rows. This performance comes from using GPU
 <a href="https://en.wikipedia.org/wiki/Shader">shader</a> programs for all
 <a href="grammar/scale/">scale</a> transformations and mark rendering, but shaders are
 an implementation detail hidden from end users. A Canvas2D compatibility
 renderer keeps GenomeSpy usable when WebGL is unavailable, with lower
-performance and no datum picking.</p>
+performance and conservative software-based datum picking.</p>
 <p>The toolkit comprises two JavaScript packages:</p>
 <ol>
 <li>The <a href="grammar/"><strong>core</strong></a> library implements the visualization grammar

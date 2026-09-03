@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;" />
 
 
-<meta property="og:description" content="With transforms, you can build a pipeline that modifies the data before the data objects are mapped to mark instances. In an abstract sense, a transformation inputs a list of data items and outputs a list of new items that may be filtered, modified, or generated from the original items." />
+<meta property="og:description" content="With transforms, you can build a pipeline that modifies the data before rows are mapped to mark instances. In an abstract sense, a transformation inputs a list of rows and outputs a list of new rows that may be filtered, modified, or generated from the original rows." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3268,10 +3268,10 @@
 
 
 <h1 id="data-transformation">Data transformation<a class="headerlink" href="#data-transformation" title="Permanent link">&para;</a></h1>
-<p>With transforms, you can build a pipeline that modifies the data before the data
-objects are mapped to mark instances. In an abstract sense, a transformation
-inputs a list of data items and outputs a list of new items that may be
-filtered, modified, or generated from the original items.</p>
+<p>With transforms, you can build a pipeline that modifies the data before rows are
+mapped to mark instances. In an abstract sense, a transformation inputs a list
+of rows and outputs a list of new rows that may be filtered, modified, or
+generated from the original rows.</p>
 <p>The data flow is a forest of data sources and subsequent transformations, which may
 form trees. For instance, a layer view might have a data source, which is then
 filtered and mutated in a different way for each child layer.</p>
@@ -3302,10 +3302,10 @@ only the rows that match the predicate <a href="../expressions/">expression</a>.
 <h2 id="debugging-the-data-flow">Debugging the Data Flow<a class="headerlink" href="#debugging-the-data-flow" title="Permanent link">&para;</a></h2>
 <p>Complex visualizations may involve multiple data sources and transformations,
 which can make it difficult to understand the data flow, particularly when no
-data objects appear to pass through the flow. The GenomeSpy Inspector's Dataflow
-panel shows the structure of the data flow and allows you to inspect the
-parameters of each node, the number of propagated data objects, and a preview of
-the first data object that passes through the node. See
+rows appear to pass through the flow. The GenomeSpy Inspector's Dataflow panel
+shows the structure of the data flow and allows you to inspect the parameters of
+each node, the number of propagated rows, and a preview of the first row that
+passes through the node. See
 <a href="../../api/inspector/">Inspector</a> for the available App, Playground, and Core
 embed integrations.</p>
 

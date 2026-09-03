@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;transform&#x2f;flatten&#x2f;" />
 
 
-<meta property="og:description" content="The &quot;flatten&quot; transform converts fields that hold arrays into distinct, individual data objects. This creates a new sequence of data, where each element encompasses both an extracted array component and all the original fields from the corresponding input object." />
+<meta property="og:description" content="The &quot;flatten&quot; transform converts fields that hold arrays into distinct, individual rows. This creates a new sequence of data, where each output row contains both an extracted array component and all the original fields from the corresponding input row." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3438,9 +3438,9 @@
 
 <h1 id="flatten">Flatten<a class="headerlink" href="#flatten" title="Permanent link">&para;</a></h1>
 <p>The <code>"flatten"</code> transform converts fields that hold arrays into distinct,
-individual data objects. This creates a new sequence of data, where each
-element encompasses both an extracted array component and all the original
-fields from the corresponding input object.</p>
+individual rows. This creates a new sequence of data, where each output row
+contains both an extracted array component and all the original fields from the
+corresponding input row.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code></dt>
@@ -3451,7 +3451,7 @@ fields from the corresponding input object.</p>
 <dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 <dt><code>fields</code></dt>
-<dd>Type: string (field name)[] | string (field name)<p>The field(s) to flatten. If no field is defined, the data object itself is treated as an array to be flattened.</p>
+<dd>Type: string (field name)[] | string (field name)<p>The field(s) to flatten. If no field is defined, the input row itself is treated as an array to be flattened.</p>
 </dd>
 <dt><code>index</code></dt>
 <dd>Type: string<p>The output field name for the zero-based index of the array values. If unspecified, an index field is not added.</p>
@@ -3459,7 +3459,7 @@ fields from the corresponding input object.</p>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="single-field-flattening">Single-Field Flattening<a class="headerlink" href="#single-field-flattening" title="Permanent link">&para;</a></h3>
-<p>This example flattens the array-valued field named <code>foo</code>. Note that all fields except <code>foo</code> are repeated in every output datum.</p>
+<p>This example flattens the array-valued field named <code>foo</code>. Note that all fields except <code>foo</code> are repeated in every output row.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flatten&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>Input data:</p>
@@ -3516,7 +3516,7 @@ fields from the corresponding input object.</p>
 <h3 id="flattening-array-objects">Flattening Array Objects<a class="headerlink" href="#flattening-array-objects" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flatten&quot;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-<p>This example treats the data objects as arrays that should be flattened. Given the input data</p>
+<p>This example treats each input row as an array that should be flattened. Given the input data</p>
 <div class="highlight"><pre><span></span><code><span class="p">[[{</span><span class="w"> </span><span class="nt">&quot;foo&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}],</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;foo&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;foo&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">}]]</span>
 </code></pre></div>
 <p>this example produces the output:</p>

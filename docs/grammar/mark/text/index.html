@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;mark&#x2f;text&#x2f;" />
 
 
-<meta property="og:description" content="Text mark displays each data item as text." />
+<meta property="og:description" content="Text mark displays each row as text." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3419,7 +3419,7 @@
 
 
 <h1 id="text">Text<a class="headerlink" href="#text" title="Permanent link">&para;</a></h1>
-<p>Text mark displays each data item as text.</p>
+<p>Text mark displays each row as text.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/mark/text/text-mark.json" height="150">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -3468,7 +3468,7 @@ and <code>color</code> and <code>opacity</code> channels, point mark has the fol
 </dd>
 <dt><code>clip</code></dt>
 <dd>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code><p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
-<p><strong>Default value:</strong> the direction of zoomable positional scales</p>
+<p><strong>Default value:</strong> <code>true</code> when either positional scale is zoomable; otherwise <code>false</code></p>
 </dd>
 <dt><code>color</code></dt>
 <dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
@@ -3488,6 +3488,7 @@ and <code>color</code> and <code>opacity</code> channels, point mark has the fol
 </dd>
 <dt><code>fitToBand</code></dt>
 <dd>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>If true, sets the secondary positional channel that allows the text to be squeezed (see the <code>squeeze</code> property). Can be used when: 1) <code>"band"</code>, <code>"index"</code>, or <code>"locus"</code> scale is being used and 2) only the primary positional channel is specified.</p>
+<p>Expressions are evaluated when the mark is initialized and cannot change reactively.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>flushX</code></dt>
@@ -3510,10 +3511,6 @@ and <code>color</code> and <code>opacity</code> channels, point mark has the fol
 </dd>
 <dt><code>logoLetters</code></dt>
 <dd>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Stretch letters so that they can be used with <a href="https://en.wikipedia.org/wiki/Sequence_logo">sequence logos</a>, etc...</p>
-</dd>
-<dt><code>minBufferSize</code></dt>
-<dd>Type: number<p>Minimum size for WebGL buffers (number of data items). Allows for using <code>bufferSubData()</code> to update graphics.</p>
-<p>This property is intended for internal use.</p>
 </dd>
 <dt><code>opacity</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Opacity of the mark. Affects <code>fillOpacity</code> or <code>strokeOpacity</code>, depending on the <code>filled</code> property.</p>

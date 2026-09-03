@@ -3385,7 +3385,7 @@ scale/axis/legend resolutions, dataflow, params, and unit mark state.</p>
 <p>Use the inspector when a visualization does not behave as expected and the
 specification alone does not explain the runtime state. Typical use cases
 include checking which views were created, how scales are shared, which params
-exist, and where data objects flow through transforms.</p>
+exist, and where rows flow through transforms.</p>
 <p><img alt="Inspector screenshot" src="../../img/inspector.avif" /></p>
 <h2 id="app">App<a class="headerlink" href="#app" title="Permanent link">&para;</a></h2>
 <p>To use the inspector in GenomeSpy App, load the App and Inspector bundles,
@@ -3398,13 +3398,13 @@ three-dot menu in the App toolbar.</p>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.85.0/dist/style.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.86.0/dist/style.css&quot;</span>
     <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.85.0/dist/index.es.js&quot;</span><span class="p">;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">appInspector</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/inspector@0.85.0/dist/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.86.0/dist/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">appInspector</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/inspector@0.86.0/dist/index.es.js&quot;</span><span class="p">;</span>
 
 <span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;spec.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">appInspector</span><span class="p">()],</span>
@@ -3429,22 +3429,30 @@ explicitly:</p>
 button in the toolbar. The button replaces the editor/file pane with the
 inspector, so the plot and inspector are visible side by side.</p>
 <h2 id="core-embeds">Core Embeds<a class="headerlink" href="#core-embeds" title="Permanent link">&para;</a></h2>
-<p>Core does not load the inspector by itself. Applications that embed Core can
-install <code>@genome-spy/inspector</code> and attach the inspector from their own debug
-UI.</p>
-<p>The Core embed result exposes <code>api.debug</code>, which gives the inspector access to
-the live internal root view and loads debug helpers from the same Core runtime:</p>
+<p>Add an Inspector button to the optional <a href=".././embedding/#optional-controls">embed controls</a>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core&quot;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">attachInspectorOverlay</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@genome-spy/inspector&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">attachControls</span><span class="p">,</span><span class="w"> </span><span class="nx">pngButton</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/controls&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">inspectorButton</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@genome-spy/inspector&quot;</span><span class="p">;</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span><span class="w"> </span><span class="nx">spec</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">controls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">attachControls</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span><span class="w"> </span><span class="nx">api</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">controls</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">pngButton</span><span class="p">(),</span><span class="w"> </span><span class="nx">inspectorButton</span><span class="p">()],</span>
+<span class="p">});</span>
 
-<span class="kd">const</span><span class="w"> </span><span class="nx">inspector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">attachInspectorOverlay</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">debug</span><span class="p">);</span>
-
-<span class="c1">// Later, when the host page is destroyed:</span>
-<span class="nx">inspector</span><span class="p">.</span><span class="nx">dispose</span><span class="p">();</span>
+<span class="c1">// Before removing the embed:</span>
+<span class="nx">controls</span><span class="p">.</span><span class="nx">dispose</span><span class="p">();</span>
 <span class="nx">api</span><span class="p">.</span><span class="nx">finalize</span><span class="p">();</span>
 </code></pre></div>
+<p>The button loads the Inspector UI on demand. It follows full-window expansion
+and closes when the controls are disposed. Options include <code>text</code> (instead of
+the bug icon), <code>title</code>, <code>width</code>, and <code>activePanel</code>.</p>
+<p>For direct browser imports, use the Inspector's <code>dist/index.es.js</code> and Core's
+<code>dist/src/controls.js</code> with its relative module files available. These work with
+Core's existing <code>dist/bundle/index.es.js</code>; no import map is required. Inspector
+gets debug helpers through <code>api.debug</code> from the same Core runtime as the plot.</p>
+<p>To manage an overlay from your own UI, use
+<code>const inspector = await attachInspectorOverlay(api.debug)</code> and call
+<code>inspector.dispose()</code> during cleanup.</p>
 <p>For applications with their own panels or split layouts, use
 <code>createInspectorPanel(...)</code> instead and place the returned <code>panel</code> element in
 the application UI.</p>

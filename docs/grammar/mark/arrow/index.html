@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;mark&#x2f;arrow&#x2f;" />
 
 
-<meta property="og:description" content="The &quot;arrow&quot; mark displays each data item as a directed line or ranged segment. It supports horizontal, vertical, and diagonal arrows, making it useful for genomic and protein annotations where span and direction both carry meaning, such as genes, transcripts, alignments, and directional protein domains, and for general directed relationships." />
+<meta property="og:description" content="The &quot;arrow&quot; mark displays each row as a directed line or ranged segment. It supports horizontal, vertical, and diagonal arrows, making it useful for genomic and protein annotations where span and direction both carry meaning, such as genes, transcripts, alignments, and directional protein domains, and for general directed relationships." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3419,7 +3419,7 @@
 
 
 <h1 id="arrow">Arrow<a class="headerlink" href="#arrow" title="Permanent link">&para;</a></h1>
-<p>The <code>"arrow"</code> mark displays each data item as a directed line or ranged
+<p>The <code>"arrow"</code> mark displays each row as a directed line or ranged
 segment. It supports horizontal, vertical, and diagonal arrows, making it useful
 for genomic and protein annotations where span and direction both carry meaning,
 such as genes, transcripts, alignments, and directional protein domains, and for
@@ -3486,7 +3486,7 @@ arrowhead wider than the stem.</p>
 </dd>
 <dt><code>clip</code></dt>
 <dd>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code><p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
-<p><strong>Default value:</strong> the direction of zoomable positional scales</p>
+<p><strong>Default value:</strong> <code>true</code> when either positional scale is zoomable; otherwise <code>false</code></p>
 </dd>
 <dt><code>color</code></dt>
 <dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
@@ -3534,10 +3534,6 @@ arrowhead wider than the stem.</p>
 <dt><code>headWidth</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Width of the arrowhead as a multiplier of resolved <code>size</code>. Values above <code>1</code> make the arrowhead wider than the stem.</p>
 <p><strong>Default value:</strong> <code>3</code></p>
-</dd>
-<dt><code>minBufferSize</code></dt>
-<dd>Type: number<p>Minimum size for WebGL buffers (number of data items). Allows for using <code>bufferSubData()</code> to update graphics.</p>
-<p>This property is intended for internal use.</p>
 </dd>
 <dt><code>minSize</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Minimum resolved arrow stem thickness in pixels. Applies to numeric, band-relative, and encoded <code>size</code> values.</p>
@@ -3831,6 +3827,7 @@ arrowhead wider than the stem.</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 
+<span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>

@@ -1,0 +1,44 @@
+import { t as e } from "./rasterization-CFogVB3B.js";
+import { t } from "./rectangle-DKnrAmKs.js";
+import { t as n } from "./layoutResult-D50MSHXR.js";
+import { t as r } from "./renderCanvas2D-TrZzQBnN.js";
+//#region ../core/src/rendering/canvas2d/rasterExport.js
+async function i(e) {
+	let t = e.mimeType ?? "image/png";
+	if (t != "image/png") throw Error(`Unsupported raster export MIME type: ${t}`);
+	let n = o(e);
+	return new Promise((e, r) => {
+		n.toBlob((t) => {
+			t ? e(t) : r(/* @__PURE__ */ Error("Canvas2D could not encode the raster export."));
+		}, t);
+	});
+}
+function a(e) {
+	return o({
+		...e,
+		pixelRatio: e.devicePixelRatio ?? e.pixelRatio
+	}).toDataURL("image/png");
+}
+function o(i) {
+	let a = i.logicalWidth ?? i.liveSize.width, o = i.logicalHeight ?? i.liveSize.height, s = i.pixelRatio ?? i.liveDevicePixelRatio, c, l;
+	try {
+		c = document.createElement("canvas"), c.width = Math.floor(a * s), c.height = Math.floor(o * s), l = c.getContext("2d");
+	} catch (t) {
+		throw new e("Unable to initialize a Canvas2D export context.", { cause: t });
+	}
+	if (!l) throw new e("Unable to initialize a Canvas2D export context.");
+	return r({
+		layoutResult: n(i.viewRoot, t.create(0, 0, a, o), {
+			devicePixelRatio: s,
+			renderingOptions: { firstFacet: !0 }
+		}),
+		context: l,
+		width: a,
+		height: o,
+		devicePixelRatio: s,
+		background: i.clearColor ?? null,
+		paint: !0
+	}), c;
+}
+//#endregion
+export { a as exportCanvas, i as exportRaster };

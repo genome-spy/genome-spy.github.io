@@ -76,7 +76,7 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;conditional-encoding&#x2f;" />
 
 
-<meta property="og:description" content="Conditional encoding lets an encoding channel switch between alternative definitions based on a selection parameter. It is used to highlight the selected data items and de-emphasize the rest." />
+<meta property="og:description" content="Conditional encoding lets an encoding channel switch between alternative definitions based on a selection parameter. It is used to highlight the selected rows and de-emphasize the rest." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3386,7 +3386,7 @@
 <p>Conditional encoding lets an encoding channel switch between alternative
 definitions based on a <a href=".././parameters/#selection-parameters">selection
 parameter</a>. It is used to highlight the
-selected data items and de-emphasize the rest.</p>
+selected rows and de-emphasize the rest.</p>
 <p>The basic pattern is to provide a fallback definition for the channel and one
 or more conditional branches in <code>condition</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -3398,7 +3398,7 @@ or more conditional branches in <code>condition</code>:</p>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>When the selection matches the current datum, GenomeSpy uses the definition
+<p>When the selection matches the current row, GenomeSpy uses the definition
 inside <code>condition</code>. Otherwise it uses the fallback definition on the channel
 itself.</p>
 <p>Conditional encoding is available on many visual channels, such as <code>color</code>,

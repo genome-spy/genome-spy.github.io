@@ -4145,14 +4145,14 @@ bgzip-compressed and tabix-indexed VCF files, use the lazy
 <span class="w">  </span><span class="err">...</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The FASTA loader produces data objects with two fields: <code>identifier</code> and
-<code>sequence</code>. With the <a href="../../transform/flatten-sequence/"><code>"flattenSequence"</code></a>
-transform you can split the sequences into individual bases (one object per
-base) for easier visualization.</p>
+<p>The FASTA loader produces records with two fields: <code>identifier</code> and <code>sequence</code>.
+With the <a href="../../transform/flatten-sequence/"><code>"flattenSequence"</code></a> transform you
+can split the sequences into individual bases (one row per base) for easier
+visualization.</p>
 <h3 id="arrow">Arrow<a class="headerlink" href="#arrow" title="Permanent link">&para;</a></h3>
 <p><a href="https://arrow.apache.org/"><em>Apache Arrow</em></a> IPC is a column-oriented binary
 format for transferring tabular data. GenomeSpy supports both the Arrow IPC
-file and stream encodings and materializes their contents as row objects.</p>
+file and stream encodings and materializes their contents as rows.</p>
 <p>The format type is <code>"arrow"</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -4178,8 +4178,8 @@ tables. Compared to row-oriented text formats, it usually provides better
 compression and faster column scans. For larger datasets, Parquet is strongly
 recommended over delimited text formats because it can be processed much more
 quickly.
-In GenomeSpy, Parquet is decoded into row objects similarly to <code>"csv"</code> and
-<code>"tsv"</code> formats supported by the <code>url</code> data source.</p>
+In GenomeSpy, Parquet is decoded into rows similarly to <code>"csv"</code> and <code>"tsv"</code>
+formats supported by the <code>url</code> data source.</p>
 <p>The type of <em>Parquet</em> format is <code>"parquet"</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
