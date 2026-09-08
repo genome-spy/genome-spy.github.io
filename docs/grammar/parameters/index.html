@@ -2300,6 +2300,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#expression-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Expression Scope
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#properties" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3674,6 +3685,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#expression-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Expression Scope
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#properties" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -4594,12 +4616,21 @@ transforms, or encodings.</p>
 
 </genome-spy-doc-embed></div>
 
+<h3 id="expression-scope">Expression Scope<a class="headerlink" href="#expression-scope" title="Permanent link">&para;</a></h3>
+<p><a href="../expressions/">Expressions</a> in <code>ruler.mark</code> and <code>ruler.disabled</code> resolve
+parameter names in the scope where the ruler is declared. Same-named parameters
+in descendant views do not affect these expressions. Using <code>push: "outer"</code>
+changes where the coordinate is stored, but not where these expressions resolve.</p>
 <h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
 <p><code>ruler</code> supports the following properties:</p>
 <dl>
 <dt><code>clear</code></dt>
 <dd>Type: <code>mouseleave</code> | <code>mouseup</code> | <code>False</code><p>Event that clears the ruler, or <code>false</code> to keep the current value.</p>
 <p><strong>Default value:</strong> <code>"mouseleave"</code> for <code>on: "mousemove"</code>, otherwise <code>false</code>.</p>
+</dd>
+<dt><code>disabled</code></dt>
+<dd>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Clears the coordinate and ignores tracking events while true. Expressions resolve where the ruler is declared. Re-enabling waits for the next pointer or viewport event; it does not restore the initial value. With <code>push: "outer"</code>, other enabled bindings can still update the shared coordinate.</p>
+<p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>display</code></dt>
 <dd>Type: <code>"line"</code> | <code>"center"</code> | <code>"band"</code> | <code>"none"</code><p>How the ruler is drawn for snapped index or locus coordinates.</p>
@@ -4616,7 +4647,7 @@ transforms, or encodings.</p>
 <p><strong>Default value:</strong> <code>"auto"</code></p>
 </dd>
 <dt><code>mark</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#rulermarkconfig">RulerMarkConfig</a><p>Rule or band appearance. Has no effect when <code>display</code> is <code>"none"</code>.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#rulermarkconfig">RulerMarkConfig</a><p>Rule or band appearance. Expressions resolve in the scope where this ruler is declared, including when it uses <code>push: "outer"</code>. Has no effect when <code>display</code> is <code>"none"</code>.</p>
 </dd>
 <dt><code>on</code></dt>
 <dd>Type: <code>"mousemove"</code> | <code>"mousedown"</code> | <a href="https://genomespy.app/docs/grammar/types/#rulereventconfig">RulerEventConfig</a> | string<p>Event that updates a pointer-driven ruler.</p>

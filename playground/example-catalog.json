@@ -325,6 +325,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/composition/concat/track-annotations",
+    "title": "Annotations spanning vertically concatenated tracks.",
+    "description": "Annotations spanning vertically concatenated tracks.",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Composition / Concat",
+    "specPath": "examples/docs/grammar/composition/concat/track-annotations.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/concat/track-annotations.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/composition/concat/child-sizing",
     "title": "Concatenation child sizing example.",
     "description": "Concatenation child sizing example.",
@@ -2402,6 +2415,19 @@
     "specUrl": "/docs/example-specs/core/ruler/vconcat-spanning.json",
     "screenshotPath": "examples/core/ruler/vconcat-spanning.png",
     "screenshotUrl": "/docs/example-specs/core/ruler/vconcat-spanning.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/ruler/styling",
+    "title": "Toggle and highlight a shared ruler",
+    "description": "Toggle and highlight a shared ruler",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Ruler",
+    "specPath": "examples/core/ruler/styling.json",
+    "specUrl": "/docs/example-specs/core/ruler/styling.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
     "sourceMode": "shared-example"
   },
   {

@@ -3682,6 +3682,13 @@ create symbol legends. Quantitative encodings on symbol-like channels such as
 
 </genome-spy-doc-embed></div>
 
+<p>Symbol styling can be set independently of the data marks. For example,
+<code>"legend": { "symbolOpacity": 1 }</code> keeps a category key opaque while hover or
+selection interactions dim the marks. The symbol properties override inherited
+mark and encoding styles; a channel that the legend explains still uses its
+scale. Thus <code>symbolSize</code> sets the symbol area in a color legend, while a size
+legend retains the sizes represented by its scale.</p>
+<p>These properties can also be set under <code>config.legend</code> for all legends.</p>
 <h2 id="gradient-legends">Gradient legends<a class="headerlink" href="#gradient-legends" title="Permanent link">&para;</a></h2>
 <p>Continuous quantitative color channels create gradient legends. The gradient
 uses the same scale as the plotted data.</p>
@@ -4130,11 +4137,23 @@ view.</p>
 <dt><code>style</code></dt>
 <dd>Type: string | string[] | null<p>Named style reference or references resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones. Set to <code>null</code> to reset inherited legend styles.</p>
 </dd>
+<dt><code>symbolFillColor</code></dt>
+<dd>Type: string<p>Symbol fill color. Overrides inherited fill styling, except when the legend encodes fill or uses fill to encode color.</p>
+</dd>
+<dt><code>symbolOpacity</code></dt>
+<dd>Type: number<p>Symbol opacity. Overrides inherited mark and encoding opacity, except when the legend encodes opacity. Set to 1 to keep a category key opaque while selections dim the data marks.</p>
+</dd>
 <dt><code>symbolSize</code></dt>
-<dd>Type: number<p>Symbol size in pixels squared.</p>
+<dd>Type: number<p>Symbol size in pixels squared. Overrides inherited styling, except when the legend encodes size.</p>
+</dd>
+<dt><code>symbolStrokeColor</code></dt>
+<dd>Type: string<p>Symbol stroke color. Overrides inherited stroke styling, except when the legend encodes stroke or uses stroke to encode color.</p>
+</dd>
+<dt><code>symbolStrokeWidth</code></dt>
+<dd>Type: number<p>Symbol stroke width in pixels. Overrides inherited styling, except when the legend encodes stroke width.</p>
 </dd>
 <dt><code>symbolType</code></dt>
-<dd>Type: string<p>Symbol shape.</p>
+<dd>Type: string<p>Symbol shape. Overrides inherited styling, except when the legend encodes shape.</p>
 </dd>
 <dt><code>tickCount</code></dt>
 <dd>Type: number<p>Desired number of ticks for a quantitative gradient legend. Explicit <code>values</code> take precedence over this property.</p>
@@ -4296,17 +4315,26 @@ or a channel-level <code>legend</code> object to override a single legend. The o
 <dt><code>symbolBaseStrokeColor</code></dt>
 <dd>Type: string<p>Base stroke color for legend symbols when the legend does not encode stroke.</p>
 </dd>
+<dt><code>symbolFillColor</code></dt>
+<dd>Type: string<p>Symbol fill color. Overrides inherited fill styling, except when the legend encodes fill or uses fill to encode color.</p>
+</dd>
 <dt><code>symbolOffset</code></dt>
 <dd>Type: number<p>Offset applied to legend symbols in pixels.</p>
 </dd>
+<dt><code>symbolOpacity</code></dt>
+<dd>Type: number<p>Symbol opacity. Overrides inherited mark and encoding opacity, except when the legend encodes opacity. Set to 1 to keep a category key opaque while selections dim the data marks.</p>
+</dd>
 <dt><code>symbolSize</code></dt>
-<dd>Type: number<p>Symbol size in pixels squared.</p>
+<dd>Type: number<p>Symbol size in pixels squared. Overrides inherited styling, except when the legend encodes size.</p>
+</dd>
+<dt><code>symbolStrokeColor</code></dt>
+<dd>Type: string<p>Symbol stroke color. Overrides inherited stroke styling, except when the legend encodes stroke or uses stroke to encode color.</p>
 </dd>
 <dt><code>symbolStrokeWidth</code></dt>
-<dd>Type: number<p>Legend symbol stroke width in pixels.</p>
+<dd>Type: number<p>Symbol stroke width in pixels. Overrides inherited styling, except when the legend encodes stroke width.</p>
 </dd>
 <dt><code>symbolType</code></dt>
-<dd>Type: string<p>Symbol shape.</p>
+<dd>Type: string<p>Symbol shape. Overrides inherited styling, except when the legend encodes shape.</p>
 </dd>
 <dt><code>tickCount</code></dt>
 <dd>Type: number<p>Desired number of ticks for a quantitative gradient legend. Explicit <code>values</code> take precedence over this property.</p>

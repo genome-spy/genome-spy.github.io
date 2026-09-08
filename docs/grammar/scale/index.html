@@ -2128,6 +2128,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#scale-dependent-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scale-dependent expressions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#domain-from-selection-parameters" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3773,6 +3784,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#scale-dependent-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scale-dependent expressions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#domain-from-selection-parameters" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -4504,6 +4526,17 @@ parameter, declare a same-named child parameter with <code>"push": "outer"</code
 <p>Genuinely shared scales do not fall back to a child declaration scope. Move a
 child-only parameter to the resolution owner and use <code>"push": "outer"</code> when the
 child must write it.</p>
+<h3 id="scale-dependent-expressions">Scale-dependent expressions<a class="headerlink" href="#scale-dependent-expressions" title="Permanent link">&para;</a></h3>
+<p>An expression parameter can read a scale and drive another scale's domain or
+range. For example, <code>{"name": "cnDomain", "expr": "domain('y')"}</code> can drive an
+excluded depth scale with
+<code>"domain": {"expr": "[cnDomain[0] * 14.012 + 0.1, cnDomain[1] * 14.012 + 0.1]"}</code>.
+Declare the parameter where <code>domain('y')</code> resolves to the primary copy-number
+scale, and keep it visible to the depth scale using the scope rules above.</p>
+<p>The derived domain follows the primary scale's effective domain, including
+transition frames. Expression-driven domains do not start a separate transition
+by default. Set <code>zero</code> and <code>nice</code> to <code>false</code> when the calibrated bounds must be
+preserved exactly. Dependencies must be acyclic.</p>
 <h3 id="domain-from-selection-parameters">Domain from Selection Parameters<a class="headerlink" href="#domain-from-selection-parameters" title="Permanent link">&para;</a></h3>
 <p>A scale domain can link directly to an interval selection parameter. The named
 selection must be visible from the scale owner according to the scope rule

@@ -9670,6 +9670,9 @@ documentation link to the relevant page; the rest are documented here.</p>
 <p>See the <a href="../data/lazy/#parameters_5">Gff3Data documentation</a>.</p>
 <h2 id="hconcatspec">HConcatSpec<a class="headerlink" href="#hconcatspec" title="Permanent link">&para;</a></h2>
 <dl>
+<dt><code>annotate</code></dt>
+<dd>Type: array<p>TODO</p>
+</dd>
 <dt><code>axes</code></dt>
 <dd>Type: object<p>Defines properties for axis resolutions used by this view subtree.</p>
 <p>Use this when a composed view shares an axis across child views and the axis settings belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error.</p>
@@ -10487,13 +10490,13 @@ documentation link to the relevant page; the rest are documented here.</p>
 <h2 id="rulermarkconfig">RulerMarkConfig<a class="headerlink" href="#rulermarkconfig" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>fill</code></dt>
-<dd>Type: string<p>Fill color for <code>display: "band"</code>.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Fill color for <code>display: "band"</code>.</p>
 </dd>
 <dt><code>fillOpacity</code></dt>
-<dd>Type: number<p>Fill opacity for <code>display: "band"</code>.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Fill opacity for <code>display: "band"</code>.</p>
 </dd>
 <dt><code>opacity</code></dt>
-<dd>Type: number<p>Opacity of ruler lines and bands.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Overall opacity of the guide, including band fill, outline, and shadow. Setting opacity to zero hides the guide without stopping coordinate tracking or changing its clear behavior.</p>
 </dd>
 <dt><code>shadowBlur</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The blur radius of the drop shadow in pixels. Higher values produce a more diffuse shadow.</p>
@@ -10516,13 +10519,13 @@ documentation link to the relevant page; the rest are documented here.</p>
 <p><strong>Default value:</strong> <code>0</code> (disabled)</p>
 </dd>
 <dt><code>stroke</code></dt>
-<dd>Type: string<p>Stroke color of ruler lines and band outlines.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Stroke color of ruler lines and band outlines.</p>
 </dd>
 <dt><code>strokeDash</code></dt>
-<dd>Type: array<p>Alternating stroke and gap lengths for dashed ruler lines and band outlines.</p>
+<dd>Type: array<p>Alternating stroke and gap lengths for dashed ruler lines. Does not affect band outlines.</p>
 </dd>
 <dt><code>strokeWidth</code></dt>
-<dd>Type: number<p>Stroke width of ruler lines and band outlines, in pixels.</p>
+<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Stroke width of ruler lines and band outlines, in pixels.</p>
 </dd>
 <dt><code>zindex</code></dt>
 <dd>Type: number<p>Z-order relative to the view content.</p>
@@ -11063,6 +11066,9 @@ documentation link to the relevant page; the rest are documented here.</p>
 <p>See the <a href="../data/multi-url/#url-templates">UrlTemplate documentation</a>.</p>
 <h2 id="vconcatspec">VConcatSpec<a class="headerlink" href="#vconcatspec" title="Permanent link">&para;</a></h2>
 <dl>
+<dt><code>annotate</code></dt>
+<dd>Type: array<p>TODO</p>
+</dd>
 <dt><code>axes</code></dt>
 <dd>Type: object<p>Defines properties for axis resolutions used by this view subtree.</p>
 <p>Use this when a composed view shares an axis across child views and the axis settings belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error.</p>
