@@ -240,7 +240,10 @@ section:not(.dark) + section:not(.dark) {
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
+  list-style: none;
   padding: var(--example-card-padding);
+  margin-top: 0;
+  margin-bottom: 0;
   margin-left: 0;
   margin-right: 0;
 }
@@ -255,8 +258,40 @@ section:not(.dark) + section:not(.dark) {
   box-shadow: none;
 }
 
+.example-card {
+  font-family: "Lato", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#cards > .example-card {
+  align-self: stretch;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
+}
+
+.example-card .screenshot {
+  display: block;
+  height: 180px;
+  background-size: cover;
+}
+
+.example-card .description {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+  font-size: 14px;
+}
+
+.example-card .description-text {
+  flex-grow: 1;
+}
+
 #cards > *:hover {
-  box-shadow: 0 0 0 3px #7fbbdd;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15), 0 0 0 3px #7fbbdd;
 }
 
 #about > div {

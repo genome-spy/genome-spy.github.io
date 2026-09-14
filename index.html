@@ -12,8 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&text=GenomeSpy&display=swap" rel="stylesheet" />
 
     <link rel="modulepreload" href="lit-all.min.js" />
-    <link rel="modulepreload" href="example-card.js" />
-
     <link rel="modulepreload" href="showcase/showcase.js" />
     <link rel="preload" href="showcase/spec/spec.json" as="fetch" crossorigin="anonymous" />
     <link rel="preload" href="showcase/spec/overview.json" as="fetch" crossorigin="anonymous" />
@@ -46,7 +44,6 @@
 
 <body>
     <script src="https://kit.fontawesome.com/2e65d8a80b.js" crossorigin="anonymous"></script>
-    <script type="module" src="example-card.js"></script>
     <script type="module" src="./showcase/showcase.js"></script>
 
     <nav id="nav-bar">
@@ -253,75 +250,119 @@
     <section id="examples" class="dark">
         <!-- <h2>Examples</h2> -->
 
-        <div id="cards">
-            <genome-spy-example link="https://genomespy.app/docs/grammar/composition/layer/#example" img-src="bar.png">
-                Abstract example: Using rect and text marks to specify a labeled bar chart.
-            </genome-spy-example>
+        <ul id="cards">
+            <li class="example-card">
+                <a href="https://genomespy.app/docs/grammar/composition/layer/#example" class="screenshot"
+                    style="background-image: url('example_img/bar.png')" aria-label="Open labeled bar chart example"></a>
+                <div class="description">
+                    <div class="description-text">Abstract example: Using rect and text marks to specify a labeled bar chart.</div>
+                </div>
+            </li>
 
-            <genome-spy-example
-                link="https://genomespy.app/playground/?spec=/docs/example-specs/core/layout/layer/heatmap_with_text.json"
-                img-src="heatmap_with_text.png">
-                Abstract example: Using rect and text marks to make a labeled heatmap.
-                The labels are automatically scaled to fit the cells. Try to zoom in and out!
-            </genome-spy-example>
+            <li class="example-card">
+                <a href="https://genomespy.app/playground/?spec=/docs/example-specs/core/layout/layer/heatmap_with_text.json"
+                    class="screenshot" style="background-image: url('example_img/heatmap_with_text.png')"
+                    aria-label="Open labeled heatmap example"></a>
+                <div class="description">
+                    <div class="description-text">Abstract example: Using rect and text marks to make a labeled heatmap.
+                        The labels are automatically scaled to fit the cells. Try to zoom in and out!</div>
+                </div>
+            </li>
 
-            <genome-spy-example spec="tSNE/tsne.json" img-src="tsne.jpg">
-                A scatter plot with one and a half million points decorated with some
-                annotations visualizes a miserably failed t-SNE attempt.
-            </genome-spy-example>
+            <li class="example-card">
+                <a href="playground/?spec=../examples/tSNE/tsne.json" class="screenshot"
+                    style="background-image: url('example_img/tsne.jpg')" aria-label="Open t-SNE example"></a>
+                <div class="description">
+                    <div class="description-text">A scatter plot with one and a half million points decorated with some
+                        annotations visualizes a miserably failed t-SNE attempt.</div>
+                </div>
+            </li>
 
-            <genome-spy-example spec="OCAC/ocac.json" img-src="gwas.png">
-                A Manhattan plot for Genome-Wide Association Study (GWAS).
-            </genome-spy-example>
+            <li class="example-card">
+                <a href="playground/?spec=../examples/OCAC/ocac.json" class="screenshot"
+                    style="background-image: url('example_img/gwas.png')" aria-label="Open GWAS example"></a>
+                <div class="description">
+                    <div class="description-text">A Manhattan plot for Genome-Wide Association Study (GWAS).</div>
+                </div>
+            </li>
 
-            <genome-spy-example link="https://genomespy.app/docs/examples/genomic-data/multiple-sequence-alignment/"
-                img-src="msa.png">
-                A multiple sequence alignment that loads data from a FASTA file and
-                displays it as a scrollable heatmap and sequence logo.
-            </genome-spy-example>
+            <li class="example-card">
+                <a href="https://genomespy.app/docs/examples/genomic-data/multiple-sequence-alignment/" class="screenshot"
+                    style="background-image: url('example_img/msa.png')" aria-label="Open multiple sequence alignment example"></a>
+                <div class="description">
+                    <div class="description-text">A multiple sequence alignment that loads data from a FASTA file and
+                        displays it as a scrollable heatmap and sequence logo.</div>
+                </div>
+            </li>
 
-            <genome-spy-example link="https://genomespy.app/docs/examples/genomic-data/hcc1954-sv-cnv/"
-                img-src="sv.webp">
-                A structural variation visualization that uses the link mark to show
-                arcs connecting the breakpoints. It also includes segmented copy-number data.
-            </genome-spy-example>
+            <li class="example-card">
+                <a href="https://genomespy.app/docs/examples/genomic-data/hcc1954-sv-cnv/" class="screenshot"
+                    style="background-image: url('example_img/sv.webp')" aria-label="Open structural variation example"></a>
+                <div class="description">
+                    <div class="description-text">A structural variation visualization that uses the link mark to show
+                        arcs connecting the breakpoints. It also includes segmented copy-number data.</div>
+                </div>
+            </li>
 
-            <genome-spy-example spec="simple/bigwig.json" img-src="gc-content.png">
-                GC content of the human genome: One dataset, two visual representations. The data
-                are loaded lazily from a BigWig file and the scale domains are autoscaled
-                to accommodate the region.
-            </genome-spy-example>
+            <li class="example-card">
+                <a href="playground/?spec=../examples/simple/bigwig.json" class="screenshot"
+                    style="background-image: url('example_img/gc-content.png')" aria-label="Open GC content example"></a>
+                <div class="description">
+                    <div class="description-text">GC content of the human genome: One dataset, two visual representations. The data
+                        are loaded lazily from a BigWig file and the scale domains are autoscaled
+                        to accommodate the region.</div>
+                </div>
+            </li>
 
-            <genome-spy-example spec="GENCODE/gencode.json" img-src="gencode.png">
-                Using lazy data loading, data transformations, and multiple layers
-                to visualize the GENCODE gene annotation stored in a hierarchical
-                GFF3 file.
-            </genome-spy-example>
+            <li class="example-card">
+                <a href="playground/?spec=../examples/GENCODE/gencode.json" class="screenshot"
+                    style="background-image: url('example_img/gencode.png')" aria-label="Open GENCODE example"></a>
+                <div class="description">
+                    <div class="description-text">Using lazy data loading, data transformations, and multiple layers
+                        to visualize the GENCODE gene annotation stored in a hierarchical
+                        GFF3 file.</div>
+                </div>
+            </li>
 
-            <genome-spy-example
-                link="https://observablehq.com/@tuner/ascat-copy-number-segmentation?collection=@tuner/genomespy"
-                img-src="ascat.png">
-                An Observable notebook that describes how to replicate ASCAT's copy-number segmentation
-                visualization. The visualization is interactive and thoroughly commented.
-            </genome-spy-example>
+            <li class="example-card">
+                <a href="https://observablehq.com/@tuner/ascat-copy-number-segmentation?collection=@tuner/genomespy"
+                    class="screenshot" style="background-image: url('example_img/ascat.png')"
+                    aria-label="Open ASCAT copy-number segmentation example"></a>
+                <div class="description">
+                    <div class="description-text">An Observable notebook that describes how to replicate ASCAT's copy-number segmentation
+                        visualization. The visualization is interactive and thoroughly commented.</div>
+                </div>
+            </li>
 
-            <genome-spy-example app="PARPiCL/parpicl.json" img-src="parpicl.png">
-                Exploring a sample collection with the GenomeSpy App. The visualization shows
-                several cell-line samples with segmented copy numbers, loss of heterozygosity, and SNPs and indels.
-            </genome-spy-example>
+            <li class="example-card">
+                <a href="examples/?spec=PARPiCL/parpicl.json" class="screenshot"
+                    style="background-image: url('example_img/parpicl.png')" aria-label="Open PARPiCL example"></a>
+                <div class="description">
+                    <div class="description-text">Exploring a sample collection with the GenomeSpy App. The visualization shows
+                        several cell-line samples with segmented copy numbers, loss of heterozygosity, and SNPs and indels.</div>
+                </div>
+            </li>
 
-            <genome-spy-example link="https://csbi.ltdk.helsinki.fi/p/lahtinen_et_al_2023/" img-src="lahtinen_2023.png">
-                GenomeSpy in action: Lahtinen, A., Lavikka, K., <em>et al</em>. (2023) Evolutionary states
-                and trajectories characterized by distinct pathways stratify patients
-                with ovarian high grade serous carcinoma.
-            </genome-spy-example>
+            <li class="example-card">
+                <a href="https://csbi.ltdk.helsinki.fi/p/lahtinen_et_al_2023/" class="screenshot"
+                    style="background-image: url('example_img/lahtinen_2023.png')" aria-label="Open Lahtinen et al. example"></a>
+                <div class="description">
+                    <div class="description-text">GenomeSpy in action: Lahtinen, A., Lavikka, K., <em>et al</em>. (2023) Evolutionary states
+                        and trajectories characterized by distinct pathways stratify patients
+                        with ovarian high grade serous carcinoma.</div>
+                </div>
+            </li>
 
-            <genome-spy-example link="segmentmodel/" img-src="segmentmodel.png">
-                SegmentModel Spy. Visualizes GATK's copy-number segment models together
-                with read and allelic counts. This is an example of using GenomeSpy as a visualization
-                library in a special-purpose web application.
-            </genome-spy-example>
-        </div>
+            <li class="example-card">
+                <a href="segmentmodel/" class="screenshot" style="background-image: url('example_img/segmentmodel.png')"
+                    aria-label="Open SegmentModel Spy example"></a>
+                <div class="description">
+                    <div class="description-text">SegmentModel Spy. Visualizes GATK's copy-number segment models together
+                        with read and allelic counts. This is an example of using GenomeSpy as a visualization
+                        library in a special-purpose web application.</div>
+                </div>
+            </li>
+        </ul>
     </section>
 
     <section id="about">
