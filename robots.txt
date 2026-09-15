@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://genomespy.app/sitemap.xml
+Sitemap: https://genomespy.app/docs/sitemap.xml
+Sitemap: https://genomespy.app/genome-spy-python/sitemap.xml
+Sitemap: https://genomespy.app/MutGlyph/sitemap.xml
