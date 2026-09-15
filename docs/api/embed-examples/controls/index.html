@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Optional visualization controls</title>
+        <style>
+            #plot {
+                position: relative;
+                height: 360px;
+                /*
+                 * Controls are absolutely positioned children of this element.
+                 * These margins leave room for top/bottom placement without
+                 * shrinking the plot. Keep overflow visible here and ensure
+                 * ancestors do not clip the outside buttons.
+                 */
+                margin-block: 48px;
+                max-width: 900px;
+                background: white;
+            }
+            /*
+             * Full-window expansion reparents #plot into a dialog, so keep its
+             * styles independent of ancestor selectors such as .panel #plot.
+             * Controls inherit these optional custom properties from #plot:
+             * --gs-controls-color (default #333)
+             * --gs-controls-background (default #fff)
+             * --gs-controls-hover-opacity (default 0.3)
+             */
+        </style>
+      <script type="module" crossorigin src="/docs/api/embed-examples/assets/controls/index-lrOs_VY5.js"></script>
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/lit-BJ21N-0y.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/clipOptions-CkMJFTOl.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/rolldown-runtime-BpQH8Ho1.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/vega-scale-DLW1WN9K.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/indexer-CZfKGPxm.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/viewError-BeUp1kNb.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/warning-1IfqR_SW.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/viewSelectors-Diz-AU8V.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/viewIdentityRegistry-D5UVPLgg.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/rectangle-CwXHhFtx.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/rasterization-25yc2Doo.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/registerWebGL-mk-X5Shx.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/minimal-B_EdizBf.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/src-DhuivFd9.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/registerSvg-CbfmPnr1.js">
+      <link rel="stylesheet" crossorigin href="/docs/api/embed-examples/assets/style-DTyM35VQ.css">
+    </head>
+    <body>
+        <a class="back-link" href="../">← All embedding examples</a>
+        <h1>Optional visualization controls</h1>
+        <p>
+            Hover over the plot or focus it with the keyboard to reveal its
+            floating controls. Download PNG or SVG, or expand the plot to fill
+            this window. Press Escape or the restore button to return to the
+            page. Zooming and selections are preserved when expanding and
+            restoring.
+        </p>
+        <p>
+            Shift-drag across the points to select a region. Scroll over the
+            plot to zoom. The eraser button clears the selection; hover for its
+            title. The bug button opens the Inspector. Image downloads include
+            the current visualization state.
+        </p>
+        <p>
+            <label>
+                Placement
+                <select id="placement">
+                    <option value="inside">Inside (overlay)</option>
+                    <option value="top">Top</option>
+                    <option value="bottom">Bottom</option>
+                </select>
+            </label>
+            <label>
+                Visibility
+                <select id="visibility">
+                    <option value="default">Placement default</option>
+                    <option value="hover">On hover or focus</option>
+                    <option value="always">Always visible</option>
+                </select>
+            </label>
+            Changing controls preserves the current plot state. This page
+            provides margins above and below the plot for outside controls.
+        </p>
+        <div id="plot" class="visualization-surface"></div>
+        <!-- Icon markup is cloned into each button's shadow root. Set its own
+             fill/stroke attributes so it needs no page-level CSS. -->
+        <template id="clear-selection-icon">
+            <svg
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+            >
+                <path d="m3 12 8-8 6 6-7 7H7zM7 8l6 6M10 17h7" />
+            </svg>
+        </template>
+        <p>
+            <button id="reset">Reset example</button>
+            disposes the controls and embed before recreating them.
+        </p>
+    </body>
+</html>

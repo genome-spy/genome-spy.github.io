@@ -58,12 +58,15 @@
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../stylesheets/api-reference.css">
+    
     <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
     
-     
+    
+
 <meta name="base_url" content="../.." />
 
 
@@ -76,6 +79,11 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;conditional-encoding&#x2f;" />
 
 
+
+  
+
+
+<meta name="description" content="Conditional encoding lets an encoding channel switch between alternative definitions based on a selection parameter. It is used to highlight the selected rows and de-emphasize the rest." />
 <meta property="og:description" content="Conditional encoding lets an encoding channel switch between alternative definitions based on a selection parameter. It is used to highlight the selected rows and de-emphasize the rest." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
@@ -352,7 +360,7 @@
   <span class="md-ellipsis">
     
   
-  Visualization Grammar
+  Grammar
 
     
   </span>
@@ -373,7 +381,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Visualization Grammar
+  Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1745,6 +1753,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#structured-selection-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Structured Selection Tests
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#multiple-conditions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -2502,6 +2521,8 @@
       
         
       
+        
+      
     
     
     
@@ -2556,6 +2577,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/embedding/" class="md-nav__link">
         
   
@@ -2563,7 +2611,7 @@
   <span class="md-ellipsis">
     
   
-  Embedding and Entry Points
+  Embedding
 
     
   </span>
@@ -2986,7 +3034,7 @@
   <span class="md-ellipsis">
     
   
-  HCC1954 Structural Variants and Copy Number
+  HCC1954 SV/CNV
 
     
   </span>
@@ -3040,7 +3088,7 @@
   <span class="md-ellipsis">
     
   
-  Sashimi Plot from Splice Junctions
+  Sashimi Plot
 
     
   </span>
@@ -3338,6 +3386,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#structured-selection-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Structured Selection Tests
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#multiple-conditions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3479,6 +3538,52 @@ selection contains data:</p>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h2 id="structured-selection-tests">Structured Selection Tests<a class="headerlink" href="#structured-selection-tests" title="Permanent link">&para;</a></h2>
+<p>Use a structured test for a selection condition when you want the predicate
+to be explicit. A structured singleton has the same behavior as the direct
+<code>param</code> shorthand:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;select&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#3a86ff&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#d9d9d9&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The direct <code>param</code> form remains the concise spelling for a singleton
+selection condition. The structured singleton follows the Vega-Lite predicate
+shape; GenomeSpy extends it with a flat union of selection names. Use a
+selection union when one branch should apply to rows selected by any of several
+point or interval selections:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;or&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;select&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;brush&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;class&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#cbd2d6&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The branch matches when at least one selection contains the row. With
+<code>empty: true</code> (the default), it also matches all rows while every selection in
+the group is empty. Once any member is active, the union matches rows selected
+by any active member. Set <code>empty: false</code> inside <code>test</code> to keep the fallback
+active until one selection is populated. Interval unions allow an active
+dimension to constrain the row while inactive dimensions impose no constraint.</p>
+<p>The <code>or</code> list must contain at least one selection name. A structured group test
+is flat; nested tests and condition-level <code>empty</code> are not supported. Direct
+<code>param</code> conditions continue to support <code>empty</code> as described above.</p>
 <h2 id="multiple-conditions">Multiple Conditions<a class="headerlink" href="#multiple-conditions" title="Permanent link">&para;</a></h2>
 <p>You can provide an array of conditional value definitions. They are evaluated
 in order, and the channel's main definition acts as the final fallback.</p>

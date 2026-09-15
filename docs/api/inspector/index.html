@@ -58,12 +58,15 @@
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../stylesheets/api-reference.css">
+    
     <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
     
-     
+    
+
 <meta name="base_url" content="../.." />
 
 
@@ -76,6 +79,11 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;api&#x2f;inspector&#x2f;" />
 
 
+
+  
+
+
+<meta name="description" content="The GenomeSpy Inspector is a developer tool for looking at the live runtime state of a visualization. It shows the view hierarchy, encodings, scale&#x2f;axis&#x2f;legend resolutions, dataflow, params, and unit mark state." />
 <meta property="og:description" content="The GenomeSpy Inspector is a developer tool for looking at the live runtime state of a visualization. It shows the view hierarchy, encodings, scale&#x2f;axis&#x2f;legend resolutions, dataflow, params, and unit mark state." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
@@ -346,7 +354,7 @@
   <span class="md-ellipsis">
     
   
-  Visualization Grammar
+  Grammar
 
     
   </span>
@@ -367,7 +375,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Visualization Grammar
+  Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2407,6 +2415,8 @@
       
         
       
+        
+      
     
     
     
@@ -2461,6 +2471,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../embedding/" class="md-nav__link">
         
   
@@ -2468,7 +2505,7 @@
   <span class="md-ellipsis">
     
   
-  Embedding and Entry Points
+  Embedding
 
     
   </span>
@@ -2982,7 +3019,7 @@
   <span class="md-ellipsis">
     
   
-  HCC1954 Structural Variants and Copy Number
+  HCC1954 SV/CNV
 
     
   </span>
@@ -3036,7 +3073,7 @@
   <span class="md-ellipsis">
     
   
-  Sashimi Plot from Splice Junctions
+  Sashimi Plot
 
     
   </span>
@@ -3398,13 +3435,13 @@ three-dot menu in the App toolbar.</p>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.87.0/dist/style.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.88.0/dist/style.css&quot;</span>
     <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.87.0/dist/index.es.js&quot;</span><span class="p">;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">appInspector</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/inspector@0.87.0/dist/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.88.0/dist/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">appInspector</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/inspector@0.88.0/dist/index.es.js&quot;</span><span class="p">;</span>
 
 <span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;spec.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">appInspector</span><span class="p">()],</span>
@@ -3457,7 +3494,7 @@ gets debug helpers through <code>api.debug</code> from the same Core runtime as 
 <code>createInspectorPanel(...)</code> instead and place the returned <code>panel</code> element in
 the application UI.</p>
 <p>See the
-<a href="https://github.com/genome-spy/genome-spy/blob/master/packages/embed-examples/src/inspectorOverlay.html">inspector overlay example</a>
+<a href="https://github.com/genome-spy/genome-spy/blob/master/packages/embed-examples/src/inspectorOverlay/index.html">inspector overlay example</a>
 for a complete Core embed.</p>
 <h2 id="debug-scope">Debug Scope<a class="headerlink" href="#debug-scope" title="Permanent link">&para;</a></h2>
 <p>The inspector reads internal runtime objects through small debug hooks. Debug

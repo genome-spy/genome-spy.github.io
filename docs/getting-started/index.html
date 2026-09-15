@@ -25,7 +25,7 @@
     
     
       
-        <title>Getting Started - GenomeSpy Docs</title>
+        <title>Getting Started with GenomeSpy - GenomeSpy Docs</title>
       
     
     
@@ -58,24 +58,32 @@
     
       <link rel="stylesheet" href="../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../stylesheets/api-reference.css">
+    
     <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
     
-     
+    
+
 <meta name="base_url" content=".." />
 
 
   
 
 
-<meta property="og:title" content="Getting Started" />
+<meta property="og:title" content="Getting Started with GenomeSpy" />
 <meta property="og:type" content="article" />
 
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;getting-started&#x2f;" />
 
 
+
+  
+
+
+<meta name="description" content="GenomeSpy is a visualization toolkit for genomic data. More specifically, it is a JavaScript library that can be used to create interactive visualizations of genomic data in web browsers. To visualize data with GenomeSpy, you need to:" />
 <meta property="og:description" content="GenomeSpy is a visualization toolkit for genomic data. More specifically, it is a JavaScript library that can be used to create interactive visualizations of genomic data in web browsers. To visualize data with GenomeSpy, you need to:" />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
@@ -135,7 +143,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Getting Started
+              Getting Started with GenomeSpy
             
           </span>
         </div>
@@ -504,7 +512,7 @@
   <span class="md-ellipsis">
     
   
-  Visualization Grammar
+  Grammar
 
     
   </span>
@@ -525,7 +533,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Visualization Grammar
+  Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2563,6 +2571,8 @@
       
         
       
+        
+      
     
     
     
@@ -2617,6 +2627,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../api/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../api/embedding/" class="md-nav__link">
         
   
@@ -2624,7 +2661,7 @@
   <span class="md-ellipsis">
     
   
-  Embedding and Entry Points
+  Embedding
 
     
   </span>
@@ -3047,7 +3084,7 @@
   <span class="md-ellipsis">
     
   
-  HCC1954 Structural Variants and Copy Number
+  HCC1954 SV/CNV
 
     
   </span>
@@ -3101,7 +3138,7 @@
   <span class="md-ellipsis">
     
   
-  Sashimi Plot from Splice Junctions
+  Sashimi Plot
 
     
   </span>
@@ -3571,7 +3608,7 @@ current public API. For details, see the <a href="../api/">JavaScript API</a>.</
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.87.0/dist/bundle/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.88.0/dist/bundle/index.es.js&quot;</span><span class="p">;</span>
 
 <span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;spec.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{});</span>
 <span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -3586,7 +3623,7 @@ current public API. For details, see the <a href="../api/">JavaScript API</a>.</
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span>
-      <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.87.0&quot;</span>
+      <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.88.0&quot;</span>
     <span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -3606,7 +3643,7 @@ current public API. For details, see the <a href="../api/">JavaScript API</a>.</
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.87.0/dist/bundle/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core@0.88.0/dist/bundle/index.es.js&quot;</span><span class="p">;</span>
 
 <span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>

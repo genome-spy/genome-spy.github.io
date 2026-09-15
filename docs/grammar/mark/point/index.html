@@ -58,12 +58,15 @@
     
       <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../../stylesheets/api-reference.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
     
-     
+    
+
 <meta name="base_url" content="../../.." />
 
 
@@ -76,6 +79,11 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;mark&#x2f;point&#x2f;" />
 
 
+
+  
+
+
+<meta name="description" content="Point mark displays each row as a symbol. Points are often used to create a scatter plot. In the genomic context, they could represent, for example, point mutations at genomic loci." />
 <meta property="og:description" content="Point mark displays each row as a symbol. Points are often used to create a scatter plot. In the genomic context, they could represent, for example, point mutations at genomic loci." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
@@ -352,7 +360,7 @@
   <span class="md-ellipsis">
     
   
-  Visualization Grammar
+  Grammar
 
     
   </span>
@@ -373,7 +381,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Visualization Grammar
+  Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2549,6 +2557,8 @@
       
         
       
+        
+      
     
     
     
@@ -2603,6 +2613,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../api/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../api/embedding/" class="md-nav__link">
         
   
@@ -2610,7 +2647,7 @@
   <span class="md-ellipsis">
     
   
-  Embedding and Entry Points
+  Embedding
 
     
   </span>
@@ -3033,7 +3070,7 @@
   <span class="md-ellipsis">
     
   
-  HCC1954 Structural Variants and Copy Number
+  HCC1954 SV/CNV
 
     
   </span>
@@ -3087,7 +3124,7 @@
   <span class="md-ellipsis">
     
   
-  Sashimi Plot from Splice Junctions
+  Sashimi Plot
 
     
   </span>
@@ -3597,7 +3634,7 @@ they remain glyph offsets applied after text rotation.</p>
 <dd>Type: string | string[]<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones.</p>
 </dd>
 <dt><code>tooltip</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#handledtooltip">HandledTooltip</a> | null | boolean<p>Tooltip handler. If <code>null</code>, no tooltip is shown. If string, specifies the <a href="https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#handledtooltip">HandledTooltip</a> | null | boolean<p>Tooltip handler. If <code>false</code>, no tooltip is shown but the mark remains available for renderer picking and mark interactions. If <code>null</code>, no tooltip is shown and the mark is excluded from picking unless its view declares a point selection; a point selection overrides this picking opt-out. If string, specifies the <a href="https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
 </dd>
 <dt><code>x</code></dt>
 <dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Position on the x axis.</p>
@@ -3683,13 +3720,12 @@ adjust the point size and visibility based on the zoom level.</p>
 <h3 id="geometric-zoom">Geometric zoom<a class="headerlink" href="#geometric-zoom" title="Permanent link">&para;</a></h3>
 <p>Geometric zoom automatically changes the size of points as you zoom in or out.
 In the example below, the <code>size</code> property is set using an
-<a href="../../expressions/">expression</a> that references the <code>zoomLevel</code>
-<a href="../../parameters/">parameter</a>. The expression <code>min(0.5 * pow(zoomLevel, 1.5), 200)</code>
-means that as you zoom in, point size increases, but the growth rate is
-controlled by the exponent. This helps keep points visible and reduces overlap
-at higher zoom levels, while preventing them from becoming too large. You can
-adjust the expression to fine-tune how point size responds to zooming for your
-specific visualization.</p>
+<a href="../../expressions/">expression</a> that calls <code>zoomLevel()</code>. The expression
+<code>min(0.5 * pow(zoomLevel(), 1.5), 200)</code> means that as you zoom in, point size
+increases, but the growth rate is controlled by the exponent. This helps keep
+points visible and reduces overlap at higher zoom levels, while preventing them
+from becoming too large. Use <code>zoomLevel("x")</code> when only horizontal zoom should
+affect the size.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/mark/point/geometric-zoom.json">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -3710,7 +3746,7 @@ specific visualization.</p>
 
 <span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;min(0.5 * pow(zoomLevel, 1.5), 200)&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;min(0.5 * pow(zoomLevel(), 1.5), 200)&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>

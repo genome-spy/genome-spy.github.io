@@ -58,12 +58,15 @@
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../stylesheets/api-reference.css">
+    
     <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
     
-     
+    
+
 <meta name="base_url" content="../.." />
 
 
@@ -76,6 +79,11 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;expressions&#x2f;" />
 
 
+
+  
+
+
+<meta name="description" content="Expressions allow for defining predicates or computing new variables based on existing data. The expression language is based on JavaScript, but provides only a limited set of features, guaranteeing secure execution." />
 <meta property="og:description" content="Expressions allow for defining predicates or computing new variables based on existing data. The expression language is based on JavaScript, but provides only a limited set of features, guaranteeing secure execution." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
@@ -348,7 +356,7 @@
   <span class="md-ellipsis">
     
   
-  Visualization Grammar
+  Grammar
 
     
   </span>
@@ -369,7 +377,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Visualization Grammar
+  Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2609,6 +2617,8 @@
       
         
       
+        
+      
     
     
     
@@ -2663,6 +2673,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/embedding/" class="md-nav__link">
         
   
@@ -2670,7 +2707,7 @@
   <span class="md-ellipsis">
     
   
-  Embedding and Entry Points
+  Embedding
 
     
   </span>
@@ -3093,7 +3130,7 @@
   <span class="md-ellipsis">
     
   
-  HCC1954 Structural Variants and Copy Number
+  HCC1954 SV/CNV
 
     
   </span>
@@ -3147,7 +3184,7 @@
   <span class="md-ellipsis">
     
   
-  Sashimi Plot from Splice Junctions
+  Sashimi Plot
 
     
   </span>
@@ -3719,6 +3756,12 @@ the input and reverses by Unicode code point rather than UTF-16 code unit.</p>
 <h3 id="scale-functions">Scale Functions<a class="headerlink" href="#scale-functions" title="Permanent link">&para;</a></h3>
 <p>These helpers are analogous to Vega's scale helper functions, but GenomeSpy
 resolves scales by channel instead of by named scale.</p>
+<p>They are available in <code>formula</code> and <code>filter</code> transforms, in dynamic expression
+properties, and in scale <code>ExprRef</code> properties. They are reactive: when a
+referenced scale changes, dependent expressions update.</p>
+<p>When a helper is used in a scale <code>ExprRef</code>, it resolves from the view that owns
+the scale resolution. For a shared scale, declare the expression in
+<code>scales.&lt;channel&gt;</code> on the composed view that owns the resolution.</p>
 <p><a name="scale" href="#scale">#</a>
 <b>scale</b>(<i>channel</i>, <i>value</i>)<br/>
 Maps a value through the scale for the given channel, such as <code>"x"</code>, <code>"y"</code>,
@@ -3741,9 +3784,26 @@ resolved against the current view's scale resolution.</p>
 Returns the current bandwidth of a band-like scale for the given channel. The
 value uses the same units as the scale range. For positional scales, multiply
 the result by <code>width</code> or <code>height</code> to convert it to pixels.</p>
-<p>These helpers are available in <code>formula</code> and <code>filter</code> transforms, in dynamic
-expression properties, and in scale <code>ExprRef</code> properties. They are reactive:
-when the referenced scale changes, dependent expressions update.</p>
+<p><a name="zoomLevel" href="#zoomLevel">#</a>
+<b>zoomLevel</b>()<br/>
+Returns the geometric zoom level of the zoomable x and y scales that are
+resolvable from the expression scope. A missing or non-zoomable axis contributes
+<code>1</code>, so the result is <code>sqrt(xZoom * yZoom)</code> and is <code>1</code> when neither axis is
+zoomable. The function discovers the resolvable x and y scales when the
+expression is bound.</p>
+<p><a name="zoomLevel-channel" href="#zoomLevel-channel">#</a>
+<b>zoomLevel</b>(<i>channel</i>)<br/>
+Returns the zoom level of one scale, such as <code>zoomLevel("x")</code>. The channel must
+be a literal string. The value is the reference-domain span divided by the
+current displayed-domain span. A non-zoomable scale returns <code>1</code>.</p>
+<p>Compose separate calls when a formula needs multiple explicit scales. For
+example, <code>sqrt(zoomLevel("x") * zoomLevel("y"))</code> is the explicit equivalent of
+the automatic two-dimensional metric. Other formulas can use <code>min</code>, <code>max</code>, or
+ordinary arithmetic.</p>
+<p>A scale domain (including its initial domain), zoom extent, or zoom
+configuration cannot read that same scale's zoom level. Cross-scale dependency
+cycles are also rejected. A scale range may read its own zoom level because
+range changes do not determine magnification.</p>
 <h3 id="other-functions">Other functions<a class="headerlink" href="#other-functions" title="Permanent link">&para;</a></h3>
 <p><a name="mapHasKey" href="#mapHasKey">#</a>
 <b>mapHasKey</b>(<i>map</i>, <i>key</i>)<br/>

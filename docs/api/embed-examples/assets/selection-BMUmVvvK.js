@@ -1,0 +1,1 @@
+function e(e){return{type:`interval`,intervals:{...e}}}export{e as t};

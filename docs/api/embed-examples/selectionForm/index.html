@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Selection-driven form</title>
+      <script type="module" crossorigin src="/docs/api/embed-examples/assets/selectionForm/index-BmCPk8wJ.js"></script>
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/lit-BJ21N-0y.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/clipOptions-CkMJFTOl.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/rolldown-runtime-BpQH8Ho1.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/vega-scale-DLW1WN9K.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/indexer-CZfKGPxm.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/viewError-BeUp1kNb.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/warning-1IfqR_SW.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/viewSelectors-Diz-AU8V.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/viewIdentityRegistry-D5UVPLgg.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/rectangle-CwXHhFtx.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/rasterization-25yc2Doo.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/registerWebGL-mk-X5Shx.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/minimal-B_EdizBf.js">
+      <link rel="stylesheet" crossorigin href="/docs/api/embed-examples/assets/index-Baoi9WLQ.css">
+      <link rel="stylesheet" crossorigin href="/docs/api/embed-examples/assets/style-DTyM35VQ.css">
+    </head>
+
+    <body>
+        <a class="back-link" href="../">← All embedding examples</a>
+        <h1>Selection-driven annotation form</h1>
+        <p>
+            Hold Shift while dragging to brush a region, or click a point. A
+            committed brush enables the form; the optional marimo bridge
+            exchanges JSON-safe state with Python on
+            <code>http://127.0.0.1:8765</code>.
+        </p>
+        <p>
+            The page listens to the named interval and point selections, then
+            writes saved annotations back to the embed's named dataset. Add
+            <code>?bridge=1</code> to connect this page to the notebook example
+            while keeping the browser UI in control.
+        </p>
+
+        <div id="selection-plot" class="visualization-surface"></div>
+        <p id="selection-status" role="status"></p>
+
+        <form
+            id="selection-form"
+            class="form-surface"
+            aria-describedby="selection-summary"
+        >
+            <fieldset id="selection-fields" disabled>
+                <legend>New annotation</legend>
+                <label>
+                    Name
+                    <input name="name" required />
+                </label>
+                <label>
+                    Description
+                    <textarea name="description" rows="2"></textarea>
+                </label>
+                <button type="submit">Save annotation</button>
+            </fieldset>
+        </form>
+
+        <p id="selection-summary" role="status" aria-live="polite">
+            Brush a region to enable the annotation form.
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Region</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody id="selection-rows"></tbody>
+        </table>
+
+    </body>
+</html>

@@ -1,0 +1,1 @@
+import{t as e}from"./svgRasterizer-B-Vcs6Ue.js";export{e as createCanvas2DSvgRasterizer};

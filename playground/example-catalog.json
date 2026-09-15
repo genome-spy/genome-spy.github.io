@@ -2678,6 +2678,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "core/selection/selection_union",
+    "title": "Point and interval selection union",
+    "description": "Point and interval selection union",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Selection",
+    "specPath": "examples/core/selection/selection_union.json",
+    "specUrl": "/docs/example-specs/core/selection/selection_union.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "core/selection/interval_ranged",
     "title": "Select elements when they intersect with the brush",
     "description": "Select elements when they intersect with the brush",

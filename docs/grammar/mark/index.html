@@ -58,12 +58,15 @@
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../stylesheets/api-reference.css">
+    
     <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
     
-     
+    
+
 <meta name="base_url" content="../.." />
 
 
@@ -76,6 +79,11 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;mark&#x2f;" />
 
 
+
+  
+
+
+<meta name="description" content="In GenomeSpy, visualizations are built from marks, which are geometric shapes, such as points, ticks, arrows, rectangles, and lines, that represent data records, or rows in a tabular dataset. These marks are mapped to the data using the encoding property, which specifies which visual channels, such as x, color, and size, should be used to encode the data fields. By adjusting the encodings, you can present the same data in a wide range of visual forms, such as scatterplots, bar charts, and heatmaps." />
 <meta property="og:description" content="In GenomeSpy, visualizations are built from marks, which are geometric shapes, such as points, ticks, arrows, rectangles, and lines, that represent data records, or rows in a tabular dataset. These marks are mapped to the data using the encoding property, which specifies which visual channels, such as x, color, and size, should be used to encode the data fields. By adjusting the encodings, you can present the same data in a wide range of visual forms, such as scatterplots, bar charts, and heatmaps." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
@@ -348,7 +356,7 @@
   <span class="md-ellipsis">
     
   
-  Visualization Grammar
+  Grammar
 
     
   </span>
@@ -369,7 +377,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Visualization Grammar
+  Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2409,6 +2417,8 @@
       
         
       
+        
+      
     
     
     
@@ -2463,6 +2473,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/embedding/" class="md-nav__link">
         
   
@@ -2470,7 +2507,7 @@
   <span class="md-ellipsis">
     
   
-  Embedding and Entry Points
+  Embedding
 
     
   </span>
@@ -2893,7 +2930,7 @@
   <span class="md-ellipsis">
     
   
-  HCC1954 Structural Variants and Copy Number
+  HCC1954 SV/CNV
 
     
   </span>
@@ -2947,7 +2984,7 @@
   <span class="md-ellipsis">
     
   
-  Sashimi Plot from Splice Junctions
+  Sashimi Plot
 
     
   </span>
@@ -3624,6 +3661,33 @@ tooltip handler.</dd>
 <span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mapq&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mapping quality&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum.mapq &gt;= 20 ? &#39;pass&#39; : &#39;low&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Status&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<dl>
+<dt><code>order</code></dt>
+<dd>Keeps selected instances visible above unselected ones. In a dense plot,
+highlighting a point or arc with a different color is not enough if other
+instances cover it. Give selected instances a higher order level to draw
+them last, bringing the highlighted instances to the foreground.
+The condition's <code>value</code> and the fallback <code>value</code> define two finite numeric
+levels; lower levels draw first. Use one selection parameter or a selection
+union in the condition. Relative order within each level is preserved.
+Equal levels and constant definitions have no ordering effect. When all
+referenced selections are empty, instances retain their original order.
+Ordering applies within one mark occurrence, and picking keeps the original
+order.</dd>
+</dl>
+<div class="highlight"><span class="filename">Draw selected points above unselected points</span><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;picked&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="w"> </span><span class="p">}],</span>
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;picked&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>

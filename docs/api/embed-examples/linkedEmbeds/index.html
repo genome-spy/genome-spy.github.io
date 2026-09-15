@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Linked GenomeSpy Embeds</title>
+    <style>
+        .linked-embeds h2 {
+            font-size: 1em;
+        }
+    </style>
+  <script type="module" crossorigin src="/docs/api/embed-examples/assets/linkedEmbeds/index-x3ZTuXXb.js"></script>
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/lit-BJ21N-0y.js">
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/clipOptions-CkMJFTOl.js">
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/rolldown-runtime-BpQH8Ho1.js">
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/vega-scale-DLW1WN9K.js">
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/indexer-CZfKGPxm.js">
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/viewError-BeUp1kNb.js">
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/warning-1IfqR_SW.js">
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/viewSelectors-Diz-AU8V.js">
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/viewIdentityRegistry-D5UVPLgg.js">
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/rectangle-CwXHhFtx.js">
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/rasterization-25yc2Doo.js">
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/registerWebGL-mk-X5Shx.js">
+  <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/minimal-B_EdizBf.js">
+  <link rel="stylesheet" crossorigin href="/docs/api/embed-examples/assets/style-DTyM35VQ.css">
+</head>
+
+<body>
+    <a class="back-link" href="../">← All embedding examples</a>
+    <h1>Linked GenomeSpy Embeds</h1>
+
+    <p>
+        The GenomeSpy instances below use separate embeds. A <code>LinkingManager</code>
+        registers each embed and synchronizes their named scale through the
+        ScaleResolution API.
+    </p>
+
+    <div class="linked-embeds">
+        <section>
+            <h2>Embed A</h2>
+            <div id="container-a" class="visualization-surface"></div>
+        </section>
+        <section>
+            <h2>Embed B</h2>
+            <div id="container-b" class="visualization-surface"></div>
+        </section>
+    </div>
+
+    <div id="dashboard"></div>
+
+</body>
+
+</html>

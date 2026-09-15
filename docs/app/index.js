@@ -1,5 +1,5 @@
-import { Y as e, _t as t, dt as n, ft as r, ht as i, t as a } from "./src-hIU2Ymrg.js";
-import { n as o, t as s } from "./ref-BPRroXKV.js";
+import { J as e, dt as t, gt as n, mt as r, t as i, ut as a } from "./src-CtxI0Jvc.js";
+import { n as o, t as s } from "./ref-Cz5268Ay.js";
 //#region index.js
 function c() {
 	let e = document.querySelector("meta[name='base_url']").getAttribute("content");
@@ -8,13 +8,13 @@ function c() {
 function l(e) {
 	return /^(?:[a-z]+:|\/)/i.test(e) ? e : c() + "/" + e;
 }
-async function u(e, t, n, r, i) {
+async function u(e, t, n, r, a) {
 	let o = l("example-specs/");
 	try {
-		if (t.baseUrl = t.baseUrl || (n ? l(n) : o), r === "core") return await a(e, t);
+		if (t.baseUrl = t.baseUrl || (n ? l(n) : o), r === "core") return await i(e, t);
 		if (r === "app") {
-			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-B_4aRxmp.js");
-			return await i(n), await r(e, t, { embedMode: "embedded" });
+			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-CQhd5xD0.js");
+			return await a(n), await r(e, t, { embedMode: "embedded" });
 		} else throw Error(`Unknown GenomeSpy embed runtime: ${r}`);
 	} catch (t) {
 		let n = document.createElement("pre");
@@ -28,9 +28,9 @@ function f(e) {
 		t.id = d, t.textContent = e, document.head.appendChild(t);
 	}
 }
-var p = class extends n {
+var p = class extends a {
 	static get styles() {
-		return t`
+		return n`
             .embed-links {
                 margin: 0.3em 0 0.6em;
                 text-align: center;
@@ -72,19 +72,19 @@ var p = class extends n {
 		super(), this.height = 300, this.specHidden = !1, this.baseUrl = void 0, this.playgroundUrl = void 0, this.runtime = "core", this.embedRef = s(), this.appStyles = "", this.embedResult = void 0, this.observer = void 0, this.disconnected = !1, this.#e = !1;
 	}
 	render() {
-		let t = this.specHidden || this.#e, n = this.playgroundUrl || t, a = this.specHidden ? "Show specification" : "Hide specification";
-		return i`
-            ${this.appStyles ? i`<style>
+		let n = this.specHidden || this.#e, i = this.playgroundUrl || n, a = this.specHidden ? "Show specification" : "Hide specification";
+		return r`
+            ${this.appStyles ? r`<style>
                           ${this.appStyles}
-                      </style>` : r}
+                      </style>` : t}
             <div
                 class="embed-container"
                 style=${e({ height: this.height + "px" })}
                 ${o(this.embedRef)}
             ></div>
-            ${n ? i`
+            ${i ? r`
                           <div class="embed-links">
-                              ${t ? i`
+                              ${n ? r`
                                         <a
                                             href="#"
                                             @click=${(e) => {
@@ -92,15 +92,15 @@ var p = class extends n {
 		}}
                                             >${a}</a
                                         >
-                                    ` : r}
-                              ${this.playgroundUrl && t ? i` - ` : r}
-                              ${this.playgroundUrl ? i`
+                                    ` : t}
+                              ${this.playgroundUrl && n ? r` - ` : t}
+                              ${this.playgroundUrl ? r`
                                         <a href=${this.playgroundUrl}
                                             >Edit this example in Playground</a
                                         >
-                                    ` : r}
+                                    ` : t}
                           </div>
-                      ` : r}
+                      ` : t}
 
             <div
                 class="embed-spec"

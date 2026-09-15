@@ -1,0 +1,1 @@
+function e(e){let t=+e.toFixed(1);return Object.is(t,-0)?0:t}function t(e){let t=+e.toFixed(3);return Object.is(t,-0)?0:t}export{t as n,e as t};

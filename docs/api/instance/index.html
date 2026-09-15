@@ -58,12 +58,15 @@
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../stylesheets/api-reference.css">
+    
     <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
     
-     
+    
+
 <meta name="base_url" content="../.." />
 
 
@@ -76,6 +79,11 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;api&#x2f;instance&#x2f;" />
 
 
+
+  
+
+
+<meta name="description" content="The object returned by embed controls the lifetime of the embedded GenomeSpy instance and exposes a few instance-level utilities." />
 <meta property="og:description" content="The object returned by embed controls the lifetime of the embedded GenomeSpy instance and exposes a few instance-level utilities." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
@@ -346,7 +354,7 @@
   <span class="md-ellipsis">
     
   
-  Visualization Grammar
+  Grammar
 
     
   </span>
@@ -367,7 +375,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Visualization Grammar
+  Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2407,6 +2415,8 @@
       
         
       
+        
+      
     
     
     
@@ -2461,6 +2471,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../embedding/" class="md-nav__link">
         
   
@@ -2468,7 +2505,7 @@
   <span class="md-ellipsis">
     
   
-  Embedding and Entry Points
+  Embedding
 
     
   </span>
@@ -3021,7 +3058,7 @@
   <span class="md-ellipsis">
     
   
-  HCC1954 Structural Variants and Copy Number
+  HCC1954 SV/CNV
 
     
   </span>
@@ -3075,7 +3112,7 @@
   <span class="md-ellipsis">
     
   
-  Sashimi Plot from Splice Junctions
+  Sashimi Plot
 
     
   </span>
@@ -3469,14 +3506,31 @@ created DOM content from the embed container.</p>
 <span class="nx">api</span><span class="p">.</span><span class="nx">finalize</span><span class="p">();</span>
 </code></pre></div>
 <h2 id="interaction-events">Interaction events<a class="headerlink" href="#interaction-events" title="Permanent link">&para;</a></h2>
+<p>An embed exposes native canvas input through <code>events.subscribe()</code>. The listener
+runs synchronously before Core's default action and receives canvas CSS-pixel
+coordinates. Call <code>preventViewDefault()</code> during the callback to veto that
+action; browser cancellation still belongs to <code>sourceEvent</code>. Call
+<code>sourceEvent.preventDefault()</code> before any asynchronous work.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">stopContextMenu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s2">&quot;contextmenu&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">brush</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">point</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">event</span><span class="p">.</span><span class="nx">sourceEvent</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventViewDefault</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>The supported native event names are <code>click</code>, <code>dblclick</code>, <code>contextmenu</code>,
+<code>mousedown</code>, <code>mouseup</code>, <code>mousemove</code>, <code>mouseenter</code>, <code>mouseleave</code>, and <code>wheel</code>.
+Unsubscribe when the host no longer needs the listener. Mark-scoped activation,
+hover, and explicit picking are available on <code>ViewHandle.marks</code>; see
+<a href=".././views/#marks-and-scoped-interaction">View hierarchy</a>.</p>
 <p><code>addEventListener()</code> and <code>removeEventListener()</code> attach listeners for
 interaction events emitted by GenomeSpy. Currently, only <code>"click"</code> events are
 supported. The event object includes <code>datum</code>, the underlying datum for the
 clicked mark instance.</p>
 <div class="admonition warning">
-<p class="admonition-title">Legacy API</p>
-<p>The instance-level interaction event API is legacy and will be removed in a
-future version. Avoid using it in new code.</p>
+<p class="admonition-title">Deprecated API</p>
+<p>The instance-level interaction event API is deprecated and will be removed
+in a future version. Use <code>api.events.subscribe()</code> or <code>ViewHandle.marks</code>.</p>
 </div>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">listener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">datum</span><span class="p">);</span>

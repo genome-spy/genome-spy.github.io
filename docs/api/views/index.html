@@ -58,12 +58,15 @@
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../stylesheets/api-reference.css">
+    
     <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
     
-     
+    
+
 <meta name="base_url" content="../.." />
 
 
@@ -76,6 +79,11 @@
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;api&#x2f;views&#x2f;" />
 
 
+
+  
+
+
+<meta name="description" content="The views API exposes the live layout hierarchy of an embedded GenomeSpy instance. It can inspect views, read rendered bounds for external UI, and mutate children of supported container views." />
 <meta property="og:description" content="The views API exposes the live layout hierarchy of an embedded GenomeSpy instance. It can inspect views, read rendered bounds for external UI, and mutate children of supported container views." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
@@ -346,7 +354,7 @@
   <span class="md-ellipsis">
     
   
-  Visualization Grammar
+  Grammar
 
     
   </span>
@@ -367,7 +375,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Visualization Grammar
+  Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2407,6 +2415,8 @@
       
         
       
+        
+      
     
     
     
@@ -2461,6 +2471,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../embedding/" class="md-nav__link">
         
   
@@ -2468,7 +2505,7 @@
   <span class="md-ellipsis">
     
   
-  Embedding and Entry Points
+  Embedding
 
     
   </span>
@@ -2573,6 +2610,28 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         Inspecting the hierarchy
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#marks-and-scoped-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Marks and scoped interaction
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters-and-selections" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Parameters and selections
       </span>
     </span>
   </a>
@@ -3054,7 +3113,7 @@
   <span class="md-ellipsis">
     
   
-  HCC1954 Structural Variants and Copy Number
+  HCC1954 SV/CNV
 
     
   </span>
@@ -3108,7 +3167,7 @@
   <span class="md-ellipsis">
     
   
-  Sashimi Plot from Splice Junctions
+  Sashimi Plot
 
     
   </span>
@@ -3417,6 +3476,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#marks-and-scoped-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Marks and scoped interaction
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters-and-selections" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Parameters and selections
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#updating-named-data" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3591,22 +3672,67 @@ need to be unambiguous within the selected scope.</p>
 <span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tracks</span><span class="p">.</span><span class="nx">children</span><span class="p">().</span><span class="nx">length</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="updating-named-data">Updating named data<a class="headerlink" href="#updating-named-data" title="Permanent link">&para;</a></h2>
-<p>Use <code>api.datasets</code> for declarations in the top-level input specification. For a
-declaration in a nested or imported view, resolve the exact declaring view:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">owner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">views</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span>
-<span class="w">  </span><span class="nx">scope</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;translationA&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nx">view</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;translationA&quot;</span><span class="p">,</span>
+<h2 id="marks-and-scoped-interaction">Marks and scoped interaction<a class="headerlink" href="#marks-and-scoped-interaction" title="Permanent link">&para;</a></h2>
+<p>Each handle exposes <code>marks</code> for interaction with marks in that view's subtree.
+Mark events pick the event coordinates before invoking the listener. GPU-backed
+readback can make delivery asynchronous, and the callback is skipped if the
+scene or owning view/embed is invalidated before the pick completes. See
+<a href=".././instance/#interaction-events">Interaction events</a> for native canvas input
+and browser default cancellation.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">track</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">views</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span><span class="w"> </span><span class="nx">scope</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="nx">view</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;track&quot;</span><span class="w"> </span><span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">stopHover</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">track</span><span class="p">.</span><span class="nx">marks</span><span class="p">.</span><span class="nx">observeHover</span><span class="p">((</span><span class="nx">hit</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">inspector</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">hit</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">hit</span><span class="p">.</span><span class="nx">datum</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;No mark&quot;</span><span class="p">;</span>
 <span class="p">});</span>
 
-<span class="nx">owner</span><span class="p">.</span><span class="nx">datasets</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;geneticCode&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">rows</span><span class="p">);</span>
-<span class="nx">owner</span><span class="p">.</span><span class="nx">datasets</span><span class="p">.</span><span class="nx">reset</span><span class="p">(</span><span class="s2">&quot;geneticCode&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">stopClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">track</span><span class="p">.</span><span class="nx">marks</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">hit</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">inspect</span><span class="p">(</span><span class="nx">hit</span><span class="p">.</span><span class="nx">view</span><span class="p">,</span><span class="w"> </span><span class="nx">hit</span><span class="p">.</span><span class="nx">datum</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">api</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s2">&quot;contextmenu&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">event</span><span class="p">.</span><span class="nx">sourceEvent</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventViewDefault</span><span class="p">();</span>
+<span class="w">  </span><span class="ow">void</span><span class="w"> </span><span class="nx">openContextMenu</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">sourceEvent</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">.</span><span class="nx">point</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">openContextMenu</span><span class="p">(</span><span class="nx">sourceEvent</span><span class="p">,</span><span class="w"> </span><span class="nx">point</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">track</span><span class="p">.</span><span class="nx">marks</span><span class="p">.</span><span class="nx">pick</span><span class="p">(</span><span class="nx">point</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s2">&quot;hit&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">inspect</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">hit</span><span class="p">.</span><span class="nx">view</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">hit</span><span class="p">.</span><span class="nx">datum</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">showMenuAt</span><span class="p">(</span><span class="nx">sourceEvent</span><span class="p">.</span><span class="nx">clientX</span><span class="p">,</span><span class="w"> </span><span class="nx">sourceEvent</span><span class="p">.</span><span class="nx">clientY</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>Descendants can reference the declaration, but updates do not search ancestors.
-Use the declaring view's handle so that repeated imports and nested subtrees
-remain independent.</p>
-<p>See <a href="../runtime-state/#named-data">Runtime State</a> for declarations, initial data,
-and migration from the deprecated global APIs.</p>
+<p><code>pick()</code> returns <code>hit</code>, <code>empty</code>, or <code>invalidated</code>. A query is invalidated when
+the scene changes or the embed is finalized while it is pending. <code>MarkHit.view</code>
+identifies the unit view that owns the mark, <code>uniqueId</code> identifies the mark in
+the rendered scene, and <code>datum</code> is a detached shallow copy without the internal
+ID. Nested datum values are not deep-cloned.</p>
+<h2 id="parameters-and-selections">Parameters and selections<a class="headerlink" href="#parameters-and-selections" title="Permanent link">&para;</a></h2>
+<p><code>api.params</code> starts at the authored top-level specification, while
+<code>view.params</code> starts at that view's lexical scope. Both expose the nearest
+declaration and distinguish a child selection that writes to an outer value
+from the outer declaration itself.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">brush</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">track</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">(</span><span class="s2">&quot;brush&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">stopBrush</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">brush</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">snapshot</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">updateForm</span><span class="p">(</span><span class="nx">snapshot</span><span class="p">),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">delivery</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;commit&quot;</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">brush</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;interval&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">brush</span><span class="p">.</span><span class="nx">contains</span><span class="p">({</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">120</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="mf">80</span><span class="w"> </span><span class="p">}))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">brush</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>See <a href="../runtime-state/#parameters">Parameters</a> for selection snapshot shape,
+subscription delivery, and clearing behavior.</p>
+<p>For a runnable browser form and notebook bridge, see the <code>annotationEditor</code> and
+<code>selectionForm</code> pages in the <a href="https://github.com/genome-spy/genome-spy/tree/master/packages/embed-examples">embed examples</a>.</p>
+<h2 id="updating-named-data">Updating named data<a class="headerlink" href="#updating-named-data" title="Permanent link">&para;</a></h2>
+<p>Use <code>api.datasets</code> for declarations in the top-level specification and
+<code>ViewHandle.datasets</code> for declarations owned by nested views. The exact-owner
+rule means updates do not search ancestors or descendants. See
+<a href="../runtime-state/#named-data">Runtime State</a> for declarations, loading, reset,
+initial data, and migration from the deprecated global APIs.</p>
 <h2 id="reading-layout-bounds">Reading layout bounds<a class="headerlink" href="#reading-layout-bounds" title="Permanent link">&para;</a></h2>
 <p><code>getLayoutBounds()</code> returns the rendered bounds of a view for positioning
 external UI. Bounds are reported in CSS pixels in the embedded GenomeSpy canvas
@@ -3688,7 +3814,7 @@ outer transaction finishes:</p>
 <span class="p">});</span>
 </code></pre></div>
 <p>The
-<a href="https://github.com/genome-spy/genome-spy/blob/master/packages/embed-examples/src/viewMutationApi.js">view mutation example</a>
+<a href="https://github.com/genome-spy/genome-spy/blob/master/packages/embed-examples/src/viewMutationApi/index.js">view mutation example</a>
 demonstrates adding, removing, reordering, and positioning external controls
 next to live views.</p>
 

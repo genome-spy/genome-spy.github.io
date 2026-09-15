@@ -25,7 +25,7 @@
     
     
       
-        <title>Scale - GenomeSpy Docs</title>
+        <title>Scales for Genomic Data Visualization - GenomeSpy Docs</title>
       
     
     
@@ -58,24 +58,32 @@
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../stylesheets/api-reference.css">
+    
     <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
     
-     
+    
+
 <meta name="base_url" content="../.." />
 
 
   
 
 
-<meta property="og:title" content="Scale" />
+<meta property="og:title" content="Scales for Genomic Data Visualization" />
 <meta property="og:type" content="article" />
 
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;grammar&#x2f;scale&#x2f;" />
 
 
+
+  
+
+
+<meta name="description" content="Scales are functions that map abstract data values (e.g., a type of a point mutation) to visual values (e.g., colors that indicate the type)." />
 <meta property="og:description" content="Scales are functions that map abstract data values (e.g., a type of a point mutation) to visual values (e.g., colors that indicate the type)." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
@@ -104,7 +112,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#scale" class="md-skip">
+        <a href="#scales" class="md-skip">
           Skip to content
         </a>
       
@@ -139,7 +147,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Scale
+              Scales for Genomic Data Visualization
             
           </span>
         </div>
@@ -352,7 +360,7 @@
   <span class="md-ellipsis">
     
   
-  Visualization Grammar
+  Grammar
 
     
   </span>
@@ -373,7 +381,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Visualization Grammar
+  Grammar
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -2747,6 +2755,8 @@
       
         
       
+        
+      
     
     
     
@@ -2801,6 +2811,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API Reference
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/embedding/" class="md-nav__link">
         
   
@@ -2808,7 +2845,7 @@
   <span class="md-ellipsis">
     
   
-  Embedding and Entry Points
+  Embedding
 
     
   </span>
@@ -3231,7 +3268,7 @@
   <span class="md-ellipsis">
     
   
-  HCC1954 Structural Variants and Copy Number
+  HCC1954 SV/CNV
 
     
   </span>
@@ -3285,7 +3322,7 @@
   <span class="md-ellipsis">
     
   
-  Sashimi Plot from Splice Junctions
+  Sashimi Plot
 
     
   </span>
@@ -3872,7 +3909,7 @@
   
 
 
-<h1 id="scale">Scale<a class="headerlink" href="#scale" title="Permanent link">&para;</a></h1>
+<h1 id="scales">Scales<a class="headerlink" href="#scales" title="Permanent link">&para;</a></h1>
 <p>Scales are
 <a href="https://observablehq.com/@mkfreeman/animated-scale-diagram">functions</a> that map
 abstract data values (e.g., a type of a point mutation) to visual values (e.g.,
@@ -4283,7 +4320,7 @@ viewport-derived.</p>
 
 <span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;min(0.5 * pow(zoomLevel, 1.5), 200)&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;min(0.5 * pow(zoomLevel(), 1.5), 200)&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -4323,7 +4360,7 @@ the <code>zoom</code> scale property to <code>true</code>. Example:</p>
 <dt><code>extent</code></dt>
 <dd>Type: <a href="https://genomespy.app/docs/grammar/types/#numericdomain">NumericDomain</a> | string[] | boolean[] | <a href="https://genomespy.app/docs/grammar/types/#complexdomain">ComplexDomain</a> | <code>"data"</code> | <code>"unbounded"</code><p>The boundaries that limit zoom and pan interactions.</p>
 <p>A domain array sets explicit boundaries. <code>"data"</code> derives the boundaries from the data that contributes to the scale domain. For index and quantitative scales, <code>"unbounded"</code> allows zooming and panning without fixed boundaries. Locus scales do not support unbounded zoom.</p>
-<p>With an unbounded extent, the initial scale domain is used as the reference for the <code>zoomLevel</code> expression parameter.</p>
+<p>With an unbounded extent, the initial scale domain is used as the reference for the <code>zoomLevel()</code> expression helper and its channel-specific form, such as <code>zoomLevel("x")</code>.</p>
 <p><strong>Default value:</strong> The initial scale domain, except the whole genome for locus scales.</p>
 </dd>
 </dl>

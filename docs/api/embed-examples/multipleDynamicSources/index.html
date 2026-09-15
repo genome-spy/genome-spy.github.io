@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Multiple Dynamic Sources</title>
+      <script type="module" crossorigin src="/docs/api/embed-examples/assets/multipleDynamicSources/index-DioTLf2c.js"></script>
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/lit-BJ21N-0y.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/clipOptions-CkMJFTOl.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/rolldown-runtime-BpQH8Ho1.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/vega-scale-DLW1WN9K.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/indexer-CZfKGPxm.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/viewError-BeUp1kNb.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/warning-1IfqR_SW.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/viewSelectors-Diz-AU8V.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/viewIdentityRegistry-D5UVPLgg.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/rectangle-CwXHhFtx.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/rasterization-25yc2Doo.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/registerWebGL-mk-X5Shx.js">
+      <link rel="modulepreload" crossorigin href="/docs/api/embed-examples/assets/minimal-B_EdizBf.js">
+      <link rel="stylesheet" crossorigin href="/docs/api/embed-examples/assets/style-DTyM35VQ.css">
+    </head>
+
+    <body>
+        <a class="back-link" href="../">← All embedding examples</a>
+        <h1>Multiple Dynamic Sources</h1>
+
+        <p>
+            The visualization layers multiple sources that share the scale
+            domain.
+        </p>
+
+        <div id="container" class="visualization-surface"></div>
+
+        <div>
+            <label for="slider-point">a</label>
+            <input
+                type="range"
+                id="slider-point"
+                name="point"
+                min="-100"
+                max="100"
+                value="50"
+                step="1"
+            />
+        </div>
+        <div>
+            <label for="slider-rect">b</label>
+            <input
+                type="range"
+                id="slider-rect"
+                name="rect"
+                min="-100"
+                max="100"
+                value="75"
+                step="1"
+            />
+        </div>
+        <div>
+            <label for="slider-rule">c</label>
+            <input
+                type="range"
+                id="slider-rule"
+                name="rule"
+                min="-100"
+                max="100"
+                value="100"
+                step="1"
+            />
+        </div>
+
+    </body>
+</html>
