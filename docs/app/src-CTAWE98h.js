@@ -2939,7 +2939,7 @@ Ho(rl, nl), ir.canvasBackend = async (e) => {
 	let { createCanvas2DRenderingBackend: t } = await import("./canvas2d-B7vBFh84.js");
 	return t(e);
 }, ir.canvasRasterExport = () => import("./rasterExport-BqJdWrpR.js"), ir.canvasSvgRasterizer = () => import("./svgRasterizer-B65WR7Vh.js"), ir.svgRenderer = () => import("./svg-CyrLfa9e.js"), ir.webglBackend = async (e) => {
-	let { createWebGLRenderingBackend: t } = await import("./webgl-Dfde8RVk.js");
+	let { createWebGLRenderingBackend: t } = await import("./webgl-oT19aTxp.js");
 	return t(e);
 };
 //#endregion

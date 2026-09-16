@@ -1,13 +1,13 @@
 import { n as e, t } from "./rolldown-runtime-DF993M8W.js";
-import { $ as n, A as r, B as i, C as a, D as o, E as s, H as c, J as l, K as u, L as d, N as f, O as p, P as m, Q as h, R as g, S as _, T as v, U as y, V as b, W as x, X as S, Y as C, Z as w, _ as T, _t as E, a as D, b as O, c as k, ct as A, d as ee, dt as j, f as M, ft as N, g as P, gt as F, h as te, i as ne, it as re, j as ie, k as ae, l as oe, lt as se, m as ce, mt as I, n as le, o as ue, ot as de, p as fe, pt as pe, q as me, r as he, s as ge, st as _e, u as ve, ut as L, v as ye, w as be, x as xe, y as Se, z as Ce } from "./src-CtxI0Jvc.js";
+import { $ as n, A as r, B as i, C as a, D as o, E as s, H as c, J as l, K as u, L as d, N as f, O as p, P as m, Q as h, R as g, S as _, T as v, U as y, V as b, W as x, X as S, Y as C, Z as w, _ as T, _t as E, a as D, b as O, c as k, ct as A, d as ee, dt as j, f as M, ft as N, g as P, gt as F, h as te, i as ne, it as re, j as ie, k as ae, l as oe, lt as se, m as ce, mt as I, n as le, o as ue, ot as de, p as fe, pt as pe, q as me, r as he, s as ge, st as _e, u as ve, ut as L, v as ye, w as be, x as xe, y as Se, z as Ce } from "./src-CTAWE98h.js";
 import { B as we, C as Te, Ft as Ee, G as De, H as Oe, I as ke, K as Ae, L as je, M as Me, P as Ne, R as Pe, S as Fe, cn as Ie, et as Le, fn as Re, gn as ze, i as Be, j as Ve, jt as He, k as Ue, o as We, pt as Ge, tt as Ke, un as qe, y as Je, yt as Ye, z as Xe } from "./clipOptions-BWHr3aTa.js";
 import { D as Ze, T as Qe, b as $e, et, nt as tt, ot as nt, v as rt, y as it } from "./vega-scale-CypF85iS.js";
 import { h as at } from "./indexer-DAH_ruVn.js";
 import { A as ot, E as st, G as ct, I as lt, O as ut, T as dt, W as ft, a as pt, c as mt, f as ht, h as gt, i as _t, m as vt, n as yt, p as bt, r as xt, s as St, t as Ct, v as wt, w as Tt } from "./viewSelectors-DNiDip5e.js";
 import { n as Et, r as Dt } from "./viewIdentityRegistry-Dl-vMN9I.js";
 import { t as Ot } from "./rectangle-DKnrAmKs.js";
-import { a as kt, c as At, i as jt, l as Mt, n as Nt, o as Pt, r as Ft, s as It, t as Lt, u as Rt } from "./ref-Cz5268Ay.js";
-import { $ as zt, A as Bt, B as Vt, C as Ht, D as Ut, E as Wt, F as Gt, G as Kt, H as qt, I as Jt, J as Yt, K as Xt, L as Zt, M as Qt, N as $t, O as en, P as tn, Q as nn, R as rn, S as an, T as on, U as sn, V as cn, W as ln, X as un, Y as dn, Z as fn, _ as pn, _t as mn, a as hn, at as gn, b as _n, bt as vn, c as yn, ct as bn, d as xn, dt as Sn, et as Cn, f as wn, ft as Tn, g as En, gt as Dn, h as On, ht as kn, i as An, it as jn, j as Mn, k as Nn, l as Pn, lt as Fn, m as In, mt as Ln, n as Rn, nt as zn, o as Bn, ot as Vn, p as Hn, pt as Un, q as Wn, r as Gn, rt as Kn, s as qn, st as Jn, tt as Yn, u as Xn, ut as Zn, v as Qn, vt as $n, w as er, x as tr, xt as nr, y as rr, yt as ir, z as ar } from "./agentApi-B36V-T_7.js";
+import { a as kt, c as At, i as jt, l as Mt, n as Nt, o as Pt, r as Ft, s as It, t as Lt, u as Rt } from "./ref-DHPMFrBq.js";
+import { $ as zt, A as Bt, B as Vt, C as Ht, D as Ut, E as Wt, F as Gt, G as Kt, H as qt, I as Jt, J as Yt, K as Xt, L as Zt, M as Qt, N as $t, O as en, P as tn, Q as nn, R as rn, S as an, T as on, U as sn, V as cn, W as ln, X as un, Y as dn, Z as fn, _ as pn, _t as mn, a as hn, at as gn, b as _n, bt as vn, c as yn, ct as bn, d as xn, dt as Sn, et as Cn, f as wn, ft as Tn, g as En, gt as Dn, h as On, ht as kn, i as An, it as jn, j as Mn, k as Nn, l as Pn, lt as Fn, m as In, mt as Ln, n as Rn, nt as zn, o as Bn, ot as Vn, p as Hn, pt as Un, q as Wn, r as Gn, rt as Kn, s as qn, st as Jn, tt as Yn, u as Xn, ut as Zn, v as Qn, vt as $n, w as er, x as tr, xt as nr, y as rr, yt as ir, z as ar } from "./agentApi-B4pzZ1bn.js";
 import { r as or, t as sr } from "./performanceProfiler-CPLEjApa.js";
 //#region ../../node_modules/d3-array/src/array.js
 var cr = Array.prototype, lr = cr.slice;
@@ -12941,7 +12941,7 @@ var __ = {
 	contributors: [],
 	license: "MIT",
 	homepage: "https://genomespy.app/",
-	version: "0.88.0",
+	version: "0.88.1",
 	main: "dist/index.js",
 	module: "dist/index.es.js",
 	type: "module",
@@ -13001,7 +13001,7 @@ var __ = {
 		"@fortawesome/fontawesome-free": "^6.4.2",
 		"@fortawesome/fontawesome-svg-core": "^6.4.2",
 		"@fortawesome/free-solid-svg-icons": "^6.4.2",
-		"@genome-spy/core": "^0.88.0",
+		"@genome-spy/core": "^0.88.1",
 		"@reduxjs/toolkit": "^2.11.0",
 		"d3-color": "^3.1.0",
 		idb: "^7.1.1",
@@ -13014,8 +13014,8 @@ var __ = {
 		zarrita: "^0.6.1"
 	},
 	devDependencies: {
-		"@genome-spy/app-agent": "^0.88.0",
-		"@genome-spy/inspector": "^0.88.0"
+		"@genome-spy/app-agent": "^0.88.1",
+		"@genome-spy/inspector": "^0.88.1"
 	}
 };
 //#endregion
@@ -20050,7 +20050,7 @@ var KS = class {
 		}, this.genomeSpy.viewFactory.addViewType(Cm, ((e, t, n, r, i) => new jg(e, t, n, r, i, this.provenance, this.intentExecutor, ax(this)))), this.#o();
 	}
 	getAgentApi() {
-		return this.#e ||= import("./agentApi-B36V-T_7.js").then((e) => e.t).then((e) => e.createAgentApi(this)), this.#e;
+		return this.#e ||= import("./agentApi-B4pzZ1bn.js").then((e) => e.t).then((e) => e.createAgentApi(this)), this.#e;
 	}
 	async getDebugModules() {
 		return import("./debug-DYAMZZKl.js");

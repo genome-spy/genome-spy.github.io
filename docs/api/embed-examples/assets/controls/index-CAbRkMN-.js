@@ -1,4 +1,4 @@
-/* empty css               */import"../registerWebGL-mk-X5Shx.js";import{t as e}from"../minimal-B_EdizBf.js";import{n as t,t as n}from"../src-DhuivFd9.js";import"../registerSvg-CbfmPnr1.js";var r=`
+/* empty css               */import"../registerWebGL-CwSZKT-a.js";import{t as e}from"../minimal-BWNT1VN9.js";import{n as t,t as n}from"../src-LfUrItB0.js";import"../registerSvg-B56gxd-i.js";var r=`
     :host {
         position: absolute;
         top: 8px;

@@ -3648,11 +3648,11 @@ not replaced by nested-band inference.</p>
 <dd>Text that the <code>"text"</code> mark should render for a mark instance.</dd>
 <dt><code>tooltip</code></dt>
 <dd>Rows shown by the default tooltip handler. A single definition shows one row.
-An array shows multiple rows in the specified order. Rows can use field,
-expression, datum, or value definitions. If omitted, the default handler shows
-the hovered datum's properties. If <code>null</code>, raw datum rows are hidden for the
-mark. The <code>mark.tooltip</code> property is separate and selects or disables the
-tooltip handler.</dd>
+  An array shows multiple rows in the specified order. Rows can use field,
+  expression, datum, or value definitions. If omitted, the default handler shows
+  the hovered datum's properties. If <code>null</code>, raw datum rows are hidden for the
+  mark. The <code>mark.tooltip</code> property is separate and selects or disables the
+  tooltip handler.</dd>
 </dl>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3667,16 +3667,16 @@ tooltip handler.</dd>
 <dl>
 <dt><code>order</code></dt>
 <dd>Keeps selected instances visible above unselected ones. In a dense plot,
-highlighting a point or arc with a different color is not enough if other
-instances cover it. Give selected instances a higher order level to draw
-them last, bringing the highlighted instances to the foreground.
-The condition's <code>value</code> and the fallback <code>value</code> define two finite numeric
-levels; lower levels draw first. Use one selection parameter or a selection
-union in the condition. Relative order within each level is preserved.
-Equal levels and constant definitions have no ordering effect. When all
-referenced selections are empty, instances retain their original order.
-Ordering applies within one mark occurrence, and picking keeps the original
-order.</dd>
+  highlighting a point or arc with a different color is not enough if other
+  instances cover it. Give selected instances a higher order level to draw
+  them last, bringing the highlighted instances to the foreground.
+  The condition's <code>value</code> and the fallback <code>value</code> define two finite numeric
+  levels; lower levels draw first. Use one selection parameter or a selection
+  union in the condition. Relative order within each level is preserved.
+  Equal levels and constant definitions have no ordering effect. When all
+  referenced selections are empty, instances retain their original order.
+  Ordering applies within one mark occurrence, and picking keeps the original
+  order.</dd>
 </dl>
 <div class="highlight"><span class="filename">Draw selected points above unselected points</span><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;picked&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="w"> </span><span class="p">}],</span>
@@ -3697,9 +3697,9 @@ visual mark properties.</p>
 <dl>
 <dt><code>key</code></dt>
 <dd>Defines a stable identity for rows. This is used by point-selection
-persistence in the GenomeSpy App. The key can be a single field definition
-or an array of field definitions for a composite key. For composite keys, the
-field order is significant.</dd>
+  persistence in the GenomeSpy App. The key can be a single field definition
+  or an array of field definitions for a composite key. For composite keys, the
+  field order is significant.</dd>
 </dl>
 <h4 id="channels-for-sample-collections">Channels for sample collections<a class="headerlink" href="#channels-for-sample-collections" title="Permanent link">&para;</a></h4>
 <p>The <a href="../../sample-collections/visualizing/#specifying-a-sample-view">GenomeSpy app</a> supports an additional channel.</p>
