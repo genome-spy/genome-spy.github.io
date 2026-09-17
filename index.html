@@ -83,23 +83,27 @@
 
     <section id="intro">
         <p>
-            GenomeSpy builds upon the concepts originally introduced in
-            <a href="https://www.springer.com/gp/book/9780387245447">The Grammar of Graphics</a> and later
-            implemented in <a href="https://ggplot2.tidyverse.org/">ggplot2</a> and <a
-                href="https://vega.github.io/vega-lite/">Vega-Lite</a>.
-            The building blocks that GenomeSpy provides enable users to create tailored, interactive genomic
-            visualizations that can be embedded in web pages or integrated into JavaScript applications.
-            The carefully crafted, GPU-accelerated WebGL rendering engine ensures smooth interactions
-            and a pleasant user experience. Scroll down for live <a href="#examples">examples</a>.
+            GenomeSpy provides building blocks for tailored, interactive genomic visualizations.
+            Integrate them into <a href="docs/api/embedding/">web applications</a> or explore your data in
+            <a href="genome-spy-python/">Python notebooks</a> such as Jupyter and marimo, or in
+            <a href="https://observablehq.com/collection/@tuner/genomespy">Observable</a>.
+            GPU-accelerated WebGL rendering supports smooth zooming and panning through large datasets.
         </p>
 
         <p>
-            GenomeSpy was originally developed to support the exploration and analysis of large sample collections
-            in cancer genomics research. It has since been used in several publications, some of which
-            are listed in the <a href="#publications">Publications</a> section below.
+            A declarative grammar lets you describe your data, choose graphical marks, and combine views.
+            GenomeSpy builds upon the concepts originally introduced in
+            <a href="https://www.springer.com/gp/book/9780387245447">The Grammar of Graphics</a> and later
+            implemented in
+            <a href="https://ggplot2.tidyverse.org/">ggplot2</a> and
+            <a href="https://vega.github.io/vega-lite/">Vega-Lite</a>.
         </p>
 
-        <p>The example below showcases an interactive, genome-browser-like visualization created with GenomeSpy:</p>
+        <p>
+            Originally developed to explore large sample collections in cancer genomics research,
+            GenomeSpy has since been used in several <a href="#publications">publications</a>.
+            Try the interactive genome browser below, or browse more <a href="#examples">examples</a>.
+        </p>
     </section>
 
     <section id="showcase">
@@ -114,8 +118,8 @@
                 <picture><img src="img/block-data.svg" alt="data" /></picture>
                 <figcaption>
                     <strong>Your data:</strong>
-                    Supports multiple formats: CSV, TSV, JSON, Parquet, BED, BEDPE, FASTA, indexed FASTA, BigWig,
-                    BigBed, and GFF3.
+                    Supports multiple formats: CSV, TSV, JSON, Parquet, BAM BED, BEDPE, FASTA,
+                    indexed FASTA, BigWig, BigBed, and GFF3.
                 </figcaption>
             </figure>
         </a>

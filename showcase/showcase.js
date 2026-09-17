@@ -3,27 +3,27 @@ import { embed } from "./dist/bundle/index.es.js";
 
 /** @type {import("./scriptEntry.js").ScriptEntry[]} */
 const script = normalizeScriptEntries([
-  { duration: 2000 },
-  { locus: "chr8", duration: 2000 },
-  { duration: 2000 },
-  { locus: "chr8:74,284,626-79,532,307", duration: 2000 },
-  { duration: 1500 },
-  { locus: "chr8:76,671,541-76,877,292", duration: 1000 },
-  { duration: 1500 },
-  { locus: "chr8:76,778,415-76,778,459", duration: 3000 },
+  { duration: 3000 },
+  { locus: "chr8", duration: 3000 },
+  { duration: 3000 },
+  { locus: "chr8:74,284,626-79,532,307", duration: 3000 },
   { duration: 2500 },
-  { locus: "chr8:76,778,188-76,778,233", duration: 2000 },
+  { locus: "chr8:76,671,541-76,877,292", duration: 1500 },
   { duration: 2500 },
-  { locus: "chr1:1-chrM:16,569", duration: 2000 },
-  { duration: 2000 },
-  { locus: "chr17", duration: 1000 },
-  { duration: 2000 },
-  { locus: "chr17:7,665,066-7,691,622", duration: 3500 },
-  { duration: 2000 },
-  { locus: "chr17:7,673,804-7,673,867", duration: 2000 },
-  { duration: 2000 },
-  { locus: "chr1:1-chrM:16,569", duration: 5000 },
-  { duration: 2000 },
+  { locus: "chr8:76,778,415-76,778,459", duration: 4500 },
+  { duration: 3500 },
+  { locus: "chr8:76,778,188-76,778,233", duration: 3000 },
+  { duration: 3500 },
+  { locus: "chr1:1-chrM:16,569", duration: 3000 },
+  { duration: 3000 },
+  { locus: "chr17", duration: 1500 },
+  { duration: 3000 },
+  { locus: "chr17:7,665,066-7,691,622", duration: 4000 },
+  { duration: 3000 },
+  { locus: "chr17:7,673,804-7,673,867", duration: 3000 },
+  { duration: 3000 },
+  { locus: "chr1:1-chrM:16,569", duration: 7000 },
+  { duration: 3000 },
 ]);
 
 class GenomeSpyShowcase extends LitElement {
@@ -86,6 +86,7 @@ customElements.define("genome-spy-showcase", GenomeSpyShowcase);
  * @param {HTMLElement} element
  */
 function addPauseObserver(element) {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let isInViewport = false;
   let isUserPaused = false;
   let resumeTimeout = null;
@@ -93,7 +94,8 @@ function addPauseObserver(element) {
   /** @type {null | (() => void)} */
   let resumePlayback = null;
 
-  const canPlay = () => isInViewport && !isUserPaused;
+  const canPlay = () =>
+    isInViewport && !isUserPaused && !reducedMotion.matches;
 
   const cancelResumeTimeout = () => {
     if (resumeTimeout !== null) {
@@ -148,6 +150,7 @@ function addPauseObserver(element) {
   });
   observer.observe(element);
 
+  reducedMotion.addEventListener("change", syncPlaybackWait);
   element.addEventListener("mousedown", pausePlayback);
   element.addEventListener("wheel", pausePlayback, { passive: true });
   element.addEventListener("mouseenter", retainPause);
@@ -167,6 +170,7 @@ function addPauseObserver(element) {
       cancelResumeTimeout();
       releasePlaybackWait();
       observer.disconnect();
+      reducedMotion.removeEventListener("change", syncPlaybackWait);
       element.removeEventListener("mousedown", pausePlayback);
       element.removeEventListener("wheel", pausePlayback);
       element.removeEventListener("mouseenter", retainPause);
