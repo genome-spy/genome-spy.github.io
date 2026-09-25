@@ -1,4 +1,6 @@
 {
+  "$schema": "https://genomespy.app/schema/core/v0.json",
+
   "description": [
     "Root and scoped theme comparison",
     "Compares GenomeSpy defaults with scoped Vega-Lite-like config overrides in two rows."

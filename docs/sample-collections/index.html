@@ -6,6 +6,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Explore large genomic sample collections with GenomeSpy App: find cohort-wide patterns, inspect outliers, compare groups, and share reproducible findings.">
+      
       
       
         <link rel="canonical" href="https://genomespy.app/docs/sample-collections/">
@@ -25,7 +27,7 @@
     
     
       
-        <title>Working with Sample Collections - GenomeSpy Docs</title>
+        <title>Interactive Genomic Sample Analysis with GenomeSpy App - GenomeSpy Docs</title>
       
     
     
@@ -73,7 +75,7 @@
   
 
 
-<meta property="og:title" content="Working with Sample Collections" />
+<meta property="og:title" content="Interactive Genomic Sample Analysis with GenomeSpy App" />
 <meta property="og:type" content="article" />
 
 <meta property="og:url" content="https:&#x2f;&#x2f;genomespy.app&#x2f;docs&#x2f;sample-collections&#x2f;" />
@@ -83,8 +85,8 @@
   
 
 
-<meta name="description" content="The app package of the GenomeSpy toolkit enables an interactive analysis of large sample collections. It builds upon the core package, which allows developers to build tailored visualizations using the visualization grammar and high-performance WebGL renderer. A Canvas2D compatibility renderer is available when WebGL is unavailable. The app extends the grammar with a facet operator that makes it possible to repeat a single visualization for thousands of samples. The end users of the visualization have access to several interactions that facilitate the exploration of such sample collections." />
-<meta property="og:description" content="The app package of the GenomeSpy toolkit enables an interactive analysis of large sample collections. It builds upon the core package, which allows developers to build tailored visualizations using the visualization grammar and high-performance WebGL renderer. A Canvas2D compatibility renderer is available when WebGL is unavailable. The app extends the grammar with a facet operator that makes it possible to repeat a single visualization for thousands of samples. The end users of the visualization have access to several interactions that facilitate the exploration of such sample collections." />
+<meta name="description" content="Explore large genomic sample collections with GenomeSpy App: find cohort-wide patterns, inspect outliers, compare groups, and share reproducible findings." />
+<meta property="og:description" content="Explore large genomic sample collections with GenomeSpy App: find cohort-wide patterns, inspect outliers, compare groups, and share reproducible findings." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -108,7 +110,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#working-with-sample-collections" class="md-skip">
+        <a href="#genomespy-app-for-genomic-sample-collections" class="md-skip">
           Skip to content
         </a>
       
@@ -143,7 +145,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Working with Sample Collections
+              Interactive Genomic Sample Analysis with GenomeSpy App
             
           </span>
         </div>
@@ -604,6 +606,8 @@
       
         
       
+        
+      
     
     
     
@@ -801,6 +805,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grammar/transform/displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2705,6 +2736,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3002,6 +3037,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
         
   
@@ -3234,6 +3323,11 @@
                       
                     
                     
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
                   
                   <div class="md-sidebar__inner">
                     
@@ -3245,6 +3339,36 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-do-with-genomespy-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What you can do with GenomeSpy App
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choose-your-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Choose your documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3267,23 +3391,42 @@
   
 
 
-<h1 id="working-with-sample-collections">Working with Sample Collections<a class="headerlink" href="#working-with-sample-collections" title="Permanent link">&para;</a></h1>
-<p>The <strong>app</strong> package of the GenomeSpy toolkit enables an interactive analysis of
-large sample collections. It builds upon the core package, which allows
-developers to build tailored visualizations using the visualization grammar and
-high-performance WebGL renderer. A Canvas2D compatibility renderer is available
-when WebGL is unavailable. The app extends the grammar with a <em>facet</em>
-operator that makes it possible to repeat a single visualization for thousands
-of samples. The end users of the visualization have access to several
-interactions that facilitate the exploration of such sample collections.</p>
-<p><img alt="App Teaser" src="../img/app-teaser.png" /></p>
-<p>The documentation of the app package is split into two parts serving different
-audiences:</p>
+<h1 id="genomespy-app-for-genomic-sample-collections">GenomeSpy App for Genomic Sample Collections<a class="headerlink" href="#genomespy-app-for-genomic-sample-collections" title="Permanent link">&para;</a></h1>
+<p>GenomeSpy App is a configurable visual analysis environment for exploring
+genomic data across large sample collections, such as cancer cohorts. It builds
+on GenomeSpy Core and its declarative visualization grammar, allowing
+visualization authors to combine genomic measurements, clinical variables, and
+other metadata in views tailored to a research question. End users can then
+explore those views in the browser without modifying the visualization
+specification.</p>
+<h2 id="what-you-can-do-with-genomespy-app">What you can do with GenomeSpy App<a class="headerlink" href="#what-you-can-do-with-genomespy-app" title="Permanent link">&para;</a></h2>
+<ul>
+<li>scan hundreds or thousands of samples for cohort-wide patterns, then open a
+  close-up view to inspect interesting samples and outliers;</li>
+<li>navigate the genome and examine genomic measurements alongside sample
+  metadata;</li>
+<li>sort, filter, and group samples through incremental, reversible actions;</li>
+<li>compare groups using summaries that update with the visible samples;</li>
+<li>add metadata during an analysis and control which tracks and attributes are
+  visible; and</li>
+<li>save and share findings as bookmarks that preserve the view, analysis steps,
+  and optional notes.</li>
+</ul>
+<p><img alt="GenomeSpy App showing genomic tracks and metadata across a sample collection" src="../img/app-teaser.png" /></p>
+<h2 id="choose-your-documentation">Choose your documentation<a class="headerlink" href="#choose-your-documentation" title="Permanent link">&para;</a></h2>
+<p>The App documentation serves two audiences:</p>
+<p>For end users analyzing sample collections:</p>
 <ol>
-<li><a href="visualizing/">Visualizing Sample Collections</a> (for method developers)</li>
-<li><a href="metadata-sources/">Configuring Metadata Sources</a> (for method developers)</li>
-<li><a href="analyzing/">Analyzing Sample Collections</a> (for end users)</li>
-<li><a href="importing-metadata/">Importing Metadata</a> (for end users)</li>
+<li><a href="analyzing/">Analyzing Sample Collections</a></li>
+<li><a href="importing-metadata/">Importing Metadata</a></li>
+</ol>
+<p>For visualization authors creating and configuring tailored applications:</p>
+<ol>
+<li><a href="visualizing/">Visualizing Sample Collections</a></li>
+<li><a href="app-features/">Configuring App Features</a></li>
+<li><a href="metadata-sources/">Configuring Metadata Sources</a></li>
+<li><a href="sample-view-parameters/">Sample View Parameters</a></li>
+<li><a href="aggregating-samples/">Aggregating Samples</a></li>
 </ol>
 
 

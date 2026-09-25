@@ -600,6 +600,8 @@
       
         
       
+        
+      
     
     
     
@@ -797,6 +799,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../grammar/transform/displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2699,6 +2728,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2977,6 +3010,60 @@
     
   
   Sashimi Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
 
     
   </span>
@@ -3275,6 +3362,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#fontcatalog" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        fontCatalog?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#nameddataprovider" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3447,6 +3545,16 @@ the Canvas2D compatibility renderer. <code>"webgpu"</code> enables an experiment
 proof-of-concept renderer for a narrow subset of marks. <code>"canvas"</code> does
 not request WebGL or WebGPU and uses software-based datum picking.</p>
 <p><strong>Default value:</strong> <code>"auto"</code></p>
+<hr />
+<h3 id="fontcatalog">fontCatalog?<a class="headerlink" href="#fontcatalog" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>fontCatalog?</strong>: <a href="../FontCatalogEntry/"><code>FontCatalogEntry</code></a>[]</p>
+</blockquote>
+<p>Additional TrueType faces for WebGPU text rendering. Entries are matched
+exactly by family, weight, and style and take precedence over GenomeSpy's
+temporary example-font catalog. Registering entries does not load them;
+each URL is fetched only if the initialized visualization requests it.
+This option has no effect with the WebGL or Canvas2D renderers.</p>
 <hr />
 <h3 id="nameddataprovider">namedDataProvider?<a class="headerlink" href="#nameddataprovider" title="Permanent link">&para;</a></h3>
 <blockquote>

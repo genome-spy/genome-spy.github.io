@@ -1,0 +1,285 @@
+import { a as e, hn as t, m as n, o as r, s as i } from "./clipOptions-DBJX_W31.js";
+import { t as a } from "./warning-CpIIpk8e.js";
+import { n as o } from "./layoutResult-D50MSHXR.js";
+import { n as s } from "./performanceProfiler-CPLEjApa.js";
+import { A as c, E as l, F as u, I as d, M as f, N as p, S as m, _ as h, a as g, b as _, c as v, d as y, f as b, g as x, h as S, i as C, j as w, k as T, l as ee, m as E, p as D, s as O, t as k, u as A, v as j, w as M, x as N, y as P } from "./order-DIxlclRN.js";
+//#region ../core/src/rendering/canvas2d/renderers/arrow.js
+function F(e, t) {
+	let n = e, r = t.context, i = n.encoders, a = m(n);
+	r.lineJoin = "miter";
+	let o, s;
+	return M(n, a, t, (e) => {
+		e.headShapeFallback && t.warn(`Canvas2D rendered unsupported arrow headShape "${a.headShape}" as a triangle.`), r.beginPath();
+		for (let t of e.boundaryLoops) {
+			let e = t[0];
+			r.moveTo(e.x, e.y);
+			for (let e = 1; e < t.length; e++) r.lineTo(t[e].x, t[e].y);
+			r.closePath();
+		}
+		let n = c(i.fill(e.datum)), u = l(i.fillOpacity, e.datum) * t.viewOpacity;
+		n != "none" && u > 0 && (o != n && (r.fillStyle = n, o = n), r.globalAlpha = u, r.fill());
+		let d = c(i.stroke(e.datum)), f = l(i.strokeOpacity, e.datum) * t.viewOpacity;
+		d != "none" && f > 0 && e.strokeWidth > 0 && (s != d && (r.strokeStyle = d, s = d), r.globalAlpha = f, r.lineWidth = e.strokeWidth, r.stroke());
+	});
+}
+//#endregion
+//#region ../core/src/rendering/canvas2d/renderers/link.js
+function I(e, t) {
+	let r = e, i = t.context, a = r.encoders, o = h(r), s = N(r, o.shape, t.secondOrderPass);
+	i.lineCap = "butt";
+	let u;
+	return j(r, o, t, (e) => {
+		let r = c(a.color(e.datum)), o = l(a.opacity, e.datum) * t.viewOpacity;
+		if (r == "none" || o <= 0 || e.strokeWidth <= 0) return;
+		let d = s && _(e.points[0], e.points[3], s);
+		if (d) {
+			let { normalX: e, normalY: t, offset: a, start: o, end: s } = d, c = i.createLinearGradient(e * (a - s), t * (a - s), e * (a + s), t * (a + s)), l = n(r), f = l.opacity;
+			for (let e of P(o, s)) l.opacity = f * e.opacity, c.addColorStop(e.offset, l.formatRgb());
+			i.strokeStyle = c, u = void 0;
+		} else u != r && (i.strokeStyle = r, u = r);
+		i.globalAlpha = o, i.lineWidth = e.strokeWidth;
+		let [f, p, m, h] = e.points;
+		i.beginPath(), i.moveTo(f[0], f[1]), i.bezierCurveTo(p[0], p[1], m[0], m[1], h[0], h[1]), i.stroke();
+	});
+}
+//#endregion
+//#region ../core/src/rendering/canvas2d/renderers/point.js
+function L(e, t) {
+	let n = e;
+	T(n, n.properties.fillGradientStrength) && t.warn("Canvas2D ignored unsupported point property fillGradientStrength."), n.properties.geometricZoomBound && t.warn("Canvas2D ignored unsupported point property geometricZoomBound.");
+	let r = S(n), i = t.context, a = n.encoders, o, s;
+	return x(n, r, t, (e) => {
+		let n = e.datum, r = e.lineShape, u = c(a.fill(n)), d = l(a.fillOpacity, n) * t.viewOpacity, f = c(a.stroke(n)), p = l(a.strokeOpacity, n) * t.viewOpacity;
+		r && (f == "none" || p <= 0) && (f = u, p = d), i.beginPath();
+		let m = e.angle != 0 && e.shape != "circle";
+		m && (i.save(), i.translate(e.x, e.y), i.rotate(e.angle * Math.PI / 180));
+		let h = m ? 0 : e.x, g = m ? 0 : e.y, _ = !0;
+		if (e.shape == "circle") i.arc(h, g, e.geometryRadius, 0, Math.PI * 2);
+		else if (e.shape == "square") {
+			let t = e.geometryRadius * 2;
+			i.rect(h - e.geometryRadius, g - e.geometryRadius, t, t);
+		} else _ = E(e.shape, h, g, e.geometryRadius, i);
+		m && i.restore(), _ || (t.warn(`Canvas2D rendered unsupported point shape "${e.shape}" as a circle.`), i.arc(e.x, e.y, e.geometryRadius, 0, Math.PI * 2)), !r && u != "none" && d > 0 && (o != u && (i.fillStyle = u, o = u), R(i, d), i.fill()), f != "none" && p > 0 && e.strokeWidth > 0 && (r && i.lineCap != "butt" && (i.lineCap = "butt"), s != f && (i.strokeStyle = f, s = f), R(i, p), z(i, e.strokeWidth), i.stroke());
+	});
+}
+function R(e, t) {
+	e.globalAlpha != t && (e.globalAlpha = t);
+}
+function z(e, t) {
+	e.lineWidth != t && (e.lineWidth = t);
+}
+//#endregion
+//#region ../core/src/rendering/canvas2d/renderers/rect.js
+function B(e, t) {
+	let n = e, r = b(n);
+	r.hatch != "none" && t.warn("Canvas2D ignored unsupported rect hatch.");
+	let i = t.start ?? 0;
+	if (i === (t.end ?? t.data.length)) return 0;
+	let a = t.context, o = n.encoders, s, u, d = [
+		0,
+		0,
+		0,
+		0
+	], f = o.stroke.constant, p = o.strokeOpacity.constant, m = f ? c(o.stroke(t.data[i])) : "none", h = f && m == "none", g = !h && p ? l(o.strokeOpacity, t.data[i]) : 0;
+	return D(n, r, t, (e) => {
+		r.shadow.opacity > 0 && V(e, r.shadow, t, d);
+		let n = e.opacityFactor, i = e.fill != "none" && e.fillOpacity > 0, _ = f ? m : c(o.stroke(e.datum)), v = (p ? g : l(o.strokeOpacity, e.datum)) * t.viewOpacity * n, y = !h && _ != "none" && v > 0 && e.strokeWidth > 0, b = r.hasCornerRadii && (e.radii.topLeft != 0 || e.radii.topRight != 0 || e.radii.bottomRight != 0 || e.radii.bottomLeft != 0);
+		b && (i || y) && (d[0] = e.radii.topLeft, d[1] = e.radii.topRight, d[2] = e.radii.bottomRight, d[3] = e.radii.bottomLeft, a.beginPath(), a.roundRect(e.x, e.y, e.width, e.height, d)), i && (s != e.fill && (a.fillStyle = e.fill, s = e.fill), H(a, e.fillOpacity * n), b ? a.fill() : a.fillRect(e.x, e.y, e.width, e.height)), y && (u != _ && (a.strokeStyle = _, u = _), H(a, v), U(a, e.strokeWidth), b ? a.stroke() : a.strokeRect(e.x, e.y, e.width, e.height));
+	});
+}
+function V(e, t, n, r) {
+	let { context: i, devicePixelRatio: a, visibleBounds: o } = n, s = e.strokeWidth / 2, c = e.x - s, l = e.y - s, u = e.width + s * 2, d = e.height + s * 2;
+	r[0] = e.radii.topLeft + s, r[1] = e.radii.topRight + s, r[2] = e.radii.bottomRight + s, r[3] = e.radii.bottomLeft + s, i.save();
+	try {
+		i.beginPath(), i.rect(o.x1, o.y1, o.x2 - o.x1, o.y2 - o.y1), i.roundRect(c, l, u, d, r), i.clip("evenodd"), i.shadowBlur = Math.max(t.blur / 2.5, .25) * 2 * a, i.shadowOffsetX = t.offsetX * a, i.shadowOffsetY = t.offsetY * a, i.shadowColor = t.color, i.globalAlpha = t.opacity * n.viewOpacity, i.fillStyle = "black", i.beginPath(), i.roundRect(c, l, u, d, r), i.fill();
+	} finally {
+		i.restore();
+	}
+}
+function H(e, t) {
+	e.globalAlpha != t && (e.globalAlpha = t);
+}
+function U(e, t) {
+	e.lineWidth != t && (e.lineWidth = t);
+}
+//#endregion
+//#region ../core/src/rendering/canvas2d/renderers/rule.js
+function W(e, t) {
+	let n = e, r = t.context, i = n.encoders;
+	r.lineCap = T(n, n.properties.strokeCap), r.setLineDash(T(n, n.properties.strokeDash) ?? []), r.lineDashOffset = T(n, n.properties.strokeDashOffset);
+	let a;
+	return y(n, A(n), t, (e) => {
+		let n = c(i.color(e.datum)), o = l(i.opacity, e.datum) * t.viewOpacity;
+		n == "none" || o <= 0 || e.strokeWidth <= 0 || (a != n && (r.strokeStyle = n, a = n), r.globalAlpha = o, r.lineWidth = e.strokeWidth, r.beginPath(), r.moveTo(e.x1, e.y1), r.lineTo(e.x2, e.y2), r.stroke());
+	});
+}
+//#endregion
+//#region ../core/src/rendering/canvas2d/renderers/text.js
+function G(e, t) {
+	let n = e, r = n.properties, i = t.textMetrics ?? n.unitView.context.textMetrics, a = i.requestFont(r), o = C(i, r), s = v(n), u = t.context, d = n.encoders, f = g(r.font), p = `${r.fontStyle ?? "normal"} ${O(r.fontWeight ?? "normal")} `, m = s.baseline == "baseline" ? "alphabetic" : s.baseline;
+	[
+		r.viewportEdgeFadeWidthTop,
+		r.viewportEdgeFadeWidthRight,
+		r.viewportEdgeFadeWidthBottom,
+		r.viewportEdgeFadeWidthLeft
+	].some((e) => T(n, e) > 0) && t.warn("Canvas2D ignored unsupported text viewport edge fading.");
+	let h, _;
+	return s.logoLetters || (u.textAlign = s.align, u.textBaseline = m), ee(n, s, {
+		...t,
+		fontMeasurement: a,
+		measureLogoInkBounds: o
+	}, (e) => {
+		e.multiCharacterLogo && t.warn("Canvas2D stretches multi-character logo text as a single glyph cell.");
+		let n = c(d.color(e.datum)), r = l(d.opacity, e.datum) * t.viewOpacity * e.fadeOpacity;
+		n == "none" || r <= 0 || (h != n && (u.fillStyle = n, h = n), u.globalAlpha = r, _ != e.size && (u.font = `${p}${e.size}px ${f}`, _ = e.size), e.logoTransform ? (u.save(), u.translate(e.x, e.y), u.rotate(e.angle * Math.PI / 180), u.translate(e.dx, e.dy), u.scale(e.logoTransform.scaleX, e.logoTransform.scaleY), u.translate(-e.logoTransform.originX, -e.logoTransform.originY), u.textAlign = "left", u.textBaseline = "alphabetic", u.fillText(e.text, 0, 0), u.restore()) : e.angle || e.scale != 1 ? (u.save(), u.translate(e.x, e.y), u.rotate(e.angle * Math.PI / 180), u.translate(e.dx, e.dy), u.scale(e.scale, e.scale), u.fillText(e.text, 0, 0), u.restore()) : u.fillText(e.text, e.x + e.dx, e.y + e.dy));
+	});
+}
+//#endregion
+//#region ../core/src/rendering/canvas2d/renderers/index.js
+function K(e, t) {
+	return e.getType() == "arrow" ? F(e, t) : e.getType() == "link" ? I(e, t) : e.getType() == "rect" ? B(e, t) : e.getType() == "point" ? L(e, t) : e.getType() == "rule" || e.getType() == "tick" ? W(e, t) : e.getType() == "text" ? G(e, t) : (t.warn(`Canvas2D rendering is not implemented for mark type "${e.getType()}".`), 0);
+}
+//#endregion
+//#region ../core/src/rendering/sampleFacet.js
+function q(e) {
+	let t = e.pixelToUnit, n = e.locSize.location * t, r = e.locSize.size * t;
+	return !(n > 1 || n + r < 0);
+}
+//#endregion
+//#region ../core/src/rendering/canvas2d/canvas2DViewRenderingContext.js
+var J = 8, Y = 16777216, X = class extends o {
+	#e = [];
+	#t = /* @__PURE__ */ new WeakSet();
+	#n = /* @__PURE__ */ new WeakMap();
+	#r;
+	#i;
+	#a = new u();
+	#o;
+	#s = [0, 0];
+	#c;
+	#l;
+	#u = [];
+	constructor(e, t) {
+		if (super(e), this.context = t.context, this.width = t.width, this.height = t.height, this.devicePixelRatio = t.devicePixelRatio, this.paint = t.paint, this.textMetrics = t.textMetrics, this.#r = t.markPredicate ?? (() => !0), this.#i = s(), this.#o = t.xIndexManager, this.#l = t.opacityLayers ?? [], this.#c = {
+			x: 0,
+			y: 0,
+			width: this.context.canvas.width,
+			height: this.context.canvas.height
+		}, this.paint) {
+			let e = this.context;
+			e.resetTransform(), e.clearRect(0, 0, e.canvas.width, e.canvas.height), e.setTransform(this.devicePixelRatio, 0, 0, this.devicePixelRatio, 0, 0), e.globalAlpha = 1, e.globalCompositeOperation = "source-over", t.background != null && (e.fillStyle = t.background, e.fillRect(0, 0, this.width, this.height));
+		}
+	}
+	getDevicePixelRatio() {
+		return this.devicePixelRatio;
+	}
+	pushView(t, n) {
+		this.paint && !this.#t.has(t) && (t.onBeforeRender(), this.#t.add(t));
+		let r = t.getOpacity();
+		if (this.paint && r > 0 && r !== 1) {
+			let r = e(t), i = Z(n, this.devicePixelRatio, this.#c, r), a = Q(this.#l, this.#u.length, i.width, i.height);
+			a.setTransform(this.devicePixelRatio, 0, 0, this.devicePixelRatio, -i.x, -i.y), this.#u.push({
+				context: this.context,
+				bounds: this.#c
+			}), this.context = a, this.#c = i;
+		}
+		this.#e.push({
+			view: t,
+			coords: n,
+			opacity: r
+		});
+	}
+	popView(e) {
+		let t = this.#e.pop();
+		if (t?.view !== e) throw Error("Unbalanced Canvas2D view rendering context stack.");
+		if (this.paint && t.opacity > 0 && t.opacity !== 1) {
+			let e = this.#u.pop();
+			if (!e) throw Error("Missing Canvas2D opacity parent target.");
+			let n = this.context.canvas, r = this.#c;
+			this.context = e.context, this.#c = e.bounds, this.context.save();
+			try {
+				this.context.globalAlpha = t.opacity, r.width && r.height && this.context.drawImage(n, r.x / this.devicePixelRatio, r.y / this.devicePixelRatio, r.width / this.devicePixelRatio, r.height / this.devicePixelRatio);
+			} finally {
+				this.context.restore();
+			}
+		}
+	}
+	renderMark(e, t) {
+		if (!this.paint || !this.#r(e)) return;
+		let n = this.#n.get(e.unitView);
+		if (n === void 0 && (n = e.unitView.getEffectiveOpacity(), this.#n.set(e.unitView, n)), n <= 0) return;
+		e.initializeRenderingRevisions(Object.keys(e.properties));
+		let o = t.sampleFacetRenderingOptions;
+		if (o && !e.encoders.facetIndex && (this.#i?.addCount("canvasSampleFacetOccurrences"), !q(o))) {
+			this.#i?.addCount("canvasCulledSampleFacetOccurrences");
+			return;
+		}
+		let s = this.currentCoords, c = r(t), l = i(c, e.properties.clip, s), u = f(this.width, this.height, l);
+		if (!p(u)) return;
+		let m = w(s, c, e.properties.cullByVisibleRange), h = this.#o?.prepare(e) ?? !1, g = this.context;
+		if (g.save(), l) {
+			let e = l.rect.flatten(), t = l.clipX ? e.x : 0, n = l.clipY ? e.y : 0, r = l.clipX ? e.width : this.width, i = l.clipY ? e.height : this.height;
+			g.beginPath(), g.rect(t, n, r, i), g.clip();
+		}
+		try {
+			let n = e.getOrder?.(), r = n && n.isActive();
+			d(e, t, s, this.#a, (t, i) => {
+				let o = 0, s = i.length;
+				h && this.#o.query(i, this.#s) && (o = this.#s[0], s = this.#s[1]);
+				let c = (n, r, i, o = !1) => K(e, {
+					context: g,
+					devicePixelRatio: this.devicePixelRatio,
+					coords: t,
+					data: n,
+					secondOrderPass: o,
+					start: r,
+					end: i,
+					visibleBounds: u,
+					anchorCullBounds: m,
+					viewOpacity: 1,
+					textMetrics: this.textMetrics,
+					warn: (t) => a(`${t} View: ${e.unitView.getPathString()}`)
+				});
+				if (!r) return c(i, o, s);
+				let l = 0, d = k(i, o, s, n.predicate, n.passes);
+				for (let [e, t] of d.entries()) t.length > 0 && (l += c(t, 0, t.length, e === 1));
+				return l;
+			}, (t) => a(`Canvas2D could not resolve sample facet index ${t}. View: ${e.unitView.getPathString()}`));
+		} finally {
+			g.restore();
+		}
+	}
+	get currentCoords() {
+		let e = t(this.#e);
+		if (!e) throw Error("No current view in Canvas2D rendering context.");
+		return e.coords;
+	}
+};
+function Z(e, t, n, r) {
+	let i = n.x + n.width, a = n.y + n.height, o = r.clipX ? $(Math.floor(e.x * t), n.x, i) : n.x, s = r.clipY ? $(Math.floor(e.y * t), n.y, a) : n.y, c = r.clipX ? $(Math.ceil((e.x + e.width) * t), o, i) : i, l = r.clipY ? $(Math.ceil((e.y + e.height) * t), s, a) : a;
+	return {
+		x: o,
+		y: s,
+		width: c - o,
+		height: l - s
+	};
+}
+function Q(e, t, n, r) {
+	let i = n * r, a = e[t], o = e.reduce((e, n, r) => r === t ? e : e + n.canvas.width * n.canvas.height, 0), s = t < J && o + i <= Y;
+	if (!a || !s) {
+		if (a = document.createElement("canvas").getContext("2d"), !a) throw Error("Unable to create a Canvas2D view group.");
+		s && (e[t] = a);
+	}
+	return a.canvas.width != n || a.canvas.height != r ? (a.canvas.width = n, a.canvas.height = r) : (a.resetTransform(), a.clearRect(0, 0, n, r)), a.globalAlpha = 1, a.globalCompositeOperation = "source-over", a;
+}
+function $(e, t, n) {
+	return Math.min(n, Math.max(t, e));
+}
+//#endregion
+//#region ../core/src/rendering/canvas2d/renderCanvas2D.js
+function te(e) {
+	let t = new X({ picking: !1 }, e);
+	e.layoutResult.collectRenderCommands(t);
+}
+//#endregion
+export { q as n, te as t };

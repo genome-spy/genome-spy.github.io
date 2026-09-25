@@ -1,4 +1,6 @@
 {
+  "$schema": "https://genomespy.app/schema/core/v0.json",
+
   "description": "Top-level config defaults for marks and axes.",
   "config": {
     "mark": {

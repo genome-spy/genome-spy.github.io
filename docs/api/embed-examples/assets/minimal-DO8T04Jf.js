@@ -1,0 +1,1 @@
+import{n as e,t}from"./registerWebGL-9ng7Vq5S.js";import"./lit-BJ21N-0y.js";var n=t(e);export{n as t};

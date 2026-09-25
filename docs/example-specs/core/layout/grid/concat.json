@@ -1,5 +1,5 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "$schema": "https://genomespy.app/schema/core/v0.json",
 
   "description": "Nested concatenated views with shared data",
 

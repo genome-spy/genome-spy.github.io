@@ -1,5 +1,6 @@
 {
-  "$schema": "https://cdn.jsdelivr.net/npm/@genome-spy/core/dist/schema.json",
+  "$schema": "https://genomespy.app/schema/core/v0.json",
+
   "description": [
     "Protein domain boundary ticks",
     "Prioritizes domain boundaries and protein length over generated labels; ranges are half-open."

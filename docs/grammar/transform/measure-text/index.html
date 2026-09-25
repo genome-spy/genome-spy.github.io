@@ -83,8 +83,8 @@
   
 
 
-<meta name="description" content="The &quot;measureText&quot; transform measures the length of a string in pixels. The measurement can be used in downstream layout computations with the filterScoredLabels transform or as a variable collision length for the displace1d transform." />
-<meta property="og:description" content="The &quot;measureText&quot; transform measures the length of a string in pixels. The measurement can be used in downstream layout computations with the filterScoredLabels transform or as a variable collision length for the displace1d transform." />
+<meta name="description" content="The &quot;measureText&quot; transform measures the length of a string in pixels. The measurement can be used in downstream layout computations with the filterScoredLabels transform or as a variable collision length for the displace1d transform. It can also provide variable collision widths for the displace2d transform." />
+<meta property="og:description" content="The &quot;measureText&quot; transform measures the length of a string in pixels. The measurement can be used in downstream layout computations with the filterScoredLabels transform or as a variable collision length for the displace1d transform. It can also provide variable collision widths for the displace2d transform." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -612,6 +612,8 @@
       
         
       
+        
+      
     
     
     
@@ -809,6 +811,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2780,6 +2809,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3058,6 +3091,60 @@
     
   
   Sashimi Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
 
     
   </span>
@@ -3381,9 +3468,13 @@
 <p>The <code>"measureText"</code> transform measures the length of a string in pixels. The
 measurement can be used in downstream layout computations with the
 <a href=".././filter-scored-labels/">filterScoredLabels</a> transform or as a variable
-collision length for the <a href=".././displace1d/">displace1d</a> transform.</p>
+collision length for the <a href=".././displace1d/">displace1d</a> transform.
+It can also provide variable collision widths for the
+<a href=".././displace2d/">displace2d</a> transform.</p>
 <p>Custom fonts can be configured with the same <code>font</code>, <code>fontStyle</code>, and
 <code>fontWeight</code> properties as the <a href="../../mark/text/"><code>text</code></a> mark.</p>
+<p>Measurements use the active renderer's text geometry, keeping downstream
+filtering and collision layout consistent with live text.</p>
 <p>For an usage example, check the <a href="https://observablehq.com/@tuner/annotation-tracks?collection=@tuner/genomespy">Annotation
 Tracks</a>
 notebook.</p>

@@ -1,0 +1,2115 @@
+import { $t as e, C as t, E as n, Q as r, Qt as i, S as a, Tn as o, Yt as s, Z as c, b as l, en as u, hn as d, k as f, o as p, on as m, t as ee, ut as h, y as g, yt as te } from "./clipOptions-DBJX_W31.js";
+import { E as ne, m as _, y as v } from "./vega-scale-BJaDSHBJ.js";
+import { a as y, n as re, r as ie, t as b } from "./viewError-BiR9VCgL.js";
+import { t as ae } from "./warning-CpIIpk8e.js";
+//#region ../../node_modules/flatqueue/index.js
+var x = class {
+	constructor(e = Infinity, t = Float64Array, n = Uint32Array) {
+		let r = e !== Infinity;
+		this.ids = r ? new n(e) : [], this.values = r ? new t(e) : [], this.capacity = e, this.length = 0;
+	}
+	clear() {
+		this.length = 0;
+	}
+	push(e, t) {
+		if (this.length === this.capacity) throw RangeError("Queue is at capacity.");
+		let n = this.length++;
+		for (; n > 0;) {
+			let e = n - 1 >> 1, r = this.values[e];
+			if (t >= r) break;
+			this.ids[n] = this.ids[e], this.values[n] = r, n = e;
+		}
+		this.ids[n] = e, this.values[n] = t;
+	}
+	pop() {
+		if (this.length === 0) return;
+		let e = this.ids, t = this.values, n = e[0], r = --this.length;
+		if (r > 0) {
+			let n = e[r], i = t[r], a = 0, o = r >> 1;
+			for (; a < o;) {
+				let n = (a << 1) + 1, o = n + 1, s = n + (o < r & +(t[o] < t[n]));
+				if (t[s] >= i) break;
+				e[a] = e[s], t[a] = t[s], a = s;
+			}
+			e[a] = n, t[a] = i;
+		}
+		return n;
+	}
+	peek() {
+		return this.length > 0 ? this.ids[0] : void 0;
+	}
+	peekValue() {
+		return this.length > 0 ? this.values[0] : void 0;
+	}
+	shrink() {
+		Array.isArray(this.ids) && (this.ids.length = this.length), Array.isArray(this.values) && (this.values.length = this.length);
+	}
+}, S = Symbol("runtimeNode"), oe = 1e6;
+function se(e) {
+	return e ? (t, n) => e.addDisposer(t, n) : () => () => void 0;
+}
+function ce(e, t, n = !0) {
+	let r = {
+		id: e.id,
+		name: e.name,
+		kind: e.kind,
+		batchStable: n,
+		get() {
+			return e.value;
+		},
+		subscribe(t) {
+			return e.listeners.add(t), () => {
+				e.listeners.delete(t);
+			};
+		}
+	};
+	return Object.defineProperty(r, S, {
+		enumerable: !1,
+		configurable: !1,
+		writable: !1,
+		value: e
+	}), t ? Object.assign(r, { set(e) {
+		t(e);
+	} }) : r;
+}
+function le(e) {
+	let t = e[S];
+	if (!t) throw Error("ParamRef is not bound to this graph runtime. Expected runtime-created ref.");
+	return t;
+}
+function ue(e) {
+	return typeof e.rank == "number" ? e.rank : le(e).rank;
+}
+function de(e) {
+	for (let t of e) t();
+}
+var fe = class {
+	#e = 1;
+	#t = 1;
+	#n = 0;
+	#r = 0;
+	#i = !1;
+	#a = !1;
+	#o = !1;
+	#s = 0;
+	#c = !1;
+	#l = /* @__PURE__ */ new Map();
+	#u = /* @__PURE__ */ new Map();
+	#d = /* @__PURE__ */ new Set();
+	#f = /* @__PURE__ */ new Set();
+	#p = new x();
+	#m = new x();
+	#h = /* @__PURE__ */ new Set();
+	#g;
+	constructor(e = {}) {
+		this.#g = se(e.lifecycleRegistry);
+	}
+	createWritable(e, t, n, r, i = {}) {
+		let a = "n" + this.#e++, o = i.notify ?? !0, s = {
+			id: a,
+			name: t,
+			kind: n,
+			value: r,
+			rank: 0,
+			disposed: !1,
+			listeners: /* @__PURE__ */ new Set(),
+			subscribe(e) {
+				return s.listeners.add(e), () => {
+					s.listeners.delete(e);
+				};
+			}
+		}, c = (e) => {
+			if (s.disposed) throw Error("Cannot set disposed parameter \"" + t + "\" (" + a + ").");
+			e !== s.value && (s.value = e, o && this.#v(s.listeners));
+		}, l = () => {
+			s.disposed = !0, s.listeners.clear(), u();
+		}, u = this.#g(e, l);
+		return Object.assign(ce(s, c, o), { dispose: l });
+	}
+	computed(e, t, n, r, i = {}) {
+		return this.#_(e, t, n, r, i);
+	}
+	operation(e, t, n, r, i, a = {}) {
+		return this.#_(e, t, n, r, a, i);
+	}
+	#_(e, t, n, r, i, a) {
+		let o = this.#b(() => s.dependencies), s = {
+			id: "n" + this.#e++,
+			name: t,
+			kind: "derived",
+			get rank() {
+				return o();
+			},
+			dependencies: n,
+			value: r(),
+			disposed: !1,
+			listeners: /* @__PURE__ */ new Set(),
+			fn: r,
+			apply: a,
+			equals: i.equals ?? ((e, t) => e === t),
+			subscribe(e) {
+				return s.listeners.add(e), () => {
+					s.listeners.delete(e);
+				};
+			}
+		};
+		a?.(s.value);
+		let c = () => s.dependencies.map((e) => e.subscribe(() => {
+			s.disposed || (this.#x(s), e.propagation === "sync" && this.flushNow());
+		})), l = c(), u = () => {
+			s.disposed || (s.disposed = !0, d(), l.forEach((e) => e()), s.listeners.clear(), this.#d.delete(s));
+		}, d = this.#g(e, u);
+		return Object.assign(ce(s), {
+			dispose: u,
+			rebind: (e, n) => {
+				if (s.disposed) throw Error("Cannot rebind disposed operation: " + t);
+				let r = /* @__PURE__ */ new Set(), i = (e) => {
+					let n = e[S];
+					if (n === s) throw Error("Reactive dependency cycle: " + t);
+					if (!r.has(n)) {
+						r.add(n);
+						for (let e of n?.dependencies ?? []) i(e);
+					}
+				};
+				e.forEach(i), l.forEach((e) => e()), s.dependencies = e, s.fn = n, this.#n++, l = c(), this.#x(s), this.#p.clear();
+				for (let e of this.#d) this.#p.push(e, this.#C(e.rank));
+				this.#m.clear();
+				for (let e of this.#f) this.#m.push(e, this.#C(e.rank));
+			}
+		});
+	}
+	effect(e, t, n) {
+		let r = this.#b(() => t), i = {
+			id: "n" + this.#e++,
+			get rank() {
+				return r();
+			},
+			disposed: !1,
+			fn: n
+		}, a = t.map((e) => e.subscribe(() => {
+			i.disposed || (this.#S(i), e.propagation === "sync" && this.flushNow());
+		})), o = () => {
+			i.disposed || (i.disposed = !0, s(), a.forEach((e) => e()), this.#f.delete(i));
+		}, s = this.#g(e, o);
+		return o;
+	}
+	runInTransaction(e) {
+		this.#r += 1;
+		try {
+			return e();
+		} finally {
+			--this.#r, this.#r === 0 && (this.#i ? (this.#i = !1, this.flushNow()) : this.#w());
+		}
+	}
+	flushNow({ afterTransaction: e = !1 } = {}) {
+		if (e && this.#r > 0 && (this.#i = !0), this.#s > 0) {
+			this.#c = !0;
+			return;
+		}
+		if (this.#r > 0 || this.#o) return;
+		this.#a = !1, this.#o = !0;
+		let t;
+		try {
+			for (; this.#p.length || this.#l.size || this.#m.length;) {
+				for (; this.#p.length;) {
+					let e = this.#p.pop();
+					if (this.#d.delete(e), e.disposed) continue;
+					this.#y(e, e.name);
+					let t, n;
+					try {
+						t = e.fn(), n = !e.equals(t, e.value), n && e.apply?.(t);
+					} catch (t) {
+						throw this.#x(e), t;
+					}
+					n && (e.value = t, this.#v(e.listeners));
+				}
+				if (this.#l.size) {
+					let e = Infinity, n;
+					for (let [t, { rank: r }] of this.#l) r < e && (n = t, e = r);
+					let r = /* @__PURE__ */ new Set();
+					for (;;) {
+						if (r.has(n)) throw Error("Cyclic streaming publication dependencies");
+						r.add(n);
+						let e;
+						for (let t of this.#l.get(n).prerequisites?.() ?? []) if (this.#l.has(t)) {
+							e = t;
+							break;
+						}
+						if (!e) break;
+						n = e;
+					}
+					t = this.#l.get(n).onError, this.#l.delete(n), this.#y(n, "streaming update"), n(), t = void 0;
+				} else if (this.#m.length) {
+					let e = this.#m.pop();
+					this.#f.delete(e), e.disposed || (this.#y(e, "effect " + e.id), e.fn());
+				}
+			}
+		} catch (e) {
+			let n = Array.from(this.#l.values());
+			this.#l.clear(), t?.(e);
+			for (let t of n) t.onError?.(e);
+			for (let t of this.#h) t.reject(e);
+			throw this.#h.clear(), e;
+		} finally {
+			this.#u.clear(), this.#o = !1, this.#E();
+		}
+	}
+	requestUpdate(e, t = 0, n, r) {
+		this.#l.set(e, {
+			rank: t,
+			onError: n,
+			prerequisites: r
+		}), this.#w();
+	}
+	cancelUpdate(e) {
+		this.#l.delete(e);
+	}
+	#v(e) {
+		this.#s++;
+		try {
+			de(e);
+		} finally {
+			this.#s--, !this.#s && this.#c && (this.#c = !1, this.flushNow());
+		}
+	}
+	#y(e, t) {
+		let n = (this.#u.get(e) ?? 0) + 1;
+		if (n > 100) throw Error("Reactive propagation did not settle: " + t);
+		this.#u.set(e, n);
+	}
+	whenPropagated(e = {}) {
+		if (this.#T()) return Promise.resolve();
+		let { signal: t, timeoutMs: n } = e;
+		return t?.aborted ? Promise.reject(/* @__PURE__ */ Error("whenPropagated aborted")) : new Promise((e, r) => {
+			let i, a = () => {
+				this.#h.delete(o), t?.removeEventListener("abort", s), i !== void 0 && clearTimeout(i);
+			}, o = {
+				resolve: () => {
+					a(), e();
+				},
+				reject: (e) => {
+					a(), r(e);
+				}
+			}, s = () => o.reject(/* @__PURE__ */ Error("whenPropagated aborted"));
+			t?.addEventListener("abort", s, { once: !0 }), n != null && (i = setTimeout(() => o.reject(/* @__PURE__ */ Error("whenPropagated timeout after " + n + " ms")), n)), this.#h.add(o);
+		});
+	}
+	#b(e) {
+		let t = -1, n = 0;
+		return () => (t !== this.#n && (n = 1 + e().reduce((e, t) => Math.max(e, ue(t)), 0), t = this.#n), n);
+	}
+	#x(e) {
+		if (this.#d.has(e)) {
+			this.#w();
+			return;
+		}
+		this.#d.add(e), this.#p.push(e, this.#C(e.rank)), this.#w();
+	}
+	#S(e) {
+		if (this.#f.has(e)) {
+			this.#w();
+			return;
+		}
+		this.#f.add(e), this.#m.push(e, this.#C(e.rank)), this.#w();
+	}
+	#C(e) {
+		let t = this.#t % oe;
+		return this.#t += 1, e * oe + t;
+	}
+	#w() {
+		this.#r > 0 || this.#a || this.#o || (this.#a = !0, queueMicrotask(() => {
+			this.#a && this.flushNow();
+		}));
+	}
+	#T() {
+		return this.#r === 0 && !this.#a && !this.#o && this.#p.length === 0 && this.#m.length === 0 && this.#d.size === 0 && this.#f.size === 0 && this.#l.size === 0;
+	}
+	#E() {
+		if (this.#T()) {
+			for (let e of this.#h) e.resolve();
+			this.#h.clear();
+		}
+	}
+}, pe = class {
+	#e = 1;
+	#t = /* @__PURE__ */ new Map();
+	createOwner(e, t) {
+		let n = e + ":" + t + ":" + this.#e++;
+		return this.#t.set(n, /* @__PURE__ */ new Set()), n;
+	}
+	addDisposer(e, t) {
+		let n = this.#t.get(e);
+		if (!n) throw Error("Unknown owner: " + e);
+		return n.add(t), () => {
+			n.delete(t);
+		};
+	}
+	disposeOwner(e) {
+		let t = this.#t.get(e);
+		if (t) {
+			for (let e of t) e();
+			t.clear(), this.#t.delete(e);
+		}
+	}
+}, me = class {
+	#e = 1;
+	#t = /* @__PURE__ */ new Map();
+	createRootScope(e) {
+		let t = "scope:" + this.#e++;
+		return this.#t.set(t, {
+			params: /* @__PURE__ */ new Map(),
+			initializers: /* @__PURE__ */ new Map(),
+			ownerId: e
+		}), t;
+	}
+	createChildScope(e, t) {
+		if (!this.#t.has(t)) throw Error("Unknown parent scope: " + t);
+		let n = "scope:" + this.#e++;
+		return this.#t.set(n, {
+			parentScope: t,
+			params: /* @__PURE__ */ new Map(),
+			initializers: /* @__PURE__ */ new Map(),
+			ownerId: e
+		}), n;
+	}
+	getOwnerId(e) {
+		let t = this.#t.get(e);
+		if (!t) throw Error("Unknown scope: " + e);
+		return t.ownerId;
+	}
+	clearScope(e) {
+		let t = this.#t.get(e);
+		if (!t) throw Error("Unknown scope: " + e);
+		t.params.clear(), t.initializers.clear();
+	}
+	registerInitializer(e, t, r) {
+		n(t);
+		let i = this.#t.get(e);
+		if (!i) throw Error("Unknown scope: " + e);
+		if (i.params.has(t) || i.initializers.has(t)) throw Error(`Parameter "${t}" already exists in scope ${e}`);
+		i.initializers.set(t, {
+			initialize: r,
+			initializing: !1
+		});
+	}
+	register(e, t, r) {
+		n(t);
+		let i = this.#t.get(e);
+		if (!i) throw Error("Unknown scope: " + e);
+		if (i.params.has(t) || i.initializers.get(t)?.initializing === !1) throw Error("Parameter \"" + t + "\" already exists in scope " + e);
+		return i.params.set(t, r), r;
+	}
+	resolve(e, t) {
+		n(t);
+		let r = e;
+		for (; r;) {
+			let e = this.#t.get(r);
+			if (!e) throw Error("Unknown scope: " + r);
+			let n = e.initializers.get(t);
+			if (n) {
+				if (n.initializing) throw Error(`Parameter dependency cycle while initializing "${t}" in ${r}.`);
+				n.initializing = !0;
+				try {
+					if (n.initialize(), !e.params.has(t)) throw Error(`Initializer did not register parameter "${t}".`);
+					e.initializers.delete(t);
+				} finally {
+					n.initializing = !1;
+				}
+			}
+			let i = e.params.get(t);
+			if (i) return i;
+			r = e.parentScope;
+		}
+	}
+};
+//#endregion
+//#region ../core/src/paramRuntime/expressionCompiler.js
+function he(e, t = {}, n = {}) {
+	return r(e, t, n);
+}
+//#endregion
+//#region ../core/src/paramRuntime/expressionRef.js
+function ge(e, t, n = {}) {
+	let r = {}, i = he(e, r, n), a = /* @__PURE__ */ new Map();
+	for (let n of i.globals) {
+		if (a.has(n)) continue;
+		let i = t(n);
+		if (!i) throw Error("Unknown variable \"" + n + "\" in expression: " + e);
+		a.set(n, i), Object.defineProperty(r, n, {
+			enumerable: !0,
+			get() {
+				return i.get();
+			}
+		});
+	}
+	let o = /* @__PURE__ */ new Set();
+	return i.subscribe = (e) => {
+		let t = [];
+		for (let n of a.values()) t.push(n.subscribe(e));
+		for (let n of i.scaleDependencies ?? []) t.push(n.subscribe(e));
+		let n = !0, r = () => {
+			n && (n = !1, o.delete(r), t.forEach((e) => e()));
+		};
+		return o.add(r), r;
+	}, i.invalidate = () => {
+		for (let e of o) e();
+		o.clear();
+	}, i.createSnapshotEvaluator = () => {
+		let e = {};
+		for (let t of Object.keys(r)) a.has(t) || (e[t] = r[t]);
+		for (let [t, n] of a) n.batchStable || Object.defineProperty(e, t, {
+			enumerable: !0,
+			get: () => n.get()
+		});
+		let t = Object.assign(i.createEvaluator(e), { refresh() {
+			for (let [t, n] of a) n.batchStable && (e[t] = n.get());
+		} });
+		return t.refresh(), t;
+	}, i.identifier = () => i.code + "|" + Array.from(a.values()).map((e) => e.id).concat((i.scaleDependencies ?? []).map((e) => e.id)).join(","), i.dependencies = Array.from(a.values()).concat(i.scaleDependencies ?? []), {
+		expression: i,
+		dependencies: i.dependencies
+	};
+}
+//#endregion
+//#region ../core/src/paramRuntime/paramRuntime.js
+var _e = class {
+	#e = new pe();
+	#t = new fe({ lifecycleRegistry: this.#e });
+	#n = new me();
+	createScope(e) {
+		let t = this.#e.createOwner("scope", e ?? "root");
+		return e ? this.#n.createChildScope(t, e) : this.#n.createRootScope(t);
+	}
+	disposeScope(e) {
+		let t = this.#n.getOwnerId(e);
+		this.#e.disposeOwner(t), this.#n.clearScope(e);
+	}
+	addScopeDisposer(e, t) {
+		let n = this.#n.getOwnerId(e);
+		this.#e.addDisposer(n, t);
+	}
+	registerInitializer(e, t, n) {
+		this.#n.registerInitializer(e, t, n);
+	}
+	registerBase(e, t, n, r) {
+		let i = this.#n.getOwnerId(e), a = this.#t.createWritable(i, t, "base", n, r);
+		return this.#n.register(e, t, a);
+	}
+	registerSelection(e, t, n, r) {
+		let i = this.#n.getOwnerId(e), a = this.#t.createWritable(i, t, "selection", n, r);
+		return this.#n.register(e, t, a);
+	}
+	registerDerived(e, t, n, r) {
+		let { expression: i, dependencies: a } = ge(n, (t) => this.resolve(r?.expressionScope ?? e, t), r), o = this.#n.getOwnerId(e), s = this.#t.computed(o, t, a, () => i(null));
+		return this.#n.register(e, t, s);
+	}
+	createExpression(e, t, n) {
+		let { expression: r } = ge(t, (t) => this.resolve(e, t), n);
+		return r;
+	}
+	resolve(e, t) {
+		return this.#n.resolve(e, t);
+	}
+	signal(e, t, n) {
+		return this.#t.createWritable(this.#n.getOwnerId(e), t, "base", n);
+	}
+	computed(e, t, n, r, i) {
+		return this.#t.computed(this.#n.getOwnerId(e), t, n, r, i);
+	}
+	operation(e, t, n, r, i, a) {
+		return this.#t.operation(this.#n.getOwnerId(e), t, n, r, i, a);
+	}
+	effect(e, t, n) {
+		return this.#t.effect(this.#n.getOwnerId(e), t, n);
+	}
+	requestUpdate(e, t = 0, n, r) {
+		this.#t.requestUpdate(e, t, n, r);
+	}
+	cancelUpdate(e) {
+		this.#t.cancelUpdate(e);
+	}
+	runInTransaction(e) {
+		return this.#t.runInTransaction(e);
+	}
+	flushNow(e) {
+		this.#t.flushNow(e);
+	}
+	whenPropagated(e) {
+		return this.#t.whenPropagated(e);
+	}
+}, ve = (e) => new Promise((t) => setTimeout(t, e));
+function ye() {
+	return { canceled: !1 };
+}
+function be(e) {
+	let t = e.requestAnimationFrame || window.requestAnimationFrame, n = e.signal, r = e.cancelToken, i = () => new Promise((i, a) => {
+		if (r?.canceled) return i();
+		if (n?.aborted) return a("aborted");
+		let o = performance.now(), s = o + (e.duration || 1e3), c = typeof e.from == "number" ? e.from : 0, l = typeof e.to == "number" ? e.to : 1, u = e.easingFunction || ((e) => e), d = (e) => (e - o) / (s - o), f = (e) => e * (l - c) + c, p = (e) => Math.max(0, Math.min(1, e)), m = (o) => {
+			if (r?.canceled) {
+				i();
+				return;
+			}
+			n?.aborted ? a("aborted") : (e.onUpdate(f(u(p(d(o))))), o < s ? t(m) : (e.onUpdate(f(u(1))), i()));
+		};
+		t(m);
+	});
+	return e.delay ? r?.canceled ? Promise.resolve() : n?.aborted ? Promise.reject("aborted") : ve(e.delay).then(i) : i();
+}
+//#endregion
+//#region ../core/src/utils/animator.js
+var xe = class {
+	constructor(e) {
+		this._renderCallback = e, this._renderRequested = !1, this._finalized = !1, this._warn = !1, this._animationFrameRequest = void 0, this.transitions = [], this.transitionsEnabled = !0;
+	}
+	requestTransition(e) {
+		this._finalized || (this.cancelTransition(e), this.transitions.push(e), this.requestRender());
+	}
+	cancelTransition(e) {
+		let t = this.transitions.indexOf(e);
+		t >= 0 && this.transitions.splice(t, 1);
+	}
+	requestRender() {
+		this._finalized || (this._renderRequested ? this._warn && console.warn("Render already requested!") : (this._renderRequested = !0, this._animationFrameRequest = window.requestAnimationFrame((e) => {
+			if (this._animationFrameRequest = void 0, this._finalized) return;
+			this._renderRequested = !1;
+			let t = this.transitions;
+			this.transitions = [];
+			let n;
+			for (; n = t.shift();) n(e);
+			this._finalized || this._renderCallback(e);
+		})));
+	}
+	finalize() {
+		this._finalized = !0, this._renderRequested = !1, this.transitions = [], this._animationFrameRequest !== void 0 && (window.cancelAnimationFrame(this._animationFrameRequest), this._animationFrameRequest = void 0);
+	}
+	transition(e) {
+		return be({
+			requestAnimationFrame: (e) => this.requestTransition(e),
+			...e
+		});
+	}
+};
+function Se(e, t, n, r, i) {
+	let a = 0, o = !0, s = !1, c = structuredClone(i), l = c;
+	function u(e, t, n, r) {
+		return t + (e - t) * 2 ** (-n / r);
+	}
+	function d(i) {
+		if (s = !1, o) return;
+		let d = i - a;
+		a = i;
+		for (let e of Object.keys(l)) c[e] = u(c[e], l[e], d, n);
+		t(c);
+		let p = -Infinity;
+		for (let e of Object.keys(l)) p = Math.max(p, Math.abs(l[e] - c[e]));
+		p < r ? (c = l, t(c), o = !0, p != 0 && e.requestRender()) : f();
+	}
+	function f() {
+		s || (s = !0, e.requestTransition(d));
+	}
+	function p(n) {
+		l = n, e.transitionsEnabled === !1 ? (c = l, o = !0, s = !1, e.cancelTransition(d), t(c)) : o && (o = !1, a = Ce(), d(a));
+	}
+	return p.stop = () => {
+		o = !0, s = !1, e.cancelTransition(d);
+	}, p.snap = (e) => {
+		l = e, c = e, p.stop(), t(c);
+	}, p;
+}
+function Ce() {
+	let e = globalThis.document?.timeline?.currentTime;
+	return typeof e == "number" ? e : performance.now();
+}
+//#endregion
+//#region ../core/src/paramRuntime/viewParamRuntime.js
+var C = class {
+	#e;
+	#t;
+	#n = /* @__PURE__ */ new Map();
+	#r = /* @__PURE__ */ new Map();
+	#i = /* @__PURE__ */ new Map();
+	#a = /* @__PURE__ */ new Set();
+	#o = /* @__PURE__ */ new Map();
+	#s;
+	#c = /* @__PURE__ */ new Map();
+	#l = /* @__PURE__ */ new Map();
+	#u = /* @__PURE__ */ new Map();
+	#d;
+	#f;
+	#p;
+	#m;
+	#h = !1;
+	constructor(e, t, n, r = {}) {
+		this.#d = e ?? (() => void 0), this.#f = t ?? (() => void 0), this.#p = n, this.#m = r.settleTemporalUpdatesImmediately ?? !1;
+		let i = this.#d();
+		i ? (this.#e = i.#e, this.#t = this.#e.createScope(i.#t)) : (this.#e = new _e(), this.#t = this.#e.createScope());
+	}
+	setSelectionSource(e) {
+		this.#s = e;
+	}
+	findSelectionCapability(e) {
+		let t = this.findRuntimeForParam(e), n = t && t.#c.get(e);
+		if (!n?.size) return;
+		let r = Array.from(n, (t) => ({
+			type: t.kind,
+			components: t.components.map((e) => ({
+				component: e,
+				type: t.source?.getScaleResolution(e)?.type
+			})),
+			location: t.source?.name ?? e
+		})), i = r[0], a = JSON.stringify(i.components), o = r.find(({ components: e }) => JSON.stringify(e) !== a);
+		if (o) throw Error(`Conflicting selection declarations for "${e}" in "${i.location}" and "${o.location}".`);
+		return i;
+	}
+	#g(e) {
+		if (!("select" in e)) return;
+		let t = f(e.select), n = t.type === "interval" ? "interval" : t.toggle ? "multi" : "single", r = t.type === "interval" ? Array.from(new Set(t.encodings)).sort() : [], i = e.push === "outer" ? this.findRuntimeForParam(e.name) : this, a = {
+			kind: n,
+			components: r,
+			source: this.#s
+		}, o = i.#c.get(e.name) ?? /* @__PURE__ */ new Set(), s = o.values().next().value;
+		if (s && (s.kind !== n || JSON.stringify(s.components) !== JSON.stringify(r))) throw Error(`Conflicting selection declarations for "${e.name}" in "${s.source?.name ?? e.name}" and "${this.#s?.name ?? e.name}".`);
+		o.add(a), i.#c.set(e.name, o), this.#e.addScopeDisposer(this.#t, () => {
+			o.delete(a);
+		});
+	}
+	get #_() {
+		return { resolveScaleResolution: this.#f };
+	}
+	registerParam(e, t = {}) {
+		let r = e.name;
+		if (n(r), this.#i.has(r) || this.#a.has(r)) throw Error("Parameter \"" + r + "\" already registered in this scope.");
+		if (Te(e), t.defer) {
+			if (!("expr" in e)) throw Error("Only expression parameters can be deferred.");
+			return this.#e.registerInitializer(this.#t, r, () => {
+				this.#v(e);
+			}), this.#i.set(r, e), () => {
+				throw Error("Cannot set derived parameter \"" + r + "\".");
+			};
+		}
+		return this.#v(e);
+	}
+	registerLazyExpression(e, t, n) {
+		this.#e.registerInitializer(this.#t, e, () => {
+			n?.();
+			let r = this.#e.registerDerived(this.#t, e, t, this.#_);
+			this.#r.set(e, r);
+		}), this.#a.add(e);
+	}
+	registerScopedExpression(e, t, n) {
+		if (this.#e !== n.#e) throw Error("Scoped expressions must share a parameter runtime.");
+		if (this.#i.has(e)) throw Error("Parameter \"" + e + "\" already registered in this scope.");
+		this.#e.registerInitializer(this.#t, e, () => {
+			let r = this.#e.registerDerived(this.#t, e, t, {
+				expressionScope: n.#t,
+				...n.#_
+			});
+			this.#r.set(e, r);
+		}), this.#i.set(e, {
+			name: e,
+			expr: t
+		});
+	}
+	#v(e) {
+		let t = e.name, n, r;
+		if (e.push == "outer") {
+			let i = this.findRuntimeForParam(t);
+			if (!i) throw Error(`Parameter "${t}" not found in outer scope!`);
+			let a = i.paramConfigs.get(t);
+			if (!a) throw Error(`Outer parameter "${t}" exists as a value but has no registered config.`);
+			if ("expr" in a || "select" in a || "ruler" in a) throw Error(`The outer parameter "${t}" must not have expr, select, or ruler properties!`);
+			n = (e) => {
+				i.setValue(t, e);
+			}, this.#n.set(t, n), "ruler" in e && (r = g(e, this), n(r));
+		} else if ("value" in e) r = g(e, this), n = "transition" in e ? this.#b(t, r, e.transition) : this.#y(t, r);
+		else if ("expr" in e) {
+			if ("transition" in e) this.#x(t, e.expr, e.transition);
+			else if ("debounce" in e) this.#S(t, e.expr, e.debounce);
+			else {
+				let n = this.#e.registerDerived(this.#t, t, e.expr, this.#_);
+				this.#r.set(t, n);
+			}
+			n = () => {
+				throw Error("Cannot set derived parameter \"" + t + "\".");
+			};
+		} else r = g(e, this), n = this.#y(t, r);
+		if ("select" in e) {
+			if (r ??= g(e, this), !this.#n.has(t)) {
+				let e = this.#e.registerSelection(this.#t, t, r);
+				this.#r.set(t, e), this.#n.set(t, (t) => {
+					e.set(t), this.#e.flushNow();
+				}), n = this.#n.get(t);
+			}
+			n(r);
+		}
+		return this.#i.set(t, e), this.#g(e), n;
+	}
+	allocateSetter(e, t, r = !1) {
+		if (n(e), this.#n.has(e)) throw Error("Setter already allocated for parameter: " + e);
+		let i = this.#e.registerBase(this.#t, e, t, { notify: !r });
+		this.#r.set(e, i);
+		let a = (e) => {
+			i.set(e), this.#e.flushNow();
+		};
+		return this.#n.set(e, a), a;
+	}
+	setValue(e, t, r) {
+		n(e);
+		let i = this.#n.get(e);
+		if (!i) throw Error("Writable parameter not found in this scope: " + e);
+		i(t, r);
+	}
+	getValue(e) {
+		return !this.#r.has(e) && this.hasLocalParam(e) && this.#e.resolve(this.#t, e), this.#r.get(e)?.get();
+	}
+	getParamRef(e) {
+		n(e);
+		let t = this.findRuntimeForParam(e);
+		if (t) return t.#r.has(e) || t.#e.resolve(t.#t, e), t.#r.get(e);
+	}
+	getTargetValue(e) {
+		return n(e), this.#l.get(e)?.target ?? this.#u.get(e)?.target ?? this.getValue(e);
+	}
+	subscribe(e, t) {
+		let n = this.getParamRef(e);
+		if (!n) throw Error("Parameter not found: " + e);
+		return n.subscribe(t);
+	}
+	findValue(e) {
+		return this.findRuntimeForParam(e)?.getValue(e);
+	}
+	findTargetValue(e) {
+		return this.findRuntimeForParam(e)?.getTargetValue(e);
+	}
+	get paramConfigs() {
+		return this.#i;
+	}
+	hasLocalParam(e) {
+		n(e);
+		let t = this.#i.get(e);
+		return this.#r.has(e) || this.#a.has(e) || t !== void 0 && "expr" in t;
+	}
+	isPendingParam(e) {
+		let t = this.findRuntimeForParam(e);
+		return t !== void 0 && !t.#r.has(e);
+	}
+	hasConfiguredParamInScopeChain(e) {
+		return n(e), this.#i.has(e) ? !0 : this.#d()?.hasConfiguredParamInScopeChain(e) ?? !1;
+	}
+	findRuntimeForParam(e) {
+		return this.hasLocalParam(e) ? this : this.#d()?.findRuntimeForParam(e);
+	}
+	findConfiguredParam(e) {
+		let t = this.#i.get(e);
+		return t ? {
+			runtime: this,
+			config: t
+		} : this.#d()?.findConfiguredParam(e);
+	}
+	registerSelectionController(e, t) {
+		let n = this.#o.get(e);
+		return n || (n = /* @__PURE__ */ new Set(), this.#o.set(e, n)), n.add(t), () => {
+			n.delete(t), n.size === 0 && this.#o.delete(e);
+		};
+	}
+	getSelectionController(e) {
+		let t = this.#o.get(e);
+		if (t) {
+			if (t.size > 1) throw Error(`Selection "${e}" has ambiguous interaction ownership.`);
+			return t.values().next().value;
+		}
+	}
+	getDebugState() {
+		let e = [];
+		for (let [t, n] of this.#r) {
+			let r = this.#i.get(t);
+			e.push({
+				name: t,
+				kind: we(r),
+				value: n.get(),
+				writable: this.#n.has(t),
+				configured: !!r,
+				config: r ? structuredClone(r) : void 0,
+				target: this.#l.get(t)?.target ?? this.#u.get(t)?.target
+			});
+		}
+		return {
+			scopeId: this.#t,
+			disposed: this.#h,
+			params: e
+		};
+	}
+	createExpression(e) {
+		return this.#e.createExpression(this.#t, e, this.#_);
+	}
+	watchExpression(e, t, n = {}) {
+		let r = this.createExpression(e), i = r.subscribe(t);
+		return (n.scopeOwned ?? !0) && this.#e.addScopeDisposer(this.#t, i), n.registerDisposer?.(i), r;
+	}
+	signal(e, t) {
+		return this.#e.signal(this.#t, e, t);
+	}
+	computed(e, t, n, r) {
+		return this.#e.computed(this.#t, e, t, n, r);
+	}
+	operation(e, t, n, r, i) {
+		return this.#e.operation(this.#t, e, t, n, r, i);
+	}
+	effect(e, t) {
+		return this.#e.effect(this.#t, e, t);
+	}
+	get updateScheduler() {
+		return this.#e;
+	}
+	requestUpdate(e, t = 0, n, r) {
+		this.#e.requestUpdate(e, t, n, r);
+	}
+	cancelUpdate(e) {
+		this.#e.cancelUpdate(e);
+	}
+	#y(e, t) {
+		let n = this.#e.registerBase(this.#t, e, t);
+		this.#r.set(e, n);
+		let r = (e) => {
+			n.set(e), this.#e.flushNow();
+		};
+		return this.#n.set(e, r), r;
+	}
+	#b(e, t, n) {
+		let r = this.#C(e, t, n), i = (t, n) => {
+			this.#w(e, r, t, n);
+		};
+		return this.#n.set(e, i), i;
+	}
+	#x(e, t, n) {
+		let r = this.createExpression(t), i = this.#C(e, r(null), n), a = r.subscribe(() => {
+			this.#w(e, i, r(null), { animate: !this.#m });
+		});
+		this.#e.addScopeDisposer(this.#t, a);
+	}
+	#S(e, t, n) {
+		let r = this.createExpression(t), i = r(null), a = this.#e.registerBase(this.#t, e, i);
+		this.#r.set(e, a);
+		let o = {
+			target: i,
+			timeout: void 0
+		}, s = () => {
+			o.timeout = void 0, a.set(o.target), this.#e.flushNow();
+		}, c = r.subscribe(() => {
+			o.target = r(null), clearTimeout(o.timeout), o.timeout = void 0, o.target !== a.get() && (this.#m ? s() : o.timeout = setTimeout(s, n));
+		});
+		this.#u.set(e, o), this.#e.addScopeDisposer(this.#t, () => {
+			clearTimeout(o.timeout), c(), this.#u.delete(e);
+		});
+	}
+	#C(e, t, n) {
+		let r = w(e, t), i = this.#e.registerBase(this.#t, e, r);
+		this.#r.set(e, i);
+		let a = this.#p;
+		if (!a) throw Error(`The parameter "${e}" uses transition but no animator is available.`);
+		let o = Se(a, ({ value: e }) => {
+			i.set(e), this.#e.flushNow();
+		}, n.halfLife ?? 80, n.epsilon ?? .01, { value: i.get() }), s = {
+			target: i.get(),
+			smoother: o,
+			dispose: () => {
+				o.stop(), this.#l.delete(e);
+			}
+		};
+		return this.#l.set(e, s), this.#e.addScopeDisposer(this.#t, s.dispose), s;
+	}
+	#w(e, t, n, r = {}) {
+		let i = w(e, n);
+		t.target = i, r.animate === !1 ? t.smoother.snap({ value: i }) : t.smoother({ value: i });
+	}
+	evaluateAndGet(e) {
+		return this.createExpression(e)();
+	}
+	runInTransaction(e) {
+		return this.#e.runInTransaction(e);
+	}
+	flushNow(e) {
+		this.#e.flushNow(e);
+	}
+	whenPropagated(e) {
+		return this.#e.whenPropagated(e);
+	}
+	finalizeInitialization() {
+		this.#m = !1;
+	}
+	dispose() {
+		this.#h || (this.#h = !0, this.#e.disposeScope(this.#t), this.#n.clear(), this.#r.clear(), this.#i.clear(), this.#a.clear(), this.#o.clear(), this.#l.clear(), this.#u.clear());
+	}
+	hasPointSelections() {
+		for (let e of this.#i.values()) if (a(e)) {
+			let t = e.select;
+			if (u(t)) {
+				if (t == "point") return !0;
+			} else if (t.type == "point") return !0;
+		}
+		return !1;
+	}
+};
+function we(e) {
+	return e ? e.push === "outer" ? "push" : "select" in e ? "selection" : "ruler" in e ? "ruler" : "expr" in e ? "derived" : "base" : "auto";
+}
+function Te(e) {
+	let t = e.name;
+	if ("value" in e && "expr" in e) throw Error(`The parameter "${t}" must not have both value and expr properties!`);
+	if ("expr" in e && "bind" in e) throw Error(`The parameter "${t}" must not have both expr and bind properties!`);
+	if ("debounce" in e) {
+		if (!("expr" in e) || e.push === "outer") throw Error(`The debounced parameter "${t}" must have an expr property and must not use push.`);
+		if ("transition" in e) throw Error(`The parameter "${t}" must not use debounce and transition together.`);
+		if (!Number.isFinite(e.debounce) || e.debounce < 0) throw Error(`The debounce for parameter "${t}" must be a non-negative finite number.`);
+	}
+	if (!("transition" in e)) return;
+	if ("select" in e || "ruler" in e || e.push === "outer") throw Error(`The parameter "${t}" must not use transition with select, ruler, or push.`);
+	if (!("value" in e || "expr" in e)) throw Error(`The transitioned parameter "${t}" must have a value or expr property.`);
+	let n = e.transition;
+	if (!n) throw Error(`The parameter "${t}" must have a transition configuration.`);
+	if (n.type !== "lerp") throw Error(`Unsupported transition type for parameter "${t}": ${n.type}`);
+	if (n.halfLife != null && (!Number.isFinite(n.halfLife) || n.halfLife <= 0)) throw Error(`The transition halfLife for parameter "${t}" must be a positive finite number.`);
+	if (n.epsilon != null && (!Number.isFinite(n.epsilon) || n.epsilon < 0)) throw Error(`The transition epsilon for parameter "${t}" must be a non-negative finite number.`);
+}
+function w(e, t) {
+	if (typeof t != "number" || !Number.isFinite(t)) throw Error(`Transitioned parameter "${e}" must have a finite numeric value.`);
+	return t;
+}
+//#endregion
+//#region ../core/src/view/layout/flexLayout.js
+function Ee(e, t, { spacing: n, devicePixelRatio: r, offset: i, reverse: a } = {}) {
+	n ||= 0, i ||= 0;
+	let o = Ne(e, t, n), s = 0, c = 0;
+	for (let t = 0; t < e.length; t++) s += o[t], O(e[t]) || c++;
+	let l = s + Math.max(0, c - 1) * n, u = r === void 0 ? (e) => e : (e) => Math.round(e * r) / r, d = 0, f = [], p = (e) => {
+		let t = d;
+		if (!t) return;
+		let r = (e ? n : 0) * (a ? -1 : 1);
+		m -= r;
+		for (let e = 0; e < t; e++) f.push({
+			location: m + (e + 1) / (t + 1) * r,
+			size: 0
+		});
+		m += r, d = 0;
+	}, m = a ? Math.max(t, l) : 0 + i;
+	if (e.length == 1 && O(e[0])) return [{
+		location: m,
+		size: 0
+	}];
+	for (let t = 0; t < e.length; t++) {
+		let r = e[t];
+		if (O(r)) d++;
+		else {
+			p(f.length > 0);
+			let e = o[t];
+			a && (m -= e), f.push({
+				location: u(m),
+				size: u(e)
+			}), a ? m -= n : m += e + n;
+		}
+	}
+	return m += a ? n : -n, p(!1), f;
+}
+function De(e, { spacing: t } = { spacing: 0 }) {
+	let n = 0;
+	for (let r of e) n += N(r) + (O(r) ? 0 : t);
+	return Math.max(0, n - t);
+}
+function Oe(e, t, { spacing: n = 0 } = {}) {
+	let r = [], i = [], a = 0, o = 0;
+	for (let [s, c] of e.entries()) {
+		let e = N(c), l = !O(c), u = o && l ? n : 0;
+		i.length && a + u + e > t && (r.push(i), i = [], a = 0, o = 0), i.push(s), a += (o && l ? n : 0) + e, o += +!!l;
+	}
+	return i.length && r.push(i), r;
+}
+function ke(e) {
+	let t = 0, n = 0, r = 0, i, a = !0;
+	for (let o of e) {
+		t = Math.max(t, o.px ?? 0), n = Math.max(n, o.grow ?? 0), r = Math.max(r, N(o));
+		let e = P(o);
+		e === void 0 ? a = !1 : i = i === void 0 ? e : Math.max(i, e);
+	}
+	return L({
+		px: t,
+		grow: n,
+		minPx: r,
+		maxPx: a ? i : void 0
+	});
+}
+function Ae(e) {
+	let t = {
+		px: 0,
+		grow: 0,
+		minPx: 0,
+		maxPx: 0
+	}, n = !0;
+	for (let r of e) {
+		t.px += k(r.px), t.grow += k(r.grow), t.minPx += N(r);
+		let e = P(r);
+		e === void 0 ? n = !1 : t.maxPx += e;
+	}
+	return n || delete t.maxPx, L(t);
+}
+var T = class e {
+	constructor(e, t) {
+		this.width = e, this.height = t;
+	}
+	addPadding(e) {
+		return this.#e(e.width, e.height);
+	}
+	subtractPadding(e) {
+		return this.#e(-e.width, -e.height);
+	}
+	#e(t, n) {
+		return new e(I(this.width, t), I(this.height, n));
+	}
+	isGrowing() {
+		return !!(this.width.grow || this.height.grow);
+	}
+}, E = Object.freeze({
+	px: 0,
+	grow: 0
+}), D = new T(E, E);
+function O(e) {
+	return !e.px && !e.grow && !e.minPx;
+}
+function je(e, t) {
+	return !e || !t ? !1 : e.px === t.px && e.grow === t.grow && e.minPx === t.minPx && e.maxPx === t.maxPx;
+}
+function k(e) {
+	return e || 0;
+}
+function Me(e) {
+	return e && (i(e.px) || i(e.grow) || i(e.minPx) || i(e.maxPx));
+}
+function A(e) {
+	if (q(e)) throw Error("parseSizeDef does not accept step-based sizes.");
+	if (Me(e)) return j(e), L(e);
+	if (i(e)) return {
+		px: e,
+		grow: 0
+	};
+	if (e === "container" || !e) return {
+		px: 0,
+		grow: 1
+	};
+	throw Error(`Invalid sizeDef: ${e}`);
+}
+function Ne(e, t, n) {
+	let r = !1;
+	for (let t of e) j(t), r ||= F(t);
+	if (!r) return Pe(e, t, n);
+	let i = Array(e.length).fill(0), a = [];
+	for (let t = 0; t < e.length; t++) O(e[t]) || a.push(t);
+	let o = Math.max(0, a.length - 1) * n, s = Math.max(0, t - o), c = /* @__PURE__ */ new Set();
+	for (let t of a) {
+		let n = e[t];
+		k(n.grow) || (i[t] = M(k(n.px), n), c.add(t));
+	}
+	for (;;) {
+		let t = 0, n = 0, r = 0;
+		for (let o of a) c.has(o) ? r += i[o] : (t += k(e[o].px), n += k(e[o].grow));
+		if (!n) {
+			for (let t of a) c.has(t) || (i[t] = M(k(e[t].px), e[t]), c.add(t));
+			break;
+		}
+		let o = Math.max(0, s - r - t), l = 0, u = [], d = [];
+		for (let t of a) {
+			if (c.has(t)) continue;
+			let r = e[t], a = k(r.px) + k(r.grow) / n * o, s = M(a, r);
+			i[t] = s;
+			let f = s - a;
+			l += f, f > 0 ? u.push(t) : f < 0 && d.push(t);
+		}
+		if (!u.length && !d.length) break;
+		if (l > 0) for (let e of u) c.add(e);
+		else if (l < 0) for (let e of d) c.add(e);
+		else for (let e of a) c.add(e);
+	}
+	return i;
+}
+function Pe(e, t, n) {
+	let r = 0, i = 0;
+	for (let t of e) r += k(t.px) + (O(t) ? 0 : n), i += k(t.grow);
+	r -= n;
+	let a = Math.max(0, t - r), o = Array(e.length);
+	for (let t = 0; t < e.length; t++) {
+		let n = e[t];
+		o[t] = O(n) ? 0 : k(n.px) + (i ? k(n.grow) / i * a : 0);
+	}
+	return o;
+}
+function j(e) {
+	if (e.minPx !== void 0 && e.maxPx !== void 0 && e.minPx > e.maxPx) throw Error("SizeDef minPx cannot be greater than maxPx.");
+}
+function M(e, t) {
+	return Math.min(Math.max(e, t.minPx ?? 0), t.maxPx ?? Infinity);
+}
+function N(e) {
+	return M(k(e.px), e);
+}
+function P(e) {
+	return e.maxPx ?? (k(e.grow) ? void 0 : N(e));
+}
+function F(e) {
+	return e.minPx !== void 0 || e.maxPx !== void 0;
+}
+function I(e, t) {
+	return L({
+		px: (e.px ?? 0) + t,
+		grow: e.grow,
+		minPx: e.minPx === void 0 ? void 0 : Math.max(0, e.minPx + t),
+		maxPx: e.maxPx === void 0 ? void 0 : Math.max(0, e.maxPx + t)
+	});
+}
+function L(e) {
+	let t = {}, n = e.px !== void 0, r = e.grow !== void 0, i = F(e);
+	return e.px ? t.px = e.px : e.px === 0 && (t.px = 0), e.grow ? t.grow = e.grow : e.grow === 0 ? t.grow = 0 : !n && !r && i && (t.grow = 1), e.minPx && e.minPx > k(e.px) && (t.minPx = e.minPx), e.maxPx !== void 0 && (k(t.grow) || e.maxPx < k(e.px)) && (t.maxPx = e.maxPx), t;
+}
+//#endregion
+//#region ../core/src/view/layout/padding.js
+var R = class e {
+	constructor(e, t, n, r) {
+		this.top = e || 0, this.right = t || 0, this.bottom = n || 0, this.left = r || 0;
+	}
+	get width() {
+		return this.left + this.right;
+	}
+	get height() {
+		return this.top + this.bottom;
+	}
+	expand(t) {
+		return t <= 0 ? this : new e(this.top + t, this.right + t, this.bottom + t, this.left + t);
+	}
+	add(t) {
+		return new e(this.top + t.top, this.right + t.right, this.bottom + t.bottom, this.left + t.left);
+	}
+	subtract(t) {
+		return new e(this.top - t.top, this.right - t.right, this.bottom - t.bottom, this.left - t.left);
+	}
+	union(t) {
+		return new e(Math.max(this.top, t.top), Math.max(this.right, t.right), Math.max(this.bottom, t.bottom), Math.max(this.left, t.left));
+	}
+	getHorizontal() {
+		return new e(0, this.right, 0, this.left);
+	}
+	getVertical() {
+		return new e(this.top, 0, this.bottom, 0);
+	}
+	get horizontalTotal() {
+		return this.left + this.right;
+	}
+	get verticalTotal() {
+		return this.top + this.bottom;
+	}
+	static createFromConfig(e) {
+		return typeof e == "number" ? this.createUniformPadding(e) : e ? this.createFromRecord(e) : z;
+	}
+	static createFromRecord(t) {
+		return new e(t.top, t.right, t.bottom, t.left);
+	}
+	static zero() {
+		return z;
+	}
+	static createUniformPadding(t) {
+		return new e(t, t, t, t);
+	}
+};
+function Fe(e, t) {
+	return t ? new R(t.top === !1 ? 0 : e.top, t.right === !1 ? 0 : e.right, t.bottom === !1 ? 0 : e.bottom, t.left === !1 ? 0 : e.left) : e;
+}
+var z = R.createUniformPadding(0);
+Object.freeze(z);
+//#endregion
+//#region ../core/src/utils/url.js
+var Ie = /^([A-Za-z]+:)?\/\//;
+function B(e, t) {
+	if (t && Ie.test(t)) return t;
+	let n = typeof e == "function" ? e() : e;
+	if (!n) return t;
+	if (!t) return n;
+	if (/[#?]/.test(n)) throw Error(`Cannot append to a url with query or hash. Append: ${t}, base: ${n}`);
+	return Re(n) + t;
+}
+function Le(e, t, n = ze()) {
+	let r = typeof e == "function" ? e() : e;
+	if (!t) return r;
+	try {
+		if (r) {
+			let e = n ? new URL(r, n).href : new URL(r).href;
+			return new URL(t, e).href;
+		} else if (n) return new URL(t, n).href;
+	} catch {}
+	return B(r, t);
+}
+function Re(e) {
+	let t = e.replace(/[^/]*$/, "");
+	return t === "" ? void 0 : t.endsWith("://") ? e + "/" : t;
+}
+function ze() {
+	if (typeof document < "u" && document.baseURI) return document.baseURI;
+	if (typeof window < "u" && window.location?.href) return window.location.href;
+}
+//#endregion
+//#region ../core/src/utils/addBaseUrl.js
+function Be(e, t) {
+	return !t || /^(data:|([A-Za-z]+:)?\/\/)/.test(e) || e.startsWith("/") ? e : (t.endsWith("/") || (t += "/"), t + e);
+}
+function Ve(e) {
+	if (!e) return e;
+	if (/[?#]/.test(e)) throw Error(`Invalid base URL: ${e} - cannot contain query or hash.`);
+	return e.endsWith("/") ? e : e + "/";
+}
+//#endregion
+//#region ../core/src/config/mergeConfig.js
+function V(t) {
+	return e(t) && !Array.isArray(t);
+}
+function He(e) {
+	let t = {};
+	for (let [n, r] of Object.entries(e)) t[n] = H(r);
+	return t;
+}
+function H(e) {
+	return Array.isArray(e) ? e.map(H) : V(e) ? He(e) : e;
+}
+function Ue(e, t) {
+	for (let [n, r] of Object.entries(t)) {
+		if (r === void 0) continue;
+		let t = e[n];
+		V(r) && V(t) ? Ue(t, r) : e[n] = H(r);
+	}
+	return e;
+}
+function We(e) {
+	let t = {};
+	for (let n of e) n && Ue(t, n);
+	return t;
+}
+//#endregion
+//#region ../core/src/view/viewChrome.js
+var U = /* @__PURE__ */ new WeakMap();
+function Ge(e, t) {
+	U.set(e, t);
+}
+function Ke(e) {
+	return U.get(e);
+}
+function qe(e) {
+	return U.has(e);
+}
+function Je(e) {
+	let t = e;
+	for (; t;) {
+		let n = U.get(t);
+		if (n === "excludeSubtree" || t === e && n === "exclude") return !0;
+		t = t.layoutParent;
+	}
+	return !1;
+}
+//#endregion
+//#region ../core/src/view/postScaleParams.js
+var Ye = /* @__PURE__ */ new WeakMap();
+function Xe(e, t) {
+	Ye.set(e, t);
+}
+function Ze(e) {
+	return Ye.get(e);
+}
+//#endregion
+//#region ../core/src/data/namedDataScope.js
+var Qe = class {
+	name;
+	owner;
+	getDefaultData;
+	#e;
+	#t = !1;
+	#n = 0;
+	#r = !1;
+	constructor(e, t, n) {
+		this.name = e, this.owner = t, this.getDefaultData = n;
+	}
+	get disposed() {
+		return this.#r;
+	}
+	beginUpdate() {
+		if (this.#r) throw Error(`Named dataset "${this.name}" has been disposed.`);
+		return ++this.#n;
+	}
+	isCurrentUpdate(e) {
+		return !this.#r && e === this.#n;
+	}
+	getData() {
+		if (this.#r) throw Error(`Named dataset "${this.name}" has been disposed.`);
+		let e = this.#t ? this.#e : this.getDefaultData();
+		if (e === void 0) return [];
+		if (!Array.isArray(e)) throw Error(`Named data "${this.name}" is not an array!`);
+		return e;
+	}
+	setData(e) {
+		if (!Array.isArray(e)) throw Error(`Named data "${this.name}" is not an array!`);
+		this.#e = e, this.#t = !0;
+	}
+	resetData() {
+		this.#e = void 0, this.#t = !1;
+	}
+	dispose() {
+		this.#e = void 0, this.#t = !1, this.#n++, this.#r = !0;
+	}
+}, $e = class {
+	view;
+	#e = /* @__PURE__ */ new Map();
+	#t = /* @__PURE__ */ new Map();
+	constructor(e) {
+		this.view = e;
+		for (let [t, n] of Object.entries(e.spec.datasets ?? {})) this.#e.set(t, new Qe(t, e, () => n));
+	}
+	getLocalBinding(e) {
+		return this.#e.get(e);
+	}
+	findDeclaredBinding(e) {
+		return this.#e.get(e) || this.view.dataParent?.namedDataScope.findDeclaredBinding(e);
+	}
+	resolve(e) {
+		let t = this.#e.get(e);
+		if (t) return t;
+		let n = this.view.dataParent?.namedDataScope;
+		if (n) return n.resolve(e);
+		let r = this.#t.get(e);
+		return r || (r = new Qe(e, void 0, () => this.view.context.getNamedDataFromProvider(e)), this.#t.set(e, r)), r;
+	}
+	dispose() {
+		for (let e of this.#e.values()) e.dispose();
+		this.#e.clear();
+		for (let e of this.#t.values()) e.dispose();
+		this.#t.clear();
+	}
+}, W = "VISIT_SKIP", G = "VISIT_STOP", K = (e) => e, et = class {
+	spec;
+	namedDataScope;
+	#e;
+	#t;
+	#n = {};
+	#r = {};
+	#i = {};
+	#a;
+	#o;
+	#s = !1;
+	#c = !1;
+	#l = void 0;
+	#u = !1;
+	#d = [];
+	opacityFunction = K;
+	#f = [];
+	#p = "none";
+	#m = /* @__PURE__ */ new Map();
+	facetCoords = new o([], JSON.stringify);
+	constructor(e, t, n, r, i, a = {}) {
+		if (!e) throw Error("View spec must be defined!");
+		if (this.context = t, this.layoutParent = n, this.dataParent = r, this.#t = i, this.spec = e, this.namedDataScope = new $e(this), r && e.theme !== void 0) throw Error("\"theme\" is only supported at the root specification. Use \"config\" and \"style\" for subtree customization.");
+		let o = r ? r.getConfigScopes() : [t.getBaseConfig()], s = e.config;
+		this.#e = [...o, s].filter((e) => !!e), this.resolutions = {
+			scale: {},
+			axis: {},
+			legend: {}
+		}, ie(this), this.options = {
+			inheritEncoding: !1,
+			layoutSizeParams: "own",
+			...a
+		}, this.flowHandle = void 0, this.needsAxes = {
+			x: !1,
+			y: !1
+		}, this.paramRuntime = new C(() => this.dataParent?.paramRuntime, (e) => this.getScaleResolution(e), t.animator, { settleTemporalUpdatesImmediately: !0 }), this.paramRuntime.setSelectionSource(this), "mark" in e && this.paramRuntime.registerLazyExpression("zoomLevel", "zoomLevel()", () => ae("The automatic zoomLevel parameter is deprecated. Use zoomLevel() or an explicit channel such as zoomLevel(\"x\") instead."));
+		let l = [...e.params ?? [], ...Ze(e) ?? []];
+		for (let e of l) {
+			if ("expr" in e) {
+				let { usesScaleHelper: t, globals: n } = c(e.expr), r = n.some((e) => this.paramRuntime.isPendingParam(e));
+				if (t || r) {
+					this.paramRuntime.registerParam(e, { defer: !0 }), this.#d.push(e.name);
+					continue;
+				}
+			}
+			this.paramRuntime.registerParam(e);
+		}
+		this.options.layoutSizeParams !== "inherit" && (this.#a = this.#h("width"), this.#o = this.#h("height"));
+	}
+	#h(e) {
+		if (!(this.paramRuntime.hasLocalParam(e) || this.options.layoutSizeParams != "force" && this.paramRuntime.hasConfiguredParamInScopeChain(e))) return this.paramRuntime.allocateSetter(e, 0);
+	}
+	get name() {
+		return this.spec.name ?? this.#t;
+	}
+	get explicitName() {
+		return this.spec.name;
+	}
+	getZindex() {
+		return this.spec.zindex ?? 0;
+	}
+	get defaultName() {
+		return this.#t;
+	}
+	getConfig() {
+		return We(this.#e);
+	}
+	getCursorSpec() {
+		return this.spec.cursor;
+	}
+	getCursor() {
+		let e = this.getCursorSpec();
+		return l(e) ? this.paramRuntime.evaluateAndGet(e.expr) : e;
+	}
+	watchCursor(e, t) {
+		let n = this.getCursorSpec();
+		l(n) && this.paramRuntime.watchExpression(n.expr, e, {
+			scopeOwned: !1,
+			registerDisposer: t
+		});
+	}
+	getConfigScopes() {
+		return this.#e.slice();
+	}
+	get coords() {
+		return this.facetCoords.values().next().value;
+	}
+	getPadding() {
+		return this._cache("size/padding", () => R.createFromConfig(this.spec.padding));
+	}
+	getOverhang() {
+		return R.zero();
+	}
+	isScrollable() {
+		return this.spec.viewportWidth != null || this.spec.viewportHeight != null;
+	}
+	getSize() {
+		return this._cache("size/size", () => this.isConfiguredVisible() ? new T(this.#g("width"), this.#g("height")) : D);
+	}
+	getViewportSize() {
+		if (!this.isScrollable()) return this.getSize();
+		if (!this.isConfiguredVisible()) return D;
+		let e = this.getSize();
+		return new T(this.#g("viewportWidth") ?? e.width, this.#g("viewportHeight") ?? e.height);
+	}
+	#g(e) {
+		let { value: t, implicit: n } = this.#_(e), r = this.resolveSizeValue(e, t), i = q(r), a = e == "viewportWidth" || e == "viewportHeight";
+		if (i) {
+			if (a) throw new b(`Cannot use step-based size with "${e}"!`, this);
+			let t = this.#x(e, r), i = this.getScaleResolution(e == "width" ? "x" : "y")?.getScale();
+			if (i) {
+				let n;
+				if (v(i.type)) n = i.domain().length;
+				else if (["locus", "index"].includes(i.type)) {
+					let e = i.domain();
+					n = d(e) - e[0];
+				} else throw new b(`Cannot use step-based size with "${i.type}" scale!`, this);
+				let a = i;
+				n = _(n, a.paddingInner(), a.paddingOuter());
+				let o = e == "width" ? "xOffset" : "yOffset", s = this.getScaleResolution(o)?.getScale(), c = r.for ?? (s && v(s.type) ? "offset" : "position"), l = t;
+				if (c == "offset") {
+					if (!s || !v(s.type)) throw new b(`Cannot use ${e}.step.for = "offset" without a discrete ${o} scale!`, this);
+					let t = s, n = _(s.domain().length, t.paddingInner(), t.paddingOuter());
+					l *= n / (1 - a.paddingInner());
+				}
+				return {
+					px: n * l,
+					grow: 0
+				};
+			} else if (n) return {
+				px: t,
+				grow: 0
+			};
+			else throw new b(`Cannot use step-based size with "${e}"!`, this);
+		} else return (r && A(r)) ?? (a ? void 0 : {
+			px: 0,
+			grow: 1
+		});
+	}
+	#_(e) {
+		let t = this.spec[e];
+		return t != null || e == "viewportWidth" || e == "viewportHeight" ? {
+			value: t,
+			implicit: !1
+		} : {
+			value: this.#v(e),
+			implicit: !0
+		};
+	}
+	#v(e) {
+		if (Je(this)) return;
+		let t = this.getConfig().view;
+		if (!t) return;
+		let n = e == "width" ? "x" : "y", r = this.getScaleResolution(n)?.getResolvedScaleType();
+		return r && !v(r) ? e == "width" ? t.continuousWidth : t.continuousHeight : (e == "width" ? t.discreteWidth : t.discreteHeight) ?? (t.step === void 0 ? void 0 : { step: t.step });
+	}
+	resolveSizeValue(e, t) {
+		if (!l(t)) return t;
+		let n = this.#C(e)();
+		if (at(n) || n === "container") return n;
+		throw new b(`"${e}" ExprRef must resolve to a finite number or "container"!`, this);
+	}
+	registerSizeInvalidation() {
+		this.#y("width", "x"), this.#y("height", "y"), this.#b("width"), this.#b("height"), this.#b("viewportWidth"), this.#b("viewportHeight");
+	}
+	#y(e, t) {
+		let { value: n, implicit: r } = this.#_(e);
+		if (!q(n)) return;
+		let i = this.getScaleResolution(t);
+		if (!i) {
+			if (r) return;
+			throw new b("Cannot use 'step' size without a scale!", this);
+		}
+		let a = () => {
+			let t = this.getSize()[e];
+			this.invalidateSizeCache();
+			let n = this.getSize()[e];
+			je(t, n) || this.context.requestLayoutReflow();
+		};
+		if (i.addEventListener("domain", a), this.registerDisposer(() => i.removeEventListener("domain", a)), n.for != "position") {
+			let t = e == "width" ? "xOffset" : "yOffset", n = this.getScaleResolution(t);
+			n && v(n.getResolvedScaleType()) && (n.addEventListener("domain", a), this.registerDisposer(() => n.removeEventListener("domain", a)));
+		}
+	}
+	#b(e) {
+		let { value: t } = this.#_(e);
+		l(t) ? this.#S(e, t.expr) : q(t) && l(t.step) && this.#S(e + ".step", t.step.expr);
+	}
+	#x(e, t) {
+		let n = l(t.step) ? this.#C(e + ".step")() : t.step;
+		if (at(n)) return n;
+		throw new b(`"${e}.step" ExprRef must resolve to a finite number!`, this);
+	}
+	#S(e, t) {
+		if (!this.#m.has(e)) {
+			let n = this.paramRuntime.watchExpression(t, () => {
+				this.invalidateSizeCache(), this.context.requestLayoutReflow();
+			});
+			this.#m.set(e, n);
+		}
+	}
+	#C(e) {
+		let t = this.#m.get(e);
+		if (!t) throw new b(`"${e}" ExprRef was not registered before layout!`, this);
+		return t;
+	}
+	isConfiguredVisible() {
+		return this.context.isViewConfiguredVisible(this);
+	}
+	isVisibleInSpec() {
+		return this.spec.visible ?? !0;
+	}
+	isVisible() {
+		return this.getLayoutAncestors().every((e) => e.isConfiguredVisible());
+	}
+	isDomainInert() {
+		if (this.spec.domainInert) return !0;
+		let e = this.dataParent;
+		return e ? e.isDomainInert() : !1;
+	}
+	getDataInitializationState() {
+		return this.#p;
+	}
+	_setDataInitializationState(e) {
+		this.#p = e;
+	}
+	isDataInitialized() {
+		return this.#p === "ready";
+	}
+	getEffectiveOpacity() {
+		return this.opacityFunction(this.layoutParent?.getEffectiveOpacity() ?? 1);
+	}
+	getOpacity() {
+		return this.opacityFunction(1);
+	}
+	hasLocalOpacity() {
+		return this.opacityFunction !== K;
+	}
+	getPathString() {
+		return this.getLayoutAncestors().map((e) => e.name).reverse().join("/");
+	}
+	#w(e) {
+		let t = [], n = this;
+		do
+			t.push(n), n = n[e];
+		while (n);
+		return t;
+	}
+	getLayoutAncestors() {
+		return this.#w("layoutParent");
+	}
+	getDataAncestors() {
+		return this.#w("dataParent");
+	}
+	handleBroadcast(e) {
+		for (let t of this.#n[e.type] || []) t(e);
+	}
+	_addBroadcastHandler(e, t) {
+		let n = this.#n[e];
+		return n || (n = [], this.#n[e] = n), n.push(t), () => {
+			let n = this.#n[e];
+			if (!n) return;
+			let r = n.indexOf(t);
+			r >= 0 && n.splice(r, 1);
+		};
+	}
+	handleInteraction(e, t) {
+		t && e.type === "mousemove" && e.pointedViews.add(this);
+		let n = t ? this.#r : this.#i;
+		for (let t of n[e.type] || []) t(e);
+	}
+	addInteractionListener(e, t, n) {
+		let r = n ? this.#r : this.#i, i = r[e];
+		i || (i = [], r[e] = i), i.push(t);
+	}
+	removeInteractionListener(e, t, n) {
+		let r = (n ? this.#r : this.#i)?.[e];
+		if (r) {
+			let e = r.indexOf(t);
+			e >= 0 && r.splice(e, 1);
+		}
+	}
+	visit(e) {
+		try {
+			let t = e(this);
+			if (e.postOrder && e.postOrder(this), t !== "VISIT_STOP") return t;
+		} catch (e) {
+			throw e.view = this, e;
+		}
+	}
+	getDescendants() {
+		let e = [];
+		return this.visit((t) => {
+			e.push(t);
+		}), e;
+	}
+	dispose() {
+		for (let e of this.#f) e();
+		this.#f.length = 0;
+		let e = this.flowHandle;
+		e?.collector && (this.context.dataFlow.pruneCollectorBranch(e.collector), this.context.dataFlow.removeCollector(e.collector)), e?.dataSource && e.dataSource.view === this && !e.dataSource.shareKey && this.context.dataFlow.removeDataSource(e.dataSource), this.paramRuntime.dispose(), this.namedDataScope.dispose(), this.context.dataFlow.loadingStatusRegistry.delete(this), this.flowHandle = void 0;
+	}
+	registerDisposer(e) {
+		this.#f.push(e);
+	}
+	disposeSubtree() {
+		let e = () => void 0;
+		e.postOrder = (e) => {
+			e.dispose();
+		}, this.visit(e);
+	}
+	configurePostScaleParams() {
+		let e = this.#d;
+		if (e.length && !this.#u) {
+			this.#u = !0, this.#l = !1;
+			for (let t of e) this.paramRuntime.getValue(t);
+			this.registerDisposer(this._addBroadcastHandler("subtreeDataReady", () => {
+				this.#l = !0, this.#T();
+			}));
+		}
+	}
+	configureViewOpacity() {
+		(!this.opacityFunction || this.opacityFunction === K) && (this.opacityFunction = nt(this));
+	}
+	finalizeParamRuntimeInitialization() {
+		this.#l === void 0 ? this.paramRuntime.finalizeInitialization() : this.#T();
+	}
+	onBeforeRender() {
+		this.#s ||= !0;
+	}
+	hasRendered() {
+		return this.#s;
+	}
+	arrange(e, t, n = {}) {
+		if (n.firstFacet && this.facetCoords.clear(), this.facetCoords.set(n.facetId, ee(t, p(n))), this.#a || this.#o) {
+			let e = this.getOverhang(), n = this.layoutParent ? R.zero() : this.getPadding();
+			this.#a?.(t.width - e.width - n.width), this.#o?.(t.height - e.height - n.height);
+		}
+		this.#c = !0, this.#T();
+	}
+	#T() {
+		this.#l && this.#c && (this.#l = void 0, this.paramRuntime.finalizeInitialization());
+	}
+	getEncoding() {
+		let e = this.dataParent && this.options.inheritEncoding ? this.dataParent.getEncoding() : {}, t = this.spec.encoding || {}, n = {
+			...e,
+			...t
+		};
+		for (let [e, t] of Object.entries(n)) t === null && delete n[e];
+		return n;
+	}
+	getFacetAccessor(e) {
+		if (this.layoutParent) return this.layoutParent.getFacetAccessor(this);
+	}
+	getFacetFields(e) {
+		let t = this.getEncoding().sample;
+		return te(t) ? [t.field] : this.options.inheritEncoding ? this.layoutParent?.getFacetFields(this) : [];
+	}
+	usesSampleFacetRendering() {
+		return this.layoutParent?.usesSampleFacetRendering() ?? !1;
+	}
+	getParentGridChromePolicy() {
+		return {
+			axes: !0,
+			background: !0
+		};
+	}
+	getScaleResolution(e) {
+		let t = h(e);
+		return this.getDataAncestors().map((e) => e.resolutions.scale[t]).find((e) => e);
+	}
+	getAxisResolution(e) {
+		let t = h(e);
+		return this.getDataAncestors().map((e) => e.resolutions.axis[t]).find((e) => e);
+	}
+	getLegendResolution(e) {
+		let t = h(e);
+		return this.getDataAncestors().map((e) => e.resolutions.legend[t]).find((e) => e);
+	}
+	getConfiguredResolution(e, t) {
+		return this.spec.resolve?.[t]?.[e];
+	}
+	getConfiguredOrDefaultResolution(e, t) {
+		return (this.getConfiguredResolution(e, t) ?? this.getConfiguredResolution("default", t)) || (t == "legend" ? this.getConfiguredOrDefaultResolution(e, "scale") : this.getDefaultResolution(e, t));
+	}
+	getDefaultResolution(e, t) {
+		return "independent";
+	}
+	getBaseUrl() {
+		return B(() => this.dataParent?.getBaseUrl(), Ve(this.spec.baseUrl));
+	}
+	isPickingSupported() {
+		return !0;
+	}
+	getTitleText() {
+		let e = this.spec.title;
+		if (e) return u(e) ? e : l(e.text) ? this.paramRuntime.evaluateAndGet(e.text.expr) : e.text;
+	}
+	_cache(e, t) {
+		return re(this, e, t);
+	}
+	_invalidateCacheByPrefix(e, t = "self") {
+		switch (t) {
+			case "self":
+				y(this, e);
+				break;
+			case "ancestors":
+				for (let t of this.getLayoutAncestors()) y(t, e);
+				break;
+			case "progeny":
+				this.visit((t) => y(t, e));
+				break;
+			default:
+		}
+	}
+	invalidateSizeCache() {
+		y(this, "size"), this._invalidateCacheByPrefix("size", "ancestors");
+	}
+	propagateInteraction(e) {}
+};
+function tt(e) {
+	return "unitsPerPixel" in e;
+}
+function nt(e) {
+	let t = "opacity" in e.spec ? e.spec.opacity : void 0;
+	if (t !== void 0) {
+		if (i(t)) return (e) => e * t;
+		if (tt(t)) {
+			let n = (t) => {
+				let n = e.getScaleResolution(t), r = n?.getScale();
+				if ([
+					"linear",
+					"index",
+					"locus"
+				].includes(r?.type)) return {
+					scale: r,
+					scaleResolution: n
+				};
+			}, r = it(t.values, "opacity.values", e);
+			if (!s(t.unitsPerPixel)) throw new b("\"opacity.unitsPerPixel\" must be an array.", e);
+			let i = () => 1, a = [], o = () => {
+				let t = rt(it(a.map((e) => e()), "opacity.unitsPerPixel", e), r, e), n = ne().domain(t.unitsPerPixel).range(t.values).clamp(!0);
+				i = (e) => n(e);
+			};
+			a = t.unitsPerPixel.map((t) => {
+				if (l(t)) {
+					let n = e.paramRuntime.watchExpression(t.expr, () => {
+						o(), e.context.animator.requestRender();
+					});
+					return () => n(null);
+				} else return () => t;
+			}), o();
+			let c = (e) => {
+				let t = e.scaleResolution.getAxisLength() || 1e3;
+				return m(e.scale.domain()) / t;
+			}, u;
+			if (t.channel === "auto") {
+				let t = n("x"), r = n("y");
+				if (t && r) u = () => (c(t) + c(r)) / 2;
+				else if (t) u = () => c(t);
+				else if (r) u = () => c(r);
+				else throw new b("Cannot find a resolved quantitative x or y scale for dynamic opacity!", e);
+			} else {
+				let r = t.channel ? n(t.channel) : n("x") ?? n("y");
+				if (!r) throw new b("Cannot find a resolved quantitative scale for dynamic opacity!", e);
+				u = () => c(r);
+			}
+			return (e) => i(u()) * e;
+		} else if (l(t)) {
+			let n = e.paramRuntime.watchExpression(t.expr, () => e.context.animator.requestRender());
+			return (e) => n(null) * e;
+		}
+	}
+	return K;
+}
+function rt(e, t, n) {
+	if (!e.length) throw new b("\"opacity.unitsPerPixel\" must contain at least one stop.", n);
+	if (e.length !== t.length) throw new b("\"opacity.unitsPerPixel\" and \"opacity.values\" must have the same length.", n);
+	e.forEach((e, t) => {
+		if (e <= 0) throw new b("Invalid opacity.unitsPerPixel value at index " + t + ". Stop values must be positive.", n);
+	});
+	let r = e.map((e, n) => ({
+		stop: e,
+		value: t[n]
+	}));
+	r.sort((e, t) => t.stop - e.stop);
+	let i = r.map((e) => e.stop), a = r.map((e) => e.value);
+	for (let t = 1; t < e.length; t++) if (i[t - 1] <= i[t]) throw new b("\"opacity.unitsPerPixel\" must be strictly decreasing.", n);
+	return {
+		unitsPerPixel: i,
+		values: a
+	};
+}
+function it(e, t, n) {
+	if (!s(e)) throw new b("\"" + t + "\" must evaluate to an array.", n);
+	return e.map((e, r) => {
+		if (!i(e) || !Number.isFinite(e)) throw new b("Invalid " + t + " value at index " + r + ". Expected a finite number.", n);
+		return e;
+	});
+}
+var q = (e) => !!e && typeof e == "object" && "step" in e;
+function at(e) {
+	return typeof e == "number" && Number.isFinite(e);
+}
+var J = /* @__PURE__ */ new WeakMap(), Y = /* @__PURE__ */ new WeakMap();
+function ot(e, t) {
+	ct(e, t, "Import");
+}
+function st(e, t) {
+	ct(e, t, "View");
+}
+function ct(e, t, n) {
+	if (t !== null && typeof t != "string") throw Error(n + " scope name must be a string or null.");
+	J.set(e, { name: t });
+}
+function lt(e) {
+	return J.get(e);
+}
+function ut(e, t = {}) {
+	let n = t.skipSubtree ?? !1 ? "excludeSubtree" : "exclude";
+	Y.set(e, n);
+}
+function dt(e, t = {}) {
+	Ge(e, t.skipSubtree ?? !1 ? "excludeSubtree" : "exclude");
+}
+function ft(e) {
+	return e.getLayoutAncestors().some(qe);
+}
+function X(e) {
+	let t = e.getDataAncestors(), n = [];
+	for (let e = t.length - 1; e >= 0; --e) {
+		let r = J.get(t[e]);
+		r && typeof r.name == "string" && n.push(r.name);
+	}
+	return n;
+}
+function pt(e) {
+	let t = e.explicitName;
+	if (!t) throw Error("Cannot build a selector for a view without a name.");
+	return {
+		scope: X(e),
+		view: t
+	};
+}
+function Z(e, t) {
+	if (!t) throw Error("Cannot build a selector for a parameter without a name.");
+	return {
+		scope: X(e),
+		param: t
+	};
+}
+function mt(e) {
+	return St(e), "p:" + JSON.stringify({
+		scope: e.scope,
+		param: e.param
+	});
+}
+function ht(e, t) {
+	e.visit((e) => {
+		let n = Ke(e);
+		if (n === "excludeSubtree") return W;
+		if (n !== "exclude") return t(e);
+	});
+}
+function gt(e, t) {
+	e.visit((e) => {
+		let n = Y.get(e);
+		if (n === "excludeSubtree") return W;
+		if (n !== "exclude") return t(e);
+	});
+}
+function _t(e, t) {
+	if (Ct(t), !jt(e, t.scope)) return;
+	let n = [];
+	if ($(e, t.scope, (e) => {
+		e.explicitName === t.view && n.push(e);
+	}, { includeNamedImportRoots: !0 }), n.length === 1) return n[0];
+	if (n.length !== 0) throw Error("View selector is ambiguous for view \"" + t.view + "\" in scope " + JSON.stringify(t.scope));
+}
+function vt(e, t) {
+	if (St(t), !jt(e, t.scope)) return;
+	let n = [];
+	if ($(e, t.scope, (e) => {
+		for (let [r, i] of e.paramRuntime.paramConfigs) r === t.param && Q(i) && n.push({
+			view: e,
+			param: i
+		});
+	}), n.length === 1) return n[0];
+	if (n.length !== 0) throw Error("Param selector is ambiguous for param \"" + t.param + "\" in scope " + JSON.stringify(t.scope));
+}
+function yt(e, t) {
+	e.visit((e) => {
+		let n = Y.get(e);
+		if (n === "excludeSubtree") return W;
+		if (n !== "exclude") for (let [n, r] of e.paramRuntime.paramConfigs) Q(r) && t({
+			view: e,
+			param: r,
+			selector: Z(e, n)
+		});
+	});
+}
+function bt(e) {
+	let t = [];
+	return yt(e, (e) => t.push(e)), t;
+}
+function xt(e) {
+	let t = [];
+	for (let n of wt(e)) {
+		let r = Tt(n);
+		Dt(e, r, t), Ot(e, r, t);
+	}
+	return t;
+}
+function St(e) {
+	if (!e || !Array.isArray(e.scope)) throw Error("Param selector scope must be an array.");
+	if (typeof e.param != "string" || !e.param.length) throw Error("Param selector param must be a non-empty string.");
+}
+function Ct(e) {
+	if (!e || !Array.isArray(e.scope)) throw Error("View selector scope must be an array.");
+	if (typeof e.view != "string" || !e.view.length) throw Error("View selector view must be a non-empty string.");
+}
+function Q(e) {
+	return e.persist === !1 ? !1 : a(e) ? !0 : t(e) ? !!e.bind : !1;
+}
+function wt(e) {
+	let t = /* @__PURE__ */ new Set([e]);
+	return e.visit((e) => {
+		let n = J.get(e);
+		n && typeof n.name == "string" && t.add(e);
+	}), Array.from(t);
+}
+function Tt(e) {
+	return X(e);
+}
+function Et(e) {
+	return e.length ? "import scope [" + e.join(" / ") + "]" : "import scope (root)";
+}
+function Dt(e, t, n) {
+	let r = /* @__PURE__ */ new Map();
+	$(e, t, (e) => {
+		for (let [t, n] of e.paramRuntime.paramConfigs) {
+			if (!Q(n)) continue;
+			let i = r.get(t);
+			i ? i.push(e) : r.set(t, [e]);
+		}
+	});
+	for (let [e, i] of r) {
+		if (i.length <= 1) continue;
+		let r = i.map((e) => e.getPathString()).join(", ");
+		n.push({
+			message: "Bookmarkable parameter \"" + e + "\" is not unique within " + Et(t) + ". Found in: " + r + ".",
+			scope: t
+		});
+	}
+}
+function Ot(e, t, n) {
+	let r = kt(e, t);
+	if (!r.length) return;
+	let i = r.filter((e) => At(e));
+	if (i.length <= 1) return;
+	let a = /* @__PURE__ */ new Map();
+	for (let e of i) {
+		let t = J.get(e), n = t ? t.name : void 0;
+		typeof n != "string" || !n.length || a.set(n, (a.get(n) ?? 0) + 1);
+	}
+	for (let [e, r] of a) r > 1 && n.push({
+		message: "Import instance name \"" + e + "\" is used multiple times for addressable instances in " + Et(t) + ".",
+		scope: t
+	});
+}
+function kt(e, t) {
+	let n = [];
+	return $(e, t, (e) => {
+		if (X(e).length !== t.length + 1) return;
+		let r = J.get(e);
+		!r || typeof r.name != "string" || n.push(e);
+	}, { includeNamedImportRoots: !0 }), n;
+}
+function At(e) {
+	let t = !1;
+	return e.visit((e) => {
+		let n = Y.get(e);
+		if (n === "excludeSubtree") return W;
+		if (n !== "exclude") {
+			for (let n of e.paramRuntime.paramConfigs.values()) if (Q(n)) return t = !0, G;
+		}
+	}), t;
+}
+function jt(e, t) {
+	let n = e, r = [];
+	for (let i of t) {
+		if (typeof i != "string" || !i.length) throw Error("Scope names must be non-empty strings.");
+		let t, a = !1;
+		if ($(e, r, (e) => {
+			let n = J.get(e);
+			if (!(!n || n.name !== i) && X(e).length === r.length + 1) {
+				if (t) return a = !0, G;
+				t = e;
+			}
+		}, { includeNamedImportRoots: !0 }), a) throw Error("Multiple import instances named \"" + i + "\" in scope.");
+		if (t) n = t, r.push(i);
+		else return;
+	}
+	return n;
+}
+function $(e, t, n, r = {}) {
+	let i = r.includeNamedImportRoots ?? !1;
+	e.visit((e) => {
+		let r = J.get(e), a = Y.get(e);
+		if (a === "excludeSubtree") return W;
+		if (a !== "exclude" && Mt(e, t, r, i)) return n(e);
+	});
+}
+function Mt(e, t, n, r) {
+	let i = X(e);
+	return Nt(i, t) ? !0 : !r || !n || typeof n.name != "string" || i.length !== t.length + 1 ? !1 : Pt(t, i);
+}
+function Nt(e, t) {
+	return e.length === t.length && Pt(e, t);
+}
+function Pt(e, t) {
+	if (e.length > t.length) return !1;
+	for (let n = 0; n < e.length; n++) if (e[n] !== t[n]) return !1;
+	return !0;
+}
+//#endregion
+export { T as A, C as B, We as C, Le as D, Re as E, N as F, x as G, Se as H, Ee as I, A as L, ke as M, De as N, R as O, P, Ae as R, Je as S, B as T, ye as U, xe as V, be as W, W as _, pt as a, Xe as b, dt as c, st as d, vt as f, ht as g, gt as h, X as i, E as j, Fe as k, ut as l, xt as m, lt as n, ft as o, _t as p, Z as r, mt as s, bt as t, ot as u, G as v, Be as w, qe as x, et as y, Oe as z };

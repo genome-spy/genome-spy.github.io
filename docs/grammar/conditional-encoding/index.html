@@ -83,8 +83,8 @@
   
 
 
-<meta name="description" content="Conditional encoding lets an encoding channel switch between alternative definitions based on a selection parameter. It is used to highlight the selected rows and de-emphasize the rest." />
-<meta property="og:description" content="Conditional encoding lets an encoding channel switch between alternative definitions based on a selection parameter. It is used to highlight the selected rows and de-emphasize the rest." />
+<meta name="description" content="Conditional encoding changes a visual channel when a selection parameter matches a row. The channel&#x27;s own definition is the fallback:" />
+<meta property="og:description" content="Conditional encoding changes a visual channel when a selection parameter matches a row. The channel&#x27;s own definition is the fallback:" />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -610,6 +610,8 @@
       
         
       
+        
+      
     
     
     
@@ -807,6 +809,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -1731,17 +1760,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#with-selection-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        With Selection Parameters
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#empty-selections" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1753,10 +1771,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#structured-selection-tests" class="md-nav__link">
+  <a href="#combining-selections" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Structured Selection Tests
+        Combining Selections
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusing-tests-in-a-unit-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reusing Tests in a Unit View
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-different-link-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Testing Different Link Endpoints
       </span>
     </span>
   </a>
@@ -2811,6 +2851,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3108,6 +3152,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
         
   
@@ -3364,17 +3462,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#with-selection-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        With Selection Parameters
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#empty-selections" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3386,10 +3473,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#structured-selection-tests" class="md-nav__link">
+  <a href="#combining-selections" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Structured Selection Tests
+        Combining Selections
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusing-tests-in-a-unit-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reusing Tests in a Unit View
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-different-link-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Testing Different Link Endpoints
       </span>
     </span>
   </a>
@@ -3442,12 +3551,9 @@
 
 
 <h1 id="conditional-encoding">Conditional Encoding<a class="headerlink" href="#conditional-encoding" title="Permanent link">&para;</a></h1>
-<p>Conditional encoding lets an encoding channel switch between alternative
-definitions based on a <a href=".././parameters/#selection-parameters">selection
-parameter</a>. It is used to highlight the
-selected rows and de-emphasize the rest.</p>
-<p>The basic pattern is to provide a fallback definition for the channel and one
-or more conditional branches in <code>condition</code>:</p>
+<p>Conditional encoding changes a visual channel when a <a href=".././parameters/#selection-parameters">selection
+parameter</a> matches a row. The channel's
+own definition is the fallback:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3457,16 +3563,8 @@ or more conditional branches in <code>condition</code>:</p>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>When the selection matches the current row, GenomeSpy uses the definition
-inside <code>condition</code>. Otherwise it uses the fallback definition on the channel
-itself.</p>
-<p>Conditional encoding is available on many visual channels, such as <code>color</code>,
-<code>fill</code>, <code>stroke</code>, <code>opacity</code>, <code>fillOpacity</code>, <code>strokeOpacity</code>, <code>strokeWidth</code>,
-<code>size</code>, <code>shape</code>, and <code>angle</code>.</p>
-<h2 id="with-selection-parameters">With Selection Parameters<a class="headerlink" href="#with-selection-parameters" title="Permanent link">&para;</a></h2>
-<p>Selections are the most common driver for conditional encoding. Point
-selections work well for click or hover interactions, while interval
-selections are useful for brushing ranges.</p>
+<p>Conditional encoding works with <code>color</code>, <code>opacity</code>, <code>size</code>, <code>shape</code>, and other
+visual channels. Point selections suit clicks and hovering:</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/parameters/point-selection.json" height="250">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -3524,79 +3622,174 @@ selections are useful for brushing ranges.</p>
 </genome-spy-doc-embed></div>
 
 <h2 id="empty-selections">Empty Selections<a class="headerlink" href="#empty-selections" title="Permanent link">&para;</a></h2>
-<p>For selection parameters, an empty selection matches by default. This is often
-useful for filters, but in conditional encoding it can be surprising because
-the highlighted style is then applied before the user has selected anything.</p>
-<p>Set <code>empty: false</code> when the conditional branch should only apply after the
-selection contains data:</p>
+<p>An empty selection matches every row by default. Add <code>"empty": false</code> to a
+condition when its style should apply only after a selection, for example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;select&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h2 id="combining-selections">Combining Selections<a class="headerlink" href="#combining-selections" title="Permanent link">&para;</a></h2>
+<p>Use <code>test</code> to combine selections with nested <code>and</code>, <code>or</code>, and <code>not</code>. Each leaf
+can set its own <code>empty</code> policy:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;or&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hover&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;and&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sourceBrush&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;targetBrush&quot;</span><span class="w"> </span><span class="p">}]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#3a86ff&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A leaf's <code>empty</code> defaults to <code>true</code> and is evaluated before the Boolean
+operators. A single <code>"test": { "param": "brush" }</code> is equivalent to the direct
+<code>"param": "brush"</code> condition.</p>
+<p>A two-axis brush is empty until both intervals are active. Declare a one-axis
+brush to select on one axis.</p>
+<p>For a simple union, use <code>param.or</code> inside <code>test</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;or&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;select&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;brush&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#3a86ff&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The union matches rows in any active selection. With <code>empty: true</code> (the
+default), it also matches every row while all selections are empty. Set
+<code>empty: false</code> inside <code>test</code> to keep the fallback in that case.</p>
+<h2 id="reusing-tests-in-a-unit-view">Reusing Tests in a Unit View<a class="headerlink" href="#reusing-tests-in-a-unit-view" title="Permanent link">&para;</a></h2>
+<p>When several channels use the same test, define it once in the unit view's
+<code>predicates</code> and refer to it from each condition, including <code>order</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;predicates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;highlighted&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;or&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hover&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;brush&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;strokeWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;select&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;fillOpacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;highlighted&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;highlighted&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="structured-selection-tests">Structured Selection Tests<a class="headerlink" href="#structured-selection-tests" title="Permanent link">&para;</a></h2>
-<p>Use a structured test for a selection condition when you want the predicate
-to be explicit. A structured singleton has the same behavior as the direct
-<code>param</code> shorthand:</p>
+<p>Each consuming unit must define names referenced by its encodings, including
+inherited encodings. Selection parameters and projected channels resolve in
+that unit. Named predicates cannot refer to other named predicates.</p>
+<h2 id="testing-different-link-endpoints">Testing Different Link Endpoints<a class="headerlink" href="#testing-different-link-endpoints" title="Permanent link">&para;</a></h2>
+<p>An interval normally tests the matching positional channel and, on ranged
+marks, its second endpoint according to the mark's hit-test mode. Use
+<code>"project": { "x": "x2" }</code> to test the selected x interval against <code>x2</code> alone.
+Predicates may test the same selection against different endpoints.</p>
+<p><code>project</code> is a GenomeSpy extension. Map every component declared by the
+selection to an unconditional field encoding on the same axis and of the same
+type. Quantitative, index, and locus types are supported.</p>
+<p>In this example, the upper brush tests each link's <code>x2</code> (target), and the
+lower brush tests <code>x</code> (source). Links keep their color when they match both;
+an empty brush leaves its endpoint unconstrained.</p>
+<div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/conditional-encoding/endpoint-brushes.json" height="200" spechidden="true">
+
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;select&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#3a86ff&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#d9d9d9&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The direct <code>param</code> form remains the concise spelling for a singleton
-selection condition. The structured singleton follows the Vega-Lite predicate
-shape; GenomeSpy extends it with a flat union of selection names. Use a
-selection union when one branch should apply to rows selected by any of several
-point or interval selections:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;or&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;select&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;brush&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
-<span class="w">          </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;class&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#cbd2d6&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The branch matches when at least one selection contains the row. With
-<code>empty: true</code> (the default), it also matches all rows while every selection in
-the group is empty. Once any member is active, the union matches rows selected
-by any active member. Set <code>empty: false</code> inside <code>test</code> to keep the fallback
-active until one selection is populated. Interval unions allow an active
-dimension to constrain the row while inactive dimensions impose no constraint.</p>
-<p>The <code>or</code> list must contain at least one selection name. A structured group test
-is flat; nested tests and condition-level <code>empty</code> are not supported. Direct
-<code>param</code> conditions continue to support <code>empty</code> as described above.</p>
-<h2 id="multiple-conditions">Multiple Conditions<a class="headerlink" href="#multiple-conditions" title="Permanent link">&para;</a></h2>
-<p>You can provide an array of conditional value definitions. They are evaluated
-in order, and the channel's main definition acts as the final fallback.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;strokeWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;select&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;highlight&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Brush both ends of a link&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">730</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">230</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">420</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">380</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">880</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">530</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">230</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">680</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">580</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">830</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;targetBrush&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sourceBrush&quot;</span><span class="w"> </span><span class="p">}],</span>
+
+<span class="w">  </span><span class="nt">&quot;scales&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;resolve&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shared&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shared&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;spacing&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;vconcat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;cursor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;targetBrush&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;push&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;outer&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;interval&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;encodings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mousedown&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;target&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;links&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;link&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;linkShape&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;diagonal&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;target&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;y2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;and&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;targetBrush&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x2&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sourceBrush&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">              </span><span class="p">]</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#2962a3&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#d8dbe0&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;cursor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sourceBrush&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;push&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;outer&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;interval&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;encodings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mousedown&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<p>For endpoint brushes, hover, and several conditional channels, see the
+<a href="../../examples/genomic-data/bpreveal-pisa-squid/">PISA Squid Plot</a>.</p>
+<h2 id="multiple-conditions">Multiple Conditions<a class="headerlink" href="#multiple-conditions" title="Permanent link">&para;</a></h2>
+<p>Conditions in an array are tested in order. The channel's main definition is
+the final fallback:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;select&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;highlight&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;empty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>

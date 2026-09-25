@@ -1,4 +1,6 @@
 {
+  "$schema": "https://genomespy.app/schema/core/v0.json",
+
   "description": "Configure nominal/ordinal/quantitative color schemes globally.",
   "config": {
     "scale": {

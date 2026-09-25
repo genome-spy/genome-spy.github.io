@@ -1,4 +1,6 @@
 {
+  "$schema": "https://genomespy.app/schema/core/v0.json",
+
   "description": [
     "Root and scoped theme overrides",
     "Compares a dark root theme with scoped config and style overrides, without subtree themes."

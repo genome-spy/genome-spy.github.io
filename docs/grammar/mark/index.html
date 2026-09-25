@@ -606,6 +606,8 @@
       
         
       
+        
+      
     
     
     
@@ -803,6 +805,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2707,6 +2736,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3004,6 +3037,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
         
   
@@ -3268,6 +3355,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shared-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Shared properties
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3336,23 +3440,6 @@
       </span>
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Offset channels">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#nested-offset-scales" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Nested offset scales
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -3456,6 +3543,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#common-definition-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Common definition properties
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#chrom-and-pos" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3510,9 +3608,7 @@ be used to encode the data fields. By adjusting the encodings, you can present
 the same data in a wide range of visual forms, such as scatterplots, bar charts,
 and heatmaps.</p>
 <div class="highlight"><span class="filename">Example: Specifying the mark type</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="err">...</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span>
-<span class="w">  </span><span class="err">...</span><span class="p">,</span>
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
@@ -3520,36 +3616,117 @@ and heatmaps.</p>
 behavior. The properties can be specified with an object that contains at least
 the <code>type</code> property:</p>
 <div class="highlight"><span class="filename">Example: Specifying the mark type and additional properties</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="err">...</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;cornerRadius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span><span class="p">,</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>A mark property applies to every mark instance rendered by that mark. Many
+properties also accept an <a href="../expressions/">expression reference</a>, allowing
+the shared value to react to parameters or the viewport without making it
+data-driven:</p>
+<div class="highlight"><span class="filename">Example: Specifying a mark property with an expression reference</span><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;min(0.5 * pow(zoomLevel(), 1.5), 200)&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Explicit mark properties override defaults from
+<a href="../config/#mark-defaults">config and styles</a>. If an <code>encoding</code> specifies the
+same visual channel, the encoding takes precedence over the mark property.
+Mark-specific properties are documented on each mark's page.</p>
+<h3 id="shared-properties">Shared properties<a class="headerlink" href="#shared-properties" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>style</code></dt>
+<dd>
+<p>Type: string | string[]</p>
+<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones.</p>
+</dd>
+<dt><code>cursor</code></dt>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Mouse cursor shown while the pointer is over the mark. Mark cursor takes precedence over enclosing view cursors.</p>
+<p><strong>Default value:</strong> browser default</p>
+</dd>
+<dt><code>x</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Position on the x axis.</p>
+</dd>
+<dt><code>y</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Position on the y axis.</p>
+</dd>
+<dt><code>color</code></dt>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
+</dd>
+<dt><code>opacity</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Opacity of the mark. Affects <code>fillOpacity</code> or <code>strokeOpacity</code>, depending on the <code>filled</code> property.</p>
+</dd>
+<dt><code>clip</code></dt>
+<dd>
+<p>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code></p>
+<p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
+<p><strong>Default value:</strong> <code>true</code> when either positional scale is zoomable; otherwise <code>false</code></p>
+</dd>
+<dt><code>xOffset</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Offset of the <code>x</code> coordinate in logical pixels.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
+<dt><code>yOffset</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Offset of the <code>y</code> coordinate in logical pixels.</p>
+<p><strong>Default value:</strong> <code>0</code></p>
+</dd>
+<dt><code>x2Offset</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Offset of the <code>x2</code> coordinate in logical pixels. When <code>x2</code> is implicit, it inherits <code>xOffset</code> unless this property is specified.</p>
+<p><strong>Default value:</strong> inherited from <code>xOffset</code> for an implicit <code>x2</code>, otherwise <code>0</code></p>
+</dd>
+<dt><code>y2Offset</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Offset of the <code>y2</code> coordinate in logical pixels. When <code>y2</code> is implicit, it inherits <code>yOffset</code> unless this property is specified.</p>
+<p><strong>Default value:</strong> inherited from <code>yOffset</code> for an implicit <code>y2</code>, otherwise <code>0</code></p>
+</dd>
+<dt><code>tooltip</code></dt>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#handledtooltip">HandledTooltip</a> | null | boolean</p>
+<p>Tooltip handler. If <code>false</code>, no tooltip is shown but the mark remains available for renderer picking and mark interactions. If <code>null</code>, no tooltip is shown and the mark is excluded from picking unless its view declares a point selection; a point selection overrides this picking opt-out. If string, specifies the <a href="https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
+</dd>
+</dl>
 <h2 id="encoding">Encoding<a class="headerlink" href="#encoding" title="Permanent link">&para;</a></h2>
-<p>While mark properties are static, <em>i.e.</em>, same for all mark instances,
-<code>encoding</code> allows for mapping data to <a href="#channels">visual channels</a> and using
-data-driven visual encoding.</p>
-<p>It's worth noting that while all visual encoding channels are also available as
-static properties, not all properties can be used for encoding. Only certain
-properties are suitable for encoding data in a meaningful way.</p>
+<p>While mark properties are shared by all rows rendered by a mark, <code>encoding</code>
+maps data to <a href="#channels">visual channels</a> and allows each mark instance to have
+different visual properties.</p>
+<p>Visual encoding channels can also be set as shared mark properties. Other mark
+properties cannot be encoded because they do not meaningfully vary by row.</p>
 <div class="highlight"><span class="filename">Example: Specifying visual channels with the encoding property</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="err">...</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;from&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;from&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;to&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;category&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;category&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>The schematic example above uses the <code>"rect"</code> mark to represent the data rows.
@@ -3593,35 +3770,8 @@ primary offset. An explicitly encoded secondary endpoint is independent and
 has no offset by default. Set the <code>x2Offset</code> or <code>y2Offset</code> mark property to
 displace an explicit secondary endpoint. These secondary offsets are mark
 properties, not encoding channels.</p>
-<h6 id="nested-offset-scales">Nested offset scales<a class="headerlink" href="#nested-offset-scales" title="Permanent link">&para;</a></h6>
-<p>A discrete field, datum, or expression on <code>xOffset</code> or <code>yOffset</code> creates a
-nested band scale when the matching primary position uses a band scale. The
-offset range is measured in logical pixels and spans the primary band.
-Point-like marks use subgroup centers, while rectangles cover subgroup band
-extents.</p>
-<p>The primary scale's <code>paddingInner</code> and <code>paddingOuter</code> control spacing between
-groups and default to <code>0.2</code> when a nested offset scale is present. The offset
-scale's padding controls spacing between marks within each group. Explicit
-padding values override the defaults.</p>
-<p>See the <a href="rect/#grouped-bars">grouped bar example</a>.</p>
-<div class="highlight"><span class="filename">Nested bands for grouped bars</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;category&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;xOffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;group&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;paddingInner&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>As described in <a href="../composition/concat/#step-sizing">Step sizing</a>, a
-step-based width or height normally describes a positional scale step. When a
-discrete offset scale is present, it describes each offset step by default. Use
-<code>{ "step": 12, "for": "position" }</code> to make the step describe each primary
-category instead. An explicit offset-scale <code>range</code> remains a pixel range and is
-not replaced by nested-band inference.</p>
+<p>A discrete field, datum, or expression on an offset channel can create a
+<a href="../scale/#nested-offset-scales">nested offset scale</a> for grouped marks.</p>
 <h4 id="other-channels">Other channels<a class="headerlink" href="#other-channels" title="Permanent link">&para;</a></h4>
 <dl>
 <dt><code>color</code></dt>
@@ -3639,11 +3789,15 @@ not replaced by nested-band inference.</p>
 <dt><code>strokeWidth</code></dt>
 <dd>Stroke width in pixels</dd>
 <dt><code>size</code></dt>
-<dd>Depends on the mark. <code>"point"</code>: the area of the rectangle that encloses the mark instance. <code>"rule"</code> and <code>"link"</code>: stroke width. <code>"text"</code>: font size.</dd>
+<dd>Depends on the mark. <code>"point"</code>: the area of the rectangle that encloses the
+  mark instance. <code>"rule"</code> and <code>"link"</code>: stroke width. <code>"arrow"</code>: stem
+  thickness. <code>"text"</code>: font size.</dd>
 <dt><code>shape</code></dt>
 <dd>Shape of <code>"point"</code> marks.</dd>
 <dt><code>angle</code></dt>
 <dd>Rotational angle of <code>"point"</code> and <code>"text"</code> marks.</dd>
+<dt><code>direction</code></dt>
+<dd>Direction of <code>"arrow"</code> marks.</dd>
 <dt><code>text</code></dt>
 <dd>Text that the <code>"text"</code> mark should render for a mark instance.</dd>
 <dt><code>tooltip</code></dt>
@@ -3700,6 +3854,9 @@ visual mark properties.</p>
   persistence in the GenomeSpy App. The key can be a single field definition
   or an array of field definitions for a composite key. For composite keys, the
   field order is significant.</dd>
+<dt><code>search</code></dt>
+<dd>Exposes one or more fields to the GenomeSpy App's
+  <a href="../../sample-collections/app-features/#search">search behavior</a>.</dd>
 </dl>
 <h4 id="channels-for-sample-collections">Channels for sample collections<a class="headerlink" href="#channels-for-sample-collections" title="Permanent link">&para;</a></h4>
 <p>The <a href="../../sample-collections/visualizing/#specifying-a-sample-view">GenomeSpy app</a> supports an additional channel.</p>
@@ -3714,19 +3871,21 @@ channel, but you can also use <a href="#expression">expressions</a>, <a href="#v
 <a href="#datum">data values</a> belonging to the data domain.</p>
 <p>For interaction-driven styling, see <a href="../conditional-encoding/">Conditional
 Encoding</a>.</p>
-<p>Expect for the <code>value</code> method, all methods require specifying the data type
-using the <code>type</code> property, which must be one of: <code>"quantitative"</code>, <code>"nominal"</code>,
-or <code>"ordinal"</code>, <code>"index"</code>, or
-<a href="../genomic-coordinates/#encoding-genomic-coordinates"><code>"locus"</code></a>.
-The first three types are equivalent to the <a href="https://vega.github.io/vega-lite/docs/type.html">Vega-Lite
+<p>Most scaled field, expression, and datum definitions require a <code>type</code> property.
+Secondary position definitions such as <code>x2</code>, metadata channels, and some text
+definitions do not. Value definitions do not use a data type because their
+values already belong to the channel's visual range.</p>
+<p>The available data types are <code>"quantitative"</code>, <code>"nominal"</code>, <code>"ordinal"</code>,
+<code>"index"</code>, and
+<a href="../genomic-coordinates/#encoding-genomic-coordinates"><code>"locus"</code></a>. The first
+three are equivalent to the <a href="https://vega.github.io/vega-lite/docs/type.html">Vega-Lite
 types</a> of the same name.</p>
 <h4 id="field">Field<a class="headerlink" href="#field" title="Permanent link">&para;</a></h4>
 <p><code>field</code> maps a field (or column) of the data to a visual channel.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;significance&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ordinal&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <h4 id="expression">Expression<a class="headerlink" href="#expression" title="Permanent link">&para;</a></h4>
@@ -3735,8 +3894,7 @@ a scale transformation.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum.score &gt; 10&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <h4 id="value">Value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h4>
@@ -3744,8 +3902,7 @@ a scale transformation.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <h4 id="datum">Datum<a class="headerlink" href="#datum" title="Permanent link">&para;</a></h4>
@@ -3754,10 +3911,21 @@ the scale transformation will be applied.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;datum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;important&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ordinal&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="err">...</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h4 id="common-definition-properties">Common definition properties<a class="headerlink" href="#common-definition-properties" title="Permanent link">&para;</a></h4>
+<p>Field, expression, and datum definitions can include a <code>scale</code> that maps data
+values to visual values. Positional channels can include an <code>axis</code>, and other
+scaled channels can include a <code>legend</code>. Set <code>scale</code>, <code>axis</code>, or <code>legend</code> to
+<code>null</code> to disable it. See <a href="../scale/">Scales</a>, <a href="../axis/">Axes</a>, and
+<a href="../legend/">Legends</a>.</p>
+<p>Use <code>title</code> to label an encoded field in guides and tooltips, and <code>format</code> to
+format numeric labels and text. On position definitions, <code>band</code> selects a
+relative position within a scale band: <code>0</code> is the beginning, <code>0.5</code> the center,
+and <code>1</code> the end.</p>
+<p>Definitions can also include <code>condition</code> for interaction-driven values. See
+<a href="../conditional-encoding/">Conditional Encoding</a>.</p>
 <h4 id="chrom-and-pos">Chrom and Pos<a class="headerlink" href="#chrom-and-pos" title="Permanent link">&para;</a></h4>
 <p>See <a href="../genomic-coordinates/">Genomic Coordinates</a>.</p>
 

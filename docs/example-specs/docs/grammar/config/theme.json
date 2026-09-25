@@ -1,5 +1,6 @@
 {
-  "$schema": "https://cdn.jsdelivr.net/npm/@genome-spy/core/dist/schema.json",
+  "$schema": "https://genomespy.app/schema/core/v0.json",
+
   "description": "Built-in FiveThirtyEight theme example.",
 
   "theme": "fivethirtyeight",

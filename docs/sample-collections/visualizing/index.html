@@ -604,6 +604,8 @@
       
         
       
+        
+      
     
     
     
@@ -801,6 +803,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2268,6 +2297,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Getting started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-assisted-editing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Schema-assisted editing
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2858,6 +2904,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3155,6 +3205,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
         
   
@@ -3419,6 +3523,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Getting started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-assisted-editing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Schema-assisted editing
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3558,12 +3679,12 @@ page for more information.</p>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.88.1/dist/style.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.89.0/dist/style.css&quot;</span>
     <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.88.1/dist/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@0.89.0/dist/index.es.js&quot;</span><span class="p">;</span>
 
 <span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;spec.json&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -3577,6 +3698,10 @@ repository on GitHub.</p>
 <a href="../../api/inspector/">Inspector</a> from the three-dot menu in the App toolbar to
 inspect the live view hierarchy, dataflow, params, and scale/axis/legend
 resolutions.</p>
+<h3 id="schema-assisted-editing">Schema-assisted editing<a class="headerlink" href="#schema-assisted-editing" title="Permanent link">&para;</a></h3>
+<p>Follow the general <a href="../../grammar/#schema-assisted-editing">schema-assisted editing
+instructions</a>, but use the App
+schema: <code>https://genomespy.app/schema/app/v&lt;major&gt;.json</code>.</p>
 <h2 id="specifying-a-sample-view">Specifying a Sample View<a class="headerlink" href="#specifying-a-sample-view" title="Permanent link">&para;</a></h2>
 <p>The GenomeSpy app extends the core library with a new view composition operator
 that allows visualization of multiple samples. In this context, a <em>sample</em> means

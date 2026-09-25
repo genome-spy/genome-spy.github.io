@@ -83,8 +83,8 @@
   
 
 
-<meta name="description" content="Genome browser applications typically couple the visual representations to specific file formats and provide few customization options. GenomeSpy has a more abstract approach to visualization, providing combinatorial building blocks such as marks, transformations, and scales, axes, titles, and legends. As a result, users can author tailored visualizations that display the underlying data more effectively." />
-<meta property="og:description" content="Genome browser applications typically couple the visual representations to specific file formats and provide few customization options. GenomeSpy has a more abstract approach to visualization, providing combinatorial building blocks such as marks, transformations, and scales, axes, titles, and legends. As a result, users can author tailored visualizations that display the underlying data more effectively." />
+<meta name="description" content="Genome browser applications typically couple the visual representations to specific file formats and provide few customization options. GenomeSpy instead uses declarative JSON specifications: you describe the data and its visual representation rather than issue drawing commands." />
+<meta property="og:description" content="Genome browser applications typically couple the visual representations to specific file formats and provide few customization options. GenomeSpy instead uses declarative JSON specifications: you describe the data and its visual representation rather than issue drawing commands." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -610,6 +610,8 @@
       
         
       
+        
+      
     
     
     
@@ -807,6 +809,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./transform/displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2709,6 +2738,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3006,6 +3039,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
         
   
@@ -3270,30 +3357,24 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Unit views">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#properties" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-hierarchy-and-composition" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Properties
+        View hierarchy and composition
       </span>
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#view-composition" class="md-nav__link">
+  <a href="#parameters-and-interaction" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        View composition
+        Parameters and interaction
       </span>
     </span>
   </a>
@@ -3305,6 +3386,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         Schema-assisted editing
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unit-view-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Unit view reference
       </span>
     </span>
   </a>
@@ -3336,34 +3428,33 @@
 
 <h1 id="visualization-grammar">Visualization Grammar<a class="headerlink" href="#visualization-grammar" title="Permanent link">&para;</a></h1>
 <p>Genome browser applications typically couple the visual representations to
-specific file formats and provide few customization options. GenomeSpy has a
-more abstract approach to visualization, providing combinatorial building blocks
-such as <a href="mark/">marks</a>, <a href="transform/">transformations</a>, and
+specific file formats and provide few customization options. GenomeSpy instead
+uses declarative JSON specifications: you describe the data and its visual
+representation rather than issue drawing commands.</p>
+<p>The grammar combines <a href="data/">data sources</a>,
+<a href="transform/">transformations</a>, <a href="mark/">marks</a>,
 <a href="scale/">scales</a>, <a href="axis/">axes</a>, <a href="title/">titles</a>, and
-<a href="legend/">legends</a>. As a result,
-users can author tailored visualizations that display the underlying data more
-effectively.</p>
-<p>The concept was first introduced in <a href="https://www.springer.com/gp/book/9780387245447">The Grammar of
-Graphics</a> and developed further
-in <a href="https://ggplot2.tidyverse.org/">ggplot2</a> and
-<a href="https://vega.github.io/vega-lite/">Vega-Lite</a>.</p>
+<a href="legend/">legends</a>. Data consists of rows with named fields. Transformations
+filter, derive, or summarize rows before encodings map fields, values, and
+expressions to visual channels. Scales translate data values into visual values,
+marks render the results, and axes and legends describe the scales.</p>
 <div class="admonition note">
-<p class="admonition-title">A dialect of Vega-Lite</p>
-<p>The visualization grammar of GenomeSpy is a dialect of
-<a href="https://vega.github.io/vega-lite/">Vega-Lite</a>, providing partial
-compatibility. However, the goals of GenomeSpy and Vega-Lite are different –
-GenomeSpy is more domain-specific and primarily intended for the
-visualization and analysis of large datasets containing genomic coordinates.
-Nevertheless, GenomeSpy tries to follow Vega-Lite's grammar where practical,
-and thus, this documentation has several references to its documentation.</p>
+<p class="admonition-title">A grammar based on Vega-Lite</p>
+<p>GenomeSpy's visualization grammar is based on
+<a href="https://vega.github.io/vega-lite/">Vega-Lite</a> and follows its concepts and
+syntax where practical, providing partial specification compatibility. The
+implementation is independent and designed for visualizing and analyzing
+large datasets containing genomic coordinates. This documentation links to
+the Vega-Lite documentation where the same grammar concepts apply.</p>
+<p>The grammar-of-graphics approach was introduced in <a href="https://www.springer.com/gp/book/9780387245447">The Grammar of
+Graphics</a> and developed
+further in <a href="https://ggplot2.tidyverse.org/">ggplot2</a> and Vega-Lite.</p>
 </div>
 <h2 id="unit-views">Unit views<a class="headerlink" href="#unit-views" title="Permanent link">&para;</a></h2>
 <p>A GenomeSpy specification describes a hierarchy of views. A unit view is a leaf
-in the hierarchy that renders data using a graphical <a href="mark/">mark</a>. The
-<code>mark</code> is the only required property. A unit view can define its own <code>data</code>,
-<code>transform</code>, and <code>encoding</code>, or inherit them from an ancestor composition view.
-Transforms modify the data before the encoding maps its fields to visual
-channels of the mark.</p>
+in the hierarchy that renders rows using a graphical <a href="mark/">mark</a>. The
+<code>mark</code> is its only required property. A unit view can define its own <code>data</code>,
+<code>transform</code>, and <code>encoding</code>, or inherit them from an ancestor composition view.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/index/single-view-specification.json" height="200">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -3387,7 +3478,54 @@ channels of the mark.</p>
 
 </genome-spy-doc-embed></div>
 
-<h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<h2 id="view-hierarchy-and-composition">View hierarchy and composition<a class="headerlink" href="#view-hierarchy-and-composition" title="Permanent link">&para;</a></h2>
+<p>The root of a specification can be a unit view or a composition view. It can
+also define settings for the whole specification, including
+<a href="genomic-coordinates/">genome assemblies</a>, <a href="config/">themes and
+configuration</a>, the background, and the base URL for external
+resources.</p>
+<p><a href="composition/">Composition views</a> arrange child views into a hierarchy.
+For example, <a href="composition/layer/"><code>layer</code></a> overlays views to create custom
+glyphs, while the <a href="composition/concat/">concatenation</a> operators arrange views
+into tracks or grids. Common properties such as <code>data</code>, <code>transform</code>, and
+<code>encoding</code> can be defined on a composition view and inherited by its
+descendants.</p>
+<h2 id="parameters-and-interaction">Parameters and interaction<a class="headerlink" href="#parameters-and-interaction" title="Permanent link">&para;</a></h2>
+<p><a href="parameters/">Parameters</a> add values, input controls, and interactive
+selections to a specification. <a href="expressions/">Expressions</a> can derive values
+from parameters and drive <a href="mark/#properties">mark properties</a>, while
+<a href="conditional-encoding/">conditional encodings</a> and transformations can
+respond to parameter values and selections. This allows interaction to change
+visual properties and data while preserving the declarative specification
+model.</p>
+<h2 id="schema-assisted-editing">Schema-assisted editing<a class="headerlink" href="#schema-assisted-editing" title="Permanent link">&para;</a></h2>
+<p>Misspelled properties, invalid values, and settings in the wrong place are easy
+to overlook in a specification. A JSON-aware editor can catch many of these
+errors as you type. It can also suggest available properties and show their
+documentation.</p>
+<p>A schema is a machine-readable description of the properties and values that a
+specification accepts. Enable these editor features by adding <code>$schema</code> to the
+root of a Core specification:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://genomespy.app/schema/core/v0.json&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data/example.csv&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Major-version URLs are recommended because they follow compatible releases.
+Minor (<code>v1.2.json</code>) and exact (<code>v1.2.3.json</code>) URLs are available when tighter
+reproducibility is needed. Update the URL when upgrading to a new major version.
+Schemas are also available from jsDelivr and unpkg.</p>
+<p>GenomeSpy App specifications use a different schema; see <a href="../sample-collections/visualizing/#schema-assisted-editing">Visualizing Sample
+Collections</a>.</p>
+<p>VS Code supports JSON schemas without an extension. Its <a href="https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings">JSON
+documentation</a>
+also explains how to associate schemas through workspace or user settings.</p>
+<p>The Playground selects the Core schema automatically, and inline documentation
+examples omit <code>$schema</code>. Schema validation cannot verify external resources,
+data fields, or expression behavior.</p>
+<h2 id="unit-view-reference">Unit view reference<a class="headerlink" href="#unit-view-reference" title="Permanent link">&para;</a></h2>
 <p>The following reference lists all properties available on unit views. Most are
 shared by the different view types and can be used throughout a view hierarchy;
 <code>mark</code> is specific to unit views.</p>
@@ -3395,7 +3533,7 @@ shared by the different view types and can be used throughout a view hierarchy;
 <dt><code>axes</code></dt>
 <dd>
 <p>Type: object</p>
-<p>Defines properties for axis resolutions used by this view subtree.</p>
+<p>Defines properties for axis resolutions used by this view subtree. When a positional scale is declared at the view level, an axis can be created explicitly by declaring the corresponding channel here.</p>
 <p>Use this when a composed view shares an axis across child views and the axis settings belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error.</p>
 </dd>
 <dt><code>baseUrl</code></dt>
@@ -3500,6 +3638,12 @@ shared by the different view types and can be used throughout a view hierarchy;
 <p>Type: array</p>
 <p>Dynamic variables that <a href="https://genomespy.app/docs/grammar/parameters/">parameterize</a> a visualization.</p>
 </dd>
+<dt><code>predicates</code></dt>
+<dd>
+<p>Type: object</p>
+<p>Define a selection test once instead of repeating it across this unit's conditional encodings, including conditional draw order. Use <code>test: { ref: "name" }</code> in a condition to reference it.</p>
+<p>Definitions are local to this unit and are not inherited. An inherited encoding may reference a name if each consuming unit defines it. Selection parameters and projected channels resolve in this unit. Filter transforms do not use these definitions.</p>
+</dd>
 <dt><code>resolve</code></dt>
 <dd>
 <p>Type: object</p>
@@ -3509,7 +3653,7 @@ shared by the different view types and can be used throughout a view hierarchy;
 <dt><code>scales</code></dt>
 <dd>
 <p>Type: object</p>
-<p>Defines properties for scale resolutions used by this view subtree.</p>
+<p>Defines properties for scale resolutions used by this view subtree. A scale declaration does not create an axis; declare the corresponding <code>axes</code> property when an axis is needed without a positional encoding.</p>
 <p>Use this when a composed view shares a scale across child views and the scale settings, such as the visible domain, belong to the composed view rather than an individual encoding. An ancestor declaration shadows the whole declaration of a descendant that targets the same resolution. Declarations in separate sibling subtrees are ambiguous and cause an error. Expression references in these scale properties use this view's parameter scope and can access parameters declared here or on ancestors.</p>
 </dd>
 <dt><code>templates</code></dt>
@@ -3563,33 +3707,6 @@ shared by the different view types and can be used throughout a view hierarchy;
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 </dl>
-<h2 id="view-composition">View composition<a class="headerlink" href="#view-composition" title="Permanent link">&para;</a></h2>
-<p><a href="composition/">Composition views</a> arrange child views into a hierarchy.
-For example, <a href="composition/layer/"><code>layer</code></a> overlays views to create custom
-glyphs, while the <a href="composition/concat/">concatenation</a> operators arrange views
-into tracks or grids. Common properties such as <code>data</code>, <code>transform</code>, and
-<code>encoding</code> can be defined on a composition view and inherited by its
-descendants.</p>
-<h2 id="schema-assisted-editing">Schema-assisted editing<a class="headerlink" href="#schema-assisted-editing" title="Permanent link">&para;</a></h2>
-<p>GenomeSpy publishes a JSON Schema that JSON-aware editors can use for
-completion, hover documentation, and validation. Add <code>$schema</code> to the root of a
-Core specification:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/core/dist/schema.json&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data/example.csv&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Use the <code>@genome-spy/app</code> schema instead for <a href="../sample-collections/">sample collection
-specifications</a>. For reproducible editing, pin
-the schema to the same package version as the GenomeSpy runtime by adding
-<code>@VERSION</code> after the package name. The Playground configures the Core schema
-automatically.</p>
-<p>The inline examples in this documentation omit <code>$schema</code> to keep them concise.
-Schema validation checks the structure and configuration values of a
-specification, but it cannot verify external resources, the existence of data
-fields, or expression behavior.</p>
 
 
 

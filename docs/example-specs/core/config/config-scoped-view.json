@@ -1,4 +1,6 @@
 {
+  "$schema": "https://genomespy.app/schema/core/v0.json",
+
   "description": "Child views can override parent config scopes.",
   "config": {
     "mark": {

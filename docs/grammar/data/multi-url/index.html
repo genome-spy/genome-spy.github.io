@@ -613,6 +613,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Lazy BigWig Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#app-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        App Example
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -665,6 +682,8 @@
       
         
           
+        
+      
         
       
         
@@ -918,6 +937,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2820,6 +2866,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3098,6 +3148,60 @@
     
   
   Sashimi Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
 
     
   </span>
@@ -3414,6 +3518,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Lazy BigWig Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#app-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        App Example
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3599,6 +3720,82 @@ tracks.</p>
 </code></pre></div>
 <p>The BigWig source loads data for the current genomic interval from each resolved
 file and attaches the sample field to the returned rows.</p>
+<h3 id="app-example">App Example<a class="headerlink" href="#app-example" title="Permanent link">&para;</a></h3>
+<p>This App example defines five samples and uses <code>visibleSamples</code> to load one
+H3K27ac BigWig per visible row. The initial domain shows a ten-megabase region
+of the mm10 genome. See the <a href="https://genomespy.app/examples/encode-mouse-fetal-development-mm10/">full mouse fetal-development
+example</a>
+for the complete 24-sample visualization with metadata and annotations.</p>
+<div><genome-spy-doc-embed base-url="example-specs/" height="260" spechidden="true" runtime="app">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Five H3K27ac BigWigs&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mm10&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;identity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sampleId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;forebrain-e12-5-rep1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Forebrain E12.5 R1&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sampleId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;forebrain-e12-5-rep2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Forebrain E12.5 R2&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sampleId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;heart-e12-5-rep1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Heart E12.5 R1&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sampleId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;heart-e12-5-rep2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Heart E12.5 R2&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sampleId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;limb-e12-5-rep1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Limb E12.5 R1&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;idField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sampleId&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;displayNameField&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;spec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bigwig&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://data.genomespy.app/datasets/encode-mouse-fetal-development-mm10/v4/bigwigs/{sampleId}.bigWig&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;visibleSamples&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sampleId&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;maxValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#4c78a8&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;minWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sampleId&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr10&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">82400000</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chr10&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">92400000</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;grid&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;chromGrid&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;chrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pos&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;score&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;zero&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<div class="admonition disclaimer">
+<p>These regional BigWigs retain H3K27ac values from <a href="https://www.encodeproject.org/search/?type=File&amp;accession=ENCFF549YDI&amp;accession=ENCFF539MQF&amp;accession=ENCFF587ZRD&amp;accession=ENCFF724HYE&amp;accession=ENCFF896KSI">five released ENCODE
+files</a>
+produced by the Bing Ren laboratory for <a href="https://doi.org/10.1038/s41586-020-2093-3">Gorkin et al.
+(2020)</a>. Only the displayed 10 Mb
+mm10 region was retained.</p>
+</div>
 <h2 id="indexed-files">Indexed Files<a class="headerlink" href="#indexed-files" title="Permanent link">&para;</a></h2>
 <p>Formats such as Tabix-backed TSV, GFF3, and VCF use an index file. Keep
 <code>indexUrl</code> as a sibling of <code>url</code>.</p>

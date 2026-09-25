@@ -1,4 +1,6 @@
 {
+  "$schema": "https://genomespy.app/schema/core/v0.json",
+
   "description": "Imported specs can carry self-contained config.",
   "templates": {
     "track": {

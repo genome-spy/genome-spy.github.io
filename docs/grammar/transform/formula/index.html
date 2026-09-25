@@ -612,6 +612,8 @@
       
         
       
+        
+      
     
     
     
@@ -809,6 +811,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2797,6 +2826,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3075,6 +3108,60 @@
     
   
   Sashimi Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
 
     
   </span>
@@ -3416,20 +3503,27 @@
 and add a new field to each row.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
+<dt><code>expr</code> <span class="required">Required</span></dt>
+<dd>
+<p>Type: string</p>
+<p>An expression string</p>
+</dd>
 <dt><code>as</code> <span class="required">Required</span></dt>
 <dd>
 <p>Type: string</p>
 <p>The (new) field where the computed value is written to</p>
 </dd>
+<dt><code>debounce</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
+<p>Parameter updates and incoming data are not delayed. Incoming batches use current parameter values, and a completed batch satisfies any pending reactive replay. The delay does not wait for independently scheduled lazy data loads.</p>
+<p><strong>Default value:</strong> no delay</p>
+</dd>
 <dt><code>description</code></dt>
 <dd>
 <p>Type: string</p>
 <p>A description of the transform step. Can be used for documentation and agent context.</p>
-</dd>
-<dt><code>expr</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string</p>
-<p>An expression string</p>
 </dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
@@ -3490,6 +3584,14 @@ lengths are controlled by the <code>a</code> and <code>b</code> parameters.</p>
 the closest <a href=".././collect/">collector</a> or <a href="../../data/">data source</a> in the
 data pipeline and triggers a re-propagation of the data, resulting in a
 re-evaluation of the formula expression.</p>
+<p>Use <code>debounce</code> to delay this reactive replay until the dependencies have
+stopped changing for the specified number of milliseconds. It delays only
+dependency-triggered replay: parameter updates and new input data remain
+immediate. If an input batch completes during the delay, it uses current
+parameter values and makes the pending replay unnecessary. The delay does not
+wait for an independently scheduled lazy load. Place a
+<a href=".././collect/"><code>collect</code></a> transform before an expensive reactive formula to
+cache the rows used for replay.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/transform/formula/formula-with-parameters.json" height="300">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>

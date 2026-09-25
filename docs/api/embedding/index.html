@@ -83,8 +83,8 @@
   
 
 
-<meta name="description" content="See the getting started page." />
-<meta property="og:description" content="See the getting started page." />
+<meta name="description" content="See the getting started page. For specifications stored as JSON files, turn on editor suggestions and error checking to catch many common mistakes before the specification reaches the browser." />
+<meta property="og:description" content="See the getting started page. For specifications stored as JSON files, turn on editor suggestions and error checking to catch many common mistakes before the specification reaches the browser." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -604,6 +604,8 @@
       
         
       
+        
+      
     
     
     
@@ -801,6 +803,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2576,6 +2605,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Entry points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Default
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Minimal
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2773,6 +2830,10 @@
       
         
           
+        
+      
+        
+      
         
       
         
@@ -3104,6 +3165,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
         
   
@@ -3379,6 +3494,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Entry points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Default
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Minimal
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3439,18 +3582,31 @@
 
 <h1 id="embedding-genomespy">Embedding GenomeSpy<a class="headerlink" href="#embedding-genomespy" title="Permanent link">&para;</a></h1>
 <h2 id="embedding">Embedding<a class="headerlink" href="#embedding" title="Permanent link">&para;</a></h2>
-<p>See the <a href="../../getting-started/">getting started</a> page.</p>
+<p>See the <a href="../../getting-started/">getting started</a> page.
+For specifications stored as JSON files, turn on <a href="../../grammar/#schema-assisted-editing">editor suggestions and error
+checking</a> to catch many common
+mistakes before the specification reaches the browser.</p>
 <h2 id="entry-points">Entry points<a class="headerlink" href="#entry-points" title="Permanent link">&para;</a></h2>
 <p>When embedding GenomeSpy into a web application, you can choose between two
-entry points for importing the <code>embed</code> function:</p>
+entry points for importing the <code>embed</code> function.</p>
+<h3 id="default">Default<a class="headerlink" href="#default" title="Permanent link">&para;</a></h3>
 <p><code>@genome-spy/core</code> is the default entry point. It includes the standard
 GenomeSpy runtime and the built-in data source and format registrations.</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core&quot;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// view specification</span>
+<span class="p">};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="nx">spec</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="minimal">Minimal<a class="headerlink" href="#minimal" title="Permanent link">&para;</a></h3>
 <p><code>@genome-spy/core/minimal</code> provides the same <code>embed</code> API without built-in
 renderers or optional data loaders. Import at least one live renderer and any
 data source or format modules you need explicitly:</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/rendering/webgl.js&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/minimal&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/rendering/webgl.js&quot;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/rendering/canvas.js&quot;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/minimal&quot;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/data/formats/parquet.js&quot;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s2">&quot;@genome-spy/core/data/sources/lazy/bigBedSource.js&quot;</span><span class="p">;</span>
 
@@ -3460,13 +3616,13 @@ data source or format modules you need explicitly:</p>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="nx">spec</span><span class="p">);</span>
 </code></pre></div>
-<p>The <code>webgl.js</code> import enables WebGL2. The <code>canvas.js</code> import enables Canvas2D
-with software datum picking, plus a fallback for raster export and hybrid SVG
-rasterization. Software picking is included automatically and needs no separate
-import. Import <code>@genome-spy/core/rendering/svg.js</code> when using SVG export or
-analysis. You can omit any renderer capability the host application does not
-use; Core reports the required import if an unavailable capability is
-requested.</p>
+<p>See
+the <a href="https://github.com/genome-spy/genome-spy/blob/master/packages/core/src/genomeSpy.js">full runtime entry point</a>
+for the complete list of optional modules.</p>
+<p>The <code>webgl.js</code> import enables WebGL2. The <code>canvas.js</code> import enables Canvas2D.
+Import <code>svg.js</code> when using SVG export. You can omit
+any renderer capability the host application does not use; Core reports the
+required import if an unavailable capability is requested.</p>
 <h2 id="api-object">API object<a class="headerlink" href="#api-object" title="Permanent link">&para;</a></h2>
 <p>The <code>embed</code> function returns a promise that resolves into an object that
 provides the current public API. The API is documented in the <a href="https://github.com/genome-spy/genome-spy/blob/master/packages/core/src/types/embedApi.d.ts">interface

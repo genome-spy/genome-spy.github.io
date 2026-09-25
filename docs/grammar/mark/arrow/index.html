@@ -610,6 +610,8 @@
       
         
       
+        
+      
     
     
     
@@ -807,6 +809,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2819,6 +2848,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3097,6 +3130,60 @@
     
   
   Sashimi Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
 
     
   </span>
@@ -3507,7 +3594,16 @@ only <code>x</code> and <code>x2</code>, or only <code>y</code> and <code>y2</co
 <code>y</code>/<code>y2</code>. By default, the arrowhead points from the primary endpoint (<code>x</code>, <code>y</code>)
 toward the secondary endpoint (<code>x2</code>, <code>y2</code>). The <code>direction</code> channel can
 override this and is often the most convenient way to map strand-like values
-such as <code>+</code> and <code>-</code> to <code>"forward"</code> and <code>"reverse"</code>.</p>
+such as <code>+</code> and <code>-</code> to <code>"forward"</code> and <code>"reverse"</code>. The <code>"both"</code> direction
+places equivalent arrowheads at both endpoints. Automatic direction scales use
+only <code>"forward"</code> and <code>"reverse"</code>; select <code>"both"</code> with an explicit mark value,
+encoding value, or scale range.</p>
+<p>For a bidirectional arrow, <code>headSpacing</code> and <code>startNotch</code> are suppressed because
+neither a repeated direction nor a unique start is meaningful. Other head
+properties apply symmetrically. In particular, <code>headPlacement: "inside"</code> keeps
+both heads within the encoded interval, while <code>"outside"</code> extends both ends.
+<code>headNotchAngle</code> controls the concavity of both triangle heads; open heads use
+<code>headAngle</code> for their inner edges as they do for one-way arrows.</p>
 <p>Shape is controlled with mark properties. The <code>size</code> mark property controls the
 stem thickness. Numeric <code>size</code> values are pixels. For axis-aligned arrows,
 <code>size: { "band": 0.8 }</code> uses a fraction of the perpendicular band width. If the
@@ -3547,8 +3643,8 @@ arrowhead wider than the stem.</p>
 </dd>
 <dt><code>direction</code></dt>
 <dd>
-<p>Type: <code>"forward"</code> | <code>"reverse"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Direction of the arrowhead. <code>"forward"</code> places the arrowhead at the secondary endpoint (<code>x2</code>, <code>y2</code>). <code>"reverse"</code> places it at the primary endpoint (<code>x</code>, <code>y</code>). For data-driven direction, use the <code>direction</code> encoding channel.</p>
+<p>Type: <code>"forward"</code> | <code>"reverse"</code> | <code>"both"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Direction of the arrowhead. <code>"forward"</code> places the arrowhead at the secondary endpoint (<code>x2</code>, <code>y2</code>). <code>"reverse"</code> places it at the primary endpoint (<code>x</code>, <code>y</code>). <code>"both"</code> places equivalent heads at both endpoints and suppresses <code>headSpacing</code> and <code>startNotch</code> for that arrow. For data-driven direction, use the <code>direction</code> encoding channel.</p>
 <p><strong>Default value:</strong> <code>"forward"</code></p>
 </dd>
 <dt><code>fill</code></dt>
@@ -3593,7 +3689,7 @@ arrowhead wider than the stem.</p>
 <dt><code>headSpacing</code></dt>
 <dd>
 <p>Type: number | null | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Spacing between repeated arrowheads as a multiplier of resolved <code>size</code>. The effective spacing is at least the rendered arrowhead footprint, including stroke. If <code>null</code>, arrowheads are not repeated.</p>
+<p>Spacing between repeated arrowheads as a multiplier of resolved <code>size</code>. The effective spacing is at least the rendered arrowhead footprint, including stroke. If <code>null</code>, arrowheads are not repeated. Repetition is suppressed when <code>direction</code> resolves to <code>"both"</code>.</p>
 <p><strong>Default value:</strong> <code>null</code></p>
 </dd>
 <dt><code>headWidth</code></dt>
@@ -3629,7 +3725,7 @@ arrowhead wider than the stem.</p>
 <dt><code>startNotch</code></dt>
 <dd>
 <p>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Whether to draw a notch at the start of the arrow. The start notch uses the same slope as the arrowhead edge.</p>
+<p>Whether to draw a notch at the start of the arrow. The start notch uses the same slope as the arrowhead edge. It is suppressed when <code>direction</code> resolves to <code>"both"</code> because a bidirectional arrow has no unique start.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>stem</code></dt>
@@ -3756,13 +3852,23 @@ arrowhead wider than the stem.</p>
 </genome-spy-doc-embed></div>
 
 <h3 id="arrow-playground">Arrow Playground<a class="headerlink" href="#arrow-playground" title="Permanent link">&para;</a></h3>
-<p>The arrow shape parameters can be adjusted interactively:</p>
+<p>The arrow shape parameters and direction can be adjusted interactively. Select
+<code>"both"</code> to see how repeated heads and the start notch are suppressed:</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/mark/arrow/arrow-playground.json" height="600" spechidden="true">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Interactive playground for the arrow mark shape parameters.&quot;</span><span class="p">,</span>
 
 <span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;direction&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;forward&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;bind&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;select&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;reverse&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;both&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Direction&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;headShape&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;triangle&quot;</span><span class="p">,</span>
@@ -3896,6 +4002,7 @@ arrowhead wider than the stem.</p>
 
 <span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arrow&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;direction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;direction&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;headShape&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;headShape&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;headAngle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;headAngle&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;headNotchAngle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;headNotchAngle&quot;</span><span class="w"> </span><span class="p">},</span>
@@ -3932,7 +4039,6 @@ arrowhead wider than the stem.</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 
-<span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;view&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgray&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>

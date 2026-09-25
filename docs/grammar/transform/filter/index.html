@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://genomespy.app/docs/grammar/transform/filter/">
       
       
-        <link rel="prev" href="../displace1d/">
+        <link rel="prev" href="../displace2d/">
       
       
         <link rel="next" href="../filter-scored-labels/">
@@ -612,6 +612,8 @@
       
         
       
+        
+      
     
     
     
@@ -809,6 +811,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2836,6 +2865,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3114,6 +3147,60 @@
     
   
   Sashimi Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
 
     
   </span>
@@ -3496,23 +3583,30 @@
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <h3 id="predicate-expression">Predicate Expression<a class="headerlink" href="#predicate-expression" title="Permanent link">&para;</a></h3>
 <dl>
-<dt><code>description</code></dt>
-<dd>
-<p>Type: string</p>
-<p>A description of the transform step. Can be used for documentation and agent context.</p>
-</dd>
 <dt><code>expr</code> <span class="required">Required</span></dt>
 <dd>
 <p>Type: string</p>
 <p>An expression string. The row is removed if the expression evaluates to false.</p>
 </dd>
-</dl>
-<h3 id="selection-predicate">Selection Predicate<a class="headerlink" href="#selection-predicate" title="Permanent link">&para;</a></h3>
-<dl>
+<dt><code>debounce</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
+<p>Parameter updates and incoming data are not delayed. Incoming batches use current parameter values, and a completed batch satisfies any pending reactive replay. The delay does not wait for independently scheduled lazy data loads.</p>
+<p><strong>Default value:</strong> no delay</p>
+</dd>
 <dt><code>description</code></dt>
 <dd>
 <p>Type: string</p>
 <p>A description of the transform step. Can be used for documentation and agent context.</p>
+</dd>
+</dl>
+<h3 id="selection-predicate">Selection Predicate<a class="headerlink" href="#selection-predicate" title="Permanent link">&para;</a></h3>
+<dl>
+<dt><code>param</code> <span class="required">Required</span></dt>
+<dd>
+<p>Type: string</p>
+<p>A selection parameter. The row is removed if it is not part of the selection.</p>
 </dd>
 <dt><code>empty</code></dt>
 <dd>
@@ -3525,10 +3619,17 @@
 <p>Type: object</p>
 <p>An optional mapping of positional channels to fields. Used to determine which fields are checked against the selection intervals.</p>
 </dd>
-<dt><code>param</code> <span class="required">Required</span></dt>
+<dt><code>debounce</code></dt>
+<dd>
+<p>Type: number</p>
+<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
+<p>Parameter updates and incoming data are not delayed. Incoming batches use current parameter values, and a completed batch satisfies any pending reactive replay. The delay does not wait for independently scheduled lazy data loads.</p>
+<p><strong>Default value:</strong> no delay</p>
+</dd>
+<dt><code>description</code></dt>
 <dd>
 <p>Type: string</p>
-<p>A selection parameter. The row is removed if it is not part of the selection.</p>
+<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
@@ -3540,6 +3641,12 @@
 </code></pre></div>
 <p>The example above passes through all rows for which the field <code>p</code> is less than
 or equal to 0.05.</p>
+<p>When a predicate depends on parameters, <code>debounce</code> can delay replay until the
+dependencies have stopped changing for the specified number of milliseconds.
+It delays only dependency-triggered replay: parameter updates and new input
+data remain immediate. A completed input batch uses current parameter values
+and makes any pending replay unnecessary. The delay does not wait for an
+independently scheduled lazy load.</p>
 <h3 id="filtering-by-a-selection-predicate">Filtering by a Selection Predicate<a class="headerlink" href="#filtering-by-a-selection-predicate" title="Permanent link">&para;</a></h3>
 <p>Interval selections in GenomeSpy are defined by their data extent along the x
 and/or y channels. When filtering data based on a selection, you must explicitly

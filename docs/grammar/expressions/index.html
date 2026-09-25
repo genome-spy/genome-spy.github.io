@@ -606,6 +606,8 @@
       
         
       
+        
+      
     
     
     
@@ -803,6 +805,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2907,6 +2936,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3185,6 +3218,60 @@
     
   
   Sashimi Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
 
     
   </span>
@@ -3730,6 +3817,7 @@ package.</p>
 <p><a href="https://vega.github.io/vega/docs/expressions/#length"><code>length</code></a>,
 <a href="https://vega.github.io/vega/docs/expressions/#join"><code>join</code></a>,
 <a href="https://vega.github.io/vega/docs/expressions/#indexof"><code>indexof</code></a>,
+<a href="https://vega.github.io/vega/docs/expressions/#inrange"><code>inrange</code></a>,
 <a href="https://vega.github.io/vega/docs/expressions/#lastindexof"><code>lastindexof</code></a>,
 <a href="https://vega.github.io/vega/docs/expressions/#reverse"><code>reverse</code></a>,
 <a href="https://vega.github.io/vega/docs/expressions/#slice"><code>slice</code></a>,
@@ -3805,6 +3893,13 @@ configuration cannot read that same scale's zoom level. Cross-scale dependency
 cycles are also rejected. A scale range may read its own zoom level because
 range changes do not determine magnification.</p>
 <h3 id="other-functions">Other functions<a class="headerlink" href="#other-functions" title="Permanent link">&para;</a></h3>
+<p><a name="tickStep" href="#tickStep">#</a>
+<b>tickStep</b>(<i>start</i>, <i>stop</i>, <i>count</i>)<br/>
+Returns a nicely rounded step of <code>1</code>, <code>2</code>, or <code>5</code> times a power of ten for
+approximately <em>count</em> intervals between <em>start</em> and <em>stop</em>. For example,
+<code>tickStep(0, 12000000, 2)</code> returns <code>5000000</code>. Descending intervals produce a
+negative step.
+See <a href="https://d3js.org/d3-array/ticks#tickStep">D3's tickStep documentation</a>.</p>
 <p><a name="mapHasKey" href="#mapHasKey">#</a>
 <b>mapHasKey</b>(<i>map</i>, <i>key</i>)<br/>
 Returns true if the map contains the given key.</p>

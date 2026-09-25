@@ -610,6 +610,8 @@
       
         
       
+        
+      
     
     
     
@@ -807,6 +809,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2148,6 +2177,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Expressions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debounced-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Debounced Expressions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2990,6 +3036,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3287,6 +3337,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/genomic-data/pik3ca-tcga-brca-lollipop/" class="md-nav__link">
         
   
@@ -3561,6 +3665,23 @@
       </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Expressions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debounced-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Debounced Expressions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3913,6 +4034,25 @@ parameters change.</p>
 
 </genome-spy-doc-embed></div>
 
+<h3 id="debounced-expressions">Debounced Expressions<a class="headerlink" href="#debounced-expressions" title="Permanent link">&para;</a></h3>
+<p>Expression parameters can delay updates until their dependencies have remained
+unchanged for a specified number of milliseconds. The initial value is
+available immediately. Later changes use a trailing-edge debounce and publish
+only the latest value after the quiet period:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;settledPixelsPerBase&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;width * abs(scale(&#39;x&#39;, 1) - scale(&#39;x&#39;, 0))&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;debounce&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Parameter debouncing is useful when every consumer should retain the previous
+value until the dependencies settle. To keep values current while delaying only
+expensive dataflow replay, use <code>debounce</code> on a reactive
+<a href=".././transform/formula/"><code>formula</code></a> or <a href=".././transform/filter/"><code>filter</code></a>
+transform instead.</p>
+<p>Debounce timers represent future work. The runtime propagation barrier waits
+for updates that have already been published, but it does not wait for a
+pending debounce timer. <code>debounce</code> cannot be combined with <code>transition</code>.</p>
 <h2 id="pushing-parameters-to-an-outer-scope">Pushing Parameters to an Outer Scope<a class="headerlink" href="#pushing-parameters-to-an-outer-scope" title="Permanent link">&para;</a></h2>
 <p>A child view can update a parameter owned by an ancestor. Declare the writable
 parameter on the ancestor, then declare a same-named child parameter with
@@ -4039,7 +4179,9 @@ bars by holding down the <code>Shift</code> key.</p>
 
 <h3 id="interval-selection">Interval Selection<a class="headerlink" href="#interval-selection" title="Permanent link">&para;</a></h3>
 <p>Interval selections allow for selecting a range of rows along one or two axes.
-By default, the start gesture depends on whether the brushed channels are
+The selected range includes its start and excludes its end. For example, an
+index brush spanning <code>[6, 11)</code> selects positions 6 through 10.</p>
+<p>By default, the start gesture depends on whether the brushed channels are
 zoomable:</p>
 <ul>
 <li>if any brushed channel is zoomable, start brushing with <code>Shift</code> + drag</li>

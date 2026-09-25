@@ -130,6 +130,32 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/examples/genomic-data/bpreveal-pisa-matrix",
+    "title": "PISA Interaction Matrix",
+    "description": "PISA Interaction Matrix",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/bpreveal-pisa-matrix.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/bpreveal-pisa-matrix.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/bpreveal-pisa-matrix.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/bpreveal-pisa-matrix.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/examples/genomic-data/bpreveal-pisa-squid",
+    "title": "PISA Squid Plot",
+    "description": "PISA Squid Plot",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/bpreveal-pisa-squid.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/bpreveal-pisa-squid.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/bpreveal-pisa-squid.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/bpreveal-pisa-squid.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/examples/genomic-data/pik3ca-tcga-brca-lollipop",
     "title": "Recurrent protein-altering PIK3CA mutations in TCGA-BRCA.",
     "description": "Recurrent protein-altering PIK3CA mutations in TCGA-BRCA.",
@@ -491,6 +517,19 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/multiscale/multiscale-composition.json",
     "screenshotPath": "examples/docs/grammar/composition/multiscale/multiscale-composition.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/multiscale/multiscale-composition.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/conditional-encoding/endpoint-brushes",
+    "title": "Brush both ends of a link",
+    "description": "Brush both ends of a link",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Conditional Encoding",
+    "specPath": "examples/docs/grammar/conditional-encoding/endpoint-brushes.json",
+    "specUrl": "/docs/example-specs/docs/grammar/conditional-encoding/endpoint-brushes.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
     "sourceMode": "shared-example"
   },
   {
@@ -1261,6 +1300,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/scale/scale-bar",
+    "title": "Zoom-responsive genomic scale bars",
+    "description": "Zoom-responsive genomic scale bars",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Scale",
+    "specPath": "examples/docs/grammar/scale/scale-bar.json",
+    "specUrl": "/docs/example-specs/docs/grammar/scale/scale-bar.json",
+    "screenshotPath": "examples/docs/grammar/scale/scale-bar.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/scale-bar.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/title/basic-title",
     "title": "Basic title and subtitle example.",
     "description": "Basic title and subtitle example.",
@@ -1339,6 +1391,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/transform/displace2d/displace2d-labels",
+    "title": "Displaced scatterplot labels",
+    "description": "Displaced scatterplot labels",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Transform / Displace2d",
+    "specPath": "examples/docs/grammar/transform/displace2d/displace2d-labels.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/displace2d/displace2d-labels.json",
+    "screenshotPath": "examples/docs/grammar/transform/displace2d/displace2d-labels.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/displace2d/displace2d-labels.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/transform/filter/selection-predicate-filter",
     "title": "Filter transform example using a selection predicate.",
     "description": "Filter transform example using a selection predicate.",
@@ -1401,6 +1466,19 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/pileup/pileup-lanes.json",
     "screenshotPath": "examples/docs/grammar/transform/pileup/pileup-lanes.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/pileup/pileup-lanes.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "docs/grammar/transform/pileup/pileup-projected-labels",
+    "title": "Pileup with projected label extents",
+    "description": "Pileup with projected label extents",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Transform / Pileup",
+    "specPath": "examples/docs/grammar/transform/pileup/pileup-projected-labels.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/pileup/pileup-projected-labels.json",
+    "screenshotPath": "examples/docs/grammar/transform/pileup/pileup-projected-labels.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/pileup/pileup-projected-labels.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2067,19 +2145,6 @@
     "sourceMode": "shared-example"
   },
   {
-    "id": "core/marks/arrow/arrow_direction",
-    "title": "Arrow direction encoded through a discrete scale.",
-    "description": "Arrow direction encoded through a discrete scale.",
-    "sourceGroup": "core",
-    "sourceLabel": "Core",
-    "category": "Marks / Arrow",
-    "specPath": "examples/core/marks/arrow/arrow_direction.json",
-    "specUrl": "/docs/example-specs/core/marks/arrow/arrow_direction.json",
-    "screenshotPath": "examples/core/marks/arrow/arrow_direction.png",
-    "screenshotUrl": "/docs/example-specs/core/marks/arrow/arrow_direction.png",
-    "sourceMode": "shared-example"
-  },
-  {
     "id": "core/marks/arrow/arrow_band_size",
     "title": "Arrow sizing across view spans",
     "description": "Arrow sizing across view spans",
@@ -2116,6 +2181,19 @@
     "specUrl": "/docs/example-specs/core/marks/arrow/arrow_diagonal.json",
     "screenshotPath": "examples/core/marks/arrow/arrow_diagonal.png",
     "screenshotUrl": "/docs/example-specs/core/marks/arrow/arrow_diagonal.png",
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/marks/arrow/arrow_direction",
+    "title": "Forward, reverse, and bidirectional arrows in horizontal, vertical, and diagonal orientations.",
+    "description": "Forward, reverse, and bidirectional arrows in horizontal, vertical, and diagonal orientations.",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Marks / Arrow",
+    "specPath": "examples/core/marks/arrow/arrow_direction.json",
+    "specUrl": "/docs/example-specs/core/marks/arrow/arrow_direction.json",
+    "screenshotPath": "examples/core/marks/arrow/arrow_direction.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/arrow/arrow_direction.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2613,6 +2691,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "core/selection/interval_sequence",
+    "title": "Brush an indexed nucleotide sequence",
+    "description": "Brush an indexed nucleotide sequence",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Selection",
+    "specPath": "examples/core/selection/interval_sequence.json",
+    "specUrl": "/docs/example-specs/core/selection/interval_sequence.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "core/selection/interval_genome",
     "title": "Genomic interval selection",
     "description": "Genomic interval selection",
@@ -2821,6 +2912,45 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "core/transforms/pileup-labels",
+    "title": "Pileup with adjacent labels",
+    "description": "Pileup with adjacent labels",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Transforms",
+    "specPath": "examples/core/transforms/pileup-labels.json",
+    "specUrl": "/docs/example-specs/core/transforms/pileup-labels.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/transforms/displace2d/stress",
+    "title": "Dense displace2d stress test",
+    "description": "Dense displace2d stress test",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Transforms / Displace2d",
+    "specPath": "examples/core/transforms/displace2d/stress.json",
+    "specUrl": "/docs/example-specs/core/transforms/displace2d/stress.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "core/transforms/displace2d/reversed-axes",
+    "title": "Reversed-axis displace2d test",
+    "description": "Reversed-axis displace2d test",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Transforms / Displace2d",
+    "specPath": "examples/core/transforms/displace2d/reversed-axes.json",
+    "specUrl": "/docs/example-specs/core/transforms/displace2d/reversed-axes.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "app/samples",
     "title": "A simple segmented view of three samples.",
     "description": "A simple segmented view of three samples.",
@@ -2842,6 +2972,19 @@
     "category": "General",
     "specPath": "examples/app/copy-numbers.json",
     "specUrl": "/docs/example-specs/app/copy-numbers.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example"
+  },
+  {
+    "id": "app/multi-url-bigwig",
+    "title": "Five H3K27ac BigWigs",
+    "description": "Five H3K27ac BigWigs",
+    "sourceGroup": "app",
+    "sourceLabel": "App",
+    "category": "General",
+    "specPath": "examples/app/multi-url-bigwig.json",
+    "specUrl": "/docs/example-specs/app/multi-url-bigwig.json",
     "screenshotPath": null,
     "screenshotUrl": null,
     "sourceMode": "shared-example"

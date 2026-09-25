@@ -83,8 +83,8 @@
   
 
 
-<meta name="description" content="Axes explain how positional channels such as x and y map data values to positions. GenomeSpy creates axes automatically for positional field and expression encodings." />
-<meta property="og:description" content="Axes explain how positional channels such as x and y map data values to positions. GenomeSpy creates axes automatically for positional field and expression encodings." />
+<meta name="description" content="Axes explain how positional channels such as x and y map data values to positions. GenomeSpy creates axes automatically for positional field and expression encodings. A view-level scale declaration does not create an axis by itself; use axes.&lt;channel&gt; when an axis is needed without a positional encoding." />
+<meta property="og:description" content="Axes explain how positional channels such as x and y map data values to positions. GenomeSpy creates axes automatically for positional field and expression encodings. A view-level scale declaration does not create an axis by itself; use axes.&lt;channel&gt; when an axis is needed without a positional encoding." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -610,6 +610,8 @@
       
         
       
+        
+      
     
     
     
@@ -807,6 +809,33 @@
     
   
   Displace1D
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/displace2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Displace2D
 
     
   </span>
@@ -2883,6 +2912,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3161,6 +3194,60 @@
     
   
   Sashimi Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-squid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Squid Plot
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/bpreveal-pisa-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PISA Interaction Matrix
 
     
   </span>
@@ -3588,7 +3675,9 @@
 <h1 id="axis">Axis<a class="headerlink" href="#axis" title="Permanent link">&para;</a></h1>
 <p>Axes explain how positional channels such as <code>x</code> and <code>y</code> map data values to
 positions. GenomeSpy creates axes automatically for positional field and
-expression encodings.</p>
+expression encodings. A view-level scale declaration does not create an axis by
+itself; use <code>axes.&lt;channel&gt;</code> when an axis is needed without a positional
+encoding.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <p>Axis properties are usually placed in the encoding channel that creates the
 axis:</p>
@@ -3608,6 +3697,8 @@ axis:</p>
 <p>In composed views, view-level <code>axes.&lt;channel&gt;</code> can provide a shared location for
 axis properties when the subtree has a unique axis resolution for that channel.
 See <a href="#resolution">Resolution</a>.</p>
+<p>Set both <code>resolve.scale.x</code> and <code>resolve.axis.x</code> to <code>"shared"</code> to keep one
+axis as tracks are added or removed, including when the container is empty.</p>
 <p>Set <code>axis</code> to <code>null</code> on a channel to remove the corresponding axis. In a shared
 axis resolution, this removes the shared axis.</p>
 <div class="highlight"><span class="filename">Remove one axis</span><pre><span></span><code><span class="p">{</span>

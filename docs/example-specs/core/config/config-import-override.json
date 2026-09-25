@@ -1,4 +1,6 @@
 {
+  "$schema": "https://genomespy.app/schema/core/v0.json",
+
   "description": [
     "Import-site config overrides",
     "Shows that import-site config overrides parent scopes but not imported root config."
