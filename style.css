@@ -12,25 +12,19 @@
   --brand-color-dark: #3e8cb6;
   --text-color: black;
   --example-card-padding: 15px;
-}
 
-@media (max-width: 500px) {
-  :root {
+  @media (max-width: 500px) {
     --side-padding: 20px;
     --vertical-padding: 20px;
     --example-card-padding: 10px;
   }
-}
 
-@media (min-width: 500px) and (max-width: 750px) {
-  :root {
+  @media (min-width: 500px) and (max-width: 750px) {
     --side-padding: 30px;
     --vertical-padding: 30px;
   }
-}
 
-@media (min-width: 750px) {
-  :root {
+  @media (min-width: 750px) {
     --side-padding: 60px;
     --vertical-padding: 30px;
   }
@@ -62,17 +56,13 @@ h2 {
   font-size: 1.6em;
 }
 
-section > h2:first-child {
-  margin-top: 0;
-}
-
 a {
   color: #3797ce;
   text-decoration: none;
-}
 
-a:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 i.fas,
@@ -82,20 +72,28 @@ i.fab {
 
 picture {
   margin: 0;
-}
 
-picture img {
-  display: block;
+  img {
+    display: block;
+  }
 }
 
 section {
   padding: var(--vertical-padding) var(--side-padding);
-}
 
-section > * {
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+  > * {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  > h2:first-child {
+    margin-top: 0;
+  }
+
+  &:not(.dark) + section:not(.dark) {
+    margin-top: calc(var(--vertical-padding) * -1);
+  }
 }
 
 section.dark,
@@ -103,35 +101,29 @@ section.dark,
   background-color: #f0f0f0;
 }
 
-section:not(.dark) + section:not(.dark) {
-  margin-top: calc(var(--vertical-padding) * -1);
-}
-
 #title {
   padding: 50px 60px;
-
   font-family: "American Typewriter", "Lato", sans-serif;
-}
 
-#title h1 {
-  font-family: "Special Elite", cursive;
-  font-weight: normal;
-  font-size: min(12vw, 100px);
+  h1 {
+    font-family: "Special Elite", cursive;
+    font-weight: normal;
+    font-size: min(12vw, 100px);
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
+  picture {
+    width: 47%;
+  }
 
-#title picture {
-  width: 47%;
-}
+  img {
+    width: 100%;
+  }
 
-#title img {
-  width: 100%;
-}
-
-#title p {
-  font-size: clamp(17px, 2.2vw, 22px);
+  p {
+    font-size: clamp(17px, 2.2vw, 22px);
+  }
 }
 
 #nav-bar {
@@ -177,69 +169,68 @@ video.big-video {
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
 }
 
-#building-blocks > a {
-  display: block;
+#building-blocks {
+  > a {
+    display: block;
+    color: var(--text-color);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    transition: 0.4s;
+    outline-color: rgba(255, 255, 255, 0);
+    outline-width: 3px;
+    outline-style: solid;
+    outline-offset: 0.5em;
 
-  color: var(--text-color);
+    &:last-child {
+      margin-bottom: 20px;
+    }
 
-  margin-top: 30px;
-  margin-bottom: 30px;
+    &:nth-child(2n + 1) figure {
+      flex-direction: row-reverse;
 
-  transition: 0.4s;
-  outline-color: rgba(255, 255, 255, 0);
-  outline-width: 3px;
-  outline-style: solid;
-  outline-offset: 0.5em;
-}
+      picture {
+        margin-left: 40px;
+        margin-right: 0;
+      }
+    }
 
-#building-blocks > a:last-child {
-  margin-bottom: 20px;
-}
+    &:nth-child(2n) figure picture {
+      margin-left: 0;
+      margin-right: 40px;
+    }
+  }
 
-#building-blocks > :is(a:hover, a:focus) {
-  outline-color: rgba(127, 187, 221, 1);
-  transition-duration: 0.2s;
-  text-decoration: none;
-}
+  > :is(a:hover, a:focus) {
+    outline-color: rgba(127, 187, 221, 1);
+    transition-duration: 0.2s;
+    text-decoration: none;
+  }
 
-#building-blocks figure {
-  margin: 0;
-}
+  figure {
+    margin: 0;
+  }
 
-#building-blocks img {
-  height: 50px;
-}
+  img {
+    height: 50px;
+  }
 
-#building-blocks strong:first-child {
-  margin-right: 0.3em;
-}
-
-#building-blocks > a:nth-child(2n + 1) figure {
-  flex-direction: row-reverse;
-}
-
-#building-blocks > a:nth-child(2n + 1) figure picture {
-  margin-left: 40px;
-  margin-right: 0;
-}
-
-#building-blocks > a:nth-child(2n) figure picture {
-  margin-left: 0;
-  margin-right: 40px;
+  strong:first-child {
+    margin-right: 0.3em;
+  }
 }
 
 #examples {
   padding: 0px;
-}
 
-#examples > h2 {
-  padding: 0 var(--side-padding);
-  margin-top: 0;
-  margin-bottom: 0;
-}
+  > h2 {
+    padding: 0 var(--side-padding);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
-#examples > #cards {
-  max-width: none;
+  > #cards {
+    max-width: none;
+  }
 }
 
 #cards {
@@ -253,75 +244,72 @@ video.big-video {
   margin-bottom: 0;
   margin-left: 0;
   margin-right: 0;
-}
 
-#cards > * {
-  width: 360px;
-  margin: var(--example-card-padding);
+  > * {
+    width: 360px;
+    margin: var(--example-card-padding);
+    background-color: white;
+    transition: box-shadow 0.15s;
+    box-shadow: none;
+  }
 
-  background-color: white;
+  > .example-card {
+    align-self: stretch;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
+  }
 
-  transition: box-shadow 0.15s;
-  box-shadow: none;
+  > *:hover {
+    box-shadow:
+      0 3px 14px rgba(0, 0, 0, 0.15),
+      0 0 0 3px #7fbbdd;
+  }
 }
 
 .example-card {
   font-family: "Lato", sans-serif;
-
-  display: flex;
-  flex-direction: column;
-}
-
-#cards > .example-card {
-  align-self: stretch;
-  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
-}
-
-.example-card .screenshot {
-  display: block;
-  height: 180px;
-}
-
-.example-card .screenshot img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.example-card .description {
-  flex-grow: 1;
-
   display: flex;
   flex-direction: column;
 
-  padding: 10px;
-  font-size: 14px;
+  .screenshot {
+    display: block;
+    height: 180px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .description {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .description-text {
+    flex-grow: 1;
+  }
 }
 
-.example-card .description-text {
-  flex-grow: 1;
-}
-
-#cards > *:hover {
-  box-shadow:
-    0 3px 14px rgba(0, 0, 0, 0.15),
-    0 0 0 3px #7fbbdd;
-}
-
-#about > div {
-  display: flex;
-  align-items: center;
+#about {
+  > div {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .flex-figure {
   display: flex;
   align-items: center;
-}
 
-.flex-figure > * {
-  display: block;
-  flex-grow: 0;
+  > * {
+    display: block;
+    flex-grow: 0;
+  }
 }
 
 ul.badge-list {
@@ -329,30 +317,30 @@ ul.badge-list {
   flex-wrap: wrap;
   padding-left: 0;
   margin: 0.5em 0;
-}
 
-ul.badge-list li {
-  display: block;
-  margin-right: 1.5em;
+  li {
+    display: block;
+    margin-right: 1.5em;
+  }
 }
 
 ul.icon-list {
   display: block;
   list-style: none;
   padding: 0;
-}
 
-ul.icon-list li {
-  margin: 0.5em 0;
+  li {
+    margin: 0.5em 0;
+  }
 }
 
 #resources .icon-list {
   column-count: 2;
   column-gap: 2em;
-}
 
-#resources .icon-list li {
-  break-inside: avoid;
+  li {
+    break-inside: avoid;
+  }
 }
 
 .fa-fw {
@@ -362,38 +350,42 @@ ul.icon-list li {
 @media (max-width: 600px) {
   .flex-figure {
     flex-direction: column;
-  }
 
-  .flex-figure picture:first-child {
-    margin-bottom: 20px;
-  }
+    picture:first-child {
+      margin-bottom: 20px;
+    }
 
-  .flex-figure picture:last-child {
-    margin-top: 20px;
+    picture:last-child {
+      margin-top: 20px;
+    }
   }
 
   #title {
     text-align: center;
     padding: 40px;
     padding-top: 80px;
+
+    picture {
+      width: 60%;
+    }
   }
 
-  #title picture {
-    width: 60%;
-  }
-
-  #nav-bar ul {
-    justify-content: center;
+  #nav-bar {
+    ul {
+      justify-content: center;
+    }
   }
 }
 
 @media (min-width: 600px) {
-  .flex-figure picture:first-child {
-    margin-right: 30px;
-  }
+  .flex-figure {
+    picture:first-child {
+      margin-right: 30px;
+    }
 
-  .flex-figure picture:last-child {
-    margin-left: 30px;
+    picture:last-child {
+      margin-left: 30px;
+    }
   }
 }
 
@@ -405,12 +397,12 @@ ul.icon-list li {
   #building-blocks .flex-figure:nth-child(1n) {
     flex-direction: column;
     align-items: center;
-  }
 
-  #building-blocks .flex-figure:nth-child(1n) picture {
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0.5em;
+    picture {
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 0.5em;
+    }
   }
 }
 
