@@ -170,6 +170,13 @@ section:not(.dark) + section:not(.dark) {
   height: 340px;
 }
 
+video.big-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
+}
+
 #building-blocks > a {
   display: block;
 
@@ -297,7 +304,9 @@ section:not(.dark) + section:not(.dark) {
 }
 
 #cards > *:hover {
-  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15), 0 0 0 3px #7fbbdd;
+  box-shadow:
+    0 3px 14px rgba(0, 0, 0, 0.15),
+    0 0 0 3px #7fbbdd;
 }
 
 #about > div {
@@ -335,6 +344,15 @@ ul.icon-list {
 
 ul.icon-list li {
   margin: 0.5em 0;
+}
+
+#resources .icon-list {
+  column-count: 2;
+  column-gap: 2em;
+}
+
+#resources .icon-list li {
+  break-inside: avoid;
 }
 
 .fa-fw {
@@ -380,6 +398,10 @@ ul.icon-list li {
 }
 
 @media (max-width: 700px) {
+  #resources .icon-list {
+    column-count: 1;
+  }
+
   #building-blocks .flex-figure:nth-child(1n) {
     flex-direction: column;
     align-items: center;
