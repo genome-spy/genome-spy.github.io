@@ -1,5 +1,5 @@
-import { J as e, dt as t, gt as n, mt as r, t as i, ut as a } from "./src-B7-27E-E.js";
-import { n as o, t as s } from "./ref-XwcGNu5_.js";
+import { J as e, dt as t, gt as n, mt as r, t as i, ut as a } from "./src-upfnsI6a.js";
+import { n as o, t as s } from "./ref-CNh2HobU.js";
 //#region index.js
 function c() {
 	let e = document.querySelector("meta[name='base_url']").getAttribute("content");
@@ -13,7 +13,7 @@ async function u(e, t, n, r, a) {
 	try {
 		if (t.baseUrl = t.baseUrl || (n ? l(n) : o), r === "core") return await i(e, t);
 		if (r === "app") {
-			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-BLcFhabr.js");
+			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-1_p9OYwm.js");
 			return await a(n), await r(e, t, { embedMode: "embedded" });
 		} else throw Error(`Unknown GenomeSpy embed runtime: ${r}`);
 	} catch (t) {
@@ -65,14 +65,18 @@ var p = class extends a {
 				type: String,
 				attribute: "playground-url"
 			},
+			pythonUrl: {
+				type: String,
+				attribute: "python-url"
+			},
 			runtime: { type: String }
 		};
 	}
 	constructor() {
-		super(), this.height = 300, this.specHidden = !1, this.baseUrl = void 0, this.playgroundUrl = void 0, this.runtime = "core", this.embedRef = s(), this.appStyles = "", this.embedResult = void 0, this.observer = void 0, this.disconnected = !1, this.#e = !1;
+		super(), this.height = 300, this.specHidden = !1, this.baseUrl = void 0, this.playgroundUrl = void 0, this.pythonUrl = void 0, this.runtime = "core", this.embedRef = s(), this.appStyles = "", this.embedResult = void 0, this.observer = void 0, this.disconnected = !1, this.#e = !1;
 	}
 	render() {
-		let n = this.specHidden || this.#e, i = this.playgroundUrl || n, a = this.specHidden ? "Show specification" : "Hide specification";
+		let n = this.specHidden || this.#e, i = this.playgroundUrl || this.pythonUrl || n, a = this.specHidden ? "Show JSON specification" : "Hide JSON specification";
 		return r`
             ${this.appStyles ? r`<style>
                           ${this.appStyles}
@@ -85,20 +89,27 @@ var p = class extends a {
             ${i ? r`
                           <div class="embed-links">
                               ${n ? r`
-                                        <a
-                                            href="#"
-                                            @click=${(e) => {
+                                            <a
+                                                href="#"
+                                                @click=${(e) => {
 			this.#e = !0, this.specHidden = !this.specHidden, e.preventDefault();
 		}}
-                                            >${a}</a
-                                        >
-                                    ` : t}
+                                                >${a}</a
+                                            >
+                                        ` : t}
                               ${this.playgroundUrl && n ? r` - ` : t}
                               ${this.playgroundUrl ? r`
-                                        <a href=${this.playgroundUrl}
-                                            >Edit this example in Playground</a
-                                        >
-                                    ` : t}
+                                            <a href=${this.playgroundUrl}
+                                                >Edit this example in
+                                                Playground</a
+                                            >
+                                        ` : t}
+                              ${this.pythonUrl && (n || this.playgroundUrl) ? r` - ` : t}
+                              ${this.pythonUrl ? r`
+                                            <a href=${this.pythonUrl}
+                                                >View Python example</a
+                                            >
+                                        ` : t}
                           </div>
                       ` : t}
 

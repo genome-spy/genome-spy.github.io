@@ -83,8 +83,8 @@
   
 
 
-<meta name="description" content="Genome browser applications typically couple the visual representations to specific file formats and provide few customization options. GenomeSpy instead uses declarative JSON specifications: you describe the data and its visual representation rather than issue drawing commands." />
-<meta property="og:description" content="Genome browser applications typically couple the visual representations to specific file formats and provide few customization options. GenomeSpy instead uses declarative JSON specifications: you describe the data and its visual representation rather than issue drawing commands." />
+<meta name="description" content="GenomeSpy Core uses a declarative visualization grammar, not a set of predefined chart templates. Its JSON specifications describe which data to use, how to display it, and how views fit together. This lets you create genome tracks and other views tailored to your data without writing drawing commands. If you work in Python, GenomeSpy for Python builds the same specifications from Python chart definitions." />
+<meta property="og:description" content="GenomeSpy Core uses a declarative visualization grammar, not a set of predefined chart templates. Its JSON specifications describe which data to use, how to display it, and how views fit together. This lets you create genome tracks and other views tailored to your data without writing drawing commands. If you work in Python, GenomeSpy for Python builds the same specifications from Python chart definitions." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -3427,10 +3427,12 @@
 
 
 <h1 id="visualization-grammar">Visualization Grammar<a class="headerlink" href="#visualization-grammar" title="Permanent link">&para;</a></h1>
-<p>Genome browser applications typically couple the visual representations to
-specific file formats and provide few customization options. GenomeSpy instead
-uses declarative JSON specifications: you describe the data and its visual
-representation rather than issue drawing commands.</p>
+<p>GenomeSpy Core uses a declarative visualization grammar, not a set of predefined
+chart templates. Its JSON specifications describe which data to use, how to
+display it, and how views fit together. This lets you create genome tracks and
+other views tailored to your data without writing drawing commands. If you work
+in Python, <a href="https://genomespy.app/genome-spy-python/">GenomeSpy for Python</a>
+builds the same specifications from Python chart definitions.</p>
 <p>The grammar combines <a href="data/">data sources</a>,
 <a href="transform/">transformations</a>, <a href="mark/">marks</a>,
 <a href="scale/">scales</a>, <a href="axis/">axes</a>, <a href="title/">titles</a>, and

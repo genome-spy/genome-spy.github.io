@@ -1603,6 +1603,7 @@ function Zo(e) {
 //#region ../core/src/data/sources/lazy/axisTickSource.js
 var Qo = class extends Xo {
 	ticks = [];
+	tickLabels = [];
 	zoomExtentTicks = [];
 	#e;
 	#t;
@@ -1634,24 +1635,31 @@ var Qo = class extends Xo {
 	async onDomainChanged() {
 		let e = this.scaleResolution.getScale(), t = this.scaleResolution.getAxisLength(), n = this.params.axis;
 		this.#t?.(t);
-		let r = this.#e ? this.#e() : n.tickCount, i = Io(e, r, n.tickMinStep), a = n.values ? Lo(e, n.values, i) : Ro(e, i), o = !n.values && n.extraValues && B(e.type) ? Lo(e, n.extraValues) : [], s = o.length ? $o(a, o) : a, c = this.scaleResolution.hasConfiguredZoomExtent() ? dn(e.type, this.scaleResolution.zoomExtent) : [];
-		if (this.ticks == null || !L(s, this.ticks) || !L(c, this.zoomExtentTicks)) {
-			this.ticks = s, this.zoomExtentTicks = c;
-			let t = Bo(e, r, n.format), i = new Set(n.values ? s : o), a = new Set(c), l = e.type == "locus" ? e.genome() : void 0;
-			this.publishData([s.map((e) => {
-				let n = {
+		let r = this.#e ? this.#e() : n.tickCount, i = Io(e, r, n.tickMinStep), a = n.values ? Lo(e, n.values, i) : Ro(e, i), o = !n.values && n.extraValues && B(e.type) ? Lo(e, n.extraValues) : [], s = o.length ? $o(a, o) : a, c = this.scaleResolution.hasConfiguredZoomExtent() ? dn(e.type, this.scaleResolution.zoomExtent) : [], l = this.ticks == null || !L(s, this.ticks), u = Bo(e, r, n.format), d = l;
+		if (!d) {
+			for (let e = 0; e < s.length; e++) if (u(s[e]) !== this.tickLabels[e]) {
+				d = !0;
+				break;
+			}
+		}
+		if (l || d || !L(c, this.zoomExtentTicks)) {
+			let t = d ? s.map(u) : this.tickLabels;
+			this.ticks = s, this.tickLabels = t, this.zoomExtentTicks = c;
+			let r = new Set(n.values ? s : o), i = new Set(c), a = e.type == "locus" ? e.genome() : void 0;
+			this.publishData([s.map((e, n) => {
+				let o = {
 					value: e,
-					label: t(e),
-					explicit: i.has(e),
-					...a.has(e) ? { zoomExtent: !0 } : {}
+					label: t[n],
+					explicit: r.has(e),
+					...i.has(e) ? { zoomExtent: !0 } : {}
 				};
-				if (l) {
-					let t = l.toChromosome(e);
+				if (a) {
+					let t = a.toChromosome(e);
 					return {
-						...n,
+						...o,
 						chromLabel: t.name
 					};
-				} else return n;
+				} else return o;
 			})]);
 		}
 	}
@@ -8466,7 +8474,7 @@ var Sh = class extends z {
 	}
 	constructor(e, t) {
 		if (super(e, t), this.params = e, this.channel = e.channel, this.labelWidthAccessor = b(e.labelWidth), this.chromLabelWidthAccessor = e.chromLabelWidth ? b(e.chromLabelWidth) : void 0, (e.labelOverlap || e.labelFlush !== !1 || e.labelFlushZoomExtent) && !Dh(e.labelAngle)) throw Error("Axis label layout requires an axis-aligned label angle.");
-		this.data = [], this.nextOutputData = [], this.outputValueSet = /* @__PURE__ */ new Set(), this.visibleLabelValueSet = /* @__PURE__ */ new Set(), this.nextVisibleLabelValueSet = /* @__PURE__ */ new Set(), this.flushOffsetMap = /* @__PURE__ */ new Map(), this.nextFlushOffsetMap = /* @__PURE__ */ new Map(), this.hasPublished = !1, this.resolution = t.getScaleResolution(this.channel);
+		this.data = [], this.nextOutputData = [], this.outputLabels = /* @__PURE__ */ new Map(), this.visibleLabelValueSet = /* @__PURE__ */ new Set(), this.nextVisibleLabelValueSet = /* @__PURE__ */ new Set(), this.flushOffsetMap = /* @__PURE__ */ new Map(), this.nextFlushOffsetMap = /* @__PURE__ */ new Map(), this.hasPublished = !1, this.resolution = t.getScaleResolution(this.channel);
 		let n = () => this.filterAndPropagate();
 		this.schedule = () => t.context.animator.requestTransition(n);
 		let r = () => this.filterAndPropagate();
@@ -8496,9 +8504,9 @@ var Sh = class extends z {
 		this.propagateIfChanged();
 	}
 	propagateIfChanged() {
-		if (!this.hasPublished || this.nextOutputData.length != this.outputValueSet.size || this.nextOutputData.some((e) => !this.outputValueSet.has(e.value)) || !Oh(this.nextVisibleLabelValueSet, this.visibleLabelValueSet) || !kh(this.nextFlushOffsetMap, this.flushOffsetMap)) {
-			this.outputValueSet.clear();
-			for (let e of this.nextOutputData) this.outputValueSet.add(e.value);
+		if (!this.hasPublished || this.nextOutputData.length != this.outputLabels.size || this.nextOutputData.some((e) => this.outputLabels.get(e.value) !== e.label) || !Oh(this.nextVisibleLabelValueSet, this.visibleLabelValueSet) || !kh(this.nextFlushOffsetMap, this.flushOffsetMap)) {
+			this.outputLabels.clear();
+			for (let e of this.nextOutputData) this.outputLabels.set(e.value, e.label);
 			let e = this.visibleLabelValueSet;
 			this.visibleLabelValueSet = this.nextVisibleLabelValueSet, this.nextVisibleLabelValueSet = e;
 			let t = this.flushOffsetMap;
