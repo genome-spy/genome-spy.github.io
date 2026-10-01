@@ -373,6 +373,24 @@ ul.icon-list {
   #nav-bar {
     ul {
       justify-content: center;
+      gap: 0.4em;
+      padding: 0 0.5em;
+    }
+
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2em;
+      white-space: nowrap;
+    }
+
+    a > .fa-fw {
+      margin-right: 0;
+    }
+
+    .nav-label-suffix {
+      display: none;
     }
   }
 }
