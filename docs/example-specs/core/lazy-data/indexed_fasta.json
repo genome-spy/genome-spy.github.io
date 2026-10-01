@@ -1,5 +1,5 @@
 {
-  "$schema": "https://genomespy.app/schema/core/v0.json",
+  "$schema": "https://genomespy.app/schema/core/v1.json",
 
   "description": [
     "Lazy indexed FASTA sequence",

@@ -13,7 +13,7 @@ async function u(e, t, n, r, a) {
 	try {
 		if (t.baseUrl = t.baseUrl || (n ? l(n) : o), r === "core") return await i(e, t);
 		if (r === "app") {
-			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-CRphPi6Z.js");
+			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-C1mFWVv4.js");
 			return await a(n), await r(e, t, { embedMode: "embedded" });
 		}
 		throw Error(`Unknown GenomeSpy embed runtime: ${r}`);

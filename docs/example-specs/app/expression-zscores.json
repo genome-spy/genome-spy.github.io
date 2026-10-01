@@ -1,5 +1,5 @@
 {
-  "$schema": "https://genomespy.app/schema/app/v0.json",
+  "$schema": "https://genomespy.app/schema/app/v1.json",
 
   "description": "Toy expression heatmap with five samples and gene-wise z-scores.",
 

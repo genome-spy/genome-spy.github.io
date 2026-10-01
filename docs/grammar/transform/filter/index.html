@@ -3584,52 +3584,36 @@
 <h3 id="predicate-expression">Predicate Expression<a class="headerlink" href="#predicate-expression" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>expr</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string</p>
-<p>An expression string. The row is removed if the expression evaluates to false.</p>
+<dd>Type: string<p>An expression string. The row is removed if the expression evaluates to false.</p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
+<dd>Type: number<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
 <p>Parameter updates and incoming data are not delayed. Incoming batches use current parameter values, and a completed batch satisfies any pending reactive replay. The delay does not wait for independently scheduled lazy data loads.</p>
 <p><strong>Default value:</strong> no delay</p>
 </dd>
 <dt><code>description</code></dt>
-<dd>
-<p>Type: string</p>
-<p>A description of the transform step. Can be used for documentation and agent context.</p>
+<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 </dl>
 <h3 id="selection-predicate">Selection Predicate<a class="headerlink" href="#selection-predicate" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>param</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string</p>
-<p>A selection parameter. The row is removed if it is not part of the selection.</p>
+<dd>Type: string<p>A selection parameter. The row is removed if it is not part of the selection.</p>
 </dd>
 <dt><code>empty</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>If true, the filter retains all rows when the selection is empty.</p>
+<dd>Type: boolean<p>If true, the filter retains all rows when the selection is empty.</p>
 <p><strong>Default:</strong> <code>true</code></p>
 </dd>
 <dt><code>fields</code></dt>
-<dd>
-<p>Type: object</p>
-<p>An optional mapping of positional channels to fields. Used to determine which fields are checked against the selection intervals.</p>
+<dd>Type: object<p>An optional mapping of positional channels to fields. Used to determine which fields are checked against the selection intervals.</p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
+<dd>Type: number<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
 <p>Parameter updates and incoming data are not delayed. Incoming batches use current parameter values, and a completed batch satisfies any pending reactive replay. The delay does not wait for independently scheduled lazy data loads.</p>
 <p><strong>Default value:</strong> no delay</p>
 </dd>
 <dt><code>description</code></dt>
-<dd>
-<p>Type: string</p>
-<p>A description of the transform step. Can be used for documentation and agent context.</p>
+<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>

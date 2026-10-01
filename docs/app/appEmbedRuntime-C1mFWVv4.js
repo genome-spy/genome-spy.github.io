@@ -13157,7 +13157,7 @@ var k_ = {
 	contributors: [],
 	license: "MIT",
 	homepage: "https://genomespy.app/",
-	version: "0.90.0",
+	version: "1.0.0",
 	main: "dist/index.js",
 	module: "dist/index.es.js",
 	type: "module",
@@ -13217,7 +13217,7 @@ var k_ = {
 		"@fortawesome/fontawesome-free": "^6.4.2",
 		"@fortawesome/fontawesome-svg-core": "^6.4.2",
 		"@fortawesome/free-solid-svg-icons": "^6.4.2",
-		"@genome-spy/core": "^0.90.0",
+		"@genome-spy/core": "^1.0.0",
 		"@reduxjs/toolkit": "^2.11.0",
 		"d3-color": "^3.1.0",
 		idb: "^7.1.1",
@@ -13230,8 +13230,8 @@ var k_ = {
 		zarrita: "^0.6.1"
 	},
 	devDependencies: {
-		"@genome-spy/app-agent": "^0.90.0",
-		"@genome-spy/inspector": "^0.90.0"
+		"@genome-spy/app-agent": "^1.0.0",
+		"@genome-spy/inspector": "^1.0.0"
 	}
 };
 //#endregion
