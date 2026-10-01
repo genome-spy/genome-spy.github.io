@@ -1404,6 +1404,19 @@
     "sourceMode": "shared-example"
   },
   {
+    "id": "docs/grammar/transform/displace2d/bubble-health-income-annotations",
+    "title": "Example: Population-ranked bubble annotations",
+    "description": "Example: Population-ranked bubble annotations",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Transform / Displace2d",
+    "specPath": "examples/docs/grammar/transform/displace2d/bubble-health-income-annotations.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/displace2d/bubble-health-income-annotations.json",
+    "screenshotPath": "examples/docs/grammar/transform/displace2d/bubble-health-income-annotations.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/displace2d/bubble-health-income-annotations.png",
+    "sourceMode": "shared-example"
+  },
+  {
     "id": "docs/grammar/transform/filter/selection-predicate-filter",
     "title": "Filter transform example using a selection predicate.",
     "description": "Filter transform example using a selection predicate.",

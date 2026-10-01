@@ -1,0 +1,1865 @@
+//#region ../../node_modules/hyparquet/src/constants.js
+var e = [
+	"BOOLEAN",
+	"INT32",
+	"INT64",
+	"INT96",
+	"FLOAT",
+	"DOUBLE",
+	"BYTE_ARRAY",
+	"FIXED_LEN_BYTE_ARRAY"
+], t = [
+	"PLAIN",
+	"GROUP_VAR_INT",
+	"PLAIN_DICTIONARY",
+	"RLE",
+	"BIT_PACKED",
+	"DELTA_BINARY_PACKED",
+	"DELTA_LENGTH_BYTE_ARRAY",
+	"DELTA_BYTE_ARRAY",
+	"RLE_DICTIONARY",
+	"BYTE_STREAM_SPLIT"
+], n = [
+	"REQUIRED",
+	"OPTIONAL",
+	"REPEATED"
+], r = [
+	"UTF8",
+	"MAP",
+	"MAP_KEY_VALUE",
+	"LIST",
+	"ENUM",
+	"DECIMAL",
+	"DATE",
+	"TIME_MILLIS",
+	"TIME_MICROS",
+	"TIMESTAMP_MILLIS",
+	"TIMESTAMP_MICROS",
+	"UINT_8",
+	"UINT_16",
+	"UINT_32",
+	"UINT_64",
+	"INT_8",
+	"INT_16",
+	"INT_32",
+	"INT_64",
+	"JSON",
+	"BSON",
+	"INTERVAL"
+], i = [
+	"UNCOMPRESSED",
+	"SNAPPY",
+	"GZIP",
+	"LZO",
+	"BROTLI",
+	"LZ4",
+	"ZSTD",
+	"LZ4_RAW"
+], a = [
+	"DATA_PAGE",
+	"INDEX_PAGE",
+	"DICTIONARY_PAGE",
+	"DATA_PAGE_V2"
+], o = [
+	"SPHERICAL",
+	"VINCENTY",
+	"THOMAS",
+	"ANDOYER",
+	"KARNEY"
+];
+//#endregion
+//#region ../../node_modules/hyparquet/src/wkb.js
+function s(e) {
+	let t = c(e);
+	if (t.type === 1) return {
+		type: "Point",
+		coordinates: l(e, t)
+	};
+	if (t.type === 2) return {
+		type: "LineString",
+		coordinates: u(e, t)
+	};
+	if (t.type === 3) return {
+		type: "Polygon",
+		coordinates: d(e, t)
+	};
+	if (t.type === 4) {
+		let n = [];
+		for (let r = 0; r < t.count; r++) n.push(l(e, c(e)));
+		return {
+			type: "MultiPoint",
+			coordinates: n
+		};
+	}
+	if (t.type === 5) {
+		let n = [];
+		for (let r = 0; r < t.count; r++) n.push(u(e, c(e)));
+		return {
+			type: "MultiLineString",
+			coordinates: n
+		};
+	}
+	if (t.type === 6) {
+		let n = [];
+		for (let r = 0; r < t.count; r++) n.push(d(e, c(e)));
+		return {
+			type: "MultiPolygon",
+			coordinates: n
+		};
+	}
+	if (t.type === 7) {
+		let n = [];
+		for (let r = 0; r < t.count; r++) n.push(s(e));
+		return {
+			type: "GeometryCollection",
+			geometries: n
+		};
+	}
+	throw Error(`Unsupported geometry type: ${t.type}`);
+}
+function c(e) {
+	let { view: t } = e, n = t.getUint8(e.offset++) === 1, r = t.getUint32(e.offset, n);
+	e.offset += 4;
+	let i = r % 1e3, a = Math.floor(r / 1e3), o = 0;
+	i > 1 && i <= 7 && (o = t.getUint32(e.offset, n), e.offset += 4);
+	let s = 2;
+	return a && s++, a === 3 && s++, {
+		littleEndian: n,
+		type: i,
+		dim: s,
+		count: o
+	};
+}
+function l(e, t) {
+	let n = [];
+	for (let r = 0; r < t.dim; r++) {
+		let r = e.view.getFloat64(e.offset, t.littleEndian);
+		e.offset += 8, n.push(r);
+	}
+	return n;
+}
+function u(e, t) {
+	let n = [];
+	for (let r = 0; r < t.count; r++) n.push(l(e, t));
+	return n;
+}
+function d(e, t) {
+	let { view: n } = e, r = [];
+	for (let i = 0; i < t.count; i++) {
+		let i = n.getUint32(e.offset, t.littleEndian);
+		e.offset += 4, r.push(u(e, {
+			...t,
+			count: i
+		}));
+	}
+	return r;
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/convert.js
+var f = new TextDecoder(), p = {
+	timestampFromMilliseconds(e) {
+		return new Date(Number(e));
+	},
+	timestampFromMicroseconds(e) {
+		return new Date(Number(e / 1000n));
+	},
+	timestampFromNanoseconds(e) {
+		return new Date(Number(e / 1000000n));
+	},
+	dateFromDays(e) {
+		return /* @__PURE__ */ new Date(e * 864e5);
+	},
+	stringFromBytes(e) {
+		return e && f.decode(e);
+	},
+	jsonFromBytes(e) {
+		return e && JSON.parse(f.decode(e));
+	},
+	geometryFromBytes(e) {
+		return e && s({
+			view: new DataView(e.buffer, e.byteOffset, e.byteLength),
+			offset: 0
+		});
+	},
+	geographyFromBytes(e) {
+		return e && s({
+			view: new DataView(e.buffer, e.byteOffset, e.byteLength),
+			offset: 0
+		});
+	},
+	uuidFromBytes(e) {
+		if (!e) return;
+		let t = Array.from(e, (e) => e.toString(16).padStart(2, "0")).join("");
+		return t.slice(0, 8) + "-" + t.slice(8, 12) + "-" + t.slice(12, 16) + "-" + t.slice(16, 20) + "-" + t.slice(20, 32);
+	}
+};
+function m(e, t, n, r) {
+	if (t && n.endsWith("_DICTIONARY")) {
+		let n = e;
+		e instanceof Uint8Array && !(t instanceof Uint8Array) && (n = new t.constructor(e.length));
+		for (let r = 0; r < e.length; r++) n[r] = t[e[r]];
+		return n;
+	}
+	return h(e, r);
+}
+function h(e, t) {
+	let { element: n, parsers: r, utf8: i = !0, schemaPath: a } = t, { type: o, converted_type: s, logical_type: c } = n, l = n.repetition_type !== "REQUIRED";
+	if (a?.some((e) => e.element.logical_type?.type === "VARIANT") && o === "BYTE_ARRAY" && s !== "UTF8" && c?.type !== "STRING") return e;
+	if (s === "DECIMAL") {
+		let t = 10 ** -(n.scale || 0), r = Array(e.length);
+		for (let n = 0; n < r.length; n++) e[n] instanceof Uint8Array ? r[n] = g(e[n]) * t : r[n] = Number(e[n]) * t;
+		return r;
+	}
+	if (!s && o === "INT96") return Array.from(e).map((e) => r.timestampFromNanoseconds(_(e)));
+	if (s === "DATE") return Array.from(e).map((e) => r.dateFromDays(e));
+	if (s === "TIMESTAMP_MILLIS") return Array.from(e).map((e) => r.timestampFromMilliseconds(e));
+	if (s === "TIMESTAMP_MICROS") return Array.from(e).map((e) => r.timestampFromMicroseconds(e));
+	if (s === "JSON") return e.map((e) => r.jsonFromBytes(e));
+	if (s === "BSON") throw Error("parquet bson not supported");
+	if (s === "INTERVAL") throw Error("parquet interval not supported");
+	if (c?.type === "GEOMETRY") return e.map((e) => r.geometryFromBytes(e));
+	if (c?.type === "GEOGRAPHY") return e.map((e) => r.geographyFromBytes(e));
+	if (c?.type === "UUID") return e.map((e) => r.uuidFromBytes(e));
+	if (s === "UTF8" || c?.type === "STRING" || i && o === "BYTE_ARRAY") return e.map((e) => r.stringFromBytes(e));
+	if (s === "UINT_64" || c?.type === "INTEGER" && c.bitWidth === 64 && !c.isSigned) {
+		if (e instanceof BigInt64Array) return new BigUint64Array(e.buffer, e.byteOffset, e.length);
+		let t = l ? Array(e.length) : new BigUint64Array(e.length);
+		for (let n = 0; n < t.length; n++) t[n] = e[n];
+		return t;
+	}
+	if (s === "UINT_32" || c?.type === "INTEGER" && c.bitWidth === 32 && !c.isSigned) {
+		if (e instanceof Int32Array) return new Uint32Array(e.buffer, e.byteOffset, e.length);
+		let t = l ? Array(e.length) : new Uint32Array(e.length);
+		for (let n = 0; n < t.length; n++) t[n] = e[n] < 0 ? 4294967296 + e[n] : e[n];
+		return t;
+	}
+	if (c?.type === "FLOAT16") return Array.from(e).map(v);
+	if (c?.type === "TIMESTAMP") {
+		let { unit: t } = c, n = r.timestampFromMilliseconds;
+		t === "MICROS" && (n = r.timestampFromMicroseconds), t === "NANOS" && (n = r.timestampFromNanoseconds);
+		let i = Array(e.length);
+		for (let t = 0; t < i.length; t++) i[t] = n(e[t]);
+		return i;
+	}
+	return e;
+}
+function g(e) {
+	if (!e.length) return 0;
+	let t = 0n;
+	for (let n of e) t = t * 256n + BigInt(n);
+	let n = e.length * 8;
+	return t >= 2n ** BigInt(n - 1) && (t -= 2n ** BigInt(n)), Number(t);
+}
+function _(e) {
+	let t = (e >> 64n) - 2440588n, n = e & 18446744073709551615n;
+	return t * 86400000000000n + n;
+}
+function v(e) {
+	if (!e) return;
+	let t = e[1] << 8 | e[0], n = t >> 15 ? -1 : 1, r = t >> 10 & 31, i = t & 1023;
+	return r === 0 ? n * 2 ** -14 * (i / 1024) : r === 31 ? i ? NaN : n * Infinity : n * 2 ** (r - 15) * (1 + i / 1024);
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/schema.js
+function y(e, t, n) {
+	let r = e[t], i = [], a = 1;
+	if (r.num_children) for (; i.length < r.num_children;) {
+		let r = e[t + a], o = y(e, t + a, [...n, r.name]);
+		a += o.count, i.push(o);
+	}
+	return {
+		count: a,
+		element: r,
+		children: i,
+		path: n
+	};
+}
+function b(e, t) {
+	let n = y(e, 0, []), r = [n];
+	for (let e of t) {
+		let i = n.children.find((t) => t.element.name === e);
+		if (!i) throw Error(`parquet schema element not found: ${t}`);
+		r.push(i), n = i;
+	}
+	return r;
+}
+function ee(e) {
+	let t = [];
+	function n(e) {
+		if (e.children.length) for (let t of e.children) n(t);
+		else t.push(e.path.join("."));
+	}
+	return n(e), t;
+}
+function te(e) {
+	let t = 0;
+	for (let { element: n } of e) n.repetition_type === "REPEATED" && t++;
+	return t;
+}
+function x(e) {
+	let t = 0;
+	for (let { element: n } of e.slice(1)) n.repetition_type !== "REQUIRED" && t++;
+	return t;
+}
+function ne(e) {
+	if (!e || e.element.converted_type !== "LIST" || e.children.length > 1) return !1;
+	let t = e.children[0];
+	return !(t.children.length > 1 || t.element.repetition_type !== "REPEATED");
+}
+function re(e) {
+	if (!e || e.element.converted_type !== "MAP" || e.children.length > 1) return !1;
+	let t = e.children[0];
+	return t.children.length === 2 && t.element.repetition_type === "REPEATED" && t.children.find((e) => e.element.name === "key")?.element.repetition_type !== "REPEATED" && t.children.find((e) => e.element.name === "value")?.element.repetition_type !== "REPEATED";
+}
+function ie(e) {
+	if (e.length !== 2) return !1;
+	let [, t] = e;
+	return !(t.element.repetition_type === "REPEATED" || t.children.length);
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/thrift.js
+var ae = 0, oe = 1, se = 2, ce = 3, le = 4, ue = 5, de = 6, fe = 7, pe = 8, me = 9, he = 12;
+function S(e) {
+	let t = {}, n = 0;
+	for (; e.offset < e.view.byteLength;) {
+		let r = e.view.getUint8(e.offset++), i = r & 15;
+		if (i === ae) break;
+		let a = r >> 4;
+		n = a ? n + a : T(e), t[`field_${n}`] = C(e, i);
+	}
+	return t;
+}
+function C(e, t) {
+	switch (t) {
+		case oe: return !0;
+		case se: return !1;
+		case ce: return e.view.getInt8(e.offset++);
+		case le:
+		case ue: return T(e);
+		case de: return E(e);
+		case fe: {
+			let t = e.view.getFloat64(e.offset, !0);
+			return e.offset += 8, t;
+		}
+		case pe: {
+			let t = w(e), n = new Uint8Array(e.view.buffer, e.view.byteOffset + e.offset, t);
+			return e.offset += t, n;
+		}
+		case me: {
+			let t = e.view.getUint8(e.offset++), n = t & 15, r = t >> 4;
+			r === 15 && (r = w(e));
+			let i = n === oe || n === se, a = Array(r);
+			for (let t = 0; t < r; t++) a[t] = i ? C(e, ce) === 1 : C(e, n);
+			return a;
+		}
+		case he: return S(e);
+		default: throw Error(`thrift unhandled type: ${t}`);
+	}
+}
+function w(e) {
+	let t = 0, n = 0;
+	for (;;) {
+		let r = e.view.getUint8(e.offset++);
+		if (t |= (r & 127) << n, !(r & 128)) return t;
+		n += 7;
+	}
+}
+function ge(e) {
+	let t = 0n, n = 0n;
+	for (;;) {
+		let r = e.view.getUint8(e.offset++);
+		if (t |= BigInt(r & 127) << n, !(r & 128)) return t;
+		n += 7n;
+	}
+}
+function T(e) {
+	let t = w(e);
+	return t >>> 1 ^ -(t & 1);
+}
+function E(e) {
+	let t = ge(e);
+	return t >> 1n ^ -(t & 1n);
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/geoparquet.js
+function _e(e, t) {
+	let n = /* @__PURE__ */ new Map(), r = t?.find(({ key: e }) => e === "geo")?.value, i = (r && JSON.parse(r)?.columns) ?? {};
+	for (let [e, t] of Object.entries(i)) {
+		if (t.encoding !== "WKB") continue;
+		let r = t.edges === "spherical" ? "GEOGRAPHY" : "GEOMETRY", i = t.crs?.id ?? t.crs?.ids?.[0], a = i ? `${i.authority}:${i.code.toString()}` : void 0;
+		n.set(e, {
+			type: r,
+			crs: a
+		});
+	}
+	for (let t = 1; t < e.length; t++) {
+		let { logical_type: r, name: i, num_children: a, type: o } = e[t];
+		if (a) {
+			t += a;
+			continue;
+		}
+		o === "BYTE_ARRAY" && !r && (e[t].logical_type = n.get(i));
+	}
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/metadata.js
+var ve = 1 << 19, ye = new TextDecoder();
+function D(e) {
+	return e && ye.decode(e);
+}
+async function be(e, { parsers: t, initialFetchSize: n = ve, geoparquet: r = !0 } = {}) {
+	if (!e || !(e.byteLength >= 0)) throw Error("parquet expected AsyncBuffer");
+	let i = Math.max(0, e.byteLength - n), a = await e.slice(i, e.byteLength), o = new DataView(a);
+	if (o.getUint32(a.byteLength - 4, !0) !== 827474256) throw Error("parquet file invalid (footer != PAR1)");
+	let s = o.getUint32(a.byteLength - 8, !0);
+	if (s > e.byteLength - 8) throw Error(`parquet metadata length ${s} exceeds available buffer ${e.byteLength - 8}`);
+	if (s + 8 > n) {
+		let n = e.byteLength - s - 8, o = await e.slice(n, i), c = new ArrayBuffer(s + 8), l = new Uint8Array(c);
+		return l.set(new Uint8Array(o)), l.set(new Uint8Array(a), i - n), xe(c, {
+			parsers: t,
+			geoparquet: r
+		});
+	}
+	return xe(a, {
+		parsers: t,
+		geoparquet: r
+	});
+}
+function xe(o, { parsers: s, geoparquet: c = !0 } = {}) {
+	if (!(o instanceof ArrayBuffer)) throw Error("parquet expected ArrayBuffer");
+	let l = new DataView(o), u = {
+		...p,
+		...s
+	};
+	if (l.byteLength < 8) throw Error("parquet file is too short");
+	if (l.getUint32(l.byteLength - 4, !0) !== 827474256) throw Error("parquet file invalid (footer != PAR1)");
+	let d = l.byteLength - 8, f = l.getUint32(d, !0);
+	if (f > l.byteLength - 8) throw Error(`parquet metadata length ${f} exceeds available buffer ${l.byteLength - 8}`);
+	let m = S({
+		view: l,
+		offset: d - f
+	}), h = m.field_1, g = m.field_2.map((t) => ({
+		type: e[t.field_1],
+		type_length: t.field_2,
+		repetition_type: n[t.field_3],
+		name: D(t.field_4),
+		num_children: t.field_5,
+		converted_type: r[t.field_6],
+		scale: t.field_7,
+		precision: t.field_8,
+		field_id: t.field_9,
+		logical_type: Ce(t.field_10)
+	})), _ = g.filter((e) => e.type), v = m.field_3, y = m.field_4.map((n) => ({
+		columns: n.field_1.map((n, r) => ({
+			file_path: D(n.field_1),
+			file_offset: n.field_2,
+			meta_data: n.field_3 && {
+				type: e[n.field_3.field_1],
+				encodings: n.field_3.field_2?.map((e) => t[e]),
+				path_in_schema: n.field_3.field_3.map(D),
+				codec: i[n.field_3.field_4],
+				num_values: n.field_3.field_5,
+				total_uncompressed_size: n.field_3.field_6,
+				total_compressed_size: n.field_3.field_7,
+				key_value_metadata: n.field_3.field_8?.map((e) => ({
+					key: D(e.field_1),
+					value: D(e.field_2)
+				})),
+				data_page_offset: n.field_3.field_9,
+				index_page_offset: n.field_3.field_10,
+				dictionary_page_offset: n.field_3.field_11,
+				statistics: Te(n.field_3.field_12, _[r], u),
+				encoding_stats: n.field_3.field_13?.map((e) => ({
+					page_type: a[e.field_1],
+					encoding: t[e.field_2],
+					count: e.field_3
+				})),
+				bloom_filter_offset: n.field_3.field_14,
+				bloom_filter_length: n.field_3.field_15,
+				size_statistics: n.field_3.field_16 && {
+					unencoded_byte_array_data_bytes: n.field_3.field_16.field_1,
+					repetition_level_histogram: n.field_3.field_16.field_2,
+					definition_level_histogram: n.field_3.field_16.field_3
+				},
+				geospatial_statistics: n.field_3.field_17 && {
+					bbox: n.field_3.field_17.field_1 && {
+						xmin: n.field_3.field_17.field_1.field_1,
+						xmax: n.field_3.field_17.field_1.field_2,
+						ymin: n.field_3.field_17.field_1.field_3,
+						ymax: n.field_3.field_17.field_1.field_4,
+						zmin: n.field_3.field_17.field_1.field_5,
+						zmax: n.field_3.field_17.field_1.field_6,
+						mmin: n.field_3.field_17.field_1.field_7,
+						mmax: n.field_3.field_17.field_1.field_8
+					},
+					geospatial_types: n.field_3.field_17.field_2
+				}
+			},
+			offset_index_offset: n.field_4,
+			offset_index_length: n.field_5,
+			column_index_offset: n.field_6,
+			column_index_length: n.field_7,
+			crypto_metadata: n.field_8,
+			encrypted_column_metadata: n.field_9
+		})),
+		total_byte_size: n.field_2,
+		num_rows: n.field_3,
+		sorting_columns: n.field_4?.map((e) => ({
+			column_idx: e.field_1,
+			descending: e.field_2,
+			nulls_first: e.field_3
+		})),
+		file_offset: n.field_5,
+		total_compressed_size: n.field_6,
+		ordinal: n.field_7
+	})), b = m.field_5?.map((e) => ({
+		key: D(e.field_1),
+		value: D(e.field_2)
+	})), ee = D(m.field_6);
+	return c && _e(g, b), {
+		version: h,
+		schema: g,
+		num_rows: v,
+		row_groups: y,
+		key_value_metadata: b,
+		created_by: ee,
+		metadata_length: f
+	};
+}
+function Se({ schema: e }) {
+	return b(e, [])[0];
+}
+function Ce(e) {
+	return e?.field_1 ? { type: "STRING" } : e?.field_2 ? { type: "MAP" } : e?.field_3 ? { type: "LIST" } : e?.field_4 ? { type: "ENUM" } : e?.field_5 ? {
+		type: "DECIMAL",
+		scale: e.field_5.field_1,
+		precision: e.field_5.field_2
+	} : e?.field_6 ? { type: "DATE" } : e?.field_7 ? {
+		type: "TIME",
+		isAdjustedToUTC: e.field_7.field_1,
+		unit: we(e.field_7.field_2)
+	} : e?.field_8 ? {
+		type: "TIMESTAMP",
+		isAdjustedToUTC: e.field_8.field_1,
+		unit: we(e.field_8.field_2)
+	} : e?.field_10 ? {
+		type: "INTEGER",
+		bitWidth: e.field_10.field_1,
+		isSigned: e.field_10.field_2
+	} : e?.field_11 ? { type: "NULL" } : e?.field_12 ? { type: "JSON" } : e?.field_13 ? { type: "BSON" } : e?.field_14 ? { type: "UUID" } : e?.field_15 ? { type: "FLOAT16" } : e?.field_16 ? {
+		type: "VARIANT",
+		specification_version: e.field_16.field_1
+	} : e?.field_17 ? {
+		type: "GEOMETRY",
+		crs: D(e.field_17.field_1)
+	} : e?.field_18 ? {
+		type: "GEOGRAPHY",
+		crs: D(e.field_18.field_1),
+		algorithm: o[e.field_18.field_2]
+	} : e;
+}
+function we(e) {
+	if (e.field_1) return "MILLIS";
+	if (e.field_2) return "MICROS";
+	if (e.field_3) return "NANOS";
+	throw Error("parquet time unit required");
+}
+function Te(e, t, n) {
+	return e && {
+		max: O(e.field_1, t, n),
+		min: O(e.field_2, t, n),
+		null_count: e.field_3,
+		distinct_count: e.field_4,
+		max_value: O(e.field_5, t, n),
+		min_value: O(e.field_6, t, n),
+		is_max_value_exact: e.field_7,
+		is_min_value_exact: e.field_8
+	};
+}
+function O(e, t, n) {
+	let { type: r, converted_type: i, logical_type: a } = t;
+	if (e === void 0) return e;
+	if (r === "BOOLEAN") return e[0] === 1;
+	if (r === "BYTE_ARRAY") return n.stringFromBytes(e);
+	let o = new DataView(e.buffer, e.byteOffset, e.byteLength);
+	if (r === "FLOAT" && o.byteLength === 4) return o.getFloat32(0, !0);
+	if (r === "DOUBLE" && o.byteLength === 8) return o.getFloat64(0, !0);
+	if (r === "INT32" && i === "DECIMAL" && o.byteLength === 4) return o.getInt32(0, !0) * 10 ** -(t.scale || 0);
+	if (r === "INT64" && i === "DECIMAL" && o.byteLength === 8) return Number(o.getBigInt64(0, !0)) * 10 ** -(t.scale || 0);
+	if (r === "INT32" && i === "DATE") return n.dateFromDays(o.getInt32(0, !0));
+	if (r === "INT64" && i === "TIMESTAMP_MILLIS") return n.timestampFromMilliseconds(o.getBigInt64(0, !0));
+	if (r === "INT64" && i === "TIMESTAMP_MICROS") return n.timestampFromMicroseconds(o.getBigInt64(0, !0));
+	if (r === "INT64" && a?.type === "TIMESTAMP" && a?.unit === "NANOS") return n.timestampFromNanoseconds(o.getBigInt64(0, !0));
+	if (r === "INT64" && a?.type === "TIMESTAMP" && a?.unit === "MICROS") return n.timestampFromMicroseconds(o.getBigInt64(0, !0));
+	if (r === "INT64" && a?.type === "TIMESTAMP") return n.timestampFromMilliseconds(o.getBigInt64(0, !0));
+	let s = i?.startsWith("UINT_") || a?.type === "INTEGER" && !a.isSigned;
+	return r === "INT32" && s && o.byteLength === 4 ? o.getUint32(0, !0) : r === "INT64" && s && o.byteLength === 8 ? o.getBigUint64(0, !0) : r === "INT32" && o.byteLength === 4 ? o.getInt32(0, !0) : r === "INT64" && o.byteLength === 8 ? o.getBigInt64(0, !0) : i === "DECIMAL" ? g(e) * 10 ** -(t.scale || 0) : a?.type === "FLOAT16" ? v(e) : a?.type === "UUID" ? n.uuidFromBytes(e) : e;
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/xxhash.js
+var k = 18446744073709551615n, A = 11400714785074694791n, j = 14029467366897019727n, Ee = 1609587929392839161n, De = 9650029242287828579n, Oe = 2870177450012600261n;
+function M(e, t) {
+	return (e << t | e >> 64n - t) & k;
+}
+function N(e, t) {
+	return e = e + t * j & k, e = M(e, 31n), e * A & k;
+}
+function P(e, t) {
+	return e ^= N(0n, t), e * A + De & k;
+}
+function F(e, t = 0n) {
+	let n = new DataView(e.buffer, e.byteOffset, e.byteLength), r = e.byteLength, i = 0, a;
+	if (r >= 32) {
+		let e = t + A + j & k, o = t + j & k, s = t, c = t - A & k;
+		for (; i + 32 <= r;) e = N(e, n.getBigUint64(i, !0)), i += 8, o = N(o, n.getBigUint64(i, !0)), i += 8, s = N(s, n.getBigUint64(i, !0)), i += 8, c = N(c, n.getBigUint64(i, !0)), i += 8;
+		a = M(e, 1n) + M(o, 7n) + M(s, 12n) + M(c, 18n) & k, a = P(a, e), a = P(a, o), a = P(a, s), a = P(a, c);
+	} else a = t + Oe & k;
+	for (a = a + BigInt(r) & k; i + 8 <= r;) a ^= N(0n, n.getBigUint64(i, !0)), a = M(a, 27n) * A + De & k, i += 8;
+	for (i + 4 <= r && (a ^= BigInt(n.getUint32(i, !0)) * A & k, a = M(a, 23n) * j + Ee & k, i += 4); i < r;) a ^= BigInt(n.getUint8(i)) * Oe & k, a = M(a, 11n) * A & k, i += 1;
+	return a ^= a >> 33n, a = a * j & k, a ^= a >> 29n, a = a * Ee & k, a ^= a >> 32n, a;
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/bloom.js
+var ke = new TextEncoder(), Ae = new Uint32Array([
+	1203114875,
+	1150766481,
+	2284105051,
+	2729912477,
+	1884591559,
+	770785867,
+	2667333959,
+	1550580529
+]);
+function je(e, t) {
+	return Number((e >> 32n) * BigInt(t) >> 32n);
+}
+function Me(e) {
+	let t = /* @__PURE__ */ new Uint32Array(8), n = Number(e & 4294967295n) | 0;
+	for (let e = 0; e < 8; e++) t[e] = 1 << (Math.imul(n, Ae[e]) >>> 27);
+	return t;
+}
+function Ne(e, t) {
+	let n = je(t, e.length >> 3) << 3, r = Me(t);
+	for (let t = 0; t < 8; t++) if ((e[n + t] & r[t]) === 0) return !1;
+	return !0;
+}
+function Pe(e, t) {
+	if (e == null) return;
+	let { type: n, converted_type: r, logical_type: i } = t;
+	if (n === "BOOLEAN") return typeof e == "boolean" ? F(new Uint8Array([+!!e])) : void 0;
+	if (n === "FLOAT") {
+		if (typeof e != "number") return;
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setFloat32(0, e, !0), F(new Uint8Array(t));
+	}
+	if (n === "DOUBLE") {
+		if (typeof e != "number") return;
+		let t = /* @__PURE__ */ new ArrayBuffer(8);
+		return new DataView(t).setFloat64(0, e, !0), F(new Uint8Array(t));
+	}
+	if (n === "INT32") {
+		if (r === "DATE" || r === "DECIMAL" || r === "TIME_MILLIS" || i?.type === "DATE" || i?.type === "TIME" || i?.type === "DECIMAL" || typeof e != "number" || !Number.isInteger(e)) return;
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setInt32(0, e | 0, !0), F(new Uint8Array(t));
+	}
+	if (n === "INT64") {
+		if (r === "TIMESTAMP_MILLIS" || r === "TIMESTAMP_MICROS" || r === "TIME_MICROS" || r === "DECIMAL" || i?.type === "TIMESTAMP" || i?.type === "TIME" || i?.type === "DECIMAL") return;
+		let t;
+		if (typeof e == "bigint") t = e;
+		else if (typeof e == "number" && Number.isSafeInteger(e)) t = BigInt(e);
+		else return;
+		let n = /* @__PURE__ */ new ArrayBuffer(8);
+		return new DataView(n).setBigUint64(0, BigInt.asUintN(64, t), !0), F(new Uint8Array(n));
+	}
+	if (n === "BYTE_ARRAY") return r === "JSON" || r === "BSON" || r === "DECIMAL" || i?.type === "JSON" || i?.type === "BSON" || i?.type === "VARIANT" || i?.type === "GEOMETRY" || i?.type === "GEOGRAPHY" ? void 0 : typeof e == "string" ? F(ke.encode(e)) : e instanceof Uint8Array ? F(e) : void 0;
+	if (n === "FIXED_LEN_BYTE_ARRAY") return r === "DECIMAL" || r === "INTERVAL" || i?.type === "DECIMAL" || i?.type === "UUID" || i?.type === "FLOAT16" || i?.type === "GEOMETRY" || i?.type === "GEOGRAPHY" ? void 0 : e instanceof Uint8Array ? F(e) : void 0;
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/utils.js
+function Fe(e, t) {
+	let n = 1e4;
+	for (let r = 0; r < t.length; r += n) e.push(...t.slice(r, r + n));
+}
+function I(e, t, n = !0) {
+	if (n ? e === t : e == t) return !0;
+	if (!e || !t || typeof e != "object" || typeof t != "object") return !1;
+	if (e instanceof Uint8Array && t instanceof Uint8Array) {
+		if (e.length !== t.length) return !1;
+		for (let n = 0; n < e.length; n++) if (e[n] !== t[n]) return !1;
+		return !0;
+	}
+	if (e instanceof Date || t instanceof Date) return e instanceof Date && t instanceof Date && e.getTime() === t.getTime();
+	if (Array.isArray(e) && Array.isArray(t)) {
+		if (e.length !== t.length) return !1;
+		for (let r = 0; r < e.length; r++) if (!I(e[r], t[r], n)) return !1;
+		return !0;
+	}
+	let r = Object.keys(e);
+	if (r.length !== Object.keys(t).length) return !1;
+	for (let i of r) if (!I(e[i], t[i], n)) return !1;
+	return !0;
+}
+function Ie(e) {
+	if (!e) return [];
+	if (e.length === 1) return e[0];
+	let t = [];
+	for (let n of e) Fe(t, n);
+	return t;
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/filter.js
+var Le = new TextEncoder();
+function L(e, t, n = !0) {
+	return "$and" in t && Array.isArray(t.$and) ? t.$and.every((t) => L(e, t, n)) : "$or" in t && Array.isArray(t.$or) ? t.$or.some((t) => L(e, t, n)) : "$nor" in t && Array.isArray(t.$nor) ? !t.$nor.some((t) => L(e, t, n)) : Object.entries(t).every(([t, r]) => {
+		let i = Ve(e, t);
+		return typeof r != "object" || !r || Array.isArray(r) ? I(i, r, n) : Object.entries(r || {}).every(([e, t]) => e === "$gt" ? i != null && i > t : e === "$gte" ? i != null && i >= t : e === "$lt" ? i != null && i < t : e === "$lte" ? i != null && i <= t : e === "$eq" ? I(i, t, n) : e === "$ne" ? !I(i, t, n) : e === "$in" ? Array.isArray(t) && Re(i, t, n) : e === "$nin" ? Array.isArray(t) && !Re(i, t, n) : e !== "$not" || !L({ value: i }, { value: t }, n));
+	});
+}
+function Re(e, t, n) {
+	return t.some((t) => I(e, t, n) || Array.isArray(e) && e.some((e) => I(e, t, n)));
+}
+function R({ rowGroup: e, physicalColumns: t, filter: n, strict: r = !0, bloomFilters: i, schemaElements: a }) {
+	if (!n) return !1;
+	if ("$and" in n && Array.isArray(n.$and)) return n.$and.some((n) => R({
+		rowGroup: e,
+		physicalColumns: t,
+		filter: n,
+		strict: r,
+		bloomFilters: i,
+		schemaElements: a
+	}));
+	if ("$or" in n && Array.isArray(n.$or)) return n.$or.every((n) => R({
+		rowGroup: e,
+		physicalColumns: t,
+		filter: n,
+		strict: r,
+		bloomFilters: i,
+		schemaElements: a
+	}));
+	if ("$nor" in n && Array.isArray(n.$nor)) return !1;
+	for (let [o, s] of Object.entries(n)) {
+		let n = t.indexOf(o);
+		if (n === -1) continue;
+		let { min: c, max: l, min_value: u, max_value: d, null_count: f } = e.columns[n].meta_data?.statistics || {}, p = u === void 0 ? c : u, m = d === void 0 ? l : d, h = p !== void 0 && m !== void 0, g = i?.[o], _ = a?.[o], v = L({ value: null }, { value: s }, r) && (f === void 0 || f > 0);
+		if (h && !v && ze(s, p, m, r, _)) return !0;
+		for (let [e, t] of Object.entries(s || {})) if (g && _) {
+			if (e === "$eq") {
+				let e = Pe(t, _);
+				if (e !== void 0 && !Ne(g.blocks, e)) return !0;
+			}
+			if (e === "$in" && Array.isArray(t) && t.length > 0) {
+				let e = !0;
+				for (let n of t) {
+					let t = Pe(n, _);
+					if (t === void 0 || Ne(g.blocks, t)) {
+						e = !1;
+						break;
+					}
+				}
+				if (e) return !0;
+			}
+		}
+	}
+	return !1;
+}
+function ze(e, t, n, r, i) {
+	if (t === void 0 || n === void 0) return !1;
+	let a = i?.type === "FLOAT" || i?.type === "DOUBLE" || i?.logical_type?.type === "FLOAT16";
+	for (let [o, s] of Object.entries(e || {})) {
+		let e = z(t, s, r, i), c = z(n, s, r, i), l = !(t instanceof Uint8Array || n instanceof Uint8Array) && (i?.type !== "BYTE_ARRAY" || typeof s == "string" && [...s].every((e) => e.charCodeAt(0) <= 127));
+		if (o === "$gt" && l && c !== void 0 && c <= 0 || o === "$gte" && l && c !== void 0 && c < 0 || o === "$lt" && l && e !== void 0 && e >= 0 || o === "$lte" && l && e !== void 0 && e > 0) return !0;
+		if (o === "$eq") {
+			let e = z(s, t, r, i), a = z(s, n, r, i);
+			if (e !== void 0 && e < 0 || a !== void 0 && a > 0) return !0;
+		}
+		if (o === "$ne" && !a && I(t, n, r) && I(t, s, r) || o === "$in" && Array.isArray(s) && s.every((e) => {
+			let a = z(e, t, r, i), o = z(e, n, r, i);
+			return a !== void 0 && a < 0 || o !== void 0 && o > 0;
+		}) || o === "$nin" && !a && Array.isArray(s) && I(t, n, r) && s.some((e) => I(t, e, r))) return !0;
+	}
+	return !1;
+}
+function z(e, t, n, r) {
+	if (r?.type === "BYTE_ARRAY") return typeof e != "string" || typeof t != "string" ? void 0 : Be(Le.encode(e), Le.encode(t));
+	if (e instanceof Uint8Array || t instanceof Uint8Array) return !(e instanceof Uint8Array) || !(t instanceof Uint8Array) ? void 0 : Be(e, t);
+	if (e < t) return -1;
+	if (e > t) return 1;
+	if (I(e, t, n)) return 0;
+}
+function Be(e, t) {
+	let n = Math.min(e.length, t.length);
+	for (let r = 0; r < n; r++) {
+		if (e[r] < t[r]) return -1;
+		if (e[r] > t[r]) return 1;
+	}
+	return e.length < t.length ? -1 : +(e.length > t.length);
+}
+function Ve(e, t) {
+	let n = e;
+	for (let e of t.split(".")) n = n?.[e];
+	return n;
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/indexes.js
+function He(e) {
+	let t = S(e);
+	return {
+		page_locations: t.field_1.map((e) => ({
+			offset: e.field_1,
+			compressed_page_size: e.field_2,
+			first_row_index: e.field_3
+		})),
+		unencoded_byte_array_data_bytes: t.field_2
+	};
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/plan.js
+var Ue = 1 << 21, We = 8192;
+function Ge(e) {
+	let { metadata: t, rowStart: n = 0, columns: r, useOffsetIndex: i = !1 } = e;
+	if (!t) throw Error("parquetPlan requires metadata");
+	let a = [], o = [], s = [], c = Ke(e);
+	for (let e of c.groups) {
+		let t = qe({
+			...e,
+			columns: r,
+			useOffsetIndex: i
+		});
+		a.push(...t.groups), o.push(...t.fetches), s.push(...t.indexes);
+	}
+	return o.push(...s), {
+		metadata: t,
+		rowStart: n,
+		rowEnd: c.rowEnd,
+		columns: r,
+		fetches: o,
+		groups: a
+	};
+}
+function Ke({ metadata: e, rowStart: t = 0, rowEnd: n = Infinity, columns: r, filter: i, filterStrict: a = !0, bloomFiltersByGroup: o, schemaElements: s, pageRangesByGroup: c, pageLocationsByGroup: l }) {
+	if (!e) throw Error("parquetPlan requires metadata");
+	let u = Se(e), d = ee(u), f = i ? {
+		...Ze(u),
+		...s
+	} : s, p = [], m = 0;
+	for (let s = 0; s < e.row_groups.length; s++) {
+		let u = e.row_groups[s], h = Number(u.num_rows), g = m + h;
+		if (h > 0 && g > t && m < n && !R({
+			rowGroup: u,
+			physicalColumns: d,
+			filter: i,
+			strict: a,
+			bloomFilters: o?.[s],
+			schemaElements: f
+		})) {
+			let e = Math.max(t - m, 0), i = Math.min(n - m, h), a = c?.[s], o = l?.[s], d = a ? a.map(([t, n]) => [Math.max(t, e), Math.min(n, i)]).filter(([e, t]) => e < t) : [[e, i]];
+			d.length > 1 && (d = u.columns.every((e) => {
+				let t = e.meta_data?.path_in_schema[0], n = e.meta_data?.path_in_schema.join(".");
+				return r && t && !r.includes(t) ? !0 : !!(e.offset_index_offset && e.offset_index_length) || !!(n && o?.[n]);
+			}) ? Je(d, u, r, o) : [[d[0][0], d[d.length - 1][1]]]), d.length && p.push({
+				rowGroup: u,
+				groupIndex: s,
+				groupStart: m,
+				groupRows: h,
+				ranges: d,
+				pageRanges: a,
+				pageLocations: o
+			});
+		}
+		m = g;
+	}
+	return {
+		groups: p,
+		rowEnd: isFinite(n) ? n : m
+	};
+}
+function qe({ rowGroup: e, groupStart: t, groupRows: n, ranges: r, columns: i, useOffsetIndex: a = !1, pageRanges: o, pageLocations: s }) {
+	let c = [], l = [], u = [], d = r.length > 1 || r[0][0] > 0 || r[0][1] < n;
+	for (let t of e.columns) {
+		let e = t.meta_data;
+		if (t.file_path) throw Error("parquet file_path not supported");
+		if (!e) throw Error("parquet column metadata is undefined");
+		if (i && !i.includes(e.path_in_schema[0])) continue;
+		let n = e.dictionary_page_offset || e.data_page_offset, r = Number(n), l = Number(n + e.total_compressed_size), u = s?.[e.path_in_schema.join(".")];
+		if (u && d) c.push({
+			columnMetadata: e,
+			pageLocations: u,
+			range: {
+				startByte: r,
+				endByte: l
+			}
+		});
+		else if ((a || o) && t.offset_index_offset && t.offset_index_length && d) {
+			let r = Number(t.offset_index_offset);
+			c.push({
+				columnMetadata: e,
+				offsetIndex: {
+					startByte: r,
+					endByte: r + t.offset_index_length
+				},
+				range: {
+					startByte: Number(n),
+					endByte: l
+				}
+			});
+		} else c.push({
+			columnMetadata: e,
+			range: {
+				startByte: r,
+				endByte: l
+			}
+		});
+	}
+	let f = [], p;
+	for (let e of c) "pageLocations" in e || ("offsetIndex" in e ? u.push(e.offsetIndex) : i ? f.push(e.range) : p && e.range.endByte - p.startByte <= Ue ? p.endByte = e.range.endByte : (p && l.push(p), p = { ...e.range }));
+	return p && l.push(p), l.push(...Xe(f, We, Ue)), {
+		groups: r.map(([r, i]) => ({
+			chunks: c,
+			rowGroup: e,
+			groupStart: t,
+			groupRows: n,
+			selectStart: r,
+			selectEnd: i
+		})),
+		fetches: l,
+		indexes: u
+	};
+}
+function Je(e, t, n, r) {
+	let i = t.columns.filter((e) => !n || n.includes(e.meta_data?.path_in_schema[0] || "")).map((e) => r?.[e.meta_data?.path_in_schema.join(".") || ""]), a = [];
+	for (let n of e) {
+		let e = a[a.length - 1], r = e && i.some((r) => {
+			if (!r) return !0;
+			let i = Ye(e, r, Number(t.num_rows)), a = Ye(n, r, Number(t.num_rows));
+			return i[0] <= a[1] && a[0] <= i[1];
+		});
+		e && r ? e[1] = n[1] : a.push([...n]);
+	}
+	return a;
+}
+function Ye([e, t], n, r) {
+	let i = Infinity, a = -Infinity;
+	for (let o = 0; o < n.length; o++) {
+		let s = Number(n[o].first_row_index);
+		(o + 1 < n.length ? Number(n[o + 1].first_row_index) : r) > e && s < t && (i = Math.min(i, o), a = o);
+	}
+	return [i, a];
+}
+function Xe(e, t = 0, n = Infinity) {
+	let r = e.map((e) => ({ ...e })).sort((e, t) => e.startByte - t.startByte || e.endByte - t.endByte), i = [];
+	for (let e of r) {
+		let r = i[i.length - 1];
+		r && e.startByte <= r.endByte + t && Math.max(r.endByte, e.endByte) - r.startByte <= n ? r.endByte = Math.max(r.endByte, e.endByte) : i.push(e);
+	}
+	return i;
+}
+function Ze(e) {
+	let t = {};
+	function n(e) {
+		if (e.children.length) for (let t of e.children) n(t);
+		else t[e.path.join(".")] = e.element;
+	}
+	return n(e), t;
+}
+function Qe(e, { fetches: t }) {
+	let n = t.map(({ startByte: t, endByte: n }) => e.slice(t, n));
+	return {
+		byteLength: e.byteLength,
+		slice(r, i = e.byteLength) {
+			let a = t.findIndex(({ startByte: e, endByte: t }) => e <= r && i <= t);
+			if (a < 0) return e.slice(r, i);
+			if (t[a].startByte !== r || t[a].endByte !== i) {
+				let e = r - t[a].startByte, o = i - t[a].startByte;
+				return n[a] instanceof Promise ? n[a].then((t) => t.slice(e, o)) : n[a].slice(e, o);
+			}
+			return n[a];
+		}
+	};
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/variant.js
+var B = new TextDecoder(), $e = /* @__PURE__ */ new WeakMap();
+function et(e, t = p) {
+	if (Array.isArray(e)) return e.map((e) => et(e, t));
+	if (typeof e != "object") return e;
+	if ("metadata" in e) {
+		let n = tt(e.metadata), r = e.typed_value && V(e.typed_value, n, t), i = e.value && W(H(e.value), n, t);
+		return r && i ? {
+			...i,
+			...r
+		} : r ?? i;
+	}
+	return e;
+}
+function V(e, t, n) {
+	if (e instanceof Date) return e;
+	if (e && typeof e == "object" && !Array.isArray(e) && !(e instanceof Uint8Array)) {
+		if ("typed_value" in e && e.typed_value !== null && e.typed_value !== void 0) return V(e.typed_value, t, n);
+		if ("value" in e && e.value instanceof Uint8Array) return W(H(e.value), t, n);
+		if ("typed_value" in e || "value" in e) return null;
+		let r = {};
+		for (let [i, a] of Object.entries(e)) t.dictionary.includes(i) && (r[i] = V(a, t, n));
+		return r;
+	}
+	return e instanceof Uint8Array ? W(H(e), t, n) : Array.isArray(e) ? e.map((e) => V(e, t, n)) : e;
+}
+function H(e) {
+	return {
+		view: new DataView(e.buffer, e.byteOffset, e.byteLength),
+		offset: 0
+	};
+}
+function tt(e) {
+	let t = $e.get(e.buffer);
+	t || (t = /* @__PURE__ */ new Map(), $e.set(e.buffer, t));
+	let n = `${e.byteOffset}:${e.byteLength}`, r = t.get(n);
+	if (r) return r;
+	let i = H(e), a = i.view.getUint8(i.offset++), o = a & 15;
+	if (o !== 1) throw Error(`parquet unsupported variant metadata version: ${o}`);
+	let s = (a >> 4 & 1) == 1, c = (a >> 6 & 3) + 1, l = U(i, c), u = Array(l + 1);
+	for (let e = 0; e < u.length; e++) u[e] = U(i, c);
+	let d = i.offset, f = Array(l);
+	for (let t = 0; t < l; t++) {
+		let n = u[t], r = u[t + 1], i = new Uint8Array(e.buffer, e.byteOffset + d + n, r - n);
+		f[t] = B.decode(i);
+	}
+	let p = {
+		dictionary: f,
+		sorted: s
+	};
+	return t.set(n, p), p;
+}
+function U(e, t) {
+	let n = 0;
+	for (let r = 0; r < t; r++) n |= e.view.getUint8(e.offset + r) << r * 8;
+	return e.offset += t, n;
+}
+function W(e, t, n) {
+	let r = e.view.getUint8(e.offset++), i = r & 3, a = r >> 2;
+	if (i === 0) return nt(e, a, n);
+	if (i === 2) return rt(e, a, t, n);
+	if (i === 3) return it(e, a, t, n);
+	let o = new Uint8Array(e.view.buffer, e.view.byteOffset + e.offset, a);
+	return e.offset += a, B.decode(o);
+}
+function nt(e, t, n) {
+	switch (t) {
+		case 0: return null;
+		case 1: return !0;
+		case 2: return !1;
+		case 3: {
+			let t = e.view.getInt8(e.offset);
+			return e.offset += 1, t;
+		}
+		case 4: {
+			let t = e.view.getInt16(e.offset, !0);
+			return e.offset += 2, t;
+		}
+		case 5: {
+			let t = e.view.getInt32(e.offset, !0);
+			return e.offset += 4, t;
+		}
+		case 6: {
+			let t = e.view.getBigInt64(e.offset, !0);
+			return e.offset += 8, t;
+		}
+		case 7: {
+			let t = e.view.getFloat64(e.offset, !0);
+			return e.offset += 8, t;
+		}
+		case 8: return G(e, 4);
+		case 9: return G(e, 8);
+		case 10: return G(e, 16);
+		case 11: {
+			let t = e.view.getInt32(e.offset, !0);
+			return e.offset += 4, n.dateFromDays(t);
+		}
+		case 12:
+		case 13: {
+			let t = e.view.getBigInt64(e.offset, !0);
+			return e.offset += 8, n.timestampFromMicroseconds(t);
+		}
+		case 14: {
+			let t = e.view.getFloat32(e.offset, !0);
+			return e.offset += 4, t;
+		}
+		case 15: return at(e);
+		case 16: {
+			let t = at(e);
+			return B.decode(t);
+		}
+		case 17: {
+			let t = e.view.getBigInt64(e.offset, !0);
+			return e.offset += 8, t;
+		}
+		case 18:
+		case 19: {
+			let t = e.view.getBigInt64(e.offset, !0);
+			return e.offset += 8, n.timestampFromNanoseconds(t);
+		}
+		case 20: {
+			let t = new Uint8Array(e.view.buffer, e.view.byteOffset + e.offset, 16);
+			e.offset += 16;
+			let n = Array.from(t, (e) => e.toString(16).padStart(2, "0")).join("");
+			return `${n.slice(0, 8)}-${n.slice(8, 12)}-${n.slice(12, 16)}-${n.slice(16, 20)}-${n.slice(20)}`;
+		}
+		default: throw Error(`parquet unsupported variant primitive type: ${t}`);
+	}
+}
+function rt(e, t, n, r) {
+	let i = (t & 3) + 1, a = (t >> 2 & 3) + 1, o = t >> 4 & 1 ? U(e, 4) : e.view.getUint8(e.offset++), s = Array(o);
+	for (let t = 0; t < o; t++) s[t] = U(e, a);
+	let c = Array(o + 1);
+	for (let t = 0; t < c.length; t++) c[t] = U(e, i);
+	let l = {};
+	for (let t = 0; t < o; t++) {
+		let i = n.dictionary[s[t]];
+		l[i] = W({
+			view: e.view,
+			offset: e.offset + c[t]
+		}, n, r);
+	}
+	return e.offset += c[c.length - 1], l;
+}
+function it(e, t, n, r) {
+	let i = t & 3, a = t >> 2 & 1, o = i + 1, s = U(e, a ? 4 : 1), c = Array(s + 1);
+	for (let t = 0; t < c.length; t++) c[t] = U(e, o);
+	let l = e.offset, u = Array(s);
+	for (let t = 0; t < s; t++) {
+		let i = {
+			view: e.view,
+			offset: l + c[t]
+		};
+		u[t] = W(i, n, r);
+	}
+	return e.offset = l + c[c.length - 1], u;
+}
+function G(e, t) {
+	let n = e.view.getUint8(e.offset);
+	e.offset += 1;
+	let r;
+	if (t === 4) r = BigInt(e.view.getInt32(e.offset, !0)), e.offset += 4;
+	else if (t === 8) r = e.view.getBigInt64(e.offset, !0), e.offset += 8;
+	else {
+		let t = e.view.getBigUint64(e.offset, !0);
+		r = e.view.getBigInt64(e.offset + 8, !0) << 64n | t, e.offset += 16;
+	}
+	return Number(r) * 10 ** -n;
+}
+function at(e) {
+	let t = e.view.getUint32(e.offset, !0);
+	e.offset += 4;
+	let n = new Uint8Array(e.view.buffer, e.view.byteOffset + e.offset, t);
+	return e.offset += t, n;
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/assemble.js
+function ot(e, t, n, r, i) {
+	let a = x(i);
+	if (!t?.length && !n.length) {
+		if (!a || !r.length) return r;
+		t = Array(r.length).fill(a);
+	}
+	let o = t?.length || n.length, s = i.map(({ element: e }) => e.repetition_type), c = 0, l = [e], u = e, d = 0, f = 0, p = 0;
+	if (n[0]) for (; d < s.length - 2 && p < n[0];) d++, s[d] !== "REQUIRED" && (u = u.at(-1), l.push(u), f++), s[d] === "REPEATED" && p++;
+	for (let e = 0; e < o; e++) {
+		let i = t?.length ? t[e] : a, o = n[e];
+		for (; d && (o < p || s[d] !== "REPEATED");) s[d] !== "REQUIRED" && (l.pop(), f--), s[d] === "REPEATED" && p--, d--;
+		for (u = l.at(-1); (d < s.length - 2 || s[d + 1] === "REPEATED") && (f < i || s[d + 1] === "REQUIRED");) {
+			if (d++, s[d] !== "REQUIRED") {
+				let e = [];
+				u.push(e), u = e, l.push(e), f++;
+			}
+			s[d] === "REPEATED" && p++;
+		}
+		i === a ? u.push(r[c++]) : d === s.length - 2 ? u.push(null) : u.push([]);
+	}
+	if (!e.length) for (let e = 0; e < a; e++) {
+		let e = [];
+		u.push(e), u = e;
+	}
+	return e;
+}
+function K(e, t, n, r = 0) {
+	let i = t.path.join("."), a = t.element.repetition_type === "OPTIONAL", o = a ? r + 1 : r;
+	if (ne(t)) {
+		let s = t.children[0], c = o;
+		s.children.length === 1 && (s = s.children[0], c++), K(e, s, n, c);
+		let l = s.path.join("."), u = e.get(l);
+		if (!u) throw Error("parquet list column missing values");
+		a && q(u, r), e.set(i, u), e.delete(l);
+		return;
+	}
+	if (re(t)) {
+		let s = t.children[0].element.name;
+		K(e, t.children[0].children[0], n, o + 1), K(e, t.children[0].children[1], n, o + 1);
+		let c = e.get(`${i}.${s}.key`), l = e.get(`${i}.${s}.value`);
+		if (!c) throw Error("parquet map column missing keys");
+		if (!l) throw Error("parquet map column missing values");
+		if (c.length !== l.length) throw Error("parquet map column key/value length mismatch");
+		let u = st(c, l, o);
+		a && q(u, r), e.delete(`${i}.${s}.key`), e.delete(`${i}.${s}.value`), e.set(i, u);
+		return;
+	}
+	if (t.children.length) {
+		let o = t.element.repetition_type === "REQUIRED" ? r : r + 1, s = {};
+		for (let r of t.children) {
+			K(e, r, n, o);
+			let t = e.get(r.path.join("."));
+			if (!t) throw Error("parquet struct missing child data");
+			s[r.element.name] = t;
+		}
+		for (let n of t.children) e.delete(n.path.join("."));
+		let c = ct(s, o);
+		t.element.logical_type?.type === "VARIANT" && (c = et(c, n)), a && q(c, r), e.set(i, c);
+	}
+}
+function q(e, t) {
+	for (let n = 0; n < e.length; n++) t ? q(e[n], t - 1) : e[n] = e[n][0];
+}
+function st(e, t, n) {
+	let r = [];
+	for (let i = 0; i < e.length; i++) if (n) r.push(st(e[i], t[i], n - 1));
+	else if (e[i]) {
+		let n = {};
+		for (let r = 0; r < e[i].length; r++) {
+			let a = t[i][r];
+			n[e[i][r]] = a === void 0 ? null : a;
+		}
+		r.push(n);
+	} else r.push(void 0);
+	return r;
+}
+function ct(e, t) {
+	let n = Object.keys(e), r = e[n[0]]?.length, i = [];
+	for (let a = 0; a < r; a++) {
+		let o = {};
+		for (let t of n) {
+			if (e[t].length !== r) throw Error("parquet struct parsing error");
+			o[t] = e[t][a];
+		}
+		t ? i.push(ct(o, t - 1)) : i.push(o);
+	}
+	return i;
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/delta.js
+function J(e, t, n) {
+	if (n instanceof Int32Array) {
+		lt(e, t, n);
+		return;
+	}
+	let r = w(e), i = w(e);
+	w(e);
+	let a = E(e), o = 0;
+	n[o++] = a;
+	let s = r / i;
+	for (; o < t;) {
+		let r = E(e), c = new Uint8Array(i);
+		for (let t = 0; t < i; t++) c[t] = e.view.getUint8(e.offset++);
+		for (let l = 0; l < i && o < t; l++) {
+			let i = c[l];
+			if (i) {
+				let c = 0, l = s, u = (1n << BigInt(i)) - 1n;
+				for (; l && o < t;) {
+					let t = BigInt(e.view.getUint32(e.offset, !0) >>> c) & u;
+					for (c += i; c >= 32;) c -= 32, e.offset += 4, c && (t |= BigInt(e.view.getUint32(e.offset, !0)) << BigInt(i - c) & u);
+					let s = r + t;
+					a += s, n[o++] = a, l--;
+				}
+				l && (e.offset += Math.ceil((l * i + c) / 8));
+			} else for (let e = 0; e < s && o < t; e++) a += r, n[o++] = a;
+		}
+	}
+}
+function lt(e, t, n) {
+	let r = w(e), i = w(e);
+	w(e);
+	let a = T(e), o = 0;
+	n[o++] = a;
+	let s = r / i;
+	for (; o < t;) {
+		let r = T(e), c = e.offset;
+		e.offset += i;
+		for (let l = 0; l < i && o < t; l++) {
+			let i = e.view.getUint8(c + l), u = e.offset + s * i / 8, d = 0;
+			for (let c = 0; c < s && o < t; c++) {
+				let t = 0, s = 0;
+				for (; s < i;) {
+					let n = Math.min(8 - d, i - s);
+					t |= (e.view.getUint8(e.offset) >>> d & (1 << n) - 1) << s, s += n, d += n, d === 8 && (d = 0, e.offset++);
+				}
+				a = a + r + t | 0, n[o++] = a;
+			}
+			e.offset = u;
+		}
+	}
+}
+function ut(e, t, n) {
+	let r = new Int32Array(t);
+	J(e, t, r);
+	for (let i = 0; i < t; i++) n[i] = new Uint8Array(e.view.buffer, e.view.byteOffset + e.offset, r[i]), e.offset += r[i];
+}
+function dt(e, t, n) {
+	let r = new Int32Array(t);
+	J(e, t, r);
+	let i = new Int32Array(t);
+	J(e, t, i);
+	for (let a = 0; a < t; a++) {
+		let t = new Uint8Array(e.view.buffer, e.view.byteOffset + e.offset, i[a]);
+		r[a] ? (n[a] = new Uint8Array(r[a] + i[a]), n[a].set(n[a - 1].subarray(0, r[a])), n[a].set(t, r[a])) : n[a] = t, e.offset += i[a];
+	}
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/encoding.js
+function Y(e, t, n, r) {
+	r === void 0 && (r = e.view.getUint32(e.offset, !0), e.offset += 4);
+	let i = e.offset, a = 0;
+	for (; a < n.length;) {
+		let r = w(e);
+		if (r & 1) a = pt(e, r, t, n, a);
+		else {
+			let i = r >>> 1;
+			ft(e, i, t, n, a), a += i;
+		}
+	}
+	e.offset = i + r;
+}
+function ft(e, t, n, r, i) {
+	let a = n + 7 >> 3, o = 0;
+	for (let t = 0; t < a; t++) o |= e.view.getUint8(e.offset++) << (t << 3);
+	for (let e = 0; e < t; e++) r[i + e] = o;
+}
+function pt(e, t, n, r, i) {
+	let a = t >> 1 << 3, o = (1 << n) - 1, s = 0;
+	if (e.offset < e.view.byteLength) s = e.view.getUint8(e.offset++);
+	else if (o) throw Error(`parquet bitpack offset ${e.offset} out of range`);
+	let c = 8, l = 0;
+	for (; a;) l > 8 ? (l -= 8, c -= 8, s >>>= 8) : c - l < n ? (s |= e.view.getUint8(e.offset) << c, e.offset++, c += 8) : (i < r.length && (r[i++] = s >> l & o), a--, l += n);
+	return i;
+}
+function mt(e, t, n, r) {
+	let i = ht(n, r), a = new Uint8Array(t * i);
+	for (let n = 0; n < i; n++) for (let r = 0; r < t; r++) a[r * i + n] = e.view.getUint8(e.offset++);
+	if (n === "FLOAT") return new Float32Array(a.buffer);
+	if (n === "DOUBLE") return new Float64Array(a.buffer);
+	if (n === "INT32") return new Int32Array(a.buffer);
+	if (n === "INT64") return new BigInt64Array(a.buffer);
+	if (n === "FIXED_LEN_BYTE_ARRAY") {
+		let e = Array(t);
+		for (let n = 0; n < t; n++) e[n] = a.subarray(n * i, (n + 1) * i);
+		return e;
+	}
+	throw Error(`parquet byte_stream_split unsupported type: ${n}`);
+}
+function ht(e, t) {
+	switch (e) {
+		case "INT32":
+		case "FLOAT": return 4;
+		case "INT64":
+		case "DOUBLE": return 8;
+		case "FIXED_LEN_BYTE_ARRAY":
+			if (!t) throw Error("parquet byteWidth missing type_length");
+			return t;
+		default: throw Error(`parquet unsupported type: ${e}`);
+	}
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/plain.js
+function X(e, t, n, r) {
+	if (n === 0) return [];
+	if (t === "BOOLEAN") return gt(e, n);
+	if (t === "INT32") return _t(e, n);
+	if (t === "INT64") return vt(e, n);
+	if (t === "INT96") return yt(e, n);
+	if (t === "FLOAT") return bt(e, n);
+	if (t === "DOUBLE") return xt(e, n);
+	if (t === "BYTE_ARRAY") return St(e, n);
+	if (t === "FIXED_LEN_BYTE_ARRAY") {
+		if (!r) throw Error("parquet missing fixed length");
+		return Ct(e, n, r);
+	}
+	throw Error(`parquet unhandled type: ${t}`);
+}
+function gt(e, t) {
+	let n = Array(t);
+	for (let r = 0; r < t; r++) {
+		let t = e.offset + (r / 8 | 0), i = r % 8, a = e.view.getUint8(t);
+		n[r] = !!(a & 1 << i);
+	}
+	return e.offset += Math.ceil(t / 8), n;
+}
+function _t(e, t) {
+	let n = (e.view.byteOffset + e.offset) % 4 ? new Int32Array(Z(e.view.buffer, e.view.byteOffset + e.offset, t * 4)) : new Int32Array(e.view.buffer, e.view.byteOffset + e.offset, t);
+	return e.offset += t * 4, n;
+}
+function vt(e, t) {
+	let n = (e.view.byteOffset + e.offset) % 8 ? new BigInt64Array(Z(e.view.buffer, e.view.byteOffset + e.offset, t * 8)) : new BigInt64Array(e.view.buffer, e.view.byteOffset + e.offset, t);
+	return e.offset += t * 8, n;
+}
+function yt(e, t) {
+	let n = Array(t);
+	for (let r = 0; r < t; r++) {
+		let t = e.view.getBigInt64(e.offset + r * 12, !0), i = e.view.getInt32(e.offset + r * 12 + 8, !0);
+		n[r] = BigInt(i) << 64n | t;
+	}
+	return e.offset += t * 12, n;
+}
+function bt(e, t) {
+	let n = (e.view.byteOffset + e.offset) % 4 ? new Float32Array(Z(e.view.buffer, e.view.byteOffset + e.offset, t * 4)) : new Float32Array(e.view.buffer, e.view.byteOffset + e.offset, t);
+	return e.offset += t * 4, n;
+}
+function xt(e, t) {
+	let n = (e.view.byteOffset + e.offset) % 8 ? new Float64Array(Z(e.view.buffer, e.view.byteOffset + e.offset, t * 8)) : new Float64Array(e.view.buffer, e.view.byteOffset + e.offset, t);
+	return e.offset += t * 8, n;
+}
+function St(e, t) {
+	let n = Array(t);
+	for (let r = 0; r < t; r++) {
+		let t = e.view.getUint32(e.offset, !0);
+		e.offset += 4, n[r] = new Uint8Array(e.view.buffer, e.view.byteOffset + e.offset, t), e.offset += t;
+	}
+	return n;
+}
+function Ct(e, t, n) {
+	let r = Array(t);
+	for (let i = 0; i < t; i++) r[i] = new Uint8Array(e.view.buffer, e.view.byteOffset + e.offset, n), e.offset += n;
+	return r;
+}
+function Z(e, t, n) {
+	let r = new ArrayBuffer(n);
+	return new Uint8Array(r).set(new Uint8Array(e, t, n)), r;
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/snappy.js
+var wt = [
+	0,
+	255,
+	65535,
+	16777215,
+	4294967295
+];
+function Tt(e, t, n, r, i) {
+	for (let a = 0; a < i; a++) n[r + a] = e[t + a];
+}
+function Et(e, t) {
+	let n = e.byteLength, r = t.byteLength, i = 0, a = 0;
+	for (; i < n;) {
+		let t = e[i];
+		if (i++, t < 128) break;
+	}
+	if (r && i >= n) throw Error("invalid snappy length header");
+	for (; i < n;) {
+		let r = e[i], o = 0;
+		if (i++, i >= n) throw Error("missing eof marker");
+		if (r & 3) {
+			let s = 0;
+			switch (r & 3) {
+				case 1:
+					o = (r >>> 2 & 7) + 4, s = e[i] + (r >>> 5 << 8), i++;
+					break;
+				case 2:
+					if (n <= i + 1) throw Error("snappy error end of input");
+					o = (r >>> 2) + 1, s = e[i] + (e[i + 1] << 8), i += 2;
+					break;
+				case 3:
+					if (n <= i + 3) throw Error("snappy error end of input");
+					o = (r >>> 2) + 1, s = e[i] + (e[i + 1] << 8) + (e[i + 2] << 16) + (e[i + 3] << 24), i += 4;
+			}
+			if (s === 0 || isNaN(s)) throw Error(`invalid offset ${s} pos ${i} inputLength ${n}`);
+			if (s > a) throw Error("cannot copy from before start of buffer");
+			Tt(t, a - s, t, a, o), a += o;
+		} else {
+			let o = (r >>> 2) + 1;
+			if (o > 60) {
+				if (i + 3 >= n) throw Error("snappy error literal pos + 3 >= inputLength");
+				let t = o - 60;
+				o = e[i] + (e[i + 1] << 8) + (e[i + 2] << 16) + (e[i + 3] << 24), o = (o & wt[t]) + 1, i += t;
+			}
+			if (i + o > n) throw Error("snappy error literal exceeds input length");
+			Tt(e, i, t, a, o), i += o, a += o;
+		}
+	}
+	if (a !== r) throw Error("premature end of input");
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/datapage.js
+function Dt(e, t, { type: n, element: r, schemaPath: i }) {
+	let a = new DataView(e.buffer, e.byteOffset, e.byteLength), o = {
+		view: a,
+		offset: 0
+	}, s, c = Ot(o, t, i), { definitionLevels: l, numNulls: u } = kt(o, t, i), d = t.num_values - u;
+	if (t.encoding === "PLAIN") s = X(o, n, d, r.type_length);
+	else if (t.encoding === "PLAIN_DICTIONARY" || t.encoding === "RLE_DICTIONARY" || t.encoding === "RLE") {
+		let e = n === "BOOLEAN" ? 1 : a.getUint8(o.offset++);
+		e ? (s = Array(d), n === "BOOLEAN" ? (Y(o, e, s), s = s.map((e) => !!e)) : Y(o, e, s, a.byteLength - o.offset)) : s = new Uint8Array(d);
+	} else if (t.encoding === "BYTE_STREAM_SPLIT") s = mt(o, d, n, r.type_length);
+	else if (t.encoding === "DELTA_BINARY_PACKED") s = n === "INT32" ? new Int32Array(d) : new BigInt64Array(d), J(o, d, s);
+	else if (t.encoding === "DELTA_LENGTH_BYTE_ARRAY") s = Array(d), ut(o, d, s);
+	else throw Error(`parquet unsupported encoding: ${t.encoding}`);
+	return {
+		definitionLevels: l,
+		repetitionLevels: c,
+		dataPage: s
+	};
+}
+function Ot(e, t, n) {
+	if (n.length > 1) {
+		let r = te(n);
+		if (r) {
+			let n = Array(t.num_values);
+			return Y(e, $(r), n), n;
+		}
+	}
+	return [];
+}
+function kt(e, t, n) {
+	let r = x(n);
+	if (!r) return {
+		definitionLevels: [],
+		numNulls: 0
+	};
+	let i = Array(t.num_values);
+	Y(e, $(r), i);
+	let a = t.num_values;
+	for (let e of i) e === r && a--;
+	return a === 0 && (i.length = 0), {
+		definitionLevels: i,
+		numNulls: a
+	};
+}
+function Q(e, t, n, r) {
+	let i, a = r?.[n];
+	if (n === "UNCOMPRESSED") i = e;
+	else if (a) i = a(e, t);
+	else if (n === "SNAPPY") i = new Uint8Array(t), Et(e, i);
+	else throw Error(`parquet unsupported compression codec: ${n}`);
+	if (i?.length !== t) throw Error(`parquet decompressed page length ${i?.length} does not match header ${t}`);
+	return i;
+}
+function At(e, t, n) {
+	let r = {
+		view: new DataView(e.buffer, e.byteOffset, e.byteLength),
+		offset: 0
+	}, { type: i, element: a, schemaPath: o, codec: s, compressors: c } = n, l = t.data_page_header_v2;
+	if (!l) throw Error("parquet data page header v2 is undefined");
+	let u = jt(r, l, o);
+	r.offset = l.repetition_levels_byte_length;
+	let d = Mt(r, l, o), f = t.uncompressed_page_size - l.definition_levels_byte_length - l.repetition_levels_byte_length, p = e.subarray(r.offset);
+	l.is_compressed !== !1 && (p = Q(p, f, s, c));
+	let m = new DataView(p.buffer, p.byteOffset, p.byteLength), h = {
+		view: m,
+		offset: 0
+	}, g, _ = l.num_values - l.num_nulls;
+	if (l.encoding === "PLAIN") g = X(h, i, _, a.type_length);
+	else if (l.encoding === "RLE") g = Array(_), Y(h, 1, g), g = g.map((e) => !!e);
+	else if (l.encoding === "PLAIN_DICTIONARY" || l.encoding === "RLE_DICTIONARY") {
+		let e = m.getUint8(h.offset++);
+		g = Array(_), Y(h, e, g, f - 1);
+	} else if (l.encoding === "DELTA_BINARY_PACKED") g = i === "INT32" ? new Int32Array(_) : new BigInt64Array(_), J(h, _, g);
+	else if (l.encoding === "DELTA_LENGTH_BYTE_ARRAY") g = Array(_), ut(h, _, g);
+	else if (l.encoding === "DELTA_BYTE_ARRAY") g = Array(_), dt(h, _, g);
+	else if (l.encoding === "BYTE_STREAM_SPLIT") g = mt(h, _, i, a.type_length);
+	else throw Error(`parquet unsupported encoding: ${l.encoding}`);
+	return {
+		definitionLevels: d,
+		repetitionLevels: u,
+		dataPage: g
+	};
+}
+function jt(e, t, n) {
+	let r = te(n);
+	if (!r) return [];
+	let i = Array(t.num_values);
+	return Y(e, $(r), i, t.repetition_levels_byte_length), i;
+}
+function Mt(e, t, n) {
+	let r = x(n);
+	if (r) {
+		let n = Array(t.num_values);
+		return Y(e, $(r), n, t.definition_levels_byte_length), n;
+	}
+}
+function $(e) {
+	return 32 - Math.clz32(e);
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/column.js
+function Nt(e, { groupStart: t, selectStart: n, selectEnd: r }, i, a) {
+	let { pathInSchema: o, schemaPath: s } = i, c = ie(s), l = [], u, d, f = 0, p = 0, m = a && (() => {
+		d && a({
+			pathInSchema: o,
+			columnData: d,
+			rowStart: t + f - d.length,
+			rowEnd: t + f
+		});
+	});
+	for (; (c ? f < r : e.offset < e.view.byteLength - 1) && !(e.offset >= e.view.byteLength - 1);) {
+		let t = Ft(e);
+		if (t.type === "DICTIONARY_PAGE") {
+			let { data: n } = Pt(e, t, i, u, void 0, 0);
+			n && (u = h(n, i));
+		} else {
+			let r = d?.length || 0, a = Pt(e, t, i, u, d, n - f);
+			a.skipped ? (l.length || (p += a.skipped), f += a.skipped) : a.data && d === a.data ? f += a.data.length - r : a.data && a.data.length && (m?.(), l.push(a.data), f += a.data.length, d = a.data);
+		}
+	}
+	return m?.(), {
+		data: l,
+		skipped: p
+	};
+}
+function Pt(e, t, n, r, i, a) {
+	let { type: o, element: s, schemaPath: c, codec: l, compressors: u } = n, d = new Uint8Array(e.view.buffer, e.view.byteOffset + e.offset, t.compressed_page_size);
+	if (e.offset += t.compressed_page_size, t.type === "DATA_PAGE") {
+		let e = t.data_page_header;
+		if (!e) throw Error("parquet data page header is undefined");
+		if (a > e.num_values && ie(c)) return { skipped: e.num_values };
+		let { definitionLevels: o, repetitionLevels: s, dataPage: f } = Dt(Q(d, Number(t.uncompressed_page_size), l, u), e, n), p = m(f, r, e.encoding, n);
+		return {
+			skipped: 0,
+			data: ot(Array.isArray(i) ? i : [], o, s, p, c)
+		};
+	}
+	if (t.type === "DATA_PAGE_V2") {
+		let e = t.data_page_header_v2;
+		if (!e) throw Error("parquet data page header v2 is undefined");
+		if (a > e.num_rows) return { skipped: e.num_values };
+		let { definitionLevels: o, repetitionLevels: s, dataPage: l } = At(d, t, n), u = m(l, r, e.encoding, n);
+		return {
+			skipped: 0,
+			data: ot(Array.isArray(i) ? i : [], o, s, u, c)
+		};
+	}
+	if (t.type === "DICTIONARY_PAGE") {
+		let e = t.dictionary_page_header;
+		if (!e) throw Error("parquet dictionary page header is undefined");
+		let n = Q(d, Number(t.uncompressed_page_size), l, u);
+		return {
+			skipped: 0,
+			data: X({
+				view: new DataView(n.buffer, n.byteOffset, n.byteLength),
+				offset: 0
+			}, o, e.num_values, s.type_length)
+		};
+	}
+	throw Error(`parquet unsupported page type: ${t.type}`);
+}
+function Ft(e) {
+	let n = S(e);
+	return {
+		type: a[n.field_1],
+		uncompressed_page_size: n.field_2,
+		compressed_page_size: n.field_3,
+		crc: n.field_4,
+		data_page_header: n.field_5 && {
+			num_values: n.field_5.field_1,
+			encoding: t[n.field_5.field_2],
+			definition_level_encoding: t[n.field_5.field_3],
+			repetition_level_encoding: t[n.field_5.field_4],
+			statistics: n.field_5.field_5 && {
+				max: n.field_5.field_5.field_1,
+				min: n.field_5.field_5.field_2,
+				null_count: n.field_5.field_5.field_3,
+				distinct_count: n.field_5.field_5.field_4,
+				max_value: n.field_5.field_5.field_5,
+				min_value: n.field_5.field_5.field_6
+			}
+		},
+		index_page_header: n.field_6,
+		dictionary_page_header: n.field_7 && {
+			num_values: n.field_7.field_1,
+			encoding: t[n.field_7.field_2],
+			is_sorted: n.field_7.field_3
+		},
+		data_page_header_v2: n.field_8 && {
+			num_values: n.field_8.field_1,
+			num_nulls: n.field_8.field_2,
+			num_rows: n.field_8.field_3,
+			encoding: t[n.field_8.field_4],
+			definition_levels_byte_length: n.field_8.field_5,
+			repetition_levels_byte_length: n.field_8.field_6,
+			is_compressed: n.field_8.field_7 === void 0 || n.field_8.field_7,
+			statistics: n.field_8.field_8
+		}
+	};
+}
+//#endregion
+//#region ../../node_modules/hyparquet/src/rowgroup.js
+function It(e, { metadata: t }, n) {
+	let r = [];
+	for (let i of n.chunks) {
+		let { path_in_schema: a } = i.columnMetadata, o = b(t.schema, a), s = {
+			pathInSchema: a,
+			element: o[o.length - 1].element,
+			schemaPath: o,
+			...e,
+			...i.columnMetadata,
+			parsers: {
+				...p,
+				...e.parsers
+			}
+		}, { startByte: c, endByte: l } = i.range;
+		"pageLocations" in i ? r.push({
+			pathInSchema: a,
+			data: Lt(e, n, i, i.pageLocations, s)
+		}) : "offsetIndex" in i ? r.push({
+			pathInSchema: a,
+			data: Promise.resolve(e.file.slice(i.offsetIndex.startByte, i.offsetIndex.endByte)).then((t) => {
+				let r = He({
+					view: new DataView(t),
+					offset: 0
+				}).page_locations;
+				return Lt(e, n, i, r, s);
+			})
+		}) : r.push({
+			pathInSchema: a,
+			data: Promise.resolve(e.file.slice(c, l)).then((t) => Nt({
+				view: new DataView(t),
+				offset: 0
+			}, n, s, e.onPage))
+		});
+	}
+	return {
+		groupStart: n.groupStart,
+		groupRows: n.groupRows,
+		selectStart: n.selectStart,
+		selectEnd: n.selectEnd,
+		asyncColumns: r
+	};
+}
+async function Lt(e, t, n, r, i) {
+	let { data_page_offset: a, dictionary_page_offset: o } = n.columnMetadata, { selectStart: s, selectEnd: c } = t, { startByte: l, endByte: u } = n.range, d = -1, f = o || a < r[0].offset;
+	for (let e = 0; e < r.length; e++) {
+		let n = r[e], i = Number(n.first_row_index), a = e + 1 < r.length ? Number(r[e + 1].first_row_index) : t.groupRows;
+		d < 0 && a > s && (l = Number(n.offset), d = i), i < c && (u = Number(n.offset) + n.compressed_page_size);
+	}
+	d < 0 && (d = 0);
+	let p;
+	if (f && d) {
+		let t = Number(r[0].offset) - n.range.startByte, [i, a] = await Promise.all([e.file.slice(n.range.startByte, Number(r[0].offset)), e.file.slice(l, u)]), o = new Uint8Array(t + a.byteLength);
+		o.set(new Uint8Array(i, 0, t)), o.set(new Uint8Array(a), t), p = new DataView(o.buffer);
+	} else p = f ? new DataView(await e.file.slice(n.range.startByte, u)) : new DataView(await e.file.slice(l, u));
+	let { data: m, skipped: h } = Nt({
+		view: p,
+		offset: 0
+	}, d ? {
+		...t,
+		groupStart: t.groupStart + d,
+		selectStart: t.selectStart - d,
+		selectEnd: t.selectEnd - d
+	} : t, i, e.onPage);
+	return {
+		data: m,
+		skipped: d + h
+	};
+}
+function Rt(e, t, n) {
+	let { asyncColumns: r } = e, i = {
+		...p,
+		...n
+	}, a = [];
+	for (let n of t.children) if (n.children.length) {
+		let t = r.filter((e) => e.pathInSchema[0] === n.element.name);
+		if (!t.length) continue;
+		a.push({
+			pathInSchema: n.path,
+			data: (async () => {
+				let r = await Promise.all(t.map((e) => e.data)), a = /* @__PURE__ */ new Map(), o = r.map(({ data: e }) => Ie(e)), s = Math.max(e.selectStart ?? 0, ...r.map((e) => e.skipped)), c = Math.min(e.selectEnd ?? Infinity, ...r.map((e, t) => e.skipped + o[t].length));
+				for (let e = 0; e < t.length; e++) {
+					let n = s - r[e].skipped, i = Math.max(0, c - s);
+					a.set(t[e].pathInSchema.join("."), o[e].slice(n, n + i));
+				}
+				K(a, n, i);
+				let l = a.get(n.element.name);
+				if (!l) throw Error("parquet column data not assembled");
+				return {
+					data: [l],
+					skipped: s
+				};
+			})()
+		});
+	} else {
+		let e = r.find((e) => e.pathInSchema[0] === n.element.name);
+		e && a.push(e);
+	}
+	return {
+		...e,
+		asyncColumns: a
+	};
+}
+//#endregion
+//#region ../core/src/data/formats/parquetRead.js
+var zt = /* @__PURE__ */ new Map(), Bt = 200;
+function Vt(e) {
+	if (!e.metadata) throw Error("parquet requires metadata");
+	let t = Ge(e);
+	return e.file = Qe(e.file, t), t.groups.map((n) => It(e, t, n));
+}
+function Ht(e) {
+	if (!e) return [];
+	if (e.length === 1) return e[0];
+	let t = 0;
+	for (let n of e) t += n.length;
+	let n = Array(t), r = 0;
+	for (let t of e) {
+		for (let e = 0; e < t.length; e++) n[r + e] = t[e];
+		r += t.length;
+	}
+	return n;
+}
+function Ut(e) {
+	let t = e.join(""), n = zt.get(t);
+	if (n) return n;
+	let r = e.map((e, t) => JSON.stringify(e) + ": columnData[" + t + "][row - columnSkipped[" + t + "]]").join(",\n"), i = Function("groupData", "selectStart", "selectCount", "columnData", "columnSkipped", "for (let selectRow = 0; selectRow < selectCount; selectRow++) {\n    const row = selectStart + selectRow;\n    groupData[selectRow] = {\n" + r + "\n    };\n}\nreturn groupData;");
+	return zt.set(t, i), i;
+}
+function Wt(e, t, n, r, i, a) {
+	for (let o = 0; o < n; o++) {
+		let n = t + o, s = {};
+		for (let e = 0; e < r.length; e++) s[r[e]] = i[e][n - a[e]];
+		e[o] = s;
+	}
+	return e;
+}
+async function Gt({ asyncColumns: e }, t, n) {
+	let r = await Promise.all(e.map((e) => e.data)), i = e.length, a = Array(i), o = Array(i), s = Array(i);
+	for (let t = 0; t < i; t++) a[t] = e[t].pathInSchema[0], o[t] = Ht(r[t].data), s[t] = r[t].skipped;
+	let c = n - t, l = Array(c);
+	return i > Bt ? Wt(l, t, c, a, o, s) : Ut(a)(l, t, c, o, s);
+}
+async function Kt(e) {
+	if ("rowFormat" in e) throw Error("parquetRead supports only object rows; use rowFormat: \"object\" implicitly");
+	if ("filter" in e || "filterStrict" in e) throw Error("parquetRead does not support filtering");
+	e.metadata ??= await be(e.file, e);
+	let { rowStart: t = 0, rowEnd: n, onChunk: r, onComplete: i } = e, a = Vt(e);
+	if (!i && !r) {
+		for (let { asyncColumns: e } of a) for (let { data: t } of e) await t;
+		return;
+	}
+	let o = Se(e.metadata), s = a.map((t) => Rt(t, o, e.parsers));
+	if (r) for (let e of s) for (let t of e.asyncColumns) t.data.then((n) => {
+		let i = e.groupStart + n.skipped;
+		for (let e of n.data) r({
+			columnName: t.pathInSchema[0],
+			columnData: e,
+			rowStart: i,
+			rowEnd: i + e.length
+		}), i += e.length;
+	});
+	if (i) {
+		let e = [];
+		for (let r of s) Fe(e, await Gt(r, Math.max(t - r.groupStart, 0), Math.min((n ?? Infinity) - r.groupStart, r.groupRows)));
+		i(e);
+	} else for (let { asyncColumns: e } of s) for (let { data: t } of e) await t;
+}
+function qt(e) {
+	return new Promise((t, n) => {
+		Kt({
+			...e,
+			onComplete: t
+		}).catch(n);
+	});
+}
+//#endregion
+export { qt as parquetReadObjects };

@@ -3616,9 +3616,13 @@ bounds use the original <code>pos</code> coordinate system and are multiplied by
 <code>positionFactor</code> together with the item positions. For a one-based index scale
 covering protein residues 1 through 1068, <code>[0.5, 1068.5]</code> represents the outer
 edges of the first and last residue bands.</p>
-<p><code>extent</code> can also be a reactive expression. For example, the following keeps
-the preferred bounds at the edges of the currently visible x domain:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;extent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[invert(&#39;x&#39;, 0), invert(&#39;x&#39;, 1)]&quot;</span><span class="w"> </span><span class="p">}</span>
+<p><code>extent</code> can also be a reactive expression. For a linear quantitative x scale,
+the following keeps the preferred bounds at the edges of the viewport:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;extent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;domain(&#39;x&#39;)&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>For an index or locus scale without padding, marks placed at band centers are
+offset by half a position unit. Subtract that offset from the domain bounds:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;extent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[domain(&#39;x&#39;)[0] - 0.5, domain(&#39;x&#39;)[1] - 0.5]&quot;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>When all collision intervals fit, the extent acts as a hard bound. If their
 combined length exceeds the available extent, items remain non-overlapping and

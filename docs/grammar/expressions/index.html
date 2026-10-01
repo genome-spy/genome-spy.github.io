@@ -3855,10 +3855,18 @@ the scale resolution. For a shared scale, declare the expression in
 Maps a value through the scale for the given channel, such as <code>"x"</code>, <code>"y"</code>,
 <code>"color"</code>, or <code>"size"</code>. The channel is resolved against the current view's
 scale resolution.</p>
+<p>For band, index, and locus scales, this returns the start of the band. To match
+the default placement of point marks on an unreversed x scale, add
+<code>bandwidth('x') / 2</code>. The encoding's <code>band</code> property controls placement within
+the band independently of the scale's <code>align</code> property.</p>
 <p><a name="invert" href="#invert">#</a>
 <b>invert</b>(<i>channel</i>, <i>range</i>)<br/>
 Maps a range value back through the scale for the given channel. The channel
 is resolved against the current view's scale resolution.</p>
+<p>For index and locus scales, inversion returns a continuous coordinate measured
+from band starts. Without padding, <code>[invert('x', 0), invert('x', 1)]</code> equals
+<code>domain('x')</code> for an unreversed x scale. Apply <code>floor</code> to identify the band at a
+range position.</p>
 <p><a name="domain" href="#domain">#</a>
 <b>domain</b>(<i>channel</i>)<br/>
 Returns the current domain of the scale for the given channel. The channel is
