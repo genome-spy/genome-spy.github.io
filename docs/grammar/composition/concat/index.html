@@ -3948,16 +3948,24 @@ the remaining space is distributed in proportions of 1:2.</p>
 <h3 id="sizedef">SizeDef<a class="headerlink" href="#sizedef" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>grow</code></dt>
-<dd>Type: number<p>Share of the remaining space. See <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
+<dd>
+<p>Type: number</p>
+<p>Share of the remaining space. See <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
 </dd>
 <dt><code>maxPx</code></dt>
-<dd>Type: number<p>Maximum size in pixels.</p>
+<dd>
+<p>Type: number</p>
+<p>Maximum size in pixels.</p>
 </dd>
 <dt><code>minPx</code></dt>
-<dd>Type: number<p>Minimum size in pixels.</p>
+<dd>
+<p>Type: number</p>
+<p>Minimum size in pixels.</p>
 </dd>
 <dt><code>px</code></dt>
-<dd>Type: number<p>Size in pixels</p>
+<dd>
+<p>Type: number</p>
+<p>Size in pixels</p>
 </dd>
 </dl>
 <p>The size may have both absolute (<code>px</code>) and proportional (<code>grow</code>) components.
@@ -4005,11 +4013,15 @@ discrete step. The step may also be an expression reference.</p>
 </code></pre></div>
 <dl>
 <dt><code>for</code></dt>
-<dd>Type: string<p>Selects which discrete scale the step describes when a positional scale has a nested offset scale. <code>"offset"</code> sizes each subgroup step; <code>"position"</code> sizes each primary category step.</p>
+<dd>
+<p>Type: string</p>
+<p>Selects which discrete scale the step describes when a positional scale has a nested offset scale. <code>"offset"</code> sizes each subgroup step; <code>"position"</code> sizes each primary category step.</p>
 <p><strong>Default value:</strong> <code>"offset"</code> when a discrete nested offset scale is present, otherwise <code>"position"</code>.</p>
 </dd>
 <dt><code>step</code> <span class="required">Required</span></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Step size in pixels.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Step size in pixels.</p>
 </dd>
 </dl>
 <p>Discrete <a href="../../scale/#nested-offset-scales">offset channels</a> can introduce
@@ -4022,6 +4034,15 @@ properties. They accept the same values as <code>width</code> and <code>height</
 for the step size. Scrollable viewports are particularly useful for categorical
 data types (<code>"ordinal"</code> and <code>"nominal"</code>) and respective scales and axes that
 do not support zooming and panning.</p>
+<p>Besides using the scrollbars, you can scroll a viewport by dragging its content.
+Scrolling differs from panning: panning changes a zoomable scale's domain, such
+as the visible genomic interval, whereas scrolling moves the viewport over
+content that is already laid out, leaving the scales unchanged. A drag pans along
+axes that have a zoomable scale and scrolls along axes that don't. For example,
+in a tall stack of tracks with a genomic x axis and a <code>viewportHeight</code>, dragging
+sideways pans the genome and dragging up or down scrolls through the tracks.</p>
+<p>Once a drag can scroll, it follows its main direction after the first few
+pixels, so scrolling vertically does not also pan horizontally.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/composition/concat/scrollable-viewports.json" height="200">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>

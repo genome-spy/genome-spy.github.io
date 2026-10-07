@@ -17894,6 +17894,13 @@
           "$ref": "#/definitions/IndexUrlSourceRef",
           "description": "URL of the index file. When `url` is a template, this can be an index URL template using the same placeholder and values.\n\n__Default value:__ `url` + `\".bai\"`."
         },
+        "tags": {
+          "description": "SAM auxiliary tags to expose on each read, for example `[\"HP\", \"CB\"]`. Each tag is available as a field named `tag_` followed by the tag name, for example `tag_HP`. The field is `undefined` when a read lacks the tag. Tags that are not listed are not decoded.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "type": {
           "const": "bam",
           "type": "string"

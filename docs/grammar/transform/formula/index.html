@@ -3504,18 +3504,26 @@ and add a new field to each row.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>expr</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>An expression string</p>
+<dd>
+<p>Type: string</p>
+<p>An expression string</p>
 </dd>
 <dt><code>as</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>The (new) field where the computed value is written to</p>
+<dd>
+<p>Type: string</p>
+<p>The (new) field where the computed value is written to</p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
+<dd>
+<p>Type: number</p>
+<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
 <p>Parameter updates and incoming data are not delayed. Incoming batches use current parameter values, and a completed batch satisfies any pending reactive replay. The delay does not wait for independently scheduled lazy data loads.</p>
 <p><strong>Default value:</strong> no delay</p>
 </dd>
 <dt><code>description</code></dt>
-<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
+<dd>
+<p>Type: string</p>
+<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>

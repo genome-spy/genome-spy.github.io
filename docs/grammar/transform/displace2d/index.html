@@ -3585,38 +3585,58 @@ unscaled offset channels.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>anchorHeight</code></dt>
-<dd>Type: number | string (field name) | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Height in logical pixels of an obstacle centered on the anchor. A number or expression supplies one value for all rows; a field supplies per-row values. Setting either anchor dimension to zero disables the obstacle for that row.</p>
+<dd>
+<p>Type: number | string (field name) | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Height in logical pixels of an obstacle centered on the anchor. A number or expression supplies one value for all rows; a field supplies per-row values. Setting either anchor dimension to zero disables the obstacle for that row.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>anchorWidth</code></dt>
-<dd>Type: number | string (field name) | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Width in logical pixels of an obstacle centered on the anchor. A number or expression supplies one value for all rows; a field supplies per-row values. Setting either anchor dimension to zero disables the obstacle for that row.</p>
+<dd>
+<p>Type: number | string (field name) | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Width in logical pixels of an obstacle centered on the anchor. A number or expression supplies one value for all rows; a field supplies per-row values. Setting either anchor dimension to zero disables the obstacle for that row.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>animationHalfLife</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Easing half-life in milliseconds for displayed offsets as they approach their solved positions. Larger values make label motion slower without changing the placement. An expression can adjust the speed while the visualization is running. Must be positive and finite.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Easing half-life in milliseconds for displayed offsets as they approach their solved positions. Larger values make label motion slower without changing the placement. An expression can adjust the speed while the visualization is running. Must be positive and finite.</p>
 <p><strong>Default value:</strong> <code>120</code></p>
 </dd>
 <dt><code>as</code></dt>
-<dd>Type: array<p>Names of the output fields for signed horizontal and vertical pixel offsets. Positive values move right and down, respectively. Neither name may overwrite <code>key</code>.</p>
+<dd>
+<p>Type: array</p>
+<p>Names of the output fields for signed horizontal and vertical pixel offsets. Positive values move right and down, respectively. Neither name may overwrite <code>key</code>.</p>
 <p><strong>Default value:</strong> <code>["xDisplacement", "yDisplacement"]</code></p>
 </dd>
 <dt><code>description</code></dt>
-<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
+<dd>
+<p>Type: string</p>
+<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 <dt><code>height</code> <span class="required">Required</span></dt>
-<dd>Type: number | string (field name) | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Collision height in logical pixels, including any desired vertical spacing. A number or expression supplies one value for all rows; a field supplies per-row values. Values must be non-negative. Setting either collision dimension to zero disables displacement for that row.</p>
+<dd>
+<p>Type: number | string (field name) | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Collision height in logical pixels, including any desired vertical spacing. A number or expression supplies one value for all rows; a field supplies per-row values. Values must be non-negative. Setting either collision dimension to zero disables displacement for that row.</p>
 </dd>
 <dt><code>key</code></dt>
-<dd>Type: string (field name)<p>Field containing a unique string or finite numeric identifier. Use a key to preserve placement when upstream transforms replace, filter, or reorder rows. Without a key, placement state follows row object identity.</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>Field containing a unique string or finite numeric identifier. Use a key to preserve placement when upstream transforms replace, filter, or reorder rows. Without a key, placement state follows row object identity.</p>
 </dd>
 <dt><code>width</code> <span class="required">Required</span></dt>
-<dd>Type: number | string (field name) | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Collision width in logical pixels, including any desired horizontal spacing. A number or expression supplies one value for all rows; a field supplies per-row values. Values must be non-negative. Setting either collision dimension to zero disables displacement for that row.</p>
+<dd>
+<p>Type: number | string (field name) | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Collision width in logical pixels, including any desired horizontal spacing. A number or expression supplies one value for all rows; a field supplies per-row values. Values must be non-negative. Setting either collision dimension to zero disables displacement for that row.</p>
 </dd>
 <dt><code>x</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name)<p>Field containing the anchor value mapped through the view's x scale.</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>Field containing the anchor value mapped through the view's x scale.</p>
 </dd>
 <dt><code>y</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name)<p>Field containing the anchor value mapped through the view's y scale.</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>Field containing the anchor value mapped through the view's y scale.</p>
 </dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>

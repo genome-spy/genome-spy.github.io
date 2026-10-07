@@ -3640,46 +3640,70 @@ Mark-specific properties are documented on each mark's page.</p>
 <h3 id="shared-properties">Shared properties<a class="headerlink" href="#shared-properties" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>style</code></dt>
-<dd>Type: string | string[]<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones.</p>
+<dd>
+<p>Type: string | string[]</p>
+<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones.</p>
 </dd>
 <dt><code>cursor</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Mouse cursor shown while the pointer is over the mark. Mark cursor takes precedence over enclosing view cursors.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Mouse cursor shown while the pointer is over the mark. Mark cursor takes precedence over enclosing view cursors.</p>
 <p><strong>Default value:</strong> browser default</p>
 </dd>
 <dt><code>x</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Position on the x axis.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Position on the x axis.</p>
 </dd>
 <dt><code>y</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Position on the y axis.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Position on the y axis.</p>
 </dd>
 <dt><code>color</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
 </dd>
 <dt><code>opacity</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Opacity of the mark. Affects <code>fillOpacity</code> or <code>strokeOpacity</code>, depending on the <code>filled</code> property.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Opacity of the mark. Affects <code>fillOpacity</code> or <code>strokeOpacity</code>, depending on the <code>filled</code> property.</p>
 </dd>
 <dt><code>clip</code></dt>
-<dd>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code><p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
+<dd>
+<p>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code></p>
+<p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
 <p><strong>Default value:</strong> <code>true</code> when either positional scale is zoomable; otherwise <code>false</code></p>
 </dd>
 <dt><code>xOffset</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>x</code> coordinate in logical pixels.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Offset of the <code>x</code> coordinate in logical pixels.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>yOffset</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>y</code> coordinate in logical pixels.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Offset of the <code>y</code> coordinate in logical pixels.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>x2Offset</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>x2</code> coordinate in logical pixels. When <code>x2</code> is implicit, it inherits <code>xOffset</code> unless this property is specified.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Offset of the <code>x2</code> coordinate in logical pixels. When <code>x2</code> is implicit, it inherits <code>xOffset</code> unless this property is specified.</p>
 <p><strong>Default value:</strong> inherited from <code>xOffset</code> for an implicit <code>x2</code>, otherwise <code>0</code></p>
 </dd>
 <dt><code>y2Offset</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>y2</code> coordinate in logical pixels. When <code>y2</code> is implicit, it inherits <code>yOffset</code> unless this property is specified.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Offset of the <code>y2</code> coordinate in logical pixels. When <code>y2</code> is implicit, it inherits <code>yOffset</code> unless this property is specified.</p>
 <p><strong>Default value:</strong> inherited from <code>yOffset</code> for an implicit <code>y2</code>, otherwise <code>0</code></p>
 </dd>
 <dt><code>tooltip</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#handledtooltip">HandledTooltip</a> | null | boolean<p>Tooltip handler. If <code>false</code>, no tooltip is shown but the mark remains available for renderer picking and mark interactions. If <code>null</code>, no tooltip is shown and the mark is excluded from picking unless its view declares a point selection; a point selection overrides this picking opt-out. If string, specifies the <a href="https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#handledtooltip">HandledTooltip</a> | null | boolean</p>
+<p>Tooltip handler. If <code>false</code>, no tooltip is shown but the mark remains available for renderer picking and mark interactions. If <code>null</code>, no tooltip is shown and the mark is excluded from picking unless its view declares a point selection; a point selection overrides this picking opt-out. If string, specifies the <a href="https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
 </dd>
 </dl>
 <h2 id="encoding">Encoding<a class="headerlink" href="#encoding" title="Permanent link">&para;</a></h2>
@@ -3766,8 +3790,8 @@ properties, not encoding channels.</p>
 <dd>Stroke width in pixels</dd>
 <dt><code>size</code></dt>
 <dd>Depends on the mark. <code>"point"</code>: the area of the rectangle that encloses the
-mark instance. <code>"rule"</code> and <code>"link"</code>: stroke width. <code>"arrow"</code>: stem
-thickness. <code>"text"</code>: font size.</dd>
+  mark instance. <code>"rule"</code> and <code>"link"</code>: stroke width. <code>"arrow"</code>: stem
+  thickness. <code>"text"</code>: font size.</dd>
 <dt><code>shape</code></dt>
 <dd>Shape of <code>"point"</code> marks.</dd>
 <dt><code>angle</code></dt>
@@ -3778,11 +3802,11 @@ thickness. <code>"text"</code>: font size.</dd>
 <dd>Text that the <code>"text"</code> mark should render for a mark instance.</dd>
 <dt><code>tooltip</code></dt>
 <dd>Rows shown by the default tooltip handler. A single definition shows one row.
-An array shows multiple rows in the specified order. Rows can use field,
-expression, datum, or value definitions. If omitted, the default handler shows
-the hovered datum's properties. If <code>null</code>, raw datum rows are hidden for the
-mark. The <code>mark.tooltip</code> property is separate and selects or disables the
-tooltip handler.</dd>
+  An array shows multiple rows in the specified order. Rows can use field,
+  expression, datum, or value definitions. If omitted, the default handler shows
+  the hovered datum's properties. If <code>null</code>, raw datum rows are hidden for the
+  mark. The <code>mark.tooltip</code> property is separate and selects or disables the
+  tooltip handler.</dd>
 </dl>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3797,16 +3821,16 @@ tooltip handler.</dd>
 <dl>
 <dt><code>order</code></dt>
 <dd>Keeps selected instances visible above unselected ones. In a dense plot,
-highlighting a point or arc with a different color is not enough if other
-instances cover it. Give selected instances a higher order level to draw
-them last, bringing the highlighted instances to the foreground.
-The condition's <code>value</code> and the fallback <code>value</code> define two finite numeric
-levels; lower levels draw first. Use one selection parameter or a selection
-union in the condition. Relative order within each level is preserved.
-Equal levels and constant definitions have no ordering effect. When all
-referenced selections are empty, instances retain their original order.
-Ordering applies within one mark occurrence, and picking keeps the original
-order.</dd>
+  highlighting a point or arc with a different color is not enough if other
+  instances cover it. Give selected instances a higher order level to draw
+  them last, bringing the highlighted instances to the foreground.
+  The condition's <code>value</code> and the fallback <code>value</code> define two finite numeric
+  levels; lower levels draw first. Use one selection parameter or a selection
+  union in the condition. Relative order within each level is preserved.
+  Equal levels and constant definitions have no ordering effect. When all
+  referenced selections are empty, instances retain their original order.
+  Ordering applies within one mark occurrence, and picking keeps the original
+  order.</dd>
 </dl>
 <div class="highlight"><span class="filename">Draw selected points above unselected points</span><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;picked&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="w"> </span><span class="p">}],</span>
@@ -3827,12 +3851,12 @@ visual mark properties.</p>
 <dl>
 <dt><code>key</code></dt>
 <dd>Defines a stable identity for rows. This is used by point-selection
-persistence in the GenomeSpy App. The key can be a single field definition
-or an array of field definitions for a composite key. For composite keys, the
-field order is significant.</dd>
+  persistence in the GenomeSpy App. The key can be a single field definition
+  or an array of field definitions for a composite key. For composite keys, the
+  field order is significant.</dd>
 <dt><code>search</code></dt>
 <dd>Exposes one or more fields to the GenomeSpy App's
-<a href="../../sample-collections/app-features/#search">search behavior</a>.</dd>
+  <a href="../../sample-collections/app-features/#search">search behavior</a>.</dd>
 </dl>
 <h4 id="channels-for-sample-collections">Channels for sample collections<a class="headerlink" href="#channels-for-sample-collections" title="Permanent link">&para;</a></h4>
 <p>The <a href="../../sample-collections/visualizing/#specifying-a-sample-view">GenomeSpy app</a> supports an additional channel.</p>
