@@ -1,5 +1,5 @@
-import { J as e, dt as t, gt as n, mt as r, t as i, ut as a } from "./src-ejcdI7vN.js";
-import { n as o, t as s } from "./ref-Dch9GAt0.js";
+import { Y as e, _t as t, dt as n, ft as r, ht as i, t as a } from "./src-CmCPKzFR.js";
+import { n as o, t as s } from "./ref-afHxp7iu.js";
 //#region index.js
 function c() {
 	let e = document.querySelector("meta[name='base_url']").getAttribute("content");
@@ -8,18 +8,24 @@ function c() {
 function l(e) {
 	return /^(?:[a-z]+:|\/)/i.test(e) ? e : c() + "/" + e;
 }
-async function u(e, t, n, r, a) {
-	let o = l("example-specs/");
+async function u(e, t, n, r, i) {
+	let o = l("example-specs/"), s = /* @__PURE__ */ new Set(), c = (e) => {
+		s.add(e);
+	};
 	try {
-		if (t.baseUrl = t.baseUrl || (n ? l(n) : o), r === "core") return await i(e, t);
+		if (t.baseUrl = t.baseUrl || (n ? l(n) : o), r === "core") return await a(e, t, { onError: c });
 		if (r === "app") {
-			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-DcsjvdGj.js");
-			return await a(n), await r(e, t, { embedMode: "embedded" });
+			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-CZKupCRX.js");
+			return await i(n), await r(e, t, {
+				embedMode: "embedded",
+				onError: c
+			});
 		}
 		throw Error(`Unknown GenomeSpy embed runtime: ${r}`);
 	} catch (t) {
+		if (s.has(t)) return;
 		let n = document.createElement("pre");
-		n.textContent = t.toString(), e.appendChild(n);
+		n.textContent = String(t), e.appendChild(n);
 	}
 }
 var d = "genome-spy-app-embed-styles";
@@ -29,9 +35,9 @@ function f(e) {
 		t.id = d, t.textContent = e, document.head.appendChild(t);
 	}
 }
-var p = class extends a {
+var p = class extends n {
 	static get styles() {
-		return n`
+		return t`
             .embed-links {
                 margin: 0.3em 0 0.6em;
                 text-align: center;
@@ -77,19 +83,19 @@ var p = class extends a {
 		super(), this.height = 300, this.specHidden = !1, this.baseUrl = void 0, this.playgroundUrl = void 0, this.pythonUrl = void 0, this.runtime = "core", this.embedRef = s(), this.appStyles = "", this.embedResult = void 0, this.observer = void 0, this.disconnected = !1, this.#e = !1;
 	}
 	render() {
-		let n = this.specHidden || this.#e, i = this.playgroundUrl || this.pythonUrl || n, a = this.specHidden ? "Show JSON specification" : "Hide JSON specification";
-		return r`
-            ${this.appStyles ? r`<style>
+		let t = this.specHidden || this.#e, n = this.playgroundUrl || this.pythonUrl || t, a = this.specHidden ? "Show JSON specification" : "Hide JSON specification";
+		return i`
+            ${this.appStyles ? i`<style>
                           ${this.appStyles}
-                      </style>` : t}
+                      </style>` : r}
             <div
                 class="embed-container"
                 style=${e({ height: this.height + "px" })}
                 ${o(this.embedRef)}
             ></div>
-            ${i ? r`
+            ${n ? i`
                           <div class="embed-links">
-                              ${n ? r`
+                              ${t ? i`
                                             <a
                                                 href="#"
                                                 @click=${(e) => {
@@ -97,22 +103,22 @@ var p = class extends a {
 		}}
                                                 >${a}</a
                                             >
-                                        ` : t}
-                              ${this.playgroundUrl && n ? r` - ` : t}
-                              ${this.playgroundUrl ? r`
+                                        ` : r}
+                              ${this.playgroundUrl && t ? i` - ` : r}
+                              ${this.playgroundUrl ? i`
                                             <a href=${this.playgroundUrl}
                                                 >Edit this example in
                                                 Playground</a
                                             >
-                                        ` : t}
-                              ${this.pythonUrl && (n || this.playgroundUrl) ? r` - ` : t}
-                              ${this.pythonUrl ? r`
+                                        ` : r}
+                              ${this.pythonUrl && (t || this.playgroundUrl) ? i` - ` : r}
+                              ${this.pythonUrl ? i`
                                             <a href=${this.pythonUrl}
                                                 >View Python example</a
                                             >
-                                        ` : t}
+                                        ` : r}
                           </div>
-                      ` : t}
+                      ` : r}
 
             <div
                 class="embed-spec"

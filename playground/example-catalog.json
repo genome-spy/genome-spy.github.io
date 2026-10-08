@@ -359,8 +359,8 @@
     "category": "Grammar / Composition / Concat",
     "specPath": "examples/docs/grammar/composition/concat/track-annotations.json",
     "specUrl": "/docs/example-specs/docs/grammar/composition/concat/track-annotations.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/docs/grammar/composition/concat/track-annotations.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/track-annotations.png",
     "sourceMode": "shared-example"
   },
   {
@@ -528,8 +528,8 @@
     "category": "Grammar / Conditional Encoding",
     "specPath": "examples/docs/grammar/conditional-encoding/endpoint-brushes.json",
     "specUrl": "/docs/example-specs/docs/grammar/conditional-encoding/endpoint-brushes.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/docs/grammar/conditional-encoding/endpoint-brushes.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/conditional-encoding/endpoint-brushes.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2517,8 +2517,8 @@
     "category": "Ruler",
     "specPath": "examples/core/ruler/styling.json",
     "specUrl": "/docs/example-specs/core/ruler/styling.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/ruler/styling.png",
+    "screenshotUrl": "/docs/example-specs/core/ruler/styling.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2712,8 +2712,8 @@
     "category": "Selection",
     "specPath": "examples/core/selection/interval_sequence.json",
     "specUrl": "/docs/example-specs/core/selection/interval_sequence.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/selection/interval_sequence.png",
+    "screenshotUrl": "/docs/example-specs/core/selection/interval_sequence.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2790,8 +2790,8 @@
     "category": "Selection",
     "specPath": "examples/core/selection/selection_union.json",
     "specUrl": "/docs/example-specs/core/selection/selection_union.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/selection/selection_union.png",
+    "screenshotUrl": "/docs/example-specs/core/selection/selection_union.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2933,8 +2933,8 @@
     "category": "Transforms",
     "specPath": "examples/core/transforms/pileup-labels.json",
     "specUrl": "/docs/example-specs/core/transforms/pileup-labels.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/transforms/pileup-labels.png",
+    "screenshotUrl": "/docs/example-specs/core/transforms/pileup-labels.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2946,8 +2946,8 @@
     "category": "Transforms / Displace2d",
     "specPath": "examples/core/transforms/displace2d/stress.json",
     "specUrl": "/docs/example-specs/core/transforms/displace2d/stress.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/transforms/displace2d/stress.png",
+    "screenshotUrl": "/docs/example-specs/core/transforms/displace2d/stress.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2959,8 +2959,8 @@
     "category": "Transforms / Displace2d",
     "specPath": "examples/core/transforms/displace2d/reversed-axes.json",
     "specUrl": "/docs/example-specs/core/transforms/displace2d/reversed-axes.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/transforms/displace2d/reversed-axes.png",
+    "screenshotUrl": "/docs/example-specs/core/transforms/displace2d/reversed-axes.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2972,8 +2972,8 @@
     "category": "General",
     "specPath": "examples/app/samples.json",
     "specUrl": "/docs/example-specs/app/samples.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/app/samples.png",
+    "screenshotUrl": "/docs/example-specs/app/samples.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2985,8 +2985,8 @@
     "category": "General",
     "specPath": "examples/app/copy-numbers.json",
     "specUrl": "/docs/example-specs/app/copy-numbers.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/app/copy-numbers.png",
+    "screenshotUrl": "/docs/example-specs/app/copy-numbers.png",
     "sourceMode": "shared-example"
   },
   {
@@ -2998,8 +2998,8 @@
     "category": "General",
     "specPath": "examples/app/multi-url-bigwig.json",
     "specUrl": "/docs/example-specs/app/multi-url-bigwig.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/app/multi-url-bigwig.png",
+    "screenshotUrl": "/docs/example-specs/app/multi-url-bigwig.png",
     "sourceMode": "shared-example"
   },
   {
@@ -3011,8 +3011,8 @@
     "category": "General",
     "specPath": "examples/app/metadata-hierarchy.json",
     "specUrl": "/docs/example-specs/app/metadata-hierarchy.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/app/metadata-hierarchy.png",
+    "screenshotUrl": "/docs/example-specs/app/metadata-hierarchy.png",
     "sourceMode": "shared-example"
   },
   {
@@ -3024,8 +3024,8 @@
     "category": "General",
     "specPath": "examples/app/samples-identity.json",
     "specUrl": "/docs/example-specs/app/samples-identity.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/app/samples-identity.png",
+    "screenshotUrl": "/docs/example-specs/app/samples-identity.png",
     "sourceMode": "shared-example"
   },
   {
@@ -3037,8 +3037,8 @@
     "category": "General",
     "specPath": "examples/app/metadata-data-source.json",
     "specUrl": "/docs/example-specs/app/metadata-data-source.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/app/metadata-data-source.png",
+    "screenshotUrl": "/docs/example-specs/app/metadata-data-source.png",
     "sourceMode": "shared-example"
   },
   {
@@ -3050,8 +3050,8 @@
     "category": "General",
     "specPath": "examples/app/expression-zscores.json",
     "specUrl": "/docs/example-specs/app/expression-zscores.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/app/expression-zscores.png",
+    "screenshotUrl": "/docs/example-specs/app/expression-zscores.png",
     "sourceMode": "shared-example"
   }
 ]
