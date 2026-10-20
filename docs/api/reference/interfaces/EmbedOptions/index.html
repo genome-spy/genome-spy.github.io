@@ -602,6 +602,8 @@
       
         
       
+        
+      
     
     
     
@@ -772,6 +774,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../grammar/transform/dendrogram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dendrogram
 
     
   </span>
@@ -1730,6 +1759,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1819,6 +1852,60 @@
     
   
   Layer
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../grammar/composition/surround/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Surround
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../grammar/facet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Facet
 
     
   </span>
@@ -2440,6 +2527,8 @@
       
         
       
+        
+      
     
     
     
@@ -2676,6 +2765,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../editor-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Editor Integration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2694,6 +2810,8 @@
       
         
           
+        
+      
         
       
         
@@ -3245,6 +3363,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../examples/generic/clustered-heatmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Clustered Heatmap with Dendrograms
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../examples/generic/upsetr-mutations/" class="md-nav__link">
         
   
@@ -3349,6 +3494,17 @@
   
     <nav class="md-nav" aria-label="Properties">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wheelbehavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        wheelBehavior?
+      </span>
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#renderer" class="md-nav__link">
@@ -3505,6 +3661,45 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#getspecorigin" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        getSpecOrigin?
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="getSpecOrigin?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Parameters
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Returns
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3536,6 +3731,15 @@
 <p><a href="../../">GenomeSpy Core API</a> / EmbedOptions</p>
 <h1 id="interface-embedoptions">Interface: EmbedOptions<a class="headerlink" href="#interface-embedoptions" title="Permanent link">&para;</a></h1>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
+<h3 id="wheelbehavior">wheelBehavior?<a class="headerlink" href="#wheelbehavior" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>wheelBehavior?</strong>: <code>"default"</code> | <code>"cooperative"</code></p>
+</blockquote>
+<p>In cooperative mode, ordinary wheel input scrolls an overflowing vertical
+viewport or the page. Ctrl+wheel retains chart navigation and authored
+wheel selections. The embedding application provides any Ctrl-zoom hint.</p>
+<p><strong>Default value:</strong> <code>"default"</code></p>
+<hr />
 <h3 id="renderer">renderer?<a class="headerlink" href="#renderer" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p><code>optional</code> <strong>renderer?</strong>: <code>"auto"</code> | <code>"webgl"</code> | <code>"canvas"</code> | <code>"webgpu"</code></p>
@@ -3594,7 +3798,7 @@ rows through the specification or update it through
 <hr />
 <h3 id="inputbindingcontainer">inputBindingContainer?<a class="headerlink" href="#inputbindingcontainer" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p><code>optional</code> <strong>inputBindingContainer?</strong>: <code>HTMLElement</code> | <code>"none"</code> | <code>"default"</code></p>
+<p><code>optional</code> <strong>inputBindingContainer?</strong>: <code>HTMLElement</code> | <code>"default"</code> | <code>"none"</code></p>
 </blockquote>
 <p>Where to put the input binding elements. The default is <code>"default"</code>, which means that
 the input binding elements are placed in the same container as the GenomeSpy instance.</p>
@@ -3641,6 +3845,39 @@ defaults and built-in theme, but before <code>spec.config</code>.</p>
 </table>
 <h4 id="returns_1">Returns<a class="headerlink" href="#returns_1" title="Permanent link">&para;</a></h4>
 <p><code>boolean</code> | <code>void</code></p>
+<hr />
+<h3 id="getspecorigin">getSpecOrigin?<a class="headerlink" href="#getspecorigin" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>getSpecOrigin?</strong>: (<code>fragment</code>) =&gt; <code>string</code></p>
+</blockquote>
+<p>Links reported errors to locations in your specification.</p>
+<p>Called with a data definition, encoding branch, parameter, transform,
+expression reference, or interaction configuration from your specification.
+Return a string identifying that object, such as the JSON Pointer <code>"/encoding/x"</code> for
+<code>{ field: "position", type: "quantitative" }</code>. Located errors include this
+string and a relative property path in <code>SpecLocation</code>.
+<code>getSpecErrorLocation(error)</code> reads it from errors delivered to <code>onError</code>
+or rejected by <code>embed</code>. Data-loading reports expose <code>errorLocation</code> for
+located processing errors and <code>origin</code> for the data definition itself.</p>
+<p>Return <code>undefined</code> if the definition's location is unknown. Equivalent data
+definitions may share one source; its reports contain one definition's origin.</p>
+<h4 id="parameters_2">Parameters<a class="headerlink" href="#parameters_2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fragment</code></td>
+<td><code>object</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_2">Returns<a class="headerlink" href="#returns_2" title="Permanent link">&para;</a></h4>
+<p><code>string</code></p>
 
 
 

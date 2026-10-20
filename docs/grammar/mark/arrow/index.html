@@ -612,6 +612,8 @@
       
         
       
+        
+      
     
     
     
@@ -782,6 +784,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/dendrogram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dendrogram
 
     
   </span>
@@ -1850,6 +1879,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1939,6 +1972,60 @@
     
   
   Layer
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../composition/surround/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Surround
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../facet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Facet
 
     
   </span>
@@ -2560,6 +2647,8 @@
       
         
       
+        
+      
     
     
     
@@ -2796,6 +2885,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/editor-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Editor Integration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2814,6 +2930,8 @@
       
         
           
+        
+      
         
       
         
@@ -3365,6 +3483,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../examples/generic/clustered-heatmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Clustered Heatmap with Dendrograms
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../examples/generic/upsetr-mutations/" class="md-nav__link">
         
   
@@ -3618,6 +3763,13 @@ arrowhead wider than the stem.</p>
 <dd>
 <p>Type: boolean</p>
 <p>Whether the x channel should build an index for efficient subset rendering. If omitted, GenomeSpy enables indexing automatically for positional x encodings.</p>
+</dd>
+<dt><code>clamp</code></dt>
+<dd>
+<p>Type: boolean | <code>"x"</code> | <code>"y"</code></p>
+<p>Clamps projected anchors or range endpoints to the view before constructing mark geometry. <code>true</code> clamps both axes; <code>"x"</code> or <code>"y"</code> selects one axis. Position offsets are included. For rectangles, clamping keeps outlines around the visible part of a group during zooming. With <code>clip: false</code>, full strokes remain visible at the boundary; symbols, arrowheads, and text glyphs can extend beyond it.</p>
+<p>Rectangles and explicit text ranges collapsed on a clamped axis are hidden. Rules and ticks intersect the selected bounds without changing direction; excluded or collapsed segments are hidden. Zero-length rules are hidden even when <code>clamp</code> is false. Links and arrows with coincident endpoints are hidden. Shared scales and their inversion are unchanged.</p>
+<p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>clip</code></dt>
 <dd>

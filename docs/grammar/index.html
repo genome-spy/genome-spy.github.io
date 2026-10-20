@@ -612,6 +612,8 @@
       
         
       
+        
+      
     
     
     
@@ -782,6 +784,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./transform/dendrogram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dendrogram
 
     
   </span>
@@ -1740,6 +1769,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1829,6 +1862,60 @@
     
   
   Layer
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./composition/surround/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Surround
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./facet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Facet
 
     
   </span>
@@ -2450,6 +2537,8 @@
       
         
       
+        
+      
     
     
     
@@ -2686,6 +2775,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/editor-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Editor Integration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2704,6 +2820,8 @@
       
         
           
+        
+      
         
       
         
@@ -3255,6 +3373,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../examples/generic/clustered-heatmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Clustered Heatmap with Dendrograms
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../examples/generic/upsetr-mutations/" class="md-nav__link">
         
   
@@ -3489,7 +3634,8 @@ resources.</p>
 <p><a href="composition/">Composition views</a> arrange child views into a hierarchy.
 For example, <a href="composition/layer/"><code>layer</code></a> overlays views to create custom
 glyphs, while the <a href="composition/concat/">concatenation</a> operators arrange views
-into tracks or grids. Common properties such as <code>data</code>, <code>transform</code>, and
+into tracks or grids. The <a href="facet/"><code>facet</code></a> operator repeats one child view
+for groups of data. Common properties such as <code>data</code>, <code>transform</code>, and
 <code>encoding</code> can be defined on a composition view and inherited by its
 descendants.</p>
 <h2 id="parameters-and-interaction">Parameters and interaction<a class="headerlink" href="#parameters-and-interaction" title="Permanent link">&para;</a></h2>
@@ -3527,6 +3673,14 @@ also explains how to associate schemas through workspace or user settings.</p>
 <p>The Playground selects the Core schema automatically, and inline documentation
 examples omit <code>$schema</code>. Schema validation cannot verify external resources,
 data fields, or expression behavior.</p>
+<p>The Playground also underlines declarations with reported loading failures,
+missing encoding fields, invalid expressions (including syntax errors and unknown
+parameter names), duplicate parameter names, missing <code>push: "outer"</code> targets, or
+transform construction failures such as invalid regular expressions. These checks
+run as the visualization loads and executes. Flat field mappings and static
+top-level <code>datum</code> references in expressions require the property to exist on every
+processed row, even if its value is <code>undefined</code> or <code>null</code>. Nested properties and
+computed expression keys are not checked.</p>
 <h2 id="unit-view-reference">Unit view reference<a class="headerlink" href="#unit-view-reference" title="Permanent link">&para;</a></h2>
 <p>The following reference lists all properties available on unit views. Most are
 shared by the different view types and can be used throughout a view hierarchy;

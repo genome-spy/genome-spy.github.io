@@ -602,6 +602,8 @@
       
         
       
+        
+      
     
     
     
@@ -772,6 +774,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../grammar/transform/dendrogram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dendrogram
 
     
   </span>
@@ -1730,6 +1759,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1819,6 +1852,60 @@
     
   
   Layer
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../grammar/composition/surround/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Surround
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../grammar/facet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Facet
 
     
   </span>
@@ -2440,6 +2527,8 @@
       
         
       
+        
+      
     
     
     
@@ -2676,6 +2765,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../editor-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Editor Integration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2694,6 +2810,8 @@
       
         
           
+        
+      
         
       
         
@@ -3245,6 +3363,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../examples/generic/clustered-heatmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Clustered Heatmap with Dendrograms
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../examples/generic/upsetr-mutations/" class="md-nav__link">
         
   
@@ -3429,6 +3574,45 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#setvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        setValue
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="setValue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Parameters
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returns_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Returns
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#clear" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3441,7 +3625,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#returns_2" class="md-nav__link">
+  <a href="#returns_3" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
         Returns
@@ -3486,9 +3670,9 @@
 
 <p><a href="../../">GenomeSpy Core API</a> / PointSelectionApi</p>
 <h1 id="interface-pointselectionapi">Interface: PointSelectionApi<a class="headerlink" href="#interface-pointselectionapi" title="Permanent link">&para;</a></h1>
-<p>Capability for reading and clearing a row-backed point selection.</p>
-<p>Point selections are exposed as detached snapshots. Use <code>clear()</code> to empty
-the selection; writes through this capability are not supported.</p>
+<p>Capability for reading, replacing, and clearing a row-backed point selection.</p>
+<p>Point selections identify records independently of their mark type. Obtain
+this capability through a source unit view to replace membership by key.</p>
 <p><code>"commit"</code> is accepted for future gesture-based point selections, such as a
 lasso. For the current point-selection implementation, it has the same
 delivery behavior as <code>"change"</code>.</p>
@@ -3541,12 +3725,39 @@ normal update delivery.</p>
 <h4 id="returns_1">Returns<a class="headerlink" href="#returns_1" title="Permanent link">&para;</a></h4>
 <p>() =&gt; <code>void</code></p>
 <hr />
+<h3 id="setvalue">setValue<a class="headerlink" href="#setvalue" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>setValue</strong>: (<code>keys</code>) =&gt; <code>void</code></p>
+</blockquote>
+<p>Replaces membership using tuples in the source unit's encoding.key order.
+Requires ready loaded records and unique keys. Invalid, missing, or
+ambiguous keys reject the whole write; single selections accept at most
+one tuple. Empty input clears without requiring data or encoding.key.
+Membership refers to the current publication; clear/reapply after updates.</p>
+<h4 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>keys</code></td>
+<td>readonly readonly <code>Scalar</code>[][]</td>
+</tr>
+</tbody>
+</table>
+<h4 id="returns_2">Returns<a class="headerlink" href="#returns_2" title="Permanent link">&para;</a></h4>
+<p><code>void</code></p>
+<hr />
 <h3 id="clear">clear<a class="headerlink" href="#clear" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p><strong>clear</strong>: () =&gt; <code>void</code></p>
 </blockquote>
 <p>Clears the selection and publishes the cleared state when it changed.</p>
-<h4 id="returns_2">Returns<a class="headerlink" href="#returns_2" title="Permanent link">&para;</a></h4>
+<h4 id="returns_3">Returns<a class="headerlink" href="#returns_3" title="Permanent link">&para;</a></h4>
 <p><code>void</code></p>
 
 

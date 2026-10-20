@@ -1,5 +1,5 @@
-import { Y as e, _t as t, dt as n, ft as r, ht as i, t as a } from "./src-CmCPKzFR.js";
-import { n as o, t as s } from "./ref-afHxp7iu.js";
+import { K as e, ht as t, lt as n, pt as r, t as i, ut as a } from "./src-C_yn6cyJ.js";
+import { n as o, t as s } from "./ref-7R5qqoJf.js";
 //#region index.js
 function c() {
 	let e = document.querySelector("meta[name='base_url']").getAttribute("content");
@@ -8,15 +8,15 @@ function c() {
 function l(e) {
 	return /^(?:[a-z]+:|\/)/i.test(e) ? e : c() + "/" + e;
 }
-async function u(e, t, n, r, i) {
+async function u(e, t, n, r, a) {
 	let o = l("example-specs/"), s = /* @__PURE__ */ new Set(), c = (e) => {
 		s.add(e);
 	};
 	try {
-		if (t.baseUrl = t.baseUrl || (n ? l(n) : o), r === "core") return await a(e, t, { onError: c });
+		if (t.baseUrl = t.baseUrl || (n ? l(n) : o), r === "core") return await i(e, t, { onError: c });
 		if (r === "app") {
-			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-CZKupCRX.js");
-			return await i(n), await r(e, t, {
+			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-C7rV0uKX.js");
+			return await a(n), await r(e, t, {
 				embedMode: "embedded",
 				onError: c
 			});
@@ -83,42 +83,42 @@ var p = class extends n {
 		super(), this.height = 300, this.specHidden = !1, this.baseUrl = void 0, this.playgroundUrl = void 0, this.pythonUrl = void 0, this.runtime = "core", this.embedRef = s(), this.appStyles = "", this.embedResult = void 0, this.observer = void 0, this.disconnected = !1, this.#e = !1;
 	}
 	render() {
-		let t = this.specHidden || this.#e, n = this.playgroundUrl || this.pythonUrl || t, a = this.specHidden ? "Show JSON specification" : "Hide JSON specification";
-		return i`
-            ${this.appStyles ? i`<style>
+		let t = this.specHidden || this.#e, n = this.playgroundUrl || this.pythonUrl || t, i = this.specHidden ? "Show JSON specification" : "Hide JSON specification";
+		return r`
+            ${this.appStyles ? r`<style>
                           ${this.appStyles}
-                      </style>` : r}
+                      </style>` : a}
             <div
                 class="embed-container"
                 style=${e({ height: this.height + "px" })}
                 ${o(this.embedRef)}
             ></div>
-            ${n ? i`
+            ${n ? r`
                           <div class="embed-links">
-                              ${t ? i`
+                              ${t ? r`
                                             <a
                                                 href="#"
                                                 @click=${(e) => {
 			this.#e = !0, this.specHidden = !this.specHidden, e.preventDefault();
 		}}
-                                                >${a}</a
+                                                >${i}</a
                                             >
-                                        ` : r}
-                              ${this.playgroundUrl && t ? i` - ` : r}
-                              ${this.playgroundUrl ? i`
+                                        ` : a}
+                              ${this.playgroundUrl && t ? r` - ` : a}
+                              ${this.playgroundUrl ? r`
                                             <a href=${this.playgroundUrl}
                                                 >Edit this example in
                                                 Playground</a
                                             >
-                                        ` : r}
-                              ${this.pythonUrl && (t || this.playgroundUrl) ? i` - ` : r}
-                              ${this.pythonUrl ? i`
+                                        ` : a}
+                              ${this.pythonUrl && (t || this.playgroundUrl) ? r` - ` : a}
+                              ${this.pythonUrl ? r`
                                             <a href=${this.pythonUrl}
                                                 >View Python example</a
                                             >
-                                        ` : r}
+                                        ` : a}
                           </div>
-                      ` : r}
+                      ` : a}
 
             <div
                 class="embed-spec"

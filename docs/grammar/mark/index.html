@@ -608,6 +608,8 @@
       
         
       
+        
+      
     
     
     
@@ -778,6 +780,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/dendrogram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dendrogram
 
     
   </span>
@@ -1738,6 +1767,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1827,6 +1860,60 @@
     
   
   Layer
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../composition/surround/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Surround
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../facet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Facet
 
     
   </span>
@@ -2448,6 +2535,8 @@
       
         
       
+        
+      
     
     
     
@@ -2684,6 +2773,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/editor-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Editor Integration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2702,6 +2818,8 @@
       
         
           
+        
+      
         
       
         
@@ -3253,6 +3371,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/generic/clustered-heatmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Clustered Heatmap with Dendrograms
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/generic/upsetr-mutations/" class="md-nav__link">
         
   
@@ -3363,6 +3508,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         Shared properties
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clamping-positions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Clamping positions
       </span>
     </span>
   </a>
@@ -3676,6 +3832,13 @@ Mark-specific properties are documented on each mark's page.</p>
 <p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
 <p><strong>Default value:</strong> <code>true</code> when either positional scale is zoomable; otherwise <code>false</code></p>
 </dd>
+<dt><code>clamp</code></dt>
+<dd>
+<p>Type: boolean | <code>"x"</code> | <code>"y"</code></p>
+<p>Clamps projected anchors or range endpoints to the view before constructing mark geometry. <code>true</code> clamps both axes; <code>"x"</code> or <code>"y"</code> selects one axis. Position offsets are included. For rectangles, clamping keeps outlines around the visible part of a group during zooming. With <code>clip: false</code>, full strokes remain visible at the boundary; symbols, arrowheads, and text glyphs can extend beyond it.</p>
+<p>Rectangles and explicit text ranges collapsed on a clamped axis are hidden. Rules and ticks intersect the selected bounds without changing direction; excluded or collapsed segments are hidden. Zero-length rules are hidden even when <code>clamp</code> is false. Links and arrows with coincident endpoints are hidden. Shared scales and their inversion are unchanged.</p>
+<p><strong>Default value:</strong> <code>false</code></p>
+</dd>
 <dt><code>xOffset</code></dt>
 <dd>
 <p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
@@ -3706,6 +3869,19 @@ Mark-specific properties are documented on each mark's page.</p>
 <p>Tooltip handler. If <code>false</code>, no tooltip is shown but the mark remains available for renderer picking and mark interactions. If <code>null</code>, no tooltip is shown and the mark is excluded from picking unless its view declares a point selection; a point selection overrides this picking opt-out. If string, specifies the <a href="https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
 </dd>
 </dl>
+<h3 id="clamping-positions">Clamping positions<a class="headerlink" href="#clamping-positions" title="Permanent link">&para;</a></h3>
+<p>Mark-local <code>clamp</code> keeps defining positions inside the view while zooming:
+<code>true</code> selects both axes, and <code>"x"</code> or <code>"y"</code> selects one. Shared scales are
+unchanged. Clamping follows positional offsets and uses each sample facet's
+bounds. With <code>clip: false</code>, strokes and symbols can extend beyond the boundary.</p>
+<p>Points clamp their anchors. Rectangles clamp both endpoints and disappear if
+a selected axis collapses, before minimum-size expansion. Rules and ticks
+intersect the selected bounds without changing direction; excluded or collapsed
+segments disappear, while horizontal and vertical rules remain valid. Links and
+arrows clamp their endpoints and disappear when both endpoints coincide;
+clamping can change their geometry. Text clamps its anchor or explicit fitting
+range; a collapsed range disappears. Glyph-local text offsets, rotation, stroke
+width, caps, and arrowheads are applied after clamping.</p>
 <h2 id="encoding">Encoding<a class="headerlink" href="#encoding" title="Permanent link">&para;</a></h2>
 <p>While mark properties are shared by all rows rendered by a mark, <code>encoding</code>
 maps data to <a href="#channels">visual channels</a> and allows each mark instance to have
@@ -3768,8 +3944,10 @@ definitions.</p>
 <p>For ranged marks, an implicit <code>x2</code> or <code>y2</code> endpoint inherits the corresponding
 primary offset. An explicitly encoded secondary endpoint is independent and
 has no offset by default. Set the <code>x2Offset</code> or <code>y2Offset</code> mark property to
-displace an explicit secondary endpoint. These secondary offsets are mark
-properties, not encoding channels.</p>
+displace an explicit secondary endpoint, or encode <code>x2Offset</code>/<code>y2Offset</code> to vary
+it per datum. Data values on secondary offset channels use the corresponding
+primary offset scale; an encoded <code>value</code> is an unscaled pixel displacement.
+An explicit offset encoding takes precedence over the same-named mark property.</p>
 <p>A discrete field, datum, or expression on an offset channel can create a
 <a href="../scale/#nested-offset-scales">nested offset scale</a> for grouped marks.</p>
 <h4 id="other-channels">Other channels<a class="headerlink" href="#other-channels" title="Permanent link">&para;</a></h4>
@@ -3790,8 +3968,8 @@ properties, not encoding channels.</p>
 <dd>Stroke width in pixels</dd>
 <dt><code>size</code></dt>
 <dd>Depends on the mark. <code>"point"</code>: the area of the rectangle that encloses the
-  mark instance. <code>"rule"</code> and <code>"link"</code>: stroke width. <code>"arrow"</code>: stem
-  thickness. <code>"text"</code>: font size.</dd>
+mark instance. <code>"rule"</code> and <code>"link"</code>: stroke width. <code>"arrow"</code>: stem
+thickness. <code>"text"</code>: font size.</dd>
 <dt><code>shape</code></dt>
 <dd>Shape of <code>"point"</code> marks.</dd>
 <dt><code>angle</code></dt>
@@ -3802,11 +3980,11 @@ properties, not encoding channels.</p>
 <dd>Text that the <code>"text"</code> mark should render for a mark instance.</dd>
 <dt><code>tooltip</code></dt>
 <dd>Rows shown by the default tooltip handler. A single definition shows one row.
-  An array shows multiple rows in the specified order. Rows can use field,
-  expression, datum, or value definitions. If omitted, the default handler shows
-  the hovered datum's properties. If <code>null</code>, raw datum rows are hidden for the
-  mark. The <code>mark.tooltip</code> property is separate and selects or disables the
-  tooltip handler.</dd>
+An array shows multiple rows in the specified order. Rows can use field,
+expression, datum, or value definitions. If omitted, the default handler shows
+the hovered datum's properties. If <code>null</code>, raw datum rows are hidden for the
+mark. The <code>mark.tooltip</code> property is separate and selects or disables the
+tooltip handler.</dd>
 </dl>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -3821,16 +3999,16 @@ properties, not encoding channels.</p>
 <dl>
 <dt><code>order</code></dt>
 <dd>Keeps selected instances visible above unselected ones. In a dense plot,
-  highlighting a point or arc with a different color is not enough if other
-  instances cover it. Give selected instances a higher order level to draw
-  them last, bringing the highlighted instances to the foreground.
-  The condition's <code>value</code> and the fallback <code>value</code> define two finite numeric
-  levels; lower levels draw first. Use one selection parameter or a selection
-  union in the condition. Relative order within each level is preserved.
-  Equal levels and constant definitions have no ordering effect. When all
-  referenced selections are empty, instances retain their original order.
-  Ordering applies within one mark occurrence, and picking keeps the original
-  order.</dd>
+highlighting a point or arc with a different color is not enough if other
+instances cover it. Give selected instances a higher order level to draw
+them last, bringing the highlighted instances to the foreground.
+The condition's <code>value</code> and the fallback <code>value</code> define two finite numeric
+levels; lower levels draw first. Use one selection parameter or a selection
+union in the condition. Relative order within each level is preserved.
+Equal levels and constant definitions have no ordering effect. When all
+referenced selections are empty, instances retain their original order.
+Ordering applies within one mark occurrence, and picking keeps the original
+order.</dd>
 </dl>
 <div class="highlight"><span class="filename">Draw selected points above unselected points</span><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;picked&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="w"> </span><span class="p">}],</span>
@@ -3851,12 +4029,12 @@ visual mark properties.</p>
 <dl>
 <dt><code>key</code></dt>
 <dd>Defines a stable identity for rows. This is used by point-selection
-  persistence in the GenomeSpy App. The key can be a single field definition
-  or an array of field definitions for a composite key. For composite keys, the
-  field order is significant.</dd>
+persistence in the GenomeSpy App. The key can be a single field definition
+or an array of field definitions for a composite key. For composite keys, the
+field order is significant.</dd>
 <dt><code>search</code></dt>
 <dd>Exposes one or more fields to the GenomeSpy App's
-  <a href="../../sample-collections/app-features/#search">search behavior</a>.</dd>
+<a href="../../sample-collections/app-features/#search">search behavior</a>.</dd>
 </dl>
 <h4 id="channels-for-sample-collections">Channels for sample collections<a class="headerlink" href="#channels-for-sample-collections" title="Permanent link">&para;</a></h4>
 <p>The <a href="../../sample-collections/visualizing/#specifying-a-sample-view">GenomeSpy app</a> supports an additional channel.</p>

@@ -608,6 +608,8 @@
       
         
       
+        
+      
     
     
     
@@ -778,6 +780,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/dendrogram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dendrogram
 
     
   </span>
@@ -1736,6 +1765,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1825,6 +1858,60 @@
     
   
   Layer
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../composition/surround/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Surround
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../facet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Facet
 
     
   </span>
@@ -2648,6 +2735,8 @@
       
         
       
+        
+      
     
     
     
@@ -2884,6 +2973,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/editor-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Editor Integration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2902,6 +3018,8 @@
       
         
           
+        
+      
         
       
         
@@ -3453,6 +3571,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/generic/clustered-heatmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Clustered Heatmap with Dendrograms
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/generic/upsetr-mutations/" class="md-nav__link">
         
   
@@ -3749,6 +3894,14 @@ or "<code> </code>" (a space) the bracket notation must be used:</p>
 <!-- prettier-ignore -->
 <div class="highlight"><pre><span></span><code><span class="nx">datum</span><span class="p">[</span><span class="s1">&#39;A very *special* name!&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">100</span>
 </code></pre></div>
+<p>Static top-level field references, such as <code>datum.foo</code> and <code>datum["foo"]</code>, are
+checked against every row reaching an expression evaluator. An absent
+field raises an error listing the available fields. A field whose value is
+<code>undefined</code> or <code>null</code> is present and passes this check. This also applies to
+fields inside guards such as <code>isDefined(datum.foo)</code> and conditional branches.
+Nested properties and computed keys such as <code>datum[fieldName]</code> are not checked.</p>
+<p>For optional values, include the field in the input rows. Use <code>isDefined</code> to test
+for <code>undefined</code>, or <code>isValid</code> to also reject <code>null</code> and <code>NaN</code>.</p>
 <h2 id="conditional-operators">Conditional operators<a class="headerlink" href="#conditional-operators" title="Permanent link">&para;</a></h2>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator">Ternary</a> operator:</p>
 <!-- prettier-ignore -->
@@ -3877,9 +4030,24 @@ Returns the current range of the scale for the given channel. The channel is
 resolved against the current view's scale resolution.</p>
 <p><a name="bandwidth" href="#bandwidth">#</a>
 <b>bandwidth</b>(<i>channel</i>)<br/>
-Returns the current bandwidth of a band-like scale for the given channel. The
-value uses the same units as the scale range. For positional scales, multiply
-the result by <code>width</code> or <code>height</code> to convert it to pixels.</p>
+Returns the size of an individual band on a band-like scale for the given
+channel, excluding padding between bands. The value uses the same units as the
+scale range. For positional scales, multiply the result by <code>width</code> or <code>height</code>
+to convert it to pixels. See <a href="#bandstep"><code>bandstep()</code></a> for the spacing between
+bands.</p>
+<p><a name="bandstep" href="#bandstep">#</a>
+<b>bandstep</b>(<i>channel</i>, <i>extent?</i>)<br/>
+Returns the signed regular spacing from one band's start to the next on a band,
+point, index, or locus scale, in scale-range units. This includes padding between
+bands; <a href="#bandwidth"><code>bandwidth()</code></a> measures only the band itself. For example,
+8 px bands separated by 2 px of padding have an 8 px bandwidth and a 10 px step.
+Extra grouping gaps are excluded from this regular spacing.</p>
+<p>For positional scales, multiply by <code>width</code> or <code>height</code> to convert to pixels.
+Pixel y offsets increase downward, so a relative row offset uses
+<code>-height * bandstep('y', height)</code>.</p>
+<p>Pass the actual pixel extent when the scale has grouping gaps: <code>bandstep('x', width)</code>
+or <code>bandstep('y', height)</code>. This keeps fixed gap widths consistent during resize.
+A zero extent returns zero while the view is being arranged.</p>
 <p><a name="zoomLevel" href="#zoomLevel">#</a>
 <b>zoomLevel</b>()<br/>
 Returns the geometric zoom level of the zoomable x and y scales that are

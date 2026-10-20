@@ -40,6 +40,9 @@
         <loc>https://genomespy.app/docs/grammar/transform/cross/</loc>
       </url>
       <url>
+        <loc>https://genomespy.app/docs/grammar/transform/dendrogram/</loc>
+      </url>
+      <url>
         <loc>https://genomespy.app/docs/grammar/transform/displace1d/</loc>
       </url>
       <url>
@@ -145,6 +148,12 @@
         <loc>https://genomespy.app/docs/grammar/composition/layer/</loc>
       </url>
       <url>
+        <loc>https://genomespy.app/docs/grammar/composition/surround/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/grammar/facet/</loc>
+      </url>
+      <url>
         <loc>https://genomespy.app/docs/grammar/composition/multiscale/</loc>
       </url>
       <url>
@@ -226,6 +235,9 @@
         <loc>https://genomespy.app/docs/api/embed-options/</loc>
       </url>
       <url>
+        <loc>https://genomespy.app/docs/api/editor-integration/</loc>
+      </url>
+      <url>
         <loc>https://genomespy.app/docs/examples/</loc>
       </url>
       <url>
@@ -278,6 +290,9 @@
       </url>
       <url>
         <loc>https://genomespy.app/docs/examples/genomic-data/genome-browser/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/generic/clustered-heatmap/</loc>
       </url>
       <url>
         <loc>https://genomespy.app/docs/examples/generic/upsetr-mutations/</loc>

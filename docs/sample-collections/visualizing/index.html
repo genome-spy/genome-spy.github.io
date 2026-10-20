@@ -610,6 +610,8 @@
       
         
       
+        
+      
     
     
     
@@ -780,6 +782,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/dendrogram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dendrogram
 
     
   </span>
@@ -1738,6 +1767,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1827,6 +1860,60 @@
     
   
   Layer
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/composition/surround/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Surround
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/facet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Facet
 
     
   </span>
@@ -2620,6 +2707,8 @@
       
         
       
+        
+      
     
     
     
@@ -2856,6 +2945,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/editor-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Editor Integration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2874,6 +2990,8 @@
       
         
           
+        
+      
         
       
         
@@ -3425,6 +3543,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/generic/clustered-heatmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Clustered Heatmap with Dendrograms
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/generic/upsetr-mutations/" class="md-nav__link">
         
   
@@ -3674,7 +3819,7 @@ using the GenomeSpy app.</p>
 <p>You can use the following HTML template to create a web page for your
 visualization. The template loads the app from a content delivery network
 and the visualization specification from a separate <code>spec.json</code> file placed
-in the same directory. See the <a href="../../getting-started/#local-or-remote-web-server">getting started</a>
+in the same directory. See the <a href="../../getting-started/#local-web-server">getting started</a>
 page for more information.</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
@@ -3683,12 +3828,12 @@ page for more information.</p>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
       <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@1.1.1/dist/style.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@1.2.0/dist/style.css&quot;</span>
     <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@1.1.1/dist/index.es.js&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">embed</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;https://cdn.jsdelivr.net/npm/@genome-spy/app@1.2.0/dist/index.es.js&quot;</span><span class="p">;</span>
 
 <span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">embed</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;spec.json&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -3711,15 +3856,19 @@ schema: <code>https://genomespy.app/schema/app/v&lt;major&gt;.json</code>.</p>
 that allows visualization of multiple samples. In this context, a <em>sample</em> means
 a set of records representing an organism, a piece of tissue, a cell line,
 a single cell, etc. Each sample gets its own track in the visualization, and the
-behavior resembles the <em>facet</em> operator of Vega-Lite. However, there are subtle
-differences in the behavior.</p>
+behavior resembles the Core <a href="../../grammar/facet/">facet operator</a>. Sample views
+are optimized for rendering and interacting with very large datasets, and can
+show <a href="../metadata-sources/">sample-specific metadata</a> alongside the tracks.
+For a simple repeated plot using only Core, see the
+<a href="../../grammar/facet/#genomic-tracks">genomic facet example</a>.</p>
 <p>A sample view is defined by the <code>samples</code> and <code>spec</code> properties. To assign a
 track for a row, define a sample-identifier field using the <code>sample</code>
 channel. More complex visualizations can be created using the
-<a href="../../grammar/composition/layer/"><code>layer</code></a> operator. Each composed view may have
-a different data source, enabling concurrent visualization of multiple data
-types. For instance, the bottom layer could display segmented copy-number data,
-while the top layer might show single-nucleotide variants.</p>
+<a href="../../grammar/composition/layer/"><code>layer</code></a> operator. Unlike Core facets, sample
+views can partition a different data source for each layer using its <code>sample</code>
+channel. This enables concurrent visualization of multiple data types. For
+instance, the bottom layer could display segmented copy-number data, while the
+top layer might show single-nucleotide variants.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Optional sample identifiers and label settings</span>

@@ -612,6 +612,8 @@
       
         
       
+        
+      
     
     
     
@@ -782,6 +784,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/dendrogram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dendrogram
 
     
   </span>
@@ -1740,6 +1769,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1829,6 +1862,60 @@
     
   
   Layer
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../composition/surround/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Surround
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../facet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Facet
 
     
   </span>
@@ -2072,6 +2159,17 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grouping-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Grouping gaps
+      </span>
+    </span>
+  </a>
   
 </li>
         
@@ -2836,6 +2934,8 @@
       
         
       
+        
+      
     
     
     
@@ -3072,6 +3172,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/editor-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Editor Integration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3090,6 +3217,8 @@
       
         
           
+        
+      
         
       
         
@@ -3641,6 +3770,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/generic/clustered-heatmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Clustered Heatmap with Dendrograms
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/generic/upsetr-mutations/" class="md-nav__link">
         
   
@@ -3865,6 +4021,17 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grouping-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Grouping gaps
+      </span>
+    </span>
+  </a>
   
 </li>
         
@@ -4474,6 +4641,111 @@ each channel.</p>
 
 </genome-spy-doc-embed></div>
 
+<h3 id="grouping-gaps">Grouping gaps<a class="headerlink" href="#grouping-gaps" title="Permanent link">&para;</a></h3>
+<p>Index and locus scales can separate groups with gaps that keep their width
+while zooming and panning. <code>gapPositions: [5, 12]</code> inserts gaps before indices
+5 and 12, and <code>gapWidth: 8</code> sets their width to 8 CSS pixels, independent of
+device pixel ratio.</p>
+<p>Heatmaps can use independent gaps on both axes:</p>
+<div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/scale/grouping-gaps.json" height="280">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Grouped heatmap&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Grouping gaps separate clustered heatmap rows and columns while keeping their pixel widths during zooming.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sequence&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;stop&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cell&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum.cell % 20&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;column&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;floor(datum.cell / 20)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;row&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sin(datum.column * 0.7 + datum.row)&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;column&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;gapPositions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;gapWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;row&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;gapPositions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;gapWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;style&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<p>Band centers and widths remain independent of the following gap. As with other
+scale properties, gaps can be configured in an encoding's <code>scale</code> or a view's
+<code>scales</code> declaration, including shared scales.</p>
+<p>For chromosome boundaries, set <code>gapPositions: "chromosomes"</code> on a locus scale.
+The boundaries come from that scale's assembly, so the same configuration works
+on linear genomic tracks and scales bound to different assemblies.</p>
+<p>This example uses hg38 chromosome intervals from the
+<a href="../data/lazy/#axis-genome"><code>axisGenome</code> source</a>, with a 5 px gap between chromosomes:</p>
+<div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/scale/chromosome-gaps.json" height="150">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Chromosome grouping gaps&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Chromosome intervals in hg38 are separated by fixed 5 px gaps.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;assembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hg38&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;lazy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;axisGenome&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;continuousStart&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;locus&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;gapPositions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chromosomes&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;gapWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;zoom&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;continuousEnd&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;odd&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;#c6dbef&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#6baed6&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<p>Half-open ranges ending at a cut stop before the gap, while ranges starting
+there begin after it. A range crossing an internal cut spans the gap normally.
+Inverting a pointer anywhere in a gap returns its boundary coordinate. A brush
+entirely within one gap is an active, zero-span selection that matches no data;
+linked scales keep their last valid domain until the brush has a nonzero span.</p>
+<p><code>gapWidth</code> and <code>gapPositions</code> accept expressions. Constant zero/null width or
+constant empty/null positions completely disables grouping gaps. If visible
+gaps consume the whole axis extent, affected marks are hidden until space is
+available again. Pointer inversion and navigation use the ordinary domain
+mapping while the marks are hidden.</p>
+<p>Axis domain lines follow grouping gaps automatically. The <a href="../data/lazy/#scale-groups">scaleGroups data
+source</a> generates the same half-open intervals for
+custom guides and group outlines, including the Cartesian product of groups on
+two axes.</p>
 <h2 id="nested-offset-scales">Nested offset scales<a class="headerlink" href="#nested-offset-scales" title="Permanent link">&para;</a></h2>
 <p>A discrete field, datum, or expression on the <code>xOffset</code> or <code>yOffset</code>
 <a href="../mark/#offset-channels">channel</a> creates a nested band scale when the
@@ -4509,10 +4781,25 @@ not replaced by nested-band inference.</p>
 then derives the quantitative scale domain from data in the current positional
 viewport. This is useful for autoscaling a genomic signal's y-axis or a scatter
 plot's size or color while zooming and panning.</p>
+<p>For dendrogram heights, <code>domain: { "source": "viewport", "mode": "contain" }</code>
+fits the scale to links whose positional endpoints are both inside the viewport.
+Boundary-crossing branches then no longer determine the height domain. Clip
+the link mark on both axes to keep those branches inside the panel. See the
+<a href="../../examples/generic/clustered-heatmap/">clustered heatmap</a>.</p>
+<dl>
+<dt><code>mode</code></dt>
+<dd>
+<p>Type: string</p>
+<p>Determines which positional values contribute to the domain. <code>"intersect"</code> includes intervals that overlap the viewport. <code>"contain"</code> requires both endpoints to be inside it, including its boundaries. Points use inclusive boundaries in either mode. Encoded values are tested before applying band placement or pixel offsets.</p>
+<p><strong>Default value:</strong> <code>"intersect"</code>.</p>
+</dd>
+</dl>
+<p>Configured viewport domains on a shared scale must use the same mode. Members
+without a configured domain inherit that mode.</p>
 <p>GenomeSpy calculates the domain shortly after navigation pauses and applies the
-normal smooth domain transition. Existing scale options such as <code>zero</code>, <code>nice</code>,
-<code>domainMin</code>, and <code>domainMax</code> still apply. If a ready viewport has no values, the
-scale retains its last nonempty domain.</p>
+normal smooth domain transition. Existing scale options such as <code>padding</code>,
+<code>zero</code>, <code>nice</code>, <code>domainMin</code>, and <code>domainMax</code> still apply. If a ready viewport has
+no values, the scale retains its last nonempty domain.</p>
 <p>GenomeSpy uses at least one continuous x or y scale to determine which data are
 inside the viewport. The domain of that positional scale must not depend on the
 autoscaled scale. A positional scale cannot be both zoomable and

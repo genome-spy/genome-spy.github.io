@@ -606,6 +606,8 @@
       
         
       
+        
+      
     
     
     
@@ -776,6 +778,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/dendrogram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dendrogram
 
     
   </span>
@@ -1734,6 +1763,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1823,6 +1856,60 @@
     
   
   Layer
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/composition/surround/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Surround
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/facet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Facet
 
     
   </span>
@@ -2446,6 +2533,8 @@
       
         
       
+        
+      
     
     
     
@@ -2639,6 +2728,28 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         Inspecting the hierarchy
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-transformed-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reading transformed records
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculating-results-from-scoped-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Calculating results from scoped records
       </span>
     </span>
   </a>
@@ -2867,6 +2978,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editor-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Editor Integration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2885,6 +3023,8 @@
       
         
           
+        
+      
         
       
         
@@ -3436,6 +3576,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/generic/clustered-heatmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Clustered Heatmap with Dendrograms
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/generic/upsetr-mutations/" class="md-nav__link">
         
   
@@ -3556,6 +3723,28 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         Inspecting the hierarchy
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-transformed-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reading transformed records
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculating-results-from-scoped-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Calculating results from scoped records
       </span>
     </span>
   </a>
@@ -3759,6 +3948,112 @@ need to be unambiguous within the selected scope.</p>
 <span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tracks</span><span class="p">.</span><span class="nx">children</span><span class="p">().</span><span class="nx">length</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
+<h2 id="reading-transformed-records">Reading transformed records<a class="headerlink" href="#reading-transformed-records" title="Permanent link">&para;</a></h2>
+<p>Each handle exposes <code>data</code> for reading and analyzing its current transformed
+records. Declared input datasets are updated through <code>datasets</code>.</p>
+<p><code>view.data.read({scope, limit})</code> returns <code>{rows, truncated}</code> from a unit view's
+loaded transformed records. Scope is required:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">track</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">views</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span><span class="w"> </span><span class="nx">scope</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="nx">view</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;observations&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">track</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">read</span><span class="p">({</span><span class="w"> </span><span class="nx">scope</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;all&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">viewport</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">track</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">read</span><span class="p">({</span><span class="w"> </span><span class="nx">scope</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;viewport&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">brushed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">track</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">read</span><span class="p">({</span><span class="w"> </span><span class="nx">scope</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">selection</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;brush&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+<p>The <code>"all"</code> scope reads the current collector without positional constraints, including
+records outside the viewport or brush. It supports nominal, conditional, or absent
+positional encodings.</p>
+<p>Viewport reads test encoded data positions against continuous x/y scale domains,
+using the same overlap rules as viewport-derived domains: point boundaries are
+inclusive, and ranged marks must overlap. Brush reads use the named interval
+selection's existing membership predicates, independently of the viewport; a
+cleared brush returns no rows. Viewport and brush scopes require unconditional
+positional encodings. They describe data-space membership before pixel offsets, clipping,
+opacity, or occlusion, rather than proving visible pixels.</p>
+<p>Membership is tested <strong>before</strong> the nonnegative safe integer limit. Only returned
+records are structured-cloned, without picking identifiers. <code>truncated</code> means
+additional matching records exist; reject it before treating results as complete.
+Zero checks whether any matches exist. Uncloneable values throw and shared memory
+retains the platform's sharing semantics. The limit bounds rows, not nested values.</p>
+<p>Reads scan synchronously; sparse brushes over large collections may still inspect
+every loaded record. Spatial indexing is deferred to a separate change. Readback
+does not fetch missing data or establish source coverage. Await current visible
+lazy requests with <code>api.awaitVisibleLazyData(signal)</code> when needed, and verify
+completeness for analysis. Unready data, containers, unsupported projections, and
+stale handles throw.</p>
+<p>Point-selection records remain available through the existing
+<code>view.params.getSelection(name).getValue().data</code>; their getter and subscription
+behavior are unchanged. Named selection scopes accept interval selections only.
+See <a href="https://github.com/genome-spy/genome-spy/tree/master/packages/embed-examples/src/dataReadback">Read and select records</a>
+for a small readback-to-selection example.</p>
+<h2 id="calculating-results-from-scoped-records">Calculating results from scoped records<a class="headerlink" href="#calculating-results-from-scoped-records" title="Permanent link">&para;</a></h2>
+<p><code>view.data.transform()</code> is designed primarily for agentic queries: calculate
+summaries, rankings, or samples inside GenomeSpy without loading the full raw
+dataset into the agent's context. Its limited declarative grammar has a JSON
+Schema for validating tool inputs. Explicit scopes, isolated calculations, and
+clear overflow and truncation signals help agents refine queries without
+changing the visualization.</p>
+<p><code>view.data.transform({scope, transform, inputLimit, limit})</code> runs an explicit
+pipeline over a complete snapshot captured with the same scope rules as
+<code>data.read</code>. Region membership is applied <strong>before</strong> this additional pipeline.
+It uses the unit's current transformed records; it cannot recover observations
+already filtered out or aggregated away by the visualization.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">track</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">transform</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">scope</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">selection</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;brush&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">transform</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">expr</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;datum.value &gt;= 0&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">expr</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;datum.value * 2&quot;</span><span class="p">,</span><span class="w"> </span><span class="kr">as</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;score&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;aggregate&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">groupby</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nx">fields</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;score&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nx">ops</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mean&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="kr">as</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;meanScore&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">inputLimit</span><span class="o">:</span><span class="w"> </span><span class="mf">50000</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Supported transforms are <code>formula</code>, expression-based <code>filter</code>, <code>sample</code>,
+<code>aggregate</code>, and <code>window</code>, using their existing visualization grammar. Expressions
+have <code>datum</code> and built-in functions; they do not inherit live view parameters.
+Selection-parameter filters, reactive <code>debounce</code> settings, and other transform
+types are outside this API's supported grammar. Sampling uses the existing
+default size of 500 and is not seeded; an explicit size must be a positive safe integer. The generated request
+schema ships as <code>@genome-spy/core/transform-data-schema.json</code>.
+The method does not run schema validation internally.</p>
+<p>For example, these pipelines calculate scores or retain the five highest-ranked
+records while preserving their keys:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">scores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">expr</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;datum.value * 2&quot;</span><span class="p">,</span><span class="w"> </span><span class="kr">as</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;score&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">expr</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;datum.score &gt;= 10&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">topFive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;window&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">sort</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">field</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">order</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;descending&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">ops</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;row_number&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="kr">as</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">expr</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;datum.rank &lt;= 5&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="p">];</span>
+</code></pre></div>
+<p>Both limits are required nonnegative safe integers. Exceeding <code>inputLimit</code>
+rejects <strong>before</strong> analysis starts, avoiding summaries calculated from an
+incomplete prefix. <code>limit</code> applies after the full pipeline finishes;
+<code>truncated</code> reports additional output rows. Zero input accepts only an empty
+scope; zero output still runs the calculation. Existing empty-input semantics
+apply: an aggregate emits no rows, including a whole-table count. Facets are
+flattened into one table; use explicit <code>groupby</code> fields for analysis partitions.</p>
+<p>The private flow owns the captured copies. It leaves live records, parameters,
+selections, view layout, and renderer resources unchanged. App code can display
+the results, update datasets, or send preserved keys to the selection setter.
+Aggregates that drop source keys do not automatically identify contributing
+records. Results retain readback's structured-clone/shared-memory semantics.
+Execution is synchronous; row limits do not bound time, object size, or all
+memory use. The restricted expression grammar is not a resource sandbox. Source
+readiness and coverage have the same requirements as record readback.</p>
+<p>See <a href="https://github.com/genome-spy/genome-spy/tree/master/packages/embed-examples/src/transformAnalysis">Analyze brushed records</a>
+for one small example calculating group summaries from brushed raw measurements.</p>
 <h2 id="marks-and-scoped-interaction">Marks and scoped interaction<a class="headerlink" href="#marks-and-scoped-interaction" title="Permanent link">&para;</a></h2>
 <p>Each handle exposes <code>marks</code> for interaction with marks in that view's subtree.
 Mark events pick the event coordinates before invoking the listener. GPU-backed

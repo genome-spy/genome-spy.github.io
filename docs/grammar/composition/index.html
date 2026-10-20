@@ -83,8 +83,8 @@
   
 
 
-<meta name="description" content="GenomeSpy replicates the hierarchical composition model of Vega-Lite, and currently provides the concatenation and layer composition operators in the core library, as well as multiscale for semantic zooming with multiple detail levels. In addition, the GenomeSpy app provides a facet operator for visualizing sample collections using a track-based layout." />
-<meta property="og:description" content="GenomeSpy replicates the hierarchical composition model of Vega-Lite, and currently provides the concatenation and layer composition operators in the core library, as well as multiscale for semantic zooming with multiple detail levels. In addition, the GenomeSpy app provides a facet operator for visualizing sample collections using a track-based layout." />
+<meta name="description" content="GenomeSpy replicates the hierarchical composition model of Vega-Lite, and currently provides the concatenation, layer, and facet composition operators in the core library, as well as multiscale for semantic zooming with multiple detail levels and surround for aligning marginal tracks with a central plot. The GenomeSpy app also provides a specialized facet operator for visualizing sample collections using a track-based layout." />
+<meta property="og:description" content="GenomeSpy replicates the hierarchical composition model of Vega-Lite, and currently provides the concatenation, layer, and facet composition operators in the core library, as well as multiscale for semantic zooming with multiple detail levels and surround for aligning marginal tracks with a central plot. The GenomeSpy app also provides a specialized facet operator for visualizing sample collections using a track-based layout." />
 
 <meta property="og:site_name" content="GenomeSpy Docs" />
 
@@ -612,6 +612,8 @@
       
         
       
+        
+      
     
     
     
@@ -782,6 +784,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/dendrogram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dendrogram
 
     
   </span>
@@ -1742,6 +1771,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1831,6 +1864,60 @@
     
   
   Layer
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./surround/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Surround
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../facet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Facet
 
     
   </span>
@@ -2452,6 +2539,8 @@
       
         
       
+        
+      
     
     
     
@@ -2688,6 +2777,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/editor-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Editor Integration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2706,6 +2822,8 @@
       
         
           
+        
+      
         
       
         
@@ -3257,6 +3375,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/generic/clustered-heatmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Clustered Heatmap with Dendrograms
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/generic/upsetr-mutations/" class="md-nav__link">
         
   
@@ -3426,12 +3571,14 @@
 <h1 id="view-composition">View Composition<a class="headerlink" href="#view-composition" title="Permanent link">&para;</a></h1>
 <p>GenomeSpy replicates the <a href="https://vega.github.io/vega-lite/docs/composition.html">hierarchical
 composition</a> model of
-Vega-Lite, and currently provides the <a href="./concat/">concatenation</a> and
-<a href="./layer/"><code>layer</code></a> composition operators in the <em>core</em> library, as well as
-<a href="./multiscale/"><code>multiscale</code></a> for semantic zooming with multiple detail
-levels. In addition, the GenomeSpy <em>app</em> provides a facet operator for
-visualizing <a href="../../sample-collections/visualizing/">sample collections</a> using
-a track-based layout.</p>
+Vega-Lite, and currently provides the <a href="./concat/">concatenation</a>,
+<a href="./layer/"><code>layer</code></a>, and <a href="../facet/"><code>facet</code></a> composition operators in the
+<em>core</em> library, as well as <a href="./multiscale/"><code>multiscale</code></a> for semantic zooming
+with multiple detail levels and <a href="./surround/"><code>surround</code></a> for aligning marginal
+tracks with a central plot. The GenomeSpy <em>app</em> also provides a specialized
+facet operator for visualizing
+<a href="../../sample-collections/visualizing/">sample collections</a> using a
+track-based layout.</p>
 <p>The hierarchical model allows for nesting composition operators. For instance,
 you could have a visualization with two views side by side, and those views
 could contain multiple layered views. The views in the hierarchy inherit

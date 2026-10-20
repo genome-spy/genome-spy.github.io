@@ -1,5 +1,24 @@
 [
   {
+    "id": "docs/examples/generic/clustered-heatmap",
+    "title": "Clustered Heatmap with Dendrograms",
+    "description": "Clustered Heatmap with Dendrograms",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Generic",
+    "specPath": "examples/docs/examples/generic/clustered-heatmap.json",
+    "specUrl": "/docs/example-specs/docs/examples/generic/clustered-heatmap.json",
+    "screenshotPath": "examples/docs/examples/generic/clustered-heatmap.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/generic/clustered-heatmap.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Clustered Heatmap with Dendrograms",
+        "url": "https://genomespy.app/docs/examples/generic/clustered-heatmap/"
+      }
+    ]
+  },
+  {
     "id": "docs/examples/generic/upsetr-mutations",
     "title": "UpSetR-style five-set mutation intersections",
     "description": "UpSetR-style five-set mutation intersections",
@@ -10,7 +29,13 @@
     "specUrl": "/docs/example-specs/docs/examples/generic/upsetr-mutations.json",
     "screenshotPath": "examples/docs/examples/generic/upsetr-mutations.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/generic/upsetr-mutations.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Set Intersections with an UpSet Plot",
+        "url": "https://genomespy.app/docs/examples/generic/upsetr-mutations/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/genome-browser",
@@ -23,7 +48,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/genome-browser.json",
     "screenshotPath": "examples/docs/examples/genomic-data/genome-browser.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/genome-browser.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Composing a Genome Browser",
+        "url": "https://genomespy.app/docs/examples/genomic-data/genome-browser/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/ASCAT",
@@ -36,7 +67,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/ASCAT.json",
     "screenshotPath": "examples/docs/examples/genomic-data/ASCAT.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/ASCAT.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "ASCAT Copy-Number Segmentation",
+        "url": "https://genomespy.app/docs/examples/genomic-data/ascat/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/bam-read-alignments",
@@ -49,7 +86,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/bam-read-alignments.json",
     "screenshotPath": "examples/docs/examples/genomic-data/bam-read-alignments.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/bam-read-alignments.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "BAM Read Alignments",
+        "url": "https://genomespy.app/docs/examples/genomic-data/bam-read-alignments/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/cytobands",
@@ -62,7 +105,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/cytobands.json",
     "screenshotPath": "examples/docs/examples/genomic-data/cytobands.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/cytobands.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Chromosome Ideogram from Cytobands",
+        "url": "https://genomespy.app/docs/examples/genomic-data/cytobands/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/clinvar-variants",
@@ -75,7 +124,17 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/clinvar-variants.json",
     "screenshotPath": "examples/docs/examples/genomic-data/clinvar-variants.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/clinvar-variants.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "ClinVar Small-Variant Classifications",
+        "url": "https://genomespy.app/docs/examples/genomic-data/clinvar-variants/"
+      },
+      {
+        "title": "Lazy Data Sources",
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_3"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/gff3-gene-annotations",
@@ -88,7 +147,17 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/gff3-gene-annotations.json",
     "screenshotPath": "examples/docs/examples/genomic-data/gff3-gene-annotations.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/gff3-gene-annotations.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "GENCODE Gene Annotations from GFF3",
+        "url": "https://genomespy.app/docs/examples/genomic-data/gencode-gff3-gene-annotations/"
+      },
+      {
+        "title": "Lazy Data Sources",
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_4"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/hcc1954-sv-cnv",
@@ -101,7 +170,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/hcc1954-sv-cnv.json",
     "screenshotPath": "examples/docs/examples/genomic-data/hcc1954-sv-cnv.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/hcc1954-sv-cnv.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "HCC1954 Structural Variants and Copy Number",
+        "url": "https://genomespy.app/docs/examples/genomic-data/hcc1954-sv-cnv/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/indexed-fasta-six-frame-translation",
@@ -114,7 +189,17 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/indexed-fasta-six-frame-translation.json",
     "screenshotPath": "examples/docs/examples/genomic-data/indexed-fasta-six-frame-translation.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/indexed-fasta-six-frame-translation.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Indexed FASTA Six-Frame Translation",
+        "url": "https://genomespy.app/docs/examples/genomic-data/indexed-fasta-six-frame-translation/"
+      },
+      {
+        "title": "Window",
+        "url": "https://genomespy.app/docs/grammar/transform/window/#six-frame-fasta-translation"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/ASCAT-algorithm",
@@ -127,7 +212,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/ASCAT-algorithm.json",
     "screenshotPath": "examples/docs/examples/genomic-data/ASCAT-algorithm.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/ASCAT-algorithm.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Interactive ASCAT-like Purity/Ploidy Fitting",
+        "url": "https://genomespy.app/docs/examples/genomic-data/ascat-algorithm/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/bpreveal-pisa-matrix",
@@ -140,7 +231,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/bpreveal-pisa-matrix.json",
     "screenshotPath": "examples/docs/examples/genomic-data/bpreveal-pisa-matrix.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/bpreveal-pisa-matrix.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "PISA Interaction Matrix",
+        "url": "https://genomespy.app/docs/examples/genomic-data/bpreveal-pisa-matrix/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/bpreveal-pisa-squid",
@@ -153,7 +250,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/bpreveal-pisa-squid.json",
     "screenshotPath": "examples/docs/examples/genomic-data/bpreveal-pisa-squid.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/bpreveal-pisa-squid.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "PISA Squid Plot",
+        "url": "https://genomespy.app/docs/examples/genomic-data/bpreveal-pisa-squid/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/pik3ca-tcga-brca-lollipop",
@@ -166,7 +269,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/pik3ca-tcga-brca-lollipop.json",
     "screenshotPath": "examples/docs/examples/genomic-data/pik3ca-tcga-brca-lollipop.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/pik3ca-tcga-brca-lollipop.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "PIK3CA Mutation Lollipop Plot",
+        "url": "https://genomespy.app/docs/examples/genomic-data/pik3ca-tcga-brca-lollipop/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/scored-refSeq-genes",
@@ -179,7 +288,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/scored-refSeq-genes.json",
     "screenshotPath": "examples/docs/examples/genomic-data/scored-refSeq-genes.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/scored-refSeq-genes.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "RefSeq Gene Annotations with Scored Labels",
+        "url": "https://genomespy.app/docs/examples/genomic-data/refseq-genes/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/sashimi-plot",
@@ -192,7 +307,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/sashimi-plot.json",
     "screenshotPath": "examples/docs/examples/genomic-data/sashimi-plot.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/sashimi-plot.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Sashimi Plot",
+        "url": "https://genomespy.app/docs/examples/genomic-data/sashimi-plot/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/dynseq-spi1-bqtl",
@@ -205,7 +326,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/dynseq-spi1-bqtl.json",
     "screenshotPath": "examples/docs/examples/genomic-data/dynseq-spi1-bqtl.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/dynseq-spi1-bqtl.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "SPI1 Binding-QTL Dynseq Track",
+        "url": "https://genomespy.app/docs/examples/genomic-data/dynseq-spi1-bqtl/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/tcga-ov-gistic",
@@ -218,7 +345,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/tcga-ov-gistic.json",
     "screenshotPath": "examples/docs/examples/genomic-data/tcga-ov-gistic.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/tcga-ov-gistic.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "TCGA Ovarian Cancer GISTIC2 Copy-Number Landscape",
+        "url": "https://genomespy.app/docs/examples/genomic-data/tcga-ov-gistic/"
+      }
+    ]
   },
   {
     "id": "docs/examples/genomic-data/msa",
@@ -231,7 +364,13 @@
     "specUrl": "/docs/example-specs/docs/examples/genomic-data/msa.json",
     "screenshotPath": "examples/docs/examples/genomic-data/msa.png",
     "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/msa.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Multiple Sequence Alignment",
+        "url": "https://genomespy.app/docs/examples/genomic-data/multiple-sequence-alignment/"
+      }
+    ]
   },
   {
     "id": "docs/index/interactive-overview",
@@ -244,7 +383,13 @@
     "specUrl": "/docs/example-specs/docs/index/interactive-overview.json",
     "screenshotPath": "examples/docs/index/interactive-overview.png",
     "screenshotUrl": "/docs/example-specs/docs/index/interactive-overview.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "GenomeSpy",
+        "url": "https://genomespy.app/docs/#minimal-genomic-example"
+      }
+    ]
   },
   {
     "id": "docs/genomic-data/genomic-coordinates/point-features",
@@ -257,7 +402,13 @@
     "specUrl": "/docs/example-specs/docs/genomic-data/genomic-coordinates/point-features.json",
     "screenshotPath": "examples/docs/genomic-data/genomic-coordinates/point-features.png",
     "screenshotUrl": "/docs/example-specs/docs/genomic-data/genomic-coordinates/point-features.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Genomic Coordinates",
+        "url": "https://genomespy.app/docs/grammar/genomic-coordinates/#point-features"
+      }
+    ]
   },
   {
     "id": "docs/genomic-data/genomic-coordinates/segment-features",
@@ -270,7 +421,13 @@
     "specUrl": "/docs/example-specs/docs/genomic-data/genomic-coordinates/segment-features.json",
     "screenshotPath": "examples/docs/genomic-data/genomic-coordinates/segment-features.png",
     "screenshotUrl": "/docs/example-specs/docs/genomic-data/genomic-coordinates/segment-features.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Genomic Coordinates",
+        "url": "https://genomespy.app/docs/grammar/genomic-coordinates/#segment-features"
+      }
+    ]
   },
   {
     "id": "docs/grammar/index/single-view-specification",
@@ -283,7 +440,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/index/single-view-specification.json",
     "screenshotPath": "examples/docs/grammar/index/single-view-specification.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/index/single-view-specification.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Visualization Grammar",
+        "url": "https://genomespy.app/docs/grammar/#unit-views"
+      }
+    ]
   },
   {
     "id": "docs/grammar/axis/genome-axis",
@@ -296,7 +459,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/axis/genome-axis.json",
     "screenshotPath": "examples/docs/grammar/axis/genome-axis.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/axis/genome-axis.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Axis",
+        "url": "https://genomespy.app/docs/grammar/axis/#genome-axis-for-loci"
+      }
+    ]
   },
   {
     "id": "docs/grammar/axis/inside-axis",
@@ -309,7 +478,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/axis/inside-axis.json",
     "screenshotPath": "examples/docs/grammar/axis/inside-axis.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/axis/inside-axis.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Axis",
+        "url": "https://genomespy.app/docs/grammar/axis/#placement"
+      }
+    ]
   },
   {
     "id": "docs/grammar/axis/protein-domain-ticks",
@@ -322,7 +497,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/axis/protein-domain-ticks.json",
     "screenshotPath": "examples/docs/grammar/axis/protein-domain-ticks.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/axis/protein-domain-ticks.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Axis",
+        "url": "https://genomespy.app/docs/grammar/axis/#ticks-and-labels"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/index/independent-resolution",
@@ -335,7 +516,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/index/independent-resolution.json",
     "screenshotPath": "examples/docs/grammar/composition/index/independent-resolution.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/index/independent-resolution.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "View Composition",
+        "url": "https://genomespy.app/docs/grammar/composition/#independent"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/index/shared-resolution",
@@ -348,7 +535,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/index/shared-resolution.json",
     "screenshotPath": "examples/docs/grammar/composition/index/shared-resolution.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/index/shared-resolution.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "View Composition",
+        "url": "https://genomespy.app/docs/grammar/composition/#shared"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/concat/track-annotations",
@@ -361,7 +554,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/concat/track-annotations.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/track-annotations.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/track-annotations.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "View Concatenation",
+        "url": "https://genomespy.app/docs/grammar/composition/concat/#track-annotations"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/concat/child-sizing",
@@ -374,7 +573,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/concat/child-sizing.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/child-sizing.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/child-sizing.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "View Concatenation",
+        "url": "https://genomespy.app/docs/grammar/composition/concat/#child-sizing"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/concat/concat-separators",
@@ -387,7 +592,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/concat/concat-separators.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/concat-separators.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/concat-separators.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "View Concatenation",
+        "url": "https://genomespy.app/docs/grammar/composition/concat/#separators"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/concat/shared-axes",
@@ -400,7 +611,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/concat/shared-axes.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/shared-axes.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/shared-axes.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "View Concatenation",
+        "url": "https://genomespy.app/docs/grammar/composition/concat/#shared-axes"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/concat/grid-concat",
@@ -413,7 +630,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/concat/grid-concat.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/grid-concat.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/grid-concat.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "View Concatenation",
+        "url": "https://genomespy.app/docs/grammar/composition/concat/#grid"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/concat/horizontal-concat",
@@ -426,7 +649,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/concat/horizontal-concat.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/horizontal-concat.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/horizontal-concat.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "View Concatenation",
+        "url": "https://genomespy.app/docs/grammar/composition/concat/#horizontal"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/concat/sizedef-layout",
@@ -439,7 +668,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/concat/sizedef-layout.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/sizedef-layout.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/sizedef-layout.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "View Concatenation",
+        "url": "https://genomespy.app/docs/grammar/composition/concat/#sizedef"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/concat/scrollable-viewports",
@@ -452,7 +687,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/concat/scrollable-viewports.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/scrollable-viewports.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/scrollable-viewports.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "View Concatenation",
+        "url": "https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/concat/vertical-concat",
@@ -465,7 +706,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/concat/vertical-concat.json",
     "screenshotPath": "examples/docs/grammar/composition/concat/vertical-concat.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/concat/vertical-concat.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "View Concatenation",
+        "url": "https://genomespy.app/docs/grammar/composition/concat/#vertical"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/layer/bar-and-label-layer",
@@ -478,7 +725,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/layer/bar-and-label-layer.json",
     "screenshotPath": "examples/docs/grammar/composition/layer/bar-and-label-layer.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/layer/bar-and-label-layer.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Layering Views",
+        "url": "https://genomespy.app/docs/grammar/composition/layer/#example"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/layer/lollipop-plot",
@@ -491,7 +744,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/layer/lollipop-plot.json",
     "screenshotPath": "examples/docs/grammar/composition/layer/lollipop-plot.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/layer/lollipop-plot.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Layering Views",
+        "url": "https://genomespy.app/docs/grammar/composition/layer/#lollipop-plot"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/multiscale/multiscale-transition",
@@ -504,7 +763,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/multiscale/multiscale-transition.json",
     "screenshotPath": "examples/docs/grammar/composition/multiscale/multiscale-transition.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/multiscale/multiscale-transition.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Multiscale Composition",
+        "url": "https://genomespy.app/docs/grammar/composition/multiscale/#transitioned-stops"
+      }
+    ]
   },
   {
     "id": "docs/grammar/composition/multiscale/multiscale-composition",
@@ -517,7 +782,32 @@
     "specUrl": "/docs/example-specs/docs/grammar/composition/multiscale/multiscale-composition.json",
     "screenshotPath": "examples/docs/grammar/composition/multiscale/multiscale-composition.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/composition/multiscale/multiscale-composition.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Multiscale Composition",
+        "url": "https://genomespy.app/docs/grammar/composition/multiscale/#example"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/composition/surround/annotated-matrix",
+    "title": "Matrix with aligned summaries and annotations",
+    "description": "Matrix with aligned summaries and annotations",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Composition / Surround",
+    "specPath": "examples/docs/grammar/composition/surround/annotated-matrix.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/surround/annotated-matrix.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Surround Composition",
+        "url": "https://genomespy.app/docs/grammar/composition/surround/#example"
+      }
+    ]
   },
   {
     "id": "docs/grammar/conditional-encoding/endpoint-brushes",
@@ -530,7 +820,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/conditional-encoding/endpoint-brushes.json",
     "screenshotPath": "examples/docs/grammar/conditional-encoding/endpoint-brushes.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/conditional-encoding/endpoint-brushes.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Conditional Encoding",
+        "url": "https://genomespy.app/docs/grammar/conditional-encoding/#testing-different-link-endpoints"
+      }
+    ]
   },
   {
     "id": "docs/grammar/config/theme",
@@ -543,7 +839,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/config/theme.json",
     "screenshotPath": "examples/docs/grammar/config/theme.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/config/theme.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Global Config, Themes, and Styles",
+        "url": "https://genomespy.app/docs/grammar/config/#built-in-themes"
+      }
+    ]
   },
   {
     "id": "docs/grammar/config/config-overview",
@@ -556,7 +858,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/config/config-overview.json",
     "screenshotPath": "examples/docs/grammar/config/config-overview.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/config/config-overview.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Global Config, Themes, and Styles",
+        "url": "https://genomespy.app/docs/grammar/config/#quick-example"
+      }
+    ]
   },
   {
     "id": "docs/grammar/data/eager/bedpe",
@@ -569,7 +877,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/data/eager/bedpe.json",
     "screenshotPath": "examples/docs/grammar/data/eager/bedpe.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/data/eager/bedpe.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Eager Data Sources",
+        "url": "https://genomespy.app/docs/grammar/data/eager/#example_1"
+      }
+    ]
   },
   {
     "id": "docs/grammar/data/eager/bed",
@@ -582,7 +896,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/data/eager/bed.json",
     "screenshotPath": "examples/docs/grammar/data/eager/bed.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/data/eager/bed.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Eager Data Sources",
+        "url": "https://genomespy.app/docs/grammar/data/eager/#example"
+      }
+    ]
   },
   {
     "id": "docs/grammar/data/lazy/axis-genome",
@@ -595,7 +915,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/data/lazy/axis-genome.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/axis-genome.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/axis-genome.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Lazy Data Sources",
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_7"
+      }
+    ]
   },
   {
     "id": "docs/grammar/data/lazy/axis-ticks",
@@ -608,7 +934,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/data/lazy/axis-ticks.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/axis-ticks.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/axis-ticks.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Lazy Data Sources",
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_6"
+      }
+    ]
   },
   {
     "id": "docs/grammar/data/lazy/bam-read-alignments",
@@ -621,7 +953,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/data/lazy/bam-read-alignments.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/bam-read-alignments.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/bam-read-alignments.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Lazy Data Sources",
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_5"
+      }
+    ]
   },
   {
     "id": "docs/grammar/data/lazy/bigbed-ccre-track",
@@ -634,7 +972,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/data/lazy/bigbed-ccre-track.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/bigbed-ccre-track.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/bigbed-ccre-track.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Lazy Data Sources",
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_2"
+      }
+    ]
   },
   {
     "id": "docs/grammar/data/lazy/bigwig-gc-content",
@@ -647,7 +991,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/data/lazy/bigwig-gc-content.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/bigwig-gc-content.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/bigwig-gc-content.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Lazy Data Sources",
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_1"
+      }
+    ]
   },
   {
     "id": "docs/grammar/data/lazy/indexed-fasta-sequence-track",
@@ -660,7 +1010,89 @@
     "specUrl": "/docs/example-specs/docs/grammar/data/lazy/indexed-fasta-sequence-track.json",
     "screenshotPath": "examples/docs/grammar/data/lazy/indexed-fasta-sequence-track.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/indexed-fasta-sequence-track.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Lazy Data Sources",
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/data/lazy/scale-groups",
+    "title": "Outlined heatmap groups",
+    "description": "Outlined heatmap groups",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Data / Lazy",
+    "specPath": "examples/docs/grammar/data/lazy/scale-groups.json",
+    "specUrl": "/docs/example-specs/docs/grammar/data/lazy/scale-groups.json",
+    "screenshotPath": "examples/docs/grammar/data/lazy/scale-groups.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/data/lazy/scale-groups.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Lazy Data Sources",
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_8"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/facet/anscombe-wrapped",
+    "title": "Anscombe's Quartet",
+    "description": "Anscombe's Quartet",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Facet",
+    "specPath": "examples/docs/grammar/facet/anscombe-wrapped.json",
+    "specUrl": "/docs/example-specs/docs/grammar/facet/anscombe-wrapped.json",
+    "screenshotPath": "examples/docs/grammar/facet/anscombe-wrapped.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/facet/anscombe-wrapped.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Facet",
+        "url": "https://genomespy.app/docs/grammar/facet/#wrapped-plots"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/facet/means",
+    "title": "Facet-local means",
+    "description": "Facet-local means",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Facet",
+    "specPath": "examples/docs/grammar/facet/means.json",
+    "specUrl": "/docs/example-specs/docs/grammar/facet/means.json",
+    "screenshotPath": "examples/docs/grammar/facet/means.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/facet/means.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Facet",
+        "url": "https://genomespy.app/docs/grammar/facet/#transforms-and-data-scope"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/facet/multi-url-bigwig",
+    "title": "Five H3K27ac BigWigs",
+    "description": "Five H3K27ac BigWigs",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Facet",
+    "specPath": "examples/docs/grammar/facet/multi-url-bigwig.json",
+    "specUrl": "/docs/example-specs/docs/grammar/facet/multi-url-bigwig.json",
+    "screenshotPath": "examples/docs/grammar/facet/multi-url-bigwig.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/facet/multi-url-bigwig.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Facet",
+        "url": "https://genomespy.app/docs/grammar/facet/#genomic-tracks"
+      }
+    ]
   },
   {
     "id": "docs/grammar/import/named-template-repeat-config",
@@ -673,7 +1105,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/import/named-template-repeat-config.json",
     "screenshotPath": "examples/docs/grammar/import/named-template-repeat-config.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/import/named-template-repeat-config.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Importing Views",
+        "url": "https://genomespy.app/docs/grammar/import/#import-site-config"
+      }
+    ]
   },
   {
     "id": "docs/grammar/import/named-template-repeat",
@@ -686,7 +1124,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/import/named-template-repeat.json",
     "screenshotPath": "examples/docs/grammar/import/named-template-repeat.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/import/named-template-repeat.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Importing Views",
+        "url": "https://genomespy.app/docs/grammar/import/#repeating-with-named-templates"
+      }
+    ]
   },
   {
     "id": "docs/grammar/legend/collected-legends",
@@ -699,7 +1143,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/legend/collected-legends.json",
     "screenshotPath": "examples/docs/grammar/legend/collected-legends.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/legend/collected-legends.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Legend",
+        "url": "https://genomespy.app/docs/grammar/legend/#collected-legends"
+      }
+    ]
   },
   {
     "id": "docs/grammar/legend/reactive-disable",
@@ -712,7 +1162,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/legend/reactive-disable.json",
     "screenshotPath": "examples/docs/grammar/legend/reactive-disable.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/legend/reactive-disable.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Legend",
+        "url": "https://genomespy.app/docs/grammar/legend/#disabling-legends"
+      }
+    ]
   },
   {
     "id": "docs/grammar/legend/placement",
@@ -725,7 +1181,8 @@
     "specUrl": "/docs/example-specs/docs/grammar/legend/placement.json",
     "screenshotPath": "examples/docs/grammar/legend/placement.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/legend/placement.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "docs/grammar/legend/shared-hconcat-legend",
@@ -738,7 +1195,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/legend/shared-hconcat-legend.json",
     "screenshotPath": "examples/docs/grammar/legend/shared-hconcat-legend.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/legend/shared-hconcat-legend.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Legend",
+        "url": "https://genomespy.app/docs/grammar/legend/#shared-legend"
+      }
+    ]
   },
   {
     "id": "docs/grammar/legend/gradient-legend",
@@ -751,7 +1214,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/legend/gradient-legend.json",
     "screenshotPath": "examples/docs/grammar/legend/gradient-legend.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/legend/gradient-legend.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Legend",
+        "url": "https://genomespy.app/docs/grammar/legend/#gradient-legends"
+      }
+    ]
   },
   {
     "id": "docs/grammar/legend/symbol-legend",
@@ -764,7 +1233,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/legend/symbol-legend.json",
     "screenshotPath": "examples/docs/grammar/legend/symbol-legend.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/legend/symbol-legend.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Legend",
+        "url": "https://genomespy.app/docs/grammar/legend/#symbol-legends"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/arrow/arrow-styles",
@@ -777,7 +1252,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/arrow/arrow-styles.json",
     "screenshotPath": "examples/docs/grammar/mark/arrow/arrow-styles.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/arrow/arrow-styles.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Arrow",
+        "url": "https://genomespy.app/docs/grammar/mark/arrow/#built-in-styles"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/arrow/arrow-mark",
@@ -790,7 +1271,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/arrow/arrow-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/arrow/arrow-mark.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/arrow/arrow-mark.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Arrow",
+        "url": "https://genomespy.app/docs/grammar/mark/arrow/"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/arrow/arrow-playground",
@@ -803,7 +1290,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/arrow/arrow-playground.json",
     "screenshotPath": "examples/docs/grammar/mark/arrow/arrow-playground.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/arrow/arrow-playground.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Arrow",
+        "url": "https://genomespy.app/docs/grammar/mark/arrow/#arrow-playground"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/link/link-shapes-and-orientations",
@@ -816,7 +1309,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/link/link-shapes-and-orientations.json",
     "screenshotPath": "examples/docs/grammar/mark/link/link-shapes-and-orientations.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/link/link-shapes-and-orientations.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Link",
+        "url": "https://genomespy.app/docs/grammar/mark/link/#different-link-shapes-and-orientations"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/link/dome-height",
@@ -829,7 +1328,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/link/dome-height.json",
     "screenshotPath": "examples/docs/grammar/mark/link/dome-height.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/link/dome-height.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Link",
+        "url": "https://genomespy.app/docs/grammar/mark/link/#varying-the-dome-height"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/link/link-mark",
@@ -842,7 +1347,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/link/link-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/link/link-mark.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/link/link-mark.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Link",
+        "url": "https://genomespy.app/docs/grammar/mark/link/"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/point/semantic-zoom",
@@ -855,7 +1366,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/point/semantic-zoom.json",
     "screenshotPath": "examples/docs/grammar/mark/point/semantic-zoom.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/point/semantic-zoom.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Point",
+        "url": "https://genomespy.app/docs/grammar/mark/point/#semantic-zoom"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/point/geometric-zoom",
@@ -868,7 +1385,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/point/geometric-zoom.json",
     "screenshotPath": "examples/docs/grammar/mark/point/geometric-zoom.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/point/geometric-zoom.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Point",
+        "url": "https://genomespy.app/docs/grammar/mark/point/#geometric-zoom"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/point/point-mark",
@@ -881,7 +1404,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/point/point-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/point/point-mark.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/point/point-mark.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Point",
+        "url": "https://genomespy.app/docs/grammar/mark/point/"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/point/plenty-of-points",
@@ -894,7 +1423,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/point/plenty-of-points.json",
     "screenshotPath": "examples/docs/grammar/mark/point/plenty-of-points.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/point/plenty-of-points.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Point",
+        "url": "https://genomespy.app/docs/grammar/mark/point/#plenty-of-points"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/rect/grouped-bars",
@@ -907,7 +1442,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/rect/grouped-bars.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/grouped-bars.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/grouped-bars.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Rect",
+        "url": "https://genomespy.app/docs/grammar/mark/rect/#grouped-bars"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/rect/heatmap",
@@ -920,7 +1461,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/rect/heatmap.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/heatmap.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/heatmap.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Rect",
+        "url": "https://genomespy.app/docs/grammar/mark/rect/#heatmap"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/rect/bars",
@@ -933,7 +1480,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/rect/bars.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/bars.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/bars.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Rect",
+        "url": "https://genomespy.app/docs/grammar/mark/rect/#bars"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/rect/shadowed-marks",
@@ -946,7 +1499,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/rect/shadowed-marks.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/shadowed-marks.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/shadowed-marks.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Rect",
+        "url": "https://genomespy.app/docs/grammar/mark/rect/#shadowed-marks"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/rect/rect-mark",
@@ -959,7 +1518,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/rect/rect-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/rect-mark.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/rect-mark.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Rect",
+        "url": "https://genomespy.app/docs/grammar/mark/rect/"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/rect/hatch-patterns",
@@ -972,7 +1537,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/rect/hatch-patterns.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/hatch-patterns.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/hatch-patterns.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Rect",
+        "url": "https://genomespy.app/docs/grammar/mark/rect/#hatch-patterns"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/rect/shadowed-view",
@@ -985,7 +1556,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/rect/shadowed-view.json",
     "screenshotPath": "examples/docs/grammar/mark/rect/shadowed-view.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rect/shadowed-view.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Rect",
+        "url": "https://genomespy.app/docs/grammar/mark/rect/#shadowed-view"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/rule/synteny-hg38-mm10",
@@ -998,7 +1575,21 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/rule/synteny-hg38-mm10.json",
     "screenshotPath": "examples/docs/grammar/mark/rule/synteny-hg38-mm10.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rule/synteny-hg38-mm10.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Genomic Coordinates",
+        "url": "https://genomespy.app/docs/grammar/genomic-coordinates/#synteny-between-assemblies"
+      },
+      {
+        "title": "Rule",
+        "url": "https://genomespy.app/docs/grammar/mark/rule/#human-mouse-synteny"
+      },
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#different-assemblies"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/rule/ranged-rules",
@@ -1011,7 +1602,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/rule/ranged-rules.json",
     "screenshotPath": "examples/docs/grammar/mark/rule/ranged-rules.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rule/ranged-rules.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Rule",
+        "url": "https://genomespy.app/docs/grammar/mark/rule/#ranged-rules"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/rule/rule-mark",
@@ -1024,7 +1621,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/rule/rule-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/rule/rule-mark.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rule/rule-mark.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Rule",
+        "url": "https://genomespy.app/docs/grammar/mark/rule/"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/text/sequence-logo",
@@ -1037,7 +1640,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/text/sequence-logo.json",
     "screenshotPath": "examples/docs/grammar/mark/text/sequence-logo.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/text/sequence-logo.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Text",
+        "url": "https://genomespy.app/docs/grammar/mark/text/#sequence-logo"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/text/ranged-text",
@@ -1050,7 +1659,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/text/ranged-text.json",
     "screenshotPath": "examples/docs/grammar/mark/text/ranged-text.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/text/ranged-text.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Text",
+        "url": "https://genomespy.app/docs/grammar/mark/text/#ranged-text"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/text/text-mark",
@@ -1063,7 +1678,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/text/text-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/text/text-mark.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/text/text-mark.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Text",
+        "url": "https://genomespy.app/docs/grammar/mark/text/"
+      }
+    ]
   },
   {
     "id": "docs/grammar/mark/tick/tick-mark",
@@ -1076,7 +1697,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/mark/tick/tick-mark.json",
     "screenshotPath": "examples/docs/grammar/mark/tick/tick-mark.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/mark/tick/tick-mark.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Tick",
+        "url": "https://genomespy.app/docs/grammar/mark/tick/"
+      }
+    ]
   },
   {
     "id": "docs/grammar/parameters/penguins",
@@ -1089,7 +1716,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/parameters/penguins.json",
     "screenshotPath": "examples/docs/grammar/parameters/penguins.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/penguins.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Parameters",
+        "url": "https://genomespy.app/docs/grammar/parameters/#interval-selection"
+      }
+    ]
   },
   {
     "id": "docs/grammar/parameters/expressions",
@@ -1102,7 +1735,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/parameters/expressions.json",
     "screenshotPath": "examples/docs/grammar/parameters/expressions.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/expressions.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Parameters",
+        "url": "https://genomespy.app/docs/grammar/parameters/#expressions"
+      }
+    ]
   },
   {
     "id": "docs/grammar/parameters/genome-overview-detail",
@@ -1115,7 +1754,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/parameters/genome-overview-detail.json",
     "screenshotPath": "examples/docs/grammar/parameters/genome-overview-detail.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/genome-overview-detail.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Parameters",
+        "url": "https://genomespy.app/docs/grammar/parameters/#overviewdetail-example"
+      }
+    ]
   },
   {
     "id": "docs/grammar/parameters/point-selection",
@@ -1128,7 +1773,17 @@
     "specUrl": "/docs/example-specs/docs/grammar/parameters/point-selection.json",
     "screenshotPath": "examples/docs/grammar/parameters/point-selection.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/point-selection.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Conditional Encoding",
+        "url": "https://genomespy.app/docs/grammar/conditional-encoding/"
+      },
+      {
+        "title": "Parameters",
+        "url": "https://genomespy.app/docs/grammar/parameters/#point-selection"
+      }
+    ]
   },
   {
     "id": "docs/grammar/parameters/interval-selection",
@@ -1141,7 +1796,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/parameters/interval-selection.json",
     "screenshotPath": "examples/docs/grammar/parameters/interval-selection.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/interval-selection.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Parameters",
+        "url": "https://genomespy.app/docs/grammar/parameters/#interval-selection"
+      }
+    ]
   },
   {
     "id": "docs/grammar/parameters/input-bindings",
@@ -1154,7 +1815,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/parameters/input-bindings.json",
     "screenshotPath": "examples/docs/grammar/parameters/input-bindings.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/input-bindings.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Parameters",
+        "url": "https://genomespy.app/docs/grammar/parameters/#using-input-bindings"
+      }
+    ]
   },
   {
     "id": "docs/grammar/parameters/ruler",
@@ -1167,7 +1834,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/parameters/ruler.json",
     "screenshotPath": "examples/docs/grammar/parameters/ruler.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/ruler.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Parameters",
+        "url": "https://genomespy.app/docs/grammar/parameters/#ruler-guides-in-descendant-views"
+      }
+    ]
   },
   {
     "id": "docs/grammar/parameters/ruler-push-outer",
@@ -1180,7 +1853,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/parameters/ruler-push-outer.json",
     "screenshotPath": "examples/docs/grammar/parameters/ruler-push-outer.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/ruler-push-outer.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Parameters",
+        "url": "https://genomespy.app/docs/grammar/parameters/#pushing-ruler-values-to-ancestor-scopes"
+      }
+    ]
   },
   {
     "id": "docs/grammar/parameters/two-way-linking",
@@ -1193,7 +1872,51 @@
     "specUrl": "/docs/example-specs/docs/grammar/parameters/two-way-linking.json",
     "screenshotPath": "examples/docs/grammar/parameters/two-way-linking.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/two-way-linking.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Parameters",
+        "url": "https://genomespy.app/docs/grammar/parameters/#zoomable-linking-example"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/scale/chromosome-gaps",
+    "title": "Chromosome grouping gaps",
+    "description": "Chromosome grouping gaps",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Scale",
+    "specPath": "examples/docs/grammar/scale/chromosome-gaps.json",
+    "specUrl": "/docs/example-specs/docs/grammar/scale/chromosome-gaps.json",
+    "screenshotPath": "examples/docs/grammar/scale/chromosome-gaps.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/chromosome-gaps.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#grouping-gaps"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/scale/grouping-gaps",
+    "title": "Grouped heatmap",
+    "description": "Grouped heatmap",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Scale",
+    "specPath": "examples/docs/grammar/scale/grouping-gaps.json",
+    "specUrl": "/docs/example-specs/docs/grammar/scale/grouping-gaps.json",
+    "screenshotPath": "examples/docs/grammar/scale/grouping-gaps.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/grouping-gaps.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#grouping-gaps"
+      }
+    ]
   },
   {
     "id": "docs/grammar/scale/point-indices-bands",
@@ -1206,7 +1929,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/scale/point-indices-bands.json",
     "screenshotPath": "examples/docs/grammar/scale/point-indices-bands.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/scale/point-indices-bands.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#point-indices"
+      }
+    ]
   },
   {
     "id": "docs/grammar/scale/point-indices-centers",
@@ -1219,7 +1948,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/scale/point-indices-centers.json",
     "screenshotPath": "examples/docs/grammar/scale/point-indices-centers.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/scale/point-indices-centers.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#point-indices"
+      }
+    ]
   },
   {
     "id": "docs/grammar/scale/range-indices",
@@ -1232,7 +1967,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/scale/range-indices.json",
     "screenshotPath": "examples/docs/grammar/scale/range-indices.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/scale/range-indices.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#segment-indices"
+      }
+    ]
   },
   {
     "id": "docs/grammar/scale/numbering-offset",
@@ -1245,7 +1986,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/scale/numbering-offset.json",
     "screenshotPath": "examples/docs/grammar/scale/numbering-offset.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/scale/numbering-offset.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#adjusting-the-indexing-of-axis-labels"
+      }
+    ]
   },
   {
     "id": "docs/grammar/scale/locus-scale-domain",
@@ -1258,7 +2005,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/scale/locus-scale-domain.json",
     "screenshotPath": "examples/docs/grammar/scale/locus-scale-domain.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/scale/locus-scale-domain.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#example"
+      }
+    ]
   },
   {
     "id": "docs/grammar/scale/extra-axis-values",
@@ -1271,7 +2024,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/scale/extra-axis-values.json",
     "screenshotPath": "examples/docs/grammar/scale/extra-axis-values.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/scale/extra-axis-values.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#including-the-first-index-as-a-tick"
+      }
+    ]
   },
   {
     "id": "docs/grammar/scale/shared-scale-expression",
@@ -1284,7 +2043,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/scale/shared-scale-expression.json",
     "screenshotPath": "examples/docs/grammar/scale/shared-scale-expression.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/scale/shared-scale-expression.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#parameter-scope"
+      }
+    ]
   },
   {
     "id": "docs/grammar/scale/viewport-autoscale",
@@ -1297,7 +2062,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/scale/viewport-autoscale.json",
     "screenshotPath": "examples/docs/grammar/scale/viewport-autoscale.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/scale/viewport-autoscale.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#viewport-autoscaling"
+      }
+    ]
   },
   {
     "id": "docs/grammar/scale/scale-bar",
@@ -1310,7 +2081,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/scale/scale-bar.json",
     "screenshotPath": "examples/docs/grammar/scale/scale-bar.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/scale/scale-bar.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#responsive-genomic-scale-bars"
+      }
+    ]
   },
   {
     "id": "docs/grammar/title/basic-title",
@@ -1323,7 +2100,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/title/basic-title.json",
     "screenshotPath": "examples/docs/grammar/title/basic-title.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/title/basic-title.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Titles",
+        "url": "https://genomespy.app/docs/grammar/title/#example"
+      }
+    ]
   },
   {
     "id": "docs/grammar/title/title-styles",
@@ -1336,7 +2119,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/title/title-styles.json",
     "screenshotPath": "examples/docs/grammar/title/title-styles.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/title/title-styles.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Titles",
+        "url": "https://genomespy.app/docs/grammar/title/#styling"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/aggregate/aggregate-min-max",
@@ -1349,7 +2138,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/aggregate/aggregate-min-max.json",
     "screenshotPath": "examples/docs/grammar/transform/aggregate/aggregate-min-max.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/aggregate/aggregate-min-max.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Aggregate",
+        "url": "https://genomespy.app/docs/grammar/transform/aggregate/#calculating-min-and-max"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/aggregate/aggregate-boxplot",
@@ -1362,7 +2157,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/aggregate/aggregate-boxplot.json",
     "screenshotPath": "examples/docs/grammar/transform/aggregate/aggregate-boxplot.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/aggregate/aggregate-boxplot.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Aggregate",
+        "url": "https://genomespy.app/docs/grammar/transform/aggregate/#building-boxplot-statistics"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/coverage/coverage-pileup",
@@ -1375,7 +2176,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/coverage/coverage-pileup.json",
     "screenshotPath": "examples/docs/grammar/transform/coverage/coverage-pileup.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/coverage/coverage-pileup.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Coverage",
+        "url": "https://genomespy.app/docs/grammar/transform/coverage/#interactive-example"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/cross/cross-heatmap",
@@ -1388,7 +2195,32 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/cross/cross-heatmap.json",
     "screenshotPath": "examples/docs/grammar/transform/cross/cross-heatmap.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/cross/cross-heatmap.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Cross",
+        "url": "https://genomespy.app/docs/grammar/transform/cross/#example"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/transform/dendrogram/dendrogram",
+    "title": "Unbalanced dendrogram",
+    "description": "Unbalanced dendrogram",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Transform / Dendrogram",
+    "specPath": "examples/docs/grammar/transform/dendrogram/dendrogram.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/dendrogram/dendrogram.json",
+    "screenshotPath": "examples/docs/grammar/transform/dendrogram/dendrogram.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/dendrogram/dendrogram.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Dendrogram",
+        "url": "https://genomespy.app/docs/grammar/transform/dendrogram/"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/displace2d/displace2d-labels",
@@ -1401,7 +2233,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/displace2d/displace2d-labels.json",
     "screenshotPath": "examples/docs/grammar/transform/displace2d/displace2d-labels.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/displace2d/displace2d-labels.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Displace 2D",
+        "url": "https://genomespy.app/docs/grammar/transform/displace2d/#example"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/displace2d/bubble-health-income-annotations",
@@ -1414,7 +2252,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/displace2d/bubble-health-income-annotations.json",
     "screenshotPath": "examples/docs/grammar/transform/displace2d/bubble-health-income-annotations.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/displace2d/bubble-health-income-annotations.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Displace 2D",
+        "url": "https://genomespy.app/docs/grammar/transform/displace2d/#example-population-ranked-bubble-annotations"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/filter/selection-predicate-filter",
@@ -1427,7 +2271,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/filter/selection-predicate-filter.json",
     "screenshotPath": "examples/docs/grammar/transform/filter/selection-predicate-filter.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/filter/selection-predicate-filter.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Filter",
+        "url": "https://genomespy.app/docs/grammar/transform/filter/#filtering-by-a-selection-predicate"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/filter-scored-labels/filter-scored-labels",
@@ -1440,7 +2290,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/filter-scored-labels/filter-scored-labels.json",
     "screenshotPath": "examples/docs/grammar/transform/filter-scored-labels/filter-scored-labels.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/filter-scored-labels/filter-scored-labels.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Filter Scored Lables",
+        "url": "https://genomespy.app/docs/grammar/transform/filter-scored-labels/#example"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/formula/formula-with-parameters",
@@ -1453,7 +2309,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/formula/formula-with-parameters.json",
     "screenshotPath": "examples/docs/grammar/transform/formula/formula-with-parameters.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/formula/formula-with-parameters.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Formula",
+        "url": "https://genomespy.app/docs/grammar/transform/formula/#using-with-parameters"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/measure-text/measure-text-table",
@@ -1466,7 +2328,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/measure-text/measure-text-table.json",
     "screenshotPath": "examples/docs/grammar/transform/measure-text/measure-text-table.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/measure-text/measure-text-table.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Measure Text",
+        "url": "https://genomespy.app/docs/grammar/transform/measure-text/#example"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/pileup/pileup-lanes",
@@ -1479,7 +2347,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/pileup/pileup-lanes.json",
     "screenshotPath": "examples/docs/grammar/transform/pileup/pileup-lanes.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/pileup/pileup-lanes.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Pileup",
+        "url": "https://genomespy.app/docs/grammar/transform/pileup/#coverage-and-pileup"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/pileup/pileup-projected-labels",
@@ -1492,7 +2366,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/pileup/pileup-projected-labels.json",
     "screenshotPath": "examples/docs/grammar/transform/pileup/pileup-projected-labels.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/pileup/pileup-projected-labels.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Pileup",
+        "url": "https://genomespy.app/docs/grammar/transform/pileup/#labels-beside-segments"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/set-intersection/co-mutation",
@@ -1505,7 +2385,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/set-intersection/co-mutation.json",
     "screenshotPath": "examples/docs/grammar/transform/set-intersection/co-mutation.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/set-intersection/co-mutation.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Set Intersection",
+        "url": "https://genomespy.app/docs/grammar/transform/set-intersection/#genomic-co-mutation-example"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/stack/sequence-logo",
@@ -1518,7 +2404,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/stack/sequence-logo.json",
     "screenshotPath": "examples/docs/grammar/transform/stack/sequence-logo.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/stack/sequence-logo.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Stack",
+        "url": "https://genomespy.app/docs/grammar/transform/stack/#sequence-logo"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/stack/stacked-bar-plot",
@@ -1531,7 +2423,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/stack/stacked-bar-plot.json",
     "screenshotPath": "examples/docs/grammar/transform/stack/stacked-bar-plot.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/stack/stacked-bar-plot.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Stack",
+        "url": "https://genomespy.app/docs/grammar/transform/stack/#stacked-bar-plot"
+      }
+    ]
   },
   {
     "id": "docs/grammar/transform/window/window-transform",
@@ -1544,7 +2442,13 @@
     "specUrl": "/docs/example-specs/docs/grammar/transform/window/window-transform.json",
     "screenshotPath": "examples/docs/grammar/transform/window/window-transform.png",
     "screenshotUrl": "/docs/example-specs/docs/grammar/transform/window/window-transform.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Window",
+        "url": "https://genomespy.app/docs/grammar/transform/window/#example"
+      }
+    ]
   },
   {
     "id": "core/config/config-scoped-view",
@@ -1557,7 +2461,8 @@
     "specUrl": "/docs/example-specs/core/config/config-scoped-view.json",
     "screenshotPath": "examples/core/config/config-scoped-view.png",
     "screenshotUrl": "/docs/example-specs/core/config/config-scoped-view.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/config/config-scale-schemes-by-type",
@@ -1570,7 +2475,8 @@
     "specUrl": "/docs/example-specs/core/config/config-scale-schemes-by-type.json",
     "screenshotPath": "examples/core/config/config-scale-schemes-by-type.png",
     "screenshotUrl": "/docs/example-specs/core/config/config-scale-schemes-by-type.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/config/config-import-override",
@@ -1583,7 +2489,8 @@
     "specUrl": "/docs/example-specs/core/config/config-import-override.json",
     "screenshotPath": "examples/core/config/config-import-override.png",
     "screenshotUrl": "/docs/example-specs/core/config/config-import-override.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/config/config-imported-track",
@@ -1596,7 +2503,8 @@
     "specUrl": "/docs/example-specs/core/config/config-imported-track.json",
     "screenshotPath": "examples/core/config/config-imported-track.png",
     "screenshotUrl": "/docs/example-specs/core/config/config-imported-track.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/config/config-theme-comparison-bars",
@@ -1609,7 +2517,8 @@
     "specUrl": "/docs/example-specs/core/config/config-theme-comparison-bars.json",
     "screenshotPath": "examples/core/config/config-theme-comparison-bars.png",
     "screenshotUrl": "/docs/example-specs/core/config/config-theme-comparison-bars.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/config/config-crazy-theme-style-showcase",
@@ -1622,7 +2531,8 @@
     "specUrl": "/docs/example-specs/core/config/config-crazy-theme-style-showcase.json",
     "screenshotPath": "examples/core/config/config-crazy-theme-style-showcase.png",
     "screenshotUrl": "/docs/example-specs/core/config/config-crazy-theme-style-showcase.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/config/config-basic",
@@ -1635,7 +2545,64 @@
     "specUrl": "/docs/example-specs/core/config/config-basic.json",
     "screenshotPath": "examples/core/config/config-basic.png",
     "screenshotUrl": "/docs/example-specs/core/config/config-basic.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
+    "id": "core/facet/anscombe_wrapped",
+    "title": "Anscombe's Quartet",
+    "description": "Anscombe's Quartet",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Facet",
+    "specPath": "examples/core/facet/anscombe_wrapped.json",
+    "specUrl": "/docs/example-specs/core/facet/anscombe_wrapped.json",
+    "screenshotPath": "examples/core/facet/anscombe_wrapped.png",
+    "screenshotUrl": "/docs/example-specs/core/facet/anscombe_wrapped.png",
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
+    "id": "core/facet/cars_matrix",
+    "title": "Cars_matrix",
+    "description": "",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Facet",
+    "specPath": "examples/core/facet/cars_matrix.json",
+    "specUrl": "/docs/example-specs/core/facet/cars_matrix.json",
+    "screenshotPath": "examples/core/facet/cars_matrix.png",
+    "screenshotUrl": "/docs/example-specs/core/facet/cars_matrix.png",
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
+    "id": "core/facet/sine_offsets_scrollable",
+    "title": "Scrollable Sine Curves with Phase Offsets",
+    "description": "Scrollable Sine Curves with Phase Offsets",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Facet",
+    "specPath": "examples/core/facet/sine_offsets_scrollable.json",
+    "specUrl": "/docs/example-specs/core/facet/sine_offsets_scrollable.json",
+    "screenshotPath": "examples/core/facet/sine_offsets_scrollable.png",
+    "screenshotUrl": "/docs/example-specs/core/facet/sine_offsets_scrollable.png",
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
+    "id": "core/facet/sine_offsets",
+    "title": "Sine Curves with Phase Offsets",
+    "description": "Sine Curves with Phase Offsets",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Facet",
+    "specPath": "examples/core/facet/sine_offsets.json",
+    "specUrl": "/docs/example-specs/core/facet/sine_offsets.json",
+    "screenshotPath": "examples/core/facet/sine_offsets.png",
+    "screenshotUrl": "/docs/example-specs/core/facet/sine_offsets.png",
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/first",
@@ -1648,7 +2615,8 @@
     "specUrl": "/docs/example-specs/core/first.json",
     "screenshotPath": "examples/core/first.png",
     "screenshotUrl": "/docs/example-specs/core/first.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/ruler-nested-concat",
@@ -1661,7 +2629,22 @@
     "specUrl": "/docs/example-specs/core/ruler-nested-concat.json",
     "screenshotPath": "examples/core/ruler-nested-concat.png",
     "screenshotUrl": "/docs/example-specs/core/ruler-nested-concat.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
+    "id": "core/surround-acid-test",
+    "title": "Surround acid test",
+    "description": "Surround acid test",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "General",
+    "specPath": "examples/core/surround-acid-test.json",
+    "specUrl": "/docs/example-specs/core/surround-acid-test.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/genomic/bedBlocks",
@@ -1674,7 +2657,8 @@
     "specUrl": "/docs/example-specs/core/genomic/bedBlocks.json",
     "screenshotPath": "examples/core/genomic/bedBlocks.png",
     "screenshotUrl": "/docs/example-specs/core/genomic/bedBlocks.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/genomic/bedpeColumns",
@@ -1687,7 +2671,8 @@
     "specUrl": "/docs/example-specs/core/genomic/bedpeColumns.json",
     "screenshotPath": "examples/core/genomic/bedpeColumns.png",
     "screenshotUrl": "/docs/example-specs/core/genomic/bedpeColumns.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/genomic/longChromosomeNames",
@@ -1700,7 +2685,8 @@
     "specUrl": "/docs/example-specs/core/genomic/longChromosomeNames.json",
     "screenshotPath": "examples/core/genomic/longChromosomeNames.png",
     "screenshotUrl": "/docs/example-specs/core/genomic/longChromosomeNames.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/size_expr",
@@ -1713,7 +2699,8 @@
     "specUrl": "/docs/example-specs/core/layout/size_expr.json",
     "screenshotPath": "examples/core/layout/size_expr.png",
     "screenshotUrl": "/docs/example-specs/core/layout/size_expr.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/title_bounds",
@@ -1726,7 +2713,8 @@
     "specUrl": "/docs/example-specs/core/layout/title_bounds.json",
     "screenshotPath": "examples/core/layout/title_bounds.png",
     "screenshotUrl": "/docs/example-specs/core/layout/title_bounds.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/grid/scrollable_viewport2",
@@ -1739,7 +2727,8 @@
     "specUrl": "/docs/example-specs/core/layout/grid/scrollable_viewport2.json",
     "screenshotPath": "examples/core/layout/grid/scrollable_viewport2.png",
     "screenshotUrl": "/docs/example-specs/core/layout/grid/scrollable_viewport2.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/grid/scrollable_viewport",
@@ -1752,7 +2741,8 @@
     "specUrl": "/docs/example-specs/core/layout/grid/scrollable_viewport.json",
     "screenshotPath": "examples/core/layout/grid/scrollable_viewport.png",
     "screenshotUrl": "/docs/example-specs/core/layout/grid/scrollable_viewport.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/grid/concat_zindex_lollipops",
@@ -1765,7 +2755,8 @@
     "specUrl": "/docs/example-specs/core/layout/grid/concat_zindex_lollipops.json",
     "screenshotPath": "examples/core/layout/grid/concat_zindex_lollipops.png",
     "screenshotUrl": "/docs/example-specs/core/layout/grid/concat_zindex_lollipops.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/grid/concat_points_text",
@@ -1778,7 +2769,8 @@
     "specUrl": "/docs/example-specs/core/layout/grid/concat_points_text.json",
     "screenshotPath": "examples/core/layout/grid/concat_points_text.png",
     "screenshotUrl": "/docs/example-specs/core/layout/grid/concat_points_text.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/grid/condensed_concat",
@@ -1791,7 +2783,8 @@
     "specUrl": "/docs/example-specs/core/layout/grid/condensed_concat.json",
     "screenshotPath": "examples/core/layout/grid/condensed_concat.png",
     "screenshotUrl": "/docs/example-specs/core/layout/grid/condensed_concat.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/grid/vconcat_width_child_chrome",
@@ -1804,7 +2797,8 @@
     "specUrl": "/docs/example-specs/core/layout/grid/vconcat_width_child_chrome.json",
     "screenshotPath": "examples/core/layout/grid/vconcat_width_child_chrome.png",
     "screenshotUrl": "/docs/example-specs/core/layout/grid/vconcat_width_child_chrome.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/grid/hconcat_width_child_minimums",
@@ -1817,7 +2811,8 @@
     "specUrl": "/docs/example-specs/core/layout/grid/hconcat_width_child_minimums.json",
     "screenshotPath": "examples/core/layout/grid/hconcat_width_child_minimums.png",
     "screenshotUrl": "/docs/example-specs/core/layout/grid/hconcat_width_child_minimums.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/grid/concat",
@@ -1830,7 +2825,8 @@
     "specUrl": "/docs/example-specs/core/layout/grid/concat.json",
     "screenshotPath": "examples/core/layout/grid/concat.png",
     "screenshotUrl": "/docs/example-specs/core/layout/grid/concat.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/grid/complex_grid_layout_separators",
@@ -1843,7 +2839,8 @@
     "specUrl": "/docs/example-specs/core/layout/grid/complex_grid_layout_separators.json",
     "screenshotPath": "examples/core/layout/grid/complex_grid_layout_separators.png",
     "screenshotUrl": "/docs/example-specs/core/layout/grid/complex_grid_layout_separators.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/grid/complex_grid_layout",
@@ -1856,7 +2853,8 @@
     "specUrl": "/docs/example-specs/core/layout/grid/complex_grid_layout.json",
     "screenshotPath": "examples/core/layout/grid/complex_grid_layout.png",
     "screenshotUrl": "/docs/example-specs/core/layout/grid/complex_grid_layout.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/grid/complex_grid_layout2",
@@ -1869,7 +2867,8 @@
     "specUrl": "/docs/example-specs/core/layout/grid/complex_grid_layout2.json",
     "screenshotPath": "examples/core/layout/grid/complex_grid_layout2.png",
     "screenshotUrl": "/docs/example-specs/core/layout/grid/complex_grid_layout2.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/grid/shared_axis_at_root",
@@ -1882,7 +2881,8 @@
     "specUrl": "/docs/example-specs/core/layout/grid/shared_axis_at_root.json",
     "screenshotPath": "examples/core/layout/grid/shared_axis_at_root.png",
     "screenshotUrl": "/docs/example-specs/core/layout/grid/shared_axis_at_root.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/layer/heatmap_with_text",
@@ -1895,7 +2895,8 @@
     "specUrl": "/docs/example-specs/core/layout/layer/heatmap_with_text.json",
     "screenshotPath": "examples/core/layout/layer/heatmap_with_text.png",
     "screenshotUrl": "/docs/example-specs/core/layout/layer/heatmap_with_text.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/layer/rect",
@@ -1908,7 +2909,8 @@
     "specUrl": "/docs/example-specs/core/layout/layer/rect.json",
     "screenshotPath": "examples/core/layout/layer/rect.png",
     "screenshotUrl": "/docs/example-specs/core/layout/layer/rect.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/layout/layer/lollipop",
@@ -1921,7 +2923,8 @@
     "specUrl": "/docs/example-specs/core/layout/layer/lollipop.json",
     "screenshotPath": "examples/core/layout/layer/lollipop.png",
     "screenshotUrl": "/docs/example-specs/core/layout/layer/lollipop.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/lazy-data/bigbed",
@@ -1934,7 +2937,8 @@
     "specUrl": "/docs/example-specs/core/lazy-data/bigbed.json",
     "screenshotPath": "examples/core/lazy-data/bigbed.png",
     "screenshotUrl": "/docs/example-specs/core/lazy-data/bigbed.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/lazy-data/bigwig",
@@ -1947,7 +2951,8 @@
     "specUrl": "/docs/example-specs/core/lazy-data/bigwig.json",
     "screenshotPath": "examples/core/lazy-data/bigwig.png",
     "screenshotUrl": "/docs/example-specs/core/lazy-data/bigwig.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/lazy-data/indexed_fasta",
@@ -1960,7 +2965,8 @@
     "specUrl": "/docs/example-specs/core/lazy-data/indexed_fasta.json",
     "screenshotPath": "examples/core/lazy-data/indexed_fasta.png",
     "screenshotUrl": "/docs/example-specs/core/lazy-data/indexed_fasta.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/excluded-from-collection",
@@ -1973,7 +2979,8 @@
     "specUrl": "/docs/example-specs/core/legends/excluded-from-collection.json",
     "screenshotPath": "examples/core/legends/excluded-from-collection.png",
     "screenshotUrl": "/docs/example-specs/core/legends/excluded-from-collection.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/gradient-controls",
@@ -1986,7 +2993,8 @@
     "specUrl": "/docs/example-specs/core/legends/gradient-controls.json",
     "screenshotPath": "examples/core/legends/gradient-controls.png",
     "screenshotUrl": "/docs/example-specs/core/legends/gradient-controls.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/bubble-health-income",
@@ -1999,7 +3007,8 @@
     "specUrl": "/docs/example-specs/core/legends/bubble-health-income.json",
     "screenshotPath": "examples/core/legends/bubble-health-income.png",
     "screenshotUrl": "/docs/example-specs/core/legends/bubble-health-income.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/horizontal-stacked-bar",
@@ -2012,7 +3021,8 @@
     "specUrl": "/docs/example-specs/core/legends/horizontal-stacked-bar.json",
     "screenshotPath": "examples/core/legends/horizontal-stacked-bar.png",
     "screenshotUrl": "/docs/example-specs/core/legends/horizontal-stacked-bar.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/root-collected-legends",
@@ -2025,7 +3035,8 @@
     "specUrl": "/docs/example-specs/core/legends/root-collected-legends.json",
     "screenshotPath": "examples/core/legends/root-collected-legends.png",
     "screenshotUrl": "/docs/example-specs/core/legends/root-collected-legends.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/layered-legend-regions",
@@ -2038,7 +3049,8 @@
     "specUrl": "/docs/example-specs/core/legends/layered-legend-regions.json",
     "screenshotPath": "examples/core/legends/layered-legend-regions.png",
     "screenshotUrl": "/docs/example-specs/core/legends/layered-legend-regions.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/region-layout-directions",
@@ -2051,7 +3063,8 @@
     "specUrl": "/docs/example-specs/core/legends/region-layout-directions.json",
     "screenshotPath": "examples/core/legends/region-layout-directions.png",
     "screenshotUrl": "/docs/example-specs/core/legends/region-layout-directions.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/corner-horizontal",
@@ -2064,7 +3077,8 @@
     "specUrl": "/docs/example-specs/core/legends/corner-horizontal.json",
     "screenshotPath": "examples/core/legends/corner-horizontal.png",
     "screenshotUrl": "/docs/example-specs/core/legends/corner-horizontal.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/linear-gradient",
@@ -2077,7 +3091,8 @@
     "specUrl": "/docs/example-specs/core/legends/linear-gradient.json",
     "screenshotPath": "examples/core/legends/linear-gradient.png",
     "screenshotUrl": "/docs/example-specs/core/legends/linear-gradient.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/log-gradient",
@@ -2090,7 +3105,8 @@
     "specUrl": "/docs/example-specs/core/legends/log-gradient.json",
     "screenshotPath": "examples/core/legends/log-gradient.png",
     "screenshotUrl": "/docs/example-specs/core/legends/log-gradient.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/quantize-gradient",
@@ -2103,7 +3119,8 @@
     "specUrl": "/docs/example-specs/core/legends/quantize-gradient.json",
     "screenshotPath": "examples/core/legends/quantize-gradient.png",
     "screenshotUrl": "/docs/example-specs/core/legends/quantize-gradient.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/threshold-gradient",
@@ -2116,7 +3133,8 @@
     "specUrl": "/docs/example-specs/core/legends/threshold-gradient.json",
     "screenshotPath": "examples/core/legends/threshold-gradient.png",
     "screenshotUrl": "/docs/example-specs/core/legends/threshold-gradient.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/mixed-horizontal-legends",
@@ -2129,7 +3147,8 @@
     "specUrl": "/docs/example-specs/core/legends/mixed-horizontal-legends.json",
     "screenshotPath": "examples/core/legends/mixed-horizontal-legends.png",
     "screenshotUrl": "/docs/example-specs/core/legends/mixed-horizontal-legends.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/redundant-encoding",
@@ -2142,7 +3161,8 @@
     "specUrl": "/docs/example-specs/core/legends/redundant-encoding.json",
     "screenshotPath": "examples/core/legends/redundant-encoding.png",
     "screenshotUrl": "/docs/example-specs/core/legends/redundant-encoding.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/legends/region-wrapping",
@@ -2155,7 +3175,8 @@
     "specUrl": "/docs/example-specs/core/legends/region-wrapping.json",
     "screenshotPath": "examples/core/legends/region-wrapping.png",
     "screenshotUrl": "/docs/example-specs/core/legends/region-wrapping.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/arrow/arrow_band_size",
@@ -2168,7 +3189,8 @@
     "specUrl": "/docs/example-specs/core/marks/arrow/arrow_band_size.json",
     "screenshotPath": "examples/core/marks/arrow/arrow_band_size.png",
     "screenshotUrl": "/docs/example-specs/core/marks/arrow/arrow_band_size.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/arrow/arrow_block_bands",
@@ -2181,7 +3203,8 @@
     "specUrl": "/docs/example-specs/core/marks/arrow/arrow_block_bands.json",
     "screenshotPath": "examples/core/marks/arrow/arrow_block_bands.png",
     "screenshotUrl": "/docs/example-specs/core/marks/arrow/arrow_block_bands.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/arrow/arrow_diagonal",
@@ -2194,7 +3217,8 @@
     "specUrl": "/docs/example-specs/core/marks/arrow/arrow_diagonal.json",
     "screenshotPath": "examples/core/marks/arrow/arrow_diagonal.png",
     "screenshotUrl": "/docs/example-specs/core/marks/arrow/arrow_diagonal.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/arrow/arrow_direction",
@@ -2207,7 +3231,8 @@
     "specUrl": "/docs/example-specs/core/marks/arrow/arrow_direction.json",
     "screenshotPath": "examples/core/marks/arrow/arrow_direction.png",
     "screenshotUrl": "/docs/example-specs/core/marks/arrow/arrow_direction.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/link/link",
@@ -2220,7 +3245,22 @@
     "specUrl": "/docs/example-specs/core/marks/link/link.json",
     "screenshotPath": "examples/core/marks/link/link.png",
     "screenshotUrl": "/docs/example-specs/core/marks/link/link.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
+    "id": "core/marks/link/dendrogram-gaps",
+    "title": "Gapped dendrogram shapes",
+    "description": "Gapped dendrogram shapes",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Marks / Link",
+    "specPath": "examples/core/marks/link/dendrogram-gaps.json",
+    "specUrl": "/docs/example-specs/core/marks/link/dendrogram-gaps.json",
+    "screenshotPath": "examples/core/marks/link/dendrogram-gaps.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/link/dendrogram-gaps.png",
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/point/point2d",
@@ -2233,7 +3273,8 @@
     "specUrl": "/docs/example-specs/core/marks/point/point2d.json",
     "screenshotPath": "examples/core/marks/point/point2d.png",
     "screenshotUrl": "/docs/example-specs/core/marks/point/point2d.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/point/point",
@@ -2246,7 +3287,8 @@
     "specUrl": "/docs/example-specs/core/marks/point/point.json",
     "screenshotPath": "examples/core/marks/point/point.png",
     "screenshotUrl": "/docs/example-specs/core/marks/point/point.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/rect/bar",
@@ -2259,7 +3301,8 @@
     "specUrl": "/docs/example-specs/core/marks/rect/bar.json",
     "screenshotPath": "examples/core/marks/rect/bar.png",
     "screenshotUrl": "/docs/example-specs/core/marks/rect/bar.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/rect/grouped-bars-layered",
@@ -2272,7 +3315,8 @@
     "specUrl": "/docs/example-specs/core/marks/rect/grouped-bars-layered.json",
     "screenshotPath": "examples/core/marks/rect/grouped-bars-layered.png",
     "screenshotUrl": "/docs/example-specs/core/marks/rect/grouped-bars-layered.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/rect/index_bars",
@@ -2285,7 +3329,8 @@
     "specUrl": "/docs/example-specs/core/marks/rect/index_bars.json",
     "screenshotPath": "examples/core/marks/rect/index_bars.png",
     "screenshotUrl": "/docs/example-specs/core/marks/rect/index_bars.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/rect/heatmap",
@@ -2298,7 +3343,8 @@
     "specUrl": "/docs/example-specs/core/marks/rect/heatmap.json",
     "screenshotPath": "examples/core/marks/rect/heatmap.png",
     "screenshotUrl": "/docs/example-specs/core/marks/rect/heatmap.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/rect/rect_with_params",
@@ -2311,7 +3357,8 @@
     "specUrl": "/docs/example-specs/core/marks/rect/rect_with_params.json",
     "screenshotPath": "examples/core/marks/rect/rect_with_params.png",
     "screenshotUrl": "/docs/example-specs/core/marks/rect/rect_with_params.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/rule/rule_test",
@@ -2324,7 +3371,8 @@
     "specUrl": "/docs/example-specs/core/marks/rule/rule_test.json",
     "screenshotPath": "examples/core/marks/rule/rule_test.png",
     "screenshotUrl": "/docs/example-specs/core/marks/rule/rule_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/rule/rule_test4",
@@ -2337,7 +3385,8 @@
     "specUrl": "/docs/example-specs/core/marks/rule/rule_test4.json",
     "screenshotPath": "examples/core/marks/rule/rule_test4.png",
     "screenshotUrl": "/docs/example-specs/core/marks/rule/rule_test4.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/rule/rules",
@@ -2350,7 +3399,8 @@
     "specUrl": "/docs/example-specs/core/marks/rule/rules.json",
     "screenshotPath": "examples/core/marks/rule/rules.png",
     "screenshotUrl": "/docs/example-specs/core/marks/rule/rules.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/text/text_with_params",
@@ -2363,7 +3413,8 @@
     "specUrl": "/docs/example-specs/core/marks/text/text_with_params.json",
     "screenshotPath": "examples/core/marks/text/text_with_params.png",
     "screenshotUrl": "/docs/example-specs/core/marks/text/text_with_params.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/text/ranged_text",
@@ -2376,7 +3427,8 @@
     "specUrl": "/docs/example-specs/core/marks/text/ranged_text.json",
     "screenshotPath": "examples/core/marks/text/ranged_text.png",
     "screenshotUrl": "/docs/example-specs/core/marks/text/ranged_text.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/text/text_sequence",
@@ -2389,7 +3441,8 @@
     "specUrl": "/docs/example-specs/core/marks/text/text_sequence.json",
     "screenshotPath": "examples/core/marks/text/text_sequence.png",
     "screenshotUrl": "/docs/example-specs/core/marks/text/text_sequence.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/text/text_baseline",
@@ -2402,7 +3455,8 @@
     "specUrl": "/docs/example-specs/core/marks/text/text_baseline.json",
     "screenshotPath": "examples/core/marks/text/text_baseline.png",
     "screenshotUrl": "/docs/example-specs/core/marks/text/text_baseline.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/marks/text/quality",
@@ -2415,7 +3469,8 @@
     "specUrl": "/docs/example-specs/core/marks/text/quality.json",
     "screenshotPath": "examples/core/marks/text/quality.png",
     "screenshotUrl": "/docs/example-specs/core/marks/text/quality.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/renderer/canvas-dense-points",
@@ -2428,7 +3483,8 @@
     "specUrl": "/docs/example-specs/core/renderer/canvas-dense-points.json",
     "screenshotPath": "examples/core/renderer/canvas-dense-points.png",
     "screenshotUrl": "/docs/example-specs/core/renderer/canvas-dense-points.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/renderer/canvas-dense-rects",
@@ -2441,7 +3497,8 @@
     "specUrl": "/docs/example-specs/core/renderer/canvas-dense-rects.json",
     "screenshotPath": "examples/core/renderer/canvas-dense-rects.png",
     "screenshotUrl": "/docs/example-specs/core/renderer/canvas-dense-rects.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/ruler/crosshair",
@@ -2454,7 +3511,8 @@
     "specUrl": "/docs/example-specs/core/ruler/crosshair.json",
     "screenshotPath": "examples/core/ruler/crosshair.png",
     "screenshotUrl": "/docs/example-specs/core/ruler/crosshair.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/ruler/vconcat-independent",
@@ -2467,7 +3525,8 @@
     "specUrl": "/docs/example-specs/core/ruler/vconcat-independent.json",
     "screenshotPath": "examples/core/ruler/vconcat-independent.png",
     "screenshotUrl": "/docs/example-specs/core/ruler/vconcat-independent.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/ruler/mouse-events",
@@ -2480,7 +3539,8 @@
     "specUrl": "/docs/example-specs/core/ruler/mouse-events.json",
     "screenshotPath": "examples/core/ruler/mouse-events.png",
     "screenshotUrl": "/docs/example-specs/core/ruler/mouse-events.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/ruler/hconcat-push-outer",
@@ -2493,7 +3553,8 @@
     "specUrl": "/docs/example-specs/core/ruler/hconcat-push-outer.json",
     "screenshotPath": "examples/core/ruler/hconcat-push-outer.png",
     "screenshotUrl": "/docs/example-specs/core/ruler/hconcat-push-outer.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/ruler/vconcat-spanning",
@@ -2506,7 +3567,8 @@
     "specUrl": "/docs/example-specs/core/ruler/vconcat-spanning.json",
     "screenshotPath": "examples/core/ruler/vconcat-spanning.png",
     "screenshotUrl": "/docs/example-specs/core/ruler/vconcat-spanning.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/ruler/styling",
@@ -2519,7 +3581,8 @@
     "specUrl": "/docs/example-specs/core/ruler/styling.json",
     "screenshotPath": "examples/core/ruler/styling.png",
     "screenshotUrl": "/docs/example-specs/core/ruler/styling.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/ruler/viewport-index",
@@ -2532,7 +3595,8 @@
     "specUrl": "/docs/example-specs/core/ruler/viewport-index.json",
     "screenshotPath": "examples/core/ruler/viewport-index.png",
     "screenshotUrl": "/docs/example-specs/core/ruler/viewport-index.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/axis_label_overlap",
@@ -2545,7 +3609,8 @@
     "specUrl": "/docs/example-specs/core/scales/axis_label_overlap.json",
     "screenshotPath": "examples/core/scales/axis_label_overlap.png",
     "screenshotUrl": "/docs/example-specs/core/scales/axis_label_overlap.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/constrained_locus_test",
@@ -2558,7 +3623,8 @@
     "specUrl": "/docs/example-specs/core/scales/constrained_locus_test.json",
     "screenshotPath": "examples/core/scales/constrained_locus_test.png",
     "screenshotUrl": "/docs/example-specs/core/scales/constrained_locus_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/diverging_test",
@@ -2571,7 +3637,8 @@
     "specUrl": "/docs/example-specs/core/scales/diverging_test.json",
     "screenshotPath": "examples/core/scales/diverging_test.png",
     "screenshotUrl": "/docs/example-specs/core/scales/diverging_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/index_scale_test",
@@ -2584,7 +3651,8 @@
     "specUrl": "/docs/example-specs/core/scales/index_scale_test.json",
     "screenshotPath": "examples/core/scales/index_scale_test.png",
     "screenshotUrl": "/docs/example-specs/core/scales/index_scale_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/log_test",
@@ -2597,7 +3665,8 @@
     "specUrl": "/docs/example-specs/core/scales/log_test.json",
     "screenshotPath": "examples/core/scales/log_test.png",
     "screenshotUrl": "/docs/example-specs/core/scales/log_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/ordinal_position_test",
@@ -2610,7 +3679,8 @@
     "specUrl": "/docs/example-specs/core/scales/ordinal_position_test.json",
     "screenshotPath": "examples/core/scales/ordinal_position_test.png",
     "screenshotUrl": "/docs/example-specs/core/scales/ordinal_position_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/parameterized_range_test",
@@ -2623,7 +3693,8 @@
     "specUrl": "/docs/example-specs/core/scales/parameterized_range_test.json",
     "screenshotPath": "examples/core/scales/parameterized_range_test.png",
     "screenshotUrl": "/docs/example-specs/core/scales/parameterized_range_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/piecewise_test",
@@ -2636,7 +3707,8 @@
     "specUrl": "/docs/example-specs/core/scales/piecewise_test.json",
     "screenshotPath": "examples/core/scales/piecewise_test.png",
     "screenshotUrl": "/docs/example-specs/core/scales/piecewise_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/band_test",
@@ -2649,7 +3721,8 @@
     "specUrl": "/docs/example-specs/core/scales/band_test.json",
     "screenshotPath": "examples/core/scales/band_test.png",
     "screenshotUrl": "/docs/example-specs/core/scales/band_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/symlog_test",
@@ -2662,7 +3735,8 @@
     "specUrl": "/docs/example-specs/core/scales/symlog_test.json",
     "screenshotPath": "examples/core/scales/symlog_test.png",
     "screenshotUrl": "/docs/example-specs/core/scales/symlog_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/threshold_test",
@@ -2675,7 +3749,8 @@
     "specUrl": "/docs/example-specs/core/scales/threshold_test.json",
     "screenshotPath": "examples/core/scales/threshold_test.png",
     "screenshotUrl": "/docs/example-specs/core/scales/threshold_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/band_test2",
@@ -2688,7 +3763,8 @@
     "specUrl": "/docs/example-specs/core/scales/band_test2.json",
     "screenshotPath": "examples/core/scales/band_test2.png",
     "screenshotUrl": "/docs/example-specs/core/scales/band_test2.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/scales/large_genome_test",
@@ -2701,7 +3777,8 @@
     "specUrl": "/docs/example-specs/core/scales/large_genome_test.json",
     "screenshotPath": "examples/core/scales/large_genome_test.png",
     "screenshotUrl": "/docs/example-specs/core/scales/large_genome_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/selection/interval_sequence",
@@ -2714,7 +3791,8 @@
     "specUrl": "/docs/example-specs/core/selection/interval_sequence.json",
     "screenshotPath": "examples/core/selection/interval_sequence.png",
     "screenshotUrl": "/docs/example-specs/core/selection/interval_sequence.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/selection/interval_genome",
@@ -2727,7 +3805,8 @@
     "specUrl": "/docs/example-specs/core/selection/interval_genome.json",
     "screenshotPath": "examples/core/selection/interval_genome.png",
     "screenshotUrl": "/docs/example-specs/core/selection/interval_genome.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/selection/bars",
@@ -2740,7 +3819,8 @@
     "specUrl": "/docs/example-specs/core/selection/bars.json",
     "screenshotPath": "examples/core/selection/bars.png",
     "screenshotUrl": "/docs/example-specs/core/selection/bars.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/selection/bars_shift",
@@ -2753,7 +3833,8 @@
     "specUrl": "/docs/example-specs/core/selection/bars_shift.json",
     "screenshotPath": "examples/core/selection/bars_shift.png",
     "screenshotUrl": "/docs/example-specs/core/selection/bars_shift.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/selection/interval_points",
@@ -2766,7 +3847,8 @@
     "specUrl": "/docs/example-specs/core/selection/interval_points.json",
     "screenshotPath": "examples/core/selection/interval_points.png",
     "screenshotUrl": "/docs/example-specs/core/selection/interval_points.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/selection/interval_linked_domain",
@@ -2779,7 +3861,8 @@
     "specUrl": "/docs/example-specs/core/selection/interval_linked_domain.json",
     "screenshotPath": "examples/core/selection/interval_linked_domain.png",
     "screenshotUrl": "/docs/example-specs/core/selection/interval_linked_domain.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/selection/selection_union",
@@ -2792,7 +3875,8 @@
     "specUrl": "/docs/example-specs/core/selection/selection_union.json",
     "screenshotPath": "examples/core/selection/selection_union.png",
     "screenshotUrl": "/docs/example-specs/core/selection/selection_union.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/selection/interval_ranged",
@@ -2805,7 +3889,8 @@
     "specUrl": "/docs/example-specs/core/selection/interval_ranged.json",
     "screenshotPath": "examples/core/selection/interval_ranged.png",
     "screenshotUrl": "/docs/example-specs/core/selection/interval_ranged.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/selection/interval_ranged_test",
@@ -2818,7 +3903,8 @@
     "specUrl": "/docs/example-specs/core/selection/interval_ranged_test.json",
     "screenshotPath": "examples/core/selection/interval_ranged_test.png",
     "screenshotUrl": "/docs/example-specs/core/selection/interval_ranged_test.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/selection/interval_concat",
@@ -2831,7 +3917,8 @@
     "specUrl": "/docs/example-specs/core/selection/interval_concat.json",
     "screenshotPath": "examples/core/selection/interval_concat.png",
     "screenshotUrl": "/docs/example-specs/core/selection/interval_concat.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/selection/interval_linked_domain_two_way",
@@ -2844,7 +3931,8 @@
     "specUrl": "/docs/example-specs/core/selection/interval_linked_domain_two_way.json",
     "screenshotPath": "examples/core/selection/interval_linked_domain_two_way.png",
     "screenshotUrl": "/docs/example-specs/core/selection/interval_linked_domain_two_way.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/techniques/geometric_zoom_expr",
@@ -2857,7 +3945,8 @@
     "specUrl": "/docs/example-specs/core/techniques/geometric_zoom_expr.json",
     "screenshotPath": "examples/core/techniques/geometric_zoom_expr.png",
     "screenshotUrl": "/docs/example-specs/core/techniques/geometric_zoom_expr.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/techniques/geometric_zoom",
@@ -2870,7 +3959,8 @@
     "specUrl": "/docs/example-specs/core/techniques/geometric_zoom.json",
     "screenshotPath": "examples/core/techniques/geometric_zoom.png",
     "screenshotUrl": "/docs/example-specs/core/techniques/geometric_zoom.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/techniques/input_element_binding",
@@ -2883,7 +3973,8 @@
     "specUrl": "/docs/example-specs/core/techniques/input_element_binding.json",
     "screenshotPath": "examples/core/techniques/input_element_binding.png",
     "screenshotUrl": "/docs/example-specs/core/techniques/input_element_binding.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/techniques/semantic_zoom",
@@ -2896,7 +3987,8 @@
     "specUrl": "/docs/example-specs/core/techniques/semantic_zoom.json",
     "screenshotPath": "examples/core/techniques/semantic_zoom.png",
     "screenshotUrl": "/docs/example-specs/core/techniques/semantic_zoom.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/techniques/multiscale",
@@ -2909,7 +4001,8 @@
     "specUrl": "/docs/example-specs/core/techniques/multiscale.json",
     "screenshotPath": "examples/core/techniques/multiscale.png",
     "screenshotUrl": "/docs/example-specs/core/techniques/multiscale.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/transforms/pileup",
@@ -2922,7 +4015,8 @@
     "specUrl": "/docs/example-specs/core/transforms/pileup.json",
     "screenshotPath": "examples/core/transforms/pileup.png",
     "screenshotUrl": "/docs/example-specs/core/transforms/pileup.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/transforms/pileup-labels",
@@ -2935,7 +4029,8 @@
     "specUrl": "/docs/example-specs/core/transforms/pileup-labels.json",
     "screenshotPath": "examples/core/transforms/pileup-labels.png",
     "screenshotUrl": "/docs/example-specs/core/transforms/pileup-labels.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/transforms/displace2d/stress",
@@ -2948,7 +4043,8 @@
     "specUrl": "/docs/example-specs/core/transforms/displace2d/stress.json",
     "screenshotPath": "examples/core/transforms/displace2d/stress.png",
     "screenshotUrl": "/docs/example-specs/core/transforms/displace2d/stress.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "core/transforms/displace2d/reversed-axes",
@@ -2961,7 +4057,8 @@
     "specUrl": "/docs/example-specs/core/transforms/displace2d/reversed-axes.json",
     "screenshotPath": "examples/core/transforms/displace2d/reversed-axes.png",
     "screenshotUrl": "/docs/example-specs/core/transforms/displace2d/reversed-axes.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": []
   },
   {
     "id": "app/samples",
@@ -2974,7 +4071,13 @@
     "specUrl": "/docs/example-specs/app/samples.json",
     "screenshotPath": "examples/app/samples.png",
     "screenshotUrl": "/docs/example-specs/app/samples.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Visualizing Sample Collections",
+        "url": "https://genomespy.app/docs/sample-collections/visualizing/#example"
+      }
+    ]
   },
   {
     "id": "app/copy-numbers",
@@ -2987,7 +4090,13 @@
     "specUrl": "/docs/example-specs/app/copy-numbers.json",
     "screenshotPath": "examples/app/copy-numbers.png",
     "screenshotUrl": "/docs/example-specs/app/copy-numbers.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Aggregating Samples",
+        "url": "https://genomespy.app/docs/sample-collections/aggregating-samples/#copy-number-landscape"
+      }
+    ]
   },
   {
     "id": "app/multi-url-bigwig",
@@ -3000,7 +4109,13 @@
     "specUrl": "/docs/example-specs/app/multi-url-bigwig.json",
     "screenshotPath": "examples/app/multi-url-bigwig.png",
     "screenshotUrl": "/docs/example-specs/app/multi-url-bigwig.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "URL Templates and Multiple Files",
+        "url": "https://genomespy.app/docs/grammar/data/multi-url/#app-example"
+      }
+    ]
   },
   {
     "id": "app/metadata-hierarchy",
@@ -3013,7 +4128,13 @@
     "specUrl": "/docs/example-specs/app/metadata-hierarchy.json",
     "screenshotPath": "examples/app/metadata-hierarchy.png",
     "screenshotUrl": "/docs/example-specs/app/metadata-hierarchy.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Configuring Metadata Sources",
+        "url": "https://genomespy.app/docs/sample-collections/metadata-sources/#example"
+      }
+    ]
   },
   {
     "id": "app/samples-identity",
@@ -3026,7 +4147,13 @@
     "specUrl": "/docs/example-specs/app/samples-identity.json",
     "screenshotPath": "examples/app/samples-identity.png",
     "screenshotUrl": "/docs/example-specs/app/samples-identity.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Visualizing Sample Collections",
+        "url": "https://genomespy.app/docs/sample-collections/visualizing/#example_1"
+      }
+    ]
   },
   {
     "id": "app/metadata-data-source",
@@ -3039,7 +4166,13 @@
     "specUrl": "/docs/example-specs/app/metadata-data-source.json",
     "screenshotPath": "examples/app/metadata-data-source.png",
     "screenshotUrl": "/docs/example-specs/app/metadata-data-source.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Configuring Metadata Sources",
+        "url": "https://genomespy.app/docs/sample-collections/metadata-sources/#inline-data-backend-example"
+      }
+    ]
   },
   {
     "id": "app/expression-zscores",
@@ -3052,6 +4185,12 @@
     "specUrl": "/docs/example-specs/app/expression-zscores.json",
     "screenshotPath": "examples/app/expression-zscores.png",
     "screenshotUrl": "/docs/example-specs/app/expression-zscores.png",
-    "sourceMode": "shared-example"
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Aggregating Samples",
+        "url": "https://genomespy.app/docs/sample-collections/aggregating-samples/#mean-z-score-example"
+      }
+    ]
   }
 ]

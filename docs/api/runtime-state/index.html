@@ -606,6 +606,8 @@
       
         
       
+        
+      
     
     
     
@@ -776,6 +778,33 @@
     
   
   Cross
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/dendrogram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dendrogram
 
     
   </span>
@@ -1734,6 +1763,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1823,6 +1856,60 @@
     
   
   Layer
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/composition/surround/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Surround
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/facet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Facet
 
     
   </span>
@@ -2446,6 +2533,8 @@
       
         
       
+        
+      
     
     
     
@@ -2743,6 +2832,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-point-selections" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Setting point selections
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-appearance" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Updating appearance
+      </span>
+    </span>
+  </a>
+  
 </li>
       
     </ul>
@@ -2835,6 +2952,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editor-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Editor Integration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2853,6 +2997,8 @@
       
         
           
+        
+      
         
       
         
@@ -3404,6 +3550,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../examples/generic/clustered-heatmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Clustered Heatmap with Dendrograms
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../examples/generic/upsetr-mutations/" class="md-nav__link">
         
   
@@ -3597,6 +3770,34 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         Parameters
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-point-selections" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Setting point selections
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-appearance" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Updating appearance
       </span>
     </span>
   </a>
@@ -3858,9 +4059,65 @@ snapshot shape is returned by <code>getValue()</code> and passed to subscription
 package.</p>
 <p>To read a selection, use <code>api.params.getSelection(name)</code> or the corresponding
 <code>view.params</code> namespace. It provides detached point and interval snapshots,
-future-only subscriptions, interval containment, and <code>clear()</code>. See
+future-only subscriptions, interval containment, keyed point-selection writes,
+and <code>clear()</code>. See
 <a href=".././views/#marks-and-scoped-interaction">Marks and scoped interaction</a> for the
 selection and lifecycle rules shared by these handles.</p>
+<h3 id="setting-point-selections">Setting point selections<a class="headerlink" href="#setting-point-selections" title="Permanent link">&para;</a></h3>
+<p>Obtain a point selection through the unit view supplying its records, including
+when the parameter is declared in an ancestor. <code>setValue(keys)</code> replaces native
+membership and drives the same subscriptions and conditional encodings as picking:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">track</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">views</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span><span class="w"> </span><span class="nx">scope</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="nx">view</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;observations&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">track</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">(</span><span class="s2">&quot;selected&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">selected</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">)</span><span class="w"> </span><span class="nx">selected</span><span class="p">.</span><span class="nx">setValue</span><span class="p">([[</span><span class="s2">&quot;B&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]]);</span>
+</code></pre></div>
+<p>Tuples follow <code>encoding.key</code> order: <code>{field: "id"}</code> takes <code>["B"]</code>; a composite
+<code>[{field: "chrom"}, {field: "pos"}]</code> takes <code>["chr1", 123]</code>. Keys must be unique,
+non-null strings, booleans, or finite numbers in ready loaded transformed records.
+Invalid, missing, or ambiguous keys reject the entire write without changing
+membership. Single selections (<code>toggle: false</code>) accept at most one tuple; <code>[]</code>
+clears without requiring data or a key. The setter works across mark types,
+including text and rectangles. Membership binds the current publication; apps
+clear or reapply it after replacing datasets.</p>
+<h2 id="updating-appearance">Updating appearance<a class="headerlink" href="#updating-appearance" title="Permanent link">&para;</a></h2>
+<p>The default theme follows
+<a href="../../grammar/config/#default-theme-palette">CSS appearance settings</a>
+automatically when the browser preference or attributes on the container or its
+ancestors change.</p>
+<p>For exclusive programmatic control, declare <code>defaultThemeColors</code> in the root
+<code>params</code> before embedding. This disables automatic CSS updates:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;defaultThemeColors&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;foreground&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#352719&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;grid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#ded2c0&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Palette fields are <code>foreground</code>, <code>stroke</code>, <code>grid</code>, <code>chromosomeTick</code>,
+<code>symbolStroke</code>, and <code>background</code>. Omitted roles use the built-in light defaults,
+including colors introduced in future versions. Set <code>background</code> to <code>null</code> for
+transparency.</p>
+<p>Update the palette through the parameter API:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;defaultThemeColors&quot;</span><span class="p">);</span>
+<span class="nx">colors</span><span class="p">.</span><span class="nx">setValue</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">foreground</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;#352719&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">grid</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;#ded2c0&quot;</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Each write replaces the object; omitted roles revert to their defaults rather
+than previous values. <code>getValue()</code> returns the supplied object. Mutating its
+properties does not publish an update. Without an explicit declaration, manual
+writes to the automatic palette last until the next CSS refresh.</p>
+<p>An authored <code>expr</code> parameter can compute a partial palette instead; it remains
+read-only. Descendant views can shadow <code>defaultThemeColors</code> through normal
+parameter scoping. The canvas background uses the root palette.</p>
+<p>The <a href="https://github.com/genome-spy/genome-spy/tree/master/packages/embed-examples/src/darkMode">light and dark mode example</a>
+shows System, Light, Dark, and Custom modes on one running visualization.</p>
 
 
 

@@ -1,0 +1,33 @@
+import { Xt as e } from "./clipOptions-BnC5TVd8.js";
+//#region ../core/src/utils/propertyCacher.js
+var t = Symbol("cacheMap");
+function n(e, t, n) {
+	let r = o(e).get(t);
+	return r === void 0 && (r = n(t), o(e).set(t, r)), r;
+}
+function r(e, t) {
+	o(e).delete(t);
+}
+function i(e, t) {
+	let n = o(e);
+	for (let e of n.keys()) e.startsWith(t) && n.delete(e);
+	o(e).delete(t);
+}
+function a(e) {
+	e[t] = /* @__PURE__ */ new Map();
+}
+function o(e) {
+	return e[t] || a(e), e[t];
+}
+//#endregion
+//#region ../core/src/view/viewError.js
+var s = class extends Error {
+	constructor(e, t) {
+		super(e), this.name = "ViewError", this.view = t;
+	}
+	withSpecLocation(t = this.view.spec, n = []) {
+		return e(this, this.view.paramRuntime.getSpecLocation(t, n)), this;
+	}
+};
+//#endregion
+export { i as a, r as i, n, a as r, s as t };
