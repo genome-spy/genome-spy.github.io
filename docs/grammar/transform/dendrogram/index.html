@@ -3804,35 +3804,23 @@ precision limits.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code></dt>
-<dd>
-<p>Type: array</p>
-<p>Output field names for source/target IDs, heights, integer anchors, and fractional offsets. Generated values overwrite copied child metadata. Names must be distinct and cannot use the reserved internal __uniqueId.</p>
+<dd>Type: array<p>Output field names for source/target IDs, heights, integer anchors, and fractional offsets. Generated values overwrite copied child metadata. Names must be distinct and cannot use the reserved internal __uniqueId.</p>
 <p><strong>Default value:</strong> ["sourceId", "targetId", "sourceHeight", "targetHeight", "sourceIndex", "targetIndex", "sourceOffset", "targetOffset"]</p>
 </dd>
 <dt><code>description</code></dt>
-<dd>
-<p>Type: string</p>
-<p>A description of the transform step. Can be used for documentation and agent context.</p>
+<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 <dt><code>height</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string (field name)</p>
-<p>Finite, nonnegative merge height, including leaf heights.</p>
+<dd>Type: string (field name)<p>Finite, nonnegative merge height, including leaf heights.</p>
 </dd>
 <dt><code>key</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string (field name)</p>
-<p>Unique string or finite numeric node identifier.</p>
+<dd>Type: string (field name)<p>Unique string or finite numeric node identifier.</p>
 </dd>
 <dt><code>leafIndex</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string (field name)</p>
-<p>Integer row position for each leaf, matching the heatmap order. Indices must be distinct and in [0, 2^44); each subtree's leaves must be contiguous in the ordered leaf sequence. Internal nodes need no value in this field.</p>
+<dd>Type: string (field name)<p>Integer row position for each leaf, matching the heatmap order. Indices must be distinct and in [0, 2^44); each subtree's leaves must be contiguous in the ordered leaf sequence. Internal nodes need no value in this field.</p>
 </dd>
 <dt><code>parentKey</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: string (field name)</p>
-<p>Parent node identifier. Exactly one root must contain null.</p>
+<dd>Type: string (field name)<p>Parent node identifier. Exactly one root must contain null.</p>
 </dd>
 </dl>
 

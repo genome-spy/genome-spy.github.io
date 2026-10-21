@@ -1,5 +1,5 @@
-import { K as e, ht as t, lt as n, pt as r, t as i, ut as a } from "./src-C_yn6cyJ.js";
-import { n as o, t as s } from "./ref-7R5qqoJf.js";
+import { K as e, ht as t, lt as n, pt as r, t as i, ut as a } from "./src-B7HI0ql9.js";
+import { n as o, t as s } from "./ref-BrhKEIoN.js";
 //#region index.js
 function c() {
 	let e = document.querySelector("meta[name='base_url']").getAttribute("content");
@@ -15,7 +15,7 @@ async function u(e, t, n, r, a) {
 	try {
 		if (t.baseUrl = t.baseUrl || (n ? l(n) : o), r === "core") return await i(e, t, { onError: c });
 		if (r === "app") {
-			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-C7rV0uKX.js");
+			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-DMpYCrvA.js");
 			return await a(n), await r(e, t, {
 				embedMode: "embedded",
 				onError: c

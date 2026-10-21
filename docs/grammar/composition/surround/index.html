@@ -4124,55 +4124,37 @@ shared values and <code>push: "outer"</code> targets.</p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>spec</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/#unit-view-reference">UnitSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#layerspec">LayerSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#properties">MultiscaleSpec</a> | <a href="https://genomespy.app/docs/grammar/import/#properties">ImportSpec</a></p>
-<p>Central plot. Accepts unit plots, layers, multiscale layers, and imports resolving to these. Its width and height determine the aligned plot size.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/#unit-view-reference">UnitSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#layerspec">LayerSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#properties">MultiscaleSpec</a> | <a href="https://genomespy.app/docs/grammar/import/#properties">ImportSpec</a><p>Central plot. Accepts unit plots, layers, multiscale layers, and imports resolving to these. Its width and height determine the aligned plot size.</p>
 </dd>
 <dt><code>surround</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/composition/surround/#sides">SurroundSides</a></p>
-<p>Optional top, right, bottom, and left groups. Each accepts an array of plots or an object with <code>views</code> and shared view settings. Top/bottom plots share the center's x scale; left/right plots share its y scale.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/composition/surround/#sides">SurroundSides</a><p>Optional top, right, bottom, and left groups. Each accepts an array of plots or an object with <code>views</code> and shared view settings. Top/bottom plots share the center's x scale; left/right plots share its y scale.</p>
 </dd>
 <dt><code>spacing</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Gap between the center and each side, in pixels. <strong>Default value:</strong> <code>10</code></p>
+<dd>Type: number<p>Gap between the center and each side, in pixels. <strong>Default value:</strong> <code>10</code></p>
 </dd>
 </dl>
 <h3 id="sides">Sides<a class="headerlink" href="#sides" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>top</code></dt>
-<dd>
-<p>Type: (<a href="https://genomespy.app/docs/grammar/#unit-view-reference">UnitSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#layerspec">LayerSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#properties">MultiscaleSpec</a> | <a href="https://genomespy.app/docs/grammar/import/#properties">ImportSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/surround/#properties">SurroundSpec</a>)[] | <a href="https://genomespy.app/docs/grammar/composition/surround/#side-groups">SurroundSideSpec</a></p>
-<p>Plots above the center, stacked top-to-bottom and sharing its x scale.</p>
+<dd>Type: (<a href="https://genomespy.app/docs/grammar/#unit-view-reference">UnitSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#layerspec">LayerSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#properties">MultiscaleSpec</a> | <a href="https://genomespy.app/docs/grammar/import/#properties">ImportSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/surround/#properties">SurroundSpec</a>)[] | <a href="https://genomespy.app/docs/grammar/composition/surround/#side-groups">SurroundSideSpec</a><p>Plots above the center, stacked top-to-bottom and sharing its x scale.</p>
 </dd>
 <dt><code>right</code></dt>
-<dd>
-<p>Type: (<a href="https://genomespy.app/docs/grammar/#unit-view-reference">UnitSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#layerspec">LayerSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#properties">MultiscaleSpec</a> | <a href="https://genomespy.app/docs/grammar/import/#properties">ImportSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/surround/#properties">SurroundSpec</a>)[] | <a href="https://genomespy.app/docs/grammar/composition/surround/#side-groups">SurroundSideSpec</a></p>
-<p>Plots to the right, stacked left-to-right and sharing the center's y scale.</p>
+<dd>Type: (<a href="https://genomespy.app/docs/grammar/#unit-view-reference">UnitSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#layerspec">LayerSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#properties">MultiscaleSpec</a> | <a href="https://genomespy.app/docs/grammar/import/#properties">ImportSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/surround/#properties">SurroundSpec</a>)[] | <a href="https://genomespy.app/docs/grammar/composition/surround/#side-groups">SurroundSideSpec</a><p>Plots to the right, stacked left-to-right and sharing the center's y scale.</p>
 </dd>
 <dt><code>bottom</code></dt>
-<dd>
-<p>Type: (<a href="https://genomespy.app/docs/grammar/#unit-view-reference">UnitSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#layerspec">LayerSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#properties">MultiscaleSpec</a> | <a href="https://genomespy.app/docs/grammar/import/#properties">ImportSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/surround/#properties">SurroundSpec</a>)[] | <a href="https://genomespy.app/docs/grammar/composition/surround/#side-groups">SurroundSideSpec</a></p>
-<p>Plots below the center, stacked top-to-bottom and sharing its x scale.</p>
+<dd>Type: (<a href="https://genomespy.app/docs/grammar/#unit-view-reference">UnitSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#layerspec">LayerSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#properties">MultiscaleSpec</a> | <a href="https://genomespy.app/docs/grammar/import/#properties">ImportSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/surround/#properties">SurroundSpec</a>)[] | <a href="https://genomespy.app/docs/grammar/composition/surround/#side-groups">SurroundSideSpec</a><p>Plots below the center, stacked top-to-bottom and sharing its x scale.</p>
 </dd>
 <dt><code>left</code></dt>
-<dd>
-<p>Type: (<a href="https://genomespy.app/docs/grammar/#unit-view-reference">UnitSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#layerspec">LayerSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#properties">MultiscaleSpec</a> | <a href="https://genomespy.app/docs/grammar/import/#properties">ImportSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/surround/#properties">SurroundSpec</a>)[] | <a href="https://genomespy.app/docs/grammar/composition/surround/#side-groups">SurroundSideSpec</a></p>
-<p>Plots to the left, stacked left-to-right and sharing the center's y scale.</p>
+<dd>Type: (<a href="https://genomespy.app/docs/grammar/#unit-view-reference">UnitSpec</a> | <a href="https://genomespy.app/docs/grammar/types/#layerspec">LayerSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/multiscale/#properties">MultiscaleSpec</a> | <a href="https://genomespy.app/docs/grammar/import/#properties">ImportSpec</a> | <a href="https://genomespy.app/docs/grammar/composition/surround/#properties">SurroundSpec</a>)[] | <a href="https://genomespy.app/docs/grammar/composition/surround/#side-groups">SurroundSideSpec</a><p>Plots to the left, stacked left-to-right and sharing the center's y scale.</p>
 </dd>
 </dl>
 <h3 id="side-groups">Side groups<a class="headerlink" href="#side-groups" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>views</code> <span class="required">Required</span></dt>
-<dd>
-<p>Type: array</p>
-<p>Plots on this side, ordered top-to-bottom on top/bottom or left-to-right on left/right. Accepts unit plots, layers, multiscale layers, nested surrounds, and imports resolving to these.</p>
+<dd>Type: array<p>Plots on this side, ordered top-to-bottom on top/bottom or left-to-right on left/right. Accepts unit plots, layers, multiscale layers, nested surrounds, and imports resolving to these.</p>
 </dd>
 <dt><code>spacing</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Gap between tracks, in pixels. <strong>Default value:</strong> <code>10</code></p>
+<dd>Type: number<p>Gap between tracks, in pixels. <strong>Default value:</strong> <code>10</code></p>
 </dd>
 </dl>
 

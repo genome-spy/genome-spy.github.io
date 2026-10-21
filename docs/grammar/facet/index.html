@@ -4128,38 +4128,26 @@ Concatenations and nested facets are not supported inside <code>spec</code>.</p>
 <p>Row and column categories can be ordered independently.</p>
 <dl>
 <dt><code>description</code></dt>
-<dd>
-<p>Type: string</p>
-<p>A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.</p>
+<dd>Type: string<p>A description of the encoded field. Can be used for documentation and to explain the meaning of the channel mapping.</p>
 </dd>
 <dt><code>domain</code></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/types/#scalar">Scalar</a>[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
-<p>Categories to display, including empty cells. An expression reference can supply a reactive category array. Values outside the domain have no cells.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#scalar">Scalar</a>[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Categories to display, including empty cells. An expression reference can supply a reactive category array. Values outside the domain have no cells.</p>
 <p><strong>Default value:</strong> Categories found in the input data.</p>
 </dd>
 <dt><code>field</code></dt>
-<dd>
-<p>Type: string</p>
-<p><strong>Required.</strong> A string defining the name of the field from which to pull a data value.</p>
+<dd>Type: string<p><strong>Required.</strong> A string defining the name of the field from which to pull a data value.</p>
 <p><strong>See also:</strong> <a href="https://genomespy.app/docs/grammar/mark/#field"><code>field</code></a> documentation.</p>
 <p><strong>Notes:</strong> 1)  Dots (<code>.</code>) and brackets (<code>[</code> and <code>]</code>) can be used to access nested objects (e.g., <code>"field": "foo.bar"</code> and <code>"field": "foo['bar']"</code>). If field names contain dots or brackets but are not nested, you can use <code>\\</code> to escape dots and brackets (e.g., <code>"a\\.b"</code> and <code>"a\\[0\\]"</code>). See more details about escaping in the <a href="https://vega.github.io/vega-lite/docs/field.html">Vega-Lite field documentation</a>.</p>
 </dd>
 <dt><code>header</code></dt>
-<dd>
-<p>Type: <a href="https://genomespy.app/docs/grammar/facet/#headers">FacetHeader</a> | null</p>
-<p>Category label options. <code>null</code> hides labels and the field title, reclaiming their space.</p>
+<dd>Type: <a href="https://genomespy.app/docs/grammar/facet/#headers">FacetHeader</a> | null<p>Category label options. <code>null</code> hides labels and the field title, reclaiming their space.</p>
 </dd>
 <dt><code>sort</code></dt>
-<dd>
-<p>Type: <code>"ascending"</code> | <code>"descending"</code> | <a href="https://genomespy.app/docs/grammar/types/#scalar">Scalar</a>[]</p>
-<p>Category order. An array places listed values first, followed by unlisted values in domain or input order. Sorting does not add cells.</p>
+<dd>Type: <code>"ascending"</code> | <code>"descending"</code> | <a href="https://genomespy.app/docs/grammar/types/#scalar">Scalar</a>[]<p>Category order. An array places listed values first, followed by unlisted values in domain or input order. Sorting does not add cells.</p>
 <p><strong>Default value:</strong> Domain order when <code>domain</code> is specified; otherwise <code>"ascending"</code>.</p>
 </dd>
 <dt><code>title</code></dt>
-<dd>
-<p>Type: string | <a href="https://genomespy.app/docs/grammar/title/#properties">Title</a> | null</p>
-<p>A shared title for this facet dimension. A string uses the regular view title style; an object supports view-title placement and styling. Row titles default to the left, and column titles to the top. Set to <code>null</code> to hide the title.</p>
+<dd>Type: string | <a href="https://genomespy.app/docs/grammar/title/#properties">Title</a> | null<p>A shared title for this facet dimension. A string uses the regular view title style; an object supports view-title placement and styling. Row titles default to the left, and column titles to the top. Set to <code>null</code> to hide the title.</p>
 <p><strong>Default value:</strong> The field name.</p>
 </dd>
 </dl>
@@ -4174,14 +4162,10 @@ and an object such as <code>{"row": 10, "column": 20}</code> sets them separatel
 Zero removes the gap; hidden headers add no space.</p>
 <dl>
 <dt><code>column</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Horizontal gap in pixels. <strong>Default value:</strong> <code>10</code></p>
+<dd>Type: number<p>Horizontal gap in pixels. <strong>Default value:</strong> <code>10</code></p>
 </dd>
 <dt><code>row</code></dt>
-<dd>
-<p>Type: number</p>
-<p>Vertical gap in pixels. <strong>Default value:</strong> <code>10</code></p>
+<dd>Type: number<p>Vertical gap in pixels. <strong>Default value:</strong> <code>10</code></p>
 </dd>
 </dl>
 <h3 id="sizing-and-scrolling">Sizing and Scrolling<a class="headerlink" href="#sizing-and-scrolling" title="Permanent link">&para;</a></h3>
@@ -4196,15 +4180,11 @@ such as “Europe” and “Japan”. Both use <a href="../title/">view-title</a
 placement. A <code>title</code> inside the repeated <code>spec</code> labels each plot instead.</p>
 <dl>
 <dt><code>labels</code></dt>
-<dd>
-<p>Type: boolean</p>
-<p>Whether category labels are shown. Hidden labels reserve no space.</p>
+<dd>Type: boolean<p>Whether category labels are shown. Hidden labels reserve no space.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>format</code></dt>
-<dd>
-<p>Type: string</p>
-<p>D3 number format for numeric category labels, for example <code>".1f"</code> or <code>",.0f"</code>. String and boolean categories retain their original labels.</p>
+<dd>Type: string<p>D3 number format for numeric category labels, for example <code>".1f"</code> or <code>",.0f"</code>. String and boolean categories retain their original labels.</p>
 </dd>
 </dl>
 <h3 id="category-labels">Category Labels<a class="headerlink" href="#category-labels" title="Permanent link">&para;</a></h3>
