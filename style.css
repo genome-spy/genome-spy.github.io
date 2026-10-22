@@ -162,13 +162,6 @@ section.dark,
   height: 340px;
 }
 
-video.big-video {
-  display: block;
-  width: 100%;
-  height: auto;
-  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
-}
-
 #building-blocks {
   > a {
     display: block;

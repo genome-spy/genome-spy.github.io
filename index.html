@@ -45,6 +45,7 @@
 <body>
     <script src="https://kit.fontawesome.com/2e65d8a80b.js" crossorigin="anonymous"></script>
     <script type="module" src="./showcase/showcase.js"></script>
+    <script type="module" src="./video/video-carousel.js"></script>
 
     <nav id="nav-bar">
         <ul>
@@ -221,9 +222,27 @@
             attributes from genome-aligned point and segment features. Users can
             bookmark and share action-defined views as URLs.</p>
 
-        <video autoplay loop muted playsinline class="big-video" style="margin-top: 2em">
-            <source src="video/app-video.webm" type="video/webm">
-        </video>
+        <video-carousel role="region" aria-roledescription="carousel" aria-label="GenomeSpy App videos">
+            <div data-video-src="https://data.genomespy.app/website-resources/video/app-video.webm">
+                <p>Exploring copy-number alterations and short variants in the DECIDER ovarian cancer cohort,
+                    from cohort-wide patterns to individual samples and genomic regions.
+                    See the <a href="https://doi.org/10.1093/gigascience/giae040">GenomeSpy paper (Lavikka <em>et al.</em>, 2024)</a>
+                    for details and the accompanying interactive visualization.</p>
+            </div>
+            <div data-video-src="https://data.genomespy.app/website-resources/video/MCCA.webm">
+                <p>An independent GenomeSpy demo exploring copy-number profiles, somatic variants,
+                    and gene expression in the Mouse Cancer Cell Line Atlas (MCCA).
+                    Data from <a href="https://doi.org/10.1038/s41586-026-10187-2">Mueller <em>et al.</em> (2026)</a>,
+                    prepared using the
+                    <a href="https://github.com/genome-spy/genomespy-dataset-recipes/tree/main/recipes/mcca-cell-line-atlas-mm10">MCCA dataset recipe</a>.</p>
+            </div>
+            <div data-video-src="https://data.genomespy.app/website-resources/video/FUSE.webm">
+                <p>Exploring DNA methylation patterns in 61 ENCODE samples alongside FUSE-defined
+                    methylation segments and regulatory annotations.
+                    See the <a href="#fuse-paper">FUSE paper (Holmstr&ouml;m <em>et al.</em>, 2026)</a>
+                    and try the <a href="https://csbi.ltdk.helsinki.fi/p/fuse_encode_gs/">interactive visualization</a>.</p>
+            </div>
+        </video-carousel>
     </section>
 
     <section id="resources">
@@ -287,13 +306,13 @@
 
         <!-- IEEE style -->
         <ul class="publication-list">
-            <li class="genomespy-paper"><i class="fas fa-star publication-star" role="img"
+            <li id="genomespy-paper" class="genomespy-paper"><i class="fas fa-star publication-star" role="img"
                     aria-label="GenomeSpy paper" title="GenomeSpy paper"></i>K. Lavikka <i>et al</i>., "Deciphering Cancer Genomes with GenomeSpy: A Grammar-Based Visualization
                 Toolkit," <i>GigaScience</i>, Aug 2024, doi:
                 <a href="https://doi.org/10.1093/gigascience/giae040">10.1093/gigascience/giae040</a>.
             </li>
-            <li>S. Holmstr&ouml;m <i>et al</i>., "FUSE: Data-driven FUnctional SEgmentation of DNA Methylation
-                Data," <i>Bioinformatics</i>, Apr 2026, doi:
+            <li id="fuse-paper">S. Holmstr&ouml;m <i>et al</i>., "FUSE: data-driven functional segmentation of DNA methylation
+                data," <i>Bioinformatics</i>, Apr 2026, doi:
                 <a href="https://doi.org/10.1093/bioinformatics/btag201">10.1093/bioinformatics/btag201</a>.
             </li>
             <li>G. Micoli <i>et al</i>., "Decoding the Genomic and Functional Landscape of Emerging Subtypes in
@@ -427,7 +446,7 @@
                 </div>
             </li>
 
-            <li class="example-card">
+            <li id="decider-example" class="example-card">
                 <a href="https://csbi.ltdk.helsinki.fi/pub/projects/genomespy-paper-2024/" class="screenshot"><img
                         src="example_img/lavikka_2024.webp"
                         alt="Visualizing ovarian high-grade serous carcinoma copy number data with GenomeSpy. Red-gray-blue bars form a heatmap of copy number segments. G score summarizes data across samples."
