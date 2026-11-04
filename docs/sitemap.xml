@@ -31,6 +31,9 @@
         <loc>https://genomespy.app/docs/grammar/transform/alignment-mismatches/</loc>
       </url>
       <url>
+        <loc>https://genomespy.app/docs/grammar/transform/branch/</loc>
+      </url>
+      <url>
         <loc>https://genomespy.app/docs/grammar/transform/collect/</loc>
       </url>
       <url>
@@ -107,6 +110,9 @@
       </url>
       <url>
         <loc>https://genomespy.app/docs/grammar/transform/stack/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/grammar/transform/values/</loc>
       </url>
       <url>
         <loc>https://genomespy.app/docs/grammar/transform/window/</loc>
@@ -226,6 +232,12 @@
         <loc>https://genomespy.app/docs/api/runtime-state/</loc>
       </url>
       <url>
+        <loc>https://genomespy.app/docs/api/coordinates/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/api/search/</loc>
+      </url>
+      <url>
         <loc>https://genomespy.app/docs/api/inspector/</loc>
       </url>
       <url>
@@ -251,6 +263,9 @@
       </url>
       <url>
         <loc>https://genomespy.app/docs/examples/genomic-data/gencode-gff3-gene-annotations/</loc>
+      </url>
+      <url>
+        <loc>https://genomespy.app/docs/examples/genomic-data/lambda-phage-gene-map/</loc>
       </url>
       <url>
         <loc>https://genomespy.app/docs/examples/genomic-data/ascat/</loc>

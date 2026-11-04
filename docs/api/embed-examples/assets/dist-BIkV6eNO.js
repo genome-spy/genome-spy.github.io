@@ -1,0 +1,1 @@
+export{t as FigWig,n as FigWigError}from"./dist-DHGbb2At.js";

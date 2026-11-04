@@ -614,6 +614,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -703,6 +707,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1405,6 +1436,33 @@
     
   
   Stack
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
 
     
   </span>
@@ -2760,6 +2818,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2922,6 +2984,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../api/coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../api/inspector/" class="md-nav__link">
         
   
@@ -3041,6 +3157,8 @@
       
         
           
+        
+      
         
       
         
@@ -3224,6 +3342,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -4093,16 +4238,24 @@ the remaining space is distributed in proportions of 1:2.</p>
 <h3 id="sizedef">SizeDef<a class="headerlink" href="#sizedef" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>grow</code></dt>
-<dd>Type: number<p>Share of the remaining space. See <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
+<dd>
+<p>Type: number</p>
+<p>Share of the remaining space. See <a href="https://genomespy.app/docs/grammar/composition/concat/#child-sizing">child sizing</a> for details.</p>
 </dd>
 <dt><code>maxPx</code></dt>
-<dd>Type: number<p>Maximum size in pixels.</p>
+<dd>
+<p>Type: number</p>
+<p>Maximum size in pixels.</p>
 </dd>
 <dt><code>minPx</code></dt>
-<dd>Type: number<p>Minimum size in pixels.</p>
+<dd>
+<p>Type: number</p>
+<p>Minimum size in pixels.</p>
 </dd>
 <dt><code>px</code></dt>
-<dd>Type: number<p>Size in pixels</p>
+<dd>
+<p>Type: number</p>
+<p>Size in pixels</p>
 </dd>
 </dl>
 <p>The size may have both absolute (<code>px</code>) and proportional (<code>grow</code>) components.
@@ -4142,35 +4295,50 @@ following example.</p>
 <h3 id="step-sizing">Step sizing<a class="headerlink" href="#step-sizing" title="Permanent link">&para;</a></h3>
 <p>For a view with a discrete positional scale, <code>width</code> or <code>height</code> can specify a
 step size instead of a fixed total size. The view derives its size from the
-scale's domain and reserves the specified number of logical pixels for each
-discrete step. The step may also be an expression reference.</p>
+scale's domain and reserves the specified number of CSS pixels for each base
+step. The step may also be an expression reference.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>Scale padding determines the cell width within each step. For example, a
+20 px band step with <code>paddingInner: 0.2</code> has a 16 px cell width.
+<a href="../../scale/#grouping-gaps">Grouping gaps</a> add their pixel widths to the plot
+size without changing the base step. Four unpadded band categories at a 20 px
+step with one 8 px grouping gap need an 88 px plot width, excluding guides and
+view padding. Four unpadded point categories have three intervals and need
+68 px with the same step and gap.</p>
+<p>For nested categories, <code>for</code> chooses between
+<a href="../../scale/#nested-offset-scales">primary and offset steps</a>.</p>
 <dl>
 <dt><code>for</code></dt>
-<dd>Type: string<p>Selects which discrete scale the step describes when a positional scale has a nested offset scale. <code>"offset"</code> sizes each subgroup step; <code>"position"</code> sizes each primary category step.</p>
+<dd>
+<p>Type: string</p>
+<p>Selects which discrete scale the step describes when a positional scale has a nested offset scale. <code>"offset"</code> sizes each subgroup step; <code>"position"</code> sizes each primary category step. Offset-step sizing requires nonzero primary bandwidth. For a primary point scale, use <code>"position"</code>.</p>
 <p><strong>Default value:</strong> <code>"offset"</code> when a discrete nested offset scale is present, otherwise <code>"position"</code>.</p>
 </dd>
 <dt><code>step</code> <span class="required">Required</span></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Step size in pixels.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Base step size in CSS pixels. Scale padding determines the cell width within a step. Grouping gaps add their pixel widths to the plot size without reducing the base step. Point steps separate point centers.</p>
 </dd>
 </dl>
-<p>Discrete <a href="../../scale/#nested-offset-scales">offset channels</a> can introduce
-a second scale whose steps determine the view size.</p>
 <h3 id="scrollable-viewports">Scrollable viewports<a class="headerlink" href="#scrollable-viewports" title="Permanent link">&para;</a></h3>
-<p>Sometimes the concents of a view are so large that they do not fit into the
+<p>Sometimes the contents of a view are so large that they do not fit into the
 available space. In such cases, the view can be made scrollable by setting an
 explicit size for the view using the <code>viewportWidth</code> and <code>viewportHeight</code>
 properties. They accept the same values as <code>width</code> and <code>height</code> properties except
-for the step size. Scrollable viewports are particularly useful for categorical
-data types (<code>"ordinal"</code> and <code>"nominal"</code>) and respective scales and axes that
-do not support zooming and panning.</p>
+for the step size. These <strong>layout viewports</strong> are useful for showing categorical
+rows or columns at a fixed step size. Band and point scales can alternatively
+use <a href="../../scale/#categorical-scale-viewports">scale viewports</a> for zooming and
+panning within the available plot size.</p>
+<p>Step-based <code>width</code> and <code>height</code> determine the full content size, including any
+grouping gaps. The viewport dimensions control how much of that content is
+visible at once.</p>
 <p>Besides using the scrollbars, you can scroll a viewport by dragging its content.
-Scrolling differs from panning: panning changes a zoomable scale's domain, such
-as the visible genomic interval, whereas scrolling moves the viewport over
-content that is already laid out, leaving the scales unchanged. A drag pans along
+Scrolling differs from panning: panning changes a continuous scale's domain or
+a band/point scale's viewport. Scrolling moves a layout viewport over content
+that is already laid out, leaving the scales unchanged. A drag pans along
 axes that have a zoomable scale and scrolls along axes that don't. For example,
 in a tall stack of tracks with a genomic x axis and a <code>viewportHeight</code>, dragging
 sideways pans the genome and dragging up or down scrolls through the tracks.</p>
@@ -4197,6 +4365,75 @@ pixels, so scrolling vertically does not also pan horizontally.</p>
 <span class="w">  </span><span class="p">},</span>
 
 <span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<p>To keep content next to a lower track, set <code>anchor: "end"</code> in the
+<code>viewportHeight</code> size object. For <code>viewportWidth</code>, <code>"end"</code> selects the right
+edge. The default <code>"start"</code> selects the top or left edge. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;step&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;viewportHeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;px&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;anchor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The view opens at the selected edge and preserves its pixel distance from that
+edge when content or viewport dimensions change. Manual scrolling changes that
+distance. Content smaller than the viewport aligns to the same edge; if the
+scroll range disappears, subsequent growth starts at that edge again. Anchors
+do not reverse data or scale order. They apply only to viewport dimensions.</p>
+<p>The <a href="../../../examples/genomic-data/lambda-phage-gene-map/">Lambda phage gene map</a>
+uses bottom anchoring to keep product labels next to the gene arrows as zooming
+changes the number of label lanes.</p>
+<p>The following grid opens at its bottom-right corner:</p>
+<div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/composition/concat/viewport-anchors.json" height="200">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Bottom and Right Anchored Viewports&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Keeps a scrollable grid aligned to the bottom-right edges of its viewport.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">360</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;viewportWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;px&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;anchor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;viewportHeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;px&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;anchor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;sequence&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;stop&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;datum.data % 4&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;column&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;floor(datum.data / 4)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;row&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;column&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;zoom&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;padding&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.08</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;row&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;zoom&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;reverse&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;padding&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.08</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rect&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#55a3c7&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;white&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 

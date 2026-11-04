@@ -614,6 +614,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -703,6 +707,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1424,6 +1455,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../transform/values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../transform/window/" class="md-nav__link">
         
   
@@ -1740,6 +1798,28 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         Ranged rules
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outlined-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Outlined rules
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weighted-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Weighted network
       </span>
     </span>
   </a>
@@ -2649,6 +2729,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2811,6 +2895,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../api/coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../api/inspector/" class="md-nav__link">
         
   
@@ -2930,6 +3068,8 @@
       
         
           
+        
+      
         
       
         
@@ -3113,6 +3253,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -3649,6 +3816,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#outlined-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Outlined rules
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weighted-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Weighted network
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#human-mouse-synteny" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3712,88 +3901,184 @@ width or height of the view. Alternatively, they may have specific endpoints.</p
 
 <h2 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h2>
 <p>Rule mark supports the primary and secondary <a href=".././#channels">position</a>
-channels and the <code>color</code>, <code>opacity</code>, and <code>size</code> channels.</p>
+channels and the <code>color</code>, <code>fill</code>, <code>fillOpacity</code>, <code>stroke</code>, <code>strokeWidth</code>,
+<code>strokeOpacity</code>, <code>opacity</code>, and <code>size</code> channels.</p>
+<p><code>fill</code> sets the body color and takes precedence over <code>color</code>. Both support
+constant values, fields, expressions, and conditional encodings. <code>size</code> controls
+the body thickness in logical pixels. <code>stroke</code> adds a border whose full thickness is <code>strokeWidth</code> (default <code>1</code>).
+<code>strokeAlign</code> places that band inside, centered on, or outside the nominal body
+boundary; the default is <code>"outside"</code>. Alignment also applies at caps and dash
+boundaries and supports parameter expressions. With the default outside alignment,
+a four-pixel body with a one-pixel border has a total thickness of six pixels. Borders are absent by default. <code>fillOpacity</code>
+and <code>strokeOpacity</code> control the paints separately; <code>opacity</code> affects both.
+Setting <code>filled: false</code> routes <code>color</code> to the border and leaves the body unfilled,
+unless an explicit fill is provided.</p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>buildIndex</code></dt>
-<dd>Type: boolean<p>Whether the x channel should build an index for efficient subset rendering. If omitted, GenomeSpy enables indexing automatically for positional x encodings.</p>
+<dd>
+<p>Type: boolean</p>
+<p>Whether the x channel should build an index for efficient subset rendering. If omitted, GenomeSpy enables indexing automatically for positional x encodings.</p>
 </dd>
 <dt><code>clamp</code></dt>
-<dd>Type: boolean | <code>"x"</code> | <code>"y"</code><p>Clamps projected anchors or range endpoints to the view before constructing mark geometry. <code>true</code> clamps both axes; <code>"x"</code> or <code>"y"</code> selects one axis. Position offsets are included. For rectangles, clamping keeps outlines around the visible part of a group during zooming. With <code>clip: false</code>, full strokes remain visible at the boundary; symbols, arrowheads, and text glyphs can extend beyond it.</p>
+<dd>
+<p>Type: boolean | <code>"x"</code> | <code>"y"</code></p>
+<p>Clamps projected anchors or range endpoints to the view before constructing mark geometry. <code>true</code> clamps both axes; <code>"x"</code> or <code>"y"</code> selects one axis. Position offsets are included. For rectangles, clamping keeps outlines around the visible part of a group during zooming. With <code>clip: false</code>, full strokes remain visible at the boundary; symbols, arrowheads, and text glyphs can extend beyond it.</p>
 <p>Rectangles and explicit text ranges collapsed on a clamped axis are hidden. Rules and ticks intersect the selected bounds without changing direction; excluded or collapsed segments are hidden. Zero-length rules are hidden even when <code>clamp</code> is false. Links and arrows with coincident endpoints are hidden. Shared scales and their inversion are unchanged.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>clip</code></dt>
-<dd>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code><p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
+<dd>
+<p>Type: boolean | <code>"x"</code> | <code>"y"</code> | <code>"never"</code></p>
+<p>Controls whether the mark is clipped to the UnitView's rectangle. The values <code>"x"</code> and <code>"y"</code> clip only in the corresponding screen-space direction. Inherited clipping from parent containers still applies unless <code>"never"</code> is used.</p>
 <p><strong>Default value:</strong> <code>true</code> when either positional scale is zoomable; otherwise <code>false</code></p>
 </dd>
 <dt><code>color</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Color of the mark. Affects either <code>fill</code> or <code>stroke</code>, depending on the <code>filled</code> property.</p>
 </dd>
 <dt><code>cullByVisibleRange</code></dt>
-<dd>Type: boolean | <code>"x"</code> | <code>"y"</code><p>Hide point-like mark instances whose anchor falls outside the inherited visible range in the given screen-space direction.</p>
+<dd>
+<p>Type: boolean | <code>"x"</code> | <code>"y"</code></p>
+<p>Hide point-like mark instances whose anchor falls outside the inherited visible range in the given screen-space direction.</p>
 </dd>
 <dt><code>cursor</code></dt>
-<dd>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Mouse cursor shown while the pointer is over the mark. Mark cursor takes precedence over enclosing view cursors.</p>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Mouse cursor shown while the pointer is over the mark. Mark cursor takes precedence over enclosing view cursors.</p>
 <p><strong>Default value:</strong> browser default</p>
 </dd>
+<dt><code>fill</code></dt>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The fill color.</p>
+</dd>
+<dt><code>fillOpacity</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The fill opacity. Value between <code>0</code> and <code>1</code>.</p>
+</dd>
+<dt><code>filled</code></dt>
+<dd>
+<p>Type: boolean</p>
+<p>Whether the <code>color</code> represents the <code>fill</code> color (<code>true</code>) or the <code>stroke</code> color (<code>false</code>).</p>
+</dd>
 <dt><code>minLength</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The minimum stroke length in pixels. Use this property to ensure that very short strokes remain visible even when the user zooms out.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The minimum stroke length in pixels. Use this property to ensure that very short strokes remain visible even when the user zooms out.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>opacity</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Opacity of the mark. Affects <code>fillOpacity</code> or <code>strokeOpacity</code>, depending on the <code>filled</code> property.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Opacity of the mark. Affects <code>fillOpacity</code> or <code>strokeOpacity</code>, depending on the <code>filled</code> property.</p>
 </dd>
 <dt><code>size</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Stroke width of <code>"link"</code> and <code>"rule"</code> marks in pixels, the area of the bounding square of <code>"point"</code> mark, or the font size of <code>"text"</code> mark.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Stroke width of <code>"link"</code> and <code>"rule"</code> marks in pixels, the area of the bounding square of <code>"point"</code> mark, or the font size of <code>"text"</code> mark.</p>
+</dd>
+<dt><code>stroke</code></dt>
+<dd>
+<p>Type: string | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The stroke color</p>
+</dd>
+<dt><code>strokeAlign</code></dt>
+<dd>
+<p>Type: <code>"inside"</code> | <code>"center"</code> | <code>"outside"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Position of the full-width stroke band relative to the nominal body. Inside strokes extend inward by <code>strokeWidth</code>, centered strokes extend half inward and half outward, and outside strokes extend entirely outward. The nominal body is unchanged. Canvas uses an outside-style approximation for all alignments.</p>
+<p><strong>Default value:</strong> <code>"outside"</code></p>
 </dd>
 <dt><code>strokeCap</code></dt>
-<dd>Type: <code>"butt"</code> | <code>"square"</code> | <code>"round"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The style of stroke ends. Available choices: <code>"butt"</code>, <code>"round</code>", and <code>"square"</code>.</p>
+<dd>
+<p>Type: <code>"butt"</code> | <code>"square"</code> | <code>"round"</code> | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The style of stroke ends. Available choices: <code>"butt"</code>, <code>"round</code>", and <code>"square"</code>.</p>
 <p><strong>Default value:</strong> <code>"butt"</code></p>
 </dd>
 <dt><code>strokeDash</code></dt>
-<dd>Type: array<p>An array of of alternating stroke and gap lengths or <code>null</code> for solid strokes.</p>
+<dd>
+<p>Type: array</p>
+<p>An array of of alternating stroke and gap lengths or <code>null</code> for solid strokes.</p>
 <p><strong>Default value:</strong> <code>null</code></p>
 </dd>
 <dt><code>strokeDashOffset</code></dt>
-<dd>Type: number<p>An offset for the stroke dash pattern.</p>
+<dd>
+<p>Type: number</p>
+<p>An offset for the stroke dash pattern.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
+<dt><code>strokeOpacity</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The stroke opacity. Value between <code>0</code> and <code>1</code>.</p>
+</dd>
+<dt><code>strokeWidth</code></dt>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The stroke width in pixels.</p>
+</dd>
 <dt><code>style</code></dt>
-<dd>Type: string | string[]<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones.</p>
+<dd>
+<p>Type: string | string[]</p>
+<p>Named style reference(s) resolved from <code>config.style</code>. If an array is provided, later styles override earlier ones.</p>
 </dd>
 <dt><code>tooltip</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#handledtooltip">HandledTooltip</a> | null | boolean<p>Tooltip handler. If <code>false</code>, no tooltip is shown but the mark remains available for renderer picking and mark interactions. If <code>null</code>, no tooltip is shown and the mark is excluded from picking unless its view declares a point selection; a point selection overrides this picking opt-out. If string, specifies the <a href="https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#handledtooltip">HandledTooltip</a> | null | boolean</p>
+<p>Tooltip handler. If <code>false</code>, no tooltip is shown but the mark remains available for renderer picking and mark interactions. If <code>null</code>, no tooltip is shown and the mark is excluded from picking unless its view declares a point selection; a point selection overrides this picking opt-out. If string, specifies the <a href="https://genomespy.app/docs/api/embed-options/#custom-tooltip-handlers">tooltip handler</a> to use.</p>
 </dd>
 <dt><code>x</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Position on the x axis.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Position on the x axis.</p>
 </dd>
 <dt><code>x2</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The secondary position on the x axis.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The secondary position on the x axis.</p>
 </dd>
 <dt><code>x2Offset</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>x2</code> coordinate in logical pixels. When <code>x2</code> is implicit, it inherits <code>xOffset</code> unless this property is specified.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Offset of the <code>x2</code> coordinate in logical pixels. When <code>x2</code> is implicit, it inherits <code>xOffset</code> unless this property is specified.</p>
 <p><strong>Default value:</strong> inherited from <code>xOffset</code> for an implicit <code>x2</code>, otherwise <code>0</code></p>
 </dd>
 <dt><code>xOffset</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>x</code> coordinate in logical pixels.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Offset of the <code>x</code> coordinate in logical pixels.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 <dt><code>y</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Position on the y axis.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Position on the y axis.</p>
 </dd>
 <dt><code>y2</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The secondary position on the y axis.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The secondary position on the y axis.</p>
 </dd>
 <dt><code>y2Offset</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>y2</code> coordinate in logical pixels. When <code>y2</code> is implicit, it inherits <code>yOffset</code> unless this property is specified.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Offset of the <code>y2</code> coordinate in logical pixels. When <code>y2</code> is implicit, it inherits <code>yOffset</code> unless this property is specified.</p>
 <p><strong>Default value:</strong> inherited from <code>yOffset</code> for an implicit <code>y2</code>, otherwise <code>0</code></p>
 </dd>
 <dt><code>yOffset</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Offset of the <code>y</code> coordinate in logical pixels.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Offset of the <code>y</code> coordinate in logical pixels.</p>
 <p><strong>Default value:</strong> <code>0</code></p>
 </dd>
 </dl>
+<p><code>strokeCap</code> applies to each dash as well as the rule endpoints. Dash lengths and
+gaps are measured along the centerline in logical pixels, before cap extension.
+Round and square caps can close small gaps; a zero-length dash such as
+<code>strokeDash: [0, 28]</code> produces dots with round caps, squares with square caps,
+and no body with butt caps. Outside borders follow the combined dash silhouette.</p>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <h3 id="ranged-rules">Ranged rules<a class="headerlink" href="#ranged-rules" title="Permanent link">&para;</a></h3>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/mark/rule/ranged-rules.json" height="150">
@@ -3818,6 +4103,195 @@ channels and the <code>color</code>, <code>opacity</code>, and <code>size</code>
 <span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x2&quot;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<h3 id="outlined-rules">Outlined rules<a class="headerlink" href="#outlined-rules" title="Permanent link">&para;</a></h3>
+<p>Solid, dashed, and dotted rules can share the same fill and outside border:</p>
+<div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/mark/rule/outlined-rules.json" height="220">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Outlined rules&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Solid, dashed, and dotted rules with a shared fill and outside border.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="w"> </span><span class="p">}]</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;rule&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;fill&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;skyblue&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;midnightblue&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;strokeWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;strokeCap&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;round&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;end&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;vconcat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Solid&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rule&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dashed&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rule&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;strokeDash&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dotted&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rule&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;strokeDash&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<div class="admonition note">
+<p class="admonition-title">Rendering caveats</p>
+<p>The Canvas renderer and Canvas-backed exports approximate outlines with native
+strokes to maintain interactive performance. They use an outside-style border
+for every <code>strokeAlign</code> value. Borders can show through translucent fills,
+opacity can blend differently, and butt endpoints or dash cuts may lack a
+complete border.</p>
+<p>SVG export expands each dash into path geometry and uses a mask for each
+outlined rule. Large numbers of outlined dashes can produce large SVG files
+that are slow to render. SVG viewers may also show a thin antialiasing seam
+between the fill and border.</p>
+</div>
+<h3 id="weighted-network">Weighted network<a class="headerlink" href="#weighted-network" title="Permanent link">&para;</a></h3>
+<p>White outside borders separate crossing links while preserving the colored body
+thickness set by <code>size</code>, so link weights remain readable. Centered and inside
+borders cover part of the body and can obscure thin links. The node positions
+are precomputed with a force-directed layout, and points draw the nodes above
+the links.</p>
+<div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/mark/rule/weighted-network.json" height="380" spechidden="true">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Weighted network with outlined rules&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;White outside borders separate crossing links while preserving the body thickness that encodes their weights.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;alignment&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;bind&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;radio&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;outside&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;center&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;inside&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stroke alignment&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;showStroke&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;bind&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;checkbox&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Show border&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data/weighted-network.json&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;property&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nodes&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;layer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data/weighted-network.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;property&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;links&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+
+<span class="w">      </span><span class="nt">&quot;transform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lookup&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data/weighted-network.json&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;property&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nodes&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lookup&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data/weighted-network.json&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;property&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nodes&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;target&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="p">],</span>
+<span class="w">          </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y2&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;collect&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;sort&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weight&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ascending&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rule&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#4c78a8&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;strokeWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;showStroke ? 1 : 0&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;strokeAlign&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;alignment&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+
+<span class="w">      </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;x2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x2&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;y2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;y2&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weight&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;filled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#f28e2b&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">225</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;stroke&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;strokeWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 

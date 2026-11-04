@@ -746,6 +746,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -835,6 +839,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1537,6 +1568,33 @@
     
   
   Stack
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transform/values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
 
     
   </span>
@@ -2671,6 +2729,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2833,6 +2895,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../api/coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../api/inspector/" class="md-nav__link">
         
   
@@ -2952,6 +3068,8 @@
       
         
           
+        
+      
         
       
         
@@ -3135,6 +3253,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -3768,24 +3913,36 @@ load the remaining files and write a warning to the browser console.</p>
 <p>The template object accepts the following properties:</p>
 <dl>
 <dt><code>attach</code></dt>
-<dd>Type: boolean<p>Whether to attach the template value to each loaded datum using <code>field</code> as the datum field name. Disable this when the expanded URL identifies only a file partition and the loaded data already contains the relevant identifiers.</p>
+<dd>
+<p>Type: boolean</p>
+<p>Whether to attach the template value to each loaded datum using <code>field</code> as the datum field name. Disable this when the expanded URL identifies only a file partition and the loaded data already contains the relevant identifiers.</p>
 <p><strong>Default value:</strong> <code>true</code></p>
 </dd>
 <dt><code>field</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#fieldname">FieldName</a><p>Field name used as the template placeholder and as the datum field attached to loaded rows.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#fieldname">FieldName</a></p>
+<p>Field name used as the template placeholder and as the datum field attached to loaded rows.</p>
 </dd>
 <dt><code>maxValues</code></dt>
-<dd>Type: number<p>Maximum number of distinct resolved values to load. If the limit is exceeded, the source loads no data.</p>
+<dd>
+<p>Type: number</p>
+<p>Maximum number of distinct resolved values to load. If the limit is exceeded, the source loads no data.</p>
 </dd>
 <dt><code>onLoadError</code></dt>
-<dd>Type: string<p>Behavior when loading an expanded URL fails. The default <code>"error"</code> fails the data source. Use <code>"skip"</code> when some expanded URLs are expected to be unavailable, for example when data files for some patients have not been generated yet.</p>
+<dd>
+<p>Type: string</p>
+<p>Behavior when loading an expanded URL fails. The default <code>"error"</code> fails the data source. Use <code>"skip"</code> when some expanded URLs are expected to be unavailable, for example when data files for some patients have not been generated yet.</p>
 <p><strong>Default value:</strong> <code>"error"</code></p>
 </dd>
 <dt><code>template</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>URL template. The value from <code>values</code> is substituted for the placeholder named by <code>field</code>, for example <code>{sample}</code>.</p>
+<dd>
+<p>Type: string</p>
+<p>URL template. The value from <code>values</code> is substituted for the placeholder named by <code>field</code>, for example <code>{sample}</code>.</p>
 </dd>
 <dt><code>values</code> <span class="required">Required</span></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#scalar">Scalar</a>[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Values used for template expansion. Duplicate resolved URLs are loaded once. An ExprRef can reference reactive parameters such as <code>visibleSamples</code>.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#scalar">Scalar</a>[] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Values used for template expansion. Duplicate resolved URLs are loaded once. An ExprRef can reference reactive parameters such as <code>visibleSamples</code>.</p>
 </dd>
 </dl>
 <h2 id="reactive-values">Reactive Values<a class="headerlink" href="#reactive-values" title="Permanent link">&para;</a></h2>
@@ -3932,8 +4089,9 @@ tracks using only Core.</p>
 <p>These regional BigWigs retain H3K27ac values from <a href="https://www.encodeproject.org/search/?type=File&amp;accession=ENCFF549YDI&amp;accession=ENCFF539MQF&amp;accession=ENCFF587ZRD&amp;accession=ENCFF724HYE&amp;accession=ENCFF896KSI">five released ENCODE
 files</a>
 produced by the Bing Ren laboratory for <a href="https://doi.org/10.1038/s41586-020-2093-3">Gorkin et al.
-(2020)</a>. Only the displayed 10 Mb
-mm10 region was retained.</p>
+(2020)</a>. The
+<a href="https://data.genomespy.app/datasets/encode-mouse-fetal-development-mm10/v4/README.md">regional extracts</a>
+retain four mm10 windows, including the displayed 10 Mb region.</p>
 </div>
 <h2 id="indexed-files">Indexed Files<a class="headerlink" href="#indexed-files" title="Permanent link">&para;</a></h2>
 <p>Formats such as Tabix-backed TSV, GFF3, and VCF use an index file. Keep

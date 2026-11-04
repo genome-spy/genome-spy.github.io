@@ -612,6 +612,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -701,6 +705,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1505,6 +1536,33 @@
     
   
   Stack
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
 
     
   </span>
@@ -2639,6 +2697,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2801,6 +2863,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../api/coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../api/inspector/" class="md-nav__link">
         
   
@@ -2920,6 +3036,8 @@
       
         
           
+        
+      
         
       
         
@@ -3103,6 +3221,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -3681,23 +3826,35 @@ for reactive updates.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code></dt>
-<dd>Type: string<p>The output field for signed displacement.</p>
+<dd>
+<p>Type: string</p>
+<p>The output field for signed displacement.</p>
 <p><strong>Default value:</strong> <code>"displacement"</code></p>
 </dd>
 <dt><code>description</code></dt>
-<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
+<dd>
+<p>Type: string</p>
+<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 <dt><code>extent</code></dt>
-<dd>Type: [number, number] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Preferred outer bounds for the placed collision intervals, expressed in the original <code>pos</code> coordinate system. The bounds are multiplied by <code>positionFactor</code> together with the item positions. When all items cannot fit, they remain non-overlapping and extend beyond the bounds by the minimum necessary amount. An expression can update the bounds reactively.</p>
+<dd>
+<p>Type: [number, number] | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Preferred outer bounds for the placed collision intervals, expressed in the original <code>pos</code> coordinate system. The bounds are multiplied by <code>positionFactor</code> together with the item positions. When all items cannot fit, they remain non-overlapping and extend beyond the bounds by the minimum necessary amount. An expression can update the bounds reactively.</p>
 </dd>
 <dt><code>length</code> <span class="required">Required</span></dt>
-<dd>Type: number | string (field name) | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>The full collision length, including any desired spacing, or a field containing that length. The value uses the same units as the scaled positions and output displacement. An expression provides a reactive scalar length shared by all rows.</p>
+<dd>
+<p>Type: number | string (field name) | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>The full collision length, including any desired spacing, or a field containing that length. The value uses the same units as the scaled positions and output displacement. An expression provides a reactive scalar length shared by all rows.</p>
 </dd>
 <dt><code>pos</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name)<p>The field containing the original position. Input rows must be ordered by ascending <code>pos * positionFactor</code>.</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>The field containing the original position. Input rows must be ordered by ascending <code>pos * positionFactor</code>.</p>
 </dd>
 <dt><code>positionFactor</code></dt>
-<dd>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>A multiplier applied to <code>pos</code> before placement. An expression can convert position units to logical pixels and react to zoom or layout changes. Use an ascending <code>pos</code> sort for a positive factor and a descending sort for a negative factor. Place a <code>collect</code> transform before this transform to buffer input for expression-driven updates.</p>
+<dd>
+<p>Type: number | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>A multiplier applied to <code>pos</code> before placement. An expression can convert position units to logical pixels and react to zoom or layout changes. Use an ascending <code>pos</code> sort for a positive factor and a descending sort for a negative factor. Place a <code>collect</code> transform before this transform to buffer input for expression-driven updates.</p>
 <p><strong>Default value:</strong> <code>1</code></p>
 </dd>
 </dl>

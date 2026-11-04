@@ -1,0 +1,201 @@
+import { lr as e } from "./clipOptions-Dqn337WO.js";
+//#region ../../node_modules/generic-filehandle2/esm/util.js
+async function t(e) {
+	return e.bytes ? e.bytes() : new Uint8Array(await e.arrayBuffer());
+}
+async function n(e, n, r) {
+	if (n === "utf8" || n === "utf-8") return e.text();
+	if (n) throw Error(`unsupported encoding: ${n}`);
+	return r && "body" in e ? s(e, r) : t(e);
+}
+function r(e) {
+	return typeof e == "string" ? {
+		encoding: e,
+		opts: {}
+	} : {
+		encoding: e?.encoding,
+		opts: e ?? {}
+	};
+}
+function i(e) {
+	let t = /\/(\d+)$/.exec(e ?? "")?.[1];
+	return t === void 0 ? void 0 : parseInt(t, 10);
+}
+function a(e) {
+	let t = e.headers.get("content-length"), n = t === null ? NaN : Number(t);
+	return Number.isSafeInteger(n) && n >= 0 ? n : void 0;
+}
+var o = 50;
+async function s(e, n) {
+	let r = a(e), i = e.body;
+	if (!i || r === void 0) {
+		let i = await t(e);
+		return n(i.byteLength, r ?? i.byteLength), i;
+	}
+	let s = i.getReader(), c = new Uint8Array(r), l = 0, u = Date.now();
+	n(0, r);
+	for (let e = await s.read(); !e.done; e = await s.read()) {
+		if (l + e.value.byteLength > c.length) {
+			let t = new Uint8Array(Math.max(l + e.value.byteLength, c.length * 2));
+			t.set(c.subarray(0, l)), c = t;
+		}
+		c.set(e.value, l), l += e.value.byteLength;
+		let t = Date.now();
+		t - u >= o && (u = t, n(l, r));
+	}
+	return n(l, r), l === c.length ? c : c.slice(0, l);
+}
+//#endregion
+//#region ../../node_modules/generic-filehandle2/esm/blobFile.js
+var c = class {
+	source;
+	blob;
+	constructor(e) {
+		this.blob = e;
+	}
+	async read(e, n = 0, r = {}) {
+		if (e === 0) return /* @__PURE__ */ new Uint8Array();
+		r.signal?.throwIfAborted();
+		let i = await t(this.blob.slice(n, n + e));
+		return r.signal?.throwIfAborted(), i;
+	}
+	async readFile(e) {
+		let { encoding: t, opts: i } = r(e);
+		i.signal?.throwIfAborted();
+		let a = await n(this.blob, t);
+		return i.signal?.throwIfAborted(), a;
+	}
+	stat() {
+		return Promise.resolve({ size: this.blob.size });
+	}
+	close() {
+		return Promise.resolve();
+	}
+};
+//#endregion
+//#region ../../node_modules/generic-filehandle2/esm/remoteFile.js
+function l(...e) {
+	let t = /* @__PURE__ */ new Map();
+	for (let n of e) for (let [e, r] of Object.entries(n ?? {})) t.set(e.toLowerCase(), [e, r]);
+	return Object.fromEntries(t.values());
+}
+function u(e) {
+	let t = e.body;
+	typeof t?.cancel == "function" && t.cancel().catch(() => void 0);
+}
+function d(e) {
+	return Number.isSafeInteger(e) && e >= 0;
+}
+function f(e) {
+	return typeof e == "object" && !!e && "name" in e && e.name === "TypeError";
+}
+function p(e) {
+	return (typeof e == "object" && e && "message" in e && typeof e.message == "string" ? e.message : `${e}`).replace(/\.$/, "");
+}
+var m = class {
+	url;
+	get source() {
+		return this.url;
+	}
+	_stat;
+	statProbe;
+	fetchImplementation;
+	baseHeaders;
+	baseOverrides;
+	baseSignal;
+	constructor(e, t = {}) {
+		this.url = e, this.baseHeaders = t.headers ?? {}, this.baseOverrides = t.overrides ?? {}, this.baseSignal = t.signal, this.fetchImplementation = t.fetch ?? globalThis.fetch.bind(globalThis);
+	}
+	buildRequest(e, t) {
+		let n = e.signal ?? this.baseSignal;
+		return {
+			method: "GET",
+			redirect: "follow",
+			mode: "cors",
+			...this.baseOverrides,
+			...e.overrides,
+			headers: l(this.baseHeaders, e.headers, t),
+			...n ? { signal: n } : {}
+		};
+	}
+	async fetch(e, t) {
+		let n = (n) => f(n) && !t?.signal?.aborted ? Error(`${p(n)} fetching ${e}`, { cause: n }) : n, r;
+		try {
+			r = await this.fetchImplementation(e, t);
+		} catch (i) {
+			if (`${i}`.includes("Failed to fetch")) {
+				console.warn(`generic-filehandle: refetching ${e} to attempt to work around chrome CORS header caching bug`);
+				try {
+					r = await this.fetchImplementation(e, {
+						...t,
+						cache: "reload"
+					});
+				} catch (e) {
+					throw n(e);
+				}
+			} else throw n(i);
+		}
+		return r;
+	}
+	async read(e, t, n = {}) {
+		if (!d(e) || !d(t)) throw TypeError(`read() called with an invalid length or position (length=${e}, position=${t}). The index file may be corrupt.`);
+		return e === 0 ? /* @__PURE__ */ new Uint8Array() : this.fetchBytes(e, t, n);
+	}
+	async fetchBytes(e, n, r) {
+		let a = await this.fetch(this.url, this.buildRequest(r, { range: `bytes=${n}-${n + e - 1}` }));
+		if (a.status === 416) return u(a), /* @__PURE__ */ new Uint8Array();
+		if (this.checkOk(a), a.status === 200 && n === 0 || a.status === 206) {
+			let n = i(a.headers.get("content-range"));
+			n !== void 0 && (this._stat = { size: n });
+			let o = r.onProgress ? await s(a, r.onProgress) : await t(a);
+			return !this._stat && a.status === 200 && (this._stat = { size: o.byteLength }), o.byteLength <= e ? o : o.slice(0, e);
+		}
+		throw u(a), Error(a.status === 200 ? `${this.url} fetch returned status 200, expected 206` : `HTTP ${a.status} fetching ${this.url}`);
+	}
+	checkOk(e) {
+		if (!e.ok) throw u(e), Error(`HTTP ${e.status} fetching ${this.url}`);
+	}
+	async readFile(e) {
+		let { encoding: t, opts: n } = r(e), i = await this.fetch(this.url, this.buildRequest(n));
+		this.checkOk(i);
+		let a = await this.readFileBody(i, t, n.onProgress);
+		return i.status === 200 && typeof a != "string" && (this._stat = { size: a.byteLength }), a;
+	}
+	readFileBody(e, t, r) {
+		return n(e, t, r);
+	}
+	async stat() {
+		return this._stat || (this.statProbe ??= this.read(10, 0).finally(() => {
+			this.statProbe = void 0;
+		}), await this.statProbe), this._stat ?? { size: 0 };
+	}
+	close() {
+		return Promise.resolve();
+	}
+}, h = /* @__PURE__ */ e({
+	BlobFile: () => c,
+	LocalFile: () => g,
+	RemoteFile: () => m
+}), g = class {
+	source;
+	constructor(e, t = {}) {
+		this.source = e;
+	}
+	unimplemented() {
+		return Promise.reject(/* @__PURE__ */ Error(`LocalFile is unimplemented in the browser (${this.source})`));
+	}
+	readFile(e) {
+		return this.unimplemented();
+	}
+	read(e, t, n) {
+		return this.unimplemented();
+	}
+	stat() {
+		return this.unimplemented();
+	}
+	close() {
+		return this.unimplemented();
+	}
+};
+//#endregion
+export { h as n, m as r, g as t };

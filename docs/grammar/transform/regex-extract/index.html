@@ -612,6 +612,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -701,6 +705,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1472,6 +1503,33 @@
     
   
   Stack
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
 
     
   </span>
@@ -2606,6 +2664,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2768,6 +2830,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../api/coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../api/inspector/" class="md-nav__link">
         
   
@@ -2887,6 +3003,8 @@
       
         
           
+        
+      
         
       
         
@@ -3070,6 +3188,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -3611,20 +3756,30 @@ and adds them to the rows as new fields.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <dl>
 <dt><code>as</code> <span class="required">Required</span></dt>
-<dd>Type: string | string[]<p>The new field or an array of fields where the extracted values are written.</p>
+<dd>
+<p>Type: string | string[]</p>
+<p>The new field or an array of fields where the extracted values are written.</p>
 </dd>
 <dt><code>description</code></dt>
-<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
+<dd>
+<p>Type: string</p>
+<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 <dt><code>field</code> <span class="required">Required</span></dt>
-<dd>Type: string (field name)<p>The source field</p>
+<dd>
+<p>Type: string (field name)</p>
+<p>The source field</p>
 </dd>
 <dt><code>regex</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>A valid JavaScript regular expression with at least one group. For example: <code>"^Sample(\\d+)$"</code>.</p>
+<dd>
+<p>Type: string</p>
+<p>A valid JavaScript regular expression with at least one group. For example: <code>"^Sample(\\d+)$"</code>.</p>
 <p>Read more at: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions</a></p>
 </dd>
 <dt><code>skipInvalidInput</code></dt>
-<dd>Type: boolean<p>Do not complain about invalid input. Just skip it and leave the new fields undefined on the affected row.</p>
+<dd>
+<p>Type: boolean</p>
+<p>Do not complain about invalid input. Just skip it and leave the new fields undefined on the affected row.</p>
 <p><strong>Default:</strong> <code>false</code></p>
 </dd>
 </dl>

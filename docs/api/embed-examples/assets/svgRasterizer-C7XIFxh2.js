@@ -1,0 +1,1 @@
+export{t as createCanvas2DSvgRasterizer}from"./svgRasterizer-_Xx47--c.js";

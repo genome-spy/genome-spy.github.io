@@ -1,0 +1,1224 @@
+import { ln as e, o as t, s as n } from "./clipOptions-Dqn337WO.js";
+import { s as r } from "./flowNode-BSjy0Wz3.js";
+import { S as i } from "./viewSelectors-B4CZ1cPy.js";
+import { t as a } from "./rasterization-QktH8Sn2.js";
+import { t as o } from "./rectangle-CQIQpWfg.js";
+import { n as s, r as c } from "./color-BM6tqh_h.js";
+import { A as l, C as u, D as d, F as f, I as p, L as m, M as h, N as g, P as _, R as v, S as y, T as b, _ as x, a as S, b as C, c as w, d as T, g as E, h as D, i as O, j as k, k as A, l as j, m as M, n as ee, o as te, p as ne, r as re, s as ie, t as ae, u as oe, v as se, x as ce, y as le } from "./order-C8ixZgC9.js";
+import { n as N, t as P } from "./svgNumber-DNxESJQB.js";
+//#region ../core/src/rendering/svg/svgElement.js
+var F = "http://www.w3.org/2000/svg";
+function I(e, t) {
+	let n = document.createElementNS(F, e);
+	if (t) for (let [e, r] of Object.entries(t)) n.setAttribute(e, "" + r);
+	return n;
+}
+//#endregion
+//#region ../core/src/rendering/svg/svgAttributes.js
+function L(e, t) {
+	let n = Object.entries(t).filter(([t, n]) => !n.encoder.constant || (e.setAttribute(t, "" + R(n, {})), !1));
+	return (e) => Object.fromEntries(n.map(([t, n]) => [t, R(n, e)]));
+}
+function R(e, t) {
+	let n = e.encoder(t);
+	return e.transform ? e.transform(n) : "" + n;
+}
+//#endregion
+//#region ../core/src/rendering/svg/renderers/arrow.js
+function ue(e, t) {
+	let n = e, { coords: r, data: i, group: a, viewOpacity: o, visibleBounds: s } = t, c = n.encoders, l = L(a, {
+		fill: {
+			encoder: c.fill,
+			transform: h
+		},
+		"fill-opacity": {
+			encoder: c.fillOpacity,
+			transform: (e) => +e * o
+		},
+		stroke: {
+			encoder: c.stroke,
+			transform: h
+		},
+		"stroke-opacity": {
+			encoder: c.strokeOpacity,
+			transform: (e) => +e * o
+		},
+		"stroke-width": {
+			encoder: c.strokeWidth,
+			transform: (e) => P(+e)
+		}
+	});
+	a.setAttribute("stroke-linejoin", "miter");
+	let d = u(n);
+	return b(n, d, {
+		coords: r,
+		data: i,
+		visibleBounds: s,
+		viewOpacity: o,
+		countOnly: t.countOnly
+	}, (e) => {
+		t.countOnly || (e.headShapeFallback && t.warn(`SVG export rendered unsupported arrow headShape "${d.headShape}" as a triangle.`), a.appendChild(I("path", {
+			d: e.boundaryLoops.map(de).join(" "),
+			...l(e.datum)
+		})));
+	});
+}
+function de(e) {
+	return `M ${e.map(fe).join(" L ")} Z`;
+}
+function fe(e) {
+	return `${P(e.x)} ${P(e.y)}`;
+}
+//#endregion
+//#region ../core/src/rendering/svg/renderers/link.js
+function pe(e, t) {
+	let n = e, r = se(n), { coords: i, data: a, group: o, viewOpacity: s, visibleBounds: c } = t, l = n.encoders, u = y(n, r.shape, t.secondOrderPass), f = .5, p = l.opacity.constant && l.size.constant, m = (e) => d(l.opacity, e) * s * Math.max(0, Math.min(d(l.size, e) / f, 1));
+	p && o.setAttribute("stroke-opacity", "" + m({}));
+	let g = L(o, {
+		stroke: {
+			encoder: l.color,
+			transform: h
+		},
+		"stroke-width": {
+			encoder: l.size,
+			transform: (e) => P(Math.max(+e, f))
+		}
+	});
+	o.setAttribute("fill", "none"), o.setAttribute("stroke-linecap", "butt"), o.setAttribute("stroke-linejoin", "miter"), o.setAttribute("stroke-miterlimit", "2");
+	let _ = o, v;
+	return le(n, r, {
+		coords: i,
+		data: a,
+		visibleBounds: c
+	}, ({ datum: e, geometry: n }) => {
+		if (t.countOnly) return;
+		let r = g(e);
+		p || (r["stroke-opacity"] = m(e));
+		let i = u && n.type == "cubic" ? t.getLinkArcFadeMaskUrl({
+			p1: n.points[0],
+			p4: n.points[3],
+			distances: u
+		}) : void 0;
+		i !== v && (v = i, _ = i ? I("g", { mask: i }) : o, i && o.appendChild(_)), _.appendChild(I("path", {
+			d: n.type == "orthogonal" ? `M ${z(n.points[0])} L ${z(n.points[1])} L ${z(n.points[2])}` : `M ${z(n.points[0])} C ${n.points.slice(1).map(z).join(" ")}`,
+			...r
+		}));
+	});
+}
+function z(e) {
+	return e.map(P).join(" ");
+}
+//#endregion
+//#region ../core/src/rendering/svg/renderers/point.js
+function me(e, t) {
+	let n = e;
+	k(n, n.properties.fillGradientStrength) && t.warn("SVG export ignored unsupported point property fillGradientStrength."), n.properties.geometricZoomBound && t.warn("SVG export ignored unsupported point property geometricZoomBound.");
+	let r = E(n), { inwardStroke: i } = r, { group: a, viewOpacity: o } = t, s = n.encoders, c = A(s.fill), l = A(s.stroke), u = L(a, {
+		fill: {
+			encoder: s.fill,
+			transform: h
+		},
+		"fill-opacity": {
+			encoder: s.fillOpacity,
+			transform: (e) => +e * o
+		},
+		stroke: {
+			encoder: s.stroke,
+			transform: h
+		},
+		"stroke-opacity": {
+			encoder: s.strokeOpacity,
+			transform: (e) => +e * o
+		},
+		"stroke-width": {
+			encoder: s.strokeWidth,
+			transform: (e) => P(+e)
+		}
+	}), d = a.getAttribute("fill"), f = a.getAttribute("fill-opacity"), p = a.getAttribute("stroke"), m = a.getAttribute("stroke-opacity"), g = he();
+	return x(n, r, t, (e) => {
+		if (t.countOnly) return;
+		let { datum: n, radius: r, geometryRadius: h, strokeWidth: _, lineShape: v } = e, y = {
+			...u(n),
+			...i && !v ? { "stroke-width": P(_) } : {},
+			...v ? ge(s, n, o, l) : {}
+		}, b = r == h ? 0 : +(y["stroke-opacity"] ?? m) * l(String(y.stroke ?? p)), x = b > 0, S = !v && r != h && (!x || b < 1) && +(y["fill-opacity"] ?? f) * c(String(y.fill ?? d)) > 0;
+		S && (a.appendChild(B(e, r, {
+			...y,
+			stroke: "none"
+		}, g, t.warn)), y.fill = "none"), (!S || x) && a.appendChild(B(e, h, y, g, t.warn));
+	});
+}
+function B(e, t, n, r, i) {
+	let { shape: a, x: o, y: s, angle: c } = e, l = P(o), u = P(s), d = P(t), f;
+	if (a == "circle") f = I("circle", {
+		cx: l,
+		cy: u,
+		r: d,
+		...n
+	});
+	else if (a == "square") f = I("rect", {
+		x: P(o - t),
+		y: P(s - t),
+		width: P(t * 2),
+		height: P(t * 2),
+		...n
+	});
+	else {
+		let e = r.build(a, o, s, t);
+		e ? f = I("path", {
+			d: e,
+			...n
+		}) : (i(`SVG export rendered unsupported point shape "${a}" as a circle.`), f = I("circle", {
+			cx: l,
+			cy: u,
+			r: d,
+			...n
+		}));
+	}
+	return c && f.setAttribute("transform", `rotate(${P(c)} ${l} ${u})`), f;
+}
+function he() {
+	let e = "", t = (e, t) => `${P(e)} ${P(t)}`, n = {
+		moveTo(n, r) {
+			e += `${e ? " M" : "M"} ${t(n, r)}`;
+		},
+		lineTo(n, r) {
+			e += ` L ${t(n, r)}`;
+		},
+		closePath() {
+			e += " Z";
+		}
+	};
+	return { build(t, r, i, a) {
+		return e = "", D(t, r, i, a, n) ? e : void 0;
+	} };
+}
+function ge(e, t, n, r) {
+	let i = h(e.stroke(t)), a = d(e.strokeOpacity, t), o = a * r(i) <= 0;
+	return {
+		fill: "none",
+		stroke: h(o ? e.fill(t) : i),
+		"stroke-opacity": (o ? d(e.fillOpacity, t) : a) * n,
+		"stroke-width": P(d(e.strokeWidth, t)),
+		"stroke-linecap": "butt"
+	};
+}
+//#endregion
+//#region ../core/src/rendering/svg/renderers/rect.js
+function _e(e, t) {
+	let n = e, r = ne(n), { shadow: i, hatch: a } = r, { group: o, viewOpacity: s } = t, c = n.encoders, l = A(c.fill), u = L(o, {
+		fill: {
+			encoder: c.fill,
+			transform: h
+		},
+		"fill-opacity": {
+			encoder: c.fillOpacity,
+			transform: (e) => +e * s
+		},
+		stroke: {
+			encoder: c.stroke,
+			transform: h
+		},
+		"stroke-opacity": {
+			encoder: c.strokeOpacity,
+			transform: (e) => +e * s
+		},
+		"stroke-width": {
+			encoder: c.strokeWidth,
+			transform: (e) => P(+e)
+		}
+	}), f = i.opacity > 0 ? {
+		fill: i.color,
+		"fill-opacity": 1,
+		stroke: i.color,
+		"stroke-opacity": 1,
+		opacity: N(i.opacity * s),
+		filter: t.getShadowFilterUrl(i)
+	} : null;
+	return M(n, r, t, (e) => {
+		if (t.countOnly) return;
+		let { datum: n, x: r, y: i, width: p, height: m, radii: g, opacityFactor: _, strokeWidth: v, fill: y, fillOpacity: b } = e, x = {
+			...u(n),
+			..._ == 1 ? {} : { opacity: N(_) }
+		};
+		if (a != "none" && v > 0 && (x.fill = t.getRectHatchPatternUrl({
+			type: a,
+			fill: h(c.fill(n)),
+			fillOpacity: d(c.fillOpacity, n) * s,
+			stroke: h(c.stroke(n)),
+			strokeOpacity: d(c.strokeOpacity, n) * s,
+			strokeWidth: v
+		}), x["fill-opacity"] = 1), f) {
+			let e = V(r, i, p, m, g, {
+				...f,
+				"stroke-width": P(v)
+			});
+			if (a == "none" && y != "none" && b * l(y) == 1 && _ == 1) o.appendChild(e);
+			else {
+				let n = v / 2, a = Object.fromEntries(Object.entries(g).map(([e, t]) => [e, t + n])), s = H(r - n, i - n, p + n * 2, m + n * 2, a), c = I("g", { "clip-path": t.getShadowClipPathUrl(s) });
+				c.appendChild(e), o.appendChild(c);
+			}
+		}
+		o.appendChild(V(r, i, p, m, g, x));
+	});
+}
+function V(e, t, n, r, i, a) {
+	if (ve(i)) {
+		let o = i.topLeft, s = P(e), c = P(t), l = P(e + n), u = P(t + r);
+		return I("rect", {
+			x: s,
+			y: c,
+			width: P(l - s),
+			height: P(u - c),
+			...o ? {
+				rx: P(o),
+				ry: P(o)
+			} : {},
+			...a
+		});
+	}
+	return I("path", {
+		d: H(e, t, n, r, i),
+		...a
+	});
+}
+function ve(e) {
+	return Object.values(e).every((t) => t == e.topLeft);
+}
+function H(e, t, n, r, i) {
+	let a = e + n, o = t + r, { topLeft: s, topRight: c, bottomRight: l, bottomLeft: u } = i;
+	return [
+		`M ${W(e + s, t)}`,
+		`H ${P(a - c)}`,
+		U(c, a, t + c, a, t),
+		`V ${P(o - l)}`,
+		U(l, a - l, o, a, o),
+		`H ${P(e + u)}`,
+		U(u, e, o - u, e, o),
+		`V ${P(t + s)}`,
+		U(s, e + s, t, e, t),
+		"Z"
+	].join(" ");
+}
+function U(e, t, n, r, i) {
+	return e ? `A ${P(e)} ${P(e)} 0 0 1 ${W(t, n)}` : `L ${W(r, i)}`;
+}
+function W(e, t) {
+	return `${P(e)} ${P(t)}`;
+}
+//#endregion
+//#region ../core/src/rendering/svg/rulePath.js
+function ye(e, t, n, r, i) {
+	if (r?.some((e) => e < 0 || !Number.isFinite(e))) throw Error("Invalid stroke dash pattern: " + JSON.stringify(r));
+	let a = t / 2, o = [], s = (e, t) => {
+		if (e === t && n === "butt") return;
+		n === "square" && (e -= a, t += a);
+		let r = o.at(-1);
+		r && e <= r[1] ? r[1] = Math.max(r[1], t) : o.push([e, t]);
+	}, c = r?.length ?? 0, l = (r?.reduce((e, t) => e + t, 0) ?? 0) * (c % 2 ? 2 : 1);
+	if (l === 0) s(0, e);
+	else {
+		let t = -((i % l + l) % l);
+		for (let n = 0; t <= e; n++) {
+			let i = t + r[n % c];
+			n % 2 == 0 && i >= 0 && s(Math.max(0, t), Math.min(e, i)), t = i;
+		}
+	}
+	let u = "", d = (e, t) => `A${a} ${a} 0 0 1 ${e} ${t}`;
+	for (let e = 0; e < o.length;) {
+		let r = e;
+		if (n === "round") for (; r + 1 < o.length && o[r + 1][0] - o[r][1] < t;) r++;
+		u += `M${o[e][0]} ${-a}H${o[e][1]}`;
+		for (let t = e; t < r; t++) {
+			let e = o[t][1], n = o[t + 1][0], r = (e + n) / 2, i = Math.sqrt(Math.max(0, a * a - ((n - e) / 2) ** 2));
+			u += d(r, -i) + d(n, -a) + `H${o[t + 1][1]}`;
+		}
+		u += n === "round" ? d(o[r][1], a) : `V${a}`, u += `H${o[r][0]}`;
+		for (let t = r; t > e; t--) {
+			let e = o[t - 1][1], n = o[t][0], r = (e + n) / 2, i = Math.sqrt(Math.max(0, a * a - ((n - e) / 2) ** 2));
+			u += d(r, i) + d(e, a) + `H${o[t - 1][0]}`;
+		}
+		n === "round" && (u += d(o[e][0], -a)), u += "Z", e = r + 1;
+	}
+	return u;
+}
+//#endregion
+//#region ../core/src/rendering/svg/renderers/rule.js
+function G(e, t) {
+	let n = e, r = oe(n), i = r.strokeAlign, { coords: a, data: o, group: s, viewOpacity: c, visibleBounds: l } = t, u = n.encoders, f = n.getType() === "rule", p = k(n, n.properties.strokeDash), m = k(n, n.properties.strokeDashOffset), g = L(s, {
+		stroke: {
+			encoder: u.fill,
+			transform: h
+		},
+		"stroke-width": {
+			encoder: u.size,
+			transform: (e) => P(+e)
+		}
+	});
+	return s.setAttribute("stroke-linecap", r.strokeCap), p && (s.setAttribute("stroke-dasharray", p.map(P).join(" ")), s.setAttribute("stroke-dashoffset", "" + P(m))), T(n, r, {
+		coords: a,
+		data: o,
+		visibleBounds: l
+	}, (e) => {
+		if (t.countOnly) return;
+		let n = d(u.opacity, e.datum) * c, a = f ? d(u.fillOpacity, e.datum) : 1;
+		if (e.strokeWidth > 0) {
+			let o = e.x2 - e.x1, c = e.y2 - e.y1, l = Math.hypot(o, c), d = Math.atan2(c, o) * 180 / Math.PI, f = ye(l, P(e.size), r.strokeCap, p, m), g = I("g", {
+				transform: `translate(${P(e.x1)} ${P(e.y1)}) rotate(${d})`,
+				opacity: n,
+				"stroke-dasharray": "none"
+			});
+			g.append(I("path", {
+				d: f,
+				fill: "none",
+				stroke: e.stroke,
+				"stroke-width": (i === "center" ? 1 : 2) * e.strokeWidth,
+				...i === "center" ? {} : { mask: t.getRuleStrokeMaskUrl(f, l, e.size / 2, e.strokeWidth + 1, i === "inside") },
+				"stroke-opacity": e.strokeOpacity,
+				"stroke-linejoin": "round"
+			}), I("path", {
+				d: f,
+				fill: h(u.fill(e.datum)),
+				"fill-opacity": a,
+				stroke: "none"
+			})), i !== "outside" && g.insertBefore(g.lastChild, g.firstChild), s.appendChild(g);
+		} else s.appendChild(I("line", {
+			x1: P(e.x1),
+			y1: P(e.y1),
+			x2: P(e.x2),
+			y2: P(e.y2),
+			...g(e.datum),
+			"stroke-opacity": n * a
+		}));
+	});
+}
+//#endregion
+//#region ../core/src/rendering/svg/renderers/text.js
+function be(e, t) {
+	let n = e, r = n.properties, i = t.textMetrics ?? n.unitView.context.textMetrics, a = i.requestFont(r), o = O(i, r), s = w(n), { coords: c, data: l, group: u, viewOpacity: d, visibleBounds: f, anchorCullBounds: p } = t, m = n.encoders, g = L(u, {
+		fill: {
+			encoder: m.color,
+			transform: h
+		},
+		"fill-opacity": {
+			encoder: m.opacity,
+			transform: (e) => +e * d
+		},
+		"font-size": {
+			encoder: m.size,
+			transform: (e) => P(+e)
+		}
+	});
+	u.setAttribute("font-family", S(r.font)), u.setAttribute("font-style", r.fontStyle ?? "normal"), u.setAttribute("font-weight", "" + ie(r.fontWeight ?? "normal")), u.setAttribute("text-anchor", xe[s.align]);
+	let _ = {
+		top: {
+			width: k(n, r.viewportEdgeFadeWidthTop),
+			distance: k(n, r.viewportEdgeFadeDistanceTop)
+		},
+		right: {
+			width: k(n, r.viewportEdgeFadeWidthRight),
+			distance: k(n, r.viewportEdgeFadeDistanceRight)
+		},
+		bottom: {
+			width: k(n, r.viewportEdgeFadeWidthBottom),
+			distance: k(n, r.viewportEdgeFadeDistanceBottom)
+		},
+		left: {
+			width: k(n, r.viewportEdgeFadeWidthLeft),
+			distance: k(n, r.viewportEdgeFadeDistanceLeft)
+		}
+	}, v = j(n, s, {
+		coords: c,
+		data: l,
+		visibleBounds: f,
+		anchorCullBounds: p,
+		fontMeasurement: a,
+		measureLogoInkBounds: o
+	}, (e) => {
+		if (t.countOnly) return;
+		if (e.logoTransform) {
+			e.multiCharacterLogo && t.warn("SVG export stretches multi-character logo text as a single glyph cell.");
+			let n = [`translate(${P(e.x)} ${P(e.y)})`];
+			e.angle && n.push(`rotate(${P(e.angle)})`), (e.dx || e.dy) && n.push(`translate(${P(e.dx)} ${P(e.dy)})`), n.push(`scale(${P(e.logoTransform.scaleX)} ${P(e.logoTransform.scaleY)})`), n.push(`translate(${P(-e.logoTransform.originX)} ${P(-e.logoTransform.originY)})`);
+			let r = I("text", {
+				x: 0,
+				y: 0,
+				"text-anchor": "start",
+				transform: n.join(" "),
+				...g(e.datum),
+				"font-size": e.size
+			});
+			r.textContent = e.text, u.appendChild(r);
+			return;
+		}
+		let n = [`translate(${P(e.x)} ${P(e.y)})`];
+		e.angle && n.push(`rotate(${P(e.angle)})`), (e.dx || e.dy) && n.push(`translate(${P(e.dx)} ${P(e.dy)})`), e.scale != 1 && n.push(`scale(${P(e.scale)})`);
+		let r = I("text", {
+			x: 0,
+			y: 0,
+			dy: P(te(s.baseline, e.size)),
+			...g(e.datum),
+			...e.fadeOpacity == 1 ? {} : { opacity: N(e.fadeOpacity) },
+			transform: n.join(" ")
+		});
+		r.textContent = e.text, u.appendChild(r);
+	});
+	if (!t.countOnly && u.childElementCount > 0) {
+		let e = t.getViewportEdgeFadeMaskUrl(_);
+		e && u.setAttribute("mask", e);
+	}
+	return v;
+}
+var xe = {
+	left: "start",
+	center: "middle",
+	right: "end"
+}, K = 64;
+function Se(t, n) {
+	let r = we(t.unitView);
+	if (!r) return;
+	let i = t.unitView.getScaleResolution(r.channel)?.getScale();
+	if (!i || !e(i.type)) return;
+	let { coords: a, data: o, group: s, viewOpacity: c, visibleBounds: u } = n;
+	if (!o.length) return 0;
+	let d = t.encoders, f = r.channel == "stroke" ? d.stroke : d.fill, m = Te(t.unitView.spec.encoding.x), g = Infinity, _ = Infinity, v = -Infinity, y = -Infinity, b = l(a, d, "x", o[0]), x = l(a, d, "y", o[0]), S = [0, 0], C = [0, 0], w = o.map((e) => {
+		let [t, n] = b(e, S), [r, i] = x(e, C);
+		return g = Math.min(g, t, n), _ = Math.min(_, r, i), v = Math.max(v, t, n), y = Math.max(y, r, i), {
+			offset: Number(e.position),
+			color: h(f(e))
+		};
+	}).sort((e, t) => e.offset - t.offset);
+	if (!p(u, g, _, v, y)) return 0;
+	if (n.countOnly) return o.length;
+	let T = Ce(w), E = [
+		{
+			offset: 0,
+			color: T[0].color
+		},
+		...T,
+		{
+			offset: 1,
+			color: T.at(-1).color
+		}
+	], D = n.getLegendGradientUrl({
+		x1: g,
+		y1: m ? _ : y,
+		x2: m ? v : g,
+		y2: _,
+		stops: E
+	}), O = P(g), k = P(_), A = P(v), j = P(y), M = Number(d.fillOpacity(o[0])) * c;
+	return s.appendChild(I("rect", {
+		x: O,
+		y: k,
+		width: P(A - O),
+		height: P(j - k),
+		fill: D,
+		"fill-opacity": N(M),
+		stroke: "none"
+	})), o.length;
+}
+function Ce(e) {
+	return e.length <= K ? e : Array.from({ length: K }, (t, n) => e[Math.round(n * (e.length - 1) / 63)]);
+}
+function we(e) {
+	let t = e;
+	for (; t;) {
+		let e = t.spec.data;
+		if (e) return "lazy" in e && e.lazy.type == "legendGradient" ? e.lazy : void 0;
+		t = t.dataParent;
+	}
+}
+function Te(e) {
+	return e != null && "field" in e && (e.field == "position0" || e.field == "position1");
+}
+//#endregion
+//#region ../core/src/rendering/svg/renderers/index.js
+var Ee = /* @__PURE__ */ new Map([
+	["arrow", ue],
+	["link", pe],
+	["point", me],
+	["rect", _e],
+	["rule", G],
+	["text", be],
+	["tick", G]
+]);
+function De(e, t) {
+	if (e.getType() == "rect") {
+		let n = Se(e, t);
+		if (n !== void 0) return n;
+	}
+	let n = Ee.get(e.getType());
+	if (!n) throw Error(`SVG rendering is not implemented for mark type "${e.getType()}". View: ${e.unitView.getPathString()}`);
+	return n(e, t);
+}
+//#endregion
+//#region ../core/src/rendering/svg/rectHatchPattern.js
+function Oe(e, t) {
+	let n = t.strokeWidth, r = [
+		"dots",
+		"rings",
+		"ringsLarge"
+	].includes(t.type), i = [
+		"diagonal",
+		"antiDiagonal",
+		"cross"
+	].includes(t.type), a = [
+		"vertical",
+		"horizontal",
+		"grid"
+	].includes(t.type), o = r ? n * 7 : n * (i ? 6 : 4), s = a ? n * 2 : n, c = o, l = r ? o * 2 : o, u = I("pattern", {
+		id: e,
+		x: 0,
+		y: 0,
+		width: P(c),
+		height: P(l),
+		patternUnits: "userSpaceOnUse"
+	});
+	u.appendChild(I("rect", {
+		width: P(c),
+		height: P(l),
+		fill: t.fill,
+		"fill-opacity": N(t.fillOpacity)
+	}));
+	let d = I("g", {
+		fill: "none",
+		stroke: t.stroke,
+		"stroke-opacity": N(t.strokeOpacity),
+		"stroke-width": P(s),
+		"stroke-linecap": "square"
+	});
+	return ke(d, t.type, o, s), u.appendChild(d), u;
+}
+function ke(e, t, n, r) {
+	let i = (t) => e.appendChild(I("path", { d: t })), a = (e) => P(e), o = (e) => {
+		for (let t of [
+			-n,
+			0,
+			n
+		]) i(`M ${a(t - r)} ${a(e ? -r : n + r)} L ${a(t + n + r)} ${a(e ? n + r : -r)}`);
+	};
+	switch (t) {
+		case "diagonal":
+			o(!0);
+			break;
+		case "antiDiagonal":
+			o(!1);
+			break;
+		case "cross":
+			o(!0), o(!1);
+			break;
+		case "vertical":
+			i(`M 0 ${a(-r)} V ${a(n + r)}`);
+			break;
+		case "horizontal":
+			i(`M ${a(-r)} 0 H ${a(n + r)}`);
+			break;
+		case "grid":
+			i(`M 0 ${a(-r)} V ${a(n + r)} M ${a(-r)} 0 H ${a(n + r)}`);
+			break;
+		case "dots":
+		case "rings":
+		case "ringsLarge": {
+			let r = n * (t == "dots" ? .07 : t == "rings" ? .2 : .35), i = (t, n) => e.appendChild(I("circle", {
+				cx: P(t),
+				cy: P(n),
+				r: P(r)
+			}));
+			i(n / 2, 0), i(n / 2, n * 2), i(0, n), i(n, n);
+			break;
+		}
+		default: throw Error(`Unknown rectangle hatch pattern: ${t}`);
+	}
+}
+//#endregion
+//#region ../core/src/rendering/svg/linkArcFadeMask.js
+function Ae(e, t, n, r) {
+	let { normalX: i, normalY: a, offset: o, start: s, end: c } = r, l = i * o, u = a * o, d = e + "-gradient", f = I("linearGradient", {
+		id: d,
+		gradientUnits: "userSpaceOnUse",
+		x1: P(l - i * c),
+		y1: P(u - a * c),
+		x2: P(l + i * c),
+		y2: P(u + a * c),
+		spreadMethod: "pad"
+	});
+	for (let { offset: e, opacity: t } of C(s, c)) f.appendChild(I("stop", {
+		offset: q(e, 3),
+		"stop-color": "white",
+		"stop-opacity": q(t, 3)
+	}));
+	let p = I("mask", {
+		id: e,
+		x: 0,
+		y: 0,
+		width: P(t),
+		height: P(n),
+		maskUnits: "userSpaceOnUse",
+		maskContentUnits: "userSpaceOnUse",
+		"mask-type": "luminance"
+	});
+	return p.appendChild(I("rect", {
+		width: P(t),
+		height: P(n),
+		fill: `url(#${d})`
+	})), {
+		gradient: f,
+		mask: p
+	};
+}
+function q(e, t) {
+	let n = 10 ** t;
+	return Math.round(e * n) / n;
+}
+//#endregion
+//#region ../core/src/rendering/svg/svgViewRenderingContext.js
+var J = class extends c {
+	#e;
+	#t;
+	#n = [];
+	#r = /* @__PURE__ */ new Map();
+	#i = /* @__PURE__ */ new WeakMap();
+	#a = /* @__PURE__ */ new Map();
+	#o = /* @__PURE__ */ new Map();
+	#s = /* @__PURE__ */ new Map();
+	#c = /* @__PURE__ */ new Map();
+	#l = /* @__PURE__ */ new Set();
+	#u = !1;
+	#d = /* @__PURE__ */ new Map();
+	#f = new m();
+	#p = I("g");
+	#m;
+	#h;
+	#g = [];
+	#_;
+	#v = 0;
+	#y = 0;
+	#b = 0;
+	#x = 0;
+	#S = 0;
+	#C = 0;
+	#w = 0;
+	constructor(e, t) {
+		super(e), this.width = t.width, this.height = t.height, this.textMetrics = t.textMetrics, this.#h = t.maxVectorInstances;
+		let n = P(t.width), r = P(t.height);
+		this.#e = I("svg", {
+			xmlns: F,
+			width: n,
+			height: r,
+			viewBox: `0 0 ${n} ${r}`
+		}), this.#t = I("defs"), this.#e.appendChild(this.#t), t.background != null && this.#e.appendChild(I("rect", {
+			width: n,
+			height: r,
+			fill: t.background,
+			"data-export-background": ""
+		}));
+	}
+	beginInstanceCounting() {
+		if (this.#n.length || this.#u) throw Error("Cannot start SVG instance counting during traversal.");
+		this.#d = /* @__PURE__ */ new Map(), this.#u = !0;
+	}
+	endInstanceCounting() {
+		if (this.#n.length || !this.#u) throw Error("SVG instance counting is not active or traversal is incomplete.");
+		this.#u = !1;
+	}
+	getVisibleInstanceCount(e) {
+		return this.#d.get(e) ?? 0;
+	}
+	getVisibleInstanceCounts() {
+		return new Map(this.#d);
+	}
+	getRasterRuns() {
+		this.#E();
+		for (let e of this.#g) e.image || this.#D(e);
+		return this.#g;
+	}
+	beginSampleFacetBatch() {
+		if (this.#m) throw Error("Nested sample facet batches are not supported.");
+		this.#m = {
+			viewGroups: /* @__PURE__ */ new WeakMap(),
+			markGroups: /* @__PURE__ */ new WeakMap(),
+			markGroupElements: /* @__PURE__ */ new Set(),
+			rasterRuns: /* @__PURE__ */ new WeakMap()
+		};
+	}
+	endSampleFacetBatch() {
+		let e = this.#m;
+		if (!e) throw Error("No sample facet batch is active.");
+		for (let t of e.markGroupElements) t.childElementCount || t.remove();
+		this.#m = void 0;
+	}
+	pushView(e, t) {
+		let n = e.getPathString();
+		if (r(this.#n)?.exportExcluded || i(e) && e.name.startsWith("scrollbar-")) {
+			this.#n.push({
+				view: e,
+				node: this.currentNode,
+				coords: t,
+				exportExcluded: !0
+			});
+			return;
+		}
+		if (this.#u) {
+			this.#n.push({
+				view: e,
+				node: this.currentNode,
+				coords: t,
+				exportExcluded: !1
+			});
+			return;
+		}
+		let a = this.#m, o = a?.viewGroups.get(e);
+		if (o) {
+			if (o.parentNode !== this.currentNode) throw Error(`Sample-faceted view was rendered under multiple parents: ${n}`);
+		} else {
+			o = I("g", {
+				id: je(e.name, this.#v++),
+				"data-name": e.name,
+				"data-view-path": n
+			});
+			let t = I("title");
+			t.textContent = n, o.appendChild(t), this.currentNode.appendChild(o), a?.viewGroups.set(e, o);
+		}
+		this.#n.push({
+			view: e,
+			node: o,
+			coords: t,
+			exportExcluded: !1
+		});
+	}
+	popView(e) {
+		if (this.#n.pop()?.view !== e) throw Error("Unbalanced SVG view rendering context stack.");
+	}
+	renderMark(e, i) {
+		if (r(this.#n)?.exportExcluded || e.unitView.getEffectiveOpacity() <= 0) return;
+		let a = t(i), o = n(a, e.properties.clip, this.currentCoords), s = _(this.width, this.height, o);
+		if (!f(s)) return;
+		let c = this.getVisibleInstanceCount(e);
+		if (!this.#u && this.#h != null && c == 0) return;
+		if (!this.#u && this.#h != null && c > this.#h) {
+			this.#T(e, s);
+			return;
+		}
+		let l = !this.#u && this.#m != null, u = l ? this.getClipPathUrl(o) : void 0, d = l ? this.#m.markGroups.get(e)?.get(u ?? "") : void 0;
+		!this.#u && !d && this.#E();
+		let p = this.#u ? this.#p : this.#O(e, u), m = g(this.currentCoords, a, e.properties.cullByVisibleRange), h = e.getOrder?.(), y = !this.#u && h && h.isActive();
+		if (v(e, i, this.currentCoords, this.#f, (t, n) => {
+			let r = (n, r = !1) => {
+				let i = De(e, {
+					coords: t,
+					data: n,
+					group: p,
+					visibleBounds: s,
+					anchorCullBounds: m,
+					viewOpacity: e.unitView.getEffectiveOpacity(),
+					textMetrics: this.textMetrics,
+					secondOrderPass: r,
+					countOnly: this.#u,
+					getViewportEdgeFadeMaskUrl: (e) => this.#u ? void 0 : this.getViewportEdgeFadeMaskUrl(e),
+					getShadowFilterUrl: (e) => this.#u ? "" : this.getShadowFilterUrl(e),
+					getRuleStrokeMaskUrl: (e, t, n, r, i) => this.getRuleStrokeMaskUrl(e, t, n, r, i),
+					getShadowClipPathUrl: (e) => this.#u ? "" : this.getShadowClipPathUrl(e),
+					getRectHatchPatternUrl: (e) => this.#u ? "" : this.getRectHatchPatternUrl(e),
+					getLinkArcFadeMaskUrl: (e) => this.#u ? void 0 : this.getLinkArcFadeMaskUrl(e),
+					getLegendGradientUrl: (e) => this.#u ? "" : this.getLegendGradientUrl(e),
+					warn: (t) => {
+						this.#u || this.#l.add(`${t} View: ${e.unitView.getPathString()}`);
+					}
+				});
+				this.#u && this.#d.set(e, this.getVisibleInstanceCount(e) + i);
+			};
+			if (!y) {
+				r(n);
+				return;
+			}
+			let i = ae(n, 0, n.length, h.predicate, h.passes);
+			for (let [e, t] of i.entries()) t.length !== 0 && r(t, e === 1);
+		}, (t) => this.#l.add(`SVG export could not resolve sample facet index ${t}. View: ${e.unitView.getPathString()}`)), !this.#u && !l && p.childElementCount > 0) {
+			let e = this.getClipPathUrl(o);
+			e && p.setAttribute("clip-path", e), this.currentNode.appendChild(p);
+		}
+	}
+	#T(e, t) {
+		let n = this.#m?.rasterRuns.get(e);
+		if (n) {
+			Y(n.bounds, t), n.viewNodes.add(this.currentNode);
+			return;
+		}
+		let r = this.#_;
+		if (r) Y(r.bounds, t);
+		else {
+			let e = document.createComment("raster-run");
+			this.currentNode.appendChild(e), r = {
+				marks: /* @__PURE__ */ new Set(),
+				targets: [],
+				viewNodes: /* @__PURE__ */ new Set(),
+				anchor: e,
+				bounds: { ...t },
+				image: void 0
+			}, this.#_ = r;
+		}
+		r.marks.add(e), r.targets.push({
+			mark: e,
+			instanceCount: this.getVisibleInstanceCount(e)
+		}), r.viewNodes.add(this.currentNode), this.#m?.rasterRuns.set(e, r);
+	}
+	#E() {
+		let e = this.#_;
+		e && (this.#g.push(e), this.#_ = void 0);
+	}
+	#D(e) {
+		let t = Me(e.viewNodes), n = e.targets.map((e) => e.mark.getType()), r = I("g", {
+			id: `rasterized-${n.join("-")}-${this.#w++}`,
+			"data-name": `Rasterized ${n.join(", ")}`,
+			"data-rasterized": ""
+		}), i = I("image", { preserveAspectRatio: "none" });
+		r.appendChild(i);
+		let a = e.anchor.parentNode;
+		t == a ? t.insertBefore(r, e.anchor) : t.insertBefore(r, Ne(a, t)), e.anchor.remove();
+		for (let n of e.viewNodes) Pe(n, t);
+		e.image = i;
+	}
+	#O(e, t) {
+		let n = this.#m;
+		if (!n) return I("g", { "data-mark-type": e.getType() });
+		let r = n.markGroups.get(e);
+		r || (r = /* @__PURE__ */ new Map(), n.markGroups.set(e, r));
+		let i = t ?? "", a = r.get(i);
+		if (a) {
+			if (a.parentNode !== this.currentNode) throw Error(`Sample-faceted mark was rendered under multiple parents: ${e.unitView.getPathString()}`);
+		} else a = I("g", { "data-mark-type": e.getType() }), t && a.setAttribute("clip-path", t), this.currentNode.appendChild(a), r.set(i, a), n.markGroupElements.add(a);
+		return a;
+	}
+	getClipPathUrl(e) {
+		if (!e) return;
+		let t = e.rect.flatten(), n = [
+			e.clipX ? t.x : 0,
+			e.clipY ? t.y : 0,
+			e.clipX ? t.width : this.width,
+			e.clipY ? t.height : this.height
+		].map(P), r = n.join(","), i = this.#r.get(r);
+		if (!i) {
+			i = "clip-" + this.#y++;
+			let e = I("clipPath", {
+				id: i,
+				clipPathUnits: "userSpaceOnUse"
+			});
+			e.appendChild(I("rect", {
+				x: n[0],
+				y: n[1],
+				width: n[2],
+				height: n[3]
+			})), this.#t.appendChild(e), this.#r.set(r, i);
+		}
+		return `url(#${i})`;
+	}
+	getShadowFilterUrl(e) {
+		let t = P(Math.max(e.blur / 2.5, .25)), n = P(e.offsetX), r = P(e.offsetY), i = [
+			t,
+			n,
+			r
+		].join(","), a = this.#a.get(i);
+		if (!a) {
+			a = "shadow-" + this.#x++;
+			let e = I("filter", {
+				id: a,
+				x: 0,
+				y: 0,
+				width: P(this.width),
+				height: P(this.height),
+				filterUnits: "userSpaceOnUse",
+				primitiveUnits: "userSpaceOnUse",
+				"color-interpolation-filters": "sRGB"
+			});
+			e.appendChild(I("feGaussianBlur", {
+				in: "SourceGraphic",
+				stdDeviation: t,
+				result: "blur"
+			})), e.appendChild(I("feOffset", {
+				in: "blur",
+				dx: n,
+				dy: r,
+				result: "offsetBlur"
+			})), this.#t.appendChild(e), this.#a.set(i, a);
+		}
+		return `url(#${a})`;
+	}
+	getRuleStrokeMaskUrl(e, t, n, r, i = !1) {
+		let a = "rule-stroke-" + this.#y++, o = {
+			x: -n - r,
+			y: -n - r,
+			width: t + 2 * (n + r),
+			height: 2 * (n + r)
+		}, s = I("mask", {
+			id: a,
+			...o,
+			maskUnits: "userSpaceOnUse",
+			maskContentUnits: "userSpaceOnUse",
+			"mask-type": "luminance"
+		});
+		return s.append(I("rect", {
+			...o,
+			fill: i ? "black" : "white"
+		}), I("path", {
+			d: e,
+			fill: i ? "white" : "black",
+			stroke: "none"
+		})), this.#t.appendChild(s), `url(#${a})`;
+	}
+	getShadowClipPathUrl(e) {
+		let t = this.#o.get(e);
+		if (!t) {
+			t = "shadow-clip-" + this.#y++;
+			let n = I("clipPath", {
+				id: t,
+				clipPathUnits: "userSpaceOnUse"
+			});
+			n.appendChild(I("path", {
+				d: `M 0 0 V ${P(this.height)} H ${P(this.width)} V 0 Z ${e}`,
+				"clip-rule": "evenodd",
+				"fill-rule": "evenodd"
+			})), this.#t.appendChild(n), this.#o.set(e, t);
+		}
+		return `url(#${t})`;
+	}
+	getRectHatchPatternUrl(e) {
+		let t = JSON.stringify([
+			e.type,
+			e.fill,
+			N(e.fillOpacity),
+			e.stroke,
+			N(e.strokeOpacity),
+			N(e.strokeWidth)
+		]), n = this.#s.get(t);
+		return n || (n = "rect-hatch-" + this.#S++, this.#t.appendChild(Oe(n, e)), this.#s.set(t, n)), `url(#${n})`;
+	}
+	getLegendGradientUrl(e) {
+		let t = "legend-gradient-" + this.#C++, n = I("linearGradient", {
+			id: t,
+			gradientUnits: "userSpaceOnUse",
+			x1: P(e.x1),
+			y1: P(e.y1),
+			x2: P(e.x2),
+			y2: P(e.y2)
+		});
+		for (let t of e.stops) n.appendChild(I("stop", {
+			offset: N(t.offset),
+			"stop-color": t.color
+		}));
+		return this.#t.appendChild(n), `url(#${t})`;
+	}
+	getLinkArcFadeMaskUrl(e) {
+		let t = ce(e.p1, e.p4, e.distances);
+		if (!t) return;
+		let n = this.#c.get(t.key);
+		if (!n) {
+			n = "link-arc-fade-" + this.#b++;
+			let { gradient: e, mask: r } = Ae(n, this.width, this.height, t);
+			this.#t.appendChild(e), this.#t.appendChild(r), this.#c.set(t.key, n);
+		}
+		return `url(#${n})`;
+	}
+	getViewportEdgeFadeMaskUrl(e) {
+		let t = Object.entries(e).filter(([, e]) => e.width > 0 && Number.isFinite(e.distance));
+		if (!t.length) return;
+		let n = r(this.#n);
+		if (!n) throw Error("No current view in SVG rendering context.");
+		let i = this.#i.get(n.view);
+		if (!i) {
+			i = "edge-fade-" + this.#b++;
+			let e = P(this.width), r = P(this.height), a = I("mask", {
+				id: i,
+				x: 0,
+				y: 0,
+				width: e,
+				height: r,
+				maskUnits: "userSpaceOnUse",
+				maskContentUnits: "userSpaceOnUse",
+				"mask-type": "luminance"
+			});
+			a.appendChild(I("rect", {
+				width: e,
+				height: r,
+				fill: "white"
+			}));
+			for (let [o, s] of t) {
+				let t = i + "-" + o, c = Fe(t, o, s, n.coords);
+				this.#t.appendChild(c), a.appendChild(I("rect", {
+					width: e,
+					height: r,
+					fill: `url(#${t})`
+				}));
+			}
+			this.#t.appendChild(a), this.#i.set(n.view, i);
+		}
+		return `url(#${i})`;
+	}
+	getSvg() {
+		return this.#e;
+	}
+	getWarnings() {
+		return Array.from(this.#l);
+	}
+	get currentNode() {
+		return r(this.#n)?.node ?? this.#e;
+	}
+	get currentCoords() {
+		let e = r(this.#n);
+		if (!e) throw Error("No current view in SVG rendering context.");
+		return e.coords;
+	}
+};
+function je(e, t) {
+	let n = e.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z0-9_-]+/g, "-").replace(/^-+|-+$/g, "");
+	return `${/^[A-Za-z_]/.test(n) ? n : n ? "view-" + n : "view"}-${t}`;
+}
+function Y(e, t) {
+	e.x1 = Math.min(e.x1, t.x1), e.y1 = Math.min(e.y1, t.y1), e.x2 = Math.max(e.x2, t.x2), e.y2 = Math.max(e.y2, t.y2);
+}
+function Me(e) {
+	let [t, ...n] = Array.from(e), r = t;
+	for (; n.some((e) => !r.contains(e));) r = r.parentNode;
+	return r;
+}
+function Ne(e, t) {
+	let n = e;
+	for (; n.parentNode != t;) n = n.parentNode;
+	return n;
+}
+function Pe(e, t) {
+	let n = e;
+	for (; n != t && n.matches("g[data-view-path]") && Array.from(n.children).every((e) => e.tagName == "title");) {
+		let e = n.parentNode;
+		n.remove(), n = e;
+	}
+}
+function Fe(e, t, n, r) {
+	let i = t == "top" ? r.y + n.distance : t == "right" ? r.x2 - n.distance : t == "bottom" ? r.y2 - n.distance : r.x + n.distance, a = t == "left" || t == "right", o = i + (t == "top" || t == "left" ? 1 : -1) * n.width, s = I("linearGradient", {
+		id: e,
+		gradientUnits: "userSpaceOnUse",
+		x1: P(a ? i : 0),
+		y1: P(a ? 0 : i),
+		x2: P(a ? o : 0),
+		y2: P(a ? 0 : o)
+	});
+	return s.appendChild(I("stop", {
+		offset: 0,
+		"stop-color": "black",
+		"stop-opacity": 1
+	})), s.appendChild(I("stop", {
+		offset: 1,
+		"stop-color": "black",
+		"stop-opacity": 0
+	})), s;
+}
+//#endregion
+//#region ../core/src/rendering/svg/index.js
+function X({ viewRoot: e, logicalWidth: t, logicalHeight: n, background: r = "white", textMetrics: i = e.context.textMetrics }) {
+	let a = new J({ picking: !1 }, {
+		width: t,
+		height: n,
+		background: r,
+		textMetrics: i
+	});
+	return s(e, o.create(0, 0, t, n), { renderingOptions: { firstFacet: !0 } }).collectRenderCommands(a), {
+		svg: a.getSvg(),
+		warnings: a.getWarnings()
+	};
+}
+async function Ie({ viewRoot: e, logicalWidth: t, logicalHeight: n }) {
+	let r = new J({ picking: !1 }, {
+		width: t,
+		height: n,
+		background: null,
+		textMetrics: await Q(e)
+	});
+	return r.beginInstanceCounting(), s(e, o.create(0, 0, t, n), { renderingOptions: { firstFacet: !0 } }).collectRenderCommands(r), r.endInstanceCounting(), { layers: Array.from(r.getVisibleInstanceCounts(), ([e, t]) => ({
+		viewName: e.unitView.name,
+		viewTitle: e.unitView.getTitleText(),
+		viewPath: e.unitView.getPathString(),
+		markType: e.getType(),
+		instanceCount: t
+	})).filter((e) => e.instanceCount > 0) };
+}
+async function Le(e) {
+	let t = await Q(e.viewRoot), n = {
+		...e,
+		textMetrics: t
+	}, r = e.rasterization;
+	return r ? ($(r), e.rasterizeSvgRuns ? Z({
+		...n,
+		rasterizeSvgRuns: e.rasterizeSvgRuns,
+		maxVectorInstances: r.maxVectorInstances,
+		pixelRatio: r.pixelRatio
+	}) : Re(n)) : {
+		...X(n),
+		rasterized: []
+	};
+}
+async function Z({ viewRoot: e, rasterizeSvgRuns: t, logicalWidth: n, logicalHeight: r, background: i = "white", maxVectorInstances: c, pixelRatio: l = 2, textMetrics: u }) {
+	u ??= await Q(e), $({
+		maxVectorInstances: c,
+		pixelRatio: l
+	});
+	let d = new J({ picking: !1 }, {
+		width: n,
+		height: r,
+		background: i,
+		maxVectorInstances: c,
+		textMetrics: u
+	}), f = o.create(0, 0, n, r), p = s(e, f, { renderingOptions: { firstFacet: !0 } });
+	d.beginInstanceCounting(), p.collectRenderCommands(d), d.endInstanceCounting(), p.collectRenderCommands(d);
+	let m = d.getRasterRuns();
+	if (m.length) try {
+		await t({
+			runs: m,
+			viewRoot: e,
+			layoutResult: p,
+			textMetrics: u,
+			logicalWidth: n,
+			logicalHeight: r,
+			pixelRatio: l
+		});
+	} catch (t) {
+		if (t instanceof a) return Re({
+			viewRoot: e,
+			logicalWidth: n,
+			logicalHeight: r,
+			background: i,
+			textMetrics: u
+		});
+		throw t;
+	}
+	return {
+		svg: d.getSvg(),
+		warnings: d.getWarnings(),
+		rasterized: m.map((e) => ({
+			targets: e.targets.map((e) => ({
+				markType: e.mark.getType(),
+				instanceCount: e.instanceCount
+			})),
+			reason: "instance-threshold",
+			maxVectorInstances: c,
+			pixelRatio: l
+		}))
+	};
+}
+async function Q(e) {
+	if (!document.fonts) return e.context.textMetrics;
+	let t = ee(document);
+	return await re(t, e), t;
+}
+function Re(e) {
+	let t = X(e);
+	return {
+		...t,
+		warnings: [...t.warnings, "SVG rasterization was requested but no raster rendering backend is available; exported all marks as vectors."],
+		rasterized: []
+	};
+}
+function $(e) {
+	if (!Number.isInteger(e.maxVectorInstances) || e.maxVectorInstances < 0) throw RangeError("maxVectorInstances must be a non-negative integer.");
+	if (e.pixelRatio != null && (!Number.isFinite(e.pixelRatio) || e.pixelRatio <= 0)) throw RangeError("SVG raster pixelRatio must be positive.");
+}
+//#endregion
+export { Ie as analyzeSvgExport, Z as createRasterizedSvg, X as createSvg, Le as createSvgExport };

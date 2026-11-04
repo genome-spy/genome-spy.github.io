@@ -132,7 +132,7 @@
       },
       {
         "title": "Lazy Data Sources",
-        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_3"
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_4"
       }
     ]
   },
@@ -155,7 +155,7 @@
       },
       {
         "title": "Lazy Data Sources",
-        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_4"
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_5"
       }
     ]
   },
@@ -217,6 +217,25 @@
       {
         "title": "Interactive ASCAT-like Purity/Ploidy Fitting",
         "url": "https://genomespy.app/docs/examples/genomic-data/ascat-algorithm/"
+      }
+    ]
+  },
+  {
+    "id": "docs/examples/genomic-data/lambda-phage-gene-map",
+    "title": "Lambda Phage Gene Map",
+    "description": "Lambda Phage Gene Map",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Examples / Genomic Data",
+    "specPath": "examples/docs/examples/genomic-data/lambda-phage-gene-map.json",
+    "specUrl": "/docs/example-specs/docs/examples/genomic-data/lambda-phage-gene-map.json",
+    "screenshotPath": "examples/docs/examples/genomic-data/lambda-phage-gene-map.png",
+    "screenshotUrl": "/docs/example-specs/docs/examples/genomic-data/lambda-phage-gene-map.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Lambda Phage Gene Map",
+        "url": "https://genomespy.app/docs/examples/genomic-data/lambda-phage-gene-map/"
       }
     ]
   },
@@ -563,6 +582,25 @@
     ]
   },
   {
+    "id": "docs/grammar/composition/concat/viewport-anchors",
+    "title": "Bottom and Right Anchored Viewports",
+    "description": "Bottom and Right Anchored Viewports",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Composition / Concat",
+    "specPath": "examples/docs/grammar/composition/concat/viewport-anchors.json",
+    "specUrl": "/docs/example-specs/docs/grammar/composition/concat/viewport-anchors.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "View Concatenation",
+        "url": "https://genomespy.app/docs/grammar/composition/concat/#scrollable-viewports"
+      }
+    ]
+  },
+  {
     "id": "docs/grammar/composition/concat/child-sizing",
     "title": "Concatenation child sizing example.",
     "description": "Concatenation child sizing example.",
@@ -799,8 +837,8 @@
     "category": "Grammar / Composition / Surround",
     "specPath": "examples/docs/grammar/composition/surround/annotated-matrix.json",
     "specUrl": "/docs/example-specs/docs/grammar/composition/surround/annotated-matrix.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/docs/grammar/composition/surround/annotated-matrix.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/composition/surround/annotated-matrix.png",
     "sourceMode": "shared-example",
     "documentation": [
       {
@@ -919,7 +957,7 @@
     "documentation": [
       {
         "title": "Lazy Data Sources",
-        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_7"
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_8"
       }
     ]
   },
@@ -938,7 +976,7 @@
     "documentation": [
       {
         "title": "Lazy Data Sources",
-        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_6"
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_7"
       }
     ]
   },
@@ -957,7 +995,7 @@
     "documentation": [
       {
         "title": "Lazy Data Sources",
-        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_5"
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_6"
       }
     ]
   },
@@ -976,7 +1014,7 @@
     "documentation": [
       {
         "title": "Lazy Data Sources",
-        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_2"
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_3"
       }
     ]
   },
@@ -1033,7 +1071,7 @@
     "documentation": [
       {
         "title": "Lazy Data Sources",
-        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_8"
+        "url": "https://genomespy.app/docs/grammar/data/lazy/#example_9"
       }
     ]
   },
@@ -1148,6 +1186,25 @@
       {
         "title": "Legend",
         "url": "https://genomespy.app/docs/grammar/legend/#collected-legends"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/legend/interactive-legends",
+    "title": "Explore penguins with interactive legends",
+    "description": "Explore penguins with interactive legends",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Legend",
+    "specPath": "examples/docs/grammar/legend/interactive-legends.json",
+    "specUrl": "/docs/example-specs/docs/grammar/legend/interactive-legends.json",
+    "screenshotPath": "examples/docs/grammar/legend/interactive-legends.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/legend/interactive-legends.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Legend",
+        "url": "https://genomespy.app/docs/grammar/legend/#interactive-legends"
       }
     ]
   },
@@ -1592,6 +1649,25 @@
     ]
   },
   {
+    "id": "docs/grammar/mark/rule/outlined-rules",
+    "title": "Outlined rules",
+    "description": "Outlined rules",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Mark / Rule",
+    "specPath": "examples/docs/grammar/mark/rule/outlined-rules.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/rule/outlined-rules.json",
+    "screenshotPath": "examples/docs/grammar/mark/rule/outlined-rules.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rule/outlined-rules.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Rule",
+        "url": "https://genomespy.app/docs/grammar/mark/rule/#outlined-rules"
+      }
+    ]
+  },
+  {
     "id": "docs/grammar/mark/rule/ranged-rules",
     "title": "Ranged rule mark example.",
     "description": "Ranged rule mark example.",
@@ -1626,6 +1702,25 @@
       {
         "title": "Rule",
         "url": "https://genomespy.app/docs/grammar/mark/rule/"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/mark/rule/weighted-network",
+    "title": "Weighted network with outlined rules",
+    "description": "Weighted network with outlined rules",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Mark / Rule",
+    "specPath": "examples/docs/grammar/mark/rule/weighted-network.json",
+    "specUrl": "/docs/example-specs/docs/grammar/mark/rule/weighted-network.json",
+    "screenshotPath": "examples/docs/grammar/mark/rule/weighted-network.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/mark/rule/weighted-network.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Rule",
+        "url": "https://genomespy.app/docs/grammar/mark/rule/#weighted-network"
       }
     ]
   },
@@ -1862,6 +1957,25 @@
     ]
   },
   {
+    "id": "docs/grammar/parameters/categorical-point-selection",
+    "title": "Select cells by activation state",
+    "description": "Select cells by activation state",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Parameters",
+    "specPath": "examples/docs/grammar/parameters/categorical-point-selection.json",
+    "specUrl": "/docs/example-specs/docs/grammar/parameters/categorical-point-selection.json",
+    "screenshotPath": "examples/docs/grammar/parameters/categorical-point-selection.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/parameters/categorical-point-selection.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Parameters",
+        "url": "https://genomespy.app/docs/grammar/parameters/#categorical-point-selection"
+      }
+    ]
+  },
+  {
     "id": "docs/grammar/parameters/two-way-linking",
     "title": "Two-way interval linking example.",
     "description": "Two-way interval linking example.",
@@ -1895,7 +2009,26 @@
     "documentation": [
       {
         "title": "Scales",
-        "url": "https://genomespy.app/docs/grammar/scale/#grouping-gaps"
+        "url": "https://genomespy.app/docs/grammar/scale/#index-and-locus-scales"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/scale/band-grouping-gaps",
+    "title": "Grouped categorical heatmap",
+    "description": "Grouped categorical heatmap",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Scale",
+    "specPath": "examples/docs/grammar/scale/band-grouping-gaps.json",
+    "specUrl": "/docs/example-specs/docs/grammar/scale/band-grouping-gaps.json",
+    "screenshotPath": "examples/docs/grammar/scale/band-grouping-gaps.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/band-grouping-gaps.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#band-and-point-scales"
       }
     ]
   },
@@ -1914,7 +2047,7 @@
     "documentation": [
       {
         "title": "Scales",
-        "url": "https://genomespy.app/docs/grammar/scale/#grouping-gaps"
+        "url": "https://genomespy.app/docs/grammar/scale/#index-and-locus-scales"
       }
     ]
   },
@@ -2090,6 +2223,25 @@
     ]
   },
   {
+    "id": "docs/grammar/scale/categorical-zoom",
+    "title": "Zoomable categorical columns",
+    "description": "Zoomable categorical columns",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Scale",
+    "specPath": "examples/docs/grammar/scale/categorical-zoom.json",
+    "specUrl": "/docs/example-specs/docs/grammar/scale/categorical-zoom.json",
+    "screenshotPath": "examples/docs/grammar/scale/categorical-zoom.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/scale/categorical-zoom.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Scales",
+        "url": "https://genomespy.app/docs/grammar/scale/#categorical-scale-viewports"
+      }
+    ]
+  },
+  {
     "id": "docs/grammar/title/basic-title",
     "title": "Basic title and subtitle example.",
     "description": "Basic title and subtitle example.",
@@ -2124,6 +2276,25 @@
       {
         "title": "Titles",
         "url": "https://genomespy.app/docs/grammar/title/#styling"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/transform/branch-values",
+    "title": "Metadata-derived heatmap gaps",
+    "description": "Metadata-derived heatmap gaps",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Transform",
+    "specPath": "examples/docs/grammar/transform/branch-values.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/branch-values.json",
+    "screenshotPath": "examples/docs/grammar/transform/branch-values.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/branch-values.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Values",
+        "url": "https://genomespy.app/docs/grammar/transform/values/#deriving-cuts-in-a-branch"
       }
     ]
   },
@@ -2200,6 +2371,25 @@
       {
         "title": "Cross",
         "url": "https://genomespy.app/docs/grammar/transform/cross/#example"
+      }
+    ]
+  },
+  {
+    "id": "docs/grammar/transform/dendrogram/clustered-heatmap-band",
+    "title": "Categorical Clustered Heatmap",
+    "description": "Categorical Clustered Heatmap",
+    "sourceGroup": "docs",
+    "sourceLabel": "Docs",
+    "category": "Grammar / Transform / Dendrogram",
+    "specPath": "examples/docs/grammar/transform/dendrogram/clustered-heatmap-band.json",
+    "specUrl": "/docs/example-specs/docs/grammar/transform/dendrogram/clustered-heatmap-band.json",
+    "screenshotPath": "examples/docs/grammar/transform/dendrogram/clustered-heatmap-band.png",
+    "screenshotUrl": "/docs/example-specs/docs/grammar/transform/dendrogram/clustered-heatmap-band.png",
+    "sourceMode": "shared-example",
+    "documentation": [
+      {
+        "title": "Dendrogram",
+        "url": "https://genomespy.app/docs/grammar/transform/dendrogram/#categorical-band-scales"
       }
     ]
   },
@@ -2641,8 +2831,8 @@
     "category": "General",
     "specPath": "examples/core/surround-acid-test.json",
     "specUrl": "/docs/example-specs/core/surround-acid-test.json",
-    "screenshotPath": null,
-    "screenshotUrl": null,
+    "screenshotPath": "examples/core/surround-acid-test.png",
+    "screenshotUrl": "/docs/example-specs/core/surround-acid-test.png",
     "sourceMode": "shared-example",
     "documentation": []
   },
@@ -2685,6 +2875,62 @@
     "specUrl": "/docs/example-specs/core/genomic/longChromosomeNames.json",
     "screenshotPath": "examples/core/genomic/longChromosomeNames.png",
     "screenshotUrl": "/docs/example-specs/core/genomic/longChromosomeNames.png",
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
+    "id": "core/interaction/legend-gradient-brush",
+    "title": "Brush activation across immune cell types",
+    "description": "Brush activation across immune cell types",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Interaction",
+    "specPath": "examples/core/interaction/legend-gradient-brush.json",
+    "specUrl": "/docs/example-specs/core/interaction/legend-gradient-brush.json",
+    "screenshotPath": "examples/core/interaction/legend-gradient-brush.png",
+    "screenshotUrl": "/docs/example-specs/core/interaction/legend-gradient-brush.png",
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
+    "id": "core/interaction/legend-hover",
+    "title": "Combine plot hover and legend selection",
+    "description": "Combine plot hover and legend selection",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Interaction",
+    "specPath": "examples/core/interaction/legend-hover.json",
+    "specUrl": "/docs/example-specs/core/interaction/legend-hover.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
+    "id": "core/interaction/legend-brush-torus",
+    "title": "One million points with a brushable torus",
+    "description": "One million points with a brushable torus",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Interaction",
+    "specPath": "examples/core/interaction/legend-brush-torus.json",
+    "specUrl": "/docs/example-specs/core/interaction/legend-brush-torus.json",
+    "screenshotPath": "examples/core/interaction/legend-brush-torus.png",
+    "screenshotUrl": "/docs/example-specs/core/interaction/legend-brush-torus.png",
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
+    "id": "core/interaction/legend-categories",
+    "title": "Select cell types and activation states",
+    "description": "Select cell types and activation states",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Interaction",
+    "specPath": "examples/core/interaction/legend-categories.json",
+    "specUrl": "/docs/example-specs/core/interaction/legend-categories.json",
+    "screenshotPath": "examples/core/interaction/legend-categories.png",
+    "screenshotUrl": "/docs/example-specs/core/interaction/legend-categories.png",
     "sourceMode": "shared-example",
     "documentation": []
   },
@@ -2923,6 +3169,20 @@
     "specUrl": "/docs/example-specs/core/layout/layer/lollipop.json",
     "screenshotPath": "examples/core/layout/layer/lollipop.png",
     "screenshotUrl": "/docs/example-specs/core/layout/layer/lollipop.png",
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
+    "id": "core/lazy-data/empty-region-message",
+    "title": "Empty-region message",
+    "description": "Empty-region message",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Lazy Data",
+    "specPath": "examples/core/lazy-data/empty-region-message.json",
+    "specUrl": "/docs/example-specs/core/lazy-data/empty-region-message.json",
+    "screenshotPath": "examples/core/lazy-data/empty-region-message.png",
+    "screenshotUrl": "/docs/example-specs/core/lazy-data/empty-region-message.png",
     "sourceMode": "shared-example",
     "documentation": []
   },
@@ -3361,6 +3621,20 @@
     "documentation": []
   },
   {
+    "id": "core/marks/rect/zoomable-clustered-heatmap",
+    "title": "Zoomable band scale heatmap with dendrograms",
+    "description": "Zoomable band scale heatmap with dendrograms",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Marks / Rect",
+    "specPath": "examples/core/marks/rect/zoomable-clustered-heatmap.json",
+    "specUrl": "/docs/example-specs/core/marks/rect/zoomable-clustered-heatmap.json",
+    "screenshotPath": "examples/core/marks/rect/zoomable-clustered-heatmap.png",
+    "screenshotUrl": "/docs/example-specs/core/marks/rect/zoomable-clustered-heatmap.png",
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
     "id": "core/marks/rule/rule_test",
     "title": "Check that the minLength and strokeDash properties work",
     "description": "Check that the minLength and strokeDash properties work",
@@ -3637,6 +3911,20 @@
     "specUrl": "/docs/example-specs/core/scales/diverging_test.json",
     "screenshotPath": "examples/core/scales/diverging_test.png",
     "screenshotUrl": "/docs/example-specs/core/scales/diverging_test.png",
+    "sourceMode": "shared-example",
+    "documentation": []
+  },
+  {
+    "id": "core/scales/ordinal_expression_range_test",
+    "title": "Expression-valued ordinal opacity range",
+    "description": "Expression-valued ordinal opacity range",
+    "sourceGroup": "core",
+    "sourceLabel": "Core",
+    "category": "Scales",
+    "specPath": "examples/core/scales/ordinal_expression_range_test.json",
+    "specUrl": "/docs/example-specs/core/scales/ordinal_expression_range_test.json",
+    "screenshotPath": null,
+    "screenshotUrl": null,
     "sourceMode": "shared-example",
     "documentation": []
   },
@@ -4151,7 +4439,7 @@
     "documentation": [
       {
         "title": "Visualizing Sample Collections",
-        "url": "https://genomespy.app/docs/sample-collections/visualizing/#example_1"
+        "url": "https://genomespy.app/docs/sample-collections/visualizing/#identity-from-explicit-data"
       }
     ]
   },

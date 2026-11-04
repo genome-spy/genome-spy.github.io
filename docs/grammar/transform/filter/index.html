@@ -616,6 +616,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -705,6 +709,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1532,6 +1563,33 @@
     
   
   Stack
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
 
     
   </span>
@@ -2666,6 +2724,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2828,6 +2890,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../api/coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../api/inspector/" class="md-nav__link">
         
   
@@ -2947,6 +3063,8 @@
       
         
           
+        
+      
         
       
         
@@ -3130,6 +3248,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -3729,36 +3874,52 @@
 <h3 id="predicate-expression">Predicate Expression<a class="headerlink" href="#predicate-expression" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>expr</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>An expression string. The row is removed if the expression evaluates to false.</p>
+<dd>
+<p>Type: string</p>
+<p>An expression string. The row is removed if the expression evaluates to false.</p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
+<dd>
+<p>Type: number</p>
+<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
 <p>Parameter updates and incoming data are not delayed. Incoming batches use current parameter values, and a completed batch satisfies any pending reactive replay. The delay does not wait for independently scheduled lazy data loads.</p>
 <p><strong>Default value:</strong> no delay</p>
 </dd>
 <dt><code>description</code></dt>
-<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
+<dd>
+<p>Type: string</p>
+<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 </dl>
 <h3 id="selection-predicate">Selection Predicate<a class="headerlink" href="#selection-predicate" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>param</code> <span class="required">Required</span></dt>
-<dd>Type: string<p>A selection parameter. The row is removed if it is not part of the selection.</p>
+<dd>
+<p>Type: string</p>
+<p>A selection parameter. The row is removed if it is not part of the selection.</p>
 </dd>
 <dt><code>empty</code></dt>
-<dd>Type: boolean<p>If true, the filter retains all rows when the selection is empty.</p>
+<dd>
+<p>Type: boolean</p>
+<p>If true, the filter retains all rows when the selection is empty.</p>
 <p><strong>Default:</strong> <code>true</code></p>
 </dd>
 <dt><code>fields</code></dt>
-<dd>Type: object<p>An optional mapping of positional channels to fields. Used to determine which fields are checked against the selection intervals.</p>
+<dd>
+<p>Type: object</p>
+<p>Maps selection components to fields. Required for category and interval filters, which have no implicit visual encoding. Category mappings must cover exactly the declared component.</p>
 </dd>
 <dt><code>debounce</code></dt>
-<dd>Type: number<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
+<dd>
+<p>Type: number</p>
+<p>Trailing-edge delay in milliseconds before requesting dataflow replay after a reactive expression dependency changes. Repeated changes restart the delay.</p>
 <p>Parameter updates and incoming data are not delayed. Incoming batches use current parameter values, and a completed batch satisfies any pending reactive replay. The delay does not wait for independently scheduled lazy data loads.</p>
 <p><strong>Default value:</strong> no delay</p>
 </dd>
 <dt><code>description</code></dt>
-<dd>Type: string<p>A description of the transform step. Can be used for documentation and agent context.</p>
+<dd>
+<p>Type: string</p>
+<p>A description of the transform step. Can be used for documentation and agent context.</p>
 </dd>
 </dl>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
@@ -3777,6 +3938,17 @@ data remain immediate. A completed input batch uses current parameter values
 and makes any pending replay unnecessary. The delay does not wait for an
 independently scheduled lazy load.</p>
 <h3 id="filtering-by-a-selection-predicate">Filtering by a Selection Predicate<a class="headerlink" href="#filtering-by-a-selection-predicate" title="Permanent link">&para;</a></h3>
+<p>Category selection filters require a mapping from the declared channel to the
+field in the filtered data, for example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;filter&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;activation_states&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;activation_state&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Matching uses raw typed category values. Empty selections retain all rows by
+default; <code>empty: false</code> retains none. Filtering can change inferred scale
+domains, while selected values remain stored if temporarily absent.</p>
 <p>Interval selections in GenomeSpy are defined by their data extent along the x
 and/or y channels. When filtering data based on a selection, you must explicitly
 map the visual channels (x or y) to the corresponding data fields to ensure

@@ -610,6 +610,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -699,6 +703,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1401,6 +1432,33 @@
     
   
   Stack
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
 
     
   </span>
@@ -2353,6 +2411,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#selection-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Selection Functions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#other-functions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -2737,6 +2806,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2899,6 +2972,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/inspector/" class="md-nav__link">
         
   
@@ -3018,6 +3145,8 @@
       
         
           
+        
+      
         
       
         
@@ -3201,6 +3330,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -3831,6 +3987,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#selection-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Selection Functions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#other-functions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3999,7 +4166,9 @@ the input and reverses by Unicode code point rather than UTF-16 code unit.</p>
 resolves scales by channel instead of by named scale.</p>
 <p>They are available in <code>formula</code> and <code>filter</code> transforms, in dynamic expression
 properties, and in scale <code>ExprRef</code> properties. They are reactive: when a
-referenced scale changes, dependent expressions update.</p>
+referenced scale changes, dependent expressions update. This includes categorical
+navigation: placement and bandwidth change while the full category domain stays
+intact. See <a href="../scale/#categorical-scale-viewports">categorical scale viewports</a>.</p>
 <p>When a helper is used in a scale <code>ExprRef</code>, it resolves from the view that owns
 the scale resolution. For a shared scale, declare the expression in
 <code>scales.&lt;channel&gt;</code> on the composed view that owns the resolution.</p>
@@ -4023,7 +4192,8 @@ range position.</p>
 <p><a name="domain" href="#domain">#</a>
 <b>domain</b>(<i>channel</i>)<br/>
 Returns the current domain of the scale for the given channel. The channel is
-resolved against the current view's scale resolution.</p>
+resolved against the current view's scale resolution. For band and point scales,
+this remains the complete ordered category list during zooming and panning.</p>
 <p><a name="range" href="#range">#</a>
 <b>range</b>(<i>channel</i>)<br/>
 Returns the current range of the scale for the given channel. The channel is
@@ -4059,7 +4229,9 @@ expression is bound.</p>
 <b>zoomLevel</b>(<i>channel</i>)<br/>
 Returns the zoom level of one scale, such as <code>zoomLevel("x")</code>. The channel must
 be a literal string. The value is the reference-domain span divided by the
-current displayed-domain span. A non-zoomable scale returns <code>1</code>.</p>
+current displayed-domain span. For band and point scales, it is the category
+count divided by the scale viewport's rank span. A non-zoomable scale returns
+<code>1</code>.</p>
 <p>Compose separate calls when a formula needs multiple explicit scales. For
 example, <code>sqrt(zoomLevel("x") * zoomLevel("y"))</code> is the explicit equivalent of
 the automatic two-dimensional metric. Other formulas can use <code>min</code>, <code>max</code>, or
@@ -4068,6 +4240,40 @@ ordinary arithmetic.</p>
 configuration cannot read that same scale's zoom level. Cross-scale dependency
 cycles are also rejected. A scale range may read its own zoom level because
 range changes do not determine magnification.</p>
+<h3 id="selection-functions">Selection Functions<a class="headerlink" href="#selection-functions" title="Permanent link">&para;</a></h3>
+<p>Selection functions take the selection parameter itself, for example
+<code>selectionActive(picked)</code>. They follow ordinary expression scope and reactive
+updates.</p>
+<p><a name="selectionActive" href="#selectionActive">#</a>
+<b>selectionActive</b>(<i>selection</i>)<br/>
+Returns whether a record point selection, category point selection, or interval
+selection has stored membership. Empty selections return <code>false</code>. Selected
+categories remain active while their values are absent from loaded data.</p>
+<p><a name="selectionValues" href="#selectionValues">#</a>
+<b>selectionValues</b>(<i>selection</i>, <i>component</i>)<br/>
+Returns a detached array of selected raw category values in selection order,
+such as <code>selectionValues(activation_states, 'color')</code>. An empty category
+selection returns <code>[]</code>. Record and interval selections do not support this
+operation.</p>
+<p><a name="selectionContains" href="#selectionContains">#</a>
+<b>selectionContains</b>(<i>selection</i>, <i>component</i>, <i>value</i>)<br/>
+Tests raw category membership with type-sensitive equality. Empty selections and
+unsupported values such as <code>null</code> return <code>false</code>. Record and interval selections
+are not supported. Unlike <code>selectionValues</code>, this function allocates no array
+and is suitable for per-row formula and filter expressions:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;selectionContains(focus, &#39;color&#39;, datum.activation_state)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;selected&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="selectionBounds" href="#selectionBounds">#</a>
+<b>selectionBounds</b>(<i>selection</i>, <i>component</i>)<br/>
+Returns a detached numeric <code>[start, end]</code> pair for a declared interval component,
+such as <code>selectionBounds(brush, 'x')</code>, or <code>null</code> when cleared. Locus bounds use
+linearized genomic coordinates. Point selections do not support this operation.</p>
+<p>These functions reject non-selection arguments. Component functions reject
+undeclared components. They read stored values without scanning matching rows.</p>
 <h3 id="other-functions">Other functions<a class="headerlink" href="#other-functions" title="Permanent link">&para;</a></h3>
 <p><a name="tickStep" href="#tickStep">#</a>
 <b>tickStep</b>(<i>start</i>, <i>stop</i>, <i>count</i>)<br/>

@@ -612,6 +612,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -701,6 +705,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1461,6 +1492,33 @@
     
   
   Stack
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
 
     
   </span>
@@ -2595,6 +2653,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2757,6 +2819,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../api/coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../api/inspector/" class="md-nav__link">
         
   
@@ -2876,6 +2992,8 @@
       
         
           
+        
+      
         
       
         
@@ -3059,6 +3177,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -3588,7 +3733,9 @@
 each row.</p>
 <p>GenomeSpy uses these identifiers internally for picking, including tooltips and
 point selections. It inserts an identifier transform automatically when a mark
-participates in picking and the dataflow branch does not already contain one.</p>
+participates in picking or uses a point-selection condition and the dataflow
+branch does not already contain one. The required <code>uniqueId</code> encoding is
+inferred automatically, including on marks with picking disabled.</p>
 <p>Identifiers are runtime values. Do not use them as persistent record keys. For
 point selections that need to survive state persistence, use <code>encoding.key</code>, as
 described in the <a href="../../mark/#non-visual-channels">non-visual channels

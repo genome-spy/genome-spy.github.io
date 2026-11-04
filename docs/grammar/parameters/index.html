@@ -614,6 +614,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -703,6 +707,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1405,6 +1436,33 @@
     
   
   Stack
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
 
     
   </span>
@@ -2292,6 +2350,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Pushing Parameters to an Outer Scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transform-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Transform Outputs
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2342,6 +2417,34 @@
       </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Point Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#categorical-point-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Categorical Point Selection
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selection-and-semantic-zoom" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Selection and Semantic Zoom
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2837,6 +2940,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2999,6 +3106,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/inspector/" class="md-nav__link">
         
   
@@ -3118,6 +3279,8 @@
       
         
           
+        
+      
         
       
         
@@ -3301,6 +3464,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -3839,6 +4029,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Pushing Parameters to an Outer Scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transform-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Transform Outputs
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3889,6 +4096,34 @@
       </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Point Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#categorical-point-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Categorical Point Selection
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selection-and-semantic-zoom" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Selection and Semantic Zoom
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -4074,6 +4309,9 @@ parameterization when
 templates. Parameters in GenomeSpy are heavily inspired by the
 <a href="https://vega.github.io/vega-lite/docs/parameter.html">parameters</a> concept of
 Vega-Lite.</p>
+<p>The <a href=".././transform/values/"><code>"values"</code></a> transform can also declare a read-only
+array parameter from data. Its output is available to scale and visual
+expressions without a separate <code>params</code> entry.</p>
 <h2 id="using-input-bindings">Using Input Bindings<a class="headerlink" href="#using-input-bindings" title="Permanent link">&para;</a></h2>
 <p>Parameters can be bound to input elements, such as sliders, dropdowns, and
 checkboxes. The GenomeSpy Core library shows the input elements below the
@@ -4087,8 +4325,8 @@ this is necessary for bookmarkable state in the GenomeSpy App.</p>
 <p>By default, selection parameters and parameters with input bindings are
 persisted in the GenomeSpy App's bookmarks and provenance history. Use
 <code>persist: false</code> to opt out of persistence for ephemeral params (such as hover
-selections) or when <code>encoding.key</code> is not defined for point selections.</p>
-<p>For point selections, <code>encoding.key</code> should uniquely identify rows.
+selections) or when <code>encoding.key</code> is not defined for record point selections.</p>
+<p>For record point selections, <code>encoding.key</code> should uniquely identify rows.
 You can use either a single field or a composite key (an array of field
 definitions). When using a composite key, keep the field order stable across
 bookmark creation and restore.</p>
@@ -4206,6 +4444,17 @@ input bindings in the child write to the ancestor value.</p>
 <p>This pattern is useful when a child interaction controls shared state, such as
 a <a href=".././scale/#parameter-scope">reactive shared scale</a>. The ancestor must declare
 the target parameter before a child can push to it.</p>
+<h3 id="transform-outputs">Transform Outputs<a class="headerlink" href="#transform-outputs" title="Permanent link">&para;</a></h3>
+<p>A child transform can publish a read-only array to an ancestor by using
+<code>"param": { "name": "categories", "push": "outer" }</code>. Declare the target
+on the ancestor with <code>{ "name": "categories" }</code> in <code>params</code>.
+This lets sibling plots share a data-derived scale domain without duplicating
+the producer.</p>
+<p>The target declaration accepts only <code>name</code> and an optional <code>description</code>.
+The transform makes it read-only and excludes it from bookmarks and provenance.
+Each output has one producer and cannot also receive interaction updates.
+See <a href=".././transform/values/#output-parameters">values</a> for initialization and
+lifecycle details.</p>
 <h2 id="numeric-transitions">Numeric Transitions<a class="headerlink" href="#numeric-transitions" title="Permanent link">&para;</a></h2>
 <p>Numeric value and expression parameters can use <code>transition</code> to smooth how the
 exposed runtime value follows a target value. Use <code>"lerp"</code> to continuously
@@ -4242,11 +4491,15 @@ Use transitions carefully when those operations are expensive or stateful.</p>
 <h3 id="transition-properties">Transition Properties<a class="headerlink" href="#transition-properties" title="Permanent link">&para;</a></h3>
 <dl>
 <dt><code>epsilon</code></dt>
-<dd>Type: number<p>Distance from the target at which the current value snaps to the target.</p>
+<dd>
+<p>Type: number</p>
+<p>Distance from the target at which the current value snaps to the target.</p>
 <p><strong>Default value:</strong> <code>0.01</code></p>
 </dd>
 <dt><code>halfLife</code></dt>
-<dd>Type: number<p>Time in milliseconds for the remaining distance to the target to halve.</p>
+<dd>
+<p>Type: number</p>
+<p>Time in milliseconds for the remaining distance to the target to halve.</p>
 <p><strong>Default value:</strong> <code>80</code></p>
 </dd>
 </dl>
@@ -4257,7 +4510,8 @@ Use transitions carefully when those operations are expensive or stateful.</p>
 conditional encoding rules into efficient GPU shader code, enabling fast
 interactions in very large data sets.</p>
 <h3 id="point-selection">Point Selection<a class="headerlink" href="#point-selection" title="Permanent link">&para;</a></h3>
-<p>The following example has been adapted from Vega-Lite's <a href="https://vega.github.io/vega-lite/examples/interactive_bar_select_highlight.html">example
+<p>Ordinary <code>select: "point"</code> selects individual records. The following example has
+been adapted from Vega-Lite's <a href="https://vega.github.io/vega-lite/examples/interactive_bar_select_highlight.html">example
 gallery</a>
 with slight modifications (GenomeSpy provides no <code>"bar"</code> mark). The
 specification below is fully compatible with Vega-Lite. You can select multiple
@@ -4318,8 +4572,84 @@ bars by holding down the <code>Shift</code> key.</p>
 
 </genome-spy-doc-embed></div>
 
+<h4 id="categorical-point-selection">Categorical Point Selection<a class="headerlink" href="#categorical-point-selection" title="Permanent link">&para;</a></h4>
+<p><code>select: {"type": "point", "encodings": ["color"]}</code> selects all records with
+matching raw values in the color field. This is a subset of
+<a href="https://vega.github.io/vega-lite/docs/selection.html#project">Vega-Lite's selection projections</a>:
+GenomeSpy supports one unconditional nominal or ordinal field encoding with a
+discrete scale, using <code>x</code>, <code>y</code>, <code>color</code>, <code>fill</code>, <code>stroke</code>, or <code>shape</code>. Categorical
+positions use band or point scales. Direct <code>fields</code>
+projection and multi-channel projections are not supported.</p>
+<p>Category selections can link plots with different scales, for example a
+categorical x axis and a shape encoding. Map the selected component to the other
+plot's input with <a href="../conditional-encoding/#matching-categories-across-views"><code>project</code></a>.</p>
+<p>Add <a href="../legend/#interactive-legends"><code>bind: "legend"</code></a> to select categories
+through a symbol legend. Plot input then requires an explicit <code>select.on</code>.</p>
+<p>Initial values use channel-keyed objects such as <code>value: [{"color": "activated"}]</code>.
+See the <a href="../../api/runtime-state/#setting-categorical-point-selections">selection API</a>
+for value rules and programmatic updates, and
+<a href="../expressions/#selection-functions">selection functions</a> for expression access.</p>
+<div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/parameters/categorical-point-selection.json" height="300">
+
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Select cells by activation state&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Select an activation state to highlight all matching cells. Coordinates, cell types, and activation states are synthetic.&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Select an activation state&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;subtitle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Shift-click to toggle; double-click to clear.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;anchor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;focus&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;encodings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data/immune-cell-activation.csv&quot;</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;encoding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quantitative&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;activation_state&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ordinal&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;shape&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cell_type&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;opacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;condition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;focus&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.12</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</genome-spy-doc-embed></div>
+
+<div class="admonition disclaimer">
+<p>Coordinates, cell types, and activation states are synthetic.</p>
+</div>
+<h4 id="selection-and-semantic-zoom">Selection and Semantic Zoom<a class="headerlink" href="#selection-and-semantic-zoom" title="Permanent link">&para;</a></h4>
+<p>Active record selections and positional brushes referenced by appearance
+conditions preserve their matching rows during semantic-zoom sampling,
+independently of enclosing <code>and</code>, <code>or</code>, or <code>not</code> operators. Category selections,
+empty selections, and conditions used only for drawing order preserve no extra
+rows.</p>
 <h3 id="interval-selection">Interval Selection<a class="headerlink" href="#interval-selection" title="Permanent link">&para;</a></h3>
-<p>Interval selections allow for selecting a range of rows along one or two axes.
+<p>Interval selections allow for selecting a range of rows along one or two
+continuous axes. Band and point scales support
+<a href="../scale/#categorical-scale-viewports">viewport navigation</a>, but do not support
+interval brushing.
+They also support <a href="../legend/#numeric-ranges">brushing numeric gradient legends</a>
+through a single color, fill, or stroke component with <code>bind: "legend"</code>.
 The selected range includes its start and excludes its end. For example, an
 index brush spanning <code>[6, 11)</code> selects positions 6 through 10.</p>
 <p>By default, the start gesture depends on whether the brushed channels are
@@ -4346,8 +4676,9 @@ the selected channel uses aligned projections in the child views. Otherwise, it
 draws a rectangle in each participating view. <code>"container"</code> requires the
 spanning rectangle, and <code>"view"</code> always draws per-view rectangles.</p>
 <p>The brush outline follows <code>defaultThemeColors.foreground</code> in the default theme. Override
-its appearance with <code>select.mark</code>; its <code>fill</code> and <code>stroke</code> colors can be
-expressions. Use <code>config.style["selection-brush"]</code> to set shared brush defaults.</p>
+its appearance with <code>select.mark</code>, using rect properties such as fill, stroke,
+opacity, rounded corners, hatching, and shadow. Numeric and color properties can
+be expressions. Use <code>config.style["selection-brush"]</code> to set shared brush defaults.</p>
 <div><genome-spy-doc-embed base-url="example-specs/" playground-url="/playground/?spec=/docs/example-specs/docs/grammar/parameters/interval-selection.json" height="240">
 
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -4442,10 +4773,7 @@ Penguins</a> dataset.</p>
 <span class="w">            </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;brush&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Species&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Chinstrap&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Adelie&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Gentoo&quot;</span><span class="p">],</span>
-<span class="w">              </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;#BF5CCA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#FF6C02&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#0F7574&quot;</span><span class="p">]</span>
-<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;#BF5CCA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#FF6C02&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#0F7574&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;orient&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;top-right&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span>
 <span class="w">          </span><span class="p">},</span>
 <span class="w">          </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lightgrey&quot;</span>
@@ -4477,10 +4805,7 @@ Penguins</a> dataset.</p>
 <span class="w">            </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Species&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Chinstrap&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Adelie&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Gentoo&quot;</span><span class="p">],</span>
-<span class="w">                </span><span class="nt">&quot;padding&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span>
-<span class="w">              </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;padding&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="w"> </span><span class="p">},</span>
 <span class="w">              </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;labelAngle&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Species&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;legend&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">}</span>
@@ -4500,7 +4825,7 @@ Penguins</a> dataset.</p>
 <span class="w">            </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">&quot;field&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sex&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nominal&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;MALE&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;FEMALE&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;padding&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="w"> </span><span class="p">},</span>
+<span class="w">              </span><span class="nt">&quot;scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;padding&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="w"> </span><span class="p">},</span>
 <span class="w">              </span><span class="nt">&quot;axis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;labelAngle&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gray&quot;</span><span class="w"> </span><span class="p">}</span>
@@ -4775,7 +5100,7 @@ visually connects the selected region in the overview to the detail view.</p>
 <span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;collect&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;formula&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;brush.intervals.x ? brush.intervals.x[datum.side] : datum.x2&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;expr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;selectionBounds(brush, &#39;x&#39;) ? selectionBounds(brush, &#39;x&#39;)[datum.side] : datum.x2&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;as&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">],</span>
@@ -4952,42 +5277,60 @@ changes where the coordinate is stored, but not where these expressions resolve.
 <p><code>ruler</code> supports the following properties:</p>
 <dl>
 <dt><code>clear</code></dt>
-<dd>Type: <code>mouseleave</code> | <code>mouseup</code> | <code>False</code><p>Event that clears the ruler, or <code>false</code> to keep the current value.</p>
+<dd>
+<p>Type: <code>mouseleave</code> | <code>mouseup</code> | <code>False</code></p>
+<p>Event that clears the ruler, or <code>false</code> to keep the current value.</p>
 <p><strong>Default value:</strong> <code>"mouseleave"</code> for <code>on: "mousemove"</code>, otherwise <code>false</code>.</p>
 </dd>
 <dt><code>disabled</code></dt>
-<dd>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a><p>Clears the coordinate and ignores tracking events while true. Expressions resolve where the ruler is declared. Re-enabling waits for the next pointer or viewport event; it does not restore the initial value. With <code>push: "outer"</code>, other enabled bindings can still update the shared coordinate.</p>
+<dd>
+<p>Type: boolean | <a href="https://genomespy.app/docs/grammar/expressions/">ExprRef</a></p>
+<p>Clears the coordinate and ignores tracking events while true. Expressions resolve where the ruler is declared. Re-enabling waits for the next pointer or viewport event; it does not restore the initial value. With <code>push: "outer"</code>, other enabled bindings can still update the shared coordinate.</p>
 <p><strong>Default value:</strong> <code>false</code></p>
 </dd>
 <dt><code>display</code></dt>
-<dd>Type: <code>"line"</code> | <code>"center"</code> | <code>"band"</code> | <code>"none"</code><p>How the ruler is drawn for snapped index or locus coordinates.</p>
+<dd>
+<p>Type: <code>"line"</code> | <code>"center"</code> | <code>"band"</code> | <code>"none"</code></p>
+<p>How the ruler is drawn for snapped index or locus coordinates.</p>
 <p><code>"line"</code> draws at the coordinate. <code>"center"</code> draws at the center of the coordinate band. <code>"band"</code> draws a rectangle covering the coordinate band. <code>"none"</code> tracks the ruler value without drawing a guide.</p>
 <p><strong>Default value:</strong> <code>"center"</code> for snapped index and locus scales, otherwise <code>"line"</code>.</p>
 </dd>
 <dt><code>encodings</code></dt>
-<dd>Type: array<p>Positional channels whose domain coordinates are tracked by the ruler.</p>
+<dd>
+<p>Type: array</p>
+<p>Positional channels whose domain coordinates are tracked by the ruler.</p>
 <p><strong>Default value:</strong> <code>["x"]</code></p>
 </dd>
 <dt><code>extent</code></dt>
-<dd>Type: <code>"auto"</code> | <code>"view"</code> | <code>"container"</code><p>Visual extent of the ruler.</p>
+<dd>
+<p>Type: <code>"auto"</code> | <code>"view"</code> | <code>"container"</code></p>
+<p>Visual extent of the ruler.</p>
 <p><code>"view"</code> draws one guide per participating view. <code>"container"</code> draws one spanning guide when participating projections align. <code>"auto"</code> chooses a spanning guide only when it is safe.</p>
 <p><strong>Default value:</strong> <code>"auto"</code></p>
 </dd>
 <dt><code>mark</code></dt>
-<dd>Type: <a href="https://genomespy.app/docs/grammar/types/#rulermarkconfig">RulerMarkConfig</a><p>Rule or band appearance. Expressions resolve in the scope where this ruler is declared, including when it uses <code>push: "outer"</code>. Has no effect when <code>display</code> is <code>"none"</code>.</p>
+<dd>
+<p>Type: <a href="https://genomespy.app/docs/grammar/types/#rulermarkconfig">RulerMarkConfig</a></p>
+<p>Rule or band appearance. Expressions resolve in the scope where this ruler is declared, including when it uses <code>push: "outer"</code>. Has no effect when <code>display</code> is <code>"none"</code>.</p>
 </dd>
 <dt><code>on</code></dt>
-<dd>Type: <code>"mousemove"</code> | <code>"mousedown"</code> | <a href="https://genomespy.app/docs/grammar/types/#rulereventconfig">RulerEventConfig</a> | string<p>Event that updates a pointer-driven ruler.</p>
+<dd>
+<p>Type: <code>"mousemove"</code> | <code>"mousedown"</code> | <a href="https://genomespy.app/docs/grammar/types/#rulereventconfig">RulerEventConfig</a> | string</p>
+<p>Event that updates a pointer-driven ruler.</p>
 <p><code>"mousemove"</code> follows the pointer. <code>"mousedown"</code> updates on press and continues while dragging. Event filters can require modifier keys.</p>
 <p><strong>Default value:</strong> <code>"mousemove"</code></p>
 </dd>
 <dt><code>snap</code></dt>
-<dd>Type: <code>auto</code> | <code>integer</code> | <code>False</code><p>Quantization applied before writing the ruler value.</p>
+<dd>
+<p>Type: <code>auto</code> | <code>integer</code> | <code>False</code></p>
+<p>Quantization applied before writing the ruler value.</p>
 <p><code>"auto"</code> snaps index and locus scales to integer coordinates. <code>"integer"</code> snaps all numeric coordinates. <code>false</code> keeps the original coordinate.</p>
 <p><strong>Default value:</strong> <code>"auto"</code> for index and locus scales, otherwise <code>false</code>.</p>
 </dd>
 <dt><code>source</code></dt>
-<dd>Type: <code>"pointer"</code> | <code>"viewport"</code><p>Source of the ruler coordinate. <code>"pointer"</code> uses pointer events configured by <code>on</code>. <code>"viewport"</code> tracks the center of the current viewport.</p>
+<dd>
+<p>Type: <code>"pointer"</code> | <code>"viewport"</code></p>
+<p>Source of the ruler coordinate. <code>"pointer"</code> uses pointer events configured by <code>on</code>. <code>"viewport"</code> tracks the center of the current viewport.</p>
 <p><strong>Default value:</strong> <code>"pointer"</code></p>
 </dd>
 </dl>

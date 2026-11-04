@@ -608,6 +608,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -697,6 +701,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1399,6 +1430,33 @@
     
   
   Stack
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
 
     
   </span>
@@ -2535,6 +2593,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2766,6 +2828,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../inspector/" class="md-nav__link">
         
   
@@ -2885,6 +3001,8 @@
       
         
           
+        
+      
         
       
         
@@ -3068,6 +3186,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -3607,14 +3752,18 @@
 <p>Public TypeScript API for <code>@genome-spy/core</code>.</p>
 <h2 id="interfaces">Interfaces<a class="headerlink" href="#interfaces" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="interfaces/CoordinateAssembly/">CoordinateAssembly</a></li>
+<li><a href="interfaces/CoordinateLocus/">CoordinateLocus</a></li>
 <li><a href="interfaces/FontCatalogEntry/">FontCatalogEntry</a></li>
 <li><a href="interfaces/EmbedOptions/">EmbedOptions</a></li>
 <li><a href="interfaces/SpecLocation/">SpecLocation</a></li>
 <li><a href="interfaces/ParamApi/">ParamApi</a></li>
 <li><a href="interfaces/ComplexLocusEndpoint/">ComplexLocusEndpoint</a></li>
 <li><a href="interfaces/IntervalSnapshot/">IntervalSnapshot</a></li>
-<li><a href="interfaces/PointSnapshot/">PointSnapshot</a></li>
-<li><a href="interfaces/PointSelectionApi/">PointSelectionApi</a></li>
+<li><a href="interfaces/RecordPointSnapshot/">RecordPointSnapshot</a></li>
+<li><a href="interfaces/CategoryPointSnapshot/">CategoryPointSnapshot</a></li>
+<li><a href="interfaces/RecordPointSelectionApi/">RecordPointSelectionApi</a></li>
+<li><a href="interfaces/CategoryPointSelectionApi/">CategoryPointSelectionApi</a></li>
 <li><a href="interfaces/IntervalSelectionApi/">IntervalSelectionApi</a></li>
 <li><a href="interfaces/ParamNamespace/">ParamNamespace</a></li>
 <li><a href="interfaces/NativeEvent/">NativeEvent</a></li>
@@ -3649,17 +3798,28 @@
 <li><a href="interfaces/ScaleResolutionEvent/">ScaleResolutionEvent</a></li>
 <li><a href="interfaces/ZoomToOptions/">ZoomToOptions</a></li>
 <li><a href="interfaces/ScaleResolutionApi/">ScaleResolutionApi</a></li>
+<li><a href="interfaces/SearchSource/">SearchSource</a></li>
+<li><a href="interfaces/DatumSearchTarget/">DatumSearchTarget</a></li>
+<li><a href="interfaces/DatumSearchMatch/">DatumSearchMatch</a></li>
+<li><a href="interfaces/DatumSearchResult/">DatumSearchResult</a></li>
+<li><a href="interfaces/DatumSearchOptions/">DatumSearchOptions</a></li>
+<li><a href="interfaces/SearchableView/">SearchableView</a></li>
+<li><a href="interfaces/DatumSearch/">DatumSearch</a></li>
 <li><a href="interfaces/AnalysisSampleParams/">AnalysisSampleParams</a></li>
 <li><a href="interfaces/TransformDataOptions/">TransformDataOptions</a></li>
 </ul>
 <h2 id="type-aliases">Type Aliases<a class="headerlink" href="#type-aliases" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="type-aliases/CoordinateInterval/">CoordinateInterval</a></li>
+<li><a href="type-aliases/CoordinateQueryResult/">CoordinateQueryResult</a></li>
 <li><a href="type-aliases/EmbedFunction/">EmbedFunction</a></li>
 <li><a href="type-aliases/ParamValue/">ParamValue</a></li>
 <li><a href="type-aliases/IntervalEndpoint/">IntervalEndpoint</a></li>
 <li><a href="type-aliases/ComplexInterval/">ComplexInterval</a></li>
 <li><a href="type-aliases/ComplexIntervals/">ComplexIntervals</a></li>
+<li><a href="type-aliases/PointSnapshot/">PointSnapshot</a></li>
 <li><a href="type-aliases/SelectionSnapshot/">SelectionSnapshot</a></li>
+<li><a href="type-aliases/PointSelectionApi/">PointSelectionApi</a></li>
 <li><a href="type-aliases/SelectionApi/">SelectionApi</a></li>
 <li><a href="type-aliases/NativeEventType/">NativeEventType</a></li>
 <li><a href="type-aliases/ViewAddress/">ViewAddress</a></li>

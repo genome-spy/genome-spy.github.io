@@ -14,7 +14,7 @@
         <link rel="prev" href="../views/">
       
       
-        <link rel="next" href="../inspector/">
+        <link rel="next" href="../coordinates/">
       
       
         
@@ -608,6 +608,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -697,6 +701,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1399,6 +1430,33 @@
     
   
   Stack
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../grammar/transform/values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
 
     
   </span>
@@ -2535,6 +2593,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2808,6 +2870,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#categorical-scale-viewports" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Categorical scale viewports
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#domain-events" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -2836,10 +2909,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#setting-point-selections" class="md-nav__link">
+  <a href="#setting-record-point-selections" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Setting point selections
+        Setting record point selections
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-categorical-point-selections" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Setting categorical point selections
       </span>
     </span>
   </a>
@@ -2866,6 +2950,60 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2997,6 +3135,8 @@
       
         
           
+        
+      
         
       
         
@@ -3180,6 +3320,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -3750,6 +3917,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#categorical-scale-viewports" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Categorical scale viewports
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#domain-events" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3778,10 +3956,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#setting-point-selections" class="md-nav__link">
+  <a href="#setting-record-point-selections" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Setting point selections
+        Setting record point selections
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-categorical-point-selections" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Setting categorical point selections
       </span>
     </span>
   </a>
@@ -3970,9 +4159,10 @@ GenomeSpy instances. See also <a href="../../grammar/scale/">Scale</a>.</p>
 </code></pre></div>
 <h3 id="domains">Domains<a class="headerlink" href="#domains" title="Permanent link">&para;</a></h3>
 <p><code>getDomain()</code> returns the current domain used by the scale. For locus scales,
-this is the linearized numeric domain.</p>
+this is the linearized, zero-based half-open numeric domain.</p>
 <p><code>getComplexDomain()</code> returns the current domain converted back to complex
-domain values when available, such as genomic loci for locus scales. See
+domain values when available. For locus scales, its chromosome-relative endpoints
+are zero-based and inclusive, covering the integer bases in the viewport. See
 <a href="../../grammar/scale/#specifying-the-domain">Specifying the domain</a> for locus
 domain syntax.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">genomeScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">getScaleResolutionByName</span><span class="p">(</span><span class="s2">&quot;genomeScale&quot;</span><span class="p">);</span>
@@ -3988,9 +4178,53 @@ complex genomic interval:</p>
 <div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">genomeScale</span><span class="p">.</span><span class="nx">zoomTo</span><span class="p">([{</span><span class="w"> </span><span class="nx">chrom</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;chr8&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">chrom</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;chr10&quot;</span><span class="w"> </span><span class="p">}]);</span>
 <span class="k">await</span><span class="w"> </span><span class="nx">genomeScale</span><span class="p">.</span><span class="nx">zoomTo</span><span class="p">([</span><span class="mf">400</span><span class="nx">_000_000</span><span class="p">,</span><span class="w"> </span><span class="mf">500</span><span class="nx">_000_000</span><span class="p">]);</span>
 </code></pre></div>
+<p>Locus <code>zoomTo()</code> currently interprets explicit upper endpoints as inclusive in
+both forms. Subtract one from a half-open upper endpoint before navigation,
+including intervals from <code>getDomain()</code>, <a href="../coordinates/">coordinate parsing</a>, or
+<a href="../search/">datum search</a>. Whole-chromosome shortcuts without an explicit upper
+position retain their full extent. Ordinary continuous numeric scales keep their
+usual endpoint semantics.</p>
+<p>This legacy locus convention is retained for compatibility. Standardizing genomic
+interval APIs on half-open endpoints is tracked for
+<a href="https://github.com/genome-spy/genome-spy/issues/620">v2.0 (#620)</a>.</p>
 <p>Pass <code>{ duration: true }</code> or <code>{ duration: milliseconds }</code> to animate the zoom:</p>
 <div class="highlight"><pre><span></span><code><span class="k">await</span><span class="w"> </span><span class="nx">genomeScale</span><span class="p">.</span><span class="nx">zoomTo</span><span class="p">([{</span><span class="w"> </span><span class="nx">chrom</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;chr1&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">chrom</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;chrM&quot;</span><span class="w"> </span><span class="p">}],</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">duration</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="categorical-scale-viewports">Categorical scale viewports<a class="headerlink" href="#categorical-scale-viewports" title="Permanent link">&para;</a></h3>
+<p>For band and point scales, <code>getDomain()</code> returns the full ordered category list.
+Read and change the visible rank interval with <code>getViewport()</code> and
+<code>zoomToViewport()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">categoryScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">getScaleResolutionByName</span><span class="p">(</span><span class="s2">&quot;categories&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">categoryScale</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">&quot;Missing named scale: categories&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">await</span><span class="w"> </span><span class="nx">categoryScale</span><span class="p">.</span><span class="nx">zoomToViewport</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">duration</span><span class="o">:</span><span class="w"> </span><span class="mf">500</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">savedViewport</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">categoryScale</span><span class="p">.</span><span class="nx">getViewport</span><span class="p">();</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">categoryScale</span><span class="p">.</span><span class="nx">zoomToViewport</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span><span class="w"> </span><span class="c1">// Fit all categories.</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">categoryScale</span><span class="p">.</span><span class="nx">zoomToViewport</span><span class="p">(</span><span class="nx">savedViewport</span><span class="p">);</span>
+</code></pre></div>
+<p>A viewport is a half-open <code>[start, end]</code> rank interval or <code>null</code> to fit all
+categories. Intervals narrower than one category expand around their midpoint
+to span one category. Fractional positions inside grouping gaps are not part of
+the interval, so restoring or linking an interval can shift the placement when
+a viewport edge lies inside a gap.</p>
+<p>Listen to <code>"viewport"</code> events for navigation changes; <code>"domain"</code> events report
+category membership or order changes.
+These methods are available only for band and point scales. See
+<a href="../../grammar/scale/#categorical-scale-viewports">categorical scale viewports</a>.</p>
+<p>Two embeds with the same category order can link their rank intervals:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">targetScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">otherApi</span><span class="p">.</span><span class="nx">getScaleResolutionByName</span><span class="p">(</span><span class="s2">&quot;categories&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">targetScale</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">&quot;Missing target scale: categories&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">categoryScale</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;viewport&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="ow">void</span><span class="w"> </span><span class="nx">targetScale</span><span class="p">.</span><span class="nx">zoomToViewport</span><span class="p">(</span><span class="nx">categoryScale</span><span class="p">.</span><span class="nx">getViewport</span><span class="p">(),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">renderImmediately</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
 <h3 id="domain-events">Domain events<a class="headerlink" href="#domain-events" title="Permanent link">&para;</a></h3>
@@ -4039,7 +4273,17 @@ read and write the parameter value and subscribe to changes:</p>
 <p>Interval selection snapshots keep these numeric ranges in <code>intervals</code>. They
 also expose <code>complexIntervals</code>: locus channels use <code>{ chrom, pos }</code> endpoints,
 numeric channels remain numeric, and cleared channels are <code>null</code>. The same
-snapshot shape is returned by <code>getValue()</code> and passed to subscriptions.</p>
+snapshot shape is returned by <code>getValue()</code> and passed to subscriptions.
+Numeric legend intervals use their declared channel, for example
+<code>intervalSelection({color: [0.3, Infinity]})</code>. The upper <code>Infinity</code> endpoint means
+no upper limit; snapshots and <code>selectionBounds(range, "color")</code> preserve it.</p>
+<p>Reading, observing, and clearing interval selections do not require an on-screen
+brush host. Only <code>contains({x, y})</code> needs one unambiguous interaction host in the
+selected scope. Change subscriptions observe settled updates during a drag;
+commit subscriptions report its changed result on release. Programmatic
+replacement or clearing cancels an active drag, so later pointer events cannot
+restore stale bounds. Cancellation alone retains the current bounds without
+emitting a completion.</p>
 <p>Current limitations:</p>
 <ul>
 <li>Parameters are addressed by name only. If the name resolves to multiple
@@ -4049,7 +4293,6 @@ snapshot shape is returned by <code>getValue()</code> and passed to subscription
 <li>Computed <code>expr</code> parameters are readable but cannot be written.</li>
 <li>Point selection snapshots are available through <code>api.params.getSelection()</code>;
   the generic <code>getParam()</code> handle does not write point selections.</li>
-<li>Projected selections are not supported.</li>
 </ul>
 <p>For spec-side parameter behavior, including input bindings, selections, and
 <code>push: "outer"</code> for linking scale domains, see
@@ -4059,17 +4302,20 @@ snapshot shape is returned by <code>getValue()</code> and passed to subscription
 package.</p>
 <p>To read a selection, use <code>api.params.getSelection(name)</code> or the corresponding
 <code>view.params</code> namespace. It provides detached point and interval snapshots,
-future-only subscriptions, interval containment, keyed point-selection writes,
+future-only subscriptions, interval containment, point-selection writes,
 and <code>clear()</code>. See
 <a href=".././views/#marks-and-scoped-interaction">Marks and scoped interaction</a> for the
 selection and lifecycle rules shared by these handles.</p>
-<h3 id="setting-point-selections">Setting point selections<a class="headerlink" href="#setting-point-selections" title="Permanent link">&para;</a></h3>
+<h3 id="setting-record-point-selections">Setting record point selections<a class="headerlink" href="#setting-record-point-selections" title="Permanent link">&para;</a></h3>
 <p>Obtain a point selection through the unit view supplying its records, including
 when the parameter is declared in an ancestor. <code>setValue(keys)</code> replaces native
 membership and drives the same subscriptions and conditional encodings as picking:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">track</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">views</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span><span class="w"> </span><span class="nx">scope</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="nx">view</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;observations&quot;</span><span class="w"> </span><span class="p">});</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">selected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">track</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">(</span><span class="s2">&quot;selected&quot;</span><span class="p">);</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">selected</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">)</span><span class="w"> </span><span class="nx">selected</span><span class="p">.</span><span class="nx">setValue</span><span class="p">([[</span><span class="s2">&quot;B&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]]);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">selected</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">selected</span><span class="p">.</span><span class="nx">membership</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;records&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">selected</span><span class="p">.</span><span class="nx">setValue</span><span class="p">([[</span><span class="s2">&quot;B&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]]);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">selected</span><span class="p">.</span><span class="nx">getValue</span><span class="p">().</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>Tuples follow <code>encoding.key</code> order: <code>{field: "id"}</code> takes <code>["B"]</code>; a composite
 <code>[{field: "chrom"}, {field: "pos"}]</code> takes <code>["chr1", 123]</code>. Keys must be unique,
@@ -4079,6 +4325,33 @@ membership. Single selections (<code>toggle: false</code>) accept at most one tu
 clears without requiring data or a key. The setter works across mark types,
 including text and rectangles. Membership binds the current publication; apps
 clear or reapply it after replacing datasets.</p>
+<h3 id="setting-categorical-point-selections">Setting categorical point selections<a class="headerlink" href="#setting-categorical-point-selections" title="Permanent link">&para;</a></h3>
+<p>Selections declared with <code>select: {type: "point", encodings: ["color"]}</code> store
+raw categories. Their capabilities and snapshots have <code>type: "point"</code> and
+<code>membership: "categories"</code>. After narrowing to point, check <code>membership</code> before
+reading record <code>data</code> or category <code>encodings</code> and <code>values</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">focus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">(</span><span class="s2">&quot;focus&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">focus</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">focus</span><span class="p">.</span><span class="nx">membership</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;categories&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">focus</span><span class="p">.</span><span class="nx">setValue</span><span class="p">([[</span><span class="s2">&quot;resting&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;activated&quot;</span><span class="p">]]);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">focus</span><span class="p">.</span><span class="nx">getValue</span><span class="p">());</span>
+<span class="w">  </span><span class="c1">// {type: &quot;point&quot;, membership: &quot;categories&quot;, active: true,</span>
+<span class="w">  </span><span class="c1">//  encodings: [&quot;color&quot;], values: [[&quot;resting&quot;], [&quot;activated&quot;]]}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Each tuple contains one string, boolean, or finite number. Numeric <code>1</code> and string
+<code>"1"</code> are distinct; duplicates are removed in insertion order. Invalid tuples or
+more than one distinct value with <code>toggle: false</code> reject the entire write.
+Snapshots and subscriptions return detached tuples. Both <code>change</code> and <code>commit</code>
+subscriptions receive the settled point update.</p>
+<p>The owner can be a container or an ancestor of the source mark. Category writes
+and <code>clear()</code> require no loaded data or <code>encoding.key</code>. Selected values stay
+active when absent from the current data or scale domain, and match again when
+they return. GenomeSpy App history and bookmarks preserve these raw values;
+record expansion remains specific to record selections.</p>
+<p>Specification initializers use channel-keyed objects such as
+<code>value: [{color: "activated"}]</code>, rather than the API's tuples. See
+<a href="../../grammar/parameters/#categorical-point-selection">categorical point selection</a>
+for linked views and source declarations.</p>
 <h2 id="updating-appearance">Updating appearance<a class="headerlink" href="#updating-appearance" title="Permanent link">&para;</a></h2>
 <p>The default theme follows
 <a href="../../grammar/config/#default-theme-palette">CSS appearance settings</a>

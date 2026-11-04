@@ -1,5 +1,5 @@
-import { K as e, ht as t, lt as n, pt as r, t as i, ut as a } from "./src-B7HI0ql9.js";
-import { n as o, t as s } from "./ref-BrhKEIoN.js";
+import { X as e, at as t, dt as n, lt as r, ot as i, t as a } from "./src-BLIo1n5a.js";
+import { n as o, t as s } from "./ref-Domz-mHJ.js";
 //#region index.js
 function c() {
 	let e = document.querySelector("meta[name='base_url']").getAttribute("content");
@@ -8,15 +8,15 @@ function c() {
 function l(e) {
 	return /^(?:[a-z]+:|\/)/i.test(e) ? e : c() + "/" + e;
 }
-async function u(e, t, n, r, a) {
+async function u(e, t, n, r, i) {
 	let o = l("example-specs/"), s = /* @__PURE__ */ new Set(), c = (e) => {
 		s.add(e);
 	};
 	try {
-		if (t.baseUrl = t.baseUrl || (n ? l(n) : o), r === "core") return await i(e, t, { onError: c });
+		if (t.baseUrl = t.baseUrl || (n ? l(n) : o), r === "core") return await a(e, t, { onError: c });
 		if (r === "app") {
-			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-DMpYCrvA.js");
-			return await a(n), await r(e, t, {
+			let { appStyles: n, embed: r } = await import("./appEmbedRuntime-1KvZrnBn.js");
+			return await i(n), await r(e, t, {
 				embedMode: "embedded",
 				onError: c
 			});
@@ -35,9 +35,9 @@ function f(e) {
 		t.id = d, t.textContent = e, document.head.appendChild(t);
 	}
 }
-var p = class extends n {
+var p = class extends t {
 	static get styles() {
-		return t`
+		return n`
             .embed-links {
                 margin: 0.3em 0 0.6em;
                 text-align: center;
@@ -83,11 +83,11 @@ var p = class extends n {
 		super(), this.height = 300, this.specHidden = !1, this.baseUrl = void 0, this.playgroundUrl = void 0, this.pythonUrl = void 0, this.runtime = "core", this.embedRef = s(), this.appStyles = "", this.embedResult = void 0, this.observer = void 0, this.disconnected = !1, this.#e = !1;
 	}
 	render() {
-		let t = this.specHidden || this.#e, n = this.playgroundUrl || this.pythonUrl || t, i = this.specHidden ? "Show JSON specification" : "Hide JSON specification";
+		let t = this.specHidden || this.#e, n = this.playgroundUrl || this.pythonUrl || t, a = this.specHidden ? "Show JSON specification" : "Hide JSON specification";
 		return r`
             ${this.appStyles ? r`<style>
                           ${this.appStyles}
-                      </style>` : a}
+                      </style>` : i}
             <div
                 class="embed-container"
                 style=${e({ height: this.height + "px" })}
@@ -101,24 +101,24 @@ var p = class extends n {
                                                 @click=${(e) => {
 			this.#e = !0, this.specHidden = !this.specHidden, e.preventDefault();
 		}}
-                                                >${i}</a
+                                                >${a}</a
                                             >
-                                        ` : a}
-                              ${this.playgroundUrl && t ? r` - ` : a}
+                                        ` : i}
+                              ${this.playgroundUrl && t ? r` - ` : i}
                               ${this.playgroundUrl ? r`
                                             <a href=${this.playgroundUrl}
                                                 >Edit this example in
                                                 Playground</a
                                             >
-                                        ` : a}
-                              ${this.pythonUrl && (t || this.playgroundUrl) ? r` - ` : a}
+                                        ` : i}
+                              ${this.pythonUrl && (t || this.playgroundUrl) ? r` - ` : i}
                               ${this.pythonUrl ? r`
                                             <a href=${this.pythonUrl}
                                                 >View Python example</a
                                             >
-                                        ` : a}
+                                        ` : i}
                           </div>
-                      ` : a}
+                      ` : i}
 
             <div
                 class="embed-spec"

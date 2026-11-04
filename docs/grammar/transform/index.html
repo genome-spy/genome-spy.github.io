@@ -612,6 +612,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -701,6 +705,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1403,6 +1434,33 @@
     
   
   Stack
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
 
     
   </span>
@@ -2537,6 +2595,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2699,6 +2761,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/inspector/" class="md-nav__link">
         
   
@@ -2818,6 +2934,8 @@
       
         
           
+        
+      
         
       
         
@@ -3001,6 +3119,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -3544,6 +3689,11 @@ generated from the original rows.</p>
 <p>The data flow is a forest of data sources and subsequent transformations, which may
 form trees. For instance, a layer view might have a data source, which is then
 filtered and mutated in a different way for each child layer.</p>
+<p>The <a href="branch/"><code>"branch"</code></a> declaration adds a side pipeline within a view.
+It can prepare a summary without changing the main rows. The
+<a href="values/"><code>"values"</code></a> transform publishes a field as a read-only array
+parameter, for example to derive scale gaps from metadata or publish counts
+calculated with <a href="aggregate/"><code>"aggregate"</code></a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Departure from Vega-Lite</p>
 <p>The notation of transforms is different from Vega-Lite to enable more

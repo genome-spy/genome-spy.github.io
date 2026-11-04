@@ -614,6 +614,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -703,6 +707,33 @@
     
   
   AlignmentMismatches
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transform/branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Branch
 
     
   </span>
@@ -1424,6 +1455,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../transform/values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Values
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../transform/window/" class="md-nav__link">
         
   
@@ -1815,6 +1873,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         Reusing Tests in a Unit View
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matching-categories-across-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Matching Categories Across Views
       </span>
     </span>
   </a>
@@ -2652,6 +2721,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2814,6 +2887,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/coordinates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Coordinate parsing and formatting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Searching loaded records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/inspector/" class="md-nav__link">
         
   
@@ -2933,6 +3060,8 @@
       
         
           
+        
+      
         
       
         
@@ -3116,6 +3245,33 @@
     
   
   GENCODE Gene Annotations from GFF3
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/genomic-data/lambda-phage-gene-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lambda Phage Gene Map
 
     
   </span>
@@ -3640,6 +3796,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#matching-categories-across-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Matching Categories Across Views
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#testing-different-link-endpoints" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3826,6 +3993,28 @@ default), it also matches every row while all selections are empty. Set
 <p>Each consuming unit must define names referenced by its encodings, including
 inherited encodings. Selection parameters and projected channels resolve in
 that unit. Named predicates cannot refer to other named predicates.</p>
+<h2 id="matching-categories-across-views">Matching Categories Across Views<a class="headerlink" href="#matching-categories-across-views" title="Permanent link">&para;</a></h2>
+<p>A category selection declared with <code>select.encodings: ["color"]</code> tests the
+consuming view's color input by default. Views can use different field names
+for the same category concept without an explicit mapping. To read that
+concept from another categorical channel, map the stored component to the
+consumer input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;param&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;activation_states&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shape&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Here shape must encode activation state. <code>project</code> only chooses the input to
+compare; it does not convert rendered colors into shapes or change stored
+membership. Comparing activation states to unrelated cell-type labels does not
+join the concepts. Use two named selections with <code>test.and</code> for their intersection.</p>
+<p>Categorical positional channels work the same way. For a selection declared with
+<code>select.encodings: ["x"]</code> on a band scale, <code>"project": {"x": "shape"}</code> links
+the selected x categories to shapes in another plot. Likewise, categories selected
+through color can be tested against a categorical y input with
+<code>"project": {"color": "y"}</code>.</p>
+<p>Each mapped input must be an unconditional nominal or ordinal field encoding
+with a discrete scale. Identity uses raw typed values, independently of scale
+domains, palettes, and shape codes. These rules also apply to conditional order
+and named/logical predicates. Interval mappings retain the same-axis endpoint
+and data-type requirements below.</p>
 <h2 id="testing-different-link-endpoints">Testing Different Link Endpoints<a class="headerlink" href="#testing-different-link-endpoints" title="Permanent link">&para;</a></h2>
 <p>An interval normally tests the matching positional channel and, on ranged
 marks, its second endpoint according to the mark's hit-test mode. Use
