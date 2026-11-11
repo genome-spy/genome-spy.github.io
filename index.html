@@ -26,18 +26,18 @@
     <link rel="icon" type="image/svg+xml" href="img/genomespy-favicon.svg" />
 
     <meta name="description"
-        content="GenomeSpy is an interactive, GPU-accelerated visualization toolkit for genomic data. Build tailored visualizations and genome browsers using a declarative grammar." />
+        content="Create interactive plots and genome browsers for web applications and Python notebooks with GenomeSpy." />
 
     <meta property="og:title" content="GenomeSpy — Interactive Genomic Visualization for Web and Notebooks" />
     <meta property="og:description"
-        content="A visualization grammar and GPU-accelerated rendering engine for genomic (and other) data" />
+        content="Create interactive plots and genome browsers for web applications and Python notebooks with GenomeSpy." />
     <meta property="og:image" content="https://genomespy.app/img/genomespy-card.png" />
     <meta property="og:url" content="https://genomespy.app/" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="GenomeSpy — Interactive Genomic Visualization for Web and Notebooks" />
     <meta name="twitter:description"
-        content="A visualization grammar and GPU-accelerated rendering engine for genomic (and other) data" />
+        content="Create interactive plots and genome browsers for web applications and Python notebooks with GenomeSpy." />
     <meta name="twitter:image" content="https://genomespy.app/img/genomespy-card.png" />
     <meta name="google-site-verification" content="cdBmxUxM5Dh1OeVuCsOz4B5Jht2i_N03RG6QDeLbXTk" />
 </head>
@@ -76,11 +76,11 @@
             <div>
                 <h1>GenomeSpy</h1>
                 <p>
-                    A visualization grammar and a GPU-accelerated rendering engine for genomic (and other) data.
+                    Interactive visualization for genomic and other data.
                 </p>
                 <p>
-                    Use GenomeSpy to make custom visualizations or genome browsers. Embed in
-                    web applications or Python or JavaScript notebooks.
+                    Create custom plots and genome browsers for web applications and Python notebooks.
+                    Explore individual genomic regions or compare data across samples.
                 </p>
             </div>
         </div>
@@ -88,26 +88,23 @@
 
     <section id="intro">
         <p>
-            GenomeSpy provides building blocks for tailored, interactive genomic visualizations.
-            Integrate them into <a href="docs/api/embedding/">web applications</a> or explore your data in
-            <a href="genome-spy-python/">Python notebooks</a> such as Jupyter and marimo, or in
+            GenomeSpy uses a <a href="#building-blocks">visualization grammar</a> to bring variants, signals, sequences,
+            and annotations together in views that share genomic coordinates. Embed a custom browser in a
+            <a href="docs/api/embedding/">web application</a>, build interactive plots in
+            <a href="genome-spy-python/">Python notebooks</a>, or explore data in
             <a href="https://observablehq.com/collection/@tuner/genomespy">Observable</a>.
-            GPU-accelerated WebGL rendering supports smooth zooming and panning through large datasets.
         </p>
 
         <p>
-            A declarative grammar lets you describe your data, choose graphical marks, and combine views.
-            GenomeSpy builds upon the concepts originally introduced in
-            <a href="https://www.springer.com/gp/book/9780387245447">The Grammar of Graphics</a> and later
-            implemented in
-            <a href="https://ggplot2.tidyverse.org/">ggplot2</a> and
-            <a href="https://vega.github.io/vega-lite/">Vega-Lite</a>.
+            Use GenomeSpy to explore questions in cancer genomics, gene regulation, and sequence-to-function analysis.
+            <a href="#examples">Browse examples</a> of structural variants, sequence alignments, scatter plots, and
+            heatmaps, or <a href="#app">compare sample collections</a> in GenomeSpy App.
         </p>
 
         <p>
-            Originally developed to explore <a href="#app">large sample collections</a> in cancer genomics research,
-            GenomeSpy has since been used in several <a href="#publications">publications</a>.
-            Try the interactive genome browser below, or browse more <a href="#examples">examples</a>.
+            Try the viewer below. Zoom from a whole-genome overview down to individual bases and see how DNA sequence,
+            gene annotations, GC content, and evolutionary conservation line up. GPU-accelerated rendering keeps
+            zooming and panning smooth, even with large datasets.
         </p>
     </section>
 
@@ -116,15 +113,26 @@
     </section>
 
     <section id="building-blocks">
-        <h2>The Core Building Blocks</h2>
+        <h2>Build your own visualizations</h2>
+
+        <p>GenomeSpy uses a declarative grammar: you describe the data, how it should be displayed, and how views
+            fit together. The grammar builds on ideas from
+            <a href="https://www.springer.com/gp/book/9780387245447">the Grammar of Graphics</a>,
+            <a href="https://ggplot2.tidyverse.org/">ggplot2</a>, and
+            <a href="https://vega.github.io/vega-lite/">Vega-Lite</a>, with features for genomic coordinates and data.</p>
+
+        <p>If you use IGV or the UCSC Genome Browser, the tracks above will look familiar. In GenomeSpy, you can
+            design each track by choosing its marks, mapping data values to color or size, and layering marks in
+            the same view. For example, draw arcs between structural variant breakpoints and align them with a
+            track showing copy-number changes.</p>
 
         <a href="docs/grammar/data/">
             <figure class="flex-figure">
                 <picture><img src="img/block-data.svg" alt="data" /></picture>
                 <figcaption>
                     <strong>Your data:</strong>
-                    Supports multiple formats: CSV, TSV, JSON, Parquet, BAM BED, BEDPE, FASTA,
-                    indexed FASTA, BigWig, BigBed, and GFF3.
+                    Load tabular and genomic data in formats including CSV, TSV, JSON, Parquet, BAM, BED, BEDPE,
+                    FASTA, indexed FASTA, BigWig, BigBed, and GFF3.
                 </figcaption>
             </figure>
         </a>
@@ -132,9 +140,9 @@
         <a href="docs/grammar/transform/">
             <figure class="flex-figure">
                 <picture><img src="img/block-transform.svg" alt="transform" /></picture>
-                <figcaption><strong>Transformations:</strong> Filter and derive data, perform computations such as
-                    <em>pileup</em> or
-                    <em>coverage</em>.
+                <figcaption>
+                    <strong>Transformations:</strong>
+                    Filter records, calculate new fields, and compute features such as coverage and pileups.
                 </figcaption>
             </figure>
         </a>
@@ -142,7 +150,9 @@
         <a href="docs/grammar/scale/">
             <figure class="flex-figure">
                 <picture><img src="img/block-scale.svg" alt="scale" /></picture>
-                <figcaption><strong>Scales:</strong> Make the data dimensions suitable for visual representation.
+                <figcaption>
+                    <strong>Scales:</strong>
+                    Map data values to positions, colors, and sizes. Genomic scales let views share a coordinate system.
                 </figcaption>
             </figure>
         </a>
@@ -151,8 +161,9 @@
             <figure class="flex-figure">
                 <picture><img src="img/block-mark.svg" alt="mark" /></picture>
                 <figcaption>
-                    <strong>Graphical marks:</strong> Use the <em>point</em> mark for a scatter plot or mutations,
-                    adapt the <em>rect</em> mark for a bar chart or genomic segments.
+                    <strong>Graphical marks:</strong>
+                    Represent data with points, lines, rectangles, text, and links. Combine them to display signals,
+                    genomic segments, variants, and other features.
                 </figcaption>
             </figure>
         </a>
@@ -161,8 +172,8 @@
             <figure class="flex-figure">
                 <picture><img src="img/block-channel.svg" alt="channel" /></picture>
                 <figcaption>
-                    <strong>Visual channels:</strong> Map the scale-transformed data to the properties of the marks.
-                    For example: position, size, color, and symbol.
+                    <strong>Visual channels:</strong>
+                    Use position, size, color, and shape to show different attributes of your data.
                 </figcaption>
             </figure>
         </a>
@@ -171,8 +182,9 @@
             <figure class="flex-figure">
                 <picture><img src="img/block-view-composition.svg" alt="view composition" /></picture>
                 <figcaption>
-                    <strong>View composition:</strong> Combine multiple views, optionally sharing data and scales.
-                    Concatenate, layer, and facet.
+                    <strong>View composition:</strong>
+                    Arrange views side by side, stack them as tracks, or layer them in the same plot.
+                    Share scales to keep related views aligned.
                 </figcaption>
             </figure>
         </a>
@@ -181,9 +193,9 @@
             <figure class="flex-figure">
                 <picture><img src="img/block-spec.svg" alt="view spec" /></picture>
                 <figcaption>
-                    <strong>View specification:</strong> Put everything together using the grammar.
-                    GenomeSpy's visualization grammar is <strong>heavily</strong> inspired by
-                    Vega-Lite, extending it with functionality often needed for genomic data.
+                    <strong>View specification:</strong>
+                    Combine these building blocks in a JSON specification, or use the Python API to construct
+                    the visualization in code.
                 </figcaption>
             </figure>
         </a>
@@ -193,34 +205,55 @@
                 <!-- Unaltered Python logo from https://www.python.org/community/logos/ -->
                 <picture><img src="img/block-python.svg" alt="Python logo" /></picture>
                 <figcaption>
-                    <strong>Python API:</strong> Bring interactive genomic visualization into your analysis workflow.
-                    Build and combine charts with an Altair-like API, then explore the results in Jupyter or marimo
-                    notebooks without writing JSON by hand.
+                    <strong>Python API:</strong>
+                    Build and combine charts with an Altair-like interface, then display them in Jupyter or marimo
+                    without writing JSON by hand.
                 </figcaption>
             </figure>
         </a>
 
     </section>
 
+    <section id="use-genomespy">
+        <h2>Use GenomeSpy in your work</h2>
+
+        <div class="use-cases">
+            <div>
+                <h3>In web applications</h3>
+                <p><a href="docs/api/embedding/">Embed a genome browser</a> or interactive plot with the JavaScript API.
+                    Use GenomeSpy Core's declarative grammar to define custom views for your application.</p>
+            </div>
+
+            <div>
+                <h3>In Python notebooks</h3>
+                <p>Build charts from data frames with the <a href="genome-spy-python/">Altair-like Python API</a>.
+                    Explore gene expression heatmaps or scatter plots of single-cell embeddings in Jupyter or marimo.</p>
+            </div>
+
+            <div>
+                <h3>Across sample collections</h3>
+                <p>Compare samples and group them by metadata in <a href="#app">GenomeSpy App</a>. Inspect somatic
+                    mutations and gene amplifications in tumors, or explore DNA methylation and histone ChIP-seq signals.</p>
+            </div>
+        </div>
+    </section>
+
     <section id="app" class="dark">
-        <h2>GenomeSpy App</h2>
+        <h2>Explore sample collections with GenomeSpy App</h2>
 
-        <p><a href="docs/sample-collections/">GenomeSpy App</a> is a visual
-            analytics application for interactive exploration of multi-sample cancer
-            genomics data. It supports overview-to-detail analysis of large sample
-            collections, allowing users to identify cohort-wide patterns and then
-            inspect individual samples, genomic regions, and outliers in detail.</p>
+        <p>GenomeSpy App lets you explore genomic data from multiple samples together with sample metadata.
+            It supports copy-number alterations, structural variants, mutations, DNA methylation, and signals from
+            assays such as ATAC-seq and ChIP-seq. You can move from an overview of the sample collection to
+            individual samples and genomic regions.</p>
 
-        <p>It builds on the GenomeSpy Core package, enabling extensive
-            customization for different data modalities, including copy-number
-            variation, structural variants, mutations, methylation, continuous
-            genomic signals such as coverage and accessibility, and sample
-            metadata.</p>
+        <p>Samples can be filtered, grouped, and sorted using metadata or attributes derived from the genomic
+            data—for example, copy number at a gene of interest. You can bookmark the resulting views and share them
+            as URLs.</p>
 
-        <p>The App provides incremental, provenance-aware actions for filtering,
-            grouping, and reorganizing samples, as well as for deriving new
-            attributes from genome-aligned point and segment features. Users can
-            bookmark and share action-defined views as URLs.</p>
+        <p>The App builds on GenomeSpy Core, so its views can be configured for different datasets and combinations
+            of data types.</p>
+
+        <p><a href="docs/sample-collections/">App documentation</a></p>
 
         <video-carousel role="region" aria-roledescription="carousel" aria-label="GenomeSpy App videos">
             <div data-video-src="https://data.genomespy.app/website-resources/video/app-video.webm">
@@ -341,7 +374,7 @@
     </section>
 
     <section id="examples" class="dark">
-        <!-- <h2>Examples</h2> -->
+        <h2>Examples</h2>
 
         <ul id="cards">
             <li class="example-card">

@@ -162,6 +162,31 @@ section.dark,
   height: 340px;
 }
 
+#use-genomespy {
+  padding-bottom: calc(var(--vertical-padding) * 1.5);
+
+  > h2 {
+    padding-top: 0.65em;
+  }
+
+  .use-cases {
+    display: grid;
+    gap: 1rem 1.5rem;
+
+    @media (min-width: 850px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  h3 {
+    margin: 0 0 0.3em;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
 #building-blocks {
   > a {
     display: block;
@@ -178,7 +203,7 @@ section.dark,
       margin-bottom: 20px;
     }
 
-    &:nth-child(2n + 1) figure {
+    &:nth-of-type(2n) figure {
       flex-direction: row-reverse;
 
       picture {
@@ -187,7 +212,7 @@ section.dark,
       }
     }
 
-    &:nth-child(2n) figure picture {
+    &:nth-of-type(2n + 1) figure picture {
       margin-left: 0;
       margin-right: 40px;
     }
@@ -216,7 +241,7 @@ section.dark,
   padding: 0px;
 
   > h2 {
-    padding: 0 var(--side-padding);
+    padding: var(--vertical-padding) var(--side-padding) 0;
     margin-top: 0;
     margin-bottom: 0;
   }
